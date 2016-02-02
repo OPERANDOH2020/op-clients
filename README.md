@@ -14,9 +14,7 @@ Building the extension
 ### Building the extension for development environment
     ./browser-extension/build/build_operando.py
 After the build process the parent directory should contain the following directories:
-    -adblockpluschrome
-    -browser-extension
-    -devenv.chrome.extension
+    - adblockpluschrome
+    - browser-extension
+    - devenv.chrome.extension
 devenv.chrome.extension is the extension. Drag and drop in Chrome -> Settings -> Extensions to install it.
-
-

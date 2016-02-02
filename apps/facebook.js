@@ -1,6 +1,5 @@
 var fbdata = window.FACEBOOK_PARAMS;
 fbdata.__req = parseInt(fbdata.__req, 36);
-
 var privacySettings =
     [
         {
@@ -120,12 +119,13 @@ function postToFacebook(settings, item, total) {
     return new Promise(function (resolve, reject) {
 
         if (settings.page) {
-            sendFeedback(settings.name, item, total);
+            FeedbackProgress.sendFeedback(settings.name, item, total);
             doGET(settings.page, function (response) {
 
                 extractHeaders(response, function (response) {
 
                     var data = response;
+                    console.log(data);
                     chrome.runtime.sendMessage({
                         message: "getCookies",
                         url: settings.page
@@ -139,7 +139,7 @@ function postToFacebook(settings, item, total) {
                             data[prop] = settings.data[prop];
                         }
 
-
+                        console.log(data);
                         $.ajax({
                             type: "POST",
                             url: settings.url,
@@ -202,7 +202,7 @@ function secureAccount() {
     });
 
     sequence = sequence.then(function (result) {
-        clearFeedback("Facebook is now secured!");
+        FeedbackProgress.clearFeedback("Facebook is now secured!");
     });
 
 }
@@ -251,6 +251,10 @@ function extractHeaders(content, callback) {
         }
         data["ttstamp"] = '2' + x;
     }
+    else{
+        data["fb_dtsg"] = fbdata.fb_dtsg;
+        data["ttstamp"] = fbdata.ttstamp;
+    }
 
     //__rev
     if ((match = revisionReg.exec(content)) !== null) {
@@ -278,50 +282,4 @@ function extractHeaders(content, callback) {
     data['__req'] = (++ fbdata.__req).toString(36);
 
     callback(data);
-}
-
-function sendFeedback(message, index, total) {
-
-    var feedbackContainer = document.getElementById("operando_feedback_container");
-    var feedbackMessage = document.getElementById("operando_feedback_message");
-
-    var createFeedbackElement = function (container) {
-        feedbackMessage = document.createElement("div");
-        feedbackMessage.id = "operando_feedback_message";
-        container.appendChild(feedbackMessage);
-    }
-
-    if (feedbackContainer == null) {
-        feedbackContainer = document.createElement("div");
-        feedbackContainer.id = "operando_feedback_container";
-        createFeedbackElement(feedbackContainer);
-        document.body.appendChild(feedbackContainer);
-    }
-
-    if (feedbackMessage == null) {
-        createFeedbackElement(feedbackContainer);
-    }
-
-    var messageElement = document.createTextNode(message);
-    feedbackMessage.innerHTML = '';
-    feedbackMessage.appendChild(messageElement);
-    var procentElement = document.createElement("div");
-    procentElement.id = "operando_feedback_procent";
-    procentElement.innerHTML = Math.floor(index * 100 / total)+"%";
-    feedbackMessage.appendChild(procentElement);
-
-}
-
-function clearFeedback(message) {
-    var feedbackContainer = document.getElementById("operando_feedback_container");
-    var feedbackMessage = document.getElementById("operando_feedback_message");
-    if (feedbackContainer != null) {
-        if (feedbackMessage != null) {
-            feedbackMessage.innerHTML = message;
-        }
-
-        setTimeout(function () {
-            document.body.removeChild(feedbackContainer);
-        }, 2000);
-    }
 }

@@ -1,35 +1,4 @@
 var webRequest = chrome.webRequest;
-var Prefs = require("prefs").Prefs;
-
-/*chrome.contentSettings['location'].set({
-    'primaryPattern': '<all_urls>',
-    'setting': 'block',
-    'scope': 'regular'
-});*/
-
-
-/*webRequest.onBeforeRequest.addListener(
-    function (details) {
-
-        if (Prefs.accept_unsecured_submits == false) {
-
-            if (details.method === "POST" && details.url.indexOf("https://") != 0) {
-                Prefs.unsecured_submits++;
-                return {cancel: true}
-            }
-        }
-
-        if (Prefs.follow_unsecured_links == false) {
-            if (details.url.indexOf("http://") != 0) {
-                Prefs.unsecured_links_followed++;
-                //return {cancel: true}
-            }
-        }
-
-    },
-    {urls: ["<all_urls>"]},
-    ["blocking"]
-);*/
 
 
 var HEADERS_TO_STRIP_LOWERCASE = [

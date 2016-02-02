@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import os, sys, subprocess, shutil
-from distutils.dir_util import copy_tree
+IGNORE_PATTERNS = ('.idea','.gitignore','.git')
+
+import os, sys, subprocess,shutil
+from shutil import copytree, ignore_patterns
 
 
 def buildOperando():		
@@ -16,9 +18,9 @@ os.chdir('..')
 BASE_DIR = os.getcwd()
 
 if not os.path.exists(os.path.join(BASE_DIR,"adblockpluschrome")):
-	os.system('git clone "https://github.com/adblockplus/adblockpluschrome"')	
-	buildOperando()
-	#TODO update
+    	os.system('git clone "https://github.com/adblockplus/adblockpluschrome"')
+        buildOperando()
+	    #TODO update
 
 files = [
 {
@@ -53,41 +55,18 @@ files = [
   "is_directory":0
 }]
 
-#BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-#os.chdir('..')
-#os.chdir('..')
-
-
-#DEPENDENCY_SCRIPT = os.path.join(BASE_DIR, "ensure_dependencies.py")
-
-
-#try:
-#  subprocess.check_call([sys.executable, DEPENDENCY_SCRIPT, BASE_DIR])
-#except subprocess.CalledProcessError as e:
-#  print >>sys.stderr, e
-#  print >>sys.stderr, "Failed to ensure dependencies being up-to-date!"
-
-
 
 for file in files:
 	if file['is_directory'] == 1:
-		#print >>sys.stderr, os.path.join(BASE_DIR,file['src'])
-		#print >>sys.stderr, os.path.join(BASE_DIR,file['dest'])
-		copy_tree(os.path.join(BASE_DIR,file['src']), os.path.join(BASE_DIR,file['dest']))
+	    if os.path.exists(os.path.join(BASE_DIR,file['dest'])):
+                shutil.rmtree(os.path.join(BASE_DIR,file['dest']))
+	    copytree(os.path.join(BASE_DIR,file['src']), os.path.join(BASE_DIR,file['dest']),ignore=ignore_patterns('.gitignore', '.git','.idea'))
 	else:
 		shutil.copy2(os.path.join(BASE_DIR,file['src']), os.path.join(BASE_DIR,file['dest']))
 
-		
-
-buildOperando()		
-
-copy_tree(os.path.join(BASE_DIR,"adblockpluschrome/devenv.chrome"), os.path.join(BASE_DIR,"devenv.chrome.extension"))
-		
-
-
-
-
-#import buildtools.build
-#buildtools.build.processArgs(BASE_DIR, sys.argv)
+buildOperando()
+if os.path.exists(os.path.join(BASE_DIR,"devenv.chrome.extension")):
+    shutil.rmtree(os.path.join(BASE_DIR,"devenv.chrome.extension"))
+copytree(os.path.join(BASE_DIR,"adblockpluschrome/devenv.chrome"), os.path.join(BASE_DIR,"devenv.chrome.extension"))
 
 

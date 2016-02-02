@@ -123,7 +123,7 @@ function postToLinkedIn(settings, item, total) {
 
 
         if (settings.page) {
-            sendFeedback(settings.name, item, total);
+            FeedbackProgress.sendFeedback(settings.name, item, total);
             doGET(settings.page, function (response) {
 
                 extractHeaders(response, function (response) {
@@ -223,7 +223,7 @@ function secureAccount() {
     });
 
     sequence = sequence.then(function (result) {
-        clearFeedback("LinkedIn is now secured!");
+        FeedbackProgress.clearFeedback("LinkedIn is now secured!");
     });
 
 }
@@ -256,50 +256,3 @@ function extractHeaders(content, callback) {
     callback("csrfToken=" + encodeURIComponent(match[1]));
 
 }
-
-function sendFeedback(message, index, total) {
-
-    var feedbackContainer = document.getElementById("operando_feedback_container");
-    var feedbackMessage = document.getElementById("operando_feedback_message");
-
-    var createFeedbackElement = function (container) {
-        feedbackMessage = document.createElement("div");
-        feedbackMessage.id = "operando_feedback_message";
-        container.appendChild(feedbackMessage);
-    }
-
-    if (feedbackContainer == null) {
-        feedbackContainer = document.createElement("div");
-        feedbackContainer.id = "operando_feedback_container";
-        createFeedbackElement(feedbackContainer);
-        document.body.appendChild(feedbackContainer);
-    }
-
-    if (feedbackMessage == null) {
-        createFeedbackElement(feedbackContainer);
-    }
-
-    var messageElement = document.createTextNode(message);
-    feedbackMessage.innerHTML = '';
-    feedbackMessage.appendChild(messageElement);
-    var procentElement = document.createElement("div");
-    procentElement.id = "operando_feedback_procent";
-    procentElement.innerHTML = Math.floor(index * 100 / total)+"%";
-    feedbackMessage.appendChild(procentElement);
-
-}
-
-function clearFeedback(message) {
-    var feedbackContainer = document.getElementById("operando_feedback_container");
-    var feedbackMessage = document.getElementById("operando_feedback_message");
-    if (feedbackContainer != null) {
-        if (feedbackMessage != null) {
-            feedbackMessage.innerHTML = message;
-        }
-
-        setTimeout(function () {
-            document.body.removeChild(feedbackContainer);
-        }, 2000);
-    }
-}
-
