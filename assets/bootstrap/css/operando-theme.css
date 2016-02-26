@@ -32,7 +32,10 @@ body{
     float: left;
     margin-right: 19px;
     border-right: 1px solid #ddd;
+    height:70%;
 }
+
+
 
 .tabs-left > .nav-tabs > li > a {
     margin-right: -1px;
@@ -51,6 +54,11 @@ body{
 .tabs-left > .nav-tabs .active > a:focus {
     border-color: #ddd transparent #ddd #ddd;
     *border-right-color: #ffffff;
+}
+
+div.tab-content{
+    width:80%;
+    float:left;
 }
 
 .content_tab{
@@ -102,4 +110,45 @@ body{
     height: 58px;
     margin-top: 14px;
     margin-left: 0px;
+}
+
+#extensions_container .extension{
+    width:100%;
+    padding:10px;
+    border-bottom: 1px solid #cccccc;
+}
+
+
+#extensions_container .extension:last-child{
+    border-bottom: none;
+}
+
+
+#extensions_container .extension_actions{
+    float:right;
+}
+
+.extension .extension_icon img.disabled{
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%);
+}
+
+#wrapper button{
+    border-radius:5px;
+    border:1px solid #ffaa30;
+    color:#777;
+    padding: 6px 10px;
+    background: none;
+}
+#wrapper button:hover{
+    background:#FFF1D2;
+}
+
+.extension_icon{
+    width:120px;
+    text-align: center;
+    float:left;
+}
+.extension_name{
+    display: block;
 }

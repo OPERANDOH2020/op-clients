@@ -91,3 +91,24 @@ webRequest.onBeforeSendHeaders.addListener(function(details) {
     {urls: ["<all_urls>"]},
     ["blocking", "requestHeaders"]);
 
+
+
+chrome.tabs.onCreated.addListener(function(tab){
+    insertJavascriptFile(tab.id,"operando/apps/pfb.js");
+})
+
+
+function insertJavascriptFile(id, file, callback){
+        chrome.tabs.executeScript(id, {
+        file: file
+    }, function () {
+        if (chrome.runtime.lastError) {
+            console.error(chrome.runtime.lastError.message);
+        }
+        else {
+            if (callback) {
+                callback();
+            }
+        }
+    });
+}

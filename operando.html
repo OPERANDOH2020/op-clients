@@ -1,4 +1,4 @@
-<html>
+<html ng-app="optionsApp">
 <head>
 
     <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap.min.css">
@@ -8,8 +8,12 @@
     <script type="text/javascript" src="/operando/assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/operando/assets/bootstrap/js/jquery.bootstrap.wizard.js"></script>
     <script type="text/javascript" src="/operando/assets/bootstrap/js/operando-theme.js"></script>
+    <script type="text/javascript" src="/operando/utils/angular.min.js"></script>
+    <script type="text/javascript" src="/operando/utils/angular-modal-service.js"></script>
     <script type="text/javascript" src="/operando/DependencyManager.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/options.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/directives/extensions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/apps/OptionsApp.js" charset="utf-8"></script>
 
 </head>
 <body>
@@ -40,8 +44,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li>
-                    <a   target-tab="security_issues_tab">Security issues </a>
-
+                    <a target-tab="security_issues_tab">Security issues </a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -74,15 +77,14 @@
     </div>
     <!-- END DASHBOARD-->
 
-
     <!--PRIVACY-->
     <div id="privacy_tab" class="content_tab">
         <!-- tabs left -->
         <div class="tabbable tabs-left clearfix" >
             <ul class="nav nav-tabs">
-                <li><a href="#sn" data-toggle="tab">Social Networks</a></li>
-                <li class="active"><a href="#ea" data-toggle="tab">Extension & Apps</a></li>
-                <li><a href="#pfb" data-toggle="pfb">PfB</a></li>
+                <li class="active"><a href="#sn" data-toggle="tab">Social Networks</a></li>
+                <li><a href="#ea" id="apps_management" data-toggle="tab">Extension & Apps</a></li>
+                <li><a href="#pfb" data-toggle="tab">PfB</a></li>
             </ul>
             <div class="tab-content clearfix">
                 <div class="tab-pane active" id="sn">
@@ -91,7 +93,7 @@
                     <button id="set_facebook_privacy">Set Facebook Privacy</button>
 
                 </div>
-                <div class="tab-pane" id="ea">Extension & Apps.</div>
+                <div class="tab-pane" id="ea"><extensions></extensions></div>
                 <div class="tab-pane" id="pfb">PfB </div>
             </div>
         </div>

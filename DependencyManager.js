@@ -8,6 +8,7 @@ var DependencyManager = {
             name:"jQuery",
             path:"/operando/utils/jquery-2.1.4.min.js"
         }
+
     ],
 
     resolveDependency : function(dependency, resolve){
@@ -25,6 +26,5 @@ var DependencyManager = {
         else {
             console.error("Could not load dependency ", dependency);
         }
-
-}
+    }
 }
