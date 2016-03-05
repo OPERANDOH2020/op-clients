@@ -24,33 +24,33 @@ if not os.path.exists(os.path.join(BASE_DIR,"adblockpluschrome")):
 
 files = [
 {
-	"src":"browser-extension",
+	"src":"op-chrome-ext",
 	"dest":"adblockpluschrome/operando",
 	"is_directory":1
 },
 {
-  "src": "browser-extension/build/override/metadata.common",
+  "src": "op-chrome-ext/build/override/metadata.common",
   "dest": "adblockpluschrome/metadata.common",
   "is_directory":0
 }, {
-  "src": "browser-extension/build/override/metadata.chrome",
+  "src": "op-chrome-ext/build/override/metadata.chrome",
   "dest": "adblockpluschrome/metadata.chrome",
   "is_directory":0
 }, {
-  "src": "browser-extension/build/override/packagerChrome.py",
+  "src": "op-chrome-ext/build/override/packagerChrome.py",
   "dest": "adblockpluschrome/buildtools/packagerChrome.py",
   "is_directory":0
 }, {
-  "src": "browser-extension/build/override/popup.html",
+  "src": "op-chrome-ext/build/override/popup.html",
   "dest": "adblockpluschrome/popup.html",
   "is_directory":0
 }, {
-  "src": "browser-extension/build/override/popup.css",
+  "src": "op-chrome-ext/build/override/popup.css",
   "dest": "adblockpluschrome/skin/popup.css",
   "is_directory":0
 },
 {
-  "src": "browser-extension/build/override/adblockplus/chrome/locale/en-US/meta.properties",
+  "src": "op-chrome-ext/build/override/adblockplus/chrome/locale/en-US/meta.properties",
   "dest": "adblockpluschrome/adblockplus/chrome/locale/en-US/meta.properties",
   "is_directory":0
 }]
