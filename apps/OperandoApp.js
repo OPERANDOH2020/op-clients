@@ -1,4 +1,4 @@
-angular.module('optionsApp', ['components','angularModalService'])
+angular.module('operando', ['extensions','identities','angularModalService','operandoCore'])
 .config( [
     '$compileProvider',
     function( $compileProvider )

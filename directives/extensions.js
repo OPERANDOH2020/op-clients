@@ -1,13 +1,11 @@
-angular.module('components',[])
+angular.module('extensions',[])
     .directive('extensions', function(){
         return{
             restrict: 'E',
             replace: true,
             scope :{},
             link:function($scope){
-                $scope.enable = function(){
-                    alert("Enable");
-                }
+
             },
             controller:function($scope){
 
@@ -98,7 +96,7 @@ angular.module('components',[])
                     var extensionName = $scope.extension.name;
                     var showModal = function (permissionWarnings) {
                         ModalService.showModal({
-                            templateUrl: '/operando/tpl/view_permissions.html',
+                            templateUrl: '/operando/tpl/modals/view_permissions.html',
                             controller: function ($scope, close) {
                                 $scope.permissions = permissions;
                                 $scope.permissionWarnings = permissionWarnings;
@@ -115,7 +113,7 @@ angular.module('components',[])
                 }
             },
             controller:function($scope){
-                console.log($scope.extension);
+
             },
             templateUrl:'/operando/tpl/extension.html'
         }

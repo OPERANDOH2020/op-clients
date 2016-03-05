@@ -17,15 +17,30 @@
   - along with Adblock Plus.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<html>
+<html ng-app="op-popup">
 <head>
   <link rel="stylesheet" type="text/css" href="skin/popup.css">
+  <link rel="stylesheet" type="text/css" href="operando/assets/bootstrap/css/bootstrap.min.css">
+  <script type="text/javascript" src="operando/utils/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="operando/assets/bootstrap/js/bootstrap.js"></script>
   <script src="ext/popup.js"></script>
   <script src="i18n.js"></script>
   <script src="popup.js"></script>
   <script src="notification.js"></script>
   <script src="stats.js"></script>
   <script src="operando/popup.js"></script>
+  <script src="operando/utils/angular.min.js"></script>
+  <script src="operando/utils/angular-cookies.js"></script>
+  <script type="text/javascript" src="operando/apps/OperandoCore.js" charset="utf-8"></script>
+  <script type="text/javascript" src="operando/apps/OperandoPopup.js" charset="utf-8"></script>
+  <script type="text/javascript" src="operando/services/swarm-services/socket.io-1.0.6.js"></script>
+  <script type="text/javascript" src="operando/services/swarm-services/SwarmClient.js" charset="utf-8"></script>
+  <script type="text/javascript" src="operando/services/swarm-services/SwarmDebug.js" charset="utf-8"></script>
+  <script type="text/javascript" src="operando/services/swarm-services/SwarmHub.js" charset="utf-8"></script>
+  <script type="text/javascript" src="operando/services/swarm-service.js" charset="utf-8"></script>
+  <script type="text/javascript" src="operando/services/authentication-service.js" charset="utf-8"></script>
+  <script type="text/javascript" src="operando/controllers/loginController.js" charset="utf-8"></script>
+
 </head>
 <!-- Set tabindex to work around Chromium issue 304532 -->
 <!-- Set overflow to hidden in order to prevent Safari showing scrollbars while loading -->
@@ -37,14 +52,18 @@
 
 <div class="operando_wrapper">
   <ul>
-    <li id="login_area">
-      <div class="item_icon user_icon"></div>
-      <div class="user_area">
-         <span>You are logged in as <strong>OP_234237J</strong></span>
-        <div class="user_actions">
-            <button class="regular_btn">Log out</button>
-            <button id="manage_accounts" class="regular_btn">Manange Account</button>
-        </div>
+    <li id="login_area" ng-controller="loginCtrl" ng-switch="loginAreaState">
+
+      <div ng-switch-when="loggedout">
+        <div  ng-include src="'operando/tpl/panel/logout_state.html'"></div>
+      </div>
+
+      <div ng-switch-when="login_form" >
+        <div ng-include src="'operando/tpl/panel/login_form_state.html'"></div>
+      </div>
+
+      <div ng-switch-when="loggedin" >
+        <div ng-include src="'operando/tpl/panel/loggedin_state.html'"></div>
       </div>
     </li>
 
@@ -133,13 +152,11 @@
                 </div>
               </li>
 
-
               <li class="operando_hide">
                 <div id="show-iconnumber" class="checkbox" role="checkbox" aria-checked></div>
                 <label for="show-iconnumber" class="i18n_stats_show_iconnumber"></label>
               </li>
             </ul>
-
 
           </li>
           <li id="options" role="button" class="menu-item">
@@ -148,10 +165,6 @@
           </li>
         </ul>
       </div>
-
-
-
-
 
     </li>
 
@@ -171,3 +184,4 @@
 
 </body>
 </html>
+

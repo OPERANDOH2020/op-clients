@@ -30,7 +30,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         }
     }
 
-
     if (message.message === "waitForAPost") {
         if (message.template) {
 

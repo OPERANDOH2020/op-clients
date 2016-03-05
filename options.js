@@ -7,7 +7,6 @@ window.addEventListener("DOMContentLoaded", function () {
     var increaseFacebookPrivacy = function () {
         chrome.tabs.create({url: FACEBOOK_PRIVACY_URL, "selected": false}, function (tab) {
 
-
             /*var tabId = tab.id;
             chrome.tabs.onActivated.addListener(function(activeInfo){
                 if(activeInfo.tabId == tabId){
@@ -16,8 +15,6 @@ window.addEventListener("DOMContentLoaded", function () {
                     },10);
                 }
             })*/
-
-
 
             chrome.runtime.sendMessage({
                 message: "waitForAPost",

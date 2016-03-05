@@ -24,10 +24,6 @@
         {
             elementId:"dashboard",
             fragment:"dashboard_tab"
-        },
-        {
-            elementId:"manage_accounts",
-            fragment:"identity_management_tab"
         }
         ];
 
@@ -61,8 +57,6 @@
 
         updateOperandoStats(unsecuredFollowedLinksElement, "blocked_links", [unsecuredFollowedLinks]);
         updateOperandoStats(unsecuredAcceptedSubmitsElement, "blocked_submits", [unsecuredAcceptedSubmits]);
-
-
 
     }
 
