@@ -1,6 +1,6 @@
 <html ng-app="operando">
 <head>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/operando-theme.css">
     <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap-theme.min.css">
@@ -25,6 +25,11 @@
     <script type="text/javascript" src="/operando/services/identity-service.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/apps/OperandoApp.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/controllers/appController.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="../ext/common.js"></script>
+    <script type="text/javascript" src="../ext/content.js"></script>
+    <script type="text/javascript" src="../common.js"></script>
+    <script type="text/javascript" src="../i18n.js"></script>
 
 </head>
 <body ng-controller="appCtrl">
@@ -67,24 +72,74 @@
 
 
     <!--DASHBOARD-->
+
     <div id="dashboard_tab" class="active content_tab" >
-        <!-- tabs left -->
-        <div class="tabbable tabs-left clearfix" >
-            <ul class="nav nav-tabs">
-                <li><a href="#a" data-toggle="tab">One</a></li>
-                <li class="active"><a href="#b" data-toggle="tab">Two</a></li>
-                <li><a href="#c" data-toggle="tab">Twee</a></li>
-            </ul>
-            <div class="tab-content clearfix">
-                <div class="tab-pane active" id="a">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate.
-                    Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
-                <div class="tab-pane" id="b">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-                    Aliquam in felis sit amet augue.</div>
-                <div class="tab-pane" id="c">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                    Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+        <section id="can-do-more">
+            <h2>Filters</h2>
+            <div id="can-do-more-content">
+                <ul id="features">
+                    <li id="feature-malware" class="feature">
+                        <div class="feature-image feature-malware-image"></div>
+                        <div class="feature-description">
+                            <div class="feature-description-textblock">
+                                <h3 class="i18n_firstRun_feature_malware feature-title"></h3>
+                                <span class="i18n_firstRun_feature_malware_description"></span>
+                            </div>
+
+
+                            <div class="toggle">
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-malware">
+                                <label class="onoffswitch-label" for="toggle-malware">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </li>
+                    <li id="feature-social" class="feature">
+                        <div class="feature-image feature-social-image"></div>
+                        <div class="feature-description">
+                            <div class="feature-description-textblock">
+                                <h3 class="i18n_firstRun_feature_social feature-title"></h3>
+                                <span class="i18n_firstRun_feature_social_description"></span>
+                            </div>
+
+                            <div class="toggle">
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-social">
+                                <label class="onoffswitch-label" for="toggle-social">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li id="feature-tracking" class="feature">
+                        <div class="feature-image feature-tracking-image"></div>
+                        <div class="feature-description">
+                            <div class="feature-description-textblock">
+                                <h3 class="i18n_firstRun_feature_tracking feature-title"></h3>
+                                <span class="i18n_firstRun_feature_tracking_description"></span>
+                            </div>
+
+                            <div class="toggle">
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-tracking">
+                                <label class="onoffswitch-label" for="toggle-tracking">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </li>
+
+                </ul>
+
             </div>
-        </div>
-        <!-- /tabs -->
+        </section>
     </div>
     <!-- END DASHBOARD-->
 

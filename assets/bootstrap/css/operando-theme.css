@@ -169,3 +169,138 @@ div.tab-content{
     font-size: 22px;
     display: block;
 }
+
+#can-do-more
+{
+    border-bottom: 4px solid #968D81;
+}
+
+.feature-malware-image
+{
+    background-image: url(../../../../skin/features/malware.png);
+    background-repeat: no-repeat;
+}
+
+.feature-social-image
+{
+    background-image: url(../../../../skin/features/social.png);
+    background-repeat: no-repeat;
+}
+
+.feature-tracking-image
+{
+    background-image: url(../../../../skin/features/tracking.png);
+    background-repeat: no-repeat;
+}
+
+#can-do-more-content
+{
+    margin-top: 30px;
+}
+
+#can-do-more #features
+{
+    border-spacing: 10px;
+}
+
+#can-do-more .feature
+{
+    list-style-type: none;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-top: 1px dashed #c0bebb;
+    position: relative;
+}
+
+#can-do-more .feature-image, #can-do-more .feature-description
+{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#can-do-more .feature-description
+{
+    -webkit-margin-start: 20px;
+    -moz-margin-start: 20px;
+}
+
+#can-do-more .feature-description-textblock
+{
+    -webkit-margin-end: 40px;
+    -moz-margin-end: 40px;
+    display: inline-block;
+}
+
+#can-do-more .feature-description-textblock > span
+{
+    margin-top: 15px;
+}
+
+#can-do-more .feature-image
+{
+    width: 59px;
+    height: 59px;
+    margin: 10px 0px;
+    -webkit-margin-start: 20px;
+    -moz-margin-start: 20px;
+}
+
+
+.toggle
+{
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    height: 32px;
+    margin-top: 32px;
+    margin-bottom: 7px;
+    width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    float: right;
+    margin-right:32px;
+    position: absolute;
+    right: 0px;
+    top:20px;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.2s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #FF8F00; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 20px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.2s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
