@@ -32,6 +32,15 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
                 });
             },
 
+            registerUser: function(user,  errorFunction, successFunction){
+
+                swarmService.initConnection("localhost", 8080, user, "chromeBrowserExtension", "registeNewUser", errorFunction, errorFunction);
+
+                swarmHub.on('register.js', "success", function (swarm) {
+                    successFunction();
+                });
+            },
+
             restoreUserSession: function (successCallback, failCallback) {
                 var username =  $cookieStore.get("userId");
                 var sessionId = $cookieStore.get("sessionId");

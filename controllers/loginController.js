@@ -35,6 +35,22 @@ angular.module("op-popup").
 
     }
 
+    $scope.show_register = function(){
+        $scope.loginAreaState = "register_form";
+    }
+
+    $scope.register = function(){
+        var userData = $scope.user;
+
+        errorFunction = function(){
+            console.log("Register error");
+        }
+        successFunction = function(){
+            console.log("Register success");
+        }
+
+        authenticationService.registerUser($scope.user, errorFunction, successFunction);
+    }
 
     $scope.logout = function(){
         authenticationService.logoutCurrentUser(function(){

@@ -457,10 +457,17 @@ label
   height:120px;
 }
 
-.user_area_login .form-group label{
+.user_area_register{
+  height:205px;
+}
+
+.user_area_login .form-group label,
+.user_area_register .form-group label {
   width:33%;
 }
-.user_area_login .form-group.form_submit{
+.user_area_login .form-group.form_submit,
+.user_area_register .form-group.form_submit
+{
   margin-left:33%;
 }
 
