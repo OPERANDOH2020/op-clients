@@ -1,33 +1,63 @@
 package eu.operando;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity {
+import eu.operando.activity.BaseActivity;
+import eu.operando.fragment.FirstScreenFragment;
+import eu.operando.fragment.LoginFragment;
+
+@SuppressWarnings("ALL")
+public class MainActivity extends BaseActivity {
+
+
+    public FrameLayout mContainer;
+    public RelativeLayout registerOrLoginRL;
+    public RelativeLayout aboutRL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initUI();
+
+    }
+
+    private void initUI() {
+
+        addFragment(R.id.main_fragment_container,new FirstScreenFragment(), FirstScreenFragment.FRAGMENT_TAG);
+        registerOrLoginRL = (RelativeLayout) findViewById(R.id.registerOrLoginRL);
+        aboutRL = (RelativeLayout) findViewById(R.id.aboutRL);
+
+        registerOrLoginRL.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                addFragment(R.id.main_fragment_container,new LoginFragment(), LoginFragment.FRAGMENT_TAG);
+            }
+        });
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
