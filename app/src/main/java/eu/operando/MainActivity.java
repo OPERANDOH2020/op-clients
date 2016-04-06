@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import eu.operando.activity.BaseActivity;
 import eu.operando.events.EventLoginPage;
+import eu.operando.fragment.CreateAccountFragment;
 import eu.operando.fragment.FirstScreenFragment;
 import eu.operando.fragment.LoginFragment;
 import eu.operando.util.Constants;
@@ -25,6 +26,10 @@ public class MainActivity extends BaseActivity {
 
     public FrameLayout mContainer;
     public RelativeLayout aboutRL;
+
+    FirstScreenFragment firstScreenFragment;
+    LoginFragment loginFragment;
+    CreateAccountFragment createAccountFragment;
 
 
     @Override
@@ -37,7 +42,11 @@ public class MainActivity extends BaseActivity {
 
     private void initUI() {
 
-        addFragment(R.id.main_fragment_container, new FirstScreenFragment(), FirstScreenFragment.FRAGMENT_TAG);
+        firstScreenFragment = new FirstScreenFragment();
+        loginFragment = new LoginFragment();
+        createAccountFragment = new CreateAccountFragment();
+
+        addFragment(R.id.main_fragment_container, firstScreenFragment, FirstScreenFragment.FRAGMENT_TAG);
         aboutRL = (RelativeLayout) findViewById(R.id.aboutRL);
     }
 
@@ -68,12 +77,16 @@ public class MainActivity extends BaseActivity {
                 break;
            }
            case Constants.events.CREATE_ACCOUNT:{
+               showRegisterPage();
                break;
            }
         }
     }
 
     private void showLoginPage (){
-        addFragment(R.id.main_fragment_container,new LoginFragment(), LoginFragment.FRAGMENT_TAG);
+        replaceFragment(R.id.main_fragment_container,loginFragment, LoginFragment.FRAGMENT_TAG,"st1");
+    }
+    private void showRegisterPage (){
+        replaceFragment(R.id.main_fragment_container,createAccountFragment, CreateAccountFragment.FRAGMENT_TAG,"st2");
     }
 }
