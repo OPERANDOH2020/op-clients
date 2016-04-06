@@ -10,17 +10,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import org.greenrobot.eventbus.EventBus;
+
 import eu.operando.R;
 
 /**
  * Created by raluca on 05.04.2016.
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity  {
 
     public Toolbar mToolbar;
+    public EventBus mEventBus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mEventBus = EventBus.getDefault();
     }
 
     @Override
@@ -60,6 +65,20 @@ public class BaseActivity extends AppCompatActivity {
                 .replace(containerViewId, fragment, fragmentTag)
                 .addToBackStack(backStackStateName)
                 .commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+
+    }
+
+    @Override
+    protected void onPause() {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+
     }
 
 }

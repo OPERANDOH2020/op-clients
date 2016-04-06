@@ -4,22 +4,26 @@ package eu.operando;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import eu.operando.activity.BaseActivity;
+import eu.operando.events.EventLoginPage;
 import eu.operando.fragment.FirstScreenFragment;
 import eu.operando.fragment.LoginFragment;
+import eu.operando.util.Constants;
 
 @SuppressWarnings("ALL")
 public class MainActivity extends BaseActivity {
 
 
     public FrameLayout mContainer;
-    public RelativeLayout registerOrLoginRL;
     public RelativeLayout aboutRL;
 
 
@@ -33,17 +37,8 @@ public class MainActivity extends BaseActivity {
 
     private void initUI() {
 
-        addFragment(R.id.main_fragment_container,new FirstScreenFragment(), FirstScreenFragment.FRAGMENT_TAG);
-        registerOrLoginRL = (RelativeLayout) findViewById(R.id.registerOrLoginRL);
+        addFragment(R.id.main_fragment_container, new FirstScreenFragment(), FirstScreenFragment.FRAGMENT_TAG);
         aboutRL = (RelativeLayout) findViewById(R.id.aboutRL);
-
-        registerOrLoginRL.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                addFragment(R.id.main_fragment_container,new LoginFragment(), LoginFragment.FRAGMENT_TAG);
-            }
-        });
-
-
     }
 
     @Override
@@ -63,5 +58,22 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Subscribe
+    public void onEvent (EventLoginPage event ){
+
+       switch (event.action) {
+           case Constants.events.LOGIN : {
+               showLoginPage () ;
+                break;
+           }
+           case Constants.events.CREATE_ACCOUNT:{
+               break;
+           }
+        }
+    }
+
+    private void showLoginPage (){
+        addFragment(R.id.main_fragment_container,new LoginFragment(), LoginFragment.FRAGMENT_TAG);
     }
 }
