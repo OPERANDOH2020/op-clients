@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Operando.iml" filepath="$PROJECT_DIR$/Operando.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SwarmClient/SwarmClient.iml" filepath="$PROJECT_DIR$/SwarmClient/SwarmClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/op-android-osdk.iml" filepath="$PROJECT_DIR$/op-android-osdk.iml" />
     </modules>
   </component>
 </project>
