@@ -215,15 +215,14 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
                 command: "start",
                 ctor: loginCtor,
                 tenantId: tenantId,
-                commandArguments: [sessionId, userId, authToken]
+                commandArguments: [userId, authToken]
             }
         };
         self.writeObject(cmd);
     }
 
 
-
-    function restoreUserSession(userId, authToken, tenantId, loginCtor){
+    function restoreUserSession(authToken, tenantId, loginCtor){
         var cmd = {
             meta: {
                 swarmingName: "login.js",
@@ -248,7 +247,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
             }
 
             if(typeof authToken === "object" && authToken != null ){
-                restoreUserSession(userId, authToken, tenantId, loginCtor);
+                restoreUserSession(authToken, tenantId, loginCtor);
             }
             else{
                 doLogin(userId, authToken, tenantId, loginCtor);
