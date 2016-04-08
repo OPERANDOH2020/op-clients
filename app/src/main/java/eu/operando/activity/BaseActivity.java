@@ -17,7 +17,7 @@ import eu.operando.R;
 /**
  * Created by raluca on 05.04.2016.
  */
-public class BaseActivity extends AppCompatActivity  {
+public abstract class BaseActivity extends AppCompatActivity  {
 
     public Toolbar mToolbar;
     public EventBus mEventBus;
@@ -35,6 +35,8 @@ public class BaseActivity extends AppCompatActivity  {
         mToolbar =(Toolbar) this.findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

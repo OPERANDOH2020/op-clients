@@ -17,7 +17,9 @@ import org.greenrobot.eventbus.EventBus;
 import eu.operando.BuildConfig;
 import eu.operando.R;
 import eu.operando.events.EventLoginPage;
+import eu.operando.events.EventSignIn;
 import eu.operando.util.Constants;
+import eu.operando.util.SharedPreferencesService;
 
 /**
  * Created by raluca on 05.04.2016.
@@ -63,7 +65,8 @@ public class LoginFragment extends Fragment {
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-
+                SharedPreferencesService.getInstance(getActivity()).setUserEmail(emailET.getText().toString());
+                EventBus.getDefault().post(new EventSignIn());
             }
         });
 
