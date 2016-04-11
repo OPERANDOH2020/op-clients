@@ -1,11 +1,20 @@
 package eu.operando.osdk.swarm.client.events;
 
-import org.json.JSONObject;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Created by Rafa on 4/6/2016.
  */
-public interface ISwarmEvent {
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.CONSTRUCTOR})
+public @interface ISwarmEvent {
+String swarm();
+String phase();
 
 }
+
+
 

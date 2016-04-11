@@ -22,36 +22,37 @@ public class SwarmHub {
 
     private Socket ioSocket;
     private List<Swarm> swarms = new ArrayList<Swarm>();
+    private static SwarmHub instance = null;
 
-    public SwarmHub(Socket socket) {
-        this.ioSocket = socket;
+    protected SwarmHub(){
 
-        Emitter.Listener onNewMessage = new Emitter.Listener() {
-            @Override
-            public void call(final Object... args) {
-                JSONObject data = (JSONObject) args[0];
-                System.out.println(data);
-
-                try {
-                    JSONObject metaResponse = new JSONObject(data.get("meta").toString());
-                    String swarmingName = metaResponse.getString(SwarmConstants.SWARMING_NAME);
-                    String currentPhase = metaResponse.getString(SwarmConstants.CURRENT_PHASE);
-
-                    System.out.println(swarmingName);
-                    System.out.println(currentPhase);
-
-                    Swarm swarm = new Swarm(swarmingName, currentPhase, data);
-                    //swarms.add(swarm);
-                    fireEvent(swarm);
-
-                } catch (Exception e) {
-                    System.err.println(e.getMessage());
-                }
-            }
-        };
-
-        this.ioSocket.on("message", onNewMessage);
     }
+    public static SwarmHub getInstance(){
+        if(instance == null){
+            instance = new SwarmHub();
+        }
+        return instance;
+    }
+
+
+    public void handleMessage(JSONObject data) {
+        try {
+            JSONObject metaResponse = new JSONObject(data.get("meta").toString());
+            String swarmingName = metaResponse.getString(SwarmConstants.SWARMING_NAME);
+            String currentPhase = metaResponse.getString(SwarmConstants.CURRENT_PHASE);
+
+            System.out.println(swarmingName);
+            System.out.println(currentPhase);
+
+            Swarm swarm = new Swarm(swarmingName, currentPhase, data);
+            //swarms.add(swarm);
+            fireEvent(swarm);
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
 
     private void fireEvent(Swarm swarm){
 
@@ -75,12 +76,9 @@ public class SwarmHub {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
-
     }
 
-
-    private String getEventTypeBySwarmPhase(Swarm swarm){
+    private  String getEventTypeBySwarmPhase(Swarm swarm){
 
         String className = "";
 
@@ -93,11 +91,6 @@ public class SwarmHub {
         return className;
     }
 
-    public void on(String swarmName, String phase) {
-
-
-
-    }
 
 
 }
