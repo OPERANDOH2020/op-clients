@@ -10,6 +10,7 @@ import java.util.List;
 
 import eu.operando.osdk.swarm.client.events.SwarmLoginEvent;
 import eu.operando.osdk.swarm.client.events.SwarmLogoutEvent;
+import eu.operando.osdk.swarm.client.utils.EventProvider;
 import eu.operando.osdk.swarm.client.utils.SwarmConstants;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -23,9 +24,10 @@ public class SwarmHub {
     private Socket ioSocket;
     private List<Swarm> swarms = new ArrayList<Swarm>();
     private static SwarmHub instance = null;
+    private EventProvider eventProvider;
 
     protected SwarmHub(){
-
+        eventProvider = eventProvider.getInstance();
     }
     public static SwarmHub getInstance(){
         if(instance == null){
@@ -33,7 +35,6 @@ public class SwarmHub {
         }
         return instance;
     }
-
 
     public void handleMessage(JSONObject data) {
         try {
@@ -56,17 +57,12 @@ public class SwarmHub {
 
     private void fireEvent(Swarm swarm){
 
-       String eventClassName = getEventTypeBySwarmPhase(swarm);
-
-        Class<?> clazz = null;
         try {
-            clazz = Class.forName(eventClassName);
+            Class<?> clazz = eventProvider.getEvent(swarm.getName(),swarm.getPhase());
             Constructor<?> constructor = clazz.getConstructor(String.class, String.class, JSONObject.class);
             Object instance = constructor.newInstance(swarm.getName(), swarm.getPhase(), swarm.getData());
             EventBus.getDefault().post(instance);
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
@@ -77,20 +73,5 @@ public class SwarmHub {
             e.printStackTrace();
         }
     }
-
-    private  String getEventTypeBySwarmPhase(Swarm swarm){
-
-        String className = "";
-
-        if (swarm.getName().equals("login.js") && swarm.getPhase().equals("success")) {
-            className = SwarmLoginEvent.class.getName();
-        } else {
-            className = SwarmLogoutEvent.class.getName();
-        }
-
-        return className;
-    }
-
-
 
 }

@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
+import eu.operando.osdk.swarm.client.utils.EventProvider;
 import eu.operando.osdk.swarm.client.utils.SwarmConstants;
 import io.socket.client.IO;
 import io.socket.client.Socket;

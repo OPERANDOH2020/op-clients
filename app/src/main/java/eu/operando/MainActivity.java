@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity  {
 
     @Subscribe
     public void onSwarmEvent (SwarmLogoutEvent logoutEvent ){
-       // doOnInit();
+        //doOnInit();
     }
 
 
