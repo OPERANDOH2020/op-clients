@@ -6,7 +6,8 @@ import org.json.JSONObject;
  * Created by Rafa on 4/6/2016.
  */
 
-public class SwarmEvent implements ISwarmEvent{
+
+public class SwarmEvent {
 
     private final String swarmName;
     private final String swarmPhase;
@@ -17,6 +18,7 @@ public class SwarmEvent implements ISwarmEvent{
         this.swarmName = swarmName;
         this.swarmPhase = swarmPhase;
         this.data = data;
+
     }
 
     public JSONObject getData(){

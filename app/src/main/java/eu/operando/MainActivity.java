@@ -23,12 +23,12 @@ import eu.operando.fragment.CreateAccountFragment;
 import eu.operando.fragment.FirstScreenFragment;
 import eu.operando.fragment.LoginFragment;
 import eu.operando.osdk.swarm.client.events.SwarmLogoutEvent;
+import eu.operando.osdk.swarm.client.utils.EventProvider;
 import eu.operando.osdk.swarm.client.utils.SwarmConstants;
 import eu.operando.osdk.swarm.client.events.SwarmLoginEvent;
 import eu.operando.util.Constants;
 
 import eu.operando.osdk.swarm.client.SwarmClient;
-import eu.operando.osdk.swarm.client.SwarmCommand;
 
 @SuppressWarnings("ALL")
 public class MainActivity extends AbstractLeftMenuActivity {
@@ -89,14 +89,11 @@ public class MainActivity extends AbstractLeftMenuActivity {
     }
 
     public void doOnInit() {
-        swarmClient = new SwarmClient(SwarmConstants.SWARMS_CONNECTION,"chromeBrowserExtension");
+        EventProvider eventProvider = EventProvider.getInstance();
+        swarmClient = SwarmClient.getInstance(SwarmConstants.SWARMS_CONNECTION, "chromeBrowserExtension");
         //login
-        String[] commandArguments = {"null", "rafa", "swarm"};
+        String[] commandArguments = {"rafa", "swarm"};
         swarmClient.startSwarm("login.js","start", "userLogin", commandArguments);
-
-
-
-
     }
 
     @Subscribe
@@ -129,13 +126,12 @@ public class MainActivity extends AbstractLeftMenuActivity {
             e.printStackTrace();
         }
 
-        String[] commandArguments = {sessionId, "rafa"};
-        swarmClient.startSwarm("login.js","start", "logout", commandArguments);
+        swarmClient.startSwarm("login.js","start", "logout");
     }
 
     @Subscribe
     public void onSwarmEvent (SwarmLogoutEvent logoutEvent ){
-        System.out.println("TODO with logout event");
+        //doOnInit();
     }
 
 
