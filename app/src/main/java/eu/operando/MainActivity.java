@@ -22,7 +22,13 @@ import eu.operando.events.EventSignIn;
 import eu.operando.fragment.CreateAccountFragment;
 import eu.operando.fragment.FirstScreenFragment;
 import eu.operando.fragment.LoginFragment;
+import eu.operando.osdk.swarm.client.events.SwarmLogoutEvent;
+import eu.operando.osdk.swarm.client.utils.SwarmConstants;
+import eu.operando.osdk.swarm.client.events.SwarmLoginEvent;
 import eu.operando.util.Constants;
+
+import eu.operando.osdk.swarm.client.SwarmClient;
+import eu.operando.osdk.swarm.client.SwarmCommand;
 
 @SuppressWarnings("ALL")
 public class MainActivity extends AbstractLeftMenuActivity {
@@ -31,6 +37,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
     public FrameLayout mContainer;
     public RelativeLayout aboutRL;
     public DrawerLayout mDrawerLayout;
+    private SwarmClient swarmClient;
 
     FirstScreenFragment firstScreenFragment;
     LoginFragment loginFragment;
@@ -42,6 +49,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initUI();
+        doOnInit();
 
     }
 
@@ -79,6 +87,18 @@ public class MainActivity extends AbstractLeftMenuActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void doOnInit() {
+        swarmClient = new SwarmClient(SwarmConstants.SWARMS_CONNECTION,"chromeBrowserExtension");
+        //login
+        String[] commandArguments = {"null", "rafa", "swarm"};
+        swarmClient.startSwarm("login.js","start", "userLogin", commandArguments);
+
+
+
+
+    }
+
     @Subscribe
     public void onEvent (EventLoginPage event ){
 
@@ -97,6 +117,29 @@ public class MainActivity extends AbstractLeftMenuActivity {
     public void onEvent (EventSignIn event ) {
         showFirstFragment ();
     }
+
+    @Subscribe
+    public void onSwarmEvent (SwarmLoginEvent loginEvent ){
+        System.out.println("TODO with login event");
+        String sessionId = "";
+        try {
+            sessionId = loginEvent.getData().getJSONObject("meta").getString("sessionId");
+            System.out.println(loginEvent.getData().get("sessionId"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String[] commandArguments = {sessionId, "rafa"};
+        swarmClient.startSwarm("login.js","start", "logout", commandArguments);
+    }
+
+    @Subscribe
+    public void onSwarmEvent (SwarmLogoutEvent logoutEvent ){
+        System.out.println("TODO with logout event");
+    }
+
+
+
     private void showLoginPage (){
         replaceFragment(R.id.main_fragment_container, loginFragment, LoginFragment.FRAGMENT_TAG, "st1");
     }
