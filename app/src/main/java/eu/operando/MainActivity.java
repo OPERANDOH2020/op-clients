@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONException;
 
 import eu.operando.activity.AbstractLeftMenuActivity;
 import eu.operando.activity.BaseActivity;
@@ -93,7 +94,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
         swarmClient = SwarmClient.getInstance(SwarmConstants.SWARMS_CONNECTION, "chromeBrowserExtension");
         //login
         String[] commandArguments = {"rafa", "swarm"};
-        swarmClient.startSwarm("login.js","start", "userLogin", commandArguments);
+        swarmClient.startSwarm("login.js", "start", "userLogin", commandArguments);
     }
 
     @Subscribe
@@ -112,7 +113,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
     }
     @Subscribe
     public void onEvent (EventSignIn event ) {
-        showFirstFragment ();
+        showFirstFragment();
     }
 
     @Subscribe
