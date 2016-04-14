@@ -6,6 +6,13 @@ IGNORE_PATTERNS = ('.idea','.gitignore','.git')
 import os, sys, subprocess,shutil
 from shutil import copytree, ignore_patterns
 
+def firstOperandoBuild():		
+	os.chdir('adblockpluschrome')
+	os.system("git reset --hard d2ba23e")
+	os.system("build.py -t chrome devenv")
+	os.chdir('..')
+	return
+
 
 def buildOperando():		
 	os.chdir('adblockpluschrome')
@@ -13,13 +20,15 @@ def buildOperando():
 	os.chdir('..')
 	return
 
-os.chdir('..')
-os.chdir('..')
-BASE_DIR = os.getcwd()
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.join(BASE_DIR, "..","..");
+os.chdir(BASE_DIR)
+#print os.getcwd()
+#sys.exit(0)
 
 if not os.path.exists(os.path.join(BASE_DIR,"adblockpluschrome")):
     	os.system('git clone "https://github.com/adblockplus/adblockpluschrome"')
-        buildOperando()
+        firstOperandoBuild()
 	    #TODO update
 
 files = [
