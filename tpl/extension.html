@@ -4,9 +4,12 @@
             <img ng-class="extension.enabled?'active':'disabled'" src="{{extension.icon.url}}" width="64px"/>
             <span class="extension_name">{{extension.name}}</span>
         </div>
-        <span>Version:</span>{{extension.version}}
-        <span>Description:</span>{{extension.description}}
-        <span>Type:</span>{{extension.type}}
+        <div class="extension_left_ctn">
+            <span>Version:</span>{{extension.version}}
+            <span>Description:</span>{{extension.description}}
+            <span>Type:</span>{{extension.type}}
+            <div class="privacy_pollution"><span>Privacy pollution : 40/100</span></div>
+        </div>
 
         <div class="extension_actions">
             <button ng-if="extension.enabled == false" ng-click="enable()">Enable</button>

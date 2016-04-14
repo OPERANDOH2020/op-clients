@@ -304,3 +304,11 @@ div.tab-content{
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px;
 }
+
+.extension_left_ctn{
+    float:left;
+}
+
+.extension_left_ctn .privacy_pollution{
+    font-weight: bold;
+}
