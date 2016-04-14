@@ -58,6 +58,11 @@ files = [
   "dest": "adblockpluschrome/skin/popup.css",
   "is_directory":0
 },
+ {
+  "src": "op-chrome-ext/build/override/firstRun.html",
+  "dest": "adblockpluschrome/adblockplusui/firstRun.html",
+  "is_directory":0
+},
 {
   "src": "op-chrome-ext/build/override/adblockplus/chrome/locale/en-US/meta.properties",
   "dest": "adblockpluschrome/adblockplus/chrome/locale/en-US/meta.properties",

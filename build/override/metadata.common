@@ -100,7 +100,6 @@ lib/adblockplus.js = adblockpluscore/lib/events.js
   lib/subscriptionInit.js
   lib/requestBlocker.js
   lib/popupBlocker.js
-  lib/uninstall.js
   --arg module=true source_repo=https://hg.adblockplus.org/adblockpluscore/
   operando/util/LocalRepo.js
 ext/common.js = ext/common.js chrome/ext/common.js
