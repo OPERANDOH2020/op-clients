@@ -9,7 +9,7 @@ from shutil import copytree, ignore_patterns
 def firstOperandoBuild():		
 	os.chdir('adblockpluschrome')
 	os.system("git reset --hard d2ba23e")
-	os.system("build.py -t chrome devenv")
+	os.system("python build.py -t chrome devenv")
 	os.chdir('..')
 	return
 
