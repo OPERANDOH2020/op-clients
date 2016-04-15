@@ -16,7 +16,7 @@ def firstOperandoBuild():
 
 def buildOperando():		
 	os.chdir('adblockpluschrome')
-	os.system("build.py -t chrome devenv")
+	os.system("python build.py -t chrome devenv")
 	os.chdir('..')
 	return
 
