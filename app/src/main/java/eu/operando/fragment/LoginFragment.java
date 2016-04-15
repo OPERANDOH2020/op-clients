@@ -66,7 +66,7 @@ public class LoginFragment extends Fragment {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 SharedPreferencesService.getInstance(getActivity()).setUserEmail(emailET.getText().toString());
-                EventBus.getDefault().post(new EventSignIn());
+                EventBus.getDefault().post(new EventSignIn(emailET.getText().toString(), passwordET.getText().toString()));
             }
         });
 

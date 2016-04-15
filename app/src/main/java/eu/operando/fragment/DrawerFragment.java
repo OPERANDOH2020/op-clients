@@ -2,6 +2,8 @@ package eu.operando.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,10 @@ import eu.operando.util.SharedPreferencesService;
 public class DrawerFragment extends Fragment {
 
     TextView emailTV ;
+
+    private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private String mActivityTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflator, ViewGroup container, Bundle saveInstanceState)

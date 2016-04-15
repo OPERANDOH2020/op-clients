@@ -3,7 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    
+
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
 
@@ -32,7 +32,6 @@
     <string name="registerOrLogin">Register or log in for full protection. </string>
 
 
-
     <!-- Menu Strings -->
 
     <string name="dashboard">Dashboard</string>
@@ -46,13 +45,8 @@
     <string name="operandoDashboard">OPERANDO dashboard</string>
     <string name="accountInfo">Account info</string>
 
-
-
-
-
-
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -2,11 +2,8 @@ package eu.operando;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +14,9 @@ import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 
 import eu.operando.activity.AbstractLeftMenuActivity;
-import eu.operando.activity.BaseActivity;
 import eu.operando.events.EventLoginPage;
 import eu.operando.events.EventSignIn;
+import eu.operando.fragment.AuthenticatedFragment;
 import eu.operando.fragment.CreateAccountFragment;
 import eu.operando.fragment.FirstScreenFragment;
 import eu.operando.fragment.LoginFragment;
@@ -41,22 +38,31 @@ public class MainActivity extends AbstractLeftMenuActivity {
     private SwarmClient swarmClient;
 
     FirstScreenFragment firstScreenFragment;
+    AuthenticatedFragment authenticatedFragment;
     LoginFragment loginFragment;
     CreateAccountFragment createAccountFragment;
+    ActionBarDrawerToggle drawerToggle;
+
+    private String mActivityTitle;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         initUI();
         doOnInit();
+
 
     }
 
     private void initUI() {
 
         firstScreenFragment = new FirstScreenFragment();
+
         loginFragment = new LoginFragment();
         createAccountFragment = new CreateAccountFragment();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -64,8 +70,24 @@ public class MainActivity extends AbstractLeftMenuActivity {
         addFragment(R.id.main_fragment_container, firstScreenFragment, FirstScreenFragment.FRAGMENT_TAG);
         aboutRL = (RelativeLayout) findViewById(R.id.aboutRL);
 
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.app_name,
-                R.string.app_name);
+        drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.string.app_name, R.string.app_name) {
+
+            /**
+             * Called when a drawer has settled in a completely open state.
+             */
+            public void onDrawerOpened(View drawerView) {
+            }
+
+            /**
+             * Called when a drawer has settled in a completely closed state.
+             */
+            public void onDrawerClosed(View view) {
+            }
+
+        };
+
+
         this.mDrawerLayout.setDrawerListener(drawerToggle);
         setComponents(drawerToggle, mDrawerLayout, INVOICES);
     }
@@ -93,8 +115,8 @@ public class MainActivity extends AbstractLeftMenuActivity {
         EventProvider eventProvider = EventProvider.getInstance();
         swarmClient = SwarmClient.getInstance(SwarmConstants.SWARMS_CONNECTION, "chromeBrowserExtension");
         //login
-        String[] commandArguments = {"rafa", "swarm"};
-        swarmClient.startSwarm("login.js", "start", "userLogin", commandArguments);
+        /*String[] commandArguments = {"rafa", "swarm"};
+        swarmClient.startSwarm("login.js", "start", "userLogin", commandArguments);*/
     }
 
     @Subscribe
@@ -113,11 +135,12 @@ public class MainActivity extends AbstractLeftMenuActivity {
     }
     @Subscribe
     public void onEvent (EventSignIn event ) {
-        showFirstFragment();
+        //showFirstFragment();
     }
 
     @Subscribe
     public void onSwarmEvent (SwarmLoginEvent loginEvent ){
+        showDashboardFragment();
         System.out.println("TODO with login event");
         String sessionId = "";
         try {
@@ -145,5 +168,11 @@ public class MainActivity extends AbstractLeftMenuActivity {
     }
     private void showFirstFragment (){
         replaceFragment(R.id.main_fragment_container,firstScreenFragment, FirstScreenFragment.FRAGMENT_TAG,"st1");
+    }
+
+    private void showDashboardFragment (){
+        authenticatedFragment = new AuthenticatedFragment();
+        addFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG);
+        replaceFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG,"st3");
     }
 }

@@ -53,6 +53,13 @@ public class SwarmClient {
         return instance;
     }
 
+    public static SwarmClient getInstance() throws Exception {
+        if(instance == null){
+            throw new Exception("Swarm instance was not inialized");
+        }
+        return instance;
+    }
+
     public void startSwarm(String swarmName, String phase, String ctor, String[]... data) {
 
         JSONObject swarmMeta = new JSONObject();
