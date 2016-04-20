@@ -11,12 +11,11 @@ operandoCore.service("swarmService", function () {
                     swarmHub.resetConnection(swarmConnection);
                 }
                 else{
-                    swarmConnection.tryLogin( username, password, tenant, ctor, false, securityErrorFunction);
+                    swarmConnection.tryLogin( username, password, tenant, ctor, false, securityErrorFunction, errorFunction);
                 }
-
             },
-            restoreConnection:function(username, sessionId, failCallback, errorCallback){
-                swarmConnection = new SwarmClient("localhost", 8080, username, {sessionId:sessionId}, "chromeBrowserExtension", "restoreSession",failCallback, failCallback);
+            restoreConnection:function(host, port,username, sessionId, securityErrorFunction ,errorFunction ){
+                swarmConnection = new SwarmClient(host, port, username, {sessionId:sessionId}, "chromeBrowserExtension", "restoreSession",securityErrorFunction, errorFunction);
                 swarmHub.resetConnection(swarmConnection);
             },
             removeConnection:function(){

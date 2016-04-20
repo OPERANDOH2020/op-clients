@@ -1,5 +1,10 @@
 <div>
     <div class="item_icon user_icon"></div>
+    <div  ng-if="authError!==null">
+        <div class="panel panel-danger">
+            <div class="panel-heading">{{authError}}</div>
+        </div>
+    </div>
     <div class="user_area_login">
         <form class="form-horizontal" role="form">
 
@@ -17,6 +22,8 @@
                     <button ng-click = "login()" type="submit">Sign In</button>
                     <button ng-click = "cancel()" type="submit">Cancel</button>
             </div>
+
+
 
         </form>
     </div>

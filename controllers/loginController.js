@@ -1,8 +1,23 @@
+/*
+ * Copyright (c) 2016 ROMSOFT.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the The MIT License (MIT).
+ * which accompanies this distribution, and is available at
+ * http://opensource.org/licenses/MIT
+ *
+ * Contributors:
+ *    RAFAEL MASTALERU (ROMSOFT)
+ * Initially developed in the context of OPERANDO EU project www.operando.eu
+ */
+
+
 angular.module("op-popup").
     controller("loginCtrl", ["$scope", "authenticationService", function($scope, authenticationService){
 
     $scope.user = {};
+    $scope.isAuthenticated = false;
     $scope.authError = null;
+    $scope.connectionError = null;
     $scope.loginAreaState = "loggedout";
 
     //show login form
@@ -15,21 +30,24 @@ angular.module("op-popup").
     }
 
 
+    securityErrorFunction = function (err, data) {
+        $scope.authError = 'Invalid user or password...';
+        $scope.$apply();
+    }
+
+    errorFunction = function (err) {
+        $scope.connectionError = 'Invalid network connection...';
+        $scope.$apply();
+    }
+
+     successFunction = function () {
+        $scope.loginAreaState = "loggedin";
+        $scope.authError=null;
+        $scope.$apply();
+    }
+
+
     $scope.login = function() {
-
-        var securityErrorFunction = function (err, data) {
-            $scope.authError = 'Invalid user or password...';
-            $scope.$apply();
-        }
-
-        var errorFunction = function (err) {
-            $scope.status = 'Invalid connection...';
-            $scope.$apply();
-        }
-
-        var successFunction = function () {
-            $scope.loginAreaState = "loggedin";
-        }
 
         authenticationService.authenticateUser($scope.user.email, $scope.user.password, securityErrorFunction, errorFunction, successFunction);
 
@@ -63,26 +81,18 @@ angular.module("op-popup").
         window.open(chrome.runtime.getURL("operando/operando.html#identity_management_tab"),"operando");
     }
 
-    authenticationService.restoreUserSession(function () {
-            $scope.loginAreaState = "loggedin";
-            $scope.$apply();
-        },
+    authenticationService.restoreUserSession(successFunction,
         function () {
             $scope.loginAreaState = "loggedout";
-        });
+        },
+        errorFunction);
 
 
     authenticationService.getCurrentUser(function(user){
         $scope.user.username = user.userName;
+        $scope.isAuthenticated = true;
         $scope.$apply();
     });
-
-
-
-
-
-
-
 
 
 }]);

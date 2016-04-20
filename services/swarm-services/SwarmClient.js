@@ -59,11 +59,11 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
              }*/
 
             socket = io.connect(connectionString);
-
             socket.on('connect', socket_onConnect);
             socket.on('data', socket_onStreamData);
             socket.on('message', socket_onStreamData);
             socket.on('error', socket_onError);
+            socket.on('connect_error', socket_onError);
             socket.on('disconnect', socket_onDisconnect);
             socket.on('retry', socket_onRetry);
             socket.on('reconnect', socket_onReconect);
@@ -180,7 +180,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         currentFunction(data);
     }
 
-    this.tryLogin = function(__userId, __authToken, __tenantId, __loginCtor, recreateConnection, securityErrFn){
+    this.tryLogin = function(__userId, __authToken, __tenantId, __loginCtor, recreateConnection, securityErrFn, errorFn){
 
         userId     = __userId;
         authToken  = __authToken;
@@ -189,6 +189,9 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
 
         if(securityErrFn){
             securityErrorFunction = securityErrFn;
+        }
+        if(errorFn){
+            errorFunction =  errorFn;
         }
 
 

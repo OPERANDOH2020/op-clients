@@ -11,13 +11,17 @@
  */
 
 
-angular.module("operando").
-controller("appCtrl", ["$scope", "authenticationService", function($scope, authenticationService){
+angular.module("op-popup").
+controller("menuCtrl", ["$scope", "authenticationService", function($scope, authenticationService){
 
-    authenticationService.restoreUserSession(function(){
-        console.log("You are authenticated!");
-    },function(){
-        console.log("You're not authenticated!");
-    })
+    authenticationService.getCurrentUser(function(user){
+        $scope.isAuthenticated = true;
+        $scope.$apply();
+    });
 
-}])
+    authenticationService.disconnectUser(function(){
+        $scope.isAuthenticated = false;
+        $scope.$apply();
+    });
+
+}]);

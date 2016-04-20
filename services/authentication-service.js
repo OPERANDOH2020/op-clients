@@ -13,13 +13,15 @@
 operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", function (swarmService, $cookieStore) {
         var loggedIn = false;
         var authenticatedUser = {};
-        var instance = swarmHub.createObservable();
+        var loggedInObservable = swarmHub.createObservable();
+        var notLoggedInObservable = swarmHub.createObservable();
 
         return {
+            loggedIn: loggedIn,
             authenticateUser: function (username, password, securityFn, errorFn, successFn) {
                 var self = this;
 
-                swarmService.initConnection("localhost", 8080, username, password, "chromeBrowserExtension", "userLogin", securityFn, errorFn);
+                swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, username, password, "chromeBrowserExtension", "userLogin", securityFn, errorFn);
 
                 swarmHub.on('login.js', "success", function (swarm) {
                     loggedIn = swarm.authenticated;
@@ -34,28 +36,23 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
 
             registerUser: function(user,  errorFunction, successFunction){
 
-                swarmService.initConnection("localhost", 8080, user, "chromeBrowserExtension", "registeNewUser", errorFunction, errorFunction);
+                swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, user, "chromeBrowserExtension", "registeNewUser", errorFunction, errorFunction);
 
                 swarmHub.on('register.js', "success", function (swarm) {
                     successFunction();
                 });
             },
 
-            restoreUserSession: function (successCallback, failCallback) {
+            restoreUserSession: function (successCallback, failCallback, errorCallback) {
                 var username =  $cookieStore.get("userId");
                 var sessionId = $cookieStore.get("sessionId");
                 var self = this;
-
-                var errorCallback = function(){
-                    //TODO
-                    //some service that alert user
-                }
 
                 if(!username || !sessionId){
                     failCallback();
                 }
 
-                swarmService.restoreConnection(username, sessionId, failCallback, errorCallback);
+                swarmService.restoreConnection(ExtensionConfig.OPERANDO_SERVER_HOST,ExtensionConfig.OPERANDO_SERVER_PORT, username, sessionId, failCallback, errorCallback);
 
                 swarmHub.on('login.js', "restoreSucceed", function (swarm) {
                     loggedIn = true;
@@ -70,14 +67,20 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
                 swarmHub.startSwarm('UserInfo.js', 'info',userId);
                 swarmHub.on('UserInfo.js', 'result', function (response) {
                     authenticatedUser = response.result;
-                    instance.notify();
+                    loggedInObservable.notify();
                     swarmHub.off("UserInfo.js","info");
                 });
             },
 
             getCurrentUser: function(callback){
-                instance.observe(function(){
+                loggedInObservable.observe(function(){
                     callback(authenticatedUser);
+                });
+            },
+
+            disconnectUser : function(callback){
+                notLoggedInObservable.observe(function(){
+                    callback();
                 });
             },
 
@@ -94,6 +97,7 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
                 swarmHub.on("login.js", "logoutSucceed", function(swarm){
                     authenticatedUser = {};
                     loggedIn = false;
+                    notLoggedInObservable.notify();
                     $cookieStore.remove("userId");
                     $cookieStore.remove("sessionId");
                     swarmHub.off("login.js","logoutSucceed");

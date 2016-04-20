@@ -10,14 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-
-angular.module("operando").
-controller("appCtrl", ["$scope", "authenticationService", function($scope, authenticationService){
-
-    authenticationService.restoreUserSession(function(){
-        console.log("You are authenticated!");
-    },function(){
-        console.log("You're not authenticated!");
-    })
-
-}])
+var ExtensionConfig = {
+    OPERANDO_SERVER_HOST:"localhost",
+    OPERANDO_SERVER_PORT:8080
+}

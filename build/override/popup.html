@@ -31,6 +31,7 @@
   <script src="operando/popup.js"></script>
   <script src="operando/utils/angular.min.js"></script>
   <script src="operando/utils/angular-cookies.js"></script>
+  <script src="operando/util/Config.js"></script>
   <script type="text/javascript" src="operando/apps/OperandoCore.js" charset="utf-8"></script>
   <script type="text/javascript" src="operando/apps/OperandoPopup.js" charset="utf-8"></script>
   <script type="text/javascript" src="operando/services/swarm-services/socket.io-1.0.6.js"></script>
@@ -39,6 +40,7 @@
   <script type="text/javascript" src="operando/services/swarm-services/SwarmHub.js" charset="utf-8"></script>
   <script type="text/javascript" src="operando/services/swarm-service.js" charset="utf-8"></script>
   <script type="text/javascript" src="operando/services/authentication-service.js" charset="utf-8"></script>
+  <script type="text/javascript" src="operando/controllers/menuController.js" charset="utf-8"></script>
   <script type="text/javascript" src="operando/controllers/loginController.js" charset="utf-8"></script>
 
 </head>
@@ -51,8 +53,14 @@
 </header>
 
 <div class="operando_wrapper">
-  <ul>
+  <ul ng-controller="menuCtrl">
     <li id="login_area" ng-controller="loginCtrl" ng-switch="loginAreaState">
+
+      <div  ng-if="connectionError!==null">
+        <div class="panel panel-danger">
+          <div class="panel-heading">{{connectionError}}</div>
+        </div>
+      </div>
 
       <div ng-switch-when="loggedout">
         <div  ng-include src="'operando/tpl/panel/logout_state.html'"></div>
@@ -71,21 +79,21 @@
       </div>
     </li>
 
-    <li id="privacy_issues">
+    <li id="privacy_issues" ng-if="isAuthenticated">
       <div class="item_icon privacy_issues_icon"></div>
       <div class="right_content">
         <a href="#">Security Issues</a>
       </div>
     </li>
 
-    <li id="privacy_settings">
+    <li id="privacy_settings" ng-if="isAuthenticated">
       <div class="item_icon privacy_settings_icon"></div>
       <div class="right_content">
         <a href="#">Privacy Settings</a>
       </div>
     </li>
 
-    <li id="dashboard">
+    <li id="dashboard" ng-if="isAuthenticated">
       <div class="item_icon dashboard_icon"></div>
       <div class="right_content">
         <a href="#">Dashboard</a>
