@@ -15,7 +15,7 @@ operandoCore.service("swarmService", function () {
                 }
             },
             restoreConnection:function(host, port,username, sessionId, securityErrorFunction ,errorFunction ){
-                swarmConnection = new SwarmClient(host, port, username, {sessionId:sessionId}, "chromeBrowserExtension", "restoreSession",securityErrorFunction, errorFunction);
+                swarmConnection = new SwarmClient(host, port, username, sessionId, "chromeBrowserExtension", "restoreSession",securityErrorFunction, errorFunction);
                 swarmHub.resetConnection(swarmConnection);
             },
             removeConnection:function(){

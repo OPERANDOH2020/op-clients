@@ -224,21 +224,6 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         self.writeObject(cmd);
     }
 
-
-    function restoreUserSession(authToken, tenantId, loginCtor){
-        var cmd = {
-            meta: {
-                swarmingName: "login.js",
-                command: "start",
-                ctor: loginCtor,
-                tenantId: tenantId,
-                commandArguments: [authToken.sessionId, userId]
-            }
-        };
-        self.writeObject(cmd);
-    }
-
-
     function waitingForIdentity(data) {
         if (data.meta && data.meta.command == "identity") {
             currentFunction = waitingForLogin;
@@ -248,14 +233,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
             if (apiVersion !== "2.0") {
                 lprint("Api version doesn't match !", "Api version error, 2.0 expected");
             }
-
-            if(typeof authToken === "object" && authToken != null ){
-                restoreUserSession(authToken, tenantId, loginCtor);
-            }
-            else{
                 doLogin(userId, authToken, tenantId, loginCtor);
-            }
-
         }
     }
 
