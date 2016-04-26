@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F4BF525D5A9270327DD62C63D6265388F7C00124",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F4BF525D5A9270327DD62C63D6265388F7C00124" : 0,
+    "DAB89CDEB487E445388C1CDB928723C18EC4D210" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4ECADB57-2096-415E-AA18-D716BD0F5F98",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F4BF525D5A9270327DD62C63D6265388F7C00124" : "op-ios\/",
+    "DAB89CDEB487E445388C1CDB928723C18EC4D210" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Operando",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Operando\/Operando.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/tfs2015.ad.rms.intern:8080\/tfs\/DefaultCollection2\/_git\/SIMAP%2520with%2520Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DAB89CDEB487E445388C1CDB928723C18EC4D210"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/OPERANDOH2020\/op-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F4BF525D5A9270327DD62C63D6265388F7C00124"
+    }
+  ]
+}
