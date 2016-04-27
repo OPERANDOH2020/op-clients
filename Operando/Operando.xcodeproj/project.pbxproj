@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */; };
+		9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */; };
+		9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */; };
+		9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6EA1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift */; };
+		9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6ED1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift */; };
+		9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9852C6EE1CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib */; };
+		9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6F21CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift */; };
+		9852C6F71CD0F68D00AF2BE5 /* UIIdentityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6F51CD0F68D00AF2BE5 /* UIIdentityCell.swift */; };
+		9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9852C6F61CD0F68D00AF2BE5 /* UIIdentityCell.xib */; };
+		9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6F91CD0FEA000AF2BE5 /* OPViewUtils.swift */; };
+		9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6FC1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift */; };
+		9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6FF1CD1143800AF2BE5 /* UIMenuTableViewController.swift */; };
+		9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */; };
+		9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */; };
+		9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */; };
 		98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */; };
 		98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6701CCF86DC00C77649 /* ViewController.swift */; };
 		98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6721CCF86DC00C77649 /* Main.storyboard */; };
@@ -38,6 +53,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIOperandoTitleView.swift; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.swift; sourceTree = "<group>"; };
+		9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIOperandoTitleView.xib; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.xib; sourceTree = "<group>"; };
+		9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINotificationsViewController.swift; path = UINotificationsViewController/UINotificationsViewController.swift; sourceTree = "<group>"; };
+		9852C6EA1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDataLeakageProtectionViewController.swift; path = UIDataLeakageProtectionViewController/UIDataLeakageProtectionViewController.swift; sourceTree = "<group>"; };
+		9852C6ED1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICertifiedApplicationCell.swift; path = UIDataLeakageProtectionViewController/UICertifiedApplicationCell/UICertifiedApplicationCell.swift; sourceTree = "<group>"; };
+		9852C6EE1CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UICertifiedApplicationCell.xib; path = UIDataLeakageProtectionViewController/UICertifiedApplicationCell/UICertifiedApplicationCell.xib; sourceTree = "<group>"; };
+		9852C6F21CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIdentityManagementViewController.swift; path = UserInterface/UIIdentityManagementViewController/UIIdentityManagementViewController.swift; sourceTree = "<group>"; };
+		9852C6F51CD0F68D00AF2BE5 /* UIIdentityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIdentityCell.swift; path = UserInterface/UIIdentityCell/UIIdentityCell.swift; sourceTree = "<group>"; };
+		9852C6F61CD0F68D00AF2BE5 /* UIIdentityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIIdentityCell.xib; path = UserInterface/UIIdentityCell/UIIdentityCell.xib; sourceTree = "<group>"; };
+		9852C6F91CD0FEA000AF2BE5 /* OPViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OPViewUtils.swift; path = Utilities/OPViewUtils.swift; sourceTree = "<group>"; };
+		9852C6FC1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISensorMonitoringViewController.swift; path = UserInterface/UISensorMonitoringViewController/UISensorMonitoringViewController.swift; sourceTree = "<group>"; };
+		9852C6FF1CD1143800AF2BE5 /* UIMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIMenuTableViewController.swift; path = UserInterface/UIMenuTableViewController/UIMenuTableViewController.swift; sourceTree = "<group>"; };
+		9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRootViewController.swift; path = UserInterface/UIRootViewController/UIRootViewController.swift; sourceTree = "<group>"; };
+		9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDashboardViewController.swift; path = UserInterface/UIDashboardViewController/UIDashboardViewController.swift; sourceTree = "<group>"; };
+		9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINavigationManager.swift; path = UserInterface/UINavigationManager/UINavigationManager.swift; sourceTree = "<group>"; };
 		98EAF66B1CCF86DC00C77649 /* Operando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Operando.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98EAF6701CCF86DC00C77649 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +112,99 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9852C6E11CD0D7D600AF2BE5 /* UIOperandoTitleView */ = {
+			isa = PBXGroup;
+			children = (
+				9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */,
+				9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */,
+			);
+			name = UIOperandoTitleView;
+			sourceTree = "<group>";
+		};
+		9852C6E61CD0DE2C00AF2BE5 /* UINotificationsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */,
+			);
+			name = UINotificationsViewController;
+			sourceTree = "<group>";
+		};
+		9852C6E91CD0E1B800AF2BE5 /* UIDataLeakageProtectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9852C6EC1CD0E1EB00AF2BE5 /* UICertifiedApplicationCell */,
+				9852C6EA1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift */,
+			);
+			name = UIDataLeakageProtectionViewController;
+			sourceTree = "<group>";
+		};
+		9852C6EC1CD0E1EB00AF2BE5 /* UICertifiedApplicationCell */ = {
+			isa = PBXGroup;
+			children = (
+				9852C6ED1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift */,
+				9852C6EE1CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib */,
+			);
+			name = UICertifiedApplicationCell;
+			sourceTree = "<group>";
+		};
+		9852C6F11CD0F22400AF2BE5 /* UIIdentityManagementViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9852C6F41CD0F66100AF2BE5 /* UIIdentityCell */,
+				9852C6F21CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift */,
+			);
+			name = UIIdentityManagementViewController;
+			sourceTree = "<group>";
+		};
+		9852C6F41CD0F66100AF2BE5 /* UIIdentityCell */ = {
+			isa = PBXGroup;
+			children = (
+				9852C6F51CD0F68D00AF2BE5 /* UIIdentityCell.swift */,
+				9852C6F61CD0F68D00AF2BE5 /* UIIdentityCell.xib */,
+			);
+			name = UIIdentityCell;
+			sourceTree = "<group>";
+		};
+		9852C6FB1CD10C0800AF2BE5 /* UISensorMonitoringViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9852C6FC1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift */,
+			);
+			name = UISensorMonitoringViewController;
+			sourceTree = "<group>";
+		};
+		9852C6FE1CD1141D00AF2BE5 /* UIMenuTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9852C6FF1CD1143800AF2BE5 /* UIMenuTableViewController.swift */,
+			);
+			name = UIMenuTableViewController;
+			sourceTree = "<group>";
+		};
+		9852C7011CD1190100AF2BE5 /* UIRootController */ = {
+			isa = PBXGroup;
+			children = (
+				9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */,
+			);
+			name = UIRootController;
+			sourceTree = "<group>";
+		};
+		9852C7041CD1196200AF2BE5 /* UIDashboardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */,
+			);
+			name = UIDashboardViewController;
+			sourceTree = "<group>";
+		};
+		9852C7071CD119E300AF2BE5 /* UINavigationManager */ = {
+			isa = PBXGroup;
+			children = (
+				9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */,
+			);
+			name = UINavigationManager;
+			sourceTree = "<group>";
+		};
 		98EAF6621CCF86DC00C77649 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +252,15 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				9852C7071CD119E300AF2BE5 /* UINavigationManager */,
+				9852C7041CD1196200AF2BE5 /* UIDashboardViewController */,
+				9852C7011CD1190100AF2BE5 /* UIRootController */,
+				9852C6FE1CD1141D00AF2BE5 /* UIMenuTableViewController */,
+				9852C6FB1CD10C0800AF2BE5 /* UISensorMonitoringViewController */,
+				9852C6F11CD0F22400AF2BE5 /* UIIdentityManagementViewController */,
+				9852C6E91CD0E1B800AF2BE5 /* UIDataLeakageProtectionViewController */,
+				9852C6E61CD0DE2C00AF2BE5 /* UINotificationsViewController */,
+				9852C6E11CD0D7D600AF2BE5 /* UIOperandoTitleView */,
 				98EAF6B21CCFA81500C77649 /* UIRegistrationController */,
 				98EAF6A71CCF971F00C77649 /* UIRegistrationView */,
 				98EAF6A41CCF929E00C77649 /* SignInViewController */,
@@ -141,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				98EAF6901CCF884000C77649 /* OPUtils.swift */,
+				9852C6F91CD0FEA000AF2BE5 /* OPViewUtils.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -324,8 +457,11 @@
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
 				98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */,
 				98EAF6761CCF86DC00C77649 /* Assets.xcassets in Resources */,
+				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
+				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
 				98EAF6A31CCF8A3400C77649 /* UILoginView.xib in Resources */,
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
+				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,14 +481,26 @@
 			files = (
 				98EAF6991CCF893500C77649 /* RSNibDesignableView.swift in Sources */,
 				98EAF6981CCF893500C77649 /* RSCommonUtilities.swift in Sources */,
+				9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */,
+				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
+				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
 				98EAF69F1CCF899500C77649 /* UIViewController+Extensions.swift in Sources */,
+				9852C6F71CD0F68D00AF2BE5 /* UIIdentityCell.swift in Sources */,
 				98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */,
 				98EAF6911CCF884000C77649 /* OPUtils.swift in Sources */,
+				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
+				9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */,
+				9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */,
 				98EAF6A11CCF8A1800C77649 /* LoginView.swift in Sources */,
+				9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */,
+				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
+				9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */,
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,
+				9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */,
+				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
 			);
@@ -548,6 +696,7 @@
 				98EAF68A1CCF86DC00C77649 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98EAF68B1CCF86DC00C77649 /* Build configuration list for PBXNativeTarget "OperandoTests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +705,7 @@
 				98EAF68D1CCF86DC00C77649 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

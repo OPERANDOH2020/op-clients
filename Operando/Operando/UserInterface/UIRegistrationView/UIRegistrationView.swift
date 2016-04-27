@@ -29,7 +29,10 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
         self.emailTF.delegate = self;
         self.confirmPasswordTF.delegate = self;
         
-            
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIRegistrationView.keyboardWillAppear(_:)), name: UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIRegistrationView.keyboardWillDisappear(_:)), name: UIKeyboardWillHideNotification, object: nil);
+        
+        self.disableSignupButton();
     }
     
     deinit
@@ -39,12 +42,12 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     
     func keyboardWillAppear(notification: NSNotification)
     {
-        
+        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0);
     }
     
     func keyboardWillDisappear(notification: NSNotification)
     {
-        
+        self.scrollView.contentInset = UIEdgeInsetsZero;
     }
     
     @IBAction func didPressSignUp(sender: AnyObject)

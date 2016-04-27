@@ -1,14 +1,15 @@
 //
-//  UIRegistrationViewController.swift
+//  UIDashboardViewController.swift
 //  Operando
 //
-//  Created by Costin Andronache on 4/26/16.
+//  Created by Costin Andronache on 4/27/16.
 //  Copyright © 2016 Operando. All rights reserved.
 //
 
 import UIKit
 
-class UIRegistrationViewController: UIViewController {
+class UIDashboardViewController: UIViewController
+{
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +32,5 @@ class UIRegistrationViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func signInButtonPressed(sender: AnyObject)
-    {
-        self.navigationController?.popViewControllerAnimated(true);
-    }
 
 }
