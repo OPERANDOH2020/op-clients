@@ -12,9 +12,9 @@ Building the extension
 - [The PIL module](http://www.pythonware.com/products/pil/)
 
 ### Building the extension for development environment
-    ./op-chrome-ext/build/build_operando.py
+    ./op-clients-chrome-ext/build/build_operando.py
 After the build process the parent directory should contain the following directories:
     - adblockpluschrome
-    - browser-extension
+    - op-clients-chrome-ext
     - devenv.chrome.extension
 devenv.chrome.extension is the extension. Drag and drop in Chrome -> Settings -> Extensions to install it.
