@@ -11,13 +11,17 @@
  */
 
 
-angular.module("op-popup").
-    controller("loginCtrl", ["$scope", "authenticationService", function($scope, authenticationService){
+angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationService", function($scope, authenticationService){
 
     $scope.user = {};
     $scope.isAuthenticated = false;
     $scope.authError = null;
-    $scope.connectionError = null;
+
+    $scope.connection={
+        status:"",
+        message:""
+    }
+
     $scope.loginAreaState = "loggedout";
 
     //show login form
@@ -29,21 +33,38 @@ angular.module("op-popup").
         $scope.loginAreaState = "loggedout";
     }
 
-
     securityErrorFunction = function (err, data) {
         $scope.authError = 'Invalid user or password...';
         $scope.$apply();
     }
 
     errorFunction = function (err) {
-        $scope.connectionError = 'Invalid network connection...';
+        $scope.connection.status = "error";
+        $scope.connection.message = 'Connection lost...';
         $scope.$apply();
     }
 
-     successFunction = function () {
+    successFunction = function () {
         $scope.loginAreaState = "loggedin";
         $scope.authError=null;
         $scope.$apply();
+    }
+
+    reconnectFunction = function(){
+        $scope.connection.status = "success";
+        $scope.connection.message = 'Connected...';
+        $scope.$apply();
+
+        setTimeout(function(){
+            //reset to default
+            //TODO this in UI
+            //add fade effect
+            $scope.connection={
+                status:"",
+                message:""
+            }
+            $scope.$apply();
+        },2000);
     }
 
 
@@ -85,7 +106,7 @@ angular.module("op-popup").
         function () {
             $scope.loginAreaState = "loggedout";
         },
-        errorFunction);
+        errorFunction,reconnectFunction);
 
 
     authenticationService.getCurrentUser(function(user){
@@ -96,3 +117,4 @@ angular.module("op-popup").
 
 
 }]);
+

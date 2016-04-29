@@ -43,7 +43,7 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
                 });
             },
 
-            restoreUserSession: function (successCallback, failCallback, errorCallback) {
+            restoreUserSession: function (successCallback, failCallback, errorCallback, reconnectCallback) {
                 var username =  $cookieStore.get("userId");
                 var sessionId = $cookieStore.get("sessionId");
                 var self = this;
@@ -52,7 +52,7 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
                     failCallback();
                 }
 
-                swarmService.restoreConnection(ExtensionConfig.OPERANDO_SERVER_HOST,ExtensionConfig.OPERANDO_SERVER_PORT, username, sessionId, failCallback, errorCallback);
+                swarmService.restoreConnection(ExtensionConfig.OPERANDO_SERVER_HOST,ExtensionConfig.OPERANDO_SERVER_PORT, username, sessionId, failCallback, errorCallback, reconnectCallback);
 
                 swarmHub.on('login.js', "restoreSucceed", function (swarm) {
                     loggedIn = true;

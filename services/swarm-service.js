@@ -17,17 +17,17 @@ operandoCore.service("swarmService", function () {
             getConnection: function () {
                 return swarmConnection;
             },
-            initConnection: function (host, port, username, password, tenant, ctor, securityErrorFunction, errorFunction) {
+            initConnection: function (host, port, username, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk) {
                 if(!swarmConnection){
-                    swarmConnection = new SwarmClient(host, port, username, password, tenant, ctor, securityErrorFunction, errorFunction);
+                    swarmConnection = new SwarmClient(host, port, username, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk);
                     swarmHub.resetConnection(swarmConnection);
                 }
                 else{
-                    swarmConnection.tryLogin( username, password, tenant, ctor, false, securityErrorFunction, errorFunction);
+                    swarmConnection.tryLogin( username, password, tenant, ctor, false, securityErrorFunction, errorFunction, reconnectCbk);
                 }
             },
-            restoreConnection:function(host, port,username, sessionId, securityErrorFunction ,errorFunction ){
-                swarmConnection = new SwarmClient(host, port, username, sessionId, "chromeBrowserExtension", "restoreSession",securityErrorFunction, errorFunction);
+            restoreConnection:function(host, port,username, sessionId, securityErrorFunction ,errorFunction, reconnectCbk ){
+                swarmConnection = new SwarmClient(host, port, username, sessionId, "chromeBrowserExtension", "restoreSession",securityErrorFunction, errorFunction, reconnectCbk);
                 swarmHub.resetConnection(swarmConnection);
             },
             removeConnection:function(){

@@ -4,7 +4,7 @@
  **********************************************************************************************/
 var useSocketIo = true;
 
-function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securityErrorFunction, errorFunction) {
+function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securityErrorFunction, errorFunction, reconnectCbk) {
     var self = this;
     var socket;
     var outletId = "";
@@ -172,6 +172,11 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
 
     function socket_onReconect() {
         lprint("Unexpected socket reconnect");
+        if (reconnectCbk) {
+            reconnectCbk();
+        }
+
+
         //getIdentity();
     }
 
@@ -180,7 +185,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         currentFunction(data);
     }
 
-    this.tryLogin = function(__userId, __authToken, __tenantId, __loginCtor, recreateConnection, securityErrFn, errorFn){
+    this.tryLogin = function(__userId, __authToken, __tenantId, __loginCtor, recreateConnection, securityErrFn, errorFn, reconnectFn){
 
         userId     = __userId;
         authToken  = __authToken;
@@ -193,7 +198,9 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         if(errorFn){
             errorFunction =  errorFn;
         }
-
+        if(reconnectFn){
+            reconnectCbk = reconnectFn;
+        }
 
         /*if(!isConnected){
          return;

@@ -56,9 +56,9 @@
   <ul ng-controller="menuCtrl">
     <li id="login_area" ng-controller="loginCtrl" ng-switch="loginAreaState">
 
-      <div  ng-if="connectionError!==null">
-        <div class="panel panel-danger">
-          <div class="panel-heading">{{connectionError}}</div>
+      <div  ng-if="connection.status">
+        <div class="panel panel-{{connection.status=='error'?'danger':connection.status}}">
+          <div class="panel-heading">{{connection.message}}</div>
         </div>
       </div>
 
