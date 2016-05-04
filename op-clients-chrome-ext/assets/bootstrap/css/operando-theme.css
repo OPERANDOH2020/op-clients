@@ -1,0 +1,314 @@
+body{
+    background: #FFFFFF;
+}
+
+#wrapper{
+    background: #FFFFFF;
+    border: 1px solid #eee;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    max-width: 1296px;
+    margin-top: 50px;
+}
+
+.navbar-default .container-fluid{
+    max-width: 1296px;
+}
+
+.tabs-left > .nav-tabs > li,
+.tabs-right > .nav-tabs > li {
+    float: none;
+}
+
+.tabs-left > .nav-tabs > li > a,
+.tabs-right > .nav-tabs > li > a {
+    min-width: 74px;
+    margin-right: 0;
+    margin-bottom: 3px;
+}
+
+.tabs-left > .nav-tabs {
+    float: left;
+    margin-right: 19px;
+    border-right: 1px solid #ddd;
+    height:70%;
+}
+
+
+
+.tabs-left > .nav-tabs > li > a {
+    margin-right: -1px;
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+    border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+    border-color: #ddd transparent #ddd #ddd;
+    *border-right-color: #ffffff;
+}
+
+div.tab-content{
+    width:80%;
+    float:left;
+}
+
+.content_tab{
+    display: none;
+}
+
+#dashboard_tab{
+    display: block;
+}
+
+.navbar-default{
+    background: #fdfaef!important;
+    padding-top: 48px;
+    border-bottom: 1px dashed #959595;
+}
+
+#bs-example-navbar-collapse-1{
+    position: relative;
+    display: block;
+}
+
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+    color: #ff8f00;
+    background: #FFF!important;
+    border: 1px dashed #959595;
+    box-shadow: none;
+}
+
+.navbar-nav > li > a {
+    color: #ff8f00;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: arial;
+    font-style: inherit;
+    font-weight: bold;
+    box-shadow: none!important;
+    cursor: pointer;
+}
+
+.navbar-nav > li > a:hover{
+    color: #ff8f00 !important;
+}
+
+.container-fluid{
+    padding: 0;
+}
+.image_logo{
+    height: 58px;
+    margin-top: 14px;
+    margin-left: 0px;
+}
+
+#extensions_container .extension{
+    width:100%;
+    padding:10px;
+    border-bottom: 1px solid #cccccc;
+}
+
+
+#extensions_container .extension:last-child{
+    border-bottom: none;
+}
+
+
+#extensions_container .extension_actions{
+    float:right;
+}
+
+.extension .extension_icon img.disabled{
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%);
+}
+
+#wrapper button{
+    border-radius:5px;
+    border:1px solid #ffaa30;
+    color:#777;
+    padding: 6px 10px;
+    background: none;
+}
+#wrapper button:hover{
+    background:#FFF1D2;
+}
+
+.extension_icon{
+    width:120px;
+    text-align: center;
+    float:left;
+}
+.extension_name{
+    display: block;
+}
+
+#identities_container .identity{
+    padding: 10px;
+    border-bottom:1px solid #cccccc;
+}
+#identities_container .identity:last-child{
+    border-bottom: none;
+}
+.identity_actions{
+    float:right;
+}
+
+.email_at_sign{
+    margin-top: 22px;
+    font-size: 22px;
+    display: block;
+}
+
+#can-do-more
+{
+    border-bottom: 4px solid #968D81;
+}
+
+.feature-malware-image
+{
+    background-image: url(../../../../skin/features/malware.png);
+    background-repeat: no-repeat;
+}
+
+.feature-social-image
+{
+    background-image: url(../../../../skin/features/social.png);
+    background-repeat: no-repeat;
+}
+
+.feature-tracking-image
+{
+    background-image: url(../../../../skin/features/tracking.png);
+    background-repeat: no-repeat;
+}
+
+#can-do-more-content
+{
+    margin-top: 30px;
+}
+
+#can-do-more #features
+{
+    border-spacing: 10px;
+}
+
+#can-do-more .feature
+{
+    list-style-type: none;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-top: 1px dashed #c0bebb;
+    position: relative;
+}
+
+#can-do-more .feature-image, #can-do-more .feature-description
+{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#can-do-more .feature-description
+{
+    -webkit-margin-start: 20px;
+    -moz-margin-start: 20px;
+}
+
+#can-do-more .feature-description-textblock
+{
+    -webkit-margin-end: 40px;
+    -moz-margin-end: 40px;
+    display: inline-block;
+}
+
+#can-do-more .feature-description-textblock > span
+{
+    margin-top: 15px;
+}
+
+#can-do-more .feature-image
+{
+    width: 59px;
+    height: 59px;
+    margin: 10px 0px;
+    -webkit-margin-start: 20px;
+    -moz-margin-start: 20px;
+}
+
+
+.toggle
+{
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    height: 32px;
+    margin-top: 32px;
+    margin-bottom: 7px;
+    width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    float: right;
+    margin-right:32px;
+    position: absolute;
+    right: 0px;
+    top:20px;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.2s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #FF8F00; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 20px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.2s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+.extension_left_ctn{
+    float:left;
+}
+
+.extension_left_ctn .privacy_pollution{
+    font-weight: bold;
+}
