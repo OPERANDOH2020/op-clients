@@ -1,0 +1,194 @@
+<html ng-app="operando">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/operando-theme.css">
+    <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="/operando/assets/bootstrap/js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/operando/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/operando/assets/bootstrap/js/jquery.bootstrap.wizard.js"></script>
+    <script type="text/javascript" src="/operando/assets/bootstrap/js/operando-theme.js"></script>
+    <script type="text/javascript" src="/operando/utils/angular.min.js"></script>
+    <script type="text/javascript" src="/operando/utils/angular-modal-service.js"></script>
+    <script type="text/javascript" src="/operando/DependencyManager.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/options.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/util/Config.js"></script>
+    <script type="text/javascript" src="/operando/utils/angular-cookies.js"></script>
+    <script type="text/javascript" src="/operando/services/swarm-services/SwarmClient.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/services/swarm-services/SwarmDebug.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/services/swarm-services/SwarmHub.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/services/swarm-services/socket.io-1.0.6.js"></script>
+    <script type="text/javascript" src="/operando/directives/extensions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/directives/identities.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/apps/OperandoCore.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/services/swarm-service.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/services/authentication-service.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/services/identity-service.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/apps/OperandoApp.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/controllers/appController.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="../ext/common.js"></script>
+    <script type="text/javascript" src="../ext/content.js"></script>
+    <script type="text/javascript" src="../common.js"></script>
+    <script type="text/javascript" src="../i18n.js"></script>
+
+</head>
+<body ng-controller="appCtrl">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img class="image_logo" alt="Brand" src="/operando/icons/operando_logo82.png">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a target-tab="dashboard_tab">Anti-Tracking </a></li>
+                <li><a target-tab = "privacy_tab" >Privacy</a></li>
+                <li><a target-tab = "identity_management_tab" >Identity Management</a></li>
+                <li><a target-tab = "extensions_tab" >Extensions & Apps</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li>
+                    <a target-tab="security_issues_tab">Security issues </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div id="wrapper">
+
+
+    <!--DASHBOARD-->
+
+    <div id="dashboard_tab" class="active content_tab" >
+        <section id="can-do-more">
+            <h2>Filters</h2>
+            <div id="can-do-more-content">
+                <ul id="features">
+                    <li id="feature-malware" class="feature">
+                        <div class="feature-image feature-malware-image"></div>
+                        <div class="feature-description">
+                            <div class="feature-description-textblock">
+                                <h3 class="i18n_firstRun_feature_malware feature-title"></h3>
+                                <span class="i18n_firstRun_feature_malware_description"></span>
+                            </div>
+
+
+                            <div class="toggle">
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-malware">
+                                <label class="onoffswitch-label" for="toggle-malware">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </li>
+                    <li id="feature-social" class="feature">
+                        <div class="feature-image feature-social-image"></div>
+                        <div class="feature-description">
+                            <div class="feature-description-textblock">
+                                <h3 class="i18n_firstRun_feature_social feature-title"></h3>
+                                <span class="i18n_firstRun_feature_social_description"></span>
+                            </div>
+
+                            <div class="toggle">
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-social">
+                                <label class="onoffswitch-label" for="toggle-social">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li id="feature-tracking" class="feature">
+                        <div class="feature-image feature-tracking-image"></div>
+                        <div class="feature-description">
+                            <div class="feature-description-textblock">
+                                <h3 class="i18n_firstRun_feature_tracking feature-title"></h3>
+                                <span class="i18n_firstRun_feature_tracking_description"></span>
+                            </div>
+
+                            <div class="toggle">
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-tracking">
+                                <label class="onoffswitch-label" for="toggle-tracking">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+        </section>
+    </div>
+    <!-- END DASHBOARD-->
+
+    <!--PRIVACY-->
+    <div id="privacy_tab" class="content_tab">
+        <!-- tabs left -->
+        <div class="tabbable tabs-left clearfix" >
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#sn" data-toggle="tab">Social Networks</a></li>
+                <li><a href="#pfb" data-toggle="tab">PfB</a></li>
+            </ul>
+            <div class="tab-content clearfix">
+                <div class="tab-pane active" id="sn">
+
+                    <button id="set_linkedin_privacy">Set LinkedIn Privacy</button>
+                    <button id="set_facebook_privacy">Set Facebook Privacy</button>
+
+                </div>
+                <div class="tab-pane" id="pfb">PfB </div>
+            </div>
+        </div>
+        <!-- /tabs -->
+    </div>
+    <!--END PRIVACY-->
+
+    <!--IDENTIY MANANGEMENT-->
+    <div id="identity_management_tab" class="content_tab">
+       <identities></identities>
+    </div>
+
+    <!-- EXTENSIONS TAB-->
+    <div id="extensions_tab" class="content_tab">
+        <extensions></extensions>
+    </div>
+    <!-- END EXTENSIONS TAB-->
+
+
+
+    <!--SECURITY ISSUES-->
+    <div id="security_issues_tab" class="content_tab">
+        Security  content here
+    </div>
+    <!--END SECURITY ISSUES-->
+
+
+
+
+</div>
+</body>
+</html>
