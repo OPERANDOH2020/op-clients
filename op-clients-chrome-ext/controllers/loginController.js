@@ -11,16 +11,16 @@
  */
 
 
-angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationService", function($scope, authenticationService){
+angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationService","swarmService", function($scope, authenticationService, swarmService){
 
     $scope.user = {};
     $scope.isAuthenticated = false;
     $scope.authError = null;
 
-    $scope.connection={
-        status:"",
-        message:""
-    }
+    $scope.connection = {
+        message: "Connecting.",
+        status: "connecting"
+    };
 
     $scope.loginAreaState = "loggedout";
 
@@ -33,14 +33,14 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationSer
         $scope.loginAreaState = "loggedout";
     }
 
-    securityErrorFunction = function (err, data) {
+    securityErrorFunction = function () {
         $scope.authError = 'Invalid user or password...';
         $scope.$apply();
     }
 
-    errorFunction = function (err) {
-        $scope.connection.status = "error";
+    errorFunction = function () {
         $scope.connection.message = 'Connection lost...';
+        $scope.connection.status = "error";
         $scope.$apply();
     }
 
@@ -68,10 +68,13 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationSer
     }
 
 
+    swarmService.onReconnect(reconnectFunction);
+    swarmService.onConnectionError(errorFunction);
+    swarmService.onConnect(reconnectFunction);
+
+
     $scope.login = function() {
-
-        authenticationService.authenticateUser($scope.user.email, $scope.user.password, securityErrorFunction, errorFunction, successFunction);
-
+        authenticationService.authenticateUser($scope.user.email, $scope.user.password, securityErrorFunction, successFunction);
     }
 
     $scope.show_register = function(){

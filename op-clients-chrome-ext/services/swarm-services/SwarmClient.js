@@ -4,7 +4,7 @@
  **********************************************************************************************/
 var useSocketIo = true;
 
-function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securityErrorFunction, errorFunction, reconnectCbk) {
+function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
     var self = this;
     var socket;
     var outletId = "";
@@ -62,6 +62,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
             socket.on('connect', socket_onConnect);
             socket.on('data', socket_onStreamData);
             socket.on('message', socket_onStreamData);
+
             socket.on('error', socket_onError);
             socket.on('connect_error', socket_onError);
             socket.on('disconnect', socket_onDisconnect);
@@ -83,31 +84,30 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
                 }
             }, 1000);
         }
-
     }
 
     function socket_onConnect(){
         lprint("Socket connected");
         isConnected = true;
+        connectCbk();
         getIdentity();
     }
 
-
-    this.destroySocket = function(){
+    this.destroySocket = function () {
         lprint("Destroying a socket");
-        if(useSocketIo){
+        if (useSocketIo) {
             delete socket;
             delete this;
         } else {
 
-            socket.onerror = function(){};
+            socket.onerror = function () {
+            };
             socket.onclose = socket.onerror;
-            socket.onopen  = socket.onerror;
+            socket.onopen = socket.onerror;
 
             socket.close();
             delete socket;
         }
-
     }
 
     this.logout = this.destroySocket;

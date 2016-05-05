@@ -18,10 +18,10 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
 
         return {
             loggedIn: loggedIn,
-            authenticateUser: function (username, password, securityFn, errorFn, successFn) {
+            authenticateUser: function (username, password, securityFn, successFn) {
                 var self = this;
 
-                swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, username, password, "chromeBrowserExtension", "userLogin", securityFn, errorFn);
+                swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, username, password, "chromeBrowserExtension", "userLogin", securityFn );
 
                 swarmHub.on('login.js', "success", function (swarm) {
                     loggedIn = swarm.authenticated;

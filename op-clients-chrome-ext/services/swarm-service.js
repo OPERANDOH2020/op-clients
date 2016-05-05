@@ -12,27 +12,87 @@
 
 operandoCore.service("swarmService", function () {
 
-        var swarmConnection = null;
-        return {
-            getConnection: function () {
-                return swarmConnection;
-            },
-            initConnection: function (host, port, username, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk) {
-                if(!swarmConnection){
-                    swarmConnection = new SwarmClient(host, port, username, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk);
-                    swarmHub.resetConnection(swarmConnection);
-                }
-                else{
-                    swarmConnection.tryLogin( username, password, tenant, ctor, false, securityErrorFunction, errorFunction, reconnectCbk);
-                }
-            },
-            restoreConnection:function(host, port,username, sessionId, securityErrorFunction ,errorFunction, reconnectCbk ){
-                swarmConnection = new SwarmClient(host, port, username, sessionId, "chromeBrowserExtension", "restoreSession",securityErrorFunction, errorFunction, reconnectCbk);
-                swarmHub.resetConnection(swarmConnection);
-            },
-            removeConnection:function(){
-                swarmConnection.logout();
+    var swarmConnection = null;
+    var connectCallbacks = [];
+    var reconnectCallbacks = [];
+    var connectionErrorCallback = [];
+
+    function runConnectCallbacks() {
+        connectCallbacks.forEach(function (callback) {
+            callback();
+        });
+    }
+
+    function runReconnectCallbacks() {
+        reconnectCallbacks.forEach(function (callback) {
+            callback();
+        });
+    }
+
+    function runConnectionErrorCallback() {
+        connectionErrorCallback.forEach(function (callback) {
+            callback();
+        });
+    }
+
+
+    return {
+        getConnection: function () {
+            return swarmConnection;
+        },
+        initConnection: function (host, port, username, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
+            if (errorFunction) {
+                this.onConnectionError(errorFunction)
             }
+
+            if (reconnectCbk) {
+                this.onReconnect(reconnectCbk);
+            }
+
+            if(connectCbk){
+                this.onConnect(connectCbk);
+            }
+
+            if (!swarmConnection) {
+                swarmConnection = new SwarmClient(host, port, username, password, tenant, ctor, securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
+                swarmHub.resetConnection(swarmConnection);
+            }
+            else {
+                swarmConnection.tryLogin(username, password, tenant, ctor, false, securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
+            }
+        },
+        restoreConnection: function (host, port, username, sessionId, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
+
+            if (errorFunction) {
+                this.onConnectionError(errorFunction)
+            }
+
+            if (reconnectCbk) {
+                this.onReconnect(reconnectCbk);
+            }
+
+            if(connectCbk){
+                this.onConnect(connectCbk);
+            }
+
+
+            swarmConnection = new SwarmClient(host, port, username, sessionId, "chromeBrowserExtension", "restoreSession", securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
+            swarmHub.resetConnection(swarmConnection);
+        },
+        removeConnection: function () {
+            swarmConnection.logout();
+        },
+        onReconnect: function (callback) {
+            reconnectCallbacks.push(callback);
+        },
+        onConnect: function (callback) {
+            connectCallbacks.push(callback);
+        },
+        onConnectionError: function (callback) {
+            connectionErrorCallback.push(callback);
         }
 
-    });
+    }
+
+
+});
