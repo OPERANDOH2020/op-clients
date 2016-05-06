@@ -33,7 +33,7 @@
     <script type="text/javascript" src="../i18n.js"></script>
 
 </head>
-<body ng-controller="appCtrl">
+<body ng-controller="appCtrl" class="operando">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -57,14 +57,9 @@
                 <li><a target-tab = "privacy_tab" >Privacy</a></li>
                 <li><a target-tab = "identity_management_tab" >Identity Management</a></li>
                 <li><a target-tab = "extensions_tab" >Extensions & Apps</a></li>
+                <li><a target-tab="security_issues_tab">Security issues </a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-
-                <li>
-                    <a target-tab="security_issues_tab">Security issues </a>
-                </li>
-            </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
@@ -190,5 +185,19 @@
 
 
 </div>
+
+<footer>
+
+    <div id="footer-copyright">
+        <div id="footer-copyright-content" class="clearfix">
+            <p id="text-address">
+                OPERANDO Consortium<br>
+                <img style="float:left;" alt="European Union" src="http://www.operando.eu/immagini/logo/eu.png">
+                <c>This work was supported by the European Commission under the Horizon 2020 Programme (H2020), as part of the OPERANDO project (GA no. 653704).</c></p>
+
+        </div>
+    </div>
+
+</footer>
 </body>
 </html>
