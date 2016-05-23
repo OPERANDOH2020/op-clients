@@ -11,7 +11,7 @@
  */
 
 
-angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationService","swarmService", function($scope, authenticationService, swarmService){
+angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService', function($scope, messengerService){
 
     $scope.user = {};
     $scope.isAuthenticated = false;
@@ -45,9 +45,13 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationSer
     }
 
     successFunction = function () {
-        $scope.loginAreaState = "loggedin";
-        $scope.authError=null;
-        $scope.$apply();
+        messengerService.send("getCurrentUser",{}, function(user){
+            $scope.loginAreaState = "loggedin";
+            $scope.authError = null;
+            $scope.user.username = user.userName;
+            $scope.isAuthenticated = true;
+            $scope.$apply();
+        });
     }
 
     reconnectFunction = function(){
@@ -68,13 +72,24 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationSer
     }
 
 
-    swarmService.onReconnect(reconnectFunction);
+    /*swarmService.onReconnect(reconnectFunction);
     swarmService.onConnectionError(errorFunction);
-    swarmService.onConnect(reconnectFunction);
+    swarmService.onConnect(reconnectFunction);*/
 
 
-    $scope.login = function() {
-        authenticationService.authenticateUser($scope.user.email, $scope.user.password, securityErrorFunction, successFunction);
+    $scope.login = function () {
+
+        messengerService.send("login", {
+            username: $scope.user.email,
+            password: $scope.user.password
+        }, function (response) {
+            if (response.success) {
+                successFunction();
+            }
+            else if (response.error)
+                securityErrorFunction();
+        });
+
     }
 
     $scope.show_register = function(){
@@ -91,13 +106,13 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationSer
             console.log("Register success");
         }
 
-        authenticationService.registerUser($scope.user, errorFunction, successFunction);
+        //authenticationService.registerUser($scope.user, errorFunction, successFunction);
     }
 
     $scope.logout = function(){
-        authenticationService.logoutCurrentUser(function(){
+        messengerService.send("logout",{},function(){
             $scope.loginAreaState = "loggedout";
-            $scope.$apply()
+            $scope.$apply();
         });
     }
 
@@ -105,19 +120,29 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", "authenticationSer
         window.open(chrome.runtime.getURL("operando/operando.html#identity_management_tab"),"operando");
     }
 
-    authenticationService.restoreUserSession(successFunction,
-        function () {
-            $scope.loginAreaState = "loggedout";
-        },
-        errorFunction,reconnectFunction);
 
 
-    authenticationService.getCurrentUser(function(user){
+    /*messengerService.send("getCurrentUser",{}, function(user){
         $scope.user.username = user.userName;
         $scope.isAuthenticated = true;
         $scope.$apply();
-    });
+        //successFunction();
+    });*/
 
+    messengerService.send("restoreUserSession",{}, function(status){
+        if(status.success){
+            successFunction();
+        }
+        else if(status.fail){
+            $scope.loginAreaState = "loggedout";
+        }
+        else if(status.error){
+            errorFunction();
+        }
+        else if(status.reconnect){
+            reconnectFunction();
+        }
+    })
 
 }]);
 

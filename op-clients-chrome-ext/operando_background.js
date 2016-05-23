@@ -16,6 +16,9 @@ var HEADERS_TO_STRIP_LOWERCASE = [
     'x-frame-options',
 ];
 
+
+var activeTabs = [];
+
 webRequest.onHeadersReceived.addListener(
     function (details) {
         return {
@@ -71,6 +74,16 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         return true;
     }
 
+    if(message.message === "fileNeeded"){
+        if(message.file && message.type){
+            chrome.tabs.insertCSS(sender.tab.id, {file:"operando/utils/jquery.webui-popover.min.css"}, function(status){
+                console.log(status);
+            });
+
+        }
+
+    }
+
 });
 
 webRequest.onBeforeSendHeaders.addListener(function(details) {
@@ -102,9 +115,34 @@ webRequest.onBeforeSendHeaders.addListener(function(details) {
 
 
 
-chrome.tabs.onCreated.addListener(function(tab){
-    insertJavascriptFile(tab.id,"operando/apps/pfb.js");
-})
+/*chrome.tabs.onCreated.addListener(function(tab) {
+    console.log("onCreated");
+    tryPfB(tab.id);
+});
+
+chrome.tabs.onActivated.addListener(function(activeInfo) {
+    console.log("onActivated");
+    tryPfB(activeInfo.tabId);
+});
+
+chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
+    console.log("onUpdated");
+    tryPfB(tabId);
+});
+
+*/
+
+function tryPfB (tabId){
+    //if(activeTabs.indexOf(tabId)== -1){
+      //  activeTabs.push(tabId);
+
+        insertJavascriptFile(tabId,"operando/utils/jquery.min.js");
+        insertJavascriptFile(tabId,"operando/utils/jquery.webui-popover.min.js");
+        insertJavascriptFile(tabId,"operando/utils/jquery.visible.min.js");
+        insertJavascriptFile(tabId,"operando/utils/jquery.livequery.min.js");
+        insertJavascriptFile(tabId,"operando/operando_content.js");
+    //}
+}
 
 
 function insertJavascriptFile(id, file, callback){

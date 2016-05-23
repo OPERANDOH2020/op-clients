@@ -17,6 +17,7 @@ permissions = tabs
   contentSettings
   cookies
   management
+  tabs
 options = /operando/operando.html
 browserAction = operando/icons/operando/abp-19.png operando/icons/operando/abp-38.png popup.html
 icons = operando/icons/operando/abp-16.png operando/icons/operando/abp-32.png operando/icons/operando/detailed/abp-48.png

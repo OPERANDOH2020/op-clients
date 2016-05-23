@@ -10,7 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", function (swarmService, $cookieStore) {
+operandoCore.factory("authenticationService", ["swarmService", "$cookies", function (swarmService, $cookies) {
         var loggedIn = false;
         var authenticatedUser = {};
         var loggedInObservable = swarmHub.createObservable();
@@ -25,11 +25,13 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
 
                 swarmHub.on('login.js', "success", function (swarm) {
                     loggedIn = swarm.authenticated;
-                    $cookieStore.put("sessionId", swarm.meta.sessionId);
-                    $cookieStore.put("userId", swarm.userId);
-                    self.setUser(swarm.userId);
-                    successFn();
+                    $cookies.put("sessionId", swarm.meta.sessionId);
+                    $cookies.put("userId", swarm.userId);
+                    getCurrentUser(function(user){
+                        self.setUser(swarm.userId);
+                    })
 
+                    successFn();
                     swarmHub.off("login.js","success");
                 });
             },
@@ -44,8 +46,8 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
             },
 
             restoreUserSession: function (successCallback, failCallback, errorCallback, reconnectCallback) {
-                var username =  $cookieStore.get("userId");
-                var sessionId = $cookieStore.get("sessionId");
+                var username =  $cookies.get("userId");
+                var sessionId = $cookies.get("sessionId");
                 var self = this;
 
                 if(!username || !sessionId){
@@ -68,7 +70,7 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
                 swarmHub.on('UserInfo.js', 'result', function (response) {
                     authenticatedUser = response.result;
                     loggedInObservable.notify();
-                    swarmHub.off("UserInfo.js","info");
+                    swarmHub.off("UserInfo.js","result");
                 });
             },
 
@@ -98,8 +100,8 @@ operandoCore.factory("authenticationService", ["swarmService", "$cookieStore", f
                     authenticatedUser = {};
                     loggedIn = false;
                     notLoggedInObservable.notify();
-                    $cookieStore.remove("userId");
-                    $cookieStore.remove("sessionId");
+                    $cookies.remove("userId");
+                    $cookies.remove("sessionId");
                     swarmHub.off("login.js","logoutSucceed");
                     swarmService.removeConnection();
                     callback();

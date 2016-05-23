@@ -10,7 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 operandoCore
-    .factory("identityService",["$cookieStore", function($cookieStore){
+    .factory("identityService",["ngCookies", function($cookieStore){
 
     var identities = [];
     var observer = {

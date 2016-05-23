@@ -80,6 +80,9 @@ operandoCore.service("swarmService", function () {
             swarmHub.resetConnection(swarmConnection);
         },
         removeConnection: function () {
+            connectCallbacks = [];
+            reconnectCallbacks = [];
+            connectionErrorCallback = [];
             swarmConnection.logout();
         },
         onReconnect: function (callback) {

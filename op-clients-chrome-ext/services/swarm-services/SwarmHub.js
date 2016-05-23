@@ -54,9 +54,11 @@ function SwarmHub(swarmConnection){
         }
     }
 
-
     this.off = function(swarm, phase, callBack){
-        var c = callBacks[swarm][phase];
+
+        delete callBacks[swarm][phase];
+
+        /*var c = callBacks[swarm][phase];
         if(c instanceof Array){
             var idx = c.indexOf(callBack)
             if(idx != -1){
@@ -64,7 +66,7 @@ function SwarmHub(swarmConnection){
             }
         } else {
             delete callBacks[swarm][phase];
-        }
+        }*/
     }
 
     var pendingCommands = [];
@@ -141,9 +143,14 @@ function SwarmHub(swarmConnection){
             }
 
             this.notify = function(){
-                observers.forEach(function(c){
+                /*observers.forEach(function(c){
+                 c();
+                 })*/
+
+                while(observers.length>0){
+                    var c = observers.pop();
                     c();
-                })
+                }
                 notifiedAtLeastOnce = true;
             }
         }
