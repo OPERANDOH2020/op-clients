@@ -12,7 +12,7 @@
 
 
 angular.module('identities', [])
-    .directive('identities', ["identityService", function (identityService) {
+    .directive('identities', ["messengerService", function (messengerService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -25,14 +25,14 @@ angular.module('identities', [])
                         $scope.$apply();
                     }
 
-                    identityService.listIdentities(function (identities) {
+                    messengerService.send("listIdentities",{},function (identities) {
                         $scope.identities = identities;
                         refreshIdentities();
                     });
 
 
                     $scope.$on('refreshIdentities',function() {
-                        identityService.listIdentities(function (identities) {
+                        messengerService.send("listIdentities",{},function (identities) {
                             $scope.identities = identities;
                             refreshIdentities();
                         });
@@ -43,18 +43,18 @@ angular.module('identities', [])
                         var identities = $scope.identities;
                         ModalService.showModal({
                             templateUrl: '/operando/tpl/modals/add_sid.html',
-                            controller: ["$scope", "close", "identityService", function ($scope, close, identityService) {
+                            controller: ["$scope", "close", "messengerService", function ($scope, close, messengerService) {
 
                                 $scope.identity = {};
                                 $scope.domains = {};
 
-                                identityService.listDomains(function(domains){
+                                messengerService.send("listDomains",{},function(domains){
                                     $scope.domains.availableDomains = domains;
                                     $scope.identity.domain = $scope.domains.availableDomains[0].name;
                                 });
 
                                 $scope.saveIdentity = function () {
-                                    identityService.addIdentity($scope.identity, function (identity) {
+                                    messengerService.send("addIdentity",$scope.identity, function (identity) {
                                         identities.push(identity);
                                         refreshIdentities();
                                         close(null, 500);
@@ -71,7 +71,7 @@ angular.module('identities', [])
 
 
                                 $scope.generateIdentity = function(){
-                                    identityService.generateIdentity(function(generatedIdentity){
+                                    messengerService.send("generateIdentity",{},function(generatedIdentity){
                                         console.log(generatedIdentity);
                                         $scope.identity.email = generatedIdentity.email;
                                         $scope.identity.name = $scope.identity.email+"@"+$scope.identity.domain;
@@ -115,10 +115,10 @@ angular.module('identities', [])
                         ModalService.showModal({
 
                             templateUrl: '/operando/tpl/modals/delete_sid.html',
-                            controller: ["$scope", "close", "identityService", function ($scope, close, identityService) {
+                            controller: ["$scope", "close", "messengerService", function ($scope, close, messengerService) {
                                 $scope.identity = identity;
                                 $scope.deleteIdentity = function(){
-                                    identityService.removeIdentity(identity, function(identity){
+                                    messengerService.send("removeIdentity",identity, function(identity){
                                         console.log("success", identity);
                                             emitToParent("refreshIdentities");
 

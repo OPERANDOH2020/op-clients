@@ -12,13 +12,14 @@
 
 
 operandoCore
-    .factory("messengerService",  function () {
+    .factory("messengerService", function () {
 
         var port = chrome.runtime.connect({name: "OPERANDO_MESSAGER"});
         var callbacks = {};
+        var events = {};
 
         port.onMessage.addListener(function (response) {
-            if (response.type = "SOLVED_REQUEST") {
+            if (response.type == "SOLVED_REQUEST") {
                 if (response.action && callbacks[response.action]) {
                     while (callbacks[response.action].length > 0) {
                         var messageCallback = callbacks[response.action].pop();
@@ -28,14 +29,27 @@ operandoCore
                 }
             }
             else {
-                //TODO implement possible background requests
+                if (response.type == "BACKGROUND_DEMAND") {
+                    if (response.action && events[response.action]) {
+                        events[response.action].forEach(function (callback) {
+                            callback(response.message);
+                        });
+                    }
+                }
             }
 
         });
 
-        port.onDisconnect.addListener(function(){
-            alert("disconnected");
-        });
+        /*port.onDisconnect.addListener(function () {
+
+        });*/
+
+        var on = function (event, callback) {
+            if (!events[event]) {
+                events[event] = [];
+            }
+            events[event].push(callback);
+        }
 
         var send = function (action, message, callback) {
             port.postMessage({action: action, message: message});
@@ -48,7 +62,8 @@ operandoCore
 
 
         return {
-            send: send
+            send: send,
+            on: on
         }
 
     });

@@ -18,8 +18,8 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
     $scope.authError = null;
 
     $scope.connection = {
-        message: "Connecting.",
-        status: "connecting"
+        message: "",
+        status: ""
     };
 
     $scope.loginAreaState = "loggedout";
@@ -72,11 +72,6 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
     }
 
 
-    /*swarmService.onReconnect(reconnectFunction);
-    swarmService.onConnectionError(errorFunction);
-    swarmService.onConnect(reconnectFunction);*/
-
-
     $scope.login = function () {
 
         messengerService.send("login", {
@@ -112,6 +107,8 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
     $scope.logout = function(){
         messengerService.send("logout",{},function(){
             $scope.loginAreaState = "loggedout";
+            $scope.isAuthenticated = false;
+            $scope.user = {};
             $scope.$apply();
         });
     }
@@ -120,14 +117,6 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
         window.open(chrome.runtime.getURL("operando/operando.html#identity_management_tab"),"operando");
     }
 
-
-
-    /*messengerService.send("getCurrentUser",{}, function(user){
-        $scope.user.username = user.userName;
-        $scope.isAuthenticated = true;
-        $scope.$apply();
-        //successFunction();
-    });*/
 
     messengerService.send("restoreUserSession",{}, function(status){
         if(status.success){
@@ -142,7 +131,13 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
         else if(status.reconnect){
             reconnectFunction();
         }
-    })
+    });
+
+
+    messengerService.on("onReconnect",reconnectFunction);
+    messengerService.on("onConnectionError",errorFunction);
+    messengerService.on("onConnect",reconnectFunction);
+
 
 }]);
 

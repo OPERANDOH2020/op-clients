@@ -50,8 +50,8 @@
 </header>
 
 <div class="operando_wrapper">
-  <ul ng-controller="menuCtrl">
-    <li id="login_area" ng-controller="loginCtrl" ng-switch="loginAreaState">
+  <ul ng-controller="loginCtrl">
+    <li id="login_area" ng-switch="loginAreaState">
 
       <div  ng-if="connection.status">
         <div class="panel panel-{{connection.status=='error'?'danger':connection.status}}">

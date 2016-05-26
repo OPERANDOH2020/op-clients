@@ -12,63 +12,82 @@
 
 
 var authenticationService = require("authentication-service").authenticationService;
+var swarmService = require("swarm-service").swarmService;
+var identityService = require("identity-service").identityService;
 
-/*ext.onMessage.addListener(function(msg, sender, sendResponse)
-{
-    switch (msg.action)
-    {
-        case "login":
-            alert("login");
-            break;
-        case "logout":
-            alert("logout");
-    }
-});*/
-
-
-var port;
-
+var clientPort = null;
 chrome.runtime.onConnect.addListener(function (_port) {
-    port =_port;
+    clientPort = _port;
 
-    if (port.name == "OPERANDO_MESSAGER") {
-        port.onMessage.addListener(function (request) {
+    if (clientPort.name == "OPERANDO_MESSAGER") {
+        clientPort.onMessage.addListener(function (request) {
 
             if (request.action == "login" && request.message) {
                 login(request.message.username, request.message.password, function () {
-                    port.postMessage({
+                    clientPort.postMessage({
                         type: "SOLVED_REQUEST",
                         action: request.action,
                         message: {error: "securityError"}
                     });
                 }, function () {
-                    port.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
                 });
             }
 
             if (request.action == "logout") {
                 logout(function () {
-                    port.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
                 });
             }
 
             if (request.action == "getCurrentUser") {
                 getCurrentUser(function (user) {
-                    port.postMessage({type: "SOLVED_REQUEST", action: request.action, message: user});
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: user});
                 })
             }
 
             if (request.action == "restoreUserSession") {
                 restoreUserSession(function (status) {
-                    port.postMessage({type: "SOLVED_REQUEST", action: request.action, message: status});
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: status});
                 })
             }
+
+            if(request.action == "listIdentities"){
+                identityService.listIdentities(function(identities){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identities});
+                });
+            }
+
+            if(request.action == "addIdentity"){
+                identityService.addIdentity(request.message, function(identity){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identity});
+                });
+            }
+
+            if(request.action == "generateIdentity"){
+                identityService.generateIdentity(function(identity){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identity});
+                });
+            }
+
+            if(request.action == "removeIdentity"){
+                identityService.removeIdentity(request.message,function(identity){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identity});
+                });
+            }
+
+            if(request.action == "listDomains"){
+                identityService.listDomains(function(availableDomains){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: availableDomains});
+                });
+            }
+
 
         });
     }
 
-    port.onDisconnect.addListener(function(){
-       port = null;
+    clientPort.onDisconnect.addListener(function () {
+        clientPort = null;
 
     });
 
@@ -116,4 +135,24 @@ authenticationService.restoreUserSession(function () {
 }, function () {
     status.reconnect = "reconnect";
 
+});
+
+
+swarmService.onReconnect(function () {
+    if (clientPort != null) {
+        clientPort.postMessage({type: "BACKGROUND_DEMAND", action: "onReconnect", message: {}});
+    }
+
+});
+
+swarmService.onConnectionError(function () {
+    if (clientPort != null) {
+        clientPort.postMessage({type: "BACKGROUND_DEMAND", action: "onConnectionError", message: {}});
+    }
+});
+
+swarmService.onConnect(function () {
+    if (clientPort != null) {
+        clientPort.postMessage({type: "BACKGROUND_DEMAND", action: "onConnect", message: {}});
+    }
 });

@@ -12,9 +12,9 @@
 
 
 angular.module("op-popup").
-controller("menuCtrl", ["$scope", "authenticationService", function($scope, authenticationService){
+controller("menuCtrl", ["$scope",  function($scope){
 
-    authenticationService.getCurrentUser(function(user){
+    /*authenticationService.getCurrentUser(function(user){
         $scope.isAuthenticated = true;
         $scope.$apply();
     });
@@ -22,6 +22,6 @@ controller("menuCtrl", ["$scope", "authenticationService", function($scope, auth
     authenticationService.disconnectUser(function(){
         $scope.isAuthenticated = false;
         $scope.$apply();
-    });
+    });*/
 
 }]);
