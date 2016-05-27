@@ -19,11 +19,13 @@
 
     chrome.runtime.onMessage.addListener(
         function (request, sender, sendResponse) {
-            pfbDeal = request.pfbDeal;
-            visibilityWatcherInterval = setInterval(function () {
-                    visibilityWatcher();
-                }, 300
-            );
+            if (request.pfbDeal) {
+                pfbDeal = request.pfbDeal;
+                visibilityWatcherInterval = setInterval(function () {
+                        visibilityWatcher();
+                    }, 300
+                );
+            }
         });
 
     var visibilityWatcher = function () {
@@ -60,9 +62,6 @@
 
     function createPfBPopup(element) {
 
-        chrome.runtime.sendMessage({message: "fileNeeded", file: "jquery.webui-popover.min.css", type: "css"});
-
-
         var elementOffset = jQuery(element).offset();
         var elementWidth = jQuery(element).width();
         var elementHeight = jQuery(element).height();
@@ -81,8 +80,6 @@
             content: "<div><p>"
             + pfbDeal.description
             + '</p>'
-            + '<button>Accept</button>'
-            + '<button>Decline</button>'
             + '</div>',
             multi: true,
             closeable: true,
@@ -93,13 +90,16 @@
             width: 400,
             animation: 'pop',
             placement: placement,
+            onAccept:function(element){
+                console.log("Deal accepted");
+            },
 
-
-            onHide: function ($element) {
+            onHide: function (element) {
                 popupIsDismissed = true;
                 visibilityWatcherInterval = setInterval(visibilityWatcher, 300);
             }
         };
+
         jQuery(element).webuiPopover('destroy').webuiPopover(settings);
 
     }

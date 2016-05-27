@@ -74,16 +74,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         return true;
     }
 
-    if(message.message === "fileNeeded"){
-        if(message.file && message.type){
-            chrome.tabs.insertCSS(sender.tab.id, {file:"operando/utils/jquery.webui-popover.min.css"}, function(){
-
-            });
-
-        }
-
-    }
-
 });
 
 webRequest.onBeforeSendHeaders.addListener(function(details) {
@@ -147,21 +137,12 @@ swarmHub.on("pfb.js", "success", function (swarm) {
             var deal = swarm.deal;
             var tabId = tab.id;
             insertJavascriptFile(tabId, "operando/utils/jquery.min.js");
-            insertJavascriptFile(tabId, "operando/utils/jquery.webui-popover.min.js");
             insertJavascriptFile(tabId, "operando/utils/jquery.visible.min.js");
-            insertJavascriptFile(tabId, "operando/utils/jquery.livequery.min.js");
-            chrome.tabs.insertCSS(tabId, {file:"operando/utils/jquery.webui-popover.min.css"});
-
+            insertJavascriptFile(tabId, "operando/utils/webui-popover/jquery.webui-popover.js");
+            chrome.tabs.insertCSS(tabId, {file:"operando/utils/webui-popover/jquery.webui-popover.css"});
             insertJavascriptFile(tabId, "operando/operando_content.js", function(){
                 chrome.tabs.sendMessage(tabId, {pfbDeal:deal});
             });
-
-
-
-
-            /*chrome.tabs.executeScript(tabId, {code: "pfbDeal = swarm.deal;",allFrames:false}, function () {
-                insertJavascriptFile(tabId, "operando/operando_content.js");
-            });*/
         }
     });
 });
