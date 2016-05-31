@@ -95,6 +95,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
 
     this.destroySocket = function () {
         lprint("Destroying a socket");
+        loginOk = false;
         if (useSocketIo) {
             delete socket;
             delete this;
