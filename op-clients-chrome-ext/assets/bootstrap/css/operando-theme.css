@@ -71,26 +71,24 @@ div.tab-content{
 
 .navbar-default{
     background: #fdfaef!important;
-    border-bottom: 1px dashed #959595;
 }
 
 #bs-example-navbar-collapse-1 .navbar-nav {
-    margin-top: 26px!important;
-    position: absolute;
-    left:72px;
+
 }
 
 #bs-example-navbar-collapse-1{
     position: relative;
     display: block;
+    padding: 15px;
 }
 
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
     color: #ff8f00;
-    background: #FFF!important;
-    border: 1px dashed #959595;
     box-shadow: none;
+    font-weight: bold;
+    background: #fdfaef!important;
 }
 
 .operando .navbar-nav > li{
@@ -103,11 +101,9 @@ div.tab-content{
     font-size: 14px;
     font-family: arial;
     font-style: inherit;
-    font-weight: bold;
     box-shadow: none!important;
     cursor: pointer;
     line-height: 16px;
-    background-image: -webkit-linear-gradient(top, #FDFAEF 50%, #FFFFFF 50%);
 }
 
 .navbar-nav > li > a:hover{
@@ -115,7 +111,6 @@ div.tab-content{
 }
 
 .navbar-brand img{
-    background-image: -webkit-linear-gradient(top, #FDFAEF 50%, #FFFFFF 50%);
 }
 
 .container-fluid{
@@ -123,7 +118,7 @@ div.tab-content{
 }
 .image_logo{
     height: 58px;
-    margin-top: 14px;
+    margin-top: -5px;
     margin-left: 0px;
 }
 
@@ -149,7 +144,7 @@ div.tab-content{
 }
 
 #wrapper{
-    height: calc(100% - 202px);
+    height: calc(100% - 228px);
     overflow: auto;
 }
 
@@ -350,3 +345,56 @@ footer{
     height: 100%;
     padding: 10px;
 }
+
+.active .isMockup:before{
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid #fe9901;
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    z-index: 110;
+}
+
+.active .isMockup:after{
+    content: "This tab is a mockup (image content)";
+    background: #fe9901;
+    position: absolute;
+    color: #FFF;
+    padding: 10px;
+    font-size: 12px;
+    text-transform: none;
+    border: 1px solid #FFF;
+    border-radius: 16px;
+    z-index: 100;
+    margin-top: 30px;
+    width: 235px;
+    display: inline-block;
+    left: -15px;
+}
+
+.operando .modal-content{
+    background: #fdfaef;
+}
+
+.operando .modal-content .close{
+    color:#a06205;
+}
+
+.operando .modal-content .form-control{
+    box-shadow: none;
+    border: 1px solid #ffe1b4;
+}
+
+
+.operando .modal-content .btn-primary,
+.operando #wrapper .btn-primary
+{
+    background: #f6a62e;
+    border-color: #d58917;
+    color:#FFF;
+}
+

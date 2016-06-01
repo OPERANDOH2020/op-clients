@@ -12,10 +12,10 @@
         </div>
 
         <div class="extension_actions">
-            <button ng-if="extension.enabled == false" ng-click="enable()">Enable</button>
-            <button ng-if="extension.enabled" ng-click="disable()">Disable</button>
-            <button ng-if="extension.permissions.length > 0" ng-click="view_permissions()">View permissions</button>
-            <button ng-if="extension.mayDisable" ng-click="uninstall('user preference')">Uninstall</button>
+            <button class="btn-primary" ng-if="extension.enabled == false" ng-click="enable()">Enable</button>
+            <button class="btn-primary" ng-if="extension.enabled" ng-click="disable()">Disable</button>
+            <button class="btn-primary" ng-if="extension.permissions.length > 0" ng-click="view_permissions()">View permissions</button>
+            <button class="btn-primary" ng-if="extension.mayDisable" ng-click="uninstall('user preference')">Uninstall</button>
         </div>
 
 </div>

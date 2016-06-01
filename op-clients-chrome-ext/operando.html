@@ -55,11 +55,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a target-tab="dashboard_tab">Anti-Tracking </a></li>
-                <li><a target-tab = "privacy_tab" >Privacy Settings</a></li>
+                <li><a class="isMockup" target-tab = "privacy_tab" >Privacy Settings</a></li>
+                <li><a class="isMockup" target-tab = "pfb_tab" >Privacy for Benefits</a></li>
                 <li><a target-tab = "identity_management_tab" >Identity Management</a></li>
-                <li><a target-tab = "extensions_tab" >Extensions & Apps</a></li>
-                <li><a target-tab="pfb_tab">Privacy for Benefits </a></li>
-                <li><a target-tab="security_issues_tab">Security issues </a></li>
+                <li><a target-tab = "extensions_tab">Extensions & Apps</a></li>
+                <li><a class="isMockup" target-tab = "security_issues_tab">Security issues</a></li>
             </ul>
 
         </div><!-- /.navbar-collapse -->
@@ -143,9 +143,10 @@
     <!-- END DASHBOARD-->
 
     <!--PRIVACY-->
-    <div id="privacy_tab" class="content_tab">
-        <button id="set_linkedin_privacy">Set LinkedIn Privacy</button>
-        <button id="set_facebook_privacy">Set Facebook Privacy</button>
+    <div id="privacy_tab" class="content_tab" style="text-align: center">
+        <button class="btn-primary" id="set_linkedin_privacy">Set LinkedIn Privacy</button>
+        <button class="btn-primary" id="set_facebook_privacy">Set Facebook Privacy</button>
+        <img src="assets/images/mockups/privacy_settings.jpg" width="75%">
     </div>
     <!--END PRIVACY-->
 
@@ -160,7 +161,11 @@
     </div>
     <!-- END EXTENSIONS TAB-->
 
-
+    <!-- PFB TAB-->
+    <div id="pfb_tab" class="content_tab" style="text-align: center">
+        <img src="assets/images/mockups/pfb.jpg" width="75%">
+    </div>
+    <!-- END PFB TAB-->
 
     <!--SECURITY ISSUES-->
     <div id="security_issues_tab" class="content_tab">
