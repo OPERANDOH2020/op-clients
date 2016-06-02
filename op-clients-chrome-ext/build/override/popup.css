@@ -476,7 +476,8 @@ label
   margin-left: 40px;
   margin-top: 14px;
 }
-.user_actions button{
+.user_actions button,
+#about_operando_ctn button{
   background: #F5A43C;
   height: 26px;
   padding: 2px 15px;
@@ -485,7 +486,8 @@ label
   cursor: pointer;
 }
 
-.user_actions button:hover{
+.user_actions button:hover,
+#about_operando_ctn button:hover{
   background: #eb9c1e;
 }
 
@@ -523,4 +525,22 @@ div#expand_abp.expanded{
 
 #menu #options{
     margin-bottom: -5px;
+}
+
+#about_operando_ctn div p{
+  border-top: 1px dashed #a5a4a1;
+  padding: 15px;
+  text-orientation: sideways;
+  text-align: justify;
+  text-indent: 40px;
+  margin: 0;
+}
+
+#about_operando_ctn div p:last-child{
+  border-bottom: 1px dashed #a5a4a1;
+}
+
+#about_operando_ctn button{
+  width: 280px;
+  margin: 10px 10px 10px;
 }

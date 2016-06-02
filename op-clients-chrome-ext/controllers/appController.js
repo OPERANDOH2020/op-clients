@@ -15,4 +15,5 @@ angular.module("operando").
 controller("appCtrl", ["$scope", function($scope){
 
 
+
 }])

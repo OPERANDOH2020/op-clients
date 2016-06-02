@@ -12,16 +12,16 @@
 
 
 angular.module("op-popup").
-controller("menuCtrl", ["$scope",  function($scope){
+controller("menuCtrl", ["$scope", function ($scope) {
 
-    /*authenticationService.getCurrentUser(function(user){
-        $scope.isAuthenticated = true;
-        $scope.$apply();
-    });
+    $scope.popupAreaState = "normalState";
 
-    authenticationService.disconnectUser(function(){
-        $scope.isAuthenticated = false;
-        $scope.$apply();
-    });*/
+    $scope.aboutOperando = function () {
+        $scope.popupAreaState = "aboutOperandoState";
+    }
+
+    $scope.normalState = function () {
+        $scope.popupAreaState = "normalState";
+    }
 
 }]);
