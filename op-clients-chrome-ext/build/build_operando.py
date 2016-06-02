@@ -76,15 +76,14 @@ files = [
 
 configFiles = [
     {
-        "src":"util/config/Config.release.js",
-        dest:"operando/util/Config.js"
+        "src":"util/config/Config.production.js",
+        "dest":"adblockpluschrome/operando/util/Config.js"
     },
     {
-        "src":"util/config/Config.build.js",
-        "dest":"operando/util/Config.js"
+        "src":"util/config/Config.debug.js",
+        "dest":"adblockpluschrome/operando/util/Config.js"
     }
 ]
-
 
 
 for file in files:
@@ -95,8 +94,10 @@ for file in files:
 	else:
 		shutil.copy2(os.path.join(extensionFolder,file['src']), os.path.join(BASE_DIR,file['dest']))
 
-if sys.argv[1] == "release":
-    shutil.copy2(os.path.join(extensionFolder,configFiles[0]['src']), os.path.join(BASE_DIR,configFiles[0]['dest']))
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == "release":
+        shutil.copy2(os.path.join(extensionFolder,configFiles[0]['src']), os.path.join(BASE_DIR,configFiles[0]['dest']))
 else:
     shutil.copy2(os.path.join(extensionFolder,configFiles[1]['src']), os.path.join(BASE_DIR,configFiles[1]['dest']))
 
