@@ -13,6 +13,9 @@ Building the extension
 
 ### Building the extension for development environment
     ./op-clients-chrome-ext/build/build_operando.py
+	
+### Building the extension for release/testing environment
+    ./op-clients-chrome-ext/build/build_operando.py	release
 After the build process the parent directory should contain the following directories:
     - adblockpluschrome
     - op-clients-chrome-ext
