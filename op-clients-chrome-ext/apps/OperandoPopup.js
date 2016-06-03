@@ -10,7 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module('op-popup',['operandoCore'])
+angular.module('op-popup',['operandoCore','popupMenu'])
     .config( [
         '$compileProvider',
         function( $compileProvider )

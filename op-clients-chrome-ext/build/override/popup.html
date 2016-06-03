@@ -39,6 +39,7 @@
     <script type="text/javascript" src="operando/services/authentication-service.js" charset="utf-8"></script>
     <script type="text/javascript" src="operando/controllers/menuController.js" charset="utf-8"></script>
     <script type="text/javascript" src="operando/controllers/loginController.js" charset="utf-8"></script>
+    <script type="text/javascript" src="operando/directives/popup_menu.js" charset="utf-8"></script>
 
 </head>
 <!-- Set tabindex to work around Chromium issue 304532 -->
@@ -78,26 +79,9 @@
                 </div>
             </li>
 
-            <li id="privacy_issues" ng-show="isAuthenticated">
-                <div class="item_icon privacy_issues_icon"></div>
-                <div class="right_content">
-                    <a href="#">Security Issues</a>
-                </div>
-            </li>
-
-            <li id="privacy_settings" ng-show="isAuthenticated">
-                <div class="item_icon privacy_settings_icon"></div>
-                <div class="right_content">
-                    <a href="#">Privacy Settings</a>
-                </div>
-            </li>
-
-            <li id="dashboard" ng-show="isAuthenticated">
-                <div class="item_icon dashboard_icon"></div>
-                <div class="right_content">
-                    <a href="#">Dashboard</a>
-                </div>
-            </li>
+            <menu-item icon-class="privacy_issues_icon" menu-label="Security Issues" tab-to-open = "security_issues_tab" ng-show="isAuthenticated"></menu-item >
+            <menu-item icon-class="privacy_settings_icon" menu-label="Privacy Settings" tab-to-open = "privacy_tab" ng-show="isAuthenticated"></menu-item>
+            <menu-item icon-class="dashboard_icon" menu-label="Dashboard" tab-to-open = "dashboard_tab" ng-show="isAuthenticated"></menu-item>
 
             <li id="operando_abp">
                 <div class="item_icon abp_icon"></div>

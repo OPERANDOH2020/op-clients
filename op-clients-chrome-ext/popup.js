@@ -22,31 +22,6 @@
             expandIcon.classList.toggle('expanded');
         });
 
-        //BUTTONS HANDLERS
-
-
-        var buttonsHandlers=[{
-           elementId:"privacy_issues",
-           fragment:"security_issues_tab"
-        },
-        {
-            elementId:"privacy_settings",
-            fragment:"privacy_tab"
-        },
-        {
-            elementId:"dashboard",
-            fragment:"dashboard_tab"
-        }
-        ];
-
-        buttonsHandlers.forEach(function(element){
-            var item = document.getElementById(element.elementId);
-            item.addEventListener("click", function(){
-                window.open(chrome.runtime.getURL("operando/operando.html#"+element.fragment),"operando");
-            })
-        });
-
-
     }
 
     function init() {
