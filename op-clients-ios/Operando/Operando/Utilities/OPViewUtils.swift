@@ -28,4 +28,10 @@ class OPViewUtils
             view.userInteractionEnabled = true;
         }
     }
+    
+    class func showOkAlertWithTitle(title: String, andMessage message: String)
+    {
+        let alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "Ok");
+        alert.show();
+    }
 }

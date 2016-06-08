@@ -15,17 +15,20 @@ class UIRootViewController: UIViewController
     @IBOutlet weak var mainScreensHostView: UIView!
     @IBOutlet weak var menuViewControllerHostLeadingSpace: NSLayoutConstraint!
     @IBOutlet weak var menuViewControllerHostView: UIView!
+    var menuViewController: UIMenuTableViewController?
     
     private var mainNavController: UINavigationController?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    
+    
+    func beginDisplayingUI()
+    {
+        self.blackAlphaView.hidden = false;
+        self.blackAlphaView.alpha = 0.0;
+        
         self.mainNavController = self.loadAndSetupMainNavigationController();
         self.loadAndSetupMenuViewController();
-        
     }
-
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event);
@@ -49,22 +52,31 @@ class UIRootViewController: UIViewController
     
     private func displayMenu()
     {
-        self.blackAlphaView.hidden = false;
+        self.menuViewController?.refreshViewWithUsername(OPConfigObject.sharedInstance.getCurrentUserIdentityIfAny()?.username)
+        self.animateBlackViewAlphaTo(0.5)
         self.animateMenuSpaceConstraintTo(0);
     }
     
     private func hideMenu()
     {
-        self.blackAlphaView.hidden = true;
+        self.animateBlackViewAlphaTo(0.0);
         self.animateMenuSpaceConstraintTo(-self.view.frame.size.width * 1.2);
     }
     
+    
+    private func animateBlackViewAlphaTo(newAlpha: CGFloat)
+    {
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.8, options: .CurveEaseInOut, animations: { 
+            self.blackAlphaView.alpha = newAlpha;
+            }, completion: nil);
+    }
     
     private func loadAndSetupMenuViewController()
     {
         let menuVC = UINavigationManager.menuViewController;
         menuVC.actionsPerIndex = self.actionsForMenuController();
         self.addContentController(menuVC, constrainWithAutolayout: true, inOwnViewSubview: self.menuViewControllerHostView);
+        self.menuViewController = menuVC
     }
     
     private func loadAndSetupMainNavigationController() -> UINavigationController
@@ -72,13 +84,22 @@ class UIRootViewController: UIViewController
         let navController = UINavigationManager.mainNavigationController;
         self.addContentController(navController, constrainWithAutolayout: true, inOwnViewSubview: self.mainScreensHostView);
         
+        if let rootNavController = navController.viewControllers.first as? UIDashboardViewController
+        {
+            weak var weakSelf = self
+            rootNavController.whenPrivateBrowsingButtonPressed = {
+                weakSelf?.loadPrivateBrowsingAsMainViewController()
+            }
+        }
+        
         return navController
     }
     
     
-    private func setMainControllerTo(newController: UIViewController)
+    private func setMainControllerTo(newController: UIViewController, navigationBarHidden : Bool = false)
     {
-        UIView.performWithoutAnimation { 
+        UIView.performWithoutAnimation {
+            self.mainNavController?.navigationBarHidden = navigationBarHidden
             self.mainNavController?.viewControllers = [newController];
         }
         self.hideMenu()
@@ -91,9 +112,28 @@ class UIRootViewController: UIViewController
         weak var weakSelf = self;
         return [2: {weakSelf?.setMainControllerTo(UINavigationManager.sensorMonitoringViewController)},
                 3: {weakSelf?.setMainControllerTo(UINavigationManager.dataLeakageViewController)},
-                0: {weakSelf?.setMainControllerTo(UINavigationManager.dashboardViewController)},
+                0: {weakSelf?.loadDashboardAsMainViewController()},
                 8: {weakSelf?.setMainControllerTo(UINavigationManager.identityManagementViewController)},
-                4: {weakSelf?.setMainControllerTo(UINavigationManager.notificationsViewController)}
+                4: {weakSelf?.setMainControllerTo(UINavigationManager.notificationsViewController)},
+                6: {weakSelf?.loadPrivateBrowsingAsMainViewController()}
         ];
+    }
+    
+    //MARK: - View controller load methods
+    
+    private func loadDashboardAsMainViewController()
+    {
+        let vc = UINavigationManager.dashboardViewController
+        weak var weakSelf = self
+        vc.whenPrivateBrowsingButtonPressed = {
+            weakSelf?.loadPrivateBrowsingAsMainViewController()
+        }
+        
+        self.setMainControllerTo(vc)
+    }
+    
+    private func loadPrivateBrowsingAsMainViewController()
+    {
+        self.setMainControllerTo(UINavigationManager.privateBrowsingViewController, navigationBarHidden: true)
     }
 }

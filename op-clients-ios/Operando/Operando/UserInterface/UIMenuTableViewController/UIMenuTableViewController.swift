@@ -13,6 +13,7 @@ typealias VoidBlock = (() -> ())
 class UIMenuTableViewController: UITableViewController
 {
     
+    @IBOutlet weak var usernameLabel: UILabel!
     var actionsPerIndex: [Int : VoidBlock] = [:]
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -24,4 +25,8 @@ class UIMenuTableViewController: UITableViewController
         }
     }
     
+    func refreshViewWithUsername(username: String?)
+    {
+        self.usernameLabel.text = username;
+    }
 }

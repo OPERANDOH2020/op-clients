@@ -11,26 +11,31 @@ import UIKit
 class UIDashboardViewController: UIViewController
 {
 
+    var whenPrivateBrowsingButtonPressed: (() -> ())?
+    
+    @IBOutlet weak var registerOrLoginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.showOrHideAuthenticationButton()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.showOrHideAuthenticationButton()
     }
-    */
-
+    
+    @IBAction func didPressPrivateBrowsing(sender: AnyObject)
+    {
+        self.whenPrivateBrowsingButtonPressed?()
+    }
+    
+    
+    private func showOrHideAuthenticationButton()
+    {
+        self.registerOrLoginButton.hidden = false
+        if let _ = OPConfigObject.sharedInstance.getCurrentUserIdentityIfAny()
+        {
+           self.registerOrLoginButton.hidden = true
+        }
+    }
 }

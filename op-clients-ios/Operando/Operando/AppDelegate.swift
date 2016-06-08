@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Operando
 //
-//  Created by Costin Andronache on 4/26/16.
+//  Created by Costin Andronache on 6/8/16.
 //  Copyright © 2016 Operando. All rights reserved.
 //
 
@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        OPConfigObject.sharedInstance.applicationDidStartInWindow(window)
+        self.window = window
+        window.makeKeyAndVisible()
         return true
     }
 

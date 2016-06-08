@@ -10,9 +10,15 @@ import UIKit
 
 struct LoginInfo
 {
-    let email : String
+    let username : String
     let password: String
     let wishesToBeRemembered: Bool
+}
+
+struct UILoginViewCallbacks
+{
+    let whenUserWantsToLogin : ((info : LoginInfo) -> ())?
+    let whenUserForgetsPassword: (() -> ())?
 }
 
 class UILoginView: RSNibDesignableView {
@@ -21,21 +27,23 @@ class UILoginView: RSNibDesignableView {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var rememberMeSwitch: UISwitch!
     
+    private var callbacks: UILoginViewCallbacks?
     
-    var whenUserWantsToLogin : ((info : LoginInfo) -> ())?
-    var whenUserForgetsPassword: (() -> ())?
+    
+    func setupWithCallbacks(callbacks: UILoginViewCallbacks?)
+    {
+        self.callbacks = callbacks;
+    }
     
     @IBAction func didPressForgotPassword(sender: AnyObject)
     {
-        self.whenUserForgetsPassword?();
+        self.callbacks?.whenUserForgetsPassword?();
     }
-    
     
     @IBAction func didPressSignInButton(sender: AnyObject)
     {
-        let loginInfo = LoginInfo(email: self.emailTF.text ?? "", password: self.passwordTF.text ?? "", wishesToBeRemembered: self.rememberMeSwitch.on);
-        
-        self.whenUserWantsToLogin?(info: loginInfo);
+        let loginInfo = LoginInfo(username: self.emailTF.text ?? "", password: self.passwordTF.text ?? "", wishesToBeRemembered: self.rememberMeSwitch.on);
+        self.callbacks?.whenUserWantsToLogin?(info: loginInfo);
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

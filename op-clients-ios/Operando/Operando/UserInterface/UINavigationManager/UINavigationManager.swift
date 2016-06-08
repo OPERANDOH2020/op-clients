@@ -14,6 +14,14 @@ class UINavigationManager
 {
     static let main = UIStoryboard(name: "Main", bundle: nil);
     
+    static var rootViewController : UIRootViewController
+    {
+        get
+        {
+            return main.instantiateViewControllerWithIdentifier("UIRootViewController") as! UIRootViewController
+        }
+    }
+    
     static var menuViewController : UIMenuTableViewController
     {
         get
@@ -64,10 +72,20 @@ class UINavigationManager
     }
     
     static var dashboardViewController: UIDashboardViewController
-        {
+    {
         get
         {
             return main.instantiateViewControllerWithIdentifier("UIDashboardViewController") as! UIDashboardViewController
         }
     }
+    
+    
+    static var privateBrowsingViewController: UIPrivateBrowsingViewController
+    {
+        get
+        {
+            return main.instantiateViewControllerWithIdentifier("UIPrivateBrowsingViewController") as! UIPrivateBrowsingViewController
+        }
+    }
+    
 }

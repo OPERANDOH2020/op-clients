@@ -62,8 +62,14 @@ class UIIdentityManagementViewController: UIViewController, UITableViewDataSourc
         let index = indexPath.row;
         weak var weakSelf = self;
         
-        cell.setupWithIdentity(self.identitiesList[index]) {
-            weakSelf?.deleteItemAtIndex(index);
+        weak var  weakCell = cell;
+        weak var  weakTV = tableView;
+        cell.setupWithIdentity(self.identitiesList[index])
+        {
+            if let tvCell = weakCell, tvCellIndexPath = weakTV?.indexPathForCell(tvCell)
+            {
+                weakSelf?.deleteItemAtIndex(tvCellIndexPath.row);
+            }
         }
         
         return cell;

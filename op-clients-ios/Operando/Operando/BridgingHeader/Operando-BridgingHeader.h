@@ -11,5 +11,4 @@
 
 #include "IHKeyboardAvoiding.h"
 
-
 #endif /* Operando_BridgingHeader_h */

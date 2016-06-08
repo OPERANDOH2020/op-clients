@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */; };
+		9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */; };
+		982750131D08497400C73411 /* UIDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750111D08497400C73411 /* UIDashboardView.swift */; };
+		982750141D08497400C73411 /* UIDashboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 982750121D08497400C73411 /* UIDashboardView.xib */; };
+		982750171D0849C700C73411 /* UIPrivateBrowsingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750161D0849C700C73411 /* UIPrivateBrowsingViewController.swift */; };
+		9827501A1D0849D400C73411 /* UserIdentityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750191D0849D400C73411 /* UserIdentityModel.swift */; };
+		9827501D1D0849E200C73411 /* CredentialsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827501C1D0849E200C73411 /* CredentialsStore.swift */; };
+		982750201D0849EB00C73411 /* SwarmClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827501F1D0849EB00C73411 /* SwarmClientHelper.swift */; };
+		982750251D0849FA00C73411 /* HTMLLoginInputDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750221D0849FA00C73411 /* HTMLLoginInputDetector.swift */; };
+		982750261D0849FA00C73411 /* OPConfigObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750241D0849FA00C73411 /* OPConfigObject.swift */; };
+		982750281D084A2400C73411 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982750271D084A2400C73411 /* SwarmClient.framework */; };
+		982750291D084A2B00C73411 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982750271D084A2400C73411 /* SwarmClient.framework */; };
+		9827502A1D084A2B00C73411 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 982750271D084A2400C73411 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827502C1D084A4B00C73411 /* WKWebViewUtilities.swift */; };
 		9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */; };
 		9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */; };
 		9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */; };
@@ -52,7 +66,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9827502B1D084A2B00C73411 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9827502A1D084A2B00C73411 /* SwarmClient.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBrowsingNavigationBar.swift; sourceTree = "<group>"; };
+		9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIBrowsingNavigationBar.xib; sourceTree = "<group>"; };
+		982750111D08497400C73411 /* UIDashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDashboardView.swift; sourceTree = "<group>"; };
+		982750121D08497400C73411 /* UIDashboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIDashboardView.xib; sourceTree = "<group>"; };
+		982750161D0849C700C73411 /* UIPrivateBrowsingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPrivateBrowsingViewController.swift; sourceTree = "<group>"; };
+		982750191D0849D400C73411 /* UserIdentityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIdentityModel.swift; sourceTree = "<group>"; };
+		9827501C1D0849E200C73411 /* CredentialsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsStore.swift; sourceTree = "<group>"; };
+		9827501F1D0849EB00C73411 /* SwarmClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmClientHelper.swift; sourceTree = "<group>"; };
+		982750221D0849FA00C73411 /* HTMLLoginInputDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLLoginInputDetector.swift; sourceTree = "<group>"; };
+		982750241D0849FA00C73411 /* OPConfigObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPConfigObject.swift; sourceTree = "<group>"; };
+		982750271D084A2400C73411 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		9827502C1D084A4B00C73411 /* WKWebViewUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WKWebViewUtilities.swift; path = Utilities/WKWebViewUtilities.swift; sourceTree = "<group>"; };
 		9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIOperandoTitleView.swift; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.swift; sourceTree = "<group>"; };
 		9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIOperandoTitleView.xib; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.xib; sourceTree = "<group>"; };
 		9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINotificationsViewController.swift; path = UINotificationsViewController/UINotificationsViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +139,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				982750291D084A2B00C73411 /* SwarmClient.framework in Frameworks */,
+				982750281D084A2400C73411 /* SwarmClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +154,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9827500B1D08496C00C73411 /* UIBrowsingNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */,
+				9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */,
+			);
+			name = UIBrowsingNavigationBar;
+			path = UserInterface/UIBrowsingNavigationBar;
+			sourceTree = "<group>";
+		};
+		982750101D08497400C73411 /* UIDashboardView */ = {
+			isa = PBXGroup;
+			children = (
+				982750111D08497400C73411 /* UIDashboardView.swift */,
+				982750121D08497400C73411 /* UIDashboardView.xib */,
+			);
+			name = UIDashboardView;
+			path = UserInterface/UIDashboardView;
+			sourceTree = "<group>";
+		};
+		982750151D0849C700C73411 /* UIPrivateBrowsingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				982750161D0849C700C73411 /* UIPrivateBrowsingViewController.swift */,
+			);
+			path = UIPrivateBrowsingViewController;
+			sourceTree = "<group>";
+		};
+		982750181D0849D400C73411 /* UserIdentityModel */ = {
+			isa = PBXGroup;
+			children = (
+				982750191D0849D400C73411 /* UserIdentityModel.swift */,
+			);
+			path = UserIdentityModel;
+			sourceTree = "<group>";
+		};
+		9827501B1D0849E200C73411 /* CredentialsStore */ = {
+			isa = PBXGroup;
+			children = (
+				9827501C1D0849E200C73411 /* CredentialsStore.swift */,
+			);
+			path = CredentialsStore;
+			sourceTree = "<group>";
+		};
+		9827501E1D0849EB00C73411 /* SwarmClientHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9827501F1D0849EB00C73411 /* SwarmClientHelper.swift */,
+			);
+			path = SwarmClientHelper;
+			sourceTree = "<group>";
+		};
+		982750211D0849FA00C73411 /* LoginInputDetectors */ = {
+			isa = PBXGroup;
+			children = (
+				982750221D0849FA00C73411 /* HTMLLoginInputDetector.swift */,
+			);
+			path = LoginInputDetectors;
+			sourceTree = "<group>";
+		};
+		982750231D0849FA00C73411 /* OPConfigObject */ = {
+			isa = PBXGroup;
+			children = (
+				982750241D0849FA00C73411 /* OPConfigObject.swift */,
+			);
+			path = OPConfigObject;
+			sourceTree = "<group>";
+		};
 		9852C6E11CD0D7D600AF2BE5 /* UIOperandoTitleView */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +336,12 @@
 		98EAF66D1CCF86DC00C77649 /* Operando */ = {
 			isa = PBXGroup;
 			children = (
+				982750271D084A2400C73411 /* SwarmClient.framework */,
+				982750211D0849FA00C73411 /* LoginInputDetectors */,
+				982750231D0849FA00C73411 /* OPConfigObject */,
+				9827501E1D0849EB00C73411 /* SwarmClientHelper */,
+				9827501B1D0849E200C73411 /* CredentialsStore */,
+				982750181D0849D400C73411 /* UserIdentityModel */,
 				98EAF6B01CCF997A00C77649 /* BridgingHeader */,
 				98EAF6931CCF88D400C77649 /* External */,
 				98EAF68F1CCF87B800C77649 /* Utilities */,
@@ -252,6 +368,9 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				982750151D0849C700C73411 /* UIPrivateBrowsingViewController */,
+				982750101D08497400C73411 /* UIDashboardView */,
+				9827500B1D08496C00C73411 /* UIBrowsingNavigationBar */,
 				9852C7071CD119E300AF2BE5 /* UINavigationManager */,
 				9852C7041CD1196200AF2BE5 /* UIDashboardViewController */,
 				9852C7011CD1190100AF2BE5 /* UIRootController */,
@@ -272,6 +391,7 @@
 		98EAF68F1CCF87B800C77649 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				9827502C1D084A4B00C73411 /* WKWebViewUtilities.swift */,
 				98EAF6901CCF884000C77649 /* OPUtils.swift */,
 				9852C6F91CD0FEA000AF2BE5 /* OPViewUtils.swift */,
 			);
@@ -383,6 +503,7 @@
 				98EAF6671CCF86DC00C77649 /* Sources */,
 				98EAF6681CCF86DC00C77649 /* Frameworks */,
 				98EAF6691CCF86DC00C77649 /* Resources */,
+				9827502B1D084A2B00C73411 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -462,6 +583,8 @@
 				98EAF6A31CCF8A3400C77649 /* UILoginView.xib in Resources */,
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
 				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
+				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
+				982750141D08497400C73411 /* UIDashboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +604,7 @@
 			files = (
 				98EAF6991CCF893500C77649 /* RSNibDesignableView.swift in Sources */,
 				98EAF6981CCF893500C77649 /* RSCommonUtilities.swift in Sources */,
+				982750251D0849FA00C73411 /* HTMLLoginInputDetector.swift in Sources */,
 				9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */,
 				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
@@ -488,18 +612,26 @@
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
 				98EAF69F1CCF899500C77649 /* UIViewController+Extensions.swift in Sources */,
 				9852C6F71CD0F68D00AF2BE5 /* UIIdentityCell.swift in Sources */,
+				982750171D0849C700C73411 /* UIPrivateBrowsingViewController.swift in Sources */,
 				98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */,
 				98EAF6911CCF884000C77649 /* OPUtils.swift in Sources */,
 				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
 				9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */,
+				982750131D08497400C73411 /* UIDashboardView.swift in Sources */,
 				9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */,
 				98EAF6A11CCF8A1800C77649 /* LoginView.swift in Sources */,
+				9827501D1D0849E200C73411 /* CredentialsStore.swift in Sources */,
 				9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */,
+				982750201D0849EB00C73411 /* SwarmClientHelper.swift in Sources */,
+				9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */,
+				9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */,
 				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
 				9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */,
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,
 				9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */,
+				982750261D0849FA00C73411 /* OPConfigObject.swift in Sources */,
+				9827501A1D0849D400C73411 /* UserIdentityModel.swift in Sources */,
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
@@ -635,7 +767,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Operando",
+				);
 				INFOPLIST_FILE = Operando/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.operando.Operando;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -646,7 +783,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Operando",
+				);
 				INFOPLIST_FILE = Operando/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.operando.Operando;
 				PRODUCT_NAME = "$(TARGET_NAME)";
