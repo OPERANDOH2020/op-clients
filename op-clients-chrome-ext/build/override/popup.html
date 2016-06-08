@@ -35,8 +35,6 @@
     <script type="text/javascript" src="operando/apps/OperandoPopup.js" charset="utf-8"></script>
     <script type="text/javascript" src="operando/swarms.js" charset="utf-8"></script>
     <script type="text/javascript" src="operando/services/messenger-service.js" charset="utf-8"></script>
-    <script type="text/javascript" src="operando/services/swarm-service.js" charset="utf-8"></script>
-    <script type="text/javascript" src="operando/services/authentication-service.js" charset="utf-8"></script>
     <script type="text/javascript" src="operando/controllers/menuController.js" charset="utf-8"></script>
     <script type="text/javascript" src="operando/controllers/loginController.js" charset="utf-8"></script>
     <script type="text/javascript" src="operando/directives/popup_menu.js" charset="utf-8"></script>
@@ -56,9 +54,9 @@
         <ul ng-controller="loginCtrl" ng-switch-when="normalState">
             <li id="login_area" ng-switch="loginAreaState">
 
-                <div ng-if="connection.status">
-                    <div class="panel panel-{{connection.status=='error'?'danger':connection.status}}">
-                        <div class="panel-heading">{{connection.message}}</div>
+                <div ng-if="info.status">
+                    <div class="panel panel-{{info.status=='error'?'danger':info.status}}">
+                        <div class="panel-heading">{{info.message}}</div>
                     </div>
                 </div>
 

@@ -82,6 +82,14 @@ chrome.runtime.onConnect.addListener(function (_port) {
                 });
             }
 
+            if(request.action == "registerUser"){
+                authenticationService.registerUser(request.message.user, function(error){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
+                },  function(success){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
+                });
+            }
+
 
         });
     }

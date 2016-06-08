@@ -91,7 +91,6 @@ function SwarmHub(swarmConnection){
         }
     }
 
-
     var swarmSystemAuthenticated = false;
     var swarmConnectionCallbacks = [];
 
@@ -112,6 +111,8 @@ function SwarmHub(swarmConnection){
     }
     this.on("login.js", "success", startWaitingCallbacks);
     this.on("login.js", "restoreSucceed", startWaitingCallbacks);
+    this.on("register.js", "success", startWaitingCallbacks);
+    this.on("register.js", "error", startWaitingCallbacks);
 
     this.onSwarmConnection = function (callback) {
         if (swarmSystemAuthenticated) {

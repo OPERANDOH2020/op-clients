@@ -15,9 +15,8 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
 
     $scope.user = {};
     $scope.isAuthenticated = false;
-    $scope.authError = null;
 
-    $scope.connection = {
+    $scope.info = {
         message: "",
         status: ""
     };
@@ -33,21 +32,35 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
         $scope.loginAreaState = "loggedout";
     }
 
+    clearInfoPanel = function(){
+        setTimeout(function(){
+            //reset to default
+            //TODO this in UI
+            //add fade effect
+            $scope.info={
+                status:"",
+
+                message:""
+            }
+            $scope.$apply();
+        },2000);
+    }
+
     securityErrorFunction = function () {
-        $scope.authError = 'Invalid user or password...';
+        $scope.info.message = 'Invalid user or password...';
+        $scope.info.status = "error";
         $scope.$apply();
     }
 
     errorFunction = function () {
-        $scope.connection.message = 'Connection lost...';
-        $scope.connection.status = "error";
+        $scope.info.message = 'Connection lost...';
+        $scope.info.status = "error";
         $scope.$apply();
     }
 
     successFunction = function () {
         messengerService.send("getCurrentUser",{}, function(user){
             $scope.loginAreaState = "loggedin";
-            $scope.authError = null;
             $scope.user.username = user.userName;
             $scope.isAuthenticated = true;
             $scope.$apply();
@@ -55,20 +68,10 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
     }
 
     reconnectFunction = function(){
-        $scope.connection.status = "success";
-        $scope.connection.message = 'Connected...';
+        $scope.info.status = "success";
+        $scope.info.message = 'Connected...';
         $scope.$apply();
-
-        setTimeout(function(){
-            //reset to default
-            //TODO this in UI
-            //add fade effect
-            $scope.connection={
-                status:"",
-                message:""
-            }
-            $scope.$apply();
-        },2000);
+        clearInfoPanel();
     }
 
 
@@ -92,16 +95,31 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
     }
 
     $scope.register = function(){
-        var userData = $scope.user;
 
-        errorFunction = function(){
-            console.log("Register error");
-        }
-        successFunction = function(){
-            console.log("Register success");
+        var successFunction = function(){
+            $scope.loginAreaState = "login_form";
+            $scope.info.status = "success";
+            $scope.info.message = 'Registration was successful!';
+            clearInfoPanel();
+            $scope.$apply();
         }
 
-        //authenticationService.registerUser($scope.user, errorFunction, successFunction);
+        var errorFunction = function(errorMessage){
+            $scope.info.message = errorMessage;
+            $scope.info.status = "error";
+            $scope.$apply();
+        }
+
+        messengerService.send("registerUser",{user:$scope.user}, function(response){
+
+            if(response.status == "success"){
+                successFunction();
+            }
+            else if(response.status == "error"){
+                errorFunction(response.message);
+            }
+        });
+
     }
 
     $scope.logout = function(){

@@ -40,11 +40,24 @@ var authenticationService = exports.authenticationService = {
 
     registerUser: function (user, errorFunction, successFunction) {
 
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, user, "chromeBrowserExtension", "registeNewUser", errorFunction, errorFunction);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest", "guest", "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
-        swarmHub.on('register.js', "success", function (swarm) {
-            successFunction();
-        });
+        /**
+         * TODO
+         * Remove this, add guest login from the first step
+         *
+         */
+        setTimeout(function(){
+            swarmHub.startSwarm("register.js", "registeNewUser", user);
+            swarmHub.on('register.js', "success", function (swarm) {
+                successFunction("success");
+            });
+
+            swarmHub.on('register.js', "error", function (swarm) {
+                errorFunction(swarm.error);
+            });
+        },300);
+
     },
 
     restoreUserSession: function (successCallback, failCallback, errorCallback, reconnectCallback) {
