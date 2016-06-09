@@ -57,8 +57,7 @@ body{
 }
 
 div.tab-content{
-    width:80%;
-    float:left;
+    width:100%;
 }
 
 .content_tab{
@@ -161,6 +160,10 @@ div.tab-content{
 }
 #wrapper button:hover{
     background:#FFF1D2;
+}
+
+#features{
+padding-left: 0px;
 }
 
 .extension_icon{
