@@ -10,38 +10,48 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module('extensions',[])
-    .directive('extensions', function(){
-        return{
+angular.module('extensions', [])
+    .directive('extensions', function () {
+        return {
             restrict: 'E',
             replace: true,
-            scope :{},
-            link:function($scope){
+            scope: {},
+            link: function ($scope) {
 
             },
-            controller:function($scope){
+            controller: function ($scope) {
 
                 $scope.extensions = [];
 
 
-                function getExtensions(){
-                    chrome.management.getAll(function (results){
-                        results.forEach(function(extension){
+                function oderExtensions(extensions) {
+                    extensionsList = Array.prototype.slice.call(extensions).sort(function (a, b) {
+                        return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+                    });
 
-                            if(extension.icons && extension.icons  instanceof Array){
+                    return extensionsList;
+                }
+
+
+                function getExtensions() {
+                    chrome.management.getAll(function (results) {
+                        results.forEach(function (extension) {
+
+                            if (extension.icons && extension.icons instanceof Array) {
                                 extension['icon'] = extension.icons.pop();
                                 delete extension['icons'];
                             }
 
                             $scope.extensions.push(extension);
+                            $scope.extensions = oderExtensions($scope.extensions);
                             $scope.$apply();
                         });
 
                     });
 
-                    chrome.management.onUninstalled.addListener(function (extension_id){
+                    chrome.management.onUninstalled.addListener(function (extension_id) {
                         for (var i = 0; i < $scope.extensions.length; i++) {
-                            if($scope.extensions[i].id == extension_id){
+                            if ($scope.extensions[i].id == extension_id) {
                                 $scope.extensions.splice(i, 1);
                                 break;
                             }
@@ -54,22 +64,22 @@ angular.module('extensions',[])
 
 
             },
-            templateUrl:'/operando/tpl/extensions.html'
+            templateUrl: '/operando/tpl/extensions.html'
         }
     })
-    .directive('extension', function(ModalService){
-        return{
-            require:"^extensions",
+    .directive('extension', function (ModalService) {
+        return {
+            require: "^extensions",
             restrict: 'E',
             replace: true,
-            scope: {extension:"="},
-            link:function($scope,element, attrs, extensionsCtrl){
+            scope: {extension: "="},
+            link: function ($scope, element, attrs, extensionsCtrl) {
 
-                function switchState(enabled){
-                    chrome.management.setEnabled($scope.extension.id, enabled, function(){
-                        chrome.management.get($scope.extension.id, function(extension){
-                            if(extension.id == $scope.extension.id ){
-                                if(extension.icons && extension.icons  instanceof Array){
+                function switchState(enabled) {
+                    chrome.management.setEnabled($scope.extension.id, enabled, function () {
+                        chrome.management.get($scope.extension.id, function (extension) {
+                            if (extension.id == $scope.extension.id) {
+                                if (extension.icons && extension.icons instanceof Array) {
                                     extension['icon'] = extension.icons.pop();
                                     delete extension['icons'];
                                 }
@@ -80,27 +90,24 @@ angular.module('extensions',[])
                     });
                 }
 
-                function uninstall(reason, showConfirmDialog){
-                    if(showConfirmDialog === undefined){
+                function uninstall(reason, showConfirmDialog) {
+                    if (showConfirmDialog === undefined) {
                         showConfirmDialog = false;
                     }
 
-                        chrome.management.uninstall($scope.extension.id, {showConfirmDialog: showConfirmDialog}, function () {
-                            if (chrome.runtime.lastError) {
-                                console.log(chrome.runtime.lastError.message);
-                            }
-                        });
+                    chrome.management.uninstall($scope.extension.id, {showConfirmDialog: showConfirmDialog}, function () {
+                        if (chrome.runtime.lastError) {
+                            console.log(chrome.runtime.lastError.message);
+                        }
+                    });
 
                 }
 
-                $scope.enable = function(){
-                    switchState(true);
+                $scope.toggleEnabled = function () {
+                    switchState(!$scope.extension.enabled);
                 }
 
-                $scope.disable = function(){
-                    switchState(false);
-                }
-                $scope.uninstall = function(){
+                $scope.uninstall = function () {
                     uninstall();
                 }
                 $scope.view_permissions = function () {
@@ -124,10 +131,10 @@ angular.module('extensions',[])
                     chrome.management.getPermissionWarningsById($scope.extension.id, showModal);
                 }
             },
-            controller:function($scope){
+            controller: function ($scope) {
 
             },
-            templateUrl:'/operando/tpl/extension.html'
+            templateUrl: '/operando/tpl/extension.html'
         }
     });
 

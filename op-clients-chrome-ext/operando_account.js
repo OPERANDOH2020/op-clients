@@ -119,7 +119,6 @@ function getCurrentUser(callback) {
 }
 
 function restoreUserSession(callback) {
-
     var status = {};
 
     //TODO refactoring needed here

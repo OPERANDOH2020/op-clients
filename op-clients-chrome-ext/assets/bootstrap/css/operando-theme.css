@@ -168,6 +168,10 @@ div.tab-content{
     text-align: center;
     float:left;
 }
+
+.extension_icon.no_icon img{
+    background: url(/operando/assets/images/extension_icon.png) no-repeat center;
+}
 .extension_name{
     display: block;
 }
@@ -396,5 +400,31 @@ footer{
     background: #f6a62e;
     border-color: #d58917;
     color:#FFF;
+}
+
+#wrapper button.view_permissions{
+    background: url("/operando/assets/images/view_permissions.png") no-repeat center;
+    border: none;
+    box-shadow: none;
+    height: 38px;
+    padding: 15px 30px;
+}
+
+#wrapper button.view_permissions.hide_view_button{
+    visibility: hidden;
+}
+
+
+#wrapper button.extension_uninstall{
+    background: url("/operando/assets/images/uninstall.png") no-repeat center;
+    border: none;
+    box-shadow: none;
+    height: 38px;
+    padding: 15px 20px;
+}
+
+.extension_enabled_container{
+    width:85px;
+    display: inline-block;
 }
 
