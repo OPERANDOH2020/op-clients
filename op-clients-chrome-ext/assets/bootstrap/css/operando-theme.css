@@ -180,6 +180,10 @@ padding-left: 0px;
     font-weight: bold;
 }
 
+#identity_management_tab{
+ padding: 20px;
+}
+
 #identities_container .identity{
     padding: 10px;
     border-bottom:1px solid #cccccc;
