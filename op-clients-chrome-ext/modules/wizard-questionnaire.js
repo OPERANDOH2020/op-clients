@@ -11,7 +11,7 @@
  */
 
 
-angular.module('operando').controller('FormController', function ($scope) {
+angular.module('operando').controller('QuestionnaireController', function ($scope) {
 
     $scope.schema = {
         type: "object",
@@ -85,6 +85,20 @@ angular.module('operando').controller('FormController', function ($scope) {
         type: "submit",
         title: "Save"
     });
+
+
+    $scope.submitQuestionnaire = function() {
+        console.log("questionnaire submitted");
+        console.log($scope.model);
+
+        // First we broadcast an event so all fields validate themselves
+        $scope.$broadcast('schemaFormValidate');
+
+        // Then we check if the form is valid
+        /*if ($scope.form.$valid) {
+            alert('You did it!');
+        }*/
+    }
 
 
     $scope.model = {};

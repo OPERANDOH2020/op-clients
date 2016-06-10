@@ -199,8 +199,8 @@
                 <div class="tab-pane" id="privacy_wizard">
                     <h2>Privacy Wizard</h2>
 
-                    <div ng-controller="FormController">
-                        <form sf-schema="schema" sf-form="form" sf-model="model"></form>
+                    <div ng-controller="QuestionnaireController">
+                        <form sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitQuestionnaire()"></form>
                     </div>
 
                 </div>
