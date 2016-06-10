@@ -1,14 +1,15 @@
-<div class="extension clearfix">
+<div class="extension clearfix pp-{{extension.privacyPollutionColor}}" >
 
         <div class="extension_icon" ng-class="{'no_icon':!extension.icon.url}" >
             <img ng-class="extension.enabled?'active':'disabled'" src="{{extension.icon.url}}" width="64px"/>
             <span class="extension_name">{{extension.name}}</span>
         </div>
         <div class="extension_left_ctn">
-            <span>Version:</span>{{extension.version}}
             <span>Description:</span>{{extension.description}}
+            <span>Version:</span>{{extension.version}}
+            <br/>
             <span>Type:</span>{{extension.type}}
-            <div class="privacy_pollution"><span>Privacy pollution : 40/100</span></div>
+            <div class="privacy_pollution"><span>Privacy pollution : {{extension.privacyPollution}}/10</span></div>
         </div>
 
         <div class="extension_actions">

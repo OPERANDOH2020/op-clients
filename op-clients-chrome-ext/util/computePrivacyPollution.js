@@ -8,6 +8,7 @@ colours[2]  = colours [1] = "blue";
 var permissionConfig= {
     "activeTab" :	10,
     "alarms"    :   3,
+    "app.window.alwaysOnTop":2,
     "audioModem":	2,
     "background":	1,
     "bookmarks"	:   3,
@@ -29,6 +30,10 @@ var permissionConfig= {
     "experimental": 5,
     "fileBrowserHandler":5,
     "fileSystemProvider":5,
+    "fileSystem":8,
+    "fileSystem.write":8,
+    "fileSystem.directory":8,
+    "fileSystem.retainEntries":6,
     "fontSettings": 3,
     "gcm":          3,
     "geolocation":  7,
@@ -38,6 +43,7 @@ var permissionConfig= {
     "idltest":  	1,
     "location": 	8,
     "management":	7,
+    "mediaGalleries":3,
     "nativeMessaging":2,
     "networking.config":5,
     "notificationProvider":5,
@@ -51,10 +57,12 @@ var permissionConfig= {
     "proxy":	    7,
     "sessions": 	10,
     "signedInDevices":5,
+    "socket":       5,
     "storage":  	3,
     "system.cpu":   2,
     "system.display":2,
     "system.memory":2,
+    "system.network":8,
     "system.storage":2,
     "tabCapture":   5,
     "tabs":         5,
@@ -64,16 +72,25 @@ var permissionConfig= {
     "unlimitedStorage":	1,
     "vpnProvider":	3,
     "wallpaper":	1,
+    "webConnectable":3,
+    "webview":2,
     "webNavigation":3,
     "webRequest":	10,
-    "webRequestBlocking":5
+    "webRequestBlocking":5,
+
+
 };
 
 
-function compute(list){
+function computePrivacyPollution(list){
     var over7 = false;
     var counter = 0;
     var value = list.reduce(function(prev, current){
+
+        if(!permissionConfig[current]){
+            alert(current);
+        }
+
         if(permissionConfig[current] >7){
             over7 = true;
         }
@@ -93,17 +110,7 @@ function compute(list){
 }
 
 
-function getCoulor(number){
-   // console.log("Searching ", number);
+function getPrivacyPollutionColor(number){
     return colours[number];
 }
-
-
-console.log(getCoulor(compute([])));
-console.log(getCoulor(compute(["storage"])));
-console.log(getCoulor(compute(["fontSettings","webRequestBlocking", "pageCapture"])));
-console.log(getCoulor(compute(["storage","proxy"])));
-console.log(getCoulor(compute(["webRequest","power"])));
-console.log(getCoulor(compute(["webRequest","power","platformKeys", "identity"])));
-console.log(getCoulor(compute(["webRequest","power","platformKeys", "identity","contentSettings"])));
 

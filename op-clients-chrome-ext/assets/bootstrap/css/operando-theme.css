@@ -6,7 +6,6 @@ body{
     background: #FFFFFF;
     border: 1px solid #eee;
     margin: 0 auto;
-    padding: 20px;
     position: relative;
     max-width: 1296px;
     margin-top: 50px;
@@ -135,6 +134,7 @@ div.tab-content{
 
 #extensions_container .extension_actions{
     float:right;
+    margin-top: 23px;
 }
 
 .extension .extension_icon img.disabled{
@@ -177,6 +177,7 @@ padding-left: 0px;
 }
 .extension_name{
     display: block;
+    font-weight: bold;
 }
 
 #identities_container .identity{
@@ -333,6 +334,8 @@ padding-left: 0px;
 
 .extension_left_ctn{
     float:left;
+    margin-top: 10px;
+    margin-left: 15px;
 }
 
 .extension_left_ctn .privacy_pollution{
@@ -431,3 +434,22 @@ footer{
     display: inline-block;
 }
 
+.pp-red{
+ background: rgba(255,0,0,0.05);
+}
+
+.pp-blue{
+    background: rgba(51,153,255,0.05);
+}
+
+.pp-green{
+    background: rgba(0,255,0,0.05);
+}
+
+.pp-yellow{
+    background: rgba(255,255,0,0.05);
+}
+
+.pp-orange{
+    background: rgba(255,127,0,0.05);
+}

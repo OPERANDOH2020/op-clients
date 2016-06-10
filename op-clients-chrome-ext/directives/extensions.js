@@ -75,6 +75,18 @@ angular.module('extensions', [])
             scope: {extension: "="},
             link: function ($scope, element, attrs, extensionsCtrl) {
 
+                $scope.extension.privacyPollution = computePrivacyPollution($scope.extension.permissions);
+                $scope.extension.privacyPollutionColor = getPrivacyPollutionColor($scope.extension.privacyPollution);
+
+
+                function checkPrivacyPollution(){
+
+                    $scope.extension.privacyPollution = computePrivacyPollution($scope.extension.permissions);
+                    $scope.extension.privacyPollutionColor = getPrivacyPollutionColor($scope.extension.privacyPollution);
+
+                }
+
+
                 function switchState(enabled) {
                     chrome.management.setEnabled($scope.extension.id, enabled, function () {
                         chrome.management.get($scope.extension.id, function (extension) {
@@ -84,6 +96,7 @@ angular.module('extensions', [])
                                     delete extension['icons'];
                                 }
                                 $scope.extension = extension;
+                                checkPrivacyPollution();
                                 $scope.$apply();
                             }
                         });
@@ -130,6 +143,8 @@ angular.module('extensions', [])
                     }
                     chrome.management.getPermissionWarningsById($scope.extension.id, showModal);
                 }
+
+                checkPrivacyPollution();
             },
             controller: function ($scope) {
 

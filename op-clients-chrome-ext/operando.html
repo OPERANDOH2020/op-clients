@@ -22,6 +22,18 @@
     <script type="text/javascript" src="/operando/apps/OperandoApp.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/controllers/appController.js" charset="utf-8"></script>
 
+
+    <script type="text/javascript" src="/operando/utils/angular-sanitize/angular-sanitize.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/utils/tv4/tv4.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/utils/objectpath/ObjectPath.js"></script>
+
+    <script type="text/javascript" src="/operando/modules/schema-form.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/assets/bootstrap/js/bootstrap-decorator.min.js"></script>
+
+    <script type="text/javascript" src="/operando/modules/wizard-questionnaire.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="/operando/util/computePrivacyPollution.js" charset="utf-8"></script>
+
     <script type="text/javascript" src="../ext/common.js"></script>
     <script type="text/javascript" src="../ext/content.js"></script>
     <script type="text/javascript" src="../common.js"></script>
@@ -48,7 +60,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a target-tab="dashboard_tab">Dashboard</a></li>
+                <li class="active"><a target-tab="dashboard_tab">Home</a></li>
                 <li><a class="isMockup" target-tab = "privacy_tab" >Privacy Settings</a></li>
                 <li><a class="isMockup" target-tab = "pfb_tab" >Privacy for Benefits</a></li>
                 <li><a target-tab = "identity_management_tab" >Identity Management</a></li>
@@ -71,7 +83,7 @@
         <div class="col-xs-3"> <!-- required for floating -->
             <!-- Nav tabs -->
             <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
-                <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                <li class="active"><a href="#home" data-toggle="tab">Dashboard</a></li>
                 <li><a href="#notifications" data-toggle="tab">Notifications</a></li>
                 <li><a href="#privacy_wizard" data-toggle="tab">Privacy Wizard</a></li>
             </ul>
@@ -186,6 +198,10 @@
                 </div>
                 <div class="tab-pane" id="privacy_wizard">
                     <h2>Privacy Wizard</h2>
+
+                    <div ng-controller="FormController">
+                        <form sf-schema="schema" sf-form="form" sf-model="model"></form>
+                    </div>
 
                 </div>
             </div>

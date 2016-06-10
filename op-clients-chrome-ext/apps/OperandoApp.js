@@ -10,7 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module('operando', ['extensions','identities','angularModalService','operandoCore'])
+angular.module('operando', ['extensions','identities','angularModalService','operandoCore','schemaForm'])
 .config( [
     '$compileProvider',
     function( $compileProvider )
