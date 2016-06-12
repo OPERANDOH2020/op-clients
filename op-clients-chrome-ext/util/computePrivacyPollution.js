@@ -55,6 +55,7 @@ var permissionConfig= {
     "privacy":  	7,
     "processes":	5,
     "proxy":	    7,
+	"searchProvider": 	1,
     "sessions": 	10,
     "signedInDevices":5,
     "socket":       5,
