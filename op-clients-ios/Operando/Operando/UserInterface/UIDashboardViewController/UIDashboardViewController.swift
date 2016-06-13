@@ -14,6 +14,7 @@ class UIDashboardViewController: UIViewController
     var whenPrivateBrowsingButtonPressed: (() -> ())?
     
     @IBOutlet weak var registerOrLoginButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showOrHideAuthenticationButton()

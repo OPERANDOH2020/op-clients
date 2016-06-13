@@ -185,7 +185,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="STp-Vb-db7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-867" y="453"/>
+            <point key="canvasLocation" x="-1709" y="461"/>
         </scene>
         <!--Dashboard View Controller-->
         <scene sceneID="Asa-L6-vLx">
@@ -690,7 +690,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Scanner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SOD-6P-Q0X">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="External connections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SOD-6P-Q0X">
                                                     <rect key="frame" x="15" y="0.0" width="550" height="47"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -895,6 +895,65 @@
             </objects>
             <point key="canvasLocation" x="-97" y="2249"/>
         </scene>
+        <!--External Connections View Controller-->
+        <scene sceneID="3xy-Wo-JSO">
+            <objects>
+                <viewController storyboardIdentifier="UIExternalConnectionsViewController" id="9Ov-5A-ovN" customClass="UIExternalConnectionsViewController" customModule="Operando" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mbR-wf-Gby"/>
+                        <viewControllerLayoutGuide type="bottom" id="LlC-tU-rsK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d0a-yf-ccI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A snapshot of the external connections this device has made over the past minute:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2U0-oc-NFz">
+                                <rect key="frame" x="20" y="23" width="560" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There doesn't seem to be anything at the moment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nj-Iu-FZY">
+                                <rect key="frame" x="20" y="290" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Seb-T5-Svh">
+                                <rect key="frame" x="0.0" y="74" width="600" height="526"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Seb-T5-Svh" firstAttribute="leading" secondItem="d0a-yf-ccI" secondAttribute="leading" id="3qC-Tm-RvT"/>
+                            <constraint firstAttribute="trailing" secondItem="Seb-T5-Svh" secondAttribute="trailing" id="6jC-F5-22d"/>
+                            <constraint firstItem="2U0-oc-NFz" firstAttribute="top" secondItem="d0a-yf-ccI" secondAttribute="top" constant="23" id="Clj-ol-Xhc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4Nj-Iu-FZY" secondAttribute="trailing" id="Qv9-0Q-a9g"/>
+                            <constraint firstItem="4Nj-Iu-FZY" firstAttribute="centerX" secondItem="d0a-yf-ccI" secondAttribute="centerX" id="RoF-6K-y9h"/>
+                            <constraint firstItem="Seb-T5-Svh" firstAttribute="top" secondItem="2U0-oc-NFz" secondAttribute="bottom" constant="10" id="SDM-K5-XnH"/>
+                            <constraint firstItem="2U0-oc-NFz" firstAttribute="leading" secondItem="d0a-yf-ccI" secondAttribute="leadingMargin" id="ard-Ln-BGd"/>
+                            <constraint firstItem="LlC-tU-rsK" firstAttribute="top" secondItem="Seb-T5-Svh" secondAttribute="bottom" id="gcw-DD-qbk"/>
+                            <constraint firstItem="2U0-oc-NFz" firstAttribute="centerX" secondItem="d0a-yf-ccI" secondAttribute="centerX" id="uJZ-nq-Isv"/>
+                            <constraint firstItem="4Nj-Iu-FZY" firstAttribute="centerY" secondItem="d0a-yf-ccI" secondAttribute="centerY" id="wOw-8N-PK0"/>
+                            <constraint firstItem="4Nj-Iu-FZY" firstAttribute="leading" secondItem="d0a-yf-ccI" secondAttribute="leadingMargin" id="wzu-r1-Ps3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2U0-oc-NFz" secondAttribute="trailing" id="ywU-bV-fat"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="uJZ-nq-Isv"/>
+                                <exclude reference="RoF-6K-y9h"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Seb-T5-Svh" id="Zlr-Dc-lQW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fWi-3x-gWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-789" y="3143"/>
+        </scene>
         <!--Private Browsing View Controller-->
         <scene sceneID="0Uq-Lk-nEV">
             <objects>
@@ -938,7 +997,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4yz-nP-zUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-273" y="3208"/>
+            <point key="canvasLocation" x="-71" y="3144"/>
         </scene>
         <!--Sensor Monitoring-->
         <scene sceneID="EK1-tc-4mS">
@@ -1182,21 +1241,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEY-iT-4FN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="789" y="2249"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="6by-OB-1UM">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QTr-lc-hto" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jQn-2s-r8G">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LA0-2J-rFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1585" y="2300"/>
         </scene>
     </scenes>
 </document>

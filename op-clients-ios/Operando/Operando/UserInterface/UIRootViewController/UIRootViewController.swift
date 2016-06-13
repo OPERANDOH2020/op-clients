@@ -23,6 +23,8 @@ class UIRootViewController: UIViewController
     
     func beginDisplayingUI()
     {
+        let _ = self.view;
+
         self.blackAlphaView.hidden = false;
         self.blackAlphaView.alpha = 0.0;
         
@@ -115,7 +117,8 @@ class UIRootViewController: UIViewController
                 0: {weakSelf?.loadDashboardAsMainViewController()},
                 8: {weakSelf?.setMainControllerTo(UINavigationManager.identityManagementViewController)},
                 4: {weakSelf?.setMainControllerTo(UINavigationManager.notificationsViewController)},
-                6: {weakSelf?.loadPrivateBrowsingAsMainViewController()}
+                6: {weakSelf?.loadPrivateBrowsingAsMainViewController()},
+                1: {weakSelf?.setMainControllerTo(UINavigationManager.externalConnectionsViewController, navigationBarHidden: true)}
         ];
     }
     
