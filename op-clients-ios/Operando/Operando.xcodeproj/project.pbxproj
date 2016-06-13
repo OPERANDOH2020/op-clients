@@ -17,9 +17,7 @@
 		982750201D0849EB00C73411 /* SwarmClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827501F1D0849EB00C73411 /* SwarmClientHelper.swift */; };
 		982750251D0849FA00C73411 /* HTMLLoginInputDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750221D0849FA00C73411 /* HTMLLoginInputDetector.swift */; };
 		982750261D0849FA00C73411 /* OPConfigObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750241D0849FA00C73411 /* OPConfigObject.swift */; };
-		982750281D084A2400C73411 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982750271D084A2400C73411 /* SwarmClient.framework */; };
 		982750291D084A2B00C73411 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982750271D084A2400C73411 /* SwarmClient.framework */; };
-		9827502A1D084A2B00C73411 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 982750271D084A2400C73411 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827502C1D084A4B00C73411 /* WKWebViewUtilities.swift */; };
 		9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */; };
 		9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */; };
@@ -36,6 +34,16 @@
 		9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */; };
 		9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */; };
 		9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */; };
+		9881D1D51D0EAAE1005EE1FF /* ConnectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9881D1B21D0EAAE0005EE1FF /* ConnectionInfo.m */; };
+		9881D22E1D0EC526005EE1FF /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9881D22D1D0EC526005EE1FF /* SwarmClient.framework */; };
+		9881D22F1D0EC61C005EE1FF /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9881D22D1D0EC526005EE1FF /* SwarmClient.framework */; };
+		9881D2301D0EC61C005EE1FF /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9881D22D1D0EC526005EE1FF /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9881D2371D0ECA76005EE1FF /* ExternalConnectionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D2361D0ECA76005EE1FF /* ExternalConnectionsHelper.swift */; };
+		9881D23A1D0EDC04005EE1FF /* UIIPInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D2391D0EDC04005EE1FF /* UIIPInfoView.swift */; };
+		9881D23C1D0EDC24005EE1FF /* UIIPInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9881D23B1D0EDC24005EE1FF /* UIIPInfoView.xib */; };
+		9881D2401D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D23E1D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift */; };
+		9881D2411D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9881D23F1D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib */; };
+		9881D2441D0EE317005EE1FF /* UIExternalConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D2431D0EE317005EE1FF /* UIExternalConnectionsViewController.swift */; };
 		98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */; };
 		98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6701CCF86DC00C77649 /* ViewController.swift */; };
 		98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6721CCF86DC00C77649 /* Main.storyboard */; };
@@ -73,7 +81,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9827502A1D084A2B00C73411 /* SwarmClient.framework in Embed Frameworks */,
+				9881D2301D0EC61C005EE1FF /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,7 +99,7 @@
 		9827501F1D0849EB00C73411 /* SwarmClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmClientHelper.swift; sourceTree = "<group>"; };
 		982750221D0849FA00C73411 /* HTMLLoginInputDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLLoginInputDetector.swift; sourceTree = "<group>"; };
 		982750241D0849FA00C73411 /* OPConfigObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPConfigObject.swift; sourceTree = "<group>"; };
-		982750271D084A2400C73411 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		982750271D084A2400C73411 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwarmClient.framework; path = "/Users/Costin/Desktop/Projects/Official/Projects/op-clients/op-clients-ios/Operando/Operando/SwarmClient.framework"; sourceTree = "<absolute>"; };
 		9827502C1D084A4B00C73411 /* WKWebViewUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WKWebViewUtilities.swift; path = Utilities/WKWebViewUtilities.swift; sourceTree = "<group>"; };
 		9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIOperandoTitleView.swift; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.swift; sourceTree = "<group>"; };
 		9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIOperandoTitleView.xib; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.xib; sourceTree = "<group>"; };
@@ -108,6 +116,46 @@
 		9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRootViewController.swift; path = UserInterface/UIRootViewController/UIRootViewController.swift; sourceTree = "<group>"; };
 		9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDashboardViewController.swift; path = UserInterface/UIDashboardViewController/UIDashboardViewController.swift; sourceTree = "<group>"; };
 		9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINavigationManager.swift; path = UserInterface/UINavigationManager/UINavigationManager.swift; sourceTree = "<group>"; };
+		9881D1B11D0EAAE0005EE1FF /* ConnectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionInfo.h; sourceTree = "<group>"; };
+		9881D1B21D0EAAE0005EE1FF /* ConnectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionInfo.m; sourceTree = "<group>"; };
+		9881D1B51D0EAAE0005EE1FF /* bootp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bootp.h; sourceTree = "<group>"; };
+		9881D1B61D0EAAE0005EE1FF /* icmp6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icmp6.h; sourceTree = "<group>"; };
+		9881D1B71D0EAAE0005EE1FF /* icmp_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icmp_var.h; sourceTree = "<group>"; };
+		9881D1B81D0EAAE0005EE1FF /* if_ether.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_ether.h; sourceTree = "<group>"; };
+		9881D1B91D0EAAE0005EE1FF /* igmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = igmp.h; sourceTree = "<group>"; };
+		9881D1BA1D0EAAE0005EE1FF /* igmp_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = igmp_var.h; sourceTree = "<group>"; };
+		9881D1BB1D0EAAE0005EE1FF /* in.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = in.h; sourceTree = "<group>"; };
+		9881D1BC1D0EAAE0005EE1FF /* in_pcb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = in_pcb.h; sourceTree = "<group>"; };
+		9881D1BD1D0EAAE1005EE1FF /* in_systm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = in_systm.h; sourceTree = "<group>"; };
+		9881D1BE1D0EAAE1005EE1FF /* in_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = in_var.h; sourceTree = "<group>"; };
+		9881D1BF1D0EAAE1005EE1FF /* ip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip.h; sourceTree = "<group>"; };
+		9881D1C01D0EAAE1005EE1FF /* ip6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip6.h; sourceTree = "<group>"; };
+		9881D1C11D0EAAE1005EE1FF /* ip_icmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip_icmp.h; sourceTree = "<group>"; };
+		9881D1C21D0EAAE1005EE1FF /* ip_mroute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip_mroute.h; sourceTree = "<group>"; };
+		9881D1C31D0EAAE1005EE1FF /* ip_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ip_var.h; sourceTree = "<group>"; };
+		9881D1C41D0EAAE1005EE1FF /* tcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp.h; sourceTree = "<group>"; };
+		9881D1C51D0EAAE1005EE1FF /* tcp_fsm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_fsm.h; sourceTree = "<group>"; };
+		9881D1C61D0EAAE1005EE1FF /* tcp_seq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_seq.h; sourceTree = "<group>"; };
+		9881D1C71D0EAAE1005EE1FF /* tcp_timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_timer.h; sourceTree = "<group>"; };
+		9881D1C81D0EAAE1005EE1FF /* tcp_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_var.h; sourceTree = "<group>"; };
+		9881D1C91D0EAAE1005EE1FF /* tcpip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcpip.h; sourceTree = "<group>"; };
+		9881D1CA1D0EAAE1005EE1FF /* udp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = udp.h; sourceTree = "<group>"; };
+		9881D1CB1D0EAAE1005EE1FF /* udp_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = udp_var.h; sourceTree = "<group>"; };
+		9881D1CC1D0EAAE1005EE1FF /* netstat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netstat.h; sourceTree = "<group>"; };
+		9881D1CD1D0EAAE1005EE1FF /* otherConnectionHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = otherConnectionHeaders.h; sourceTree = "<group>"; };
+		9881D1CF1D0EAAE1005EE1FF /* kern_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kern_control.h; sourceTree = "<group>"; };
+		9881D1D01D0EAAE1005EE1FF /* libproc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libproc.h; sourceTree = "<group>"; };
+		9881D1D11D0EAAE1005EE1FF /* proc_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = proc_info.h; sourceTree = "<group>"; };
+		9881D1D21D0EAAE1005EE1FF /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
+		9881D1D31D0EAAE1005EE1FF /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		9881D1D41D0EAAE1005EE1FF /* socketvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socketvar.h; sourceTree = "<group>"; };
+		9881D22D1D0EC526005EE1FF /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		9881D2361D0ECA76005EE1FF /* ExternalConnectionsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExternalConnectionsHelper.swift; path = ExternalConnectionsHelper/ExternalConnectionsHelper.swift; sourceTree = "<group>"; };
+		9881D2391D0EDC04005EE1FF /* UIIPInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIPInfoView.swift; path = UserInterface/UIIPInfoView/UIIPInfoView.swift; sourceTree = "<group>"; };
+		9881D23B1D0EDC24005EE1FF /* UIIPInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIIPInfoView.xib; path = UserInterface/UIIPInfoView/UIIPInfoView.xib; sourceTree = "<group>"; };
+		9881D23E1D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExternalConnectionInfoCell.swift; path = UserInterface/UIExternalConnectionInfoCell/UIExternalConnectionInfoCell.swift; sourceTree = "<group>"; };
+		9881D23F1D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIExternalConnectionInfoCell.xib; path = UserInterface/UIExternalConnectionInfoCell/UIExternalConnectionInfoCell.xib; sourceTree = "<group>"; };
+		9881D2431D0EE317005EE1FF /* UIExternalConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExternalConnectionsViewController.swift; path = UserInterface/UIExternalConnectionsViewController/UIExternalConnectionsViewController.swift; sourceTree = "<group>"; };
 		98EAF66B1CCF86DC00C77649 /* Operando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Operando.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98EAF6701CCF86DC00C77649 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -139,8 +187,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9881D22F1D0EC61C005EE1FF /* SwarmClient.framework in Frameworks */,
+				9881D22E1D0EC526005EE1FF /* SwarmClient.framework in Frameworks */,
 				982750291D084A2B00C73411 /* SwarmClient.framework in Frameworks */,
-				982750281D084A2400C73411 /* SwarmClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +364,127 @@
 			name = UINavigationManager;
 			sourceTree = "<group>";
 		};
+		9881D1B01D0EAAE0005EE1FF /* ConnectionInfos */ = {
+			isa = PBXGroup;
+			children = (
+				9881D2351D0ECA50005EE1FF /* ExternalConnectionsHelper */,
+				9881D2341D0EC88C005EE1FF /* ConnectionInfo */,
+				9881D1B31D0EAAE0005EE1FF /* externalHeaders */,
+			);
+			name = ConnectionInfos;
+			path = ../ConnectionInfos;
+			sourceTree = "<group>";
+		};
+		9881D1B31D0EAAE0005EE1FF /* externalHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				9881D1B41D0EAAE0005EE1FF /* netinet */,
+				9881D1CC1D0EAAE1005EE1FF /* netstat.h */,
+				9881D1CD1D0EAAE1005EE1FF /* otherConnectionHeaders.h */,
+				9881D1CE1D0EAAE1005EE1FF /* otherIncludes */,
+			);
+			path = externalHeaders;
+			sourceTree = "<group>";
+		};
+		9881D1B41D0EAAE0005EE1FF /* netinet */ = {
+			isa = PBXGroup;
+			children = (
+				9881D1B51D0EAAE0005EE1FF /* bootp.h */,
+				9881D1B61D0EAAE0005EE1FF /* icmp6.h */,
+				9881D1B71D0EAAE0005EE1FF /* icmp_var.h */,
+				9881D1B81D0EAAE0005EE1FF /* if_ether.h */,
+				9881D1B91D0EAAE0005EE1FF /* igmp.h */,
+				9881D1BA1D0EAAE0005EE1FF /* igmp_var.h */,
+				9881D1BB1D0EAAE0005EE1FF /* in.h */,
+				9881D1BC1D0EAAE0005EE1FF /* in_pcb.h */,
+				9881D1BD1D0EAAE1005EE1FF /* in_systm.h */,
+				9881D1BE1D0EAAE1005EE1FF /* in_var.h */,
+				9881D1BF1D0EAAE1005EE1FF /* ip.h */,
+				9881D1C01D0EAAE1005EE1FF /* ip6.h */,
+				9881D1C11D0EAAE1005EE1FF /* ip_icmp.h */,
+				9881D1C21D0EAAE1005EE1FF /* ip_mroute.h */,
+				9881D1C31D0EAAE1005EE1FF /* ip_var.h */,
+				9881D1C41D0EAAE1005EE1FF /* tcp.h */,
+				9881D1C51D0EAAE1005EE1FF /* tcp_fsm.h */,
+				9881D1C61D0EAAE1005EE1FF /* tcp_seq.h */,
+				9881D1C71D0EAAE1005EE1FF /* tcp_timer.h */,
+				9881D1C81D0EAAE1005EE1FF /* tcp_var.h */,
+				9881D1C91D0EAAE1005EE1FF /* tcpip.h */,
+				9881D1CA1D0EAAE1005EE1FF /* udp.h */,
+				9881D1CB1D0EAAE1005EE1FF /* udp_var.h */,
+			);
+			path = netinet;
+			sourceTree = "<group>";
+		};
+		9881D1CE1D0EAAE1005EE1FF /* otherIncludes */ = {
+			isa = PBXGroup;
+			children = (
+				9881D1CF1D0EAAE1005EE1FF /* kern_control.h */,
+				9881D1D01D0EAAE1005EE1FF /* libproc.h */,
+				9881D1D11D0EAAE1005EE1FF /* proc_info.h */,
+				9881D1D21D0EAAE1005EE1FF /* route.h */,
+				9881D1D31D0EAAE1005EE1FF /* socket.h */,
+				9881D1D41D0EAAE1005EE1FF /* socketvar.h */,
+			);
+			path = otherIncludes;
+			sourceTree = "<group>";
+		};
+		9881D2321D0EC845005EE1FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9881D1B01D0EAAE0005EE1FF /* ConnectionInfos */,
+				982750211D0849FA00C73411 /* LoginInputDetectors */,
+				982750231D0849FA00C73411 /* OPConfigObject */,
+				9827501E1D0849EB00C73411 /* SwarmClientHelper */,
+				9827501B1D0849E200C73411 /* CredentialsStore */,
+				982750181D0849D400C73411 /* UserIdentityModel */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9881D2341D0EC88C005EE1FF /* ConnectionInfo */ = {
+			isa = PBXGroup;
+			children = (
+				9881D1B11D0EAAE0005EE1FF /* ConnectionInfo.h */,
+				9881D1B21D0EAAE0005EE1FF /* ConnectionInfo.m */,
+			);
+			name = ConnectionInfo;
+			sourceTree = "<group>";
+		};
+		9881D2351D0ECA50005EE1FF /* ExternalConnectionsHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9881D2361D0ECA76005EE1FF /* ExternalConnectionsHelper.swift */,
+			);
+			name = ExternalConnectionsHelper;
+			sourceTree = "<group>";
+		};
+		9881D2381D0EDBE2005EE1FF /* UIIPInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				9881D2391D0EDC04005EE1FF /* UIIPInfoView.swift */,
+				9881D23B1D0EDC24005EE1FF /* UIIPInfoView.xib */,
+			);
+			name = UIIPInfoView;
+			sourceTree = "<group>";
+		};
+		9881D23D1D0EE047005EE1FF /* UIExternalConnectionInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				9881D23E1D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift */,
+				9881D23F1D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib */,
+			);
+			name = UIExternalConnectionInfoCell;
+			sourceTree = "<group>";
+		};
+		9881D2421D0EE2F1005EE1FF /* UIExternalConnectionsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9881D2431D0EE317005EE1FF /* UIExternalConnectionsViewController.swift */,
+			);
+			name = UIExternalConnectionsViewController;
+			sourceTree = "<group>";
+		};
 		98EAF6621CCF86DC00C77649 = {
 			isa = PBXGroup;
 			children = (
@@ -336,14 +506,9 @@
 		98EAF66D1CCF86DC00C77649 /* Operando */ = {
 			isa = PBXGroup;
 			children = (
-				982750271D084A2400C73411 /* SwarmClient.framework */,
-				982750211D0849FA00C73411 /* LoginInputDetectors */,
-				982750231D0849FA00C73411 /* OPConfigObject */,
-				9827501E1D0849EB00C73411 /* SwarmClientHelper */,
-				9827501B1D0849E200C73411 /* CredentialsStore */,
-				982750181D0849D400C73411 /* UserIdentityModel */,
 				98EAF6B01CCF997A00C77649 /* BridgingHeader */,
 				98EAF6931CCF88D400C77649 /* External */,
+				9881D2321D0EC845005EE1FF /* Model */,
 				98EAF68F1CCF87B800C77649 /* Utilities */,
 				98EAF68E1CCF87AD00C77649 /* UserInterface */,
 				98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */,
@@ -368,6 +533,9 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				9881D2421D0EE2F1005EE1FF /* UIExternalConnectionsViewController */,
+				9881D23D1D0EE047005EE1FF /* UIExternalConnectionInfoCell */,
+				9881D2381D0EDBE2005EE1FF /* UIIPInfoView */,
 				982750151D0849C700C73411 /* UIPrivateBrowsingViewController */,
 				982750101D08497400C73411 /* UIDashboardView */,
 				9827500B1D08496C00C73411 /* UIBrowsingNavigationBar */,
@@ -410,6 +578,7 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				9881D22D1D0EC526005EE1FF /* SwarmClient.framework */,
 				98EAF6AC1CCF995B00C77649 /* IHKeyboardAvoiding */,
 				98EAF69A1CCF899500C77649 /* UIView+Utilities */,
 				98EAF69C1CCF899500C77649 /* UIViewController+Extensions */,
@@ -578,10 +747,12 @@
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
 				98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */,
 				98EAF6761CCF86DC00C77649 /* Assets.xcassets in Resources */,
+				9881D23C1D0EDC24005EE1FF /* UIIPInfoView.xib in Resources */,
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
 				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
 				98EAF6A31CCF8A3400C77649 /* UILoginView.xib in Resources */,
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
+				9881D2411D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib in Resources */,
 				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982750141D08497400C73411 /* UIDashboardView.xib in Resources */,
@@ -605,6 +776,7 @@
 				98EAF6991CCF893500C77649 /* RSNibDesignableView.swift in Sources */,
 				98EAF6981CCF893500C77649 /* RSCommonUtilities.swift in Sources */,
 				982750251D0849FA00C73411 /* HTMLLoginInputDetector.swift in Sources */,
+				9881D2401D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift in Sources */,
 				9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */,
 				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
@@ -616,12 +788,15 @@
 				98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */,
 				98EAF6911CCF884000C77649 /* OPUtils.swift in Sources */,
 				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
+				9881D2441D0EE317005EE1FF /* UIExternalConnectionsViewController.swift in Sources */,
 				9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */,
+				9881D23A1D0EDC04005EE1FF /* UIIPInfoView.swift in Sources */,
 				982750131D08497400C73411 /* UIDashboardView.swift in Sources */,
 				9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */,
 				98EAF6A11CCF8A1800C77649 /* LoginView.swift in Sources */,
 				9827501D1D0849E200C73411 /* CredentialsStore.swift in Sources */,
 				9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */,
+				9881D2371D0ECA76005EE1FF /* ExternalConnectionsHelper.swift in Sources */,
 				982750201D0849EB00C73411 /* SwarmClientHelper.swift in Sources */,
 				9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */,
 				9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */,
@@ -635,6 +810,7 @@
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
+				9881D1D51D0EAAE1005EE1FF /* ConnectionInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,7 +870,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aurelian Ursache (4AB5P586S4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -713,9 +889,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Operando/SystemMonitor/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "eb0cdc96-100b-4b10-b8da-a5446a8b10be";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Operando/BridgingHeader/Operando-BridgingHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -741,7 +919,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aurelian Ursache (4AB5P586S4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -754,8 +932,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Operando/SystemMonitor/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "eb0cdc96-100b-4b10-b8da-a5446a8b10be";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Operando/BridgingHeader/Operando-BridgingHeader.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -767,6 +947,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Operando",
@@ -774,7 +955,7 @@
 				INFOPLIST_FILE = Operando/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.operando.Operando;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -783,6 +964,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Operando",
@@ -790,7 +972,7 @@
 				INFOPLIST_FILE = Operando/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.operando.Operando;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

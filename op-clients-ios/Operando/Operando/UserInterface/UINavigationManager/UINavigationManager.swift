@@ -88,4 +88,8 @@ class UINavigationManager
         }
     }
     
+    static var externalConnectionsViewController: UIExternalConnectionsViewController
+    {
+        return main.instantiateViewControllerWithIdentifier("UIExternalConnectionsViewController") as! UIExternalConnectionsViewController
+    }
 }

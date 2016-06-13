@@ -23,7 +23,7 @@
                 <constraint firstItem="ZIh-To-TIp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LHL-Ei-BRT"/>
                 <constraint firstItem="ZIh-To-TIp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="N4S-Wc-jGO"/>
             </constraints>
-            <point key="canvasLocation" x="483" y="334"/>
+            <point key="canvasLocation" x="439" y="385"/>
         </view>
     </objects>
 </document>
