@@ -21,11 +21,13 @@
         function (request, sender, sendResponse) {
             if (request.pfbDeal) {
                 pfbDeal = request.pfbDeal;
+                pfbDeal.sendResponse = sendResponse;
                 visibilityWatcherInterval = setInterval(function () {
                         visibilityWatcher();
                     }, 300
                 );
             }
+            return true;
         });
 
     var visibilityWatcher = function () {
@@ -91,7 +93,7 @@
             animation: 'pop',
             placement: placement,
             onAccept:function(element){
-                console.log("Deal accepted");
+                pfbDeal.sendResponse("Deal accepted");
             },
 
             onHide: function (element) {

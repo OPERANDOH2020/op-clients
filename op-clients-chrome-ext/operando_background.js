@@ -141,7 +141,13 @@ swarmHub.on("pfb.js", "success", function (swarm) {
             insertJavascriptFile(tabId, "operando/utils/webui-popover/jquery.webui-popover.js");
             chrome.tabs.insertCSS(tabId, {file:"operando/utils/webui-popover/jquery.webui-popover.css"});
             insertJavascriptFile(tabId, "operando/operando_content.js", function(){
-                chrome.tabs.sendMessage(tabId, {pfbDeal:deal});
+                chrome.tabs.sendMessage(tabId, {pfbDeal:deal},{}, function(response){
+
+                    if(response!==undefined){
+                        swarmHub.startSwarm("pfb.js", "acceptDeal", deal.serviceId);
+                    }
+
+                });
             });
         }
     });
