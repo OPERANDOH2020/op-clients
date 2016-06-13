@@ -14,6 +14,7 @@
 var authenticationService = require("authentication-service").authenticationService;
 var swarmService = require("swarm-service").swarmService;
 var identityService = require("identity-service").identityService;
+var pfbService = require("pfb-service").pfbService;
 
 var clientPort = null;
 chrome.runtime.onConnect.addListener(function (_port) {
@@ -87,6 +88,12 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
                 },  function(success){
                     clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
+                });
+            }
+
+            if(request.action == "listPfbDeals"){
+                pfbService.getActiveDeals(function(deals){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: deals});
                 });
             }
 
