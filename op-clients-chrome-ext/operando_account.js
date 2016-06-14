@@ -97,6 +97,12 @@ chrome.runtime.onConnect.addListener(function (_port) {
                 });
             }
 
+            if(request.action == "getMyPfbDeals"){
+                pfbService.getMyDeals(function(deals){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: deals});
+                });
+            }
+
 
         });
     }
