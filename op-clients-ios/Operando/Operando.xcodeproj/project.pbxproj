@@ -44,6 +44,12 @@
 		9881D2401D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D23E1D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift */; };
 		9881D2411D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9881D23F1D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib */; };
 		9881D2441D0EE317005EE1FF /* UIExternalConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D2431D0EE317005EE1FF /* UIExternalConnectionsViewController.swift */; };
+		98E56DAC1D1014A400DBB0A6 /* IPInfoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E56DAB1D1014A400DBB0A6 /* IPInfoHelper.swift */; };
+		98E56DAF1D10182000DBB0A6 /* IPSecurityEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E56DAE1D10182000DBB0A6 /* IPSecurityEventHelper.swift */; };
+		98E56DB21D10191F00DBB0A6 /* IPErrorRelatedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E56DB11D10191F00DBB0A6 /* IPErrorRelatedHelper.swift */; };
+		98E56DB51D1025FF00DBB0A6 /* UISecurityEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E56DB41D1025FF00DBB0A6 /* UISecurityEventsViewController.swift */; };
+		98E56DB91D10288300DBB0A6 /* UISecurityEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E56DB71D10288300DBB0A6 /* UISecurityEventCell.swift */; };
+		98E56DBA1D10288300DBB0A6 /* UISecurityEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98E56DB81D10288300DBB0A6 /* UISecurityEventCell.xib */; };
 		98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */; };
 		98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6701CCF86DC00C77649 /* ViewController.swift */; };
 		98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6721CCF86DC00C77649 /* Main.storyboard */; };
@@ -156,6 +162,12 @@
 		9881D23E1D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExternalConnectionInfoCell.swift; path = UserInterface/UIExternalConnectionInfoCell/UIExternalConnectionInfoCell.swift; sourceTree = "<group>"; };
 		9881D23F1D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIExternalConnectionInfoCell.xib; path = UserInterface/UIExternalConnectionInfoCell/UIExternalConnectionInfoCell.xib; sourceTree = "<group>"; };
 		9881D2431D0EE317005EE1FF /* UIExternalConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExternalConnectionsViewController.swift; path = UserInterface/UIExternalConnectionsViewController/UIExternalConnectionsViewController.swift; sourceTree = "<group>"; };
+		98E56DAB1D1014A400DBB0A6 /* IPInfoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPInfoHelper.swift; path = IPInfoHelper/IPInfoHelper.swift; sourceTree = "<group>"; };
+		98E56DAE1D10182000DBB0A6 /* IPSecurityEventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPSecurityEventHelper.swift; path = IPSecurityEventHelper/IPSecurityEventHelper.swift; sourceTree = "<group>"; };
+		98E56DB11D10191F00DBB0A6 /* IPErrorRelatedHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPErrorRelatedHelper.swift; path = IPErrorRelatedHelper/IPErrorRelatedHelper.swift; sourceTree = "<group>"; };
+		98E56DB41D1025FF00DBB0A6 /* UISecurityEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISecurityEventsViewController.swift; path = UISecurityEventsViewController/UISecurityEventsViewController.swift; sourceTree = "<group>"; };
+		98E56DB71D10288300DBB0A6 /* UISecurityEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISecurityEventCell.swift; path = UserInterface/UISecurityEventCell/UISecurityEventCell.swift; sourceTree = "<group>"; };
+		98E56DB81D10288300DBB0A6 /* UISecurityEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UISecurityEventCell.xib; path = UserInterface/UISecurityEventCell/UISecurityEventCell.xib; sourceTree = "<group>"; };
 		98EAF66B1CCF86DC00C77649 /* Operando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Operando.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98EAF6701CCF86DC00C77649 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -367,6 +379,9 @@
 		9881D1B01D0EAAE0005EE1FF /* ConnectionInfos */ = {
 			isa = PBXGroup;
 			children = (
+				98E56DB01D1018EF00DBB0A6 /* IPErrorRelatedHelper */,
+				98E56DAD1D1017FF00DBB0A6 /* IPSecurityEventHelper */,
+				98E56DAA1D10147400DBB0A6 /* IPInfoHelper */,
 				9881D2351D0ECA50005EE1FF /* ExternalConnectionsHelper */,
 				9881D2341D0EC88C005EE1FF /* ConnectionInfo */,
 				9881D1B31D0EAAE0005EE1FF /* externalHeaders */,
@@ -485,6 +500,47 @@
 			name = UIExternalConnectionsViewController;
 			sourceTree = "<group>";
 		};
+		98E56DAA1D10147400DBB0A6 /* IPInfoHelper */ = {
+			isa = PBXGroup;
+			children = (
+				98E56DAB1D1014A400DBB0A6 /* IPInfoHelper.swift */,
+			);
+			name = IPInfoHelper;
+			sourceTree = "<group>";
+		};
+		98E56DAD1D1017FF00DBB0A6 /* IPSecurityEventHelper */ = {
+			isa = PBXGroup;
+			children = (
+				98E56DAE1D10182000DBB0A6 /* IPSecurityEventHelper.swift */,
+			);
+			name = IPSecurityEventHelper;
+			sourceTree = "<group>";
+		};
+		98E56DB01D1018EF00DBB0A6 /* IPErrorRelatedHelper */ = {
+			isa = PBXGroup;
+			children = (
+				98E56DB11D10191F00DBB0A6 /* IPErrorRelatedHelper.swift */,
+			);
+			name = IPErrorRelatedHelper;
+			sourceTree = "<group>";
+		};
+		98E56DB31D1025DF00DBB0A6 /* UISecurityEventsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98E56DB41D1025FF00DBB0A6 /* UISecurityEventsViewController.swift */,
+			);
+			name = UISecurityEventsViewController;
+			sourceTree = "<group>";
+		};
+		98E56DB61D10285700DBB0A6 /* UISecurityEventCell */ = {
+			isa = PBXGroup;
+			children = (
+				98E56DB71D10288300DBB0A6 /* UISecurityEventCell.swift */,
+				98E56DB81D10288300DBB0A6 /* UISecurityEventCell.xib */,
+			);
+			name = UISecurityEventCell;
+			sourceTree = "<group>";
+		};
 		98EAF6621CCF86DC00C77649 = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +589,8 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				98E56DB61D10285700DBB0A6 /* UISecurityEventCell */,
+				98E56DB31D1025DF00DBB0A6 /* UISecurityEventsViewController */,
 				9881D2421D0EE2F1005EE1FF /* UIExternalConnectionsViewController */,
 				9881D23D1D0EE047005EE1FF /* UIExternalConnectionInfoCell */,
 				9881D2381D0EDBE2005EE1FF /* UIIPInfoView */,
@@ -754,6 +812,7 @@
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
 				9881D2411D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib in Resources */,
 				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
+				98E56DBA1D10288300DBB0A6 /* UISecurityEventCell.xib in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982750141D08497400C73411 /* UIDashboardView.xib in Resources */,
 			);
@@ -780,6 +839,7 @@
 				9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */,
 				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
+				98E56DB51D1025FF00DBB0A6 /* UISecurityEventsViewController.swift in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
 				98EAF69F1CCF899500C77649 /* UIViewController+Extensions.swift in Sources */,
@@ -790,6 +850,7 @@
 				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
 				9881D2441D0EE317005EE1FF /* UIExternalConnectionsViewController.swift in Sources */,
 				9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */,
+				98E56DAF1D10182000DBB0A6 /* IPSecurityEventHelper.swift in Sources */,
 				9881D23A1D0EDC04005EE1FF /* UIIPInfoView.swift in Sources */,
 				982750131D08497400C73411 /* UIDashboardView.swift in Sources */,
 				9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */,
@@ -798,6 +859,7 @@
 				9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */,
 				9881D2371D0ECA76005EE1FF /* ExternalConnectionsHelper.swift in Sources */,
 				982750201D0849EB00C73411 /* SwarmClientHelper.swift in Sources */,
+				98E56DAC1D1014A400DBB0A6 /* IPInfoHelper.swift in Sources */,
 				9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */,
 				9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */,
 				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
@@ -809,8 +871,10 @@
 				9827501A1D0849D400C73411 /* UserIdentityModel.swift in Sources */,
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
+				98E56DB91D10288300DBB0A6 /* UISecurityEventCell.swift in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
 				9881D1D51D0EAAE1005EE1FF /* ConnectionInfo.m in Sources */,
+				98E56DB21D10191F00DBB0A6 /* IPErrorRelatedHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

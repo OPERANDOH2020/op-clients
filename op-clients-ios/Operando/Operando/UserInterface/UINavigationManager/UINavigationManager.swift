@@ -92,4 +92,9 @@ class UINavigationManager
     {
         return main.instantiateViewControllerWithIdentifier("UIExternalConnectionsViewController") as! UIExternalConnectionsViewController
     }
+    
+    static var securityEventsViewController: UISecurityEventsViewController
+    {
+        return main.instantiateViewControllerWithIdentifier("UISecurityEventsViewController") as! UISecurityEventsViewController
+    }
 }
