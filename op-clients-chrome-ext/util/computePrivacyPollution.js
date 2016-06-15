@@ -39,6 +39,7 @@ var permissionConfig= {
     "geolocation":  7,
     "history":  	9,
     "identity":	    10,
+    "identity.email":10,
     "idle": 	    1,
     "idltest":  	1,
     "location": 	8,

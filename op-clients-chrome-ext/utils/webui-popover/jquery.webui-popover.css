@@ -10,7 +10,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 2147483647;
     display: none;
     min-width: 50px;
     min-height: 32px;
@@ -307,7 +307,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9998;
+    z-index: 2147483646;
 }
 .webui-popover .dropdown-menu {
     display: block;
