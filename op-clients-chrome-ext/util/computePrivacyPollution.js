@@ -89,7 +89,7 @@ function computePrivacyPollution(list){
     var value = list.reduce(function(prev, current){
 
         if(!permissionConfig[current]){
-            alert(current);
+            permissionConfig[current] = 5;
         }
 
         if(permissionConfig[current] >7){
