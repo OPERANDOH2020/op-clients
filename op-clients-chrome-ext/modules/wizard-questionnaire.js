@@ -91,7 +91,7 @@ angular.module('operando').controller('QuestionnaireController', function ($scop
 
     $scope.form.push({
         type: "submit",
-        title: "Save"
+        title: "Optimise your settings"
     });
 
 
@@ -105,7 +105,7 @@ angular.module('operando').controller('QuestionnaireController', function ($scop
         // Then we check if the form is valid
         if ($scope.questionnaireform.$valid) {
             //alert('You did it!');
-            
+
         }
     }
 
