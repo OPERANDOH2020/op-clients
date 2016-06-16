@@ -15,15 +15,28 @@ angular.module('pfbdeals', [])
             return {
                 restrict: 'E',
                 replace: true,
-                scope: {},
+                scope: {dealsType:"@"},
 
-                controller: function ($scope) {
+                controller: function ($scope, $element, $attrs) {
                     $scope.deals = [];
 
-                    messengerService.send("listPfbDeals",{},function (pfbdeals) {
-                        $scope.deals = pfbdeals;
-                        $scope.$apply();
-                    });
+                    console.log($scope.dealsType);
+
+
+                    if($scope.dealsType == "available-deals"){
+                        messengerService.send("listPfbDeals",{},function (pfbdeals) {
+                            $scope.deals = pfbdeals;
+                            $scope.$apply();
+                        });
+                    }
+                    else if($scope.dealsType == "my-deals"){
+                        messengerService.send("getMyPfbDeals",{},function (pfbdeals) {
+                            console.log($scope.deals);
+                            $scope.deals = pfbdeals;
+                            $scope.$apply();
+                        });
+                    }
+
                 },
                 templateUrl: '/operando/tpl/pfbdeals.html'
             }

@@ -533,3 +533,23 @@ footer{
     -ms-transform: rotate(-3deg);
     transform: rotate(-3deg);
 }
+
+.active_deal{
+    width: 21%;
+    margin: 2%;
+    height: 21%;
+    background: #e8e8e8;
+    border-radius:5px;
+    display: inline-block;
+    float:left;
+}
+
+.pfb_logo{
+    width:50%;
+    margin: 10% 25% 0% 25%;
+}
+
+.pfbdeal_website{
+    font-size: 14px;
+    margin-top: 10px;
+}

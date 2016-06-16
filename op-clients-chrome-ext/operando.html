@@ -63,7 +63,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a target-tab="dashboard_tab">Home</a></li>
                 <li><a class="isMockup" target-tab = "privacy_tab" >Privacy Settings</a></li>
-                <li><a target-tab = "pfb_tab" >Privacy for Benefits</a></li>
+                <li><a target-tab = "pfb_tab" >Deals</a></li>
                 <li><a target-tab = "identity_management_tab" >Identity Management</a></li>
                 <li><a target-tab = "extensions_tab">Extensions & Apps</a></li>
             </ul>
@@ -200,7 +200,7 @@
                     <h2>Privacy Wizard</h2>
 
                     <div ng-controller="QuestionnaireController">
-                        <form sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitQuestionnaire()"></form>
+                        <form name="questionnaireform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitQuestionnaire()"></form>
                     </div>
 
                 </div>
@@ -252,12 +252,12 @@
 
                 <div class="tab-pane active" id="active_deals">
                     <h2>Active Deals</h2>
-                    <pfbdeals></pfbdeals>
+                    <pfbdeals deals-type="available-deals"></pfbdeals>
                 </div>
 
                 <div class="tab-pane" id="my_deals">
                     <h2>My Deals</h2>
-                    <p>My Deals here </p>
+                    <pfbdeals deals-type="my-deals"></pfbdeals>
                 </div>
 
             </div>
