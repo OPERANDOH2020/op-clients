@@ -34,16 +34,37 @@
 		9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */; };
 		9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */; };
 		9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */; };
+		986BED2C1D116B3C0076DF16 /* UISecurityEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED2B1D116B3C0076DF16 /* UISecurityEventDetailsViewController.swift */; };
+		986BED2F1D116EB30076DF16 /* UISecurityEventTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED2E1D116EB30076DF16 /* UISecurityEventTypeView.swift */; };
+		986BED311D116F220076DF16 /* UISecurityEventTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 986BED301D116F220076DF16 /* UISecurityEventTypeView.xib */; };
+		986BED341D1194ED0076DF16 /* IPReportProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED331D1194ED0076DF16 /* IPReportProtocol.swift */; };
+		986BED361D1195970076DF16 /* SecurityEventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED351D1195970076DF16 /* SecurityEventProtocol.swift */; };
+		986BED381D1196AE0076DF16 /* ConnectionReportsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED371D1196AE0076DF16 /* ConnectionReportsRepository.swift */; };
 		9881D1D51D0EAAE1005EE1FF /* ConnectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9881D1B21D0EAAE0005EE1FF /* ConnectionInfo.m */; };
 		9881D22E1D0EC526005EE1FF /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9881D22D1D0EC526005EE1FF /* SwarmClient.framework */; };
 		9881D22F1D0EC61C005EE1FF /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9881D22D1D0EC526005EE1FF /* SwarmClient.framework */; };
 		9881D2301D0EC61C005EE1FF /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9881D22D1D0EC526005EE1FF /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9881D2371D0ECA76005EE1FF /* ExternalConnectionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D2361D0ECA76005EE1FF /* ExternalConnectionsHelper.swift */; };
+		9881D2371D0ECA76005EE1FF /* ExternalConnectionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D2361D0ECA76005EE1FF /* ExternalConnectionsProvider.swift */; };
 		9881D23A1D0EDC04005EE1FF /* UIIPInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D2391D0EDC04005EE1FF /* UIIPInfoView.swift */; };
 		9881D23C1D0EDC24005EE1FF /* UIIPInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9881D23B1D0EDC24005EE1FF /* UIIPInfoView.xib */; };
 		9881D2401D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D23E1D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift */; };
 		9881D2411D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9881D23F1D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib */; };
 		9881D2441D0EE317005EE1FF /* UIExternalConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881D2431D0EE317005EE1FF /* UIExternalConnectionsViewController.swift */; };
+		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
+		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
+		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
+		98DD92731D1299220070772E /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92721D1299220070772E /* CoreDataRepository.swift */; };
+		98DD92761D12997D0070772E /* OperandoCD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92741D12997D0070772E /* OperandoCD.xcdatamodeld */; };
+		98DD92951D129EFA0070772E /* CDSecurityEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92911D129EFA0070772E /* CDSecurityEvent+CoreDataProperties.swift */; };
+		98DD92961D129EFA0070772E /* CDSecurityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92921D129EFA0070772E /* CDSecurityEvent.swift */; };
+		98DD92981D12B21D0070772E /* CoreDataRepository+ConnectionReportsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92971D12B21D0070772E /* CoreDataRepository+ConnectionReportsProvider.swift */; };
+		98DD929A1D12C4FA0070772E /* CoreDataRepository+ConnectionReportsSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92991D12C4FA0070772E /* CoreDataRepository+ConnectionReportsSource.swift */; };
+		98DD929D1D12CDE50070772E /* BackgroundConnectionsScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD929C1D12CDE50070772E /* BackgroundConnectionsScanner.swift */; };
+		98DD929F1D12E1620070772E /* IPInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD929E1D12E1620070772E /* IPInfoProtocol.swift */; };
+		98DD92A81D12E4440070772E /* CDIpInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92A61D12E4440070772E /* CDIpInfo+CoreDataProperties.swift */; };
+		98DD92A91D12E4440070772E /* CDIpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92A71D12E4440070772E /* CDIpInfo.swift */; };
+		98DD92AC1D12E5250070772E /* CDIPReport+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92AA1D12E5250070772E /* CDIPReport+CoreDataProperties.swift */; };
+		98DD92AD1D12E5250070772E /* CDIPReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92AB1D12E5250070772E /* CDIPReport.swift */; };
 		98E56DAC1D1014A400DBB0A6 /* IPInfoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E56DAB1D1014A400DBB0A6 /* IPInfoHelper.swift */; };
 		98E56DAF1D10182000DBB0A6 /* IPSecurityEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E56DAE1D10182000DBB0A6 /* IPSecurityEventHelper.swift */; };
 		98E56DB21D10191F00DBB0A6 /* IPErrorRelatedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E56DB11D10191F00DBB0A6 /* IPErrorRelatedHelper.swift */; };
@@ -122,6 +143,12 @@
 		9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRootViewController.swift; path = UserInterface/UIRootViewController/UIRootViewController.swift; sourceTree = "<group>"; };
 		9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDashboardViewController.swift; path = UserInterface/UIDashboardViewController/UIDashboardViewController.swift; sourceTree = "<group>"; };
 		9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINavigationManager.swift; path = UserInterface/UINavigationManager/UINavigationManager.swift; sourceTree = "<group>"; };
+		986BED2B1D116B3C0076DF16 /* UISecurityEventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISecurityEventDetailsViewController.swift; path = UserInterface/UISecurityEventDetailsViewController/UISecurityEventDetailsViewController.swift; sourceTree = "<group>"; };
+		986BED2E1D116EB30076DF16 /* UISecurityEventTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISecurityEventTypeView.swift; path = UserInterface/UISecurityEventTypeView/UISecurityEventTypeView.swift; sourceTree = "<group>"; };
+		986BED301D116F220076DF16 /* UISecurityEventTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UISecurityEventTypeView.xib; path = UserInterface/UISecurityEventTypeView/UISecurityEventTypeView.xib; sourceTree = "<group>"; };
+		986BED331D1194ED0076DF16 /* IPReportProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPReportProtocol.swift; path = Protocols/IPReportProtocol.swift; sourceTree = "<group>"; };
+		986BED351D1195970076DF16 /* SecurityEventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityEventProtocol.swift; path = Protocols/SecurityEventProtocol.swift; sourceTree = "<group>"; };
+		986BED371D1196AE0076DF16 /* ConnectionReportsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionReportsRepository.swift; path = Protocols/ConnectionReportsRepository.swift; sourceTree = "<group>"; };
 		9881D1B11D0EAAE0005EE1FF /* ConnectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionInfo.h; sourceTree = "<group>"; };
 		9881D1B21D0EAAE0005EE1FF /* ConnectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionInfo.m; sourceTree = "<group>"; };
 		9881D1B51D0EAAE0005EE1FF /* bootp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bootp.h; sourceTree = "<group>"; };
@@ -156,12 +183,27 @@
 		9881D1D31D0EAAE1005EE1FF /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
 		9881D1D41D0EAAE1005EE1FF /* socketvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socketvar.h; sourceTree = "<group>"; };
 		9881D22D1D0EC526005EE1FF /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
-		9881D2361D0ECA76005EE1FF /* ExternalConnectionsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExternalConnectionsHelper.swift; path = ExternalConnectionsHelper/ExternalConnectionsHelper.swift; sourceTree = "<group>"; };
+		9881D2361D0ECA76005EE1FF /* ExternalConnectionsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExternalConnectionsProvider.swift; path = ExternalConnectionsHelper/ExternalConnectionsProvider.swift; sourceTree = "<group>"; };
 		9881D2391D0EDC04005EE1FF /* UIIPInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIPInfoView.swift; path = UserInterface/UIIPInfoView/UIIPInfoView.swift; sourceTree = "<group>"; };
 		9881D23B1D0EDC24005EE1FF /* UIIPInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIIPInfoView.xib; path = UserInterface/UIIPInfoView/UIIPInfoView.xib; sourceTree = "<group>"; };
 		9881D23E1D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExternalConnectionInfoCell.swift; path = UserInterface/UIExternalConnectionInfoCell/UIExternalConnectionInfoCell.swift; sourceTree = "<group>"; };
 		9881D23F1D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIExternalConnectionInfoCell.xib; path = UserInterface/UIExternalConnectionInfoCell/UIExternalConnectionInfoCell.xib; sourceTree = "<group>"; };
 		9881D2431D0EE317005EE1FF /* UIExternalConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExternalConnectionsViewController.swift; path = UserInterface/UIExternalConnectionsViewController/UIExternalConnectionsViewController.swift; sourceTree = "<group>"; };
+		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
+		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
+		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
+		98DD92721D1299220070772E /* CoreDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataRepository.swift; path = CoreData/CoreDataRepository.swift; sourceTree = "<group>"; };
+		98DD92751D12997D0070772E /* OperandoCD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OperandoCD.xcdatamodel; sourceTree = "<group>"; };
+		98DD92911D129EFA0070772E /* CDSecurityEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDSecurityEvent+CoreDataProperties.swift"; path = "CoreData/CDSecurityEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		98DD92921D129EFA0070772E /* CDSecurityEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CDSecurityEvent.swift; path = CoreData/CDSecurityEvent.swift; sourceTree = "<group>"; };
+		98DD92971D12B21D0070772E /* CoreDataRepository+ConnectionReportsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CoreDataRepository+ConnectionReportsProvider.swift"; path = "CoreData/CoreDataRepository+ConnectionReportsProvider.swift"; sourceTree = "<group>"; };
+		98DD92991D12C4FA0070772E /* CoreDataRepository+ConnectionReportsSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CoreDataRepository+ConnectionReportsSource.swift"; path = "CoreData/CoreDataRepository+ConnectionReportsSource.swift"; sourceTree = "<group>"; };
+		98DD929C1D12CDE50070772E /* BackgroundConnectionsScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundConnectionsScanner.swift; path = BackgroundConnectionsScanner/BackgroundConnectionsScanner.swift; sourceTree = "<group>"; };
+		98DD929E1D12E1620070772E /* IPInfoProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPInfoProtocol.swift; path = Protocols/IPInfoProtocol.swift; sourceTree = "<group>"; };
+		98DD92A61D12E4440070772E /* CDIpInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDIpInfo+CoreDataProperties.swift"; path = "CoreData/CDIpInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		98DD92A71D12E4440070772E /* CDIpInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CDIpInfo.swift; path = CoreData/CDIpInfo.swift; sourceTree = "<group>"; };
+		98DD92AA1D12E5250070772E /* CDIPReport+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDIPReport+CoreDataProperties.swift"; path = "CoreData/CDIPReport+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		98DD92AB1D12E5250070772E /* CDIPReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CDIPReport.swift; path = CoreData/CDIPReport.swift; sourceTree = "<group>"; };
 		98E56DAB1D1014A400DBB0A6 /* IPInfoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPInfoHelper.swift; path = IPInfoHelper/IPInfoHelper.swift; sourceTree = "<group>"; };
 		98E56DAE1D10182000DBB0A6 /* IPSecurityEventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPSecurityEventHelper.swift; path = IPSecurityEventHelper/IPSecurityEventHelper.swift; sourceTree = "<group>"; };
 		98E56DB11D10191F00DBB0A6 /* IPErrorRelatedHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPErrorRelatedHelper.swift; path = IPErrorRelatedHelper/IPErrorRelatedHelper.swift; sourceTree = "<group>"; };
@@ -283,6 +325,23 @@
 			path = OPConfigObject;
 			sourceTree = "<group>";
 		};
+		9844D00F1D12980000CA7281 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				98DD92741D12997D0070772E /* OperandoCD.xcdatamodeld */,
+				98DD92721D1299220070772E /* CoreDataRepository.swift */,
+				98DD92971D12B21D0070772E /* CoreDataRepository+ConnectionReportsProvider.swift */,
+				98DD92911D129EFA0070772E /* CDSecurityEvent+CoreDataProperties.swift */,
+				98DD92921D129EFA0070772E /* CDSecurityEvent.swift */,
+				98DD92991D12C4FA0070772E /* CoreDataRepository+ConnectionReportsSource.swift */,
+				98DD92A61D12E4440070772E /* CDIpInfo+CoreDataProperties.swift */,
+				98DD92A71D12E4440070772E /* CDIpInfo.swift */,
+				98DD92AA1D12E5250070772E /* CDIPReport+CoreDataProperties.swift */,
+				98DD92AB1D12E5250070772E /* CDIPReport.swift */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		9852C6E11CD0D7D600AF2BE5 /* UIOperandoTitleView */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,9 +435,38 @@
 			name = UINavigationManager;
 			sourceTree = "<group>";
 		};
+		986BED2A1D116B160076DF16 /* UISecurityEventDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				986BED2B1D116B3C0076DF16 /* UISecurityEventDetailsViewController.swift */,
+			);
+			name = UISecurityEventDetailsViewController;
+			sourceTree = "<group>";
+		};
+		986BED2D1D116E940076DF16 /* UISecurityEventTypeView */ = {
+			isa = PBXGroup;
+			children = (
+				986BED2E1D116EB30076DF16 /* UISecurityEventTypeView.swift */,
+				986BED301D116F220076DF16 /* UISecurityEventTypeView.xib */,
+			);
+			name = UISecurityEventTypeView;
+			sourceTree = "<group>";
+		};
+		986BED321D1194AE0076DF16 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				986BED331D1194ED0076DF16 /* IPReportProtocol.swift */,
+				986BED351D1195970076DF16 /* SecurityEventProtocol.swift */,
+				986BED371D1196AE0076DF16 /* ConnectionReportsRepository.swift */,
+				98DD929E1D12E1620070772E /* IPInfoProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		9881D1B01D0EAAE0005EE1FF /* ConnectionInfos */ = {
 			isa = PBXGroup;
 			children = (
+				98DD929B1D12CDB40070772E /* BackgroundConnectionsScanner */,
 				98E56DB01D1018EF00DBB0A6 /* IPErrorRelatedHelper */,
 				98E56DAD1D1017FF00DBB0A6 /* IPSecurityEventHelper */,
 				98E56DAA1D10147400DBB0A6 /* IPInfoHelper */,
@@ -447,6 +535,8 @@
 		9881D2321D0EC845005EE1FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9844D00F1D12980000CA7281 /* CoreData */,
+				986BED321D1194AE0076DF16 /* Protocols */,
 				9881D1B01D0EAAE0005EE1FF /* ConnectionInfos */,
 				982750211D0849FA00C73411 /* LoginInputDetectors */,
 				982750231D0849FA00C73411 /* OPConfigObject */,
@@ -469,7 +559,7 @@
 		9881D2351D0ECA50005EE1FF /* ExternalConnectionsHelper */ = {
 			isa = PBXGroup;
 			children = (
-				9881D2361D0ECA76005EE1FF /* ExternalConnectionsHelper.swift */,
+				9881D2361D0ECA76005EE1FF /* ExternalConnectionsProvider.swift */,
 			);
 			name = ExternalConnectionsHelper;
 			sourceTree = "<group>";
@@ -498,6 +588,23 @@
 				9881D2431D0EE317005EE1FF /* UIExternalConnectionsViewController.swift */,
 			);
 			name = UIExternalConnectionsViewController;
+			sourceTree = "<group>";
+		};
+		9882DCF81D14487F00C7A70F /* UIScanningView */ = {
+			isa = PBXGroup;
+			children = (
+				9882DCF91D1448BA00C7A70F /* UIScanningView.swift */,
+				9882DCFB1D14498400C7A70F /* UIScanningView.xib */,
+			);
+			name = UIScanningView;
+			sourceTree = "<group>";
+		};
+		98DD929B1D12CDB40070772E /* BackgroundConnectionsScanner */ = {
+			isa = PBXGroup;
+			children = (
+				98DD929C1D12CDE50070772E /* BackgroundConnectionsScanner.swift */,
+			);
+			name = BackgroundConnectionsScanner;
 			sourceTree = "<group>";
 		};
 		98E56DAA1D10147400DBB0A6 /* IPInfoHelper */ = {
@@ -589,6 +696,9 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				9882DCF81D14487F00C7A70F /* UIScanningView */,
+				986BED2D1D116E940076DF16 /* UISecurityEventTypeView */,
+				986BED2A1D116B160076DF16 /* UISecurityEventDetailsViewController */,
 				98E56DB61D10285700DBB0A6 /* UISecurityEventCell */,
 				98E56DB31D1025DF00DBB0A6 /* UISecurityEventsViewController */,
 				9881D2421D0EE2F1005EE1FF /* UIExternalConnectionsViewController */,
@@ -620,6 +730,7 @@
 				9827502C1D084A4B00C73411 /* WKWebViewUtilities.swift */,
 				98EAF6901CCF884000C77649 /* OPUtils.swift */,
 				9852C6F91CD0FEA000AF2BE5 /* OPViewUtils.swift */,
+				9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -803,10 +914,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
+				986BED311D116F220076DF16 /* UISecurityEventTypeView.xib in Resources */,
 				98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */,
 				98EAF6761CCF86DC00C77649 /* Assets.xcassets in Resources */,
 				9881D23C1D0EDC24005EE1FF /* UIIPInfoView.xib in Resources */,
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
+				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
 				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
 				98EAF6A31CCF8A3400C77649 /* UILoginView.xib in Resources */,
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
@@ -833,7 +946,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				98EAF6991CCF893500C77649 /* RSNibDesignableView.swift in Sources */,
+				98DD92A91D12E4440070772E /* CDIpInfo.swift in Sources */,
 				98EAF6981CCF893500C77649 /* RSCommonUtilities.swift in Sources */,
+				986BED361D1195970076DF16 /* SecurityEventProtocol.swift in Sources */,
+				98DD92961D129EFA0070772E /* CDSecurityEvent.swift in Sources */,
+				98DD92981D12B21D0070772E /* CoreDataRepository+ConnectionReportsProvider.swift in Sources */,
+				986BED341D1194ED0076DF16 /* IPReportProtocol.swift in Sources */,
+				98DD92AD1D12E5250070772E /* CDIPReport.swift in Sources */,
 				982750251D0849FA00C73411 /* HTMLLoginInputDetector.swift in Sources */,
 				9881D2401D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift in Sources */,
 				9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */,
@@ -842,39 +961,52 @@
 				98E56DB51D1025FF00DBB0A6 /* UISecurityEventsViewController.swift in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
+				98DD92761D12997D0070772E /* OperandoCD.xcdatamodeld in Sources */,
 				98EAF69F1CCF899500C77649 /* UIViewController+Extensions.swift in Sources */,
 				9852C6F71CD0F68D00AF2BE5 /* UIIdentityCell.swift in Sources */,
+				98DD92AC1D12E5250070772E /* CDIPReport+CoreDataProperties.swift in Sources */,
+				98DD929A1D12C4FA0070772E /* CoreDataRepository+ConnectionReportsSource.swift in Sources */,
 				982750171D0849C700C73411 /* UIPrivateBrowsingViewController.swift in Sources */,
 				98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */,
 				98EAF6911CCF884000C77649 /* OPUtils.swift in Sources */,
 				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
 				9881D2441D0EE317005EE1FF /* UIExternalConnectionsViewController.swift in Sources */,
 				9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */,
+				98DD92731D1299220070772E /* CoreDataRepository.swift in Sources */,
+				9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */,
 				98E56DAF1D10182000DBB0A6 /* IPSecurityEventHelper.swift in Sources */,
 				9881D23A1D0EDC04005EE1FF /* UIIPInfoView.swift in Sources */,
 				982750131D08497400C73411 /* UIDashboardView.swift in Sources */,
 				9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */,
 				98EAF6A11CCF8A1800C77649 /* LoginView.swift in Sources */,
+				98DD92A81D12E4440070772E /* CDIpInfo+CoreDataProperties.swift in Sources */,
 				9827501D1D0849E200C73411 /* CredentialsStore.swift in Sources */,
+				98DD929D1D12CDE50070772E /* BackgroundConnectionsScanner.swift in Sources */,
 				9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */,
-				9881D2371D0ECA76005EE1FF /* ExternalConnectionsHelper.swift in Sources */,
+				9881D2371D0ECA76005EE1FF /* ExternalConnectionsProvider.swift in Sources */,
+				9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */,
 				982750201D0849EB00C73411 /* SwarmClientHelper.swift in Sources */,
+				98DD929F1D12E1620070772E /* IPInfoProtocol.swift in Sources */,
 				98E56DAC1D1014A400DBB0A6 /* IPInfoHelper.swift in Sources */,
 				9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */,
 				9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */,
 				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
+				986BED381D1196AE0076DF16 /* ConnectionReportsRepository.swift in Sources */,
 				9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */,
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,
+				986BED2C1D116B3C0076DF16 /* UISecurityEventDetailsViewController.swift in Sources */,
 				9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */,
 				982750261D0849FA00C73411 /* OPConfigObject.swift in Sources */,
 				9827501A1D0849D400C73411 /* UserIdentityModel.swift in Sources */,
+				986BED2F1D116EB30076DF16 /* UISecurityEventTypeView.swift in Sources */,
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				98E56DB91D10288300DBB0A6 /* UISecurityEventCell.swift in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
 				9881D1D51D0EAAE1005EE1FF /* ConnectionInfo.m in Sources */,
 				98E56DB21D10191F00DBB0A6 /* IPErrorRelatedHelper.swift in Sources */,
+				98DD92951D129EFA0070772E /* CDSecurityEvent+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,7 +1149,7 @@
 					"$(PROJECT_DIR)/Operando",
 				);
 				INFOPLIST_FILE = Operando/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1034,7 +1166,7 @@
 					"$(PROJECT_DIR)/Operando",
 				);
 				INFOPLIST_FILE = Operando/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1096,6 +1228,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		98DD92741D12997D0070772E /* OperandoCD.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				98DD92751D12997D0070772E /* OperandoCD.xcdatamodel */,
+			);
+			currentVersion = 98DD92751D12997D0070772E /* OperandoCD.xcdatamodel */;
+			name = OperandoCD.xcdatamodeld;
+			path = CoreData/OperandoCD.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 98EAF6631CCF86DC00C77649 /* Project object */;
 }

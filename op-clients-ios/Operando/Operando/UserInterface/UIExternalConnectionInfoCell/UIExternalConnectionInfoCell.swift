@@ -15,14 +15,14 @@ class UIExternalConnectionInfoCell: UITableViewCell
     @IBOutlet weak var ipInfoView: UIIPInfoView!
     @IBOutlet weak var reportedEventsLabel: UILabel!
     
-    func displayExternalConnectionInfo(info: ExternalConnectionInfo)
+    func displayIPReport(info: IPReportProtocol)
     {
-        self.addressLabel.text = info.connectionPair.address ?? "N/A";
-        self.ipInfoView.displayInfo(info.connectionIPInfo);
+        self.addressLabel.text = info.address;
+        self.ipInfoView.displayInfo(info.addressInfo);
         
-        if info.reportedSecurityEvents.count > 0
+        if info.numOfSecurityEvents > 0
         {
-            self.reportedEventsLabel.text = "Number of reported events: \(info.reportedSecurityEvents.count)"
+            self.reportedEventsLabel.text = "Number of reported events: \(info.numOfSecurityEvents)"
         }
         else
         {

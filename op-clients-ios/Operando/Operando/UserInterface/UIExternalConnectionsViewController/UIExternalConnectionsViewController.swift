@@ -12,19 +12,22 @@ class UIExternalConnectionsViewController: UIViewController,
 UITableViewDataSource, UITableViewDelegate
 {
     
+    @IBOutlet weak var scanningView: UIScanningView!
     var refreshControl: UIRefreshControl?
-    private var connectionInfos: [ExternalConnectionInfo] = []
+    //private var connectionReports: [IPReportProtocol] = []
+    private var connectionReportsPerDate: [ NSDate : [IPReportProtocol] ] = [:]
+    private var connectionDatesSorted: [NSDate] = []
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView(self.tableView)
+        self.setupScanningView(self.scanningView)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
-        
         self.reloadData()
     }
     
@@ -42,12 +45,60 @@ UITableViewDataSource, UITableViewDelegate
     }
     
     
-    private func displaySecurityEventsScreenIfAny(connectionInfo: ExternalConnectionInfo)
+    private func displaySecurityEventsScreenIfAny(ipReport: IPReportProtocol)
     {
-        guard connectionInfo.reportedSecurityEvents.count > 0 else {return}
+        guard ipReport.numOfSecurityEvents > 0 else {return}
         let vc = UINavigationManager.securityEventsViewController
-        vc.setupWithExternalConnectionInfo(connectionInfo)
+        vc.setupWithIPReport(ipReport)
         self.navigationController?.pushViewController(vc, animated: true);
+    }
+    
+    private func aggregateReportsPerCreationDate(reports: [IPReportProtocol]) -> [NSDate:[IPReportProtocol]]
+    {
+        var result: [NSDate : [IPReportProtocol]] = [:]
+        
+        for report in reports
+        {
+            let dateWithoutTime = report.createdDate.withoutTime()
+            var reportsArray: [IPReportProtocol] = result[dateWithoutTime] ?? [];
+            reportsArray.append(report);
+            result[dateWithoutTime] = reportsArray;
+        }
+        
+        return result;
+    }
+    
+    private func sortedReportArraysByDate(map: [NSDate : [IPReportProtocol]]) -> [NSDate: [IPReportProtocol]]
+    {
+        var result = map;
+        for (date, var array) in result
+        {
+            array.sortInPlace({ (a:IPReportProtocol, b:IPReportProtocol) -> Bool in
+                return a.createdDate.compare(b.createdDate) == NSComparisonResult.OrderedDescending
+            })
+            
+            result[date] = array
+        }
+        
+        return result
+    }
+    
+    private func sortedKeyDates(map: [NSDate: [IPReportProtocol]]) -> [NSDate]
+    {
+        return map.keys.sort({ (a:NSDate, b:NSDate) -> Bool in
+            return a.compare(b) == NSComparisonResult.OrderedDescending
+        })
+    }
+    
+    private func setupScanningView(scanningView: UIScanningView)
+    {
+        weak var weakSelf = self;
+        weak var weakScanningView = scanningView
+        
+        scanningView.whenPressingScanButton = {
+            weakScanningView?.beginScanningState()
+        };
+        
     }
     
     //MARK: -tableView datasource
@@ -55,36 +106,55 @@ UITableViewDataSource, UITableViewDelegate
     func reloadData()
     {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        ExternalConnectionsHelper.getCurrentConnectionsInfoWithCompletion { (result) in
-            self.connectionInfos = result ?? [];
-            self.tableView.reloadData()
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        OPConfigObject.sharedInstance.getCurrentConnectionReportsProvider()?.getAllReportsWithCompletion({ (error, reports) in
             
-            self.tableView.hidden = self.connectionInfos.count == 0
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        
+            let connectionReports = reports ?? [];
+            self.connectionReportsPerDate = self.aggregateReportsPerCreationDate(connectionReports);
+            self.connectionReportsPerDate = self.sortedReportArraysByDate(self.connectionReportsPerDate)
+            self.connectionDatesSorted = self.sortedKeyDates(self.connectionReportsPerDate);
+            
+            self.tableView.reloadData()
+            self.tableView.hidden = connectionReports.count == 0
             self.refreshControl?.endRefreshing()
-        }
+        })
+        
 
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1;
+        return self.connectionDatesSorted.count;
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return connectionInfos.count;
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.connectionDatesSorted[section].prettyPrinted()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        guard let array = self.connectionReportsPerDate[self.connectionDatesSorted[section]] else {return 0}
+        return array.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        
         let cell = tableView.dequeueReusableCellWithIdentifier(UIExternalConnectionInfoCell.identifierNibName) as! UIExternalConnectionInfoCell
-        cell.displayExternalConnectionInfo(self.connectionInfos[indexPath.row]);
+        
+        if let reportsArray = self.connectionReportsPerDate[self.connectionDatesSorted[indexPath.section]]
+        {
+            cell.displayIPReport(reportsArray[indexPath.row])
+        }
+        
         return cell;
     }
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
-        self.displaySecurityEventsScreenIfAny(self.connectionInfos[indexPath.row]);
+        if let reportsArray = self.connectionReportsPerDate[self.connectionDatesSorted[indexPath.section]]
+        {
+            self.displaySecurityEventsScreenIfAny(reportsArray[indexPath.row]);
+        }
         return false;
     }
     

@@ -118,7 +118,7 @@ class UIRootViewController: UIViewController
                 8: {weakSelf?.setMainControllerTo(UINavigationManager.identityManagementViewController)},
                 4: {weakSelf?.setMainControllerTo(UINavigationManager.notificationsViewController)},
                 6: {weakSelf?.loadPrivateBrowsingAsMainViewController()},
-                1: {weakSelf?.setMainControllerTo(UINavigationManager.externalConnectionsViewController, navigationBarHidden: true)}
+                1: {weakSelf?.setMainControllerTo(UINavigationManager.externalConnectionsViewController)}
         ];
     }
     

@@ -8,6 +8,21 @@
 
 import UIKit
 
+
+enum SecurityEventTag: String {
+    case Malware = "malware"
+    case Botnet = "botnet"
+    case Spam = "spam"
+    case Phishing = "phishing"
+    case MaliciousActivity = "malicious activity"
+    case Blacklist = "blacklist"
+    case DNSBL = "dnsbl"
+    case Unknown = "unknown"
+}
+
+
+
+
 class IPSecurityEventHelper: NSObject {
 
     
@@ -60,10 +75,10 @@ class IPSecurityEventHelper: NSObject {
                     {
                         if let dict = obj as? [String: String]
                         {
-                            result.append(IPSecurityEvent(title: dict["title"],
-                                description: dict["description"],
-                                detailsURL: dict["details_url"],
-                                tag: dict["tag"]))
+                            result.append(IPSecurityEvent(title: dict["title"] ?? "",
+                                description: dict["description"] ?? "",
+                                detailsURL: dict["details_url"] ?? "",
+                                securityEventTag: SecurityEventTag(rawValue: dict["tag"] ?? SecurityEventTag.Unknown.rawValue)! ))
                         }
                     }
                     

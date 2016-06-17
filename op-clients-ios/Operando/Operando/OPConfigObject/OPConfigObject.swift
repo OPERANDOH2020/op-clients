@@ -14,16 +14,26 @@ class OPConfigObject: NSObject
     
     private var currentUserIdentity : UserIdentityModel? = nil
     private let swarmClientHelper : SwarmClientHelper = SwarmClientHelper()
+    private let cdRepository = CoreDataRepository()
+    private let backgroundScanner = BackgroundConnectionsScanner()
+    
     
     func getCurrentUserIdentityIfAny() -> UserIdentityModel?
     {
         return self.currentUserIdentity
     }
     
+    func getCurrentConnectionReportsProvider() -> ConnectionReportsProvider?
+    {
+        return self.cdRepository
+    }
+    
     func applicationDidStartInWindow(window: UIWindow)
     {
         let rootController = UINavigationManager.rootViewController;
         window.rootViewController = rootController
+        
+        self.backgroundScanner.beginScanningProcessWithSource(self.cdRepository);
 
         if let (username, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
         {

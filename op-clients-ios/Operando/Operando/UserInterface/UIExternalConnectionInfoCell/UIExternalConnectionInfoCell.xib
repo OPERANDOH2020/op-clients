@@ -22,7 +22,7 @@
                             <constraint firstAttribute="height" constant="61" id="XNR-sc-S2p"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
@@ -40,11 +40,25 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25e-tb-44c" userLabel="reportedEventsLabel">
                         <rect key="frame" x="8" y="191" width="304" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j5R-8S-ub3">
+                        <rect key="frame" x="1" y="218" width="318" height="1"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="3Cc-OG-bqO"/>
+                            <constraint firstAttribute="width" constant="1" id="gBV-aS-DNU"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gBV-aS-DNU"/>
+                            </mask>
+                        </variation>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="j5R-8S-ub3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="1" id="45e-eX-hUk"/>
                     <constraint firstAttribute="trailing" secondItem="pwP-9u-CVD" secondAttribute="trailing" id="BJ8-PX-Uis"/>
                     <constraint firstItem="pwP-9u-CVD" firstAttribute="top" secondItem="BxP-tq-vgq" secondAttribute="bottom" id="HOz-Xv-CZJ"/>
                     <constraint firstItem="pwP-9u-CVD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PWp-Vx-vl4"/>
@@ -54,7 +68,9 @@
                     <constraint firstAttribute="bottomMargin" secondItem="25e-tb-44c" secondAttribute="bottom" id="g8d-nm-dMz"/>
                     <constraint firstAttribute="trailingMargin" secondItem="BxP-tq-vgq" secondAttribute="trailing" id="gBS-nF-hWA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="25e-tb-44c" secondAttribute="trailing" id="iCL-zl-590"/>
+                    <constraint firstAttribute="bottom" secondItem="j5R-8S-ub3" secondAttribute="bottom" id="oAa-ZG-Bsw"/>
                     <constraint firstItem="25e-tb-44c" firstAttribute="top" secondItem="pwP-9u-CVD" secondAttribute="bottom" id="tWp-ag-jFY"/>
+                    <constraint firstAttribute="trailing" secondItem="j5R-8S-ub3" secondAttribute="trailing" constant="1" id="vaP-71-BIZ"/>
                     <constraint firstItem="pwP-9u-CVD" firstAttribute="top" secondItem="BxP-tq-vgq" secondAttribute="bottom" id="wI8-PI-Eho"/>
                 </constraints>
                 <variation key="default">

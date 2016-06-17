@@ -18,7 +18,7 @@ class UIIPInfoView: RSNibDesignableView
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var hostnameLabel: UILabel!
     
-    func displayInfo(info: IPInfo)
+    func displayInfo(info: IPInfoProtocol)
     {
         let NA = "N/A"
         self.organizationLabel.text = info.organization ?? NA

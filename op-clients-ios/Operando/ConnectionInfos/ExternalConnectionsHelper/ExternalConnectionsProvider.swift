@@ -10,13 +10,7 @@ import UIKit
 
 
 
-struct IPSecurityEvent
-{
-    let title: String?
-    let description: String?
-    let detailsURL: String?
-    let tag: String?
-}
+
 
 
 class ExternalConnectionInfo
@@ -34,7 +28,7 @@ class ExternalConnectionInfo
 
 typealias ExternalConnectionsCompletion = ((result: [ExternalConnectionInfo]?) -> Void)
 
-class ExternalConnectionsHelper: NSObject
+class ExternalConnectionsProvider: NSObject
 {
     
     class func getCurrentConnectionsInfoWithCompletion(completion: ExternalConnectionsCompletion?)
@@ -46,7 +40,7 @@ class ExternalConnectionsHelper: NSObject
         print(tcpConnections);
         
         let destination = NSMutableArray()
-        ExternalConnectionsHelper.retrieveInfoAboutConnectionAtIndex(0, fromSource: tcpConnections, placeResultInDestination: destination) { (result) in
+        ExternalConnectionsProvider.retrieveInfoAboutConnectionAtIndex(0, fromSource: tcpConnections, placeResultInDestination: destination) { (result) in
             
             var result: [ExternalConnectionInfo] = [];
             for i in 0 ..< destination.count

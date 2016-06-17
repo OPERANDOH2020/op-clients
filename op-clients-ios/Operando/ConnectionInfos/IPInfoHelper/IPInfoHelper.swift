@@ -8,16 +8,7 @@
 
 import UIKit
 
-struct IPInfo
-{
-    let hostname: String?
-    let city: String?
-    let country: String?
-    let locationCoordinates: String?
-    let organization: String?
-    let postalCode: String?
-    let region: String?
-}
+
 
 class IPInfoHelper: NSObject
 {
@@ -55,13 +46,13 @@ class IPInfoHelper: NSObject
         {
             if let jsonObject = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? NSDictionary
             {
-                return IPInfo(hostname: jsonObject["hostname"] as? String,
-                              city: jsonObject["city"] as? String,
-                              country: jsonObject["country"] as? String,
-                              locationCoordinates: jsonObject["loc"] as? String,
-                              organization: jsonObject["org"] as? String,
-                              postalCode: jsonObject["postal"] as? String,
-                              region: jsonObject["region"] as? String);
+                return IPInfo(hostname: jsonObject["hostname"] as? String ?? "",
+                              city: jsonObject["city"] as? String ?? "",
+                              country: jsonObject["country"] as? String ?? "",
+                              locationCoordinates: jsonObject["loc"] as? String ?? "",
+                              organization: jsonObject["org"] as? String ?? "",
+                              postalCode: jsonObject["postal"] as? String ?? "",
+                              region: jsonObject["region"] as? String ?? "");
             }
             return nil
         }

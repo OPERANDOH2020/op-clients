@@ -9,26 +9,27 @@
 import UIKit
 
 class UISecurityEventsViewController: UIViewController,
-    UITableViewDataSource
+    UITableViewDataSource, UITableViewDelegate
 {
     
     @IBOutlet weak var securityEventsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     
-    private var info: ExternalConnectionInfo?
+    private var ipReport: IPReportProtocol?
+    private var reportedSecurityEvents: [SecurityEventProtocol] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView(self.tableView)
     }
     
-    func setupWithExternalConnectionInfo(info: ExternalConnectionInfo)
+    func setupWithIPReport(report: IPReportProtocol)
     {
         let _ = self.view;
-        guard let ip = info.connectionPair.address else {return}
+        let ip = report.address
+        self.ipReport = report;
         
-        self.info = info;
         self.securityEventsLabel.text = "The following security events have been reported for \(ip) by Cymon.io";
         self.tableView.reloadData()
     }
@@ -38,34 +39,49 @@ class UISecurityEventsViewController: UIViewController,
         let nib = UINib(nibName: UISecurityEventCell.idenitiferNibName, bundle: nil)
         tv.registerNib(nib, forCellReuseIdentifier: UISecurityEventCell.idenitiferNibName)
         tv.dataSource = self
+        tv.delegate = self
         tv.estimatedRowHeight = 170;
     }
     
+    private func displayDetailsForSecurityEvent(event: SecurityEventProtocol)
+    {
+        guard let ip = self.ipReport?.address else {return}
+        
+        let vc = UINavigationManager.securityEventDetailsViewController;
+        vc.displaySecurityEvent(event, forAddress: ip);
+        
+        self.navigationController?.pushViewController(vc, animated: true);
+    }
     
     //MARK: -tableView datasource methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        guard let _ = self.info?.reportedSecurityEvents else {return 0}
-        
         return 1;
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let events = self.info?.reportedSecurityEvents else {return 0}
-        
-        return events.count;
+        return self.reportedSecurityEvents.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(UISecurityEventCell.idenitiferNibName) as! UISecurityEventCell
         
-        if let events = self.info?.reportedSecurityEvents
-        {
-            cell.setupWithSecurityEvent(events[indexPath.row]);
-        }
+        
+        cell.setupWithSecurityEvent(self.reportedSecurityEvents[indexPath.row]);
+        
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        defer
+        {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
+        
+        
+        self.displayDetailsForSecurityEvent(self.reportedSecurityEvents[indexPath.row]);
     }
 }

@@ -97,4 +97,10 @@ class UINavigationManager
     {
         return main.instantiateViewControllerWithIdentifier("UISecurityEventsViewController") as! UISecurityEventsViewController
     }
+    
+    static var securityEventDetailsViewController: UISecurityEventDetailsViewController
+    {
+        return main.instantiateViewControllerWithIdentifier("UISecurityEventDetailsViewController") as! UISecurityEventDetailsViewController
+    }
+    
 }
