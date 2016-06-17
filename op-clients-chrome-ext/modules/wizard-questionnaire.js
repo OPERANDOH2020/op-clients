@@ -67,7 +67,7 @@ angular.module('operando').controller('QuestionnaireController', function ($scop
                 type: "string",
                 enum: ["Expose it", "Limit it"]
             }
-        },
+        }
 
 };
 

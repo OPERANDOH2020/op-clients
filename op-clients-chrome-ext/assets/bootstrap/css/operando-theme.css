@@ -63,13 +63,14 @@ div.tab-content{
     display: none;
 }
 
-#dashboard_tab{
+#dashboard_tab,
+#preferences_tab{
     display: block;
     background: #fdfaef;
-
 }
 
-#dashboard_tab:after{
+#dashboard_tab:after,
+#preferences_tab:after{
     clear: both;
     display: block;
     content:"";
@@ -588,4 +589,8 @@ footer{
 .table tr>td.td_radio,
 .table tr>td.actions{
     text-align: center;
+}
+
+.preferences_form{
+    padding: 20px;
 }

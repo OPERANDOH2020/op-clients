@@ -35,6 +35,8 @@
     <script type="text/javascript" src="/operando/modules/wizard-questionnaire.js" charset="utf-8"></script>
 
     <script type="text/javascript" src="/operando/util/computePrivacyPollution.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/util/OSP.Settings.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/modules/preferenceForm.js" charset="utf-8"></script>
 
     <script type="text/javascript" src="../ext/common.js"></script>
     <script type="text/javascript" src="../ext/content.js"></script>
@@ -63,7 +65,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a target-tab="dashboard_tab">Home</a></li>
-                <li><a class="isMockup" target-tab = "privacy_tab" >Privacy Settings</a></li>
+                <li><a target-tab = "preferences_tab" >Preferences</a></li>
                 <li><a target-tab = "pfb_tab" >Deals</a></li>
                 <li><a target-tab = "identity_management_tab" >Identity Management</a></li>
                 <li><a target-tab = "extensions_tab">Extensions & Apps</a></li>
@@ -218,10 +220,59 @@
     <!-- END DASHBOARD-->
 
     <!--PRIVACY-->
-    <div id="privacy_tab" class="content_tab" style="text-align: center">
-        <button class="btn-primary" id="set_linkedin_privacy">Set LinkedIn Privacy</button>
-        <button class="btn-primary" id="set_facebook_privacy">Set Facebook Privacy</button>
-        <img src="assets/images/mockups/privacy_settings.jpg" width="75%">
+    <div id="preferences_tab" class="content_tab" >
+        <div class="col-xs-3"> <!-- required for floating -->
+
+            <singleclickprivacy></singleclickprivacy>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
+                <li class="active"><a href="#facebook_preferences" data-toggle="tab">Facebook</a></li>
+                <li><a href="#linkedin_preferences" data-toggle="tab">Linkedin</a></li>
+                <li><a href="#twitter_preferences" data-toggle="tab">Twitter</a></li>
+                <li><a href="#google_preferences" data-toggle="tab">Google</a></li>
+                <li><a href="#instagram_preferences" data-toggle="tab">Instagram</a></li>
+            </ul>
+        </div>
+
+
+        <div class="col-xs-9">
+            <div class="tab-content">
+                <div class="tab-pane active" id="facebook_preferences">
+                    <div ng-controller="PreferenceController" class="preferences_form" social-network="facebook">
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="linkedin_preferences">
+                    <div ng-controller="PreferenceController" class="preferences_form" social-network="linkedin">
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="twitter_preferences">
+                    <div ng-controller="PreferenceController" class="preferences_form" social-network="twitter">
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="google_preferences">
+                    <div ng-controller="PreferenceController" class="preferences_form" social-network="google">
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="instagram_preferences">
+                    <div ng-controller="PreferenceController" class="preferences_form" social-network="instagram">
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!--<img src="assets/images/mockups/privacy_settings.jpg" width="75%">-->
     </div>
     <!--END PRIVACY-->
 

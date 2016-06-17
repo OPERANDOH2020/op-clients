@@ -1,22 +1,15 @@
-/**
- * Created by salboaie on 6/15/16.
- */
-
 /*
- id:{
- read:{
- name: "",
- url: "https://www.facebook.com/settings?tab=privacy",
- jquery_selector:{
-
- }
- },
- write:{
-
- }
- },
+ * Copyright (c) 2016 ROMSOFT.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the The MIT License (MIT).
+ * which accompanies this distribution, and is available at
+ * http://opensource.org/licenses/MIT
+ *
+ * Contributors:
+ *    SINICA ALBOAIE (ROMSOFT)
+ *    RAFAEL MASTALERU (ROMSOFT)
+ * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
-
 
 var ospSettingsConfig = {
 
@@ -25,6 +18,7 @@ var ospSettingsConfig = {
             read:{
                 name: "Who can see your future posts?",
                 url: "https://www.facebook.com/settings?tab=privacy",
+                availableSettings:["Public", "Friends", "Only Me"],
                 jquery_selector:{
                 element:".fbSettingsList:eq(0) .fbSettingsListItem:eq(0) ._nlm",
                     valueType: "inner"
@@ -38,6 +32,7 @@ var ospSettingsConfig = {
             read:{
                 name: "Keep/delete your activity log",
                 url: "https://www.facebook.com/settings?tab=privacy",
+                availableSettings:["Keep", "Delete"],
 
                 jquery_selector:{
 
@@ -51,6 +46,7 @@ var ospSettingsConfig = {
             read:{
                 name: "Choose if only Friends or also Friends of Friends can see your Facebook data",
                 url: "https://www.facebook.com/settings?tab=privacy",
+                availableSettings:["Friends", "Friends of Friends"],
                 jquery_selector:{
 
                 }
@@ -63,6 +59,7 @@ var ospSettingsConfig = {
             read:{
                 name: "Limit (or not) viewing content on your timeline you have shared with Friends of Friends or Public, to Friends only.",
                 url: "https://www.facebook.com/settings?tab=privacy",
+                availableSettings:["Public", "Friends of Friends", "Friends"],
                 jquery_selector:{
 
                 }
@@ -75,6 +72,7 @@ var ospSettingsConfig = {
             read:{
                 name: "Choose who can contact you/send you friend requests",
                 url: "https://www.facebook.com/settings?tab=privacy",
+                availableSettings:["Everyone","Friends of Friends", "Friends"],
                 jquery_selector:{
 
                 }
@@ -87,6 +85,7 @@ var ospSettingsConfig = {
             read:{
                 name: "Choose who can look you up using your email address",
                 url: "https://www.facebook.com/settings?tab=privacy",
+                availableSettings:["Friends of Friends", "Everyone"],
                 jquery_selector:{
 
                 }
@@ -99,6 +98,7 @@ var ospSettingsConfig = {
             read:{
                 name: "Choose  who can look you up using the phone number you provided",
                 url: "https://www.facebook.com/settings?tab=privacy",
+                availableSettings:["Friends of Friends", "Everyone"],
                 jquery_selector:{
 
                 }
@@ -111,6 +111,7 @@ var ospSettingsConfig = {
             read:{
                 name: "Allow/disallow  engines outside Facebook to link to your profile",
                 url: "https://www.facebook.com/settings?tab=privacy",
+                availableSettings:["Yes", "No"],
                 jquery_selector:{
 
                 }
@@ -122,7 +123,8 @@ var ospSettingsConfig = {
         limit_timeline:{
             read:{
                 name: "Limit who can add things to your timeline",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=timeline",
+                availableSettings:["Only Me", "Friends"],
                 jquery_selector:{
 
                 }
@@ -134,7 +136,8 @@ var ospSettingsConfig = {
         control_timeline:{
             read:{
                 name: "Review tags people add to your own posts before the tags appear on Facebook",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=timeline",
+                availableSettings:["Enabled", "Disabled"],
                 jquery_selector:{
 
                 }
@@ -146,7 +149,8 @@ var ospSettingsConfig = {
         photo_tags_audience:{
             read:{
                 name: "When you are tagged in a post, whom do you want to add to the audience if they are not already in it?",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=timeline",
+                availableSettings:["Friends", "Only Me"],
                 jquery_selector:{
 
                 }
@@ -158,7 +162,8 @@ var ospSettingsConfig = {
         control_tag_suggestions:{
             read:{
                 name: "Control who sees tag suggestions when photos that look like you are uploaded",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=timeline",
+                availableSettings:["Friends", "Only Me"],
                 jquery_selector:{
 
                 }
@@ -170,7 +175,8 @@ var ospSettingsConfig = {
         control_followers:{
             read:{
                 name: "Control who can be your follower.",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=followers",
+                availableSettings:["Friends", "Everyone"],
                 jquery_selector:{
 
                 }
@@ -182,7 +188,8 @@ var ospSettingsConfig = {
         permissions_for_apps:{
             read:{
                 name: "Set permissions for data access by the apps that you use",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=applications",
+                availableSettings:["Friends", "Everyone"],
                 jquery_selector:{
 
                 }
@@ -194,7 +201,8 @@ var ospSettingsConfig = {
         see_apps:{
             read:{
                 name: "Control who on Facebook can see that you use this app",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=applications",
+                availableSettings:["Public", "Friends of Friends","Friends", "Only Me"],
                 jquery_selector:{
 
                 }
@@ -206,7 +214,8 @@ var ospSettingsConfig = {
         allow_apps:{
             read:{
                 name: "Allow or disallow use of apps, plugins, games and websites on Facebook and elsewhere.",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=applications",
+                availableSettings:["Allow", "Disallow"],
                 jquery_selector:{
 
                 }
@@ -218,7 +227,8 @@ var ospSettingsConfig = {
         control_personal_info:{
             read:{
                 name: "Control what personal info of yours your friends can bring with them when they use apps, games and websites ",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=applications",
+                availableSettings:["Allow", "Disallow"],
                 jquery_selector:{
 
                 }
@@ -230,7 +240,8 @@ var ospSettingsConfig = {
         control_outdated_clients:{
             read:{
                 name: "Who will see things you post using old Facebook mobile apps that do not have the inline audience selector, such as outdated versions of Facebook for BlackBerry?",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=applications",
+                availableSettings:["Public", "Friends of Friends","Friends", "Only Me"],
                 jquery_selector:{
 
                 }
@@ -242,7 +253,8 @@ var ospSettingsConfig = {
         control_ads:{
             read:{
                 name: "Allow or disallow Facebook to show you ads is based on your use of websites and apps that use Facebook's technologies ",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=ads",
+                availableSettings:["Allow", "Disallow"],
                 jquery_selector:{
 
                 }
@@ -254,7 +266,8 @@ var ospSettingsConfig = {
         control_friends_ads:{
             read:{
                 name: "Allow or disallow Facebook show ads to your friends based on actions you take, such as liking a Page or sharing a post",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=ads",
+                availableSettings:["Allow", "Disallow"],
                 jquery_selector:{
 
                 }
@@ -266,7 +279,8 @@ var ospSettingsConfig = {
         control_preferences:{
             read:{
                 name: "Control preferences Facebook  created for you based on things like your profile information, actions you take on Facebook and websites and apps you use off Facebook ",
-                url: "https://www.facebook.com/settings?tab=privacy",
+                url: "https://www.facebook.com/settings?tab=ads",
+                availableSettings:["Remove all preferences", "Allow"],
                 jquery_selector:{
 
                 }
@@ -277,8 +291,9 @@ var ospSettingsConfig = {
         },
         allow_email_share:{
             read:{
-                name: "Allow or disallow friends to include your email address in ”download your information",
+                name: "Allow or disallow friends to include your email address in \"download your information\"",
                 url: "https://www.facebook.com/settings?tab=privacy",
+                availableSettings:["Allow", "Disallow"],
                 jquery_selector:{
 
                 }
@@ -922,16 +937,18 @@ function generateAngularForm(ospname){
     var schema = {
         type: "object"
     }
+
+    schema.properties={};
     for(var v in ospSettingsConfig[ospname]){
         var conf = ospSettingsConfig[ospname][v];
-        schema[v] = {
-            tile:  conf["read"].name,
+        schema.properties[v] = {
+            title:  conf["read"].name,
             type: "string",
-            enum: ["Yes", "No"]
+            enum: conf["read"].availableSettings?conf["read"].availableSettings:["Yes","No"]
         };
-        schema[v]["enum"].push(conf["write"]["recommended"]);
+        //schema.properties[v]["enum"].push(conf["write"]["recommended"]);
     }
     return schema;
 }
 
-console.log(generateAngularForm("facebook"));
+//console.log(generateAngularForm("facebook"));
