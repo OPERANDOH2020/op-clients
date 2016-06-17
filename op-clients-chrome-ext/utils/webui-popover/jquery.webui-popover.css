@@ -129,6 +129,12 @@
     overflow: auto;
     display: none;
 }
+
+.webui-popover-content h5
+{
+    font-size: 14px;
+    margin: 15px 0px;
+}
 .webui-popover-inverse {
     background-color: #333333;
     color: #eeeeee;

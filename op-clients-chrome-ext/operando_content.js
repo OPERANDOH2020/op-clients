@@ -75,11 +75,11 @@
         if (offsetLeft + 400 > jQuery(document).width()) {
             placement = "left";
         }
-
+        console.log(pfbDeal);
         var settings = {
             trigger: 'sticky',
             title: 'Rivacy for Benefits ',
-            content: "<div><p>"
+            content: "<div><h5>"+ pfbDeal.benefit+ "</h5><p>"
             + pfbDeal.description
             + '</p>'
             + '</div>',
