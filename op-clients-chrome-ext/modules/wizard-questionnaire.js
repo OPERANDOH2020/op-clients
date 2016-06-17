@@ -67,13 +67,17 @@ angular.module('operando').controller('QuestionnaireController', function ($scop
                 type: "string",
                 enum: ["Expose it", "Limit it"]
             }
+        },
+
+};
 
 
-        }
-    };
+    for (var key in $scope.schema.properties) {
+        $scope.schema.properties[key].required = true;
+    }
+
 
     $scope.form = [];
-
     for (var key in $scope.schema.properties) {
         $scope.form.push({
             key: key,
@@ -81,9 +85,13 @@ angular.module('operando').controller('QuestionnaireController', function ($scop
         })
     }
 
+
+
+
+
     $scope.form.push({
         type: "submit",
-        title: "Save"
+        title: "Optimise your settings"
     });
 
 
@@ -95,9 +103,10 @@ angular.module('operando').controller('QuestionnaireController', function ($scop
         $scope.$broadcast('schemaFormValidate');
 
         // Then we check if the form is valid
-        /*if ($scope.form.$valid) {
-            alert('You did it!');
-        }*/
+        if ($scope.questionnaireform.$valid) {
+            //alert('You did it!');
+
+        }
     }
 
 

@@ -39,6 +39,7 @@ var permissionConfig= {
     "geolocation":  7,
     "history":  	9,
     "identity":	    10,
+    "identity.email":10,
     "idle": 	    1,
     "idltest":  	1,
     "location": 	8,
@@ -89,7 +90,7 @@ function computePrivacyPollution(list){
     var value = list.reduce(function(prev, current){
 
         if(!permissionConfig[current]){
-            alert(current);
+            permissionConfig[current] = 5;
         }
 
         if(permissionConfig[current] >7){

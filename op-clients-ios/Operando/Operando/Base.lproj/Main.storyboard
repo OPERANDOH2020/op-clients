@@ -919,7 +919,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Seb-T5-Svh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Seb-T5-Svh">
                                 <rect key="frame" x="0.0" y="74" width="600" height="526"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -953,6 +953,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fWi-3x-gWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-789" y="3143"/>
+        </scene>
+        <!--Security Events View Controller-->
+        <scene sceneID="nes-VM-dmR">
+            <objects>
+                <viewController storyboardIdentifier="UISecurityEventsViewController" id="0Rh-Rc-V5O" customClass="UISecurityEventsViewController" customModule="Operando" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ed7-G3-b2q"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Me-DF-TJB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CLL-Ii-6F7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaaa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Noa-Sb-UgQ" userLabel="securityEventsLabel">
+                                <rect key="frame" x="20" y="33" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j90-5G-OiN">
+                                <rect key="frame" x="0.0" y="62" width="600" height="538"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="j90-5G-OiN" firstAttribute="top" secondItem="Noa-Sb-UgQ" secondAttribute="bottom" constant="8" id="7ym-L1-0rI"/>
+                            <constraint firstItem="Noa-Sb-UgQ" firstAttribute="top" secondItem="Ed7-G3-b2q" secondAttribute="bottom" constant="13" id="8xP-e3-uMk"/>
+                            <constraint firstItem="Noa-Sb-UgQ" firstAttribute="leading" secondItem="CLL-Ii-6F7" secondAttribute="leadingMargin" id="B7o-vY-duG"/>
+                            <constraint firstItem="5Me-DF-TJB" firstAttribute="top" secondItem="j90-5G-OiN" secondAttribute="bottom" id="Q83-CV-zSW"/>
+                            <constraint firstItem="Noa-Sb-UgQ" firstAttribute="centerX" secondItem="CLL-Ii-6F7" secondAttribute="centerX" id="ehL-ES-Nau"/>
+                            <constraint firstItem="j90-5G-OiN" firstAttribute="leading" secondItem="CLL-Ii-6F7" secondAttribute="leading" id="i8Y-FU-twq"/>
+                            <constraint firstAttribute="trailing" secondItem="j90-5G-OiN" secondAttribute="trailing" id="iT7-SU-6GY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Noa-Sb-UgQ" secondAttribute="trailing" id="xtw-oa-Kwf"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ehL-ES-Nau"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="securityEventsLabel" destination="Noa-Sb-UgQ" id="PXt-7j-m90"/>
+                        <outlet property="tableView" destination="j90-5G-OiN" id="ofs-r0-m4N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2bL-TE-rcO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-783" y="3841"/>
         </scene>
         <!--Private Browsing View Controller-->
         <scene sceneID="0Uq-Lk-nEV">

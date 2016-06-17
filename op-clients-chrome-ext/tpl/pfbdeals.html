@@ -1,3 +1,13 @@
 <div id="pfbdeals_container">
-    <pfbdeal ng-repeat="deal in deals" deal="deal"></pfbdeal>
+
+    <div ng-switch="deals.length">
+        <div ng-switch-when="0">
+            <span> No deals yet</span>
+        </div>
+        <div ng-switch-default>
+            <pfbdeal ng-repeat="deal in deals" deal="deal"></pfbdeal>
+
+        </div>
+    </div>
+
 </div>

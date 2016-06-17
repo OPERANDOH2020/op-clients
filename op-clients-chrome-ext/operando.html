@@ -18,6 +18,7 @@
     <script type="text/javascript" src="/operando/directives/extensions.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/directives/identities.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/directives/deals.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/directives/single-click-privacy.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/apps/OperandoCore.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/services/messenger-service.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/apps/OperandoApp.js" charset="utf-8"></script>
@@ -63,7 +64,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a target-tab="dashboard_tab">Home</a></li>
                 <li><a class="isMockup" target-tab = "privacy_tab" >Privacy Settings</a></li>
-                <li><a target-tab = "pfb_tab" >Privacy for Benefits</a></li>
+                <li><a target-tab = "pfb_tab" >Deals</a></li>
                 <li><a target-tab = "identity_management_tab" >Identity Management</a></li>
                 <li><a target-tab = "extensions_tab">Extensions & Apps</a></li>
             </ul>
@@ -81,6 +82,9 @@
     <div id="dashboard_tab" class="active content_tab" >
 
         <div class="col-xs-3"> <!-- required for floating -->
+
+            <singleclickprivacy></singleclickprivacy>
+
             <!-- Nav tabs -->
             <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
                 <li class="active"><a href="#home" data-toggle="tab">Dashboard</a></li>
@@ -200,7 +204,7 @@
                     <h2>Privacy Wizard</h2>
 
                     <div ng-controller="QuestionnaireController">
-                        <form sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitQuestionnaire()"></form>
+                        <form name="questionnaireform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitQuestionnaire()"></form>
                     </div>
 
                 </div>
@@ -252,12 +256,12 @@
 
                 <div class="tab-pane active" id="active_deals">
                     <h2>Active Deals</h2>
-                    <pfbdeals></pfbdeals>
+                    <pfbdeals deals-type="available-deals"></pfbdeals>
                 </div>
 
                 <div class="tab-pane" id="my_deals">
                     <h2>My Deals</h2>
-                    <p>My Deals here </p>
+                    <pfbdeals deals-type="my-deals"></pfbdeals>
                 </div>
 
             </div>

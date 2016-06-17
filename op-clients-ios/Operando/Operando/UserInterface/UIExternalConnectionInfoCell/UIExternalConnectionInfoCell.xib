@@ -31,18 +31,30 @@
                         </variation>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwP-9u-CVD" customClass="UIIPInfoView" customModule="Operando" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="28" width="320" height="191"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <rect key="frame" x="0.0" y="28" width="320" height="163"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="163" id="7eD-Ca-E77"/>
+                        </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25e-tb-44c" userLabel="reportedEventsLabel">
+                        <rect key="frame" x="8" y="191" width="304" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="pwP-9u-CVD" secondAttribute="trailing" id="BJ8-PX-Uis"/>
-                    <constraint firstAttribute="bottom" secondItem="pwP-9u-CVD" secondAttribute="bottom" id="F4V-Zi-T0K"/>
                     <constraint firstItem="pwP-9u-CVD" firstAttribute="top" secondItem="BxP-tq-vgq" secondAttribute="bottom" id="HOz-Xv-CZJ"/>
                     <constraint firstItem="pwP-9u-CVD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PWp-Vx-vl4"/>
                     <constraint firstItem="BxP-tq-vgq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="W06-aS-MgN"/>
                     <constraint firstItem="BxP-tq-vgq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Yvr-gZ-mX1"/>
+                    <constraint firstItem="25e-tb-44c" firstAttribute="leading" secondItem="BxP-tq-vgq" secondAttribute="leading" id="bLk-Qu-DzI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="25e-tb-44c" secondAttribute="bottom" id="g8d-nm-dMz"/>
                     <constraint firstAttribute="trailingMargin" secondItem="BxP-tq-vgq" secondAttribute="trailing" id="gBS-nF-hWA"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="25e-tb-44c" secondAttribute="trailing" id="iCL-zl-590"/>
+                    <constraint firstItem="25e-tb-44c" firstAttribute="top" secondItem="pwP-9u-CVD" secondAttribute="bottom" id="tWp-ag-jFY"/>
                     <constraint firstItem="pwP-9u-CVD" firstAttribute="top" secondItem="BxP-tq-vgq" secondAttribute="bottom" id="wI8-PI-Eho"/>
                 </constraints>
                 <variation key="default">
@@ -54,6 +66,7 @@
             <connections>
                 <outlet property="addressLabel" destination="BxP-tq-vgq" id="fDq-Ux-6OB"/>
                 <outlet property="ipInfoView" destination="pwP-9u-CVD" id="GDa-Da-pF2"/>
+                <outlet property="reportedEventsLabel" destination="25e-tb-44c" id="gRD-jj-CjK"/>
             </connections>
             <point key="canvasLocation" x="169" y="165"/>
         </tableViewCell>

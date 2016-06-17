@@ -153,6 +153,7 @@ div.tab-content{
 #wrapper{
     height: calc(100% - 198px);
     overflow: auto;
+    min-width: 1300px;
 }
 
 #wrapper .content_tab{
@@ -268,6 +269,7 @@ padding-left: 0px;
     -webkit-margin-end: 40px;
     -moz-margin-end: 40px;
     display: inline-block;
+    width: 650px;
 }
 
 #can-do-more .feature-description-textblock > span
@@ -532,4 +534,58 @@ footer{
     -o-transform: rotate(-3deg);
     -ms-transform: rotate(-3deg);
     transform: rotate(-3deg);
+}
+
+.active_deal{
+    width: 21%;
+    margin: 2%;
+    height: 21%;
+    background: #e8e8e8;
+    border-radius:5px;
+    display: inline-block;
+    float:left;
+}
+
+.pfb_logo{
+    width:50%;
+    margin: 10% 25% 0% 25%;
+}
+
+.pfbdeal_website{
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+
+#wrapper button.single_click_privacy{
+    width:80%;
+    background:#ff8f00;
+    margin: 10%;
+    color:#FFF;
+    padding: 10px;
+}
+
+
+.table>tbody>tr.defaultIdentity>td,
+.table>tbody>tr.defaultIdentity>th,
+.table>tbody>tr>td.defaultIdentity,
+.table>tbody>tr>th.defaultIdentity,
+.table>tfoot>tr.defaultIdentity>td,
+.table>tfoot>tr.defaultIdentity>th,
+.table>tfoot>tr>td.defaultIdentity,
+.table>tfoot>tr>th.defaultIdentity,
+.table>thead>tr.defaultIdentity>td,
+.table>thead>tr.defaultIdentity>th,
+.table>thead>tr>td.defaultIdentity,
+.table>thead>tr>th.defaultIdentity{
+    background: #fdebd2;
+}
+
+.table tr>td.td_text{
+    padding-top: 15px;
+}
+
+.table tr>td.td_radio,
+.table tr>td.actions{
+    text-align: center;
 }

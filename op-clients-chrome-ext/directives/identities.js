@@ -38,6 +38,17 @@ angular.module('identities', [])
                         });
                     });
 
+                    $scope.$on('changedDefaultSID',function(defaultIdentity) {
+                        $scope.identities.forEach(function(identity){
+
+                            if(identity.name != defaultIdentity.name){
+                                identity.isDefault = false;
+                            }
+                        });
+                    });
+
+
+
 
                     $scope.add_new_sid = function () {
                         var identities = $scope.identities;
@@ -99,19 +110,27 @@ angular.module('identities', [])
             }
         }]
     )
-    .directive('identity', function () {
+    .directive('identityRow', function () {
             return {
                 require: "^identities",
-                restrict: 'E',
+                restrict: 'A',
                 replace: true,
                 scope: {identity: "="},
                 controller: function ($scope, ModalService) {
+
+                    $scope.identity.isDefault = false;
+
+                    $scope.changeDefaultIdentity = function(){
+                        $scope.$parent.$emit("changedDefaultSID",$scope.identity);
+                        $scope.identity.isDefault = true;
+                    }
 
                     $scope.remove_identity = function () {
                         var identity = $scope.identity;
                         var emitToParent = function(event){
                             $scope.$emit(event);
                         }
+
                         ModalService.showModal({
 
                             templateUrl: '/operando/tpl/modals/delete_sid.html',
@@ -139,7 +158,7 @@ angular.module('identities', [])
                     }
                     
                 },
-                templateUrl: '/operando/tpl/identity.html'
+                templateUrl: '/operando/tpl/identityRow.html'
             }
         }
     );

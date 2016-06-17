@@ -8,15 +8,14 @@
 
 import UIKit
 
-struct IPInfo
+
+
+struct IPSecurityEvent
 {
-    let hostname: String?
-    let city: String?
-    let country: String?
-    let locationCoordinates: String?
-    let organization: String?
-    let postalCode: String?
-    let region: String?
+    let title: String?
+    let description: String?
+    let detailsURL: String?
+    let tag: String?
 }
 
 
@@ -24,10 +23,12 @@ class ExternalConnectionInfo
 {
     let connectionPair: ConnectionPair
     let connectionIPInfo: IPInfo
-    init(connectionPair: ConnectionPair, connectionIPInfo: IPInfo)
+    let reportedSecurityEvents: [IPSecurityEvent]
+    init(connectionPair: ConnectionPair, connectionIPInfo: IPInfo, reportedSecurityEvents: [IPSecurityEvent])
     {
         self.connectionIPInfo = connectionIPInfo;
         self.connectionPair = connectionPair;
+        self.reportedSecurityEvents = reportedSecurityEvents;
     }
 }
 
@@ -35,14 +36,13 @@ typealias ExternalConnectionsCompletion = ((result: [ExternalConnectionInfo]?) -
 
 class ExternalConnectionsHelper: NSObject
 {
-    static let loopBackAddress = "127.0.0.1"
-    
-    static var globalDataTask: NSURLSessionDataTask?
     
     class func getCurrentConnectionsInfoWithCompletion(completion: ExternalConnectionsCompletion?)
     {
         
-        let tcpConnections = ConnectionInfoHelper.printTCPConnections()
+        var tcpConnections = ConnectionInfoHelper.printTCPConnections()
+        tcpConnections = removeDuplicateAddresses(tcpConnections);
+        
         print(tcpConnections);
         
         let destination = NSMutableArray()
@@ -59,72 +59,83 @@ class ExternalConnectionsHelper: NSObject
         
     }
     
+    private class func removeDuplicateAddresses(connectionInfos: [ConnectionInfo]) -> [ConnectionInfo]
+    {
+        var result: [ConnectionInfo] = []
+        
+        for iCon in connectionInfos
+        {
+            if let iAddress = iCon.foreignConnection.address
+            {
+                var foundInResult: Bool = false
+                for jCon in result
+                {
+                    if let jAddress = jCon.foreignConnection.address
+                    {
+                        if iAddress.containsString(jAddress) || jAddress.containsString(iAddress)
+                        {
+                            foundInResult = true
+                            break
+                        }
+                    }
+                }
+                
+                if !foundInResult
+                {
+                    result.append(iCon)
+                }
+            }
+        }
+        
+        return result;
+    }
     
     private class func retrieveInfoAboutConnectionAtIndex(index: Int, fromSource source: [ConnectionInfo],
                                                           placeResultInDestination destination: NSMutableArray,
                                                           withCompletion completion: ((result: NSArray) -> Void))
     {
-        guard index >= 0 && index < source.count else {completion(result: destination); return}
-        
-        let foreignConnectionPair = source[index].foreignConnection;
-        
-        guard var ip = foreignConnectionPair.address else
+        guard index >= 0 && index < source.count else
         {
-            retrieveInfoAboutConnectionAtIndex(index+1, fromSource: source, placeResultInDestination: destination, withCompletion: completion);
-            return;
-        }
-        
-        guard !ip.containsString(ExternalConnectionsHelper.loopBackAddress) else
-        {
-            retrieveInfoAboutConnectionAtIndex(index+1, fromSource: source, placeResultInDestination: destination, withCompletion: completion);
-            return;
-        }
-        
-        guard let url = NSURL(string: "http://ipinfo.io/\(ip)/json") else
-        {
-            retrieveInfoAboutConnectionAtIndex(index+1, fromSource: source, placeResultInDestination: destination, withCompletion: completion);
-            return;
-        }
-        
-        
-        globalDataTask = NSURLSession.sharedSession().dataTaskWithRequest(NSURLRequest(URL: url)) { (data: NSData?, response:NSURLResponse?, error: NSError?) in
-            
-            if let ipInfo = convertToIpInfoData(data)
-            {
-                destination.addObject(ExternalConnectionInfo(connectionPair: foreignConnectionPair, connectionIPInfo: ipInfo));
-            }
-            
             dispatch_async(dispatch_get_main_queue(), { 
-                retrieveInfoAboutConnectionAtIndex(index+1, fromSource: source, placeResultInDestination: destination, withCompletion: completion);
+                completion(result: destination);
+            })
+            return
+        }
+        
+        let stepToNext =
+        {
+            dispatch_async(dispatch_get_main_queue(), { 
+                retrieveInfoAboutConnectionAtIndex(index+1, fromSource: source, placeResultInDestination: destination, withCompletion: completion)
             })
         }
         
-        globalDataTask?.resume()
-    }
-    
-    
-    private class func convertToIpInfoData(data: NSData?) -> IPInfo?
-    {
-        guard let jsonData = data else {return nil;}
+        let foreignConnectionPair = source[index].foreignConnection;
         
-        do
+        guard let ip = foreignConnectionPair.address else
         {
-           if let jsonObject = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? NSDictionary
-           {
-             return IPInfo(hostname: jsonObject["hostname"] as? String,
-                           city: jsonObject["city"] as? String,
-                           country: jsonObject["country"] as? String,
-                           locationCoordinates: jsonObject["loc"] as? String,
-                           organization: jsonObject["org"] as? String,
-                           postalCode: jsonObject["postal"] as? String,
-                           region: jsonObject["region"] as? String);
-            }
-            return nil
+            retrieveInfoAboutConnectionAtIndex(index+1, fromSource: source, placeResultInDestination: destination, withCompletion: completion);
+            return;
         }
-        catch _
-        {
-            return nil;
+        
+        
+        IPInfoHelper.getIpInfoForAddress(ip) { (error, result) in
+            
+            guard let ipInfoResult = result else {stepToNext(); return}
+            
+            IPSecurityEventHelper.getSecurityEventsForIp(ip, withCompletion: { (error, result) in
+                
+                guard let securityEvents = result else {stepToNext(); return}
+                
+                destination.addObject(ExternalConnectionInfo(connectionPair: foreignConnectionPair, connectionIPInfo: ipInfoResult, reportedSecurityEvents: securityEvents));
+                
+                stepToNext();
+                
+            })
+            
         }
         
     }
+    
+    
+    
 }
