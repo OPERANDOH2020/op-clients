@@ -1,9 +1,15 @@
 package eu.operando;
 
 
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,13 +19,19 @@ import android.widget.RelativeLayout;
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 
+import java.util.Arrays;
+import java.util.List;
+
 import eu.operando.activity.AbstractLeftMenuActivity;
+import eu.operando.activity.BaseActivity;
 import eu.operando.events.EventLoginPage;
+import eu.operando.events.EventScanPage;
 import eu.operando.events.EventSignIn;
 import eu.operando.fragment.AuthenticatedFragment;
 import eu.operando.fragment.CreateAccountFragment;
 import eu.operando.fragment.FirstScreenFragment;
 import eu.operando.fragment.LoginFragment;
+import eu.operando.fragment.ScannerFragment;
 import eu.operando.osdk.swarm.client.events.SwarmLogoutEvent;
 import eu.operando.osdk.swarm.client.utils.EventProvider;
 import eu.operando.osdk.swarm.client.utils.SwarmConstants;
@@ -55,9 +67,8 @@ public class MainActivity extends AbstractLeftMenuActivity {
 
         initUI();
         doOnInit();
-
-
     }
+
 
     private void initUI() {
 
@@ -90,6 +101,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
 
         this.mDrawerLayout.setDrawerListener(drawerToggle);
         setComponents(drawerToggle, mDrawerLayout, INVOICES);
+
     }
 
     @Override
@@ -120,26 +132,33 @@ public class MainActivity extends AbstractLeftMenuActivity {
     }
 
     @Subscribe
-    public void onEvent (EventLoginPage event ){
+    public void onEvent(EventLoginPage event) {
 
-       switch (event.action) {
-           case Constants.events.LOGIN : {
-               showLoginPage () ;
+        switch (event.action) {
+            case Constants.events.LOGIN: {
+                showLoginPage();
                 break;
-           }
-           case Constants.events.CREATE_ACCOUNT:{
-               showRegisterPage();
-               break;
-           }
+            }
+            case Constants.events.CREATE_ACCOUNT: {
+                showRegisterPage();
+                break;
+            }
         }
     }
+
     @Subscribe
-    public void onEvent (EventSignIn event ) {
+    public void onEvent(EventSignIn event) {
         //showFirstFragment();
     }
 
     @Subscribe
-    public void onSwarmEvent (SwarmLoginEvent loginEvent ){
+    public void onEvent(EventScanPage event) {
+        showScanPage();
+    }
+
+
+    @Subscribe
+    public void onSwarmEvent(SwarmLoginEvent loginEvent) {
         showDashboardFragment();
         System.out.println("TODO with login event");
         String sessionId = "";
@@ -150,29 +169,40 @@ public class MainActivity extends AbstractLeftMenuActivity {
             e.printStackTrace();
         }
 
-        swarmClient.startSwarm("login.js","start", "logout");
+        swarmClient.startSwarm("login.js", "start", "logout");
     }
 
     @Subscribe
-    public void onSwarmEvent (SwarmLogoutEvent logoutEvent ){
+    public void onSwarmEvent(SwarmLogoutEvent logoutEvent) {
         //doOnInit();
     }
 
 
+    private void showScanPage() {
+        replaceFragment(
+                R.id.main_fragment_container,
+                new ScannerFragment(),
+                "",
+                null
+        );
+        mDrawerLayout.closeDrawers();
+    }
 
-    private void showLoginPage (){
+    private void showLoginPage() {
         replaceFragment(R.id.main_fragment_container, loginFragment, LoginFragment.FRAGMENT_TAG, "st1");
     }
-    private void showRegisterPage (){
-        replaceFragment(R.id.main_fragment_container,createAccountFragment, CreateAccountFragment.FRAGMENT_TAG,"st2");
-    }
-    private void showFirstFragment (){
-        replaceFragment(R.id.main_fragment_container,firstScreenFragment, FirstScreenFragment.FRAGMENT_TAG,"st1");
+
+    private void showRegisterPage() {
+        replaceFragment(R.id.main_fragment_container, createAccountFragment, CreateAccountFragment.FRAGMENT_TAG, "st2");
     }
 
-    private void showDashboardFragment (){
+    private void showFirstFragment() {
+        replaceFragment(R.id.main_fragment_container, firstScreenFragment, FirstScreenFragment.FRAGMENT_TAG, "st1");
+    }
+
+    private void showDashboardFragment() {
         authenticatedFragment = new AuthenticatedFragment();
         addFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG);
-        replaceFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG,"st3");
+        replaceFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG, "st3");
     }
 }

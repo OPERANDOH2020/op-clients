@@ -48,17 +48,17 @@ public abstract class BaseActivity extends AppCompatActivity  {
                 return super.onOptionsItemSelected(item);
         }
     }
-    protected void addFragment(@IdRes int containerViewId,
+    public void addFragment(@IdRes int containerViewId,
                                @NonNull Fragment fragment,
                                @NonNull String fragmentTag) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(containerViewId, fragment, fragmentTag)
-                .disallowAddToBackStack()
+                .addToBackStack(null)
                 .commit();
     }
 
-    protected void replaceFragment(@IdRes int containerViewId,
+    public void replaceFragment(@IdRes int containerViewId,
                                    @NonNull Fragment fragment,
                                    @NonNull String fragmentTag,
                                    @Nullable String backStackStateName) {

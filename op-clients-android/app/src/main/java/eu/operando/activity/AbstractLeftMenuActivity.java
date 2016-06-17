@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.MenuItem;
 
+import eu.operando.util.OnBackPressedListener;
+
 /**
  * Created by raluca on 08.04.2016.
  */
@@ -22,6 +24,7 @@ public class AbstractLeftMenuActivity  extends  BaseActivity{
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private int menuMode;
+    private OnBackPressedListener onBackPressedListener;
 
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -52,25 +55,27 @@ public class AbstractLeftMenuActivity  extends  BaseActivity{
             mDrawerLayout.closeDrawers();
             return;
         }
+        if(onBackPressedListener!=null){
+            if(onBackPressedListener.onBackPressed()){
+               return;
+            }
+        }
+        if(getFragmentManager().getBackStackEntryCount() > 0){
+            getFragmentManager().popBackStack();
+            return;
+        }
         super.onBackPressed();
 
 
     }
 
-//    public void onEvent(EventSigningsDrawerItemClicked pEvent) {
-//        //TODO if not in signings, go to signings
-//        if (menuMode != SIGNINGS) {
-//            menuMode= SIGNINGS;
-//            startActivity(new Intent(this, MainActivity_.class));
-//        }
-//        mDrawerLayout.closeDrawers();
-//    }
-
-
-
     protected void setComponents(ActionBarDrawerToggle drawerToggle, DrawerLayout drawerLayout, int menuMode) {
         this.mDrawerLayout = drawerLayout;
         this.mDrawerToggle = drawerToggle;
         this.menuMode = menuMode;
+    }
+
+    public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {
+        this.onBackPressedListener = onBackPressedListener;
     }
 }

@@ -1,2 +1,8 @@
 /adblockpluschrome
 /devenv.chrome.extension
+op-clients-android/app/build/
+op-clients-android/.idea/
+op-clients-android/.gradle/
+op-clients-android/build/
+op-clients-android-osdk/SwarmClient/SwarmClient.iml
+op-clients-android/op-clients-android.iml

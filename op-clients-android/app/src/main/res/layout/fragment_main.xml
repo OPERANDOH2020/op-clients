@@ -21,7 +21,7 @@
         android:layout_gravity="center_vertical|center_horizontal">
 
         <Button
-            android:id="@+id/sensorMonitoring"
+            android:id="@+id/scan_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="40dp"
@@ -58,7 +58,7 @@
             android:background="@drawable/permission_scanner"/>
 
         <Button
-            android:id="@+id/buton5"
+            android:id="@+id/browser_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"

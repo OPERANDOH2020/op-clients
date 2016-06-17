@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import eu.operando.R;
+import eu.operando.activity.BaseActivity;
 import eu.operando.events.EventLoginPage;
+import eu.operando.events.EventScanPage;
 import eu.operando.events.EventSignIn;
 import eu.operando.util.SharedPreferencesService;
 
@@ -38,6 +41,12 @@ public class DrawerFragment extends Fragment {
 
     private void initUI (View v){
         emailTV = (TextView) v.findViewById(R.id.emailTV);
+        v.findViewById(R.id.scanner).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new EventScanPage());
+            }
+        });
     }
 
     @Subscribe
