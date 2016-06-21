@@ -951,4 +951,18 @@ function generateAngularForm(ospname){
     return schema;
 }
 
+
+function getOSPSettings(ospname){
+    return ospSettingsConfig[ospname];
+}
+
+
+function getOSPs(){
+    var osps = [];
+    for(var v in ospSettingsConfig){
+        osps.push(v);
+    }
+    return osps;
+}
+
 //console.log(generateAngularForm("facebook"));

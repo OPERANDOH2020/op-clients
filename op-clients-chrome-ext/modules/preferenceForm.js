@@ -11,9 +11,8 @@
  */
 
 
-angular.module('operando').controller('PreferenceController', function ($scope, $attrs) {
+angular.module('operando').controller('PreferenceController', ["$scope","$attrs","ModalService",function ($scope, $attrs, ModalService) {
     if ($attrs.socialNetwork) {
-        console.log($attrs.socialNetwork);
         $scope.schema = generateAngularForm($attrs.socialNetwork);
 
 
@@ -34,5 +33,17 @@ angular.module('operando').controller('PreferenceController', function ($scope, 
 
         $scope.model = {};
 
+        $scope.submitPreferences = function(){
+            ModalService.showModal({
+                templateUrl: '/operando/tpl/modals/not_implemented.html',
+                controller:function(){
+
+                }
+
+            }).then(function (modal) {
+                modal.element.modal();
+            });
+        }
+
     }
-});
+}]);

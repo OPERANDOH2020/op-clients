@@ -19,10 +19,13 @@
     <script type="text/javascript" src="/operando/directives/identities.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/directives/deals.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/directives/single-click-privacy.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/directives/notification.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/directives/osp-settings.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/apps/OperandoCore.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/services/messenger-service.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/apps/OperandoApp.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/controllers/appController.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/controllers/readSocialNetworkPrivacySettings.js" charset="utf-8"></script>
 
 
     <script type="text/javascript" src="/operando/utils/angular-sanitize/angular-sanitize.min.js" charset="utf-8"></script>
@@ -69,6 +72,7 @@
                 <li><a target-tab = "pfb_tab" >Deals</a></li>
                 <li><a target-tab = "identity_management_tab" >Identity Management</a></li>
                 <li><a target-tab = "extensions_tab">Extensions & Apps</a></li>
+                <li><a target-tab = "reading_settings_tab">READING SETTINGS</a></li>
             </ul>
 
         </div><!-- /.navbar-collapse -->
@@ -90,7 +94,10 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
                 <li class="active"><a href="#home" data-toggle="tab">Dashboard</a></li>
-                <li><a href="#notifications" data-toggle="tab">Notifications</a></li>
+                <li><a href="#notifications" data-toggle="tab">
+                    <span>Notifications</span>
+                    <notification-counter></notification-counter>
+                </a></li>
                 <li><a href="#privacy_wizard" data-toggle="tab">Privacy Wizard</a></li>
             </ul>
         </div>
@@ -172,35 +179,7 @@
                 </div>
                 <div class="tab-pane" id="notifications">
                     <h2>Notifications</h2>
-                    <div class="alert alert-warning fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-                        <strong>Warning!</strong> Indicates a warning that might need attention.
-                    </div>
-
-                    <div class="alert alert-danger fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-                        <strong>Danger!</strong> This alert box indicates a dangerous or potentially negative action.
-                    </div>
-
-
-                    <div class="alert alert-danger fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-                        <strong>Danger!</strong> This alert box indicates a dangerous or potentially negative action.
-                    </div>
-
-
-                    <div class="alert alert-danger fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-                        <strong>Danger!</strong> This alert box indicates a dangerous or potentially negative action.
-                    </div>
-
-
-                    <div class="alert alert-danger fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-                        <strong>Danger!</strong> This alert box indicates a dangerous or potentially negative action.
-                    </div>
-
-
+                   <notifications></notifications>
                 </div>
                 <div class="tab-pane" id="privacy_wizard">
                     <h2>Privacy Wizard</h2>
@@ -240,31 +219,31 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="facebook_preferences">
                     <div ng-controller="PreferenceController" class="preferences_form" social-network="facebook">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="linkedin_preferences">
                     <div ng-controller="PreferenceController" class="preferences_form" social-network="linkedin">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="twitter_preferences">
                     <div ng-controller="PreferenceController" class="preferences_form" social-network="twitter">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="google_preferences">
                     <div ng-controller="PreferenceController" class="preferences_form" social-network="google">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="instagram_preferences">
                     <div ng-controller="PreferenceController" class="preferences_form" social-network="instagram">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"></form>
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
                     </div>
                 </div>
             </div>
@@ -322,6 +301,25 @@
 
     </div>
     <!-- END PFB TAB-->
+
+    <div id="reading_settings_tab" class="content_tab">
+        <div ng-controller="readSocialNetworkPrivacySettings">
+
+            <div class="panel panel-primary" ng-repeat="osp in osps">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{osp.title}}</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <osp-settings config="osp.settings"></osp-settings>
+                    </div>
+
+                    <button ng-click = readSocialNetworkPrivacySettings('{{osp.title}}')>Read Settings</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </div>
 

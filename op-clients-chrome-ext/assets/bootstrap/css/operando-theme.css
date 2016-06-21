@@ -301,7 +301,7 @@ padding-left: 0px;
     float: right;
     margin-right:32px;
     position: absolute;
-    right: 0px;
+    right: 0;
     top:20px;
 }
 
@@ -344,7 +344,7 @@ padding-left: 0px;
     margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px;
+    right: 0;
 }
 
 .extension_left_ctn{
@@ -379,7 +379,7 @@ footer{
     border-bottom: 10px solid #fe9901;
     content: "";
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 50%;
     z-index: 110;
 }
@@ -479,7 +479,7 @@ footer{
     background:#fdfaef;
     padding-right: 0;
     margin-right: 0;
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 .content_tab .col-xs-9 {
@@ -549,7 +549,7 @@ footer{
 
 .pfb_logo{
     width:50%;
-    margin: 10% 25% 0% 25%;
+    margin: 10% 25% 0 25%;
 }
 
 .pfbdeal_website{
@@ -593,4 +593,18 @@ footer{
 
 .preferences_form{
     padding: 20px;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #f9e8d2;
+}
+
+.notification-counter {
+    padding: 6px 10px;
+    color: #FFF;
+    width: 15px;
+    background: #ec9422;
+    border-radius: 14px;
+    height: 10px;
 }
