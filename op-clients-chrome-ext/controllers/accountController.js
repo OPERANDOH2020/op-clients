@@ -10,7 +10,22 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-var ExtensionConfig = {
-    OPERANDO_SERVER_HOST:"localhost",
-    OPERANDO_SERVER_PORT:8080
-}
+
+angular.module("operando").
+controller("accountCtrl", ["$scope","messengerService", function($scope, messengerService){
+
+
+    messengerService.send("getCurrentUser",{}, function(user){
+        console.log(user);
+        $scope.user = user;
+        $scope.$apply();
+    });
+
+    $scope.changeEmail = function(){
+
+    }
+
+
+
+}]);
+

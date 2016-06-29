@@ -25,7 +25,7 @@ angular.module('osp', [])
 
 
             controller: function ($scope) {
-                console.log($scope.settingValue.name);
+                //console.log($scope.settingValue.name);
             },
             templateUrl: '/operando/tpl/osp/osp.html'
         }

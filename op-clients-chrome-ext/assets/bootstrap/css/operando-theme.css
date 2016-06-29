@@ -537,14 +537,23 @@ footer{
     transform: rotate(-3deg);
 }
 
-.active_deal{
-    width: 21%;
-    margin: 2%;
-    height: 21%;
+
+#pfbdeals_container table th{
+    text-align: center;
+}
+
+#pfbdeals_container table td.actions,
+#pfbdeals_container table td.supplier{
+    vertical-align: middle;
+}
+
+.pfbdeal{
+    width: 90%;
+    margin: 5%;
     background: #e8e8e8;
-    border-radius:5px;
     display: inline-block;
     float:left;
+    min-height: 170px;
 }
 
 .pfb_logo{
@@ -607,4 +616,14 @@ footer{
     background: #ec9422;
     border-radius: 14px;
     height: 10px;
+}
+
+#wrapper .input-group-btn button{
+    border-top-left-radius:0;
+    border-bottom-left-radius: 0;
+    border-color:#CCC;
+}
+
+#personal_details .row{
+    margin-top: 20px;
 }
