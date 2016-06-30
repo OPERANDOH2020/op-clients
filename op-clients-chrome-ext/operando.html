@@ -71,7 +71,7 @@
                 <li class="active"><a target-tab="home_tab">Home</a></li>
                 <li><a target-tab="preferences_tab" >Preferences</a></li>
                 <li><a target-tab="pfb_tab" >Deals</a></li>
-                <li><a target-tab="dashboard_tab" >Dashboard</a></li>
+                <!--<li><a target-tab="dashboard_tab" >Dashboard</a></li>-->
                 <li><a target-tab="identity_management_tab" >Identity Management</a></li>
                 <li><a target-tab="extensions_tab">Extensions & Apps</a></li>
                 <li><a target-tab="reading_settings_tab">READING SETTINGS</a></li>
@@ -168,6 +168,11 @@
 
                 <div class="tab-pane" id="blog">
                     <h2>Blog</h2>
+
+                    <div class="alert alert-info no-notification" role="alert">
+                        <h4>Stay tuned</h4>
+                        <p>New posts will be available soon!</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -298,8 +303,9 @@
 
                 <div class="tab-pane" id="mobile_preferences">
                     <h2>Mobile Settings</h2>
-                    <div ng-controller="PreferenceController" class="preferences_form" social-network="instagram">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
+                    <div class="alert alert-info no-notification" role="alert">
+                        <h4>No devices connected</h4>
+                        <p>Could not find a connected device with your account!</p>
                     </div>
                 </div>
             </div>
@@ -312,9 +318,9 @@
     <!--END PRIVACY-->
 
     <!-- DASHBOARD TAB -->
-    <div id="dashboard_tab" class="active content_tab" >
+    <!--<div id="dashboard_tab" class="active content_tab" >
         <h2>Dashboard</h2>
-    </div>
+    </div>-->
     <!-- END DASHBOARD TAB -->
 
     <!--IDENTIY MANANGEMENT-->
@@ -460,12 +466,19 @@
 
                 <div class="tab-pane" id="activity">
                     <h2>Activity</h2>
-                    <h4>Activity logs</h4>
+
+                    <div class="alert alert-info no-notification" role="alert">
+                        <h4>Activity logs</h4>
+                        <p>No activity logs recorded</p>
+                    </div>
                 </div>
 
                 <div class="tab-pane" id="billing">
                     <h2>Billing</h2>
-                    <h4>Invoices</h4>
+                    <div class="alert alert-info no-notification" role="alert">
+                        <h4>Invoices</h4>
+                        <p>No financial activity yet</p>
+                    </div>
                 </div>
 
             </div>

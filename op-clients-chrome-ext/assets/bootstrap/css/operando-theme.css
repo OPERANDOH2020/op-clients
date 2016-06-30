@@ -64,13 +64,16 @@ div.tab-content{
 }
 
 #dashboard_tab,
-#preferences_tab{
+#preferences_tab,
+#pfb_tab{
     display: block;
     background: #fdfaef;
 }
 
 #dashboard_tab:after,
-#preferences_tab:after{
+#preferences_tab:after,
+#pfb_tab:after{
+
     clear: both;
     display: block;
     content:"";
