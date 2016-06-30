@@ -43,6 +43,11 @@ files = [
 	"is_directory":1
 },
 {
+  "src": "build/override/manifest.json.tmpl",
+  "dest": "adblockpluschrome/buildtools/manifest.json.tmpl",
+  "is_directory":0
+},
+{
   "src": "build/override/metadata.common",
   "dest": "adblockpluschrome/metadata.common",
   "is_directory":0

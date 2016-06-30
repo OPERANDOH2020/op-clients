@@ -627,3 +627,25 @@ footer{
 #personal_details .row{
     margin-top: 20px;
 }
+
+.panel-group .panel-default .panel-heading {
+    background: #ec9422;
+    color: #FFF;
+}
+
+.panel-group .panel-default {
+    border: 1px solid #ec9422;
+}
+
+.panel-news .panel-body,
+.panel-notifications .panel-body{
+    max-height: calc(100% - 125px);
+    overflow-y: auto;
+}
+
+.alert.alert-info.no-notification
+{
+background: #f1ebdf;
+color: #654d14;
+border: none;
+}

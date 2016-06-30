@@ -21,6 +21,15 @@ angular.module('identities', [])
                 controller: function ($scope, ModalService) {
                     $scope.identities = [];
 
+
+
+                    messengerService.send("getCurrentUser",{}, function(user){
+                        console.log(user);
+                        $scope.user = user;
+                        $scope.$apply();
+                    });
+
+
                     var refreshIdentities = function () {
                         $scope.$apply();
                     }

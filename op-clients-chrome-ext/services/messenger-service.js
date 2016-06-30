@@ -40,9 +40,6 @@ operandoCore
 
         });
 
-        /*port.onDisconnect.addListener(function () {
-
-        });*/
 
         var on = function (event, callback) {
             if (!events[event]) {

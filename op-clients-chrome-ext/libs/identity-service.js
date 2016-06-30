@@ -108,10 +108,6 @@ var identityService = exports.identityService = {
         observer.remove_identity.error.push(error_callback);
     },
 
-    updateIdentity: function (identity) {
-
-
-    },
 
     listIdentities: function (callback) {
         var sessionId = Cookies.get("sessionId");
