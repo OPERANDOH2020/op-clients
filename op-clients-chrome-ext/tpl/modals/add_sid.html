@@ -7,13 +7,10 @@
             </div>
             <div class="modal-body">
                 <form name="addSidForm" class="clearfix">
-                    <div class="form-group col-lg-12">
-                        <label for="usr">Username:</label>
-                        <input type="text" class="form-control" id="usr" ng-model="identity.name"/>
-                    </div>
+
                     <div class="form-group col-lg-6">
-                        <label for="email">Email:</label>
-                        <input type="text" class="form-control" id="email"  disabled ng-model="identity.email" />
+                        <label for="email">Alias:</label>
+                        <input type="text" class="form-control" id="email"  ng-model="identity.name" ng-change="refreshSID()" />
                     </div>
 
                     <div class="form-group col-lg-1 email_at_sign">
@@ -22,9 +19,15 @@
 
                     <div class="form-group col-lg-5">
                         <label for="domain">Domain:</label>
-                        <select class="form-control" id="domain" ng-model="identity.domain" ng-change="refreshDomain()">
+                        <select class="form-control" id="domain" ng-model="identity.domain" ng-change="refreshSID()">
                             <option ng-repeat="domain in domains.availableDomains" value="{{domain.name}}">{{domain.name}}</option>
                         </select>
+                    </div>
+
+
+                    <div class="form-group col-lg-12">
+                        <label for="usr">Email:</label>
+                        <input type="text" class="form-control" id="usr" disabled ng-model="identity.email"/>
                     </div>
 
 

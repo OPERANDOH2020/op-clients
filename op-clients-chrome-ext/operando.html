@@ -1,6 +1,6 @@
 <html ng-app="operando">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/operando-theme.css">
     <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap-theme.min.css">
@@ -26,10 +26,12 @@
     <script type="text/javascript" src="/operando/apps/OperandoApp.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/controllers/appController.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/controllers/accountController.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/operando/controllers/readSocialNetworkPrivacySettings.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/controllers/readSocialNetworkPrivacySettings.js"
+            charset="utf-8"></script>
 
 
-    <script type="text/javascript" src="/operando/utils/angular-sanitize/angular-sanitize.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/utils/angular-sanitize/angular-sanitize.min.js"
+            charset="utf-8"></script>
     <script type="text/javascript" src="/operando/utils/tv4/tv4.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/utils/objectpath/ObjectPath.js"></script>
 
@@ -69,12 +71,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a target-tab="home_tab">Home</a></li>
-                <li><a target-tab="preferences_tab" >Preferences</a></li>
-                <li><a target-tab="pfb_tab" >Deals</a></li>
+                <li><a target-tab="preferences_tab">Preferences</a></li>
+                <li><a target-tab="pfb_tab">Deals</a></li>
                 <!--<li><a target-tab="dashboard_tab" >Dashboard</a></li>-->
-                <li><a target-tab="identity_management_tab" >Identity Management</a></li>
+                <li><a target-tab="identity_management_tab">Identity Management</a></li>
                 <li><a target-tab="extensions_tab">Extensions & Apps</a></li>
-                <li><a target-tab="reading_settings_tab">READING SETTINGS</a></li>
+                <!--<li><a target-tab="reading_settings_tab">READING SETTINGS</a></li>-->
                 <li><a target-tab="account_tab">Account</a></li>
             </ul>
 
@@ -88,7 +90,7 @@
 
     <!--Home-->
 
-    <div id="home_tab" class="active content_tab" >
+    <div id="home_tab" class="active content_tab">
 
         <div class="col-xs-3"> <!-- required for floating -->
 
@@ -121,21 +123,22 @@
                     <h2>Main</h2>
 
 
-
                     <div class="panel-group col-xs-6">
 
                         <div class="panel panel-default panel-news">
                             <div class="panel-heading">News</div>
                             <div class="panel-body">
 
-                                <a class="twitter-timeline" href="https://twitter.com/OperandoH2020">Tweets by OperandoH2020</a> <script async src="/operando/utils/widgets.js" charset="utf-8"></script>
+                                <a class="twitter-timeline" href="https://twitter.com/OperandoH2020">Tweets by
+                                    OperandoH2020</a>
+                                <script async src="/operando/utils/widgets.js" charset="utf-8"></script>
 
                             </div>
                         </div>
 
-                   </div>
+                    </div>
 
-                   <div class="panel-group col-xs-6">
+                    <div class="panel-group col-xs-6">
 
                         <div class="panel panel-default panel-notifications">
                             <div class="panel-heading">Notifications</div>
@@ -146,10 +149,7 @@
                             </div>
                         </div>
 
-                   </div>
-
-
-
+                    </div>
 
 
                 </div>
@@ -161,7 +161,8 @@
                     <h2>Privacy Wizard</h2>
 
                     <div ng-controller="QuestionnaireController">
-                        <form name="questionnaireform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitQuestionnaire()"></form>
+                        <form name="questionnaireform" sf-schema="schema" sf-form="form" sf-model="model"
+                              ng-submit="submitQuestionnaire()"></form>
                     </div>
 
                 </div>
@@ -171,6 +172,7 @@
 
                     <div class="alert alert-info no-notification" role="alert">
                         <h4>Stay tuned</h4>
+
                         <p>New posts will be available soon!</p>
                     </div>
                 </div>
@@ -178,13 +180,11 @@
         </div>
 
 
-
-
     </div>
     <!-- END Home-->
 
     <!--PRIVACY-->
-    <div id="preferences_tab" class="content_tab" >
+    <div id="preferences_tab" class="content_tab">
         <div class="col-xs-3"> <!-- required for floating -->
 
             <singleclickprivacy></singleclickprivacy>
@@ -205,29 +205,37 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="facebook_preferences">
                     <h2>Facebook Settings</h2>
+
                     <div ng-controller="PreferenceController" class="preferences_form" social-network="facebook">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"
+                              ng-submit="submitPreferences()"></form>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="linkedin_preferences">
                     <h2>Linkedin Settings</h2>
+
                     <div ng-controller="PreferenceController" class="preferences_form" social-network="linkedin">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"
+                              ng-submit="submitPreferences()"></form>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="twitter_preferences">
                     <h2>Twitter Settings</h2>
+
                     <div ng-controller="PreferenceController" class="preferences_form" social-network="twitter">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"
+                              ng-submit="submitPreferences()"></form>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="google_preferences">
                     <h2>Google Settings</h2>
+
                     <div ng-controller="PreferenceController" class="preferences_form" social-network="google">
-                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="submitPreferences()"></form>
+                        <form name="preferencesform" sf-schema="schema" sf-form="form" sf-model="model"
+                              ng-submit="submitPreferences()"></form>
                     </div>
                 </div>
 
@@ -247,7 +255,8 @@
 
 
                                         <div class="toggle">
-                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-malware">
+                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                                   id="toggle-malware">
                                             <label class="onoffswitch-label" for="toggle-malware">
                                                 <span class="onoffswitch-inner"></span>
                                                 <span class="onoffswitch-switch"></span>
@@ -266,7 +275,8 @@
                                         </div>
 
                                         <div class="toggle">
-                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-social">
+                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                                   id="toggle-social">
                                             <label class="onoffswitch-label" for="toggle-social">
                                                 <span class="onoffswitch-inner"></span>
                                                 <span class="onoffswitch-switch"></span>
@@ -285,7 +295,8 @@
                                         </div>
 
                                         <div class="toggle">
-                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-tracking">
+                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                                   id="toggle-tracking">
                                             <label class="onoffswitch-label" for="toggle-tracking">
                                                 <span class="onoffswitch-inner"></span>
                                                 <span class="onoffswitch-switch"></span>
@@ -303,13 +314,14 @@
 
                 <div class="tab-pane" id="mobile_preferences">
                     <h2>Mobile Settings</h2>
+
                     <div class="alert alert-info no-notification" role="alert">
                         <h4>No devices connected</h4>
+
                         <p>Could not find a connected device with your account!</p>
                     </div>
                 </div>
             </div>
-
 
 
         </div>
@@ -336,7 +348,6 @@
 
     <!-- PFB TAB-->
     <div id="pfb_tab" class="content_tab">
-
 
 
         <div class="col-xs-3"> <!-- required for floating -->
@@ -377,11 +388,10 @@
         </div>
 
 
-
     </div>
     <!-- END PFB TAB-->
 
-    <div id="reading_settings_tab" class="content_tab">
+    <!--<div id="reading_settings_tab" class="content_tab">
         <div ng-controller="readSocialNetworkPrivacySettings">
 
             <div class="panel panel-primary" ng-repeat="osp in osps">
@@ -398,9 +408,7 @@
             </div>
 
         </div>
-    </div>
-
-
+    </div>-->
 
 
     <!-- ACCOUNT TAB -->
@@ -429,34 +437,73 @@
 
                         <div class="col-lg-9">
                             <label>Email address (main identity)</label>
+
                             <div class="input-group">
-                                <input type="text" class="form-control" ng-model="user.email" disabled>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="button">Edit</button>
+                                <input type="email" class="form-control" ng-model="user.email"
+                                       ng-disabled="emailIsEditMode == false">
+                                <span class="input-group-btn" ng-switch on="emailIsEditMode">
+                                    <button ng-click="changeEmailState()" class="btn btn-secondary" type="button"
+                                            ng-switch-when="false">Edit
+                                    </button>
+                                    <button ng-click="changeEmailState()" class="btn btn-secondary" type="button"
+                                            ng-switch-when="true">Save
+                                    </button>
                                 </span>
                             </div>
                         </div>
 
                     </div>
                     <div class="row">
-                        <div class="col-lg-9">
-                            <label>Password</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control" value="************" disabled>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="button">Change</button>
+                        <div class="col-lg-9" ng-switch on="passwordIsEditMode">
+
+                            <div ng-switch-when="false">
+                                <label>Password</label>
+
+                                <div class="input-group">
+                                    <input type="password" class="form-control" value="************" disabled>
+
+                                <span class="input-group-btn" ng-switch on="passwordIsEditMode">
+                                    <button ng-click="changePassword()" class="btn btn-secondary" type="button">Change
+                                    </button>
                                 </span>
+                                </div>
+                            </div>
+
+                            <div ng-switch-when="true">
+                                <div>
+                                    <form>
+                                        <fieldset class="form-group">
+                                            <label>Change your password</label>
+                                            <input type="password" class="form-control" placeholder="Current password">
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <input type="password" class="form-control"  placeholder="New password">
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <input type="password" class="form-control"  placeholder="Repeat password">
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div>
+                                    <button ng-click="savePassword()" class="btn btn-secondary" type="button">Save
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
+
+
                     </div>
 
                     <div class="row">
                         <div class="col-lg-9">
                             <label>Phone number (for verification only, never disclosed to 3rd parties)</label>
+
                             <div class="input-group">
-                                <input type="text" class="form-control">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="button">Add</button>
+                                <input type="text" class="form-control" ng-disabled="phoneIsEditMode==false">
+                                <span class="input-group-btn" ng-switch on="phoneIsEditMode">
+                                        <button ng-switch-when="false" class="btn btn-secondary" type="button" ng-click="changePhoneState()">Change</button>
+                                        <button ng-switch-when="true" class="btn btn-secondary" type="button" ng-click="changePhoneState()">Add</button>
                                 </span>
                             </div>
                         </div>
@@ -469,14 +516,17 @@
 
                     <div class="alert alert-info no-notification" role="alert">
                         <h4>Activity logs</h4>
+
                         <p>No activity logs recorded</p>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="billing">
                     <h2>Billing</h2>
+
                     <div class="alert alert-info no-notification" role="alert">
                         <h4>Invoices</h4>
+
                         <p>No financial activity yet</p>
                     </div>
                 </div>
@@ -494,7 +544,10 @@
             <p id="text-address">
                 OPERANDO Consortium<br>
                 <img style="float:left;" alt="European Union" src="http://www.operando.eu/immagini/logo/eu.png">
-                <c>This work was supported by the European Commission under the Horizon 2020 Programme (H2020), as part of the OPERANDO project (GA no. 653704).</c></p>
+                <c>This work was supported by the European Commission under the Horizon 2020 Programme (H2020), as part
+                    of the OPERANDO project (GA no. 653704).
+                </c>
+            </p>
 
         </div>
     </div>

@@ -14,6 +14,9 @@
 angular.module("operando").
 controller("accountCtrl", ["$scope","messengerService", function($scope, messengerService){
 
+    $scope.emailIsEditMode = false;
+    $scope.passwordIsEditMode = false;
+    $scope.phoneIsEditMode = true;
 
     messengerService.send("getCurrentUser",{}, function(user){
         console.log(user);
@@ -21,8 +24,20 @@ controller("accountCtrl", ["$scope","messengerService", function($scope, messeng
         $scope.$apply();
     });
 
-    $scope.changeEmail = function(){
 
+    $scope.changeEmailState = function(){
+        $scope.emailIsEditMode = !$scope.emailIsEditMode;
+    }
+
+    $scope.changePassword = function () {
+        $scope.passwordIsEditMode = !$scope.passwordIsEditMode;
+    }
+
+    $scope.savePassword = function () {
+        $scope.passwordIsEditMode = !$scope.passwordIsEditMode;
+    }
+    $scope.changePhoneState = function(){
+        $scope.phoneIsEditMode = !$scope.phoneIsEditMode;
     }
 
 

@@ -93,14 +93,14 @@ angular.module('identities', [])
                                 $scope.generateIdentity = function(){
                                     messengerService.send("generateIdentity",{},function(generatedIdentity){
                                         console.log(generatedIdentity);
-                                        $scope.identity.email = generatedIdentity.email;
-                                        $scope.identity.name = $scope.identity.email+"@"+$scope.identity.domain;
+                                        $scope.identity.name = generatedIdentity.email;
+                                        $scope.identity.email = $scope.identity.name+"@"+$scope.identity.domain;
                                         $scope.$apply();
                                     })
                                 }
 
-                                $scope.refreshDomain = function(){
-                                    $scope.identity.name = $scope.identity.email+"@"+$scope.identity.domain;
+                                $scope.refreshSID = function(){
+                                    $scope.identity.email = $scope.identity.name+"@"+$scope.identity.domain;
                                 }
 
                                 $scope.close = function (result) {
