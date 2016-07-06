@@ -46,6 +46,21 @@ var increaseFacebookPrivacy = function () {
                 insertCSS(tab.id, "operando/assets/css/feedback.css");
                 injectScript(tab.id, "operando/apps/facebook.js", ["FeedbackProgress","jQuery"]);
             });
+
+
+            //TODO move this to background
+
+            chrome.runtime.onMessage.addListener(
+                function(request, sender, sendResponse) {
+                 if(sender.tab.id == tab.id){
+                     if(request.sender == "facebook"){
+
+
+                         chrome.tabs.update(tab.id,{url:"https://www.facebook.com/settings?tab=privacy"});
+                     }
+                 }
+                });
+
         });
     });
 }

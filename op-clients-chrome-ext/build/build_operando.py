@@ -73,11 +73,16 @@ files = [
   "dest": "adblockpluschrome/adblockplusui/firstRun.html",
   "is_directory":0
 },
-{
-  "src": "build/override/adblockplus/chrome/locale/en-US/meta.properties",
-  "dest": "adblockpluschrome/adblockplus/chrome/locale/en-US/meta.properties",
-  "is_directory":0
-}]
+ {
+   "src": "build/override/adblockplus/chrome/locale/en-US/meta.properties",
+   "dest": "adblockpluschrome/adblockplus/chrome/locale/en-US/meta.properties",
+   "is_directory":0
+ },
+  {
+    "src": "build/override/adblockplus/chrome/locale/ro/meta.properties",
+    "dest": "adblockpluschrome/adblockplus/chrome/locale/ro/meta.properties",
+    "is_directory":0
+  }]
 
 configFiles = [
     {

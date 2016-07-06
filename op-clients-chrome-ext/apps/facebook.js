@@ -200,7 +200,7 @@ function postToFacebook(settings, item, total) {
 
 }
 
-function secureAccount() {
+function secureAccount(callback) {
     var total = privacySettings.length;
     var sequence = Promise.resolve();
     privacySettings.forEach(function (settings, index) {
@@ -217,9 +217,17 @@ function secureAccount() {
         FeedbackProgress.clearFeedback("Facebook is now secured!");
     });
 
+    sequence = sequence.then(function (result) {
+       callback();
+    });
+
 }
 
-secureAccount();
+secureAccount(function(){
+    chrome.runtime.sendMessage({sender: "facebook", message:"settings_applied"}, function(response) {
+        console.log(response.farewell);
+    });
+});
 
 
 function doGET(page, callback) {
