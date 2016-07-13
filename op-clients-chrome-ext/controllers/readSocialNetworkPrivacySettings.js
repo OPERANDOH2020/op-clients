@@ -9,15 +9,6 @@ controller("readSocialNetworkPrivacySettings", ["$scope", function($scope){
             settings:getOSPSettings(osp)
         });
     });
-
-
-    $scope.readSocialNetworkPrivacySettings = function(osp){
-
-    alert("Reading settings: Not Implemented!");
-
-
-    };
-
 }]);
 
 

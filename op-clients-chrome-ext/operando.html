@@ -76,7 +76,7 @@
                 <!--<li><a target-tab="dashboard_tab" >Dashboard</a></li>-->
                 <li><a target-tab="identity_management_tab">Identity Management</a></li>
                 <li><a target-tab="extensions_tab">Extensions & Apps</a></li>
-                <!--<li><a target-tab="reading_settings_tab">READING SETTINGS</a></li>-->
+                <li><a target-tab="reading_settings_tab">READING SETTINGS</a></li>
                 <li><a target-tab="account_tab">Account</a></li>
             </ul>
 
@@ -391,7 +391,7 @@
     </div>
     <!-- END PFB TAB-->
 
-    <!--<div id="reading_settings_tab" class="content_tab">
+    <div id="reading_settings_tab" class="content_tab">
         <div ng-controller="readSocialNetworkPrivacySettings">
 
             <div class="panel panel-primary" ng-repeat="osp in osps">
@@ -403,12 +403,12 @@
                         <osp-settings config="osp.settings"></osp-settings>
                     </div>
 
-                    <button ng-click = readSocialNetworkPrivacySettings('{{osp.title}}')>Read Settings</button>
+                    <read-sn-settings osp="osp.title"></read-sn-settings>
                 </div>
             </div>
 
         </div>
-    </div>-->
+    </div>
 
 
     <!-- ACCOUNT TAB -->
