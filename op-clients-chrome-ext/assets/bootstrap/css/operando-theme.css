@@ -667,3 +667,7 @@ border: none;
     color:green;
     font-weight: bold;
 }
+
+#reading_settings_tab hr{
+    margin: 5px 0px;
+}

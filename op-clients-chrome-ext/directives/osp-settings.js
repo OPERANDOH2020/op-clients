@@ -63,7 +63,7 @@ angular.module('osp', [])
                                         }
                                         else {
                                             if (msg.status == "finishedCommand") {
-                                                chrome.tabs.remove(currentTab.id);
+                                                //chrome.tabs.remove(currentTab.id);
                                                 console.log(currentSetting);
                                                 $scope.$parent.$broadcast("received-setting",{settingKey: currentSetting.settingKey, settingValue: msg.result});
                                                 currentCallback();
@@ -80,35 +80,41 @@ angular.module('osp', [])
 
                     var queryPage = function(setting){
 
-                       return new Promise(function (resolve, reject) {
+                            return new Promise(function (resolve, reject) {
 
-                           chrome.tabs.create({url: setting.url,active:false}, function (tab) {
-                               currentSetting = setting;
-                               currentTab = tab;
+                                chrome.tabs.update(tabId,{url: setting.url}, function (tab) {
+                                    console.log(tab);
+                                    currentSetting = setting;
+                                    currentTab = tab;
 
-                               insertJavascriptFile(tab.id, "operando/utils/jquery-2.1.4.min.js", function () {
-                                   insertJavascriptFile(tab.id, "operando/modules/readSocialNetworkSettings.js", function () {
-                                       currentCallback = function () {
-                                           resolve("finishedCommand");
-                                       }
+                                    insertJavascriptFile(tab.id, "operando/utils/jquery-2.1.4.min.js", function () {
+                                        insertJavascriptFile(tab.id, "operando/modules/readSocialNetworkSettings.js", function () {
+                                            currentCallback = function () {
+                                                resolve("finishedCommand");
+                                            }
 
-                                   });
-                               });
-                           });
-                       });
+                                        });
+                                    });
+                                });
+                            });
+
                    }
 
                    var insertJavascriptFile = function(id, file, callback){
-                       chrome.tabs.executeScript(id, {
-                           file: file
-                       }, function () {
-                           if (chrome.runtime.lastError) {
-                               console.error(chrome.runtime.lastError.message);
-                           }
-                           else if (callback) {
-                               callback();
-                           }
-                       });
+                       console.log(id);
+                       setTimeout(function(){
+                           chrome.tabs.executeScript(id, {
+                               file: file
+                           }, function () {
+                               if (chrome.runtime.lastError) {
+                                   console.error(chrome.runtime.lastError.message);
+                               }
+                               else if (callback) {
+                                   callback();
+                               }
+                           });
+                       },500);
+
                    }
 
 
@@ -128,16 +134,28 @@ angular.module('osp', [])
                         }*/
                     }
 
-                    var sequence = Promise.resolve();
-                    settings_arr.forEach(function (setting) {
-                        sequence = sequence.then(function () {
-                            return queryPage(setting);
-                        }).then(function (result) {
-                            //console.log(result);
-                        }).catch(function (err) {
-                            console.log(err)
+                    var tabId = null;
+
+                    chrome.tabs.create({active:false},function(tab){
+                        tabId  = tab.id;
+
+
+                        var sequence = Promise.resolve();
+                        settings_arr.forEach(function (setting) {
+                            sequence = sequence.then(function () {
+                                return queryPage(setting);
+                            }).then(function (result) {
+                                //console.log(result);
+                            }).catch(function (err) {
+                                console.log(err)
+                            });
                         });
+
                     });
+
+
+
+
 
 
 
