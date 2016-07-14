@@ -14,7 +14,7 @@
 var ospSettingsConfig = {
 
     "facebook": {
-       "who_can_see_future_posts": {
+       who_can_see_future_posts: {
             read:{
                 name: "Who can see your future posts?",
                 url: "https://www.facebook.com/settings?tab=privacy",
@@ -25,7 +25,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-
+                recommended:"Friends"
             }
         },
         activity_log:{
@@ -52,7 +52,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Limit to Friends"
+                recommended:"Friends"
             }
         },
         limit_old_posts:{
@@ -65,7 +65,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Limit to Friends only"
+                recommended:"Friends"
             }
         },
         who_can_contact:{
@@ -74,7 +74,8 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:["Everyone","Friends of Friends", "Friends"],
                 jquery_selector:{
-
+                    element :".fbSettingsList:eq(1) .fbSettingsListItem:eq(0) ._nlm",
+                    valueType: "inner"
                 }
             },
             write:{
@@ -87,7 +88,8 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:["Friends of Friends", "Everyone"],
                 jquery_selector:{
-
+                    element: ".fbSettingsList:eq(2) .fbSettingsListItem:eq(0) ._nlm",
+                    valueType:"inner"
                 }
             },
             write:{
@@ -100,11 +102,12 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:["Friends of Friends", "Everyone"],
                 jquery_selector:{
-
+                    element:".fbSettingsList:eq(2) .fbSettingsListItem:eq(1) ._nlm",
+                    valueType: "inner"
                 }
             },
             write:{
-                recommended:"Limit to Friends"
+                recommended:"Friends"
             }
         },
         search_engine:{
@@ -113,7 +116,8 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:["Yes", "No"],
                 jquery_selector:{
-
+                    element:".fbSettingsList:eq(2) .fbSettingsListItem:eq(2) ._nlm",
+                    valueType: "inner"
                 }
             },
             write:{
@@ -126,11 +130,12 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=timeline",
                 availableSettings:["Only Me", "Friends"],
                 jquery_selector:{
-
+                    element: ".fbSettingsList:eq(0) .fbSettingsListItem:eq(0) ._nlm",
+                    valueType: "inner"
                 }
             },
             write:{
-                recommended:"Limit to yourself"
+                recommended:"Only Me"
             }
         },
         control_timeline:{
@@ -139,7 +144,8 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=timeline",
                 availableSettings:["Enabled", "Disabled"],
                 jquery_selector:{
-
+                    element:".fbSettingsList:eq(0) .fbSettingsListItem:eq(1) ._nlm",
+                    valueType: "inner"
                 }
             },
             write:{

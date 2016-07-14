@@ -655,3 +655,15 @@ background: #f1ebdf;
 color: #654d14;
 border: none;
 }
+
+/** READING SETTINGS**/
+
+.setting_is_invalid{
+    color:red;
+    font-weight: bold;
+}
+
+.setting_is_valid{
+    color:green;
+    font-weight: bold;
+}
