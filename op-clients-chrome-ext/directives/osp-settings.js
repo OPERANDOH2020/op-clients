@@ -49,10 +49,11 @@ angular.module('osp', [])
             controller: function ($scope) {
                 $scope.readSocialNetworkPrivacySettings = function(){
 
-
+                    var port = null;
                     (function () {
-                        chrome.runtime.onConnect.addListener(function (port) {
+                        chrome.runtime.onConnect.addListener(function (_port) {
 
+                            port =_port;
 
                                 if (port.name == "getSNSettings") {
                                     port.onMessage.addListener(function (msg) {
@@ -76,33 +77,33 @@ angular.module('osp', [])
                         });
                     })();
 
-
+                    var currentTabUrl = null;
 
                     var queryPage = function(setting){
 
                             return new Promise(function (resolve, reject) {
-
-                                chrome.tabs.update(tabId,{url: setting.url}, function (tab) {
-                                    console.log(tab);
-                                    currentSetting = setting;
-                                    currentTab = tab;
-
-                                    insertJavascriptFile(tab.id, "operando/utils/jquery-2.1.4.min.js", function () {
-                                        insertJavascriptFile(tab.id, "operando/modules/readSocialNetworkSettings.js", function () {
-                                            currentCallback = function () {
-                                                resolve("finishedCommand");
-                                            }
-
-                                        });
+                                if (currentTabUrl == setting.url) {
+                                    port.postMessage({command: "scan", setting: setting});
+                                }
+                                else {
+                                    chrome.tabs.update(tabId, {url: setting.url}, function (tab) {
+                                        currentTab = tab;
                                     });
-                                });
+                                }
+
+                                currentCallback = function () {
+                                    resolve("finishedCommand");
+                                }
+
+                                currentSetting = setting;
+                                currentTabUrl = setting.url;
+
                             });
 
                    }
 
                    var insertJavascriptFile = function(id, file, callback){
-                       console.log(id);
-                       setTimeout(function(){
+
                            chrome.tabs.executeScript(id, {
                                file: file
                            }, function () {
@@ -113,7 +114,6 @@ angular.module('osp', [])
                                    callback();
                                }
                            });
-                       },500);
 
                    }
 
@@ -151,6 +151,18 @@ angular.module('osp', [])
                             });
                         });
 
+                    });
+
+
+
+
+                    chrome.tabs.onUpdated.addListener(function(tabId, changeInfo){
+                        if(tabId == currentTab.id && changeInfo.status == "complete"){
+                            insertJavascriptFile(currentTab.id, "operando/utils/jquery-2.1.4.min.js", function () {
+                                insertJavascriptFile(currentTab.id, "operando/modules/readSocialNetworkSettings.js", function () {
+                                });
+                            });
+                        }
                     });
 
 

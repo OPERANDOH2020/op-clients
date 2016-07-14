@@ -2,7 +2,7 @@ var port = chrome.runtime.connect({name: "getSNSettings"});
 port.postMessage({status: "waitingCommand"});
 port.onMessage.addListener(function (msg) {
     if (msg.command == "scan") {
-        console.log(msg);
+        console.log("SCAN RECEIVED");
 
         var jquery_selector = msg.setting.jquery_selector;
         var setting = null;
