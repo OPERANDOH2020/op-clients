@@ -72,14 +72,14 @@ var ospSettingsConfig = {
             read:{
                 name: "Choose who can contact you/send you friend requests",
                 url: "https://www.facebook.com/settings?tab=privacy",
-                availableSettings:["Everyone","Friends of Friends", "Friends"],
+                availableSettings:["Everyone","Friends of Friends"],
                 jquery_selector:{
                     element :".fbSettingsList:eq(1) .fbSettingsListItem:eq(0) ._nlm",
                     valueType: "inner"
                 }
             },
             write:{
-                recommended:"Limit to Friends of Friends"
+                recommended:"Friends of Friends"
             }
         },
         lookup_email:{
@@ -468,7 +468,7 @@ var ospSettingsConfig = {
                 recommended:"Pause"
             }
         },
-        keep_youtube_searches:{
+        keep_youtube_search:{
             read:{
                 name: "Allow/disallow Google selling your interest data to ad networks ",
                 url: "https://www.google.com/settings/u/0/ads/authenticated",

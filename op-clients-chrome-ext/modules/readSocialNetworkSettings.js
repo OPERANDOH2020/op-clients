@@ -19,7 +19,7 @@ port.onMessage.addListener(function (msg) {
         }
         console.log(setting);
 
-        port.postMessage({status: "finishedCommand", result: setting});
+        port.postMessage({status: "finishedCommand", settingKey:msg.setting.settingKey, settingValue:setting});
     }
 });
 

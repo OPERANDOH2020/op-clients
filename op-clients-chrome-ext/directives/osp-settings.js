@@ -50,44 +50,40 @@ angular.module('osp', [])
                 $scope.readSocialNetworkPrivacySettings = function(){
 
                     var port = null;
-                    (function () {
-                        chrome.runtime.onConnect.addListener(function (_port) {
-
-                            port =_port;
-
-                                if (port.name == "getSNSettings") {
-                                    port.onMessage.addListener(function (msg) {
-                                        if (msg.status == "waitingCommand") {
-                                            if(currentSetting!== undefined){
-                                                port.postMessage({command: "scan", setting: currentSetting});
-                                            }
-                                        }
-                                        else {
-                                            if (msg.status == "finishedCommand") {
-                                                //chrome.tabs.remove(currentTab.id);
-                                                console.log(currentSetting);
-                                                $scope.$parent.$broadcast("received-setting",{settingKey: currentSetting.settingKey, settingValue: msg.result});
-                                                currentCallback();
-                                            }
-                                        }
-                                    })
-
-                                }
-
-                        });
-                    })();
-
                     var currentTabUrl = null;
+                    var tabId = null;
+                    var tabIsNew = true;
+
+                    var snSettings = ospSettingsConfig[$scope.osp];
+                    var settings_arr = []
+
+                    for(var key in snSettings){
+
+                        var currentSetting = snSettings[key]["read"];
+
+                        currentSetting.settingKey = key;
+                        settings_arr.push(currentSetting);
+
+                        /*if(Object.keys(currentSetting.jquery_selector).length !== 0){
+                         currentSetting.settingKey = key;
+                         settings_arr.push(currentSetting);
+                         }*/
+                    }
+
+
 
                     var queryPage = function(setting){
 
                             return new Promise(function (resolve, reject) {
                                 if (currentTabUrl == setting.url) {
+                                    tabIsNew = false;
+                                    console.log("URA");
                                     port.postMessage({command: "scan", setting: setting});
                                 }
                                 else {
                                     chrome.tabs.update(tabId, {url: setting.url}, function (tab) {
                                         currentTab = tab;
+                                        tabIsNew = true;
                                     });
                                 }
 
@@ -118,58 +114,61 @@ angular.module('osp', [])
                    }
 
 
-                    var snSettings = ospSettingsConfig[$scope.osp];
-
-                    var settings_arr = []
-                    for(var key in snSettings){
-
-                        var currentSetting = snSettings[key]["read"];
-
-                        currentSetting.settingKey = key;
-                        settings_arr.push(currentSetting);
-
-                        /*if(Object.keys(currentSetting.jquery_selector).length !== 0){
-                            currentSetting.settingKey = key;
-                            settings_arr.push(currentSetting);
-                        }*/
-                    }
-
-                    var tabId = null;
 
                     chrome.tabs.create({active:false},function(tab){
                         tabId  = tab.id;
-
-
                         var sequence = Promise.resolve();
                         settings_arr.forEach(function (setting) {
                             sequence = sequence.then(function () {
                                 return queryPage(setting);
                             }).then(function (result) {
-                                //console.log(result);
+                                console.log(result);
                             }).catch(function (err) {
                                 console.log(err)
                             });
                         });
 
+                        sequence = sequence.then(function(){
+                            chrome.tabs.remove(tabId);
+                            port.disconnect();
+                        });
+
                     });
 
 
+                    chrome.runtime.onConnect.addListener(function (_port) {
+
+                        port =_port;
+
+                        if (port.name == "getSNSettings") {
+                            port.onMessage.addListener(function (msg) {
+                                if (msg.status == "waitingCommand") {
+                                    if(currentSetting!== undefined){
+                                        port.postMessage({command: "scan", setting: currentSetting});
+                                    }
+                                }
+                                else {
+                                    if (msg.status == "finishedCommand") {
+                                        $scope.$parent.$broadcast("received-setting",{settingKey: msg.settingKey, settingValue: msg.settingValue});
+                                        console.log(msg.settingValue);
+                                        currentCallback();
+                                    }
+                                }
+                            })
+
+                        }
+
+                    });
 
 
                     chrome.tabs.onUpdated.addListener(function(tabId, changeInfo){
-                        if(tabId == currentTab.id && changeInfo.status == "complete"){
+                        if(tabId == currentTab.id && changeInfo.status == "complete" && tabIsNew == true){
                             insertJavascriptFile(currentTab.id, "operando/utils/jquery-2.1.4.min.js", function () {
                                 insertJavascriptFile(currentTab.id, "operando/modules/readSocialNetworkSettings.js", function () {
                                 });
                             });
                         }
                     });
-
-
-
-
-
-
 
                 }
             },
