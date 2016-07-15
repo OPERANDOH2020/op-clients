@@ -19,7 +19,6 @@ controller("accountCtrl", ["$scope","messengerService", function($scope, messeng
     $scope.phoneIsEditMode = true;
 
     messengerService.send("getCurrentUser",{}, function(user){
-        console.log(user);
         $scope.user = user;
         $scope.$apply();
     });

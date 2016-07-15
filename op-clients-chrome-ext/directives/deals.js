@@ -30,9 +30,6 @@ angular.module('pfbdeals', [])
                 controller: function ($scope, $element, $attrs) {
                     $scope.deals = [];
 
-                    console.log($scope.dealsType);
-
-
                     if ($scope.dealsType == "available-deals") {
                         messengerService.send("listPfbDeals", {}, function (pfbdeals) {
 

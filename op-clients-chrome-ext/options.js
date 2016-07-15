@@ -207,7 +207,6 @@ function insertCSS(id, file){
     }
     function updateToggleButton(feature, isEnabled)
     {
-        console.log(feature, isEnabled);
         var button = E("toggle-" + feature);
         if (isEnabled)
             button.checked = true;

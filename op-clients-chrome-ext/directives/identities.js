@@ -24,7 +24,6 @@ angular.module('identities', [])
 
 
                     messengerService.send("getCurrentUser",{}, function(user){
-                        console.log(user);
                         $scope.user = user;
                         $scope.$apply();
                     });

@@ -28,7 +28,7 @@ var ospSettingsConfig = {
                 recommended:"Friends"
             }
         },
-        activity_log:{
+        /*activity_log:{
             read:{
                 name: "Keep/delete your activity log",
                 url: "https://www.facebook.com/settings?tab=privacy",
@@ -41,7 +41,7 @@ var ospSettingsConfig = {
             write:{
                 recommended:"Delete"
             }
-        },
+        },*/
         friends_of_friends:{
             read:{
                 name: "Choose if only Friends or also Friends of Friends can see your Facebook data",
@@ -55,7 +55,7 @@ var ospSettingsConfig = {
                 recommended:"Friends"
             }
         },
-        limit_old_posts:{
+        /*limit_old_posts:{
             read:{
                 name: "Limit (or not) viewing content on your timeline you have shared with Friends of Friends or Public, to Friends only.",
                 url: "https://www.facebook.com/settings?tab=privacy",
@@ -67,7 +67,7 @@ var ospSettingsConfig = {
             write:{
                 recommended:"Friends"
             }
-        },
+        },*/
         who_can_contact:{
             read:{
                 name: "Choose who can contact you/send you friend requests",
