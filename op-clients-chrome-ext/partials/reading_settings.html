@@ -1,0 +1,20 @@
+<!-- READING SETTINGS-->
+<div id="reading_settings_tab">
+    <div ng-controller="readSocialNetworkPrivacySettings">
+
+        <div class="panel panel-primary" ng-repeat="osp in osps">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{osp.title}}</h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <osp-settings config="osp.settings"></osp-settings>
+                </div>
+
+                <read-sn-settings osp="osp.title"></read-sn-settings>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- END READING SETTINGS-->

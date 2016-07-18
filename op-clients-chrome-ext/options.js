@@ -213,7 +213,7 @@ function insertCSS(id, file){
         else
             button.checked = false;
     }
-    document.addEventListener("DOMContentLoaded", onDOMLoaded, false);
+    //document.addEventListener("DOMContentLoaded", onDOMLoaded, false);
 })();
 
 

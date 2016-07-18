@@ -105,7 +105,7 @@ angular.module('notifications').
     })
     .directive('notification', function () {
         return {
-            require: "^notifications",
+
             restrict: 'E',
             replace: true,
             scope: {notification: "="},

@@ -4,7 +4,7 @@
 
 {
   "manifest_version": 2,
-  "content_security_policy": "media-src 'self' https://platform.twitter.com/js/*; object-src 'self' https://platform.twitter.com/js/*; script-src https://*.twitter.com",
+  "content_security_policy": "media-src 'self' https://platform.twitter.com/js/*; object-src 'self' https://platform.twitter.com/js/*; script-src https://*.twitter.com 'unsafe-eval'",
   {%- if releaseBuild %}
   "name": "__MSG_name__",
   {%- else %}
