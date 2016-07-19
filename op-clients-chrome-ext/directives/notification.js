@@ -121,7 +121,7 @@ angular.module('notifications').
             },
             templateUrl: '/operando/tpl/notifications/notification.html'
         }
-    })
+    });
 
 
 

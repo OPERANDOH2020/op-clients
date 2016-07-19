@@ -118,6 +118,12 @@ operando/swarms.js = operando/services/swarm-services/socket.io-1.0.6.js
                   operando/services/swarm-services/SwarmClient.js
                   operando/services/swarm-services/SwarmHub.js
                   operando/util/Config.js
+operando/directives.js = operando/directives/deals.js
+                  operando/directives/extensions.js
+                  operando/directives/identities.js
+                  operando/directives/notification.js
+                  operando/directives/osp-settings.js
+                  operando/directives/single-click-privacy.js
 
 ext/background.js = ext/background.js chrome/ext/background.js --arg brace_style=expand
 include.postload.js = subscriptionLink.postload.js composer.postload.js
