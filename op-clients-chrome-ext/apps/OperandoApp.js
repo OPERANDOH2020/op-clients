@@ -53,7 +53,12 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
 
         .state('preferences', {
             url: "/preferences",
+            abstract:true,
             templateUrl: "partials/preferences.html"
+        })
+        .state('preferences.facebook', {
+            url: "/facebook",
+            templateUrl: "partials/preferences/facebook.html"
         })
         .state('preferences.linkedin', {
             url: "/linkedin",
@@ -78,11 +83,7 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         .state('deals', {
             url: "/deals",
             templateUrl: "partials/deals.html",
-            controller: function($state) {
-                $state.go(".availableOffers",{},{
-
-                });
-            }
+            abstract:true,
         })
         .state('deals.availableOffers', {
             url: "/offers",
@@ -106,6 +107,7 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         })
         .state('account', {
             url: "/account",
+            abstract:true,
             templateUrl: "partials/user_account.html"
         })
         .state('account.personal-details', {

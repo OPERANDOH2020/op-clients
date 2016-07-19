@@ -73,12 +73,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li ui-sref-active="active"><a ui-sref="home"> Home</a></li>
-                <li ui-sref-active="active"><a ui-sref="preferences">Preferences</a></li>
-                <li ui-sref-active="active"><a ui-sref="deals">Deals</a></li>
+                <li ng-class="{active: $state.includes('preferences')}"><a ui-sref="preferences.facebook">Preferences</a></li>
+                <li ui-sref-active="active"><a ui-sref="deals.availableOffers">Deals</a></li>
                 <li ui-sref-active="active"><a ui-sref="identityManagement">Identity Management</a></li>
                 <li ui-sref-active="active"><a ui-sref="extensions">Extensions & Apps</a></li>
                 <li ui-sref-active="active"><a ui-sref="reading-settings">READING SETTINGS</a></li>
-                <li ui-sref-active="active"><a ui-sref="account">Account</a></li>
+                <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a></li>
             </ul>
 
         </div><!-- /.navbar-collapse -->
