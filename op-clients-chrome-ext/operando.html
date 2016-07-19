@@ -8,8 +8,11 @@
     <script type="text/javascript" src="/operando/assets/bootstrap/js/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="/operando/assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/operando/assets/bootstrap/js/jquery.bootstrap.wizard.js"></script>
+
     <!--<script type="text/javascript" src="/operando/assets/bootstrap/js/operando-theme.js"></script>-->
+
     <script type="text/javascript" src="/operando/utils/angular.min.js"></script>
+    <script type="text/javascript" src="/operando/utils/oc-lazy-load/ocLazyLoad.min.js"></script>
     <script type="text/javascript" src="/operando/utils/ui-router/angular-ui-router.js"></script>
 
     <script type="text/javascript" src="/operando/utils/angular-modal-service.js"></script>
@@ -27,9 +30,6 @@
     <script type="text/javascript" src="/operando/services/messenger-service.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/apps/OperandoApp.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/controllers/appController.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/operando/controllers/accountController.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/operando/controllers/readSocialNetworkPrivacySettings.js"
-            charset="utf-8"></script>
 
 
     <script type="text/javascript" src="/operando/utils/angular-sanitize/angular-sanitize.min.js"
@@ -40,11 +40,8 @@
     <script type="text/javascript" src="/operando/modules/schema-form.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/assets/bootstrap/js/bootstrap-decorator.min.js"></script>
 
-    <script type="text/javascript" src="/operando/modules/wizard-questionnaire.js" charset="utf-8"></script>
-
     <script type="text/javascript" src="/operando/util/computePrivacyPollution.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/util/OSP.Settings.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/operando/modules/preferenceForm.js" charset="utf-8"></script>
 
     <script type="text/javascript" src="../ext/common.js"></script>
     <script type="text/javascript" src="../ext/content.js"></script>
@@ -86,14 +83,13 @@
 </nav>
 
 
+
 <div id="wrapper">
-
     <div ui-view></div>
-
 </div>
 
-<footer>
 
+<footer>
     <div id="footer-copyright">
         <div id="footer-copyright-content" class="clearfix">
             <p id="text-address">
@@ -106,7 +102,6 @@
 
         </div>
     </div>
-
 </footer>
 </body>
 </html>

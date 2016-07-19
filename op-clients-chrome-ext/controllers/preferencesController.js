@@ -10,11 +10,9 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-
-angular.module('operando').controller('PreferenceController', ["$scope","$attrs","ModalService",function ($scope, $attrs, ModalService) {
+angular.module('operando').controller('PreferencesController', ["$scope", "$attrs", "ModalService", function ($scope, $attrs, ModalService) {
     if ($attrs.socialNetwork) {
         $scope.schema = generateAngularForm($attrs.socialNetwork);
-
 
         $scope.form = [];
         for (var key in $scope.schema.properties) {
@@ -33,13 +31,12 @@ angular.module('operando').controller('PreferenceController', ["$scope","$attrs"
 
         $scope.model = {};
 
-        $scope.submitPreferences = function(){
+        $scope.submitPreferences = function () {
             ModalService.showModal({
                 templateUrl: '/operando/tpl/modals/not_implemented.html',
-                controller:function(){
+                controller: function () {
 
                 }
-
             }).then(function (modal) {
                 modal.element.modal();
             });

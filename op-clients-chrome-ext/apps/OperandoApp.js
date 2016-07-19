@@ -10,7 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module('operando', ['extensions','identities','pfbdeals','singleClickPrivacy','notifications','osp','angularModalService','operandoCore','schemaForm','ui.router'])
+angular.module('operando', ['extensions','identities','pfbdeals','singleClickPrivacy','notifications','osp','angularModalService','operandoCore','schemaForm','ui.router','oc.lazyLoad'])
 .config( [
     '$compileProvider',
     function( $compileProvider )
@@ -40,7 +40,12 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         })
         .state("home.privacyQuestionnaire",{
             url:"/privacy-questionnaire",
-            templateUrl:"partials/home/privacy_questionnaire.html"
+            templateUrl:"partials/home/privacy_questionnaire.html",
+            resolve:{
+                loadController:['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('/operando/controllers/questionnaireController.js');
+                }]
+            }
         })
         .state("home.notifications",{
             url:"/notifications",
@@ -54,7 +59,12 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         .state('preferences', {
             url: "/preferences",
             abstract:true,
-            templateUrl: "partials/preferences.html"
+            templateUrl: "partials/preferences.html",
+            resolve:{
+                loadController:['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('/operando/controllers/preferencesController.js');
+                }]
+            }
         })
         .state('preferences.facebook', {
             url: "/facebook",
@@ -103,7 +113,12 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         })
         .state('reading-settings', {
             url: "/reading-settings",
-            templateUrl: "partials/reading_settings.html"
+            templateUrl: "partials/reading_settings.html",
+            resolve:{
+                loadController:['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('/operando/controllers/readSocialNetworkPrivacySettings.js');
+                }]
+            }
         })
         .state('account', {
             url: "/account",
@@ -112,7 +127,12 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         })
         .state('account.personal-details', {
             url: "/personal-details",
-            templateUrl: "partials/account/personal_details.html"
+            templateUrl: "partials/account/personal_details.html",
+            resolve:{
+                loadController:['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('/operando/controllers/accountController.js');
+                }]
+            }
         })
         .state('account.activity', {
             url: "/activity",
