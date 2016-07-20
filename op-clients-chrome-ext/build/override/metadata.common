@@ -37,7 +37,7 @@ testScripts = ../ext/common.js
   tests/cssEscaping.js
 permissions = http://*/* https://*/*
 
-webAccessible = operando/icons/operando_24.png
+webAccessible = operando/assets/images/icons/operando_24.png
 
 [contentScripts]
 document_start = ext/common.js ext/content.js cssProperties.js include.preload.js
@@ -124,6 +124,14 @@ operando/directives.js = operando/directives/deals.js
                   operando/directives/notification.js
                   operando/directives/osp-settings.js
                   operando/directives/single-click-privacy.js
+                  operando/directives/abp_data_leakage_prevention.js
+
+operando/schema-form.js =operando/utils/angular-sanitize/angular-sanitize.min.js
+                   operando/utils/schema-form/tv4/tv4.js
+                   operando/utils/schema-form/objectpath/ObjectPath.js
+                   operando/utils/schema-form/schema-form.min.js
+                   operando/utils/schema-form/decorator/bootstrap-decorator.min.js
+
 
 ext/background.js = ext/background.js chrome/ext/background.js --arg brace_style=expand
 include.postload.js = subscriptionLink.postload.js composer.postload.js

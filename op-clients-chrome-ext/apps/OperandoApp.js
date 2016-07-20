@@ -10,7 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module('operando', ['extensions','identities','pfbdeals','singleClickPrivacy','notifications','osp','angularModalService','operandoCore','schemaForm','ui.router','oc.lazyLoad'])
+angular.module('operando', ['extensions','identities','pfbdeals','singleClickPrivacy','notifications','osp','angularModalService','operandoCore','schemaForm','abp','ui.router','oc.lazyLoad'])
 .config( [
     '$compileProvider',
     function( $compileProvider )
@@ -27,20 +27,25 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
             $rootScope.$stateParams = $stateParams;
         }
     ])
-    .config(function($stateProvider, $urlRouterProvider) {
-    //
-    // For any unmatched url, redirect to /state1
+    .config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+
+        $ocLazyLoadProvider.config({
+            debug: true,
+            serie: true
+        });
+
+        // For any unmatched url, redirect to /home
     $urlRouterProvider.otherwise("/home");
-    //
+
     // Now set up the states
     $stateProvider
         .state('home', {
             url: "/home",
-            templateUrl: "partials/home.html",
+            templateUrl: "views/home.html",
         })
         .state("home.privacyQuestionnaire",{
             url:"/privacy-questionnaire",
-            templateUrl:"partials/home/privacy_questionnaire.html",
+            templateUrl:"views/home/privacy_questionnaire.html",
             resolve:{
                 loadController:['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('/operando/controllers/questionnaireController.js');
@@ -49,17 +54,17 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         })
         .state("home.notifications",{
             url:"/notifications",
-            templateUrl:"partials/home/notifications.html"
+            templateUrl:"views/home/notifications.html"
         })
         .state("home.blog",{
             url:"/blog",
-            templateUrl:"partials/home/blog.html"
+            templateUrl:"views/home/blog.html"
         })
 
         .state('preferences', {
             url: "/preferences",
             abstract:true,
-            templateUrl: "partials/preferences.html",
+            templateUrl: "views/preferences.html",
             resolve:{
                 loadController:['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('/operando/controllers/preferencesController.js');
@@ -68,52 +73,60 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         })
         .state('preferences.facebook', {
             url: "/facebook",
-            templateUrl: "partials/preferences/facebook.html"
+            templateUrl: "views/preferences/facebook.html"
         })
         .state('preferences.linkedin', {
             url: "/linkedin",
-            templateUrl: "partials/preferences/linkedin.html"
+            templateUrl: "views/preferences/linkedin.html"
         })
         .state('preferences.twitter', {
             url: "/twitter",
-            templateUrl: "partials/preferences/twitter.html"
+            templateUrl: "views/preferences/twitter.html"
         })
         .state('preferences.google', {
             url: "/google",
-            templateUrl: "partials/preferences/google.html"
+            templateUrl: "views/preferences/google.html"
         })
         .state('preferences.abp', {
             url: "/abp",
-            templateUrl: "partials/preferences/abp.html"
+            templateUrl: "views/preferences/abp.html",
+            resolve:{
+                loadScript:['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        ['../ext/common.js',
+                    '../ext/content.js',
+                    '../common.js']);
+                }]
+            }
         })
         .state('preferences.mobile', {
             url: "/mobile",
-            templateUrl: "partials/preferences/mobile.html"
+            templateUrl: "views/preferences/mobile.html"
         })
         .state('deals', {
             url: "/deals",
-            templateUrl: "partials/deals.html",
+            templateUrl: "views/deals.html",
             abstract:true,
         })
         .state('deals.availableOffers', {
             url: "/offers",
-            templateUrl: "partials/deals/available_offers.html"
+            templateUrl: "views/deals/available_offers.html"
         })
         .state('deals.myDeals', {
             url: "/my-deals",
-            templateUrl: "partials/deals/my_deals.html"
+            templateUrl: "views/deals/my_deals.html"
         })
         .state('identityManagement', {
             url: "/identity_management",
-            templateUrl: "partials/identity_management.html"
+            templateUrl: "views/identity_management.html"
         })
         .state('extensions', {
             url: "/extensions",
-            templateUrl: "partials/extensions.html"
+            templateUrl: "views/extensions.html"
         })
         .state('reading-settings', {
             url: "/reading-settings",
-            templateUrl: "partials/reading_settings.html",
+            templateUrl: "views/reading_settings.html",
             resolve:{
                 loadController:['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('/operando/controllers/readSocialNetworkPrivacySettings.js');
@@ -123,11 +136,11 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         .state('account', {
             url: "/account",
             abstract:true,
-            templateUrl: "partials/user_account.html"
+            templateUrl: "views/user_account.html"
         })
         .state('account.personal-details', {
             url: "/personal-details",
-            templateUrl: "partials/account/personal_details.html",
+            templateUrl: "views/account/personal_details.html",
             resolve:{
                 loadController:['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load('/operando/controllers/accountController.js');
@@ -136,10 +149,12 @@ angular.module('operando', ['extensions','identities','pfbdeals','singleClickPri
         })
         .state('account.activity', {
             url: "/activity",
-            templateUrl: "partials/account/activity.html"
+            templateUrl: "views/account/activity.html"
         })
         .state('account.billing', {
             url: "/billing",
-            templateUrl: "partials/account/billing.html"
+            templateUrl: "views/account/billing.html"
         });
 });
+
+

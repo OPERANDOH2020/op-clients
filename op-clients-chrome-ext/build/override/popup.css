@@ -399,27 +399,27 @@ label
 }
 
 .operando_wrapper ul > li > div.item_icon.user_icon{
-  background: url(../operando/icons/48X48_OP_User.png) no-repeat left center;
+  background: url(../operando/assets/images/icons/48X48_OP_User.png) no-repeat left center;
 }
 
 .operando_wrapper ul > li > div.item_icon.privacy_issues_icon{
-  background: url(../operando/icons/48X48_OP_Privacy_Issues.png) no-repeat left center;
+  background: url(../operando/assets/images/icons/48X48_OP_Privacy_Issues.png) no-repeat left center;
 }
 
 .operando_wrapper ul > li > div.item_icon.privacy_settings_icon{
-  background: url(../operando/icons/48X48_OP_Privacy_Settings.png) no-repeat left center;
+  background: url(../operando/assets/images/icons/48X48_OP_Privacy_Settings.png) no-repeat left center;
 }
 
 .operando_wrapper ul > li > div.item_icon.dashboard_icon{
-  background: url(../operando/icons/48X48_OP_Dashboard.png) no-repeat left center;
+  background: url(../operando/assets/images/icons/48X48_OP_Dashboard.png) no-repeat left center;
 }
 
 .operando_wrapper ul > li > div.item_icon.abp_icon{
-  background: url(../operando/icons/48X48_OP_ABP.png) no-repeat left center;
+  background: url(../operando/assets/images/icons/48X48_OP_ABP.png) no-repeat left center;
 }
 
 .operando_wrapper ul > li > div.item_icon.about_icon{
-  background: url(../operando/icons/operando_logo.png) no-repeat left center;
+  background: url(../operando/assets/images/icons/operando_logo.png) no-repeat left center;
 }
 
 .operando_wrapper ul > li .right_content{
@@ -509,10 +509,10 @@ div#expand_abp{
   width:11px;
   height:11px;
   display: block;
-  background: url(../operando/icons/collapsed.png) no-repeat left center;
+  background: url(../operando/assets/images/icons/collapsed.png) no-repeat left center;
 }
 div#expand_abp.expanded{
-  background: url(../operando/icons/expanded.png) no-repeat left center;
+  background: url(../operando/assets/images/icons/expanded.png) no-repeat left center;
 }
 
 #share,#show-iconnumber,.operando_hide{

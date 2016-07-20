@@ -86,7 +86,6 @@ angular.module('extensions', [])
 
                 }
 
-
                 function switchState(enabled) {
                     chrome.management.setEnabled($scope.extension.id, enabled, function () {
                         chrome.management.get($scope.extension.id, function (extension) {

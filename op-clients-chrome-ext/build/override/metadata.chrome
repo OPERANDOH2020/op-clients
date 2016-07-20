@@ -20,24 +20,24 @@ permissions = tabs
   tabs
   https://platform.twitter.com/js/*
 options = /operando/operando.html
-browserAction = operando/icons/operando/abp-19.png operando/icons/operando/abp-38.png popup.html
-icons = operando/icons/operando/abp-16.png operando/icons/operando/abp-32.png operando/icons/operando/detailed/abp-48.png
-  operando/icons/operando/detailed/abp-64.png operando/icons/operando/detailed/abp-128.png
+browserAction = operando/assets/images/icons/operando/abp-19.png operando/assets/images/icons/operando/abp-38.png popup.html
+icons = operando/assets/images/icons/operando/abp-16.png operando/assets/images/icons/operando/abp-32.png operando/assets/images/icons/operando/detailed/abp-48.png
+  operando/assets/images/icons/operando/detailed/abp-64.png operando/assets/images/icons/operando/detailed/abp-128.png
 managedStorageSchema = managed-storage-schema.json
 
 [compat]
 chrome = 29.0
 
 [mapping]
-icons/abp-19.png = operando/icons/abp-19.png
-icons/abp-19-whitelisted.png = operando/icons/abp-19-whitelisted.png
-icons/abp-19-notification-critical.png = operando/icons/abp-19-notification-critical.png
-icons/abp-19-notification-information.png = operando/icons/abp-19-notification-information.png
-icons/abp-38.png = operando/icons/abp-38.png
-icons/abp-38-whitelisted.png = operando/icons/abp-38-whitelisted.png
-icons/abp-38-notification-critical.png = operando/icons/abp-38-notification-critical.png
-icons/abp-38-notification-information.png = operando/icons/abp-38-notification-information.png
-icons/detailed/abp-48.png = operando/icons/detailed/abp-48.png
+icons/abp-19.png = operando/assets/images/icons/abp-19.png
+icons/abp-19-whitelisted.png = operando/assets/images/icons/abp-19-whitelisted.png
+icons/abp-19-notification-critical.png = operando/assets/images/icons/abp-19-notification-critical.png
+icons/abp-19-notification-information.png = operando/assets/images/icons/abp-19-notification-information.png
+icons/abp-38.png = operando/assets/images/icons/abp-38.png
+icons/abp-38-whitelisted.png = operando/assets/images/icons/abp-38-whitelisted.png
+icons/abp-38-notification-critical.png = operando/assets/images/icons/abp-38-notification-critical.png
+icons/abp-38-notification-information.png = operando/assets/images/icons/abp-38-notification-information.png
+icons/detailed/abp-48.png = operando/assets/images/icons/detailed/abp-48.png
 ext/devtools.js = chrome/ext/devtools.js
 devtools.html = chrome/devtools.html
 devtools.js = chrome/devtools.js

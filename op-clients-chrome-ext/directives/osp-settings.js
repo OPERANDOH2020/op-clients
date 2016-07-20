@@ -167,22 +167,6 @@ angular.module('osp', [])
 
                         }
 
-                        var insertJavascriptFile = function (id, file, callback) {
-
-                            chrome.tabs.executeScript(id, {
-                                file: file
-                            }, function () {
-                                if (chrome.runtime.lastError) {
-                                    console.error(chrome.runtime.lastError.message);
-                                }
-                                else if (callback) {
-                                    callback();
-                                }
-                            });
-
-                        }
-
-
                         var sequence = Promise.resolve();
 
 
@@ -230,7 +214,7 @@ angular.module('osp', [])
                             chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
                                 if (tabId == currentTab.id && changeInfo.status == "complete" && tabIsNew == true) {
                                     insertJavascriptFile(currentTab.id, "operando/utils/jquery-2.1.4.min.js", function () {
-                                        insertJavascriptFile(currentTab.id, "operando/modules/readSocialNetworkSettings.js", function () {
+                                        insertJavascriptFile(currentTab.id, "operando/modules/osp/readSocialNetworkSettings.js", function () {
                                         });
                                     });
                                 }

@@ -70,13 +70,10 @@ angular.module('notifications')
                 $scope.notifications = {};
                 $scope.notifications.counter = notificationService.notifications.length;
 
-
                 $scope.$on('notifications', function (event, notifications) {
                     console.log(notifications);
                     $scope.notifications.counter = notifications.length;
                 });
-
-
             },
             templateUrl: '/operando/tpl/notifications/notification-counter.html'
         }

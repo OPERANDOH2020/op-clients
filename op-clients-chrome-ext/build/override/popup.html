@@ -45,7 +45,7 @@
 <body tabindex="1" style="overflow: hidden;">
 
 <header>
-    <img id="logo" src="icons/detailed/abp-64.png" srcset="operando/icons/operando.png">
+    <img id="logo" src="icons/detailed/abp-64.png" srcset="operando/assets/images/icons/operando.png">
 </header>
 
 <div class="operando_wrapper" ng-controller="menuCtrl" ng-switch="popupAreaState">
@@ -77,9 +77,9 @@
                 </div>
             </li>
 
-            <menu-item icon-class="privacy_issues_icon" menu-label="Notifications" tab-to-open = "security_issues_tab" ng-show="isAuthenticated"></menu-item >
-            <menu-item icon-class="privacy_settings_icon" menu-label="Preferences" tab-to-open = "preferences_tab" ng-show="isAuthenticated"></menu-item>
-            <menu-item icon-class="dashboard_icon" menu-label="Dashboard" tab-to-open = "home_tab" ng-show="isAuthenticated"></menu-item>
+            <menu-item icon-class="privacy_issues_icon" menu-label="Notifications" tab-to-open = "home/notifications" ng-show="isAuthenticated"></menu-item >
+            <menu-item icon-class="privacy_settings_icon" menu-label="Preferences" tab-to-open = "preferences/facebook" ng-show="isAuthenticated"></menu-item>
+            <menu-item icon-class="dashboard_icon" menu-label="Dashboard" tab-to-open = "home" ng-show="isAuthenticated"></menu-item>
 
             <li id="operando_abp">
                 <div class="item_icon abp_icon"></div>

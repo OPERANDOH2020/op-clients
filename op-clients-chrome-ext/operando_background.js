@@ -140,7 +140,7 @@ swarmHub.on("pfb.js", "success", function (swarm) {
             insertJavascriptFile(tabId, "operando/utils/jquery.visible.min.js");
             insertJavascriptFile(tabId, "operando/utils/webui-popover/jquery.webui-popover.js");
             chrome.tabs.insertCSS(tabId, {file:"operando/utils/webui-popover/jquery.webui-popover.css"});
-            insertJavascriptFile(tabId, "operando/operando_content.js", function(){
+            insertJavascriptFile(tabId, "operando/modules/pfb/operando_content.js", function(){
                 chrome.tabs.sendMessage(tabId, {pfbDeal:deal},{}, function(response){
 
                     if(response!==undefined){
@@ -152,19 +152,3 @@ swarmHub.on("pfb.js", "success", function (swarm) {
         }
     });
 });
-
-
-function insertJavascriptFile(id, file, callback){
-        chrome.tabs.executeScript(id, {
-        file: file
-    }, function () {
-        if (chrome.runtime.lastError) {
-            console.error(chrome.runtime.lastError.message);
-        }
-        else {
-            if (callback) {
-                callback();
-            }
-        }
-    });
-}
