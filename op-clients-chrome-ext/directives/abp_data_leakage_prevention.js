@@ -60,22 +60,12 @@ angular.module("abp", []).controller('abpController', ['$scope', function ($scop
             for (var i = 0; i < $scope.featureSubscriptions.length; i++)
             {
                 var featureSubscription = $scope.featureSubscriptions[i];
-                updateToggleButton(featureSubscription.feature, featureSubscription.url in known);
+                $scope.featureSubscriptions[i].checked = featureSubscription.url in known;
+
+                $scope.$apply();
             }
         });
     }
-
-    function updateToggleButton(feature, isEnabled)
-    {
-        var button = E("toggle-" + feature);
-        if (isEnabled)
-            button.checked = true;
-        else
-            button.checked = false;
-    }
-
-
-    updateToggleButtons();
 
     ext.onMessage.addListener(function(message)
     {
@@ -99,7 +89,6 @@ angular.module("abp").directive("abpLeakagePrevention", function () {
         scope: {"subscription": "="},
         templateUrl: "/operando/tpl/abp.html",
         link: function(scope, elem, attr){
-            var feature = scope.subscription.feature;
             scope.toggleOnOffButton = function(){
                 setTimeout(function(){
                     ext.backgroundPage.sendMessage({
@@ -108,7 +97,7 @@ angular.module("abp").directive("abpLeakagePrevention", function () {
                         title: scope.subscription.title,
                         homepage: scope.subscription.homepage
                     });
-                },300);
+                },500);
             }
         },
 

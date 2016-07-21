@@ -17,8 +17,8 @@ backgroundScripts =lib/polyfills/url.js
   messageResponder.js
   background.js
   operando/utils/js.cookie.js
-  operando/operando_background.js
-  operando/operando_account.js
+  operando/backgrounds/operando_background.js
+  operando/backgrounds/operando_account.js
 testScripts = ../ext/common.js
   ../ext/background.js
   ../lib/compat.js
