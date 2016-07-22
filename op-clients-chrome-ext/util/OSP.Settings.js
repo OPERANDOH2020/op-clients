@@ -18,15 +18,71 @@ var ospSettingsConfig = {
             read:{
                 name: "Who can see your future posts?",
                 url: "https://www.facebook.com/settings?tab=privacy",
-                availableSettings:["Public", "Friends", "Only Me"],
+                availableSettings:{
+                    public:{
+                        text:"Public",
+                    },
+                    friends:{
+                        text:"Friends"
+                    },
+                    only_me:{
+                        text:"Only Me"
+                    }
+                },
                 jquery_selector:{
                 element:".fbSettingsList:eq(0) .fbSettingsListItem:eq(0) ._nlm",
                     valueType: "inner"
                 }
             },
-            write:{
-                recommended:"Friends"
-            }
+           write: {
+               name: "Who can see your future posts?",
+               page: "https://www.facebook.com/settings?tab=privacy&section=composer&view",
+               url_template: "https://www.facebook.com/privacy/selector/update/?privacy_fbid={OPERANDO_PRIVACY_FBID}&post_param={OPERANDO_POST_PARAM}&render_location=22&is_saved_on_select=true&should_return_tooltip=true&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&dpr=1",
+               availableSettings: {
+                   public: {
+                       params: {
+                           privacy_fbid: {
+                               placeholder: "OPERANDO_PRIVACY_FBID",
+                               value: 0
+                           },
+                           post_param: {
+                               placeholder: "OPERANDO_POST_PARAM",
+                               value: 300645083384735
+                           }
+                       },
+                       name: "Public"
+                   },
+                   friends: {
+                       params: {
+                           privacy_fbid: {
+                               placeholder: "OPERANDO_PRIVACY_FBID",
+                               value: 0
+                           },
+                           post_param: {
+                               placeholder: "OPERANDO_POST_PARAM",
+                               value: 291667064279714
+                           }
+                       },
+                       name: "Friends"
+                   },
+                   only_me: {
+                       params: {
+                           privacy_fbid: {
+                               placeholder: "OPERANDO_PRIVACY_FBID",
+                               value: 0
+                           },
+                           post_param: {
+                               placeholder: "OPERANDO_POST_PARAM",
+                               value: 286958161406148
+                           }
+                       },
+                       name: "Only Me"
+                   }
+               },
+
+               data: {},
+               recommended: "friends"
+           }
         },
         /*activity_log:{
             read:{
@@ -42,7 +98,7 @@ var ospSettingsConfig = {
                 recommended:"Delete"
             }
         },*/
-        friends_of_friends:{
+        /*friends_of_friends:{
             read:{
                 name: "Choose if only Friends or also Friends of Friends can see your Facebook data",
                 url: "https://www.facebook.com/settings?tab=privacy",
@@ -54,7 +110,7 @@ var ospSettingsConfig = {
             write:{
                 recommended:"Friends"
             }
-        },
+        },*/
         /*limit_old_posts:{
             read:{
                 name: "Limit (or not) viewing content on your timeline you have shared with Friends of Friends or Public, to Friends only.",
@@ -72,28 +128,123 @@ var ospSettingsConfig = {
             read:{
                 name: "Choose who can contact you/send you friend requests",
                 url: "https://www.facebook.com/settings?tab=privacy",
-                availableSettings:["Everyone","Friends of Friends"],
+                availableSettings:{
+                    everyone:{
+                        text:"Everyone",
+                    },
+                    friends_of_friends:{
+                        text:"Friends of Friends"
+                    }
+                },
                 jquery_selector:{
                     element :".fbSettingsList:eq(1) .fbSettingsListItem:eq(0) ._nlm",
                     valueType: "inner"
                 }
             },
             write:{
-                recommended:"Friends of Friends"
+                name:"Who can contact me?",
+                page:"https://www.facebook.com/settings?tab=privacy&section=canfriend&view",
+                url_template:"https://www.facebook.com/privacy/selector/update/?privacy_fbid={OPERANDO_PRIVACY_FBID}&post_param={OPERANDO_POST_PARAM}&render_location=11&is_saved_on_select=true&should_return_tooltip=false&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&tag_expansion_button=friends_of_tagged&__pc=EXP1%3ADEFAULT",
+                availableSettings: {
+                    everyone: {
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787540733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: 300645083384735
+                            }
+                        },
+                        name: "Everyone"
+                    },
+                    friends_of_friends: {
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787540733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: 275425949243301
+                            }
+                        },
+                        name: "Friends of Friends"
+                    }
+                },
+                data:{},
+                recommended:"friends_of_friends"
             }
         },
         lookup_email:{
             read:{
                 name: "Choose who can look you up using your email address",
                 url: "https://www.facebook.com/settings?tab=privacy",
-                availableSettings:["Friends of Friends", "Everyone"],
+                availableSettings:{
+                    everyone:{
+                        text:"Everyone",
+                    },
+                    friends:{
+                        text:"Friends",
+                    },
+                    friends_of_friends:{
+                        text:"Friends of Friends"
+                    }
+                },
                 jquery_selector:{
                     element: ".fbSettingsList:eq(2) .fbSettingsListItem:eq(0) ._nlm",
                     valueType:"inner"
                 }
             },
             write:{
-                recommended:"Limit to Friends"
+                name:"Who can look me up by email address",
+                page:"https://www.facebook.com/settings?tab=privacy&section=findemail&view",
+                /*url_template:"https://www.facebook.com/privacy/selector/update/?privacy_fbid={OPERANDO_PRIVACY_FBID}&post_param={OPERANDO_POST_PARAM}&render_location=11&is_saved_on_select=true&should_return_tooltip=true&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&dpr=1",*/
+                url_template:"https://www.facebook.com/privacy/selector/update/?privacy_fbid={OPERANDO_PRIVACY_FBID}&post_param={OPERANDO_POST_PARAM}&render_location=11&is_saved_on_select=true&should_return_tooltip=false&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&tag_expansion_button=friends_of_tagged&__pc=EXP1%3ADEFAULT",
+                availableSettings: {
+                    everyone: {
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787820733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: 300645083384735
+                            }
+                        },
+                        name: "Everyone"
+                    },
+                    friends_of_friends: {
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787540733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: 275425949243301
+                            }
+                        },
+                        name: "Friends of Friends"
+                    },
+                    friends: {
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787540733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: 291667064279714
+                            }
+                        },
+                        name: "Friends"
+                    }
+                },
+                data:{},
+                recommended:"friends"
             }
         },
         lookup_phone:{
@@ -947,10 +1098,20 @@ function generateAngularForm(ospname){
     schema.properties={};
     for(var v in ospSettingsConfig[ospname]){
         var conf = ospSettingsConfig[ospname][v];
+
+        var availableSettings = conf["read"].availableSettings;
+        var settingEnum = [];
+        for(var key in availableSettings){
+            settingEnum.push({
+                value:key,
+                name:availableSettings[key].text
+            })
+        }
         schema.properties[v] = {
             title:  conf["read"].name,
             type: "string",
-            enum: conf["read"].availableSettings?conf["read"].availableSettings:["Yes","No"]
+            enum: conf["read"].availableSettings?settingEnum:["Yes","No"]
+
         };
         //schema.properties[v]["enum"].push(conf["write"]["recommended"]);
     }
