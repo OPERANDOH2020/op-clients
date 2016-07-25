@@ -448,7 +448,7 @@ var ospSettingsConfig = {
                         text:"Friends"
                     },
                     only_me:{
-                        text:"Only me"
+                        text:"Only Me"
                     }
                 },
                 jquery_selector:{
@@ -1309,6 +1309,7 @@ function getSettingKeyValue(osp, settingKey, settingValue){
     var availableSettings = ospSettingsConfig[osp][settingKey].read.availableSettings;
 
     for(key in availableSettings){
+        console.log(key, availableSettings[key].text);
         if(availableSettings[key].text === settingValue){
             console.log(key);
             return key;
