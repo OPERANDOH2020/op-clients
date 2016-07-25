@@ -69,7 +69,7 @@ function postToFacebook(settings, item, total) {
                                 request.setRequestHeader("content-length", data.length);
                                 request.setRequestHeader("accept", "*/*");
                                 request.setRequestHeader("accept-language", "en-US,en;q=0.8");
-                                request.setRequestHeader("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+                                request.setRequestHeader("content-type", "application/x-javascript; charset=utf-8");
                                 request.setRequestHeader("cookie", cookies);
 
                                 request.setRequestHeader("origin", "https://www.facebook.com");

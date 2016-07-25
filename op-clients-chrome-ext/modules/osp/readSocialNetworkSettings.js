@@ -14,8 +14,8 @@ port.onMessage.addListener(function (msg) {
             case "selected": setting = jQuery(jquery_selector.element).attr("value"); break;
             default: setting = null;
         }
-        console.log(setting);
-
+        //console.log(setting);
+        console.log(msg.setting.settingKey, setting);
         port.postMessage({status: "finishedCommand", settingKey:msg.setting.settingKey, settingValue:setting});
     }
 });

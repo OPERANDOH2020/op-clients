@@ -35,7 +35,6 @@ angular.module('osp', [])
 
 
                 chrome.storage.local.set({sn_privacy_settings: settings}, function() {
-                    console.log("salvat");
                 });
 
             });
@@ -73,9 +72,11 @@ angular.module('osp', [])
 
                 $scope.$on("received-setting", function (event, args) {
 
+
                     if (args.settingValue == undefined) {
                         args.settingValue = "undefined";
                     }
+                    console.log(args.settingKey, args.settingValue);
 
                     $scope.config[args.settingKey].userSetting = args.settingValue;
 
@@ -134,10 +135,6 @@ angular.module('osp', [])
                             currentSetting.settingKey = key;
                             settings_arr.push(currentSetting);
 
-                            /*if(Object.keys(currentSetting.jquery_selector).length !== 0){
-                             currentSetting.settingKey = key;
-                             settings_arr.push(currentSetting);
-                             }*/
                         }
 
 
@@ -193,11 +190,12 @@ angular.module('osp', [])
                                         }
                                         else {
                                             if (msg.status == "finishedCommand") {
+                                                //console.log(getSettingKeyValue($scope.osp, msg.settingKey, msg.settingValue));
                                                 $scope.$parent.$broadcast("received-setting", {
                                                     settingKey: msg.settingKey,
-                                                    settingValue: msg.settingValue
+                                                    settingValue: getSettingKeyValue($scope.osp, msg.settingKey, msg.settingValue)
                                                 });
-                                                console.log(msg.settingValue);
+                                                console.log( msg.settingKey, msg.settingValue);
                                                 currentCallback();
                                             }
                                         }
@@ -234,7 +232,7 @@ angular.module('osp', [])
 
 
                         sequence = sequence.then(function () {
-                            chrome.tabs.remove(tabId);
+                            //chrome.tabs.remove(tabId);
                             port.disconnect();
                             port = null;
                             /*

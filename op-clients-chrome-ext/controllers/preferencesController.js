@@ -51,9 +51,17 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
 
                     var params = ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].params;
 
+
                     for(key in params){
                        var param = params[key];
                        urlToPost = urlToPost.replace("{"+param.placeholder+"}",param.value);
+                    }
+
+                    if(ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].data){
+                        var specificData = ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].data
+                        for (var attrname in specificData) {
+                            data[attrname] = specificData[attrname];
+                        }
                     }
 
                     settings.push({
