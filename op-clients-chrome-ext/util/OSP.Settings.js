@@ -17,7 +17,7 @@ var SN_CONSTANTS ={
         everyone:300645083384735,
         friends_of_friends:275425949243301,
         only_me:286958161406148,
-        friends:291667064279714,
+        friends:291667064279714
 
     }
 }
@@ -142,7 +142,7 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     everyone:{
-                        text:"Everyone",
+                        text:"Everyone"
                     },
                     friends_of_friends:{
                         text:"Friends of Friends"
@@ -195,10 +195,10 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     everyone:{
-                        text:"Everyone",
+                        text:"Everyone"
                     },
                     friends:{
-                        text:"Friends",
+                        text:"Friends"
                     },
                     friends_of_friends:{
                         text:"Friends of Friends"
@@ -264,10 +264,10 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     everyone:{
-                        text:"Everyone",
+                        text:"Everyone"
                     },
                     friends:{
-                        text:"Friends",
+                        text:"Friends"
                     },
                     friends_of_friends:{
                         text:"Friends of Friends"
@@ -390,12 +390,12 @@ var ospSettingsConfig = {
                 availableSettings:{
                     only_me:{
                         data:{
-                            audience:10,
+                            audience:10
                         }
                     },
                     friends:{
                         data:{
-                            audience:40,
+                            audience:40
                         }
                     }
                 },
@@ -460,16 +460,16 @@ var ospSettingsConfig = {
                 availableSettings:{
                     only_me:{
                         data:{
-                            audience:10,
+                            audience:10
                         }
                     },
                     friends:{
                         data:{
-                            audience:40,
+                            audience:40
                         }
                     }
                 },
-                recommended:"only_me",
+                recommended:"only_me"
             }
         },
         control_tag_suggestions:{
@@ -737,9 +737,11 @@ var ospSettingsConfig = {
         },
         check_unused_apps:{
             read:{
-                name: "Allow/disallow unused applications to access your Google data ",
+                name: "Apps connected to your acccount ",
                 url: "https://security.google.com/settings/security/permissions",
                 jquery_selector:{
+                    element:"div.Y5KHCd",
+                    valueType:"length"
                     //TODO: return a string "List has applications" or "List has n applications".
                 }
             },
@@ -747,7 +749,7 @@ var ospSettingsConfig = {
                 recommended:"Revoke access by unused applications"
             }
         },
-        share_location:{
+        /*share_location:{
             read:{
                 name: "Allow/disallow  sharing your location with Google and other users",
                 url: "https://myaccount.google.com/privacy#accounthistory",
@@ -758,8 +760,8 @@ var ospSettingsConfig = {
             write:{
                 recommended:"Disallow"
             }
-        },
-        keep_history:{
+        },*/
+        /*keep_history:{
             read:{
                 name: "Turn on/off Google collecting your search and browsing activity ",
                 url: "https://myaccount.google.com/privacy#accounthistory",
@@ -770,13 +772,15 @@ var ospSettingsConfig = {
             write:{
                 recommended:"Off"
             }
-        },
+        },*/
         pause_location_tracking:{
             read:{
                 name: "Pause Google and related apps tracking your location. ",
-                url: "https://myaccount.google.com/privacy#accounthistory",
+                url: "https://myaccount.google.com/activitycontrols/location",
                 jquery_selector:{
-                    //TODO: Not applicable.
+                    element:"div[data-aid='location'] div",
+                    valueType:"attrValue",
+                    attrValue:"aria-checked"
                 }
             },
             write:{
@@ -801,12 +805,16 @@ var ospSettingsConfig = {
     },
 
     "linkedin": {
+        //=============================================================================================================
+        //================================================Account======================================================
+        //=============================================================================================================
         control_third_party:{
             read:{
                 name: "Third party apps",
                 url: "https://www.linkedin.com/psettings/account",
                 jquery_selector:{
-
+                    element:"li[id='setting-third-party-applications'] .state",
+                    valueType:"inner"
                 }
             },
             write:{
@@ -818,7 +826,8 @@ var ospSettingsConfig = {
                 name: "Manage your Twitter info and activity on your LinkedIn account",
                 url: "https://www.linkedin.com/psettings/account",
                 jquery_selector:{
-
+                    element:"li[id='setting-twitter'] .state",
+                    valueType:"inner"
                 }
             },
             write:{
@@ -827,22 +836,27 @@ var ospSettingsConfig = {
         },
         manage_wechat:{
             read:{
-                name: "WeChat settings",
+                name: "setting-wechat",
                 url: "https://www.linkedin.com/psettings/account",
                 jquery_selector:{
-
+                    element:"li[id='setting-wechat'] .state",
+                    valueType:"inner"
                 }
             },
             write:{
                 recommended:"Do not connect to WeChat"
             }
         },
+        //=============================================================================================================
+        //================================================Privacy======================================================
+        //=============================================================================================================
         share_edits:{
             read:{
                 name: "Sharing profile edits",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/activity-broadcast",
                 jquery_selector:{
-
+                    element:"input[id='option-broadcast']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -852,9 +866,10 @@ var ospSettingsConfig = {
         suggest_you_email:{
             read:{
                 name: "Suggesting you on the connection based on your email address",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/visibility/email",
                 jquery_selector:{
-
+                    element:"option",
+                    valueType:"selected"
                 }
             },
             write:{
@@ -864,21 +879,36 @@ var ospSettingsConfig = {
         suggest_you_phone:{
             read:{
                 name: "Suggesting you as a connection based on your phone number",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/visibility/phone",
                 jquery_selector:{
-
+                    element:"option",
+                    valueType:"selected"
                 }
             },
             write:{
                 recommended:"Nobody"
             }
         },
-        share_data:{
+        share_data_with_third_party_applications:{
             read:{
-                name: "Sharing data with third parties",
-                url: "https://www.linkedin.com/psettings/account",
+                name: "Sharing data with third parties applications",
+                url: "https://www.linkedin.com/psettings/data-sharing",
                 jquery_selector:{
-
+                    element:"input[id='option-block-applications']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:"no"
+            }
+        },
+        share_data_with_third_party_platforms:{
+            read:{
+                name: "Sharing data with third parties platforms",
+                url: "https://www.linkedin.com/psettings/data-sharing",
+                jquery_selector:{
+                    element:"input[id='option-block-platforms']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -888,9 +918,10 @@ var ospSettingsConfig = {
         cookie_personalised_ads:{
             read:{
                 name: "Use cookies to personalize ads",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/enhanced-advertising",
                 jquery_selector:{
-
+                    element:"input[id='option-ads-choices']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -899,10 +930,11 @@ var ospSettingsConfig = {
         },
         share_you_news:{
             read:{
-                name: "Allow or disallow your connections and followers to know when you are mentioned in the news.",
-                url: "https://www.linkedin.com/psettings/account",
+                name: "Allow or disallow your connections and followers to know when you are mentioned in the news.",
+                url: "https://www.linkedin.com/psettings/news-mention-broadcast",
                 jquery_selector:{
-
+                    element:"input[id='option-news-mention']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -912,9 +944,10 @@ var ospSettingsConfig = {
         broadcast_activity:{
             read:{
                 name: "Allow or disallow your activity broadcasts.",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/activity-broadcast",
                 jquery_selector:{
-
+                    element:"input[id='option-broadcast']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -924,33 +957,34 @@ var ospSettingsConfig = {
         control_broadcast:{
             read:{
                 name: "Control who can see your activity broadcast.",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/allow-follow",
                 jquery_selector:{
-
+                    element:"option",
+                    valueType:"selected"
                 }
             },
             write:{
                 recommended:"Limit to yourself"
             }
         },
-        control_others_see:{
-            read:{
-                name: "Control what others see when you have viewed their profile",
-                url: "https://www.linkedin.com/psettings/account",
-                jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Limit to your name and headline"
-            }
-        },
+        /*control_others_see:{
+         read:{
+         name: "Control what others see when you have viewed their profile",
+         url: "https://www.linkedin.com/psettings/account",
+         jquery_selector:{
+         }
+         },
+         write:{
+         recommended:"Limit to your name and headline"
+         }
+         },*/
         how_you_rank:{
             read:{
                 name: "Control showing “How You Rank”",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/how-you-rank",
                 jquery_selector:{
-
+                    element:"input[id='how-you-rank-option']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -960,9 +994,10 @@ var ospSettingsConfig = {
         see_connections_list:{
             read:{
                 name: "Select who can see your list of connections.",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/connections-visibility",
                 jquery_selector:{
-
+                    element:"option",
+                    valueType:"selected"
                 }
             },
             write:{
@@ -972,9 +1007,10 @@ var ospSettingsConfig = {
         control_followers:{
             read:{
                 name: "Control who can follow your updates.",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/allow-follow",
                 jquery_selector:{
-
+                    element:"option",
+                    valueType:"selected"
                 }
             },
             write:{
@@ -984,93 +1020,230 @@ var ospSettingsConfig = {
         control_profile_photo:{
             read:{
                 name: "Control your profile photo and visibility.",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/profile-photo-visibility",
                 jquery_selector:{
-
+                    element:"option",
+                    valueType:"selected"
                 }
             },
             write:{
                 recommended:undefined
             }
         },
-        control_also_viewed:{
+        /*control_also_viewed:{
+         read:{
+         name: "Control display of 'Viewers of this profile also viewed' box on your Profile page.",
+         url: "https://www.linkedin.com/psettings/account",
+         jquery_selector:{
+         }
+         },
+         write:{
+         recommended:"Do not display"
+         }
+         },*/
+        /*contrl_phone_info:{
+         read:{
+         name: "Control how your phone number can be used.",
+         url: "https://www.linkedin.com/psettings/account",
+         jquery_selector:{
+         }
+         },
+         write:{
+         recommended:"Limit to your 1st degree connections"
+         }
+         },*/
+        /*meet_the_team:{
+         read:{
+         name: "Control “Meet the team”",
+         url: "https://www.linkedin.com/psettings/account",
+         jquery_selector:{
+         }
+         },
+         write:{
+         recommended:"Disallow"
+         }
+         },*/
+        //=============================================================================================================
+        //================================================Communications===============================================
+        //=============================================================================================================
+        control_messages_invitations:{
             read:{
-                name: "Control display of 'Viewers of this profile also viewed' box on your Profile page.",
-                url: "https://www.linkedin.com/psettings/account",
+                name: "Control whether you're willing to receive invitations to join your network.",
+                url: "https://www.linkedin.com/psettings/email-controls",
                 jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Do not display"
-            }
-        },
-        contrl_phone_info:{
-            read:{
-                name: "Control how your phone number can be used.",
-                url: "https://www.linkedin.com/psettings/account",
-                jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Limit to your 1st degree connections"
-            }
-        },
-        meet_the_team:{
-            read:{
-                name: "Control “Meet the team”",
-                url: "https://www.linkedin.com/psettings/account",
-                jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Disallow"
-            }
-        },
-        control_messages:{
-            read:{
-                name: "Control the types of messages you're willing to receive",
-                url: "https://www.linkedin.com/psettings/account",
-                jquery_selector:{
-
+                    element:"input[id='invitationsGroup']",
+                    valueType:"checkbox"
                 }
             },
             write:{
                 recommended:undefined
             }
         },
-        who_can_invite:{
+        control_messages_messages:{
+            read:{
+                name: "Control whether you're willing to receive messages from other LinkedIn members.",
+                url: "https://www.linkedin.com/psettings/email-controls",
+                jquery_selector:{
+                    element:"input[id='messagesGroup']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:undefined
+            }
+        },
+        control_messages_notifications:{
+            read:{
+                name: "Control whether you're willing to receive news and activity related to your profile " +
+                "and what you share.",
+                url: "https://www.linkedin.com/psettings/email-controls",
+                jquery_selector:{
+                    element:"input[id='notificationsGroup']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:undefined
+            }
+        },
+        control_messages_network_updates:{
+            read:{
+                name: "Control whether you're willing to receive Updates about your connections.",
+                url: "https://www.linkedin.com/psettings/email-controls",
+                jquery_selector:{
+                    element:"input[id='updatesFromNetworkGroup']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:undefined
+            }
+        },
+        control_messages_jobs_and_opportunities:{
+            read:{
+                name: "Control whether you're willing to receive Updates about Jobs and opportunities.",
+                url: "https://www.linkedin.com/psettings/email-controls",
+                jquery_selector:{
+                    element:"input[id='jobSeekerGroup']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:undefined
+            }
+        },
+        control_messages_news:{
+            read:{
+                name: "Control whether you're willing to receive News and articles relevant to you.",
+                url: "https://www.linkedin.com/psettings/email-controls",
+                jquery_selector:{
+                    element:"input[id='newsGroup']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:undefined
+            }
+        },
+        control_messages_group_updates:{
+            read:{
+                name: "Control whether you're willing to receive News about what's going on in your groups.",
+                url: "https://www.linkedin.com/psettings/email-controls",
+                jquery_selector:{
+                    element:"input[id='groupsNode']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:undefined
+            }
+        },
+        control_messages_from_linkedIn:{
+            read:{
+                name: "Control whether you're willing to receive occasional emails with tips and offers " +
+                "to help you get the most out of LinkedIn.",
+                url: "https://www.linkedin.com/psettings/email-controls",
+                jquery_selector:{
+                    element:"input[id='messagesFromLinkedinGroup']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:undefined
+            }
+        },
+        control_messages_from_linkedIn_learning:{
+            read:{
+                name: "Control whether you're willing to receive recommendations to help you get the most " +
+                "out of LinkedIn Learning.",
+                url: "https://www.linkedin.com/psettings/email-controls",
+                jquery_selector:{
+                    element:"input[id='messagesFromLearningGroup']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:undefined
+            }
+        },
+        who_can_invite_you:{
             read:{
                 name: "Select who can send you invitations",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/invite-receive",
                 jquery_selector:{
-
+                    element:"li[id='setting-invite-receive'] .state",
+                    valueType:"inner"
                 }
             },
             write:{
                 recommended:undefined
             }
         },
-        manage_twitter:{
+        /*messages_from_members:{
+         read:{
+         name: "Select what type of member messages you'd prefer to receive",
+         url: "https://www.linkedin.com/psettings/message-preferences",
+         jquery_selector:{
+         //TODO: See if this setting is required?
+         }
+         },
+         write:{
+         recommended:undefined
+         }
+         },*/
+        enable_group_invitations:{
             read:{
-                name: "Manage your Twitter info and activity on your LinkedIn accoun",
-                url: "https://www.linkedin.com/psettings/account",
+                name: "Choose whether you want to receive invitations to join groups",
+                url: "https://www.linkedin.com/psettings/group-invitations",
                 jquery_selector:{
-
+                    element:"input[id='group-invitations-option']",
+                    valueType:"checkbox"
                 }
             },
             write:{
-                recommended:"Do not connect to Twitter"
+                recommended:undefined
+            }
+        },
+        enable_group_notifications:{
+            read:{
+                name: "Choose whether we notify your network when you join a group",
+                url: "https://www.linkedin.com/psettings/group-join-notifications",
+                jquery_selector:{
+                    element:"input[id='group-join-notifications-option']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:undefined
             }
         },
         enable_research_invitations:{
             read:{
                 name: "Turn on/off invitations to participate in research",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/research-invitations",
                 jquery_selector:{
-
+                    element:"input[id='research-invitations-option']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -1080,33 +1253,23 @@ var ospSettingsConfig = {
         allow_partner_inmail:{
             read:{
                 name: "Allow or disallow Partner InMail",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/partner-inmail",
                 jquery_selector:{
-
+                    element:"input[id='option-partner-inmail-marketing']",
+                    valueType:"checkbox"
                 }
             },
             write:{
                 recommended:"Disallow"
             }
         },
-        control_thridparty_apps:{
+        allow_hiring_campaign_partner_inmail:{
             read:{
-                name: "Allow or disallow data sharing with 3rd party applications to which you have granted access to your LinkedIn profile and network data. ",
-                url: "https://www.linkedin.com/psettings/account",
+                name: "Allow or disallow hiring campaign Partner InMail",
+                url: "https://www.linkedin.com/psettings/partner-inmail",
                 jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Disallow"
-            }
-        },
-        control_thridparty_tracking:{
-            read:{
-                name: "Allow/disallow use of 3rd party site tracking",
-                url: "https://www.linkedin.com/psettings/account",
-                jquery_selector:{
-
+                    element:"input[id='option-partner-inmail-hiring']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -1114,25 +1277,81 @@ var ospSettingsConfig = {
             }
         }
     },
-    "twitter": {
-        allow_photo_tag:{
-            read:{
-                name: "Allow/disallow anyone to tag you in photos",
-                url: "",
-                jquery_selector:{
 
+    "twitter": {
+        allow_login_verification:{
+            read:{
+                name: "Allow/disallow Login verification (a phone must be added first).",
+                url: "https://twitter.com/settings/security",
+                jquery_selector:{
+                    element:"input[id='login_verification']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:"Allow"
+            }
+        },
+        allow_password_reset:{
+            read:{
+                name: "Allow/disallow further personal information for Password reset.",
+                url: "https://twitter.com/settings/security",
+                jquery_selector:{
+                    element:"input[id='user_no_username_only_password_reset']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:"Allow"
+            }
+        },
+        allow_login_with_code_1:{
+            read:{
+                name: "Allow/disallow login to your account with either a password or login code.",
+                url: "https://twitter.com/settings/security",
+                jquery_selector:{
+                    element:"input[id='one_factor_optout_settings_off']",
+                    valueType:"checkbox"
                 }
             },
             write:{
                 recommended:"Disallow"
             }
         },
-        allow_follow:{
+        allow_login_with_code_2:{
             read:{
-                name: "Allow anybody to follow yous",
-                url: "",
+                name: "Allow/disallow to always require a password to log to your account.",
+                url: "https://twitter.com/settings/security",
                 jquery_selector:{
-
+                    element:"input[id='one_factor_optout_settings_on']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:"Allow"
+            }
+        },
+        /*allow_photo_tag:{
+         read:{
+         name: "Allow/disallow anyone to tag you in photos.",
+         url: "https://twitter.com/settings/security",
+         jquery_selector:{
+         element:"input[name='user[allow_media_tagging]'",
+         valueType:"radio"
+         //TODO: Error, must fix jquery to correctly extract the wanted result.
+         }
+         },
+         write:{
+         recommended:"Disallow"
+         }
+         },*/
+        tweet_privacy:{
+            read:{
+                name: "Allow/disallow only those you approve to receive your Tweets.",
+                url: "https://twitter.com/settings/security",
+                jquery_selector:{
+                    element:"input[id='user_protected']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -1142,57 +1361,48 @@ var ospSettingsConfig = {
         allow_location:{
             read:{
                 name: "Enable Twitter to add your location to your tweets.",
-                url: "",
+                url: "https://twitter.com/settings/security",
                 jquery_selector:{
-
+                    element:"input[id='user_geo_enabled']",
+                    valueType:"checkbox"
                 }
             },
             write:{
                 recommended:"Disabled"
             }
         },
-        delete_locations:{
-            read:{
-                name: "Delete all location information from past Tweets.",
-                url: "",
-                jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Yes"
-            }
-        },
-        allow_photo_tag:{
-            read:{
-                name: "Allow/disallow anyone to tag you in photos",
-                url: "",
-                jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Disallow"
-            }
-        },
+        /*delete_locations:{
+         read:{
+         name: "Delete all location information from past Tweets.",
+         url: "https://twitter.com/settings/security",
+         jquery_selector:{
+         //TODO: angular press button method.
+         }
+         },
+         write:{
+         recommended:"Yes"
+         }
+         },*/
         allow_email_search:{
             read:{
                 name: "Allow/disallow others find you by your email address",
-                url: "",
+                url: "https://twitter.com/settings/security",
                 jquery_selector:{
-
+                    element:"input[id='user_discoverable_by_email']",
+                    valueType:"checkbox"
                 }
             },
             write:{
                 recommended:"Disallow"
             }
         },
-        allow_tracking:{
+        allow_phone_search:{
             read:{
-                name: "Allow/disallow Twitter to tailor suggestions in your timeline (such as who to follow) based on your recent website visits",
-                url: "",
+                name: "Allow/disallow others find you by your phone number",
+                url: "https://twitter.com/settings/security",
                 jquery_selector:{
-
+                    element:"input[id='user_mobile_discoverable']",
+                    valueType:"checkbox"
                 }
             },
             write:{
@@ -1201,52 +1411,128 @@ var ospSettingsConfig = {
         },
         allow_promoted_content:{
             read:{
-                name: "Allow/disallow Twitter to display ads about things you've already shown interest in (aka “promoted content”",
-                url: "",
+                name: "Allow/disallow Twitter to display ads about things you've already shown " +
+                "interest in (aka “promoted content”",
+                url: "https://twitter.com/settings/security",
                 jquery_selector:{
-
+                    element:"input[id='allow_ads_personalization']",
+                    valueType:"checkbox"
                 }
             },
             write:{
                 recommended:"Disallow"
             }
         },
-        allow_tweetdeck:{
+        //=============================================================================================================
+        //=============================================================================================================
+        //=============================================================================================================
+        //TODO: Find a better way of reading this setting.
+        allow_tweetdeck_1:{
             read:{
-                name: "Allow/disallow organizations to invite anyone to tweet from their account using the teams feature in TweetDeck.",
-                url: "",
+                name: "Allow/disallow organizations to invite anyone to tweet from their account using " +
+                "the teams feature in TweetDeck (1 option).",
+                url: "https://twitter.com/settings/security",
                 jquery_selector:{
-
+                    element:"input[id='allow_contributor_request_all']",
+                    valueType:"checkbox"
                 }
             },
             write:{
                 recommended:"Disallow"
             }
         },
+        allow_tweetdeck_2:{
+            read:{
+                name: "Allow/disallow organizations to invite anyone to tweet from their account using " +
+                "the teams feature in TweetDeck (1 option).",
+                url: "https://twitter.com/settings/security",
+                jquery_selector:{
+                    element:"input[id='allow_contributor_request_following']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:"Disallow"
+            }
+        },
+        allow_tweetdeck_3:{
+            read:{
+                name: "Allow/disallow organizations to invite anyone to tweet from their account using " +
+                "the teams feature in TweetDeck (1 option).",
+                url: "https://twitter.com/settings/security",
+                jquery_selector:{
+                    element:"input[id='allow_contributor_request_none']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                recommended:"Allow"
+            }
+        },
+        //=============================================================================================================
+        //=============================================================================================================
+        //=============================================================================================================
         allow_direct_message:{
             read:{
                 name: "Allow/disallow any Twitter user to send you a direct message even if you do not follow them",
-                url: "",
+                url: "https://twitter.com/settings/security",
                 jquery_selector:{
-
+                    element:"input[id='allow_dms_from_anyone']",
+                    valueType:"checkbox"
                 }
             },
             write:{
                 recommended:"Disallow"
             }
         },
-        add_phone:{
-            read:{
-                name: "Add/do not add your phone number to Twitter",
-                url: "",
-                jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Do not add"
-            }
-        }
+        /*manage_contacts:{
+         read:{
+         name: "Manage contacts you have uploaded from your address book in twitter",
+         url: "https://twitter.com/settings/security",
+         jquery_selector:{
+         //TODO: interesting setting. Suggestion to include it.
+         }
+         },
+         write:{
+         recommended:"Delete them all"
+         }
+         },*/
+        /*allow_tracking:{
+         read:{
+         name: "Allow/disallow Twitter to tailor suggestions in your timeline (such as who to follow) based on your recent website visits",
+         url: "",
+         jquery_selector:{
+         //TODO: N/A feature in my settings. Must see if this is available to others.
+         }
+         },
+         write:{
+         recommended:"Disallow"
+         }
+         },*/
+        /*allow_follow:{
+         read:{
+         name: "Allow anybody to follow yous",
+         url: "",
+         jquery_selector:{
+         //TODO: N/A feature in my settings. Must see if this is available to others.
+         }
+         },
+         write:{
+         recommended:"Allow"
+         }
+         },*/
+        /*add_phone:{
+         read:{
+         name: "Add/do not add your phone number to Twitter",
+         url: "https://twitter.com/settings/add_phone",
+         jquery_selector:{
+         //TODO: N/A feature in my settings. Must see if this is available to others.
+         }
+         },
+         write:{
+         recommended:"Do not add"
+         }
+         }*/
     }
 }
 
@@ -1276,7 +1562,6 @@ function generateAngularForm(ospname){
             enum: conf["read"].availableSettings?settingEnum:["Yes","No"]
 
         };
-        //schema.properties[v]["enum"].push(conf["write"]["recommended"]);
     }
     return schema;
 }

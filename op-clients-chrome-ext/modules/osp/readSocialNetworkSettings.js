@@ -12,6 +12,7 @@ port.onMessage.addListener(function (msg) {
             case "classname": setting = jQuery(jquery_selector.element).hasClass(jquery_selector.attrValue); break;
             case "radio" :setting = jQuery(jquery_selector.element + ":checked").attr("value"); break;
             case "selected": setting = jQuery(jquery_selector.element).attr("value"); break;
+            case "length": setting = jQuery(jquery_selector.element).length?jQuery(jquery_selector.element).length:0; break;
             default: setting = null;
         }
         //console.log(setting);
