@@ -476,13 +476,21 @@ var ospSettingsConfig = {
             read:{
                 name: "Control who sees tag suggestions when photos that look like you are uploaded",
                 url: "https://www.facebook.com/settings?tab=timeline",
-                availableSettings:["Friends", "Only Me"],
+                availableSettings:{
+                    friends:{
+                        text:"Friends"
+                    },
+                    only_me:{
+                        text:"Only Me"
+                    }
+                },
                 jquery_selector:{
-
+                    element: ".fbSettingsList:eq(2) .fbSettingsListItem:eq(2) ._nlm",
+                    valueType: "inner"
                 }
             },
             write:{
-                recommended:"No one"
+                recommended:"only_me"
             }
         },
         control_followers:{
@@ -632,7 +640,7 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:["Allow", "Disallow"],
                 jquery_selector:{
-
+                    //TODO: Current setting does not corresponds with actual setting in page.
                 }
             },
             write:{
@@ -646,9 +654,11 @@ var ospSettingsConfig = {
         keep_app_activity:{
             read:{
                 name: "Delete or keep all Web and app activity",
-                url: "https://history.google.com/history/youtube/search?utm_source=sidenav",
+                url: "https://myaccount.google.com/activitycontrols?pli=1",
                 jquery_selector:{
-
+                    element:"div[data-aid='search'] div",
+                    valueType:"attrValue",
+                    attrValue:"aria-checked"
                 }
             },
             write:{
@@ -658,9 +668,11 @@ var ospSettingsConfig = {
         keep_audiovideo_activity:{
             read:{
                 name: "Delete or keep all Voice and Audio activity",
-                url: "https://history.google.com/history/youtube/search?utm_source=sidenav",
+                url: "https://myaccount.google.com/activitycontrols?pli=1",
                 jquery_selector:{
-
+                    element:"div[data-aid='audio'] div",
+                    valueType:"attrValue",
+                    attrValue:"aria-checked"
                 }
             },
             write:{
@@ -670,9 +682,11 @@ var ospSettingsConfig = {
         keep_device_activity:{
             read:{
                 name: "Delete or keep device activity info",
-                url: "https://history.google.com/history/youtube/search?utm_source=sidenav",
+                url: "https://myaccount.google.com/activitycontrols?pli=1",
                 jquery_selector:{
-
+                    element:"div[data-aid='device'] div",
+                    valueType:"attrValue",
+                    attrValue:"aria-checked"
                 }
             },
             write:{
@@ -682,9 +696,11 @@ var ospSettingsConfig = {
         keep_location_history:{
             read:{
                 name: "Delete or keep your entire location history",
-                url: "https://history.google.com/history/youtube/search?utm_source=sidenav",
+                url: "https://myaccount.google.com/activitycontrols?pli=1",
                 jquery_selector:{
-
+                    element:"div[data-aid='location'] div",
+                    valueType:"attrValue",
+                    attrValue:"aria-checked"
                 }
             },
             write:{
@@ -694,9 +710,11 @@ var ospSettingsConfig = {
         keep_youtube_history:{
             read:{
                 name: "Delete or keep YouTube watch history",
-                url: "https://history.google.com/history/youtube/search?utm_source=sidenav",
+                url: "https://myaccount.google.com/activitycontrols?pli=1",
                 jquery_selector:{
-
+                    element:"div[data-aid='youtubeWatch'] div",
+                    valueType:"attrValue",
+                    attrValue:"aria-checked"
                 }
             },
             write:{
@@ -706,9 +724,11 @@ var ospSettingsConfig = {
         keep_youtube_searches:{
             read:{
                 name: "Delete or keep YouTube search history",
-                url: "https://history.google.com/history/youtube/search?utm_source=sidenav",
+                url: "https://myaccount.google.com/activitycontrols?pli=1",
                 jquery_selector:{
-
+                    element:"div[data-aid='youtubeSearch'] div",
+                    valueType:"attrValue",
+                    attrValue:"aria-checked"
                 }
             },
             write:{
@@ -720,7 +740,7 @@ var ospSettingsConfig = {
                 name: "Allow/disallow unused applications to access your Google data ",
                 url: "https://security.google.com/settings/security/permissions",
                 jquery_selector:{
-
+                    //TODO: return a string "List has applications" or "List has n applications".
                 }
             },
             write:{
@@ -732,7 +752,7 @@ var ospSettingsConfig = {
                 name: "Allow/disallow  sharing your location with Google and other users",
                 url: "https://myaccount.google.com/privacy#accounthistory",
                 jquery_selector:{
-
+                    //TODO: Not applicable.
                 }
             },
             write:{
@@ -744,7 +764,7 @@ var ospSettingsConfig = {
                 name: "Turn on/off Google collecting your search and browsing activity ",
                 url: "https://myaccount.google.com/privacy#accounthistory",
                 jquery_selector:{
-
+                    //TODO: Not applicable.
                 }
             },
             write:{
@@ -756,65 +776,28 @@ var ospSettingsConfig = {
                 name: "Pause Google and related apps tracking your location. ",
                 url: "https://myaccount.google.com/privacy#accounthistory",
                 jquery_selector:{
-
+                    //TODO: Not applicable.
                 }
             },
             write:{
                 recommended:"Pause"
             }
         },
-        pause_voice_searches_history:{
+        //TODO: Added on 22/7/2016. See if it should be kept.
+        turn_off_adds_based_on_your_interest:{
             read:{
-                name: "Pause Google collecting your voice searches and commands activity ",
-                url: "https://myaccount.google.com/privacy#accounthistory",
-                jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Pause"
-            }
-        },
-        pause_youtube_searches_history:{
-            read:{
-                name: "Pause Google collecting your YouTube search activity ",
-                url: "https://myaccount.google.com/privacy#accounthistory",
-                jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Pause"
-            }
-        },
-        pause_youtube_history:{
-            read:{
-                name: "Pause  Google collecting your YouTube watching activity ",
-                url: "https://myaccount.google.com/privacy#accounthistory",
-                jquery_selector:{
-
-                }
-            },
-            write:{
-                recommended:"Pause"
-            }
-        },
-        keep_youtube_search:{
-            read:{
-                name: "Allow/disallow Google selling your interest data to ad networks ",
+                name: "Turn off ads based on your interest",
                 url: "https://www.google.com/settings/u/0/ads/authenticated",
-                jquery_selector:{
-
+                jquery_selector: {
+                    element: "div.Pu > span.iI > div[aria-checked]",
+                    valueType: "attrValue",
+                    attrValue: "aria-checked"
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:"off"
             }
-        }
-
-
-
-
+        },
     },
 
     "linkedin": {
@@ -1316,7 +1299,7 @@ function getSettingKeyValue(osp, settingKey, settingValue){
         }
     }
 
-    return null;
+    return settingValue;
 
 }
 
