@@ -123,13 +123,44 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 url: "/extensions",
                 templateUrl: "views/extensions.html"
             })
-            .state('reading-settings', {
-                url: "/reading-settings",
+            .state('admin', {
+                url: "/admin",
+                abstract:true,
                 templateUrl: "views/reading_settings.html",
                 resolve: {
                     loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('/operando/controllers/readSocialNetworkPrivacySettings.js');
                     }]
+                }
+            })
+            .state("admin.privacy_settings",{
+                url:"/privacy_settings/:sn",
+                params: {
+                    sn: "facebook"
+                },
+                resolve: {
+                    sn:['$stateParams', function ($stateParams) {
+                        return $stateParams.sn;
+                    }]
+                },
+                templateUrl:"views/admin/privacy_settings/social_network.html",
+                controller: function($scope, $stateParams) {
+                    if (!$stateParams.sn) {
+                        $scope.osp = {
+                            key: 'facebook',
+                            title: 'facebook',
+                            settings: getOSPSettings('facebook')
+                        }
+                    }
+                    else {
+                        $scope.osp = {
+                            key: $stateParams.sn,
+                            title: $stateParams.sn,
+                            settings: getOSPSettings($stateParams.sn)
+                        }
+                    }
+
+                    $scope.sn = $stateParams.sn;
                 }
             })
             .state('account', {

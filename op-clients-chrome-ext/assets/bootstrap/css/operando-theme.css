@@ -59,9 +59,10 @@ div.tab-content{
     width:100%;
 }
 
-#home_tab,
+#home_tab,#reading_settings_tab,
 #preferences_tab,
-#pfb_tab{
+#pfb_tab,
+#{
     display: block;
     background: #fdfaef;
 }
@@ -666,4 +667,8 @@ border: none;
 
 #reading_settings_tab hr{
     margin: 5px 0px;
+}
+
+.social_network_settings_panel h2{
+    text-transform: capitalize;
 }
