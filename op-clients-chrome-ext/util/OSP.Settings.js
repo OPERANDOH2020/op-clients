@@ -662,7 +662,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Delete"
+                recommended:"false"
             }
         },
         keep_audiovideo_activity:{
@@ -676,7 +676,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Delete"
+                recommended:"false"
             }
         },
         keep_device_activity:{
@@ -690,7 +690,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Delete"
+                recommended:"false"
             }
         },
         keep_location_history:{
@@ -704,7 +704,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Delete"
+                recommended:"false"
             }
         },
         keep_youtube_history:{
@@ -718,7 +718,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Delete"
+                recommended:"false"
             }
         },
         keep_youtube_searches:{
@@ -732,7 +732,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Delete"
+                recommended:"false"
             }
         },
         check_unused_apps:{
@@ -784,7 +784,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Pause"
+                recommended:"false"
             }
         },
         //TODO: Added on 22/7/2016. See if it should be kept.
@@ -799,7 +799,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"off"
+                recommended:"false"
             }
         },
     },
@@ -844,7 +844,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Do not connect to WeChat"
+                recommended:"Not connected"
             }
         },
         //=============================================================================================================
@@ -868,8 +868,8 @@ var ospSettingsConfig = {
                 name: "Suggesting you on the connection based on your email address",
                 url: "https://www.linkedin.com/psettings/visibility/email",
                 jquery_selector:{
-                    element:"option",
-                    valueType:"selected"
+                    element:"#setting-visibility-email .state",
+                    valueType:"inner"
                 }
             },
             write:{
@@ -881,8 +881,8 @@ var ospSettingsConfig = {
                 name: "Suggesting you as a connection based on your phone number",
                 url: "https://www.linkedin.com/psettings/visibility/phone",
                 jquery_selector:{
-                    element:"option",
-                    valueType:"selected"
+                    element:"#setting-visibility-phone .state",
+                    valueType:"inner"
                 }
             },
             write:{
@@ -899,7 +899,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"no"
+                recommended:"false"
             }
         },
         share_data_with_third_party_platforms:{
@@ -925,7 +925,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"No"
+                recommended:"false"
             }
         },
         share_you_news:{
@@ -938,7 +938,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:"false"
             }
         },
         broadcast_activity:{
@@ -951,7 +951,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:"false"
             }
         },
         control_broadcast:{
@@ -959,12 +959,12 @@ var ospSettingsConfig = {
                 name: "Control who can see your activity broadcast.",
                 url: "https://www.linkedin.com/psettings/allow-follow",
                 jquery_selector:{
-                    element:"option",
-                    valueType:"selected"
+                    element:"#setting-allow-follow .state",
+                    valueType:"inner"
                 }
             },
             write:{
-                recommended:"Limit to yourself"
+                recommended:"Connections"
             }
         },
         /*control_others_see:{
@@ -983,12 +983,12 @@ var ospSettingsConfig = {
                 name: "Control showing “How You Rank”",
                 url: "https://www.linkedin.com/psettings/how-you-rank",
                 jquery_selector:{
-                    element:"input[id='how-you-rank-option']",
-                    valueType:"checkbox"
+                    element:"#setting-how-you-rank .state",
+                    valueType:"inner"
                 }
             },
             write:{
-                recommended:"Do not allow showing how you rank"
+                recommended:"No"
             }
         },
         see_connections_list:{
@@ -996,12 +996,12 @@ var ospSettingsConfig = {
                 name: "Select who can see your list of connections.",
                 url: "https://www.linkedin.com/psettings/connections-visibility",
                 jquery_selector:{
-                    element:"option",
-                    valueType:"selected"
+                    element:"#setting-connections-visibility .state",
+                    valueType:"inner"
                 }
             },
             write:{
-                recommended:"Limit to yourself"
+                recommended:"Only you"
             }
         },
         control_followers:{
@@ -1022,12 +1022,12 @@ var ospSettingsConfig = {
                 name: "Control your profile photo and visibility.",
                 url: "https://www.linkedin.com/psettings/profile-photo-visibility",
                 jquery_selector:{
-                    element:"option",
-                    valueType:"selected"
+                    element:"#setting-profile-photo-visibility .state",
+                    valueType:"inner"
                 }
             },
             write:{
-                recommended:undefined
+                recommended:"Connections"
             }
         },
         /*control_also_viewed:{
@@ -1216,8 +1216,8 @@ var ospSettingsConfig = {
                 name: "Choose whether you want to receive invitations to join groups",
                 url: "https://www.linkedin.com/psettings/group-invitations",
                 jquery_selector:{
-                    element:"input[id='group-invitations-option']",
-                    valueType:"checkbox"
+                    element:"#setting-group-invitations .state",
+                    valueType:"inner"
                 }
             },
             write:{
@@ -1229,8 +1229,8 @@ var ospSettingsConfig = {
                 name: "Choose whether we notify your network when you join a group",
                 url: "https://www.linkedin.com/psettings/group-join-notifications",
                 jquery_selector:{
-                    element:"input[id='group-join-notifications-option']",
-                    valueType:"checkbox"
+                    element:"#setting-group-join-notifications .state",
+                    valueType:"inner"
                 }
             },
             write:{
@@ -1242,12 +1242,12 @@ var ospSettingsConfig = {
                 name: "Turn on/off invitations to participate in research",
                 url: "https://www.linkedin.com/psettings/research-invitations",
                 jquery_selector:{
-                    element:"input[id='research-invitations-option']",
-                    valueType:"checkbox"
+                    element:"#setting-research-invitations .state",
+                    valueType:"inner"
                 }
             },
             write:{
-                recommended:"Off"
+                recommended:"No"
             }
         },
         allow_partner_inmail:{
@@ -1260,7 +1260,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:"false"
             }
         },
         allow_hiring_campaign_partner_inmail:{
@@ -1273,7 +1273,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:"false"
             }
         }
     },
@@ -1583,9 +1583,7 @@ function getSettingKeyValue(osp, settingKey, settingValue){
             return key;
         }
     }
-
     return settingValue;
-
 }
 
 
@@ -1596,5 +1594,3 @@ function getOSPs(){
     }
     return osps;
 }
-
-//console.log(generateAngularForm("facebook"));
