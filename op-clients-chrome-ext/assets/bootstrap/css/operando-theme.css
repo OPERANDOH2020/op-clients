@@ -674,3 +674,6 @@ border: none;
 .social_network_settings_panel h2{
     text-transform: capitalize;
 }
+#loading-bar .bar {
+    position: relative;
+}

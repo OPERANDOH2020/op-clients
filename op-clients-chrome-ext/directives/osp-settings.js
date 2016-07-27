@@ -1,4 +1,4 @@
-angular.module('osp', [])
+angular.module('osp', ['cfp.loadingBar'])
     .factory("ospService", function () {
 
         getUserSettings = function (callback) {
@@ -114,7 +114,11 @@ angular.module('osp', [])
             scope: {
                 osp: "="
             },
-            controller: function ($scope) {
+            controller: function ($scope, cfpLoadingBar) {
+
+
+
+
                 var tabId = null;
                 $scope.readSocialNetworkPrivacySettings = function () {
 
@@ -170,6 +174,7 @@ angular.module('osp', [])
                         sequence = sequence.then(function () {
                             return new Promise(function (resolve, reject) {
                                 chrome.tabs.create({active: false}, function (tab) {
+                                    cfpLoadingBar.start();
                                     tabId = tab.id;
                                     resolve(tabId);
                                 });
@@ -219,12 +224,13 @@ angular.module('osp', [])
                             });
                         });
 
-
                         settings_arr.forEach(function (setting) {
                             sequence = sequence.then(function () {
                                 return queryPage(setting);
                             }).then(function (result) {
-                                //console.log(result);
+
+                                cfpLoadingBar.set(cfpLoadingBar.status()+(1/settings_arr.length));
+
                             }).catch(function (err) {
                                 console.log(err);
                             });
@@ -232,7 +238,8 @@ angular.module('osp', [])
 
 
                         sequence = sequence.then(function () {
-                            //chrome.tabs.remove(tabId);
+                            chrome.tabs.remove(tabId);
+                            cfpLoadingBar.complete();
                             port.disconnect();
                             port = null;
                             /*

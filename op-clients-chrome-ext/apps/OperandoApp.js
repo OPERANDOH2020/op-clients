@@ -10,7 +10,9 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClickPrivacy', 'notifications', 'osp', 'angularModalService', 'operandoCore', 'schemaForm', 'abp', 'ui.router', 'oc.lazyLoad'])
+angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClickPrivacy', 'notifications', 'osp',
+    'angularModalService', 'operandoCore', 'schemaForm', 'abp', 'ui.router', 'oc.lazyLoad','angular-loading-bar',
+    'ngAnimate'])
     .config([
         '$compileProvider',
         function ($compileProvider) {   //to accept chrome protocol
@@ -19,7 +21,14 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
 
         }
     ])
+    .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.includeSpinner = false;
+        cfpLoadingBarProvider.includeBar = true;
+        cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+        cfpLoadingBarProvider.latencyThreshold = 500;
+        cfpLoadingBarProvider.autoIncrement = false;
 
+    }])
     .run(['$rootScope', '$state', '$stateParams',
         function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;
