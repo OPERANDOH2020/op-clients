@@ -53,11 +53,12 @@ function postToFacebook(settings, item, total) {
                             data[prop] = settings.data[prop];
                         }
 
-                        console.log(data);
+                        console.log(JSON.stringify(data));
                         $.ajax({
                             type: "POST",
                             url: settings.url,
                             data: data,
+                            dataType: "text",
                             beforeSend: function (request) {
 
                                 if (settings.headers) {
@@ -66,27 +67,25 @@ function postToFacebook(settings, item, total) {
                                         request.setRequestHeader(header.name, header.value);
                                     }
                                 }
-                                request.setRequestHeader("content-length", data.length);
+                                //request.setRequestHeader("content-length", data.length);
                                 request.setRequestHeader("accept", "*/*");
                                 request.setRequestHeader("accept-language", "en-US,en;q=0.8");
                                 request.setRequestHeader("content-type", "application/x-javascript; charset=utf-8");
-                                request.setRequestHeader("cookie", cookies);
+                                //request.setRequestHeader("cookie", cookies);
 
-                                request.setRequestHeader("origin", "https://www.facebook.com");
+                                //request.setRequestHeader("origin", "https://www.facebook.com");
                                 request.setRequestHeader("X-Alt-Referer", settings.page);
-                                request.setRequestHeader("user-agent", navigator.userAgent);
+                                //request.setRequestHeader("user-agent", navigator.userAgent);
 
                             },
                             success: function (result) {
-                                //console.log(result)
                                 resolve(result);
                             },
-                            error: function (error) {
-                                //console.error(error);
-                                reject(error);
+                            error: function (a, b, c) {
+                                console.log(a,b,c);
+                                reject(b);
                             },
                             complete: function (request, status) {
-                                console.log(request.status);
                                 console.log("Request completed...");
                             }
 
@@ -109,7 +108,7 @@ function secureAccount(callback) {
         sequence = sequence.then(function () {
             return postToFacebook(settings, index, total);
         }).then(function (result) {
-            console.log(result);
+            port.postMessage({status:"progress", progress:(index+1)/total});
         }).catch(function (err) {
             console.log(err)
         });

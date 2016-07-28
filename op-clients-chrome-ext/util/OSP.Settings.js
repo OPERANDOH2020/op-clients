@@ -16,6 +16,7 @@ var SN_CONSTANTS ={
         public:300645083384735,
         everyone:300645083384735,
         friends_of_friends:275425949243301,
+        friends_except_acquaintances:284920934947802,
         only_me:286958161406148,
         friends:291667064279714
 
@@ -385,6 +386,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
+                name:"Who can add things to my timeline?",
                 page:"https://www.facebook.com/settings?tab=timeline&section=posting&view",
                 url_template:"https://www.facebook.com/ajax/settings/timeline/posting.php?dpr=1",
                 availableSettings:{
@@ -421,6 +423,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
+                name:"Review tags people add to your own posts before the tags appear on Facebook",
                 page:"https://www.facebook.com/settings?tab=timeline&section=review&view",
                 url_template:"https://www.facebook.com/ajax/settings/timeline/review.php?dpr=1",
                 availableSettings: {
@@ -439,6 +442,214 @@ var ospSettingsConfig = {
                 recommended:"enabled"
             }
         },
+
+        timeline_posts_tags:{
+          read:{
+              name: "Who can see posts you've been tagged in on your timeline?",
+              url: "https://www.facebook.com/settings?tab=timeline",
+              availableSettings: {
+                  everyone: {
+                      text: "Everyone"
+                  },
+                  friends_of_friends:{
+                      text:"Friends of Friends"
+                  },
+                  friends:{
+                      text:"Friends"
+                  },
+                  friends_except_acquaintances:{
+                      text:"Friends except Acquaintances"
+                  },
+                  only_me:{
+                      text:"Only Me"
+                  }
+
+              },
+              jquery_selector:{
+                  element:".fbSettingsList:eq(1) .fbSettingsListItem:eq(1) ._nlm",
+                  valueType: "inner"
+              }
+          },
+            write:{
+                name:"Who can see posts you've been tagged in on your timeline?",
+                page:"https://www.facebook.com/settings?tab=timeline&section=tagging&view",
+                url_template:"https://www.facebook.com/privacy/selector/update/?privacy_fbid={OPERANDO_PRIVACY_FBID}&post_param={OPERANDO_POST_PARAM}&render_location=11&is_saved_on_select=true&should_return_tooltip=false&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&dpr=1",
+                availableSettings: {
+                    everyone:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787530733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.everyone
+                            }
+                        },
+                        name: "Everyone"
+                    },
+                    friends_of_friends:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787530733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.friends_of_friends
+                            }
+                        },
+                        name: "Friends of Friends"
+                    },
+                    friends:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787530733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.friends
+                            }
+                        },
+                        name: "Friends"
+                    },
+                    friends_except_acquaintances:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787530733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.friends_except_acquaintances
+                            }
+                        },
+                        name: "Friends except Acquaintances"
+                    },
+                    only_me:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787530733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.only_me
+                            }
+                        },
+                        name: "Only Me"
+                    }
+
+                },
+                recommended:"only_me",
+            }
+        },
+
+        timeline_other_posts:{
+            read:{
+                name: "Who can see what others post on your timeline?",
+                url: "https://www.facebook.com/settings?tab=timeline",
+                availableSettings: {
+                    everyone: {
+                        text: "Everyone"
+                    },
+                    friends_of_friends:{
+                        text:"Friends of Friends"
+                    },
+                    friends:{
+                        text:"Friends"
+                    },
+                    friends_except_acquaintances:{
+                        text:"Friends except Acquaintances"
+                    },
+                    only_me:{
+                        text:"Only Me"
+                    }
+
+                },
+                jquery_selector:{
+                    element:".fbSettingsList:eq(1) .fbSettingsListItem:eq(2) ._nlm",
+                    valueType: "inner"
+                }
+            },
+            write:{
+                name:"Who can see what others post on your timeline?",
+                page:"https://www.facebook.com/settings?tab=timeline&section=others&view",
+                url_template:"https://www.facebook.com/privacy/selector/update/?privacy_fbid={OPERANDO_PRIVACY_FBID}&post_param={OPERANDO_POST_PARAM}&render_location=11&is_saved_on_select=true&should_return_tooltip=false&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&dpr=1",
+                availableSettings: {
+                    everyone:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787370733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.everyone
+                            }
+                        },
+                        name: "Everyone"
+                    },
+                    friends_of_friends:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787370733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.friends_of_friends
+                            }
+                        },
+                        name: "Friends of Friends"
+                    },
+                    friends:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787370733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.friends
+                            }
+                        },
+                        name: "Friends"
+                    },
+                    friends_except_acquaintances:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787370733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.friends_except_acquaintances
+                            }
+                        },
+                        name: "Friends except Acquaintances"
+                    },
+                    only_me:{
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787370733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.only_me
+                            }
+                        },
+                        name: "Only Me"
+                    }
+
+                },
+                recommended:"only_me",
+            }
+
+        },
+
         photo_tags_audience:{
             read:{
                 name: "When you are tagged in a post, whom do you want to add to the audience if they are not already in it?",
@@ -457,22 +668,42 @@ var ospSettingsConfig = {
                 }
             },
             write:{
+                name: "When you are tagged in a post, whom do you want to add to the audience if they are not already in it?",
+                page:"https://www.facebook.com/settings?tab=timeline&section=expansion&view",
+                url_template:"https://www.facebook.com/privacy/selector/update/?privacy_fbid={OPERANDO_PRIVACY_FBID}&post_param={OPERANDO_POST_PARAM}&render_location=11&is_saved_on_select=true&should_return_tooltip=false&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&dpr=1",
                 availableSettings:{
-                    only_me:{
-                        data:{
-                            audience:10
-                        }
+                    friends: {
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787795733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.friends
+                            }
+                        },
+                        name: "Friends"
                     },
-                    friends:{
-                        data:{
-                            audience:40
-                        }
+                    only_me: {
+                        params: {
+                            privacy_fbid: {
+                                placeholder: "OPERANDO_PRIVACY_FBID",
+                                value: 8787795733
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.only_me
+                            }
+                        },
+                        name: "Friends"
                     }
                 },
                 recommended:"only_me"
             }
         },
-        control_tag_suggestions:{
+        /*control_tag_suggestions:{
+            //It seems not to be available for EUROPE
             read:{
                 name: "Control who sees tag suggestions when photos that look like you are uploaded",
                 url: "https://www.facebook.com/settings?tab=timeline",
@@ -492,7 +723,7 @@ var ospSettingsConfig = {
             write:{
                 recommended:"only_me"
             }
-        },
+        },*/
         control_followers:{
             read:{
                 name: "Control who can be your follower.",
@@ -501,8 +732,8 @@ var ospSettingsConfig = {
                     friends: {
                         text: "Friends"
                     },
-                    everyone: {
-                        text: "Everyone"
+                    public: {
+                        text: "Public"
                     }
                 },
                 jquery_selector:{
@@ -511,6 +742,27 @@ var ospSettingsConfig = {
                 }
             },
             write:{
+                name:"Who Can Follow Me",
+                url_template:"https://www.facebook.com/ajax/follow/enable_follow.php?dpr=1",
+                page: "https://www.facebook.com/settings?tab=followers",
+                availableSettings: {
+                    friends: {
+                        data:{
+                            allow_subscribers:'disallow',
+                            should_inject:''
+                        }
+                    },
+                    public: {
+                        data: {
+                            allow_subscribers: 'allow',
+                            should_inject:1
+                        }
+                    }
+                },
+                data: {
+                    location: 44,
+                    hideable_ids: ["#following_plugin_item", "#following_editor_item"]
+                },
                 recommended:"friends"
             }
         },
@@ -544,13 +796,41 @@ var ospSettingsConfig = {
             read:{
                 name: "Allow or disallow use of apps, plugins, games and websites on Facebook and elsewhere.",
                 url: "https://www.facebook.com/settings?tab=applications",
-                availableSettings:["Allow", "Disallow"],
+                availableSettings: {
+                    disabled: {
+                        text: "Disabled."
+                    },
+                    enabled: {
+                        text: "Enabled."
+                    }
+                },
                 jquery_selector:{
-
+                    element:"._3q72",
+                    valueType: "inner"
                 }
             },
             write:{
-                recommended:"Disallow"
+                name:"Allow or disallow use of apps, plugins, games and websites on Facebook and elsewhere.",
+                page:"https://www.facebook.com/settings?tab=applications",
+                url_template:"https://www.facebook.com/settings/application/platform_opt_out/submit/?action={ACTION}&dpr=1",
+                availableSettings: {
+                    enabled:{
+                        params:{
+                            action:{placeholder:"ACTION",
+                            value:"enable"
+                            }
+                        }
+                    },
+                    disabled:{
+                        params:{
+                            action:{placeholder:"ACTION",
+                                value:"disable"
+                            }
+                        }
+                    },
+
+                },
+                recommended:"disabled"
             }
         },
         control_personal_info:{
@@ -1549,19 +1829,23 @@ function generateAngularForm(ospname){
         var conf = ospSettingsConfig[ospname][v];
 
         var availableSettings = conf["read"].availableSettings;
-        var settingEnum = [];
-        for(var key in availableSettings){
-            settingEnum.push({
-                value:key,
-                name:availableSettings[key].text
-            })
-        }
-        schema.properties[v] = {
-            title:  conf["read"].name,
-            type: "string",
-            enum: conf["read"].availableSettings?settingEnum:["Yes","No"]
+        var jquerySelector = conf["read"].jquery_selector;
 
-        };
+        if (Object.keys(jquerySelector).length !== 0 && availableSettings) {
+            var settingEnum = [];
+            for (var key in availableSettings) {
+                settingEnum.push({
+                    value: key,
+                    name: availableSettings[key].text
+                })
+            }
+            schema.properties[v] = {
+                title: conf["read"].name,
+                type: "string",
+                enum: conf["read"].availableSettings ? settingEnum : ["Yes", "No"]
+
+            };
+        }
     }
     return schema;
 }

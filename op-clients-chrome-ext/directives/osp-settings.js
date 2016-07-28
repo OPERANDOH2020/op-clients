@@ -63,7 +63,14 @@ angular.module('osp', ['cfp.loadingBar'])
                          userSettings.sn_privacy_settings.forEach(function (setting) {
 
                              if($scope.config[setting.settingKey]){
-                                 $scope.config[setting.settingKey].userSetting = setting.settingValue;
+
+                                 if(Object.keys($scope.config[setting.settingKey].read.jquery_selector).length ===0){
+                                     $scope.config[setting.settingKey].userSetting = "Not Implemented yet!"
+                                 }
+                                 else{
+                                     $scope.config[setting.settingKey].userSetting = setting.settingValue;
+                                 }
+
                                  $scope.$apply();
                              }
                          });
@@ -115,9 +122,6 @@ angular.module('osp', ['cfp.loadingBar'])
                 osp: "="
             },
             controller: function ($scope, cfpLoadingBar) {
-
-
-
 
                 var tabId = null;
                 $scope.readSocialNetworkPrivacySettings = function () {
@@ -228,9 +232,7 @@ angular.module('osp', ['cfp.loadingBar'])
                             sequence = sequence.then(function () {
                                 return queryPage(setting);
                             }).then(function (result) {
-
                                 cfpLoadingBar.set(cfpLoadingBar.status()+(1/settings_arr.length));
-
                             }).catch(function (err) {
                                 console.log(err);
                             });
