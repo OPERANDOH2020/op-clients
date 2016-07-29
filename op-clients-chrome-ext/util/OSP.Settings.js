@@ -21,7 +21,7 @@ var SN_CONSTANTS ={
         friends:291667064279714
 
     }
-}
+};
 
 
 var ospSettingsConfig = {
@@ -33,13 +33,13 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     public:{
-                        text:"Public",
+                        name:"Public"
                     },
                     friends:{
-                        text:"Friends"
+                        name:"Friends"
                     },
                     only_me:{
-                        text:"Only Me"
+                        name:"Only Me"
                     }
                 },
                 jquery_selector:{
@@ -143,10 +143,10 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     everyone:{
-                        text:"Everyone"
+                        name:"Everyone"
                     },
                     friends_of_friends:{
-                        text:"Friends of Friends"
+                        name:"Friends of Friends"
                     }
                 },
                 jquery_selector:{
@@ -196,13 +196,13 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     everyone:{
-                        text:"Everyone"
+                        name:"Everyone"
                     },
                     friends:{
-                        text:"Friends"
+                        name:"Friends"
                     },
                     friends_of_friends:{
-                        text:"Friends of Friends"
+                        name:"Friends of Friends"
                     }
                 },
                 jquery_selector:{
@@ -265,13 +265,13 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     everyone:{
-                        text:"Everyone"
+                        name:"Everyone"
                     },
                     friends:{
-                        text:"Friends"
+                        name:"Friends"
                     },
                     friends_of_friends:{
-                        text:"Friends of Friends"
+                        name:"Friends of Friends"
                     }
                 },
                 jquery_selector:{
@@ -330,14 +330,14 @@ var ospSettingsConfig = {
         },
         search_engine:{
             read:{
-                name: "Allow/disallow  engines outside Facebook to link to your profile",
+                name: "Allow/disallow engines outside Facebook to link to your profile",
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings: {
                     yes: {
-                        text: "Yes"
+                        name: "Yes"
                     },
                     no: {
-                        text: "No"
+                        name: "No"
                     }
                 },
                 jquery_selector:{
@@ -354,13 +354,15 @@ var ospSettingsConfig = {
                         data:{
                             "el":"search_filter_public",
                             "public":1
-                        }
+                        },
+                        name:"Yes"
                     },
                     no:{
                         data:{
                             "el":"search_filter_public",
                             "public":0
-                        }
+                        },
+                        name:"No"
                     }
 
                 },
@@ -374,10 +376,10 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=timeline",
                 availableSettings: {
                     only_me: {
-                        text: "Only Me"
+                        name: "Only Me"
                     },
                     friends: {
-                        text: "Friends"
+                        name: "Friends"
                     }
                 },
                 jquery_selector:{
@@ -393,12 +395,15 @@ var ospSettingsConfig = {
                     only_me:{
                         data:{
                             audience:10
-                        }
+                        },
+                        name:"Only Me"
                     },
+
                     friends:{
                         data:{
                             audience:40
-                        }
+                        },
+                        name:"Friends"
                     }
                 },
                 data:{},
@@ -411,10 +416,10 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=timeline",
                 availableSettings: {
                     enabled: {
-                        text: "On"
+                        name: "On"
                     },
                     disabled: {
-                        text: "Off"
+                        name: "Off"
                     }
                 },
                 jquery_selector:{
@@ -430,12 +435,14 @@ var ospSettingsConfig = {
                     enabled: {
                         data:{
                             tag_approval_enabled:1
-                        }
+                        },
+                        name:"On"
                     },
                     disabled: {
                         data:{
                             tag_approval_enabled:0
-                        }
+                        },
+                        name:"Off"
                     }
                 },
                 data:{},
@@ -449,19 +456,19 @@ var ospSettingsConfig = {
               url: "https://www.facebook.com/settings?tab=timeline",
               availableSettings: {
                   everyone: {
-                      text: "Everyone"
+                      name: "Everyone"
                   },
                   friends_of_friends:{
-                      text:"Friends of Friends"
+                      name:"Friends of Friends"
                   },
                   friends:{
-                      text:"Friends"
+                      name:"Friends"
                   },
                   friends_except_acquaintances:{
-                      text:"Friends except Acquaintances"
+                      name:"Friends except Acquaintances"
                   },
                   only_me:{
-                      text:"Only Me"
+                      name:"Only Me"
                   }
 
               },
@@ -542,7 +549,7 @@ var ospSettingsConfig = {
                     }
 
                 },
-                recommended:"only_me",
+                recommended:"only_me"
             }
         },
 
@@ -552,19 +559,19 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=timeline",
                 availableSettings: {
                     everyone: {
-                        text: "Everyone"
+                        name: "Everyone"
                     },
                     friends_of_friends:{
-                        text:"Friends of Friends"
+                        name:"Friends of Friends"
                     },
                     friends:{
-                        text:"Friends"
+                        name:"Friends"
                     },
                     friends_except_acquaintances:{
-                        text:"Friends except Acquaintances"
+                        name:"Friends except Acquaintances"
                     },
                     only_me:{
-                        text:"Only Me"
+                        name:"Only Me"
                     }
 
                 },
@@ -645,7 +652,7 @@ var ospSettingsConfig = {
                     }
 
                 },
-                recommended:"only_me",
+                recommended:"only_me"
             }
 
         },
@@ -656,10 +663,10 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=timeline",
                 availableSettings:{
                     friends:{
-                        text:"Friends"
+                        name:"Friends"
                     },
                     only_me:{
-                        text:"Only Me"
+                        name:"Only Me"
                     }
                 },
                 jquery_selector:{
@@ -696,7 +703,7 @@ var ospSettingsConfig = {
                                 value: SN_CONSTANTS.FACEBOOK.only_me
                             }
                         },
-                        name: "Friends"
+                        name: "Only Me"
                     }
                 },
                 recommended:"only_me"
@@ -709,10 +716,10 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=timeline",
                 availableSettings:{
                     friends:{
-                        text:"Friends"
+                        name:"Friends"
                     },
                     only_me:{
-                        text:"Only Me"
+                        name:"Only Me"
                     }
                 },
                 jquery_selector:{
@@ -730,10 +737,10 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=followers",
                 availableSettings: {
                     friends: {
-                        text: "Friends"
+                        name: "Friends"
                     },
                     public: {
-                        text: "Public"
+                        name: "Public"
                     }
                 },
                 jquery_selector:{
@@ -750,13 +757,15 @@ var ospSettingsConfig = {
                         data:{
                             allow_subscribers:'disallow',
                             should_inject:''
-                        }
+                        },
+                        name:"Friends"
                     },
                     public: {
                         data: {
                             allow_subscribers: 'allow',
                             should_inject:1
-                        }
+                        },
+                        name:"Public"
                     }
                 },
                 data: {
@@ -798,10 +807,10 @@ var ospSettingsConfig = {
                 url: "https://www.facebook.com/settings?tab=applications",
                 availableSettings: {
                     disabled: {
-                        text: "Disabled."
+                        name: "Disalow"
                     },
                     enabled: {
-                        text: "Enabled."
+                        name: "Allow"
                     }
                 },
                 jquery_selector:{
@@ -819,15 +828,17 @@ var ospSettingsConfig = {
                             action:{placeholder:"ACTION",
                             value:"enable"
                             }
-                        }
+                        },
+                        name:"Enabled."
                     },
                     disabled:{
                         params:{
                             action:{placeholder:"ACTION",
                                 value:"disable"
                             }
-                        }
-                    },
+                        },
+                        name:"Disabled."
+                    }
 
                 },
                 recommended:"disabled"
@@ -861,14 +872,14 @@ var ospSettingsConfig = {
         },
         control_ads:{
             read:{
-                name: "Allow or disallow Facebook to show you ads is based on your use of websites and apps that use Facebook's technologies ",
+                name: "Allow Facebook to show you ads based on your use of websites and apps that use Facebook's technologies ",
                 url: "https://www.facebook.com/settings?tab=ads",
                 availableSettings: {
-                    allow: {
-                        text: "Yes"
+                    yes: {
+                        name: "Yes"
                     },
-                    disallow: {
-                        text: "No"
+                    no: {
+                        name: "No"
                     }
                 },
                 jquery_selector:{
@@ -877,28 +888,104 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"disallow"
+                name:"Ads based on my use of websites and apps",
+                page:"https://www.facebook.com/settings?tab=ads&section=oba&view",
+                url_template:"https://www.facebook.com/ads/preferences/oba/?dpr=1",
+                availableSettings:{
+                    yes:{
+                        data:{
+                            is_opted_out:0
+                        },
+                        name:"Yes"
+                    },
+                    no:{
+                        data:{
+                            is_opted_out:1
+                        },
+                        name:"No"
+                    }
+                },
+
+                recommended:"no"
             }
         },
-        control_friends_ads:{
+        facebook_companies_ads:{
             read:{
-                name: "Allow or disallow Facebook show ads to your friends based on actions you take, such as liking a Page or sharing a post",
-                url: "https://www.facebook.com/settings?tab=ads",
+                name:"Can your Facebook ad preferences be used to show you ads on apps and websites off of the Facebook Companies?",
+                url:"https://www.facebook.com/settings?tab=ads&view",
                 availableSettings: {
-                    allow: {
-                        text: "Yes"
+                    yes: {
+                        name: "Yes"
                     },
-                    disallow: {
-                        text: "No"
+                    no: {
+                        name: "No"
                     }
                 },
                 jquery_selector:{
                     element: ".fbSettingsList:eq(1) .fbSettingsListItem:eq(0) ._nlm",
                     valueType: "inner"
                 }
+
             },
             write:{
-                recommended:"disallow"
+                name:"Can your Facebook ad preferences be used to show you ads on apps and websites off of the Facebook Companies?",
+                page:"https://www.facebook.com/settings?tab=ads&section=fpd&view",
+                url_template:"https://www.facebook.com/ads/preferences/fpd/?dpr=1",
+                availableSettings:{
+                    yes:{
+                        data:{
+                            is_opted_out:0
+                        },
+                        name:"Yes"
+                    },
+                    no:{
+                        data:{
+                            is_opted_out:1
+                        },
+                        name:"No"
+                    }
+                },
+
+                recommended:"no"
+            }
+        },
+        control_friends_ads:{
+            read:{
+                name: "Who can see your social actions paired with ads?",
+                url: "https://www.facebook.com/settings?tab=ads",
+                availableSettings: {
+                    only_friends: {
+                        name: "Only my friends"
+                    },
+                    no_one: {
+                        name: "No one"
+                    }
+                },
+                jquery_selector:{
+                    element: ".fbSettingsList:eq(2) .fbSettingsListItem:eq(0) ._nlm",
+                    valueType: "inner"
+                }
+            },
+            write:{
+                name:"Who can see your social actions paired with ads?",
+                page:"https://www.facebook.com/settings?tab=ads&section=socialcontext&view",
+                url_template:"https://www.facebook.com/ajax/settings/ads/socialcontext.php?dpr=1",
+                availableSettings:{
+                    only_friends:{
+                        data:{
+                            opt_out:''
+                        },
+                        name:"Only my friends"
+                    },
+                    no_one:{
+                        data:{
+                            opt_out:1
+                        },
+                        name:"No one"
+                    }
+                },
+
+                recommended:"no_one"
             }
         },
         control_preferences:{
@@ -1081,7 +1168,7 @@ var ospSettingsConfig = {
             write:{
                 recommended:"false"
             }
-        },
+        }
     },
 
     "linkedin": {
@@ -1284,7 +1371,7 @@ var ospSettingsConfig = {
                 recommended:"Only you"
             }
         },
-        control_followers:{
+        linkedin_control_followers:{
             read:{
                 name: "Control who can follow your updates.",
                 url: "https://www.linkedin.com/psettings/allow-follow",
@@ -1764,7 +1851,7 @@ var ospSettingsConfig = {
             write:{
                 recommended:"Disallow"
             }
-        },
+        }
         /*manage_contacts:{
          read:{
          name: "Manage contacts you have uploaded from your address book in twitter",
@@ -1858,11 +1945,18 @@ function getOSPSettings(ospname){
 
 function getSettingKeyValue(osp, settingKey, settingValue){
 
-    var availableSettings = ospSettingsConfig[osp][settingKey].read.availableSettings;
+    /**
+     * write settings are more close to what we read
+     */
+    var availableSettings = ospSettingsConfig[osp][settingKey].write.availableSettings;
+
+    if(!availableSettings){
+        availableSettings = ospSettingsConfig[osp][settingKey].read.availableSettings;
+    }
 
     for(key in availableSettings){
-        console.log(key, availableSettings[key].text);
-        if(availableSettings[key].text === settingValue){
+        console.log(key, availableSettings[key].name);
+        if(availableSettings[key].name === settingValue){
             console.log(key);
             return key;
         }

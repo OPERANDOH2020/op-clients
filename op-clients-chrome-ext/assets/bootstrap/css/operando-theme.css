@@ -186,6 +186,8 @@ padding-left: 0px;
 
 .extension_icon.no_icon img{
     background: url(/operando/assets/images/extension_icon.png) no-repeat center;
+    width: 64px;
+    height: 64px;
 }
 .extension_name{
     display: block;
@@ -676,4 +678,14 @@ border: none;
 }
 #loading-bar .bar {
     position: relative;
+}
+
+#loading-bar-container #loading-bar .bar{
+    background: #F5A43C;
+    height: 4px;
+}
+
+#loading-bar-container #loading-bar .peg{
+    height: 4px;
+    box-shadow:#F5A43C 1px 0 6px 1px ;
 }

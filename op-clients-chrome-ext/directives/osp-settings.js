@@ -79,7 +79,6 @@ angular.module('osp', ['cfp.loadingBar'])
 
                 $scope.$on("received-setting", function (event, args) {
 
-
                     if (args.settingValue == undefined) {
                         args.settingValue = "undefined";
                     }
@@ -134,7 +133,7 @@ angular.module('osp', ['cfp.loadingBar'])
                         var tabIsNew = true;
 
                         var snSettings = ospSettingsConfig[$scope.osp];
-                        var settings_arr = []
+                        var settings_arr = [];
 
                         for (var key in snSettings) {
 

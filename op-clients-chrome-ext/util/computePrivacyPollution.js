@@ -100,7 +100,7 @@ function computePrivacyPollution(list){
         return permissionConfig[current] + prev;
     }, 1);
     if(over7){
-        value += 5 * counter;
+        value += (5 * counter)-1;
         value = value/counter - 5;
     } else {
         if(counter){
