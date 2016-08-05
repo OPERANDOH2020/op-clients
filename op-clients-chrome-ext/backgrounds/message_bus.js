@@ -15,6 +15,8 @@ var authenticationService = require("authentication-service").authenticationServ
 var swarmService = require("swarm-service").swarmService;
 var identityService = require("identity-service").identityService;
 var pfbService = require("pfb-service").pfbService;
+var socialNetworkService = require("social-network-privacy-settings").socialNetworkService;
+var privacyWizardService = require("privacy-wizard").privacyWizardService;
 
 var clientPort = null;
 chrome.runtime.onConnect.addListener(function (_port) {
@@ -103,7 +105,17 @@ chrome.runtime.onConnect.addListener(function (_port) {
                 });
             }
 
+            if(request.action == "getNextQuestion"){
+                privacyWizardService.getNextQuestion(function(question){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: question});
+                });
+            }
 
+            if(request.action == "completeWizard"){
+                privacyWizardService.completeWizard(function(){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action});
+                });
+            }
         });
     }
 

@@ -1219,8 +1219,16 @@ var ospSettingsConfig = {
         //=============================================================================================================
         share_edits:{
             read:{
-                name: "Sharing profile edits",
+                name: "Sharing profile edits?",
                 url: "https://www.linkedin.com/psettings/activity-broadcast",
+                availableSettings:{
+                  yes:{
+                      name:"Yes"
+                  },
+                  no:{
+                      name:"No"
+                  }
+                },
                 jquery_selector:{
                     element:"input[id='option-broadcast']",
                     valueType:"checkbox"
@@ -1923,7 +1931,7 @@ function generateAngularForm(ospname){
             for (var key in availableSettings) {
                 settingEnum.push({
                     value: key,
-                    name: availableSettings[key].text
+                    name: availableSettings[key].name
                 })
             }
             schema.properties[v] = {

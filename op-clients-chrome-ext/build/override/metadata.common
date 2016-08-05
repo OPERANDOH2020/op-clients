@@ -18,7 +18,7 @@ backgroundScripts =lib/polyfills/url.js
   background.js
   operando/utils/js.cookie.js
   operando/backgrounds/operando_background.js
-  operando/backgrounds/operando_account.js
+  operando/backgrounds/message_bus.js
 testScripts = ../ext/common.js
   ../ext/background.js
   ../lib/compat.js
@@ -111,6 +111,8 @@ lib/adblockplus.js = adblockpluscore/lib/events.js
   operando/libs/authentication-service.js
   operando/libs/identity-service.js
   operando/libs/pfb-service.js
+  operando/libs/social-network-privacy-settings.js
+  operando/libs/privacy-wizard.js
   --arg module=true source_repo=https://hg.adblockplus.org/adblockpluscore/
 ext/common.js = ext/common.js chrome/ext/common.js
 operando/swarms.js = operando/services/swarm-services/socket.io-1.0.6.js
@@ -125,6 +127,7 @@ operando/directives.js = operando/directives/deals.js
                   operando/directives/osp-settings.js
                   operando/directives/single-click-privacy.js
                   operando/directives/abp_data_leakage_prevention.js
+                  operando/directives/privacy_wizard.js
 
 operando/schema-form.js =operando/utils/angular-sanitize/angular-sanitize.min.js
                    operando/utils/schema-form/tv4/tv4.js

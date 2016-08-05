@@ -10,9 +10,9 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClickPrivacy', 'notifications', 'osp',
-    'angularModalService', 'operandoCore', 'schemaForm', 'abp', 'ui.router', 'oc.lazyLoad','angular-loading-bar',
-    'ngAnimate'])
+angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClickPrivacy', 'privacyWizard',
+    'notifications', 'osp', 'angularModalService', 'operandoCore', 'schemaForm', 'abp', 'ui.router',
+    'oc.lazyLoad','angular-loading-bar','ngAnimate'])
     .config([
         '$compileProvider',
         function ($compileProvider) {   //to accept chrome protocol
@@ -53,7 +53,8 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             })
             .state("home.privacyQuestionnaire", {
                 url: "/privacy-questionnaire",
-                templateUrl: "views/home/privacy_questionnaire.html",
+                /*templateUrl: "views/home/privacy_questionnaire.html",*/
+                template:"<privacy-wizard></privacy-wizard>",
                 resolve: {
                     loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('/operando/controllers/questionnaireController.js');
