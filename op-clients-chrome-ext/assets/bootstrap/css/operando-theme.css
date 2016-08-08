@@ -173,6 +173,12 @@ div.tab-content{
 #wrapper button:hover{
     background:#FFF1D2;
 }
+#wrapper button[disabled],
+#wrapper button:hover[disabled]
+{
+    border-color:#e0e0e0;
+    background: none;
+}
 
 #features{
 padding-left: 0px;

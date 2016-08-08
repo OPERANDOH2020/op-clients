@@ -19,6 +19,7 @@ var observer = {
 swarmHub.on("PrivacyWizardSwarm.js", "gotNewQuestion", function (swarm) {
     while (observer.gotNewQuestion.length > 0) {
         var c = observer.gotNewQuestion.pop();
+        console.log(swarm);
         c(swarm.question);
     }
 });

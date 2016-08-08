@@ -1,10 +1,43 @@
-
 <div>
     <h3>PrivacyWizard</h3>
 
-
+    <div>JSON : {{current_question}}</div>
     <div>
-      <span>{{current_question}}</span>
+        <h4>question_id: {{current_question.question_id}}</h4>
     </div>
+
+    Current Settings:<br/>
+    {{current_settings}}
+
+    <br/>
+
+    <div ng-switch="view">
+        <div ng-switch-when="options">
+        <form>
+            <div ng-repeat="choice in current_question.possible_choices_ids">
+                <input type="checkbox" ng-model="choice.selected" >
+                <label>{{choice.key}}</label>
+            </div>
+            <button ng-click="next()" ng-disabled="!someSelected()">Next</button>
+        </form>
+        </div>
+
+        <div ng-switch-when="suggestions" class="sugesstions">
+
+            <div ng-repeat="(key, suggestions) in current_question.suggestions">
+                <div ng-if="optionIsSelected(key)">
+                    <div ng-repeat="suggestion in suggestions">
+                        <input type="checkbox" checked="checked" ng-model="suggestion.selected">
+                        <label>{{suggestion.key}}</label>
+                    </div>
+                </div>
+
+            </div>
+            <button ng-click="next()">Continue</button>
+        </div>
+    </div>
+
+
+
 
 </div>

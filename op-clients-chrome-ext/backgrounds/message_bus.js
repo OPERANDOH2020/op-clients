@@ -106,7 +106,8 @@ chrome.runtime.onConnect.addListener(function (_port) {
             }
 
             if(request.action == "getNextQuestion"){
-                privacyWizardService.getNextQuestion(function(question){
+                privacyWizardService.getNextQuestion(request.message,function(question){
+
                     clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: question});
                 });
             }
