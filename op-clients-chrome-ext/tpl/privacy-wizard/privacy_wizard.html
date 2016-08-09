@@ -1,43 +1,40 @@
 <div>
     <h3>PrivacyWizard</h3>
 
-    <div>JSON : {{current_question}}</div>
-    <div>
-        <h4>question_id: {{current_question.question_id}}</h4>
-    </div>
 
-    Current Settings:<br/>
+
+    <h3>Current Settings:</h3>
     {{current_settings}}
 
+    <hr/>
+    <div>JSON : {{current_question}}</div>
     <br/>
+    <hr/>
 
     <div ng-switch="view">
         <div ng-switch-when="options">
+            <h4>{{current_question.question_id}}</h4>
         <form>
             <div ng-repeat="choice in current_question.possible_choices_ids">
-                <input type="checkbox" ng-model="choice.selected" >
-                <label>{{choice.key}}</label>
+                <input type="radio" ng-model="current_question.selected" ng-value="choice" >
+                <label>{{choice}}</label>
             </div>
             <button ng-click="next()" ng-disabled="!someSelected()">Next</button>
         </form>
+
         </div>
 
         <div ng-switch-when="suggestions" class="sugesstions">
-
-            <div ng-repeat="(key, suggestions) in current_question.suggestions">
-                <div ng-if="optionIsSelected(key)">
-                    <div ng-repeat="suggestion in suggestions">
-                        <input type="checkbox" checked="checked" ng-model="suggestion.selected">
-                        <label>{{suggestion.key}}</label>
+            {{suggestedQuestions}}
+            <div ng-repeat="(q_key, q) in suggestedQuestions">
+                <h4>question_id: {{q_key}}</h4>
+                    <div ng-repeat="option in q.options">
+                        <input type="radio" ng-model="q.selected" ng-value="option">
+                        <label>{{option}}</label>
                     </div>
-                </div>
-
             </div>
             <button ng-click="next()">Continue</button>
         </div>
     </div>
-
-
-
 
 </div>

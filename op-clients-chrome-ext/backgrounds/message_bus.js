@@ -117,6 +117,12 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action});
                 });
             }
+
+            if(request.action == "getSuggestedQuestions"){
+                privacyWizardService.getSuggestedQuestions(request.message,function(questions){
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action,message: questions});
+                });
+            }
         });
     }
 

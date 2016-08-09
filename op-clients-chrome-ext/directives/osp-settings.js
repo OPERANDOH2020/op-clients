@@ -1,5 +1,5 @@
 angular.module('osp', ['cfp.loadingBar'])
-    .factory("ospService", ["messengerSerivce",function (messengerSerivce) {
+    .factory("ospService", ["messengerService",function (messengerSerivce) {
 
         getUserSettings = function (callback) {
 

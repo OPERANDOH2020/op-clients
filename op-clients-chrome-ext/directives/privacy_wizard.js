@@ -26,10 +26,17 @@ angular.module('privacyWizard', [])
             });
         }
 
+        getSuggestedQuestions = function (options, callback) {
+            messengerService.send("getSuggestedQuestions", options, function (questions) {
+                callback(questions);
+            });
+        }
+
 
         return {
             getNextQuestion: getNextQuestion,
-            completeWizard: completeWizard
+            completeWizard: completeWizard,
+            getSuggestedQuestions: getSuggestedQuestions
         }
     }])
     .directive("privacyWizard", function ($rootScope) {
@@ -47,23 +54,6 @@ angular.module('privacyWizard', [])
                 var getNextQuestion = function () {
                     PrivacyWizardService.getNextQuestion($scope.current_settings, function (current_question) {
                         $scope.current_question = current_question;
-
-                        for (var i = 0; i < $scope.current_question.possible_choices_ids.length; i++) {
-                            $scope.current_question.possible_choices_ids[i] = {
-                                key: $scope.current_question.possible_choices_ids[i]
-                            }
-                        }
-
-
-                        for (var option in $scope.current_question.suggestions) {
-                            for (var i = 0; i < $scope.current_question.suggestions[option].length; i++) {
-                                $scope.current_question.suggestions[option][i] = {
-                                    key: $scope.current_question.suggestions[option][i],
-                                    selected: true
-                                }
-                            }
-                        }
-
                         $scope.$apply();
                     });
                 }
@@ -78,58 +68,44 @@ angular.module('privacyWizard', [])
                             $scope.current_settings[$scope.current_question.question_id] = [];
                         }
 
-                        $scope.current_question.possible_choices_ids.forEach(function (item) {
-                            if(item.selected){
-                                $scope.current_settings[$scope.current_question.question_id].push(item.key);
-                            }
-                        });
+                        $scope.current_settings[$scope.current_question.question_id].push($scope.current_question.selected);
 
-                        $scope.view = "suggestions";
+                        PrivacyWizardService.getSuggestedQuestions($scope.current_question.suggestions[$scope.current_question.selected], function (questions) {
+                            $scope.suggestedQuestions = questions;
+
+                            for (var q in $scope.suggestedQuestions) {
+                                var options = angular.copy($scope.suggestedQuestions[q]);
+                                $scope.suggestedQuestions[q] = {};
+                                $scope.suggestedQuestions[q].options = options;
+
+                                $scope.suggestedQuestions[q].selected = null;
+                                var options = $scope.suggestedQuestions[q].options;
+
+                                $scope.suggestedQuestions[q].selected = $scope.current_question.suggestions[$scope.current_question.selected].filter(function (value) {
+                                    return options.indexOf(value) > -1;
+                                })[0];
+                            }
+                            $scope.view = "suggestions";
+                            $scope.$apply();
+
+                        });
 
                     }
                     else {
-                        for (var option in $scope.current_question.suggestions) {
-                            if ($scope.current_settings[$scope.current_question.question_id].indexOf(option) != -1) {
-                                $scope.current_question.suggestions[option].forEach(function (item) {
-                                    if (item.selected) {
-                                        $scope.current_settings[$scope.current_question.question_id].push(item.key);
-                                    }
-                                });
+
+                        if ($scope.current_settings[$scope.current_question.question_id]) {
+                            for (var sq in  $scope.suggestedQuestions) {
+                                $scope.current_settings[$scope.current_question.question_id].push($scope.suggestedQuestions[sq].selected);
                             }
                         }
 
                         $scope.view = "options";
                         getNextQuestion();
                     }
-
                 }
 
-                $scope.optionIsSelected = function (key) {
-
-                    var possible_options = $scope.current_question.possible_choices_ids;
-
-                    for (var i = 0; i < possible_options.length; i++) {
-                        var option = possible_options[i];
-                        if (option.key == key && option.selected == true) {
-                            return true;
-
-                        }
-                    }
-
-                    return false;
-                };
-
                 $scope.someSelected = function () {
-                    if (!$scope.current_question.possible_choices_ids) {
-                        return false;
-                    }
-
-                    var arr_filter = $scope.current_question.possible_choices_ids.filter(function (value) {
-                        return value.selected ? true : false;
-
-                    });
-
-                    return arr_filter.length > 0 ? true : false;
+                    return $scope.current_question.selected;
                 }
 
             }],

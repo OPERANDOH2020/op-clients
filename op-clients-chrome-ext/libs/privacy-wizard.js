@@ -12,7 +12,8 @@
 
 var observer = {
     gotNewQuestion: [],
-    wizardCompleted: []
+    wizardCompleted: [],
+    suggestedQuestions:[]
 }
 
 
@@ -31,6 +32,15 @@ swarmHub.on("PrivacyWizardSwarm.js", "wizardCompleted", function () {
     }
 });
 
+swarmHub.on("PrivacyWizardSwarm.js", "gotSuggestedQuestions", function (swarm) {
+    while (observer.suggestedQuestions.length > 0) {
+        var c = observer.suggestedQuestions.pop();
+        console.log(swarm.questions);
+        c(swarm.questions);
+    }
+});
+
+
 
 var privacyWizardService = exports.privacyWizardService = {
 
@@ -46,6 +56,15 @@ var privacyWizardService = exports.privacyWizardService = {
     completeWizard: function (current_settings, provided_suggestions, success_callback) {
         swarmHub.startSwarm('PrivacyWizardSwarm.js', 'completeWizard', current_settings, provided_suggestions);
         observer.wizardCompleted.push(success_callback);
+        /*
+         TODO
+         add error callback
+         */
+    },
+
+    getSuggestedQuestions : function(options, success_callback){
+        swarmHub.startSwarm('PrivacyWizardSwarm.js', 'getSuggestedQuestions', options);
+        observer.suggestedQuestions.push(success_callback);
         /*
          TODO
          add error callback
