@@ -97,6 +97,11 @@ UITableViewDataSource, UITableViewDelegate
         
         scanningView.whenPressingScanButton = {
             weakScanningView?.beginScanningState()
+            
+            let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 3))
+            dispatch_after(delay, dispatch_get_main_queue(), { 
+                weakSelf?.reloadData()
+            })
         };
         
     }
