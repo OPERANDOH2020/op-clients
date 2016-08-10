@@ -113,7 +113,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
             }
 
             if(request.action == "completeWizard"){
-                privacyWizardService.completeWizard(function(){
+                privacyWizardService.completeWizard(request.message.currentSetting, request.message.all_suggestions, function(){
                     clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action});
                 });
             }

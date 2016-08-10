@@ -695,3 +695,44 @@ border: none;
     height: 4px;
     box-shadow:#F5A43C 1px 0 6px 1px ;
 }
+
+.privacy_wizard{
+    margin-top: 50px;
+    background: #f1ebdf;
+    padding: 30px;
+    color:#654d14;
+    border-radius:4px;
+}
+
+.privacy_wizard h3{
+   text-align:center;
+}
+
+.sugesstions .suggested_question{
+    border-bottom: 1px solid #dcd4c0;
+    border-top: 1px solid #f7f3ea;
+    padding-top: 20px;
+}
+/*.sugesstions .suggested_question:last-child{
+    border-bottom: none;
+}*/
+
+.sugesstions .suggested_question:first-child{
+    border-top: none;
+    padding-top: 0px;
+}
+
+#wrapper .privacy_wizard button:not([disabled]){
+    border:1px solid #a28f60;
+}
+
+.wizard_question {
+    border-bottom: 1px solid #dcd4c0;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+
+.privacy_wizard .wizard_actions{
+    border-top: 1px solid #f7f3ea;
+    padding-top: 20px;
+}

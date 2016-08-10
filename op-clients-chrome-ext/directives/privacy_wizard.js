@@ -20,9 +20,9 @@ angular.module('privacyWizard', [])
             });
         }
 
-        completeWizard = function (callback) {
-            messengerService.send("completeWizard", {}, function (question) {
-                callback(question);
+        completeWizard = function (currentSetting, all_suggestions,callback) {
+            messengerService.send("completeWizard", {currentSetting:currentSetting, all_suggestions:all_suggestions}, function () {
+                callback();
             });
         }
 
@@ -49,6 +49,7 @@ angular.module('privacyWizard', [])
 
                 $scope.current_settings = {};
                 $scope.current_question = {};
+                $scope.all_suggestions = [];
                 $scope.view = "options";
 
                 var getNextQuestion = function () {
@@ -99,8 +100,24 @@ angular.module('privacyWizard', [])
                             }
                         }
 
-                        $scope.view = "options";
-                        getNextQuestion();
+
+                        var step = angular.copy($scope.current_question);
+                        step.current_settings = angular.copy($scope.current_settings);
+                        $scope.all_suggestions.push(step);
+
+                        if (Object.keys($scope.current_settings).length >= 3) {
+
+                            PrivacyWizardService.completeWizard($scope.current_settings, $scope.all_suggestions, function(){
+                                $scope.view = "completed";
+                                $scope.$apply();
+                            });
+
+                        }
+                        else {
+                            $scope.view = "options";
+                            getNextQuestion();
+                        }
+
                     }
                 }
 

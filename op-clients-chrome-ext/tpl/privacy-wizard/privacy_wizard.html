@@ -1,40 +1,66 @@
 <div>
-    <h3>PrivacyWizard</h3>
+    <h2>PrivacyWizard</h2>
 
 
-
-    <h3>Current Settings:</h3>
-    {{current_settings}}
-
-    <hr/>
-    <div>JSON : {{current_question}}</div>
-    <br/>
-    <hr/>
-
-    <div ng-switch="view">
+    <div ng-switch="view" class="privacy_wizard">
         <div ng-switch-when="options">
             <h4>{{current_question.question_id}}</h4>
-        <form>
-            <div ng-repeat="choice in current_question.possible_choices_ids">
-                <input type="radio" ng-model="current_question.selected" ng-value="choice" >
-                <label>{{choice}}</label>
+
+            <fieldset class="form-group wizard_question">
+
+                <div ng-repeat="choice in current_question.possible_choices_ids" class="radio" >
+
+                    <label>
+                        <input type="radio" ng-model="current_question.selected" ng-value="choice">
+                        {{choice}}
+                    </label>
+
+                </div>
+
+            </fieldset>
+
+            <div class="wizard_actions">
+                <button ng-click="next()" ng-disabled="!someSelected()">Next</button>
             </div>
-            <button ng-click="next()" ng-disabled="!someSelected()">Next</button>
-        </form>
 
         </div>
 
         <div ng-switch-when="suggestions" class="sugesstions">
-            {{suggestedQuestions}}
-            <div ng-repeat="(q_key, q) in suggestedQuestions">
-                <h4>question_id: {{q_key}}</h4>
-                    <div ng-repeat="option in q.options">
-                        <input type="radio" ng-model="q.selected" ng-value="option">
-                        <label>{{option}}</label>
-                    </div>
+
+            <div>
+                <div ng-repeat="(q_key, q) in suggestedQuestions" class="suggested_question">
+                    <h4>question_id: {{q_key}}</h4>
+                    <fieldset class="form-group">
+                        <div ng-repeat="option in q.options" class="radio">
+                            <label>
+                                <input type="radio" ng-model="q.selected" ng-value="option">
+                                {{option}}
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
             </div>
-            <button ng-click="next()">Continue</button>
+
+            <div class="wizard_actions">
+                <button ng-click="next()">Continue</button>
+            </div>
         </div>
+
+        <div ng-switch-when="completed">
+            <h3>Congratulations! You finished the wizard!</h3>
+        </div>
+
+
     </div>
+
+    <div class="debug">
+        <hr/>
+        <div><b>Current Settings:</b> {{current_settings}}</div>
+        <hr/>
+        <div><b>Question:</b> {{current_question}}</div>
+        <hr/>
+        <div><b>Suggested Questions:</b> {{suggestedQuestions}}</div>
+    </div>
+
 
 </div>
