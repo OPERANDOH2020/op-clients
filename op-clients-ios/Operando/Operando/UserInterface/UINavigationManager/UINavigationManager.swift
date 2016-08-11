@@ -103,4 +103,10 @@ class UINavigationManager
         return main.instantiateViewControllerWithIdentifier("UISecurityEventDetailsViewController") as! UISecurityEventDetailsViewController
     }
     
+    
+    static var snSettingsReaderViewController: UISNSettingsReaderViewController
+    {
+        return main.instantiateViewControllerWithIdentifier("UISNSettingsReaderViewController") as! UISNSettingsReaderViewController
+    }
+    
 }

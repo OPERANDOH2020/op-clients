@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		981697511D5CB84E00B8A23A /* testJS.js in Resources */ = {isa = PBXBuildFile; fileRef = 981697501D5CB84E00B8A23A /* testJS.js */; };
 		9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */; };
 		9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */; };
 		982750131D08497400C73411 /* UIDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750111D08497400C73411 /* UIDashboardView.swift */; };
@@ -34,6 +35,15 @@
 		9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */; };
 		9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */; };
 		9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */; };
+		985CD8431D5C64750021C58C /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD83F1D5C64750021C58C /* jquery-2.1.4.min.js */; };
+		985CD8441D5C64750021C58C /* osp-settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8401D5C64750021C58C /* osp-settings.js */; };
+		985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8411D5C64750021C58C /* OSP.Settings.js */; };
+		985CD8461D5C64750021C58C /* readSNSettings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8421D5C64750021C58C /* readSNSettings.js */; };
+		985CD84A1D5C679F0021C58C /* OSPSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CD8491D5C679F0021C58C /* OSPSettingsManager.swift */; };
+		985CD84F1D5C85440021C58C /* LocalJSSettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CD84E1D5C85440021C58C /* LocalJSSettingsProvider.swift */; };
+		985CD8511D5C8FDF0021C58C /* LocalJSSettingsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CD8501D5C8FDF0021C58C /* LocalJSSettingsProviderTests.swift */; };
+		985CD8541D5C91250021C58C /* WebViewSettingsApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CD8531D5C91250021C58C /* WebViewSettingsApplier.swift */; };
+		985CD8571D5CA8C50021C58C /* UISNSettingsReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CD8561D5CA8C50021C58C /* UISNSettingsReaderViewController.swift */; };
 		986BED2C1D116B3C0076DF16 /* UISecurityEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED2B1D116B3C0076DF16 /* UISecurityEventDetailsViewController.swift */; };
 		986BED2F1D116EB30076DF16 /* UISecurityEventTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED2E1D116EB30076DF16 /* UISecurityEventTypeView.swift */; };
 		986BED311D116F220076DF16 /* UISecurityEventTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 986BED301D116F220076DF16 /* UISecurityEventTypeView.xib */; };
@@ -116,6 +126,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		981697501D5CB84E00B8A23A /* testJS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = testJS.js; sourceTree = "<group>"; };
 		9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBrowsingNavigationBar.swift; sourceTree = "<group>"; };
 		9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIBrowsingNavigationBar.xib; sourceTree = "<group>"; };
 		982750111D08497400C73411 /* UIDashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDashboardView.swift; sourceTree = "<group>"; };
@@ -143,6 +154,15 @@
 		9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRootViewController.swift; path = UserInterface/UIRootViewController/UIRootViewController.swift; sourceTree = "<group>"; };
 		9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDashboardViewController.swift; path = UserInterface/UIDashboardViewController/UIDashboardViewController.swift; sourceTree = "<group>"; };
 		9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINavigationManager.swift; path = UserInterface/UINavigationManager/UINavigationManager.swift; sourceTree = "<group>"; };
+		985CD83F1D5C64750021C58C /* jquery-2.1.4.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-2.1.4.min.js"; sourceTree = "<group>"; };
+		985CD8401D5C64750021C58C /* osp-settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "osp-settings.js"; sourceTree = "<group>"; };
+		985CD8411D5C64750021C58C /* OSP.Settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = OSP.Settings.js; sourceTree = "<group>"; };
+		985CD8421D5C64750021C58C /* readSNSettings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = readSNSettings.js; sourceTree = "<group>"; };
+		985CD8491D5C679F0021C58C /* OSPSettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSPSettingsManager.swift; path = OSPSettings/OSPSettingsManager/OSPSettingsManager.swift; sourceTree = "<group>"; };
+		985CD84E1D5C85440021C58C /* LocalJSSettingsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalJSSettingsProvider.swift; path = OSPSettings/Providers/LocalJSSettingsProvider.swift; sourceTree = "<group>"; };
+		985CD8501D5C8FDF0021C58C /* LocalJSSettingsProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalJSSettingsProviderTests.swift; sourceTree = "<group>"; };
+		985CD8531D5C91250021C58C /* WebViewSettingsApplier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewSettingsApplier.swift; path = OSPSettings/SettingsAppliers/WebViewSettingsApplier.swift; sourceTree = "<group>"; };
+		985CD8561D5CA8C50021C58C /* UISNSettingsReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsReaderViewController.swift; path = UISNSettingsReaderViewController/UISNSettingsReaderViewController.swift; sourceTree = "<group>"; };
 		986BED2B1D116B3C0076DF16 /* UISecurityEventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISecurityEventDetailsViewController.swift; path = UserInterface/UISecurityEventDetailsViewController/UISecurityEventDetailsViewController.swift; sourceTree = "<group>"; };
 		986BED2E1D116EB30076DF16 /* UISecurityEventTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISecurityEventTypeView.swift; path = UserInterface/UISecurityEventTypeView/UISecurityEventTypeView.swift; sourceTree = "<group>"; };
 		986BED301D116F220076DF16 /* UISecurityEventTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UISecurityEventTypeView.xib; path = UserInterface/UISecurityEventTypeView/UISecurityEventTypeView.xib; sourceTree = "<group>"; };
@@ -435,6 +455,69 @@
 			name = UINavigationManager;
 			sourceTree = "<group>";
 		};
+		985CD83D1D5C64600021C58C /* JavaScript */ = {
+			isa = PBXGroup;
+			children = (
+				985CD83E1D5C64750021C58C /* ios */,
+			);
+			name = JavaScript;
+			sourceTree = "<group>";
+		};
+		985CD83E1D5C64750021C58C /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				985CD83F1D5C64750021C58C /* jquery-2.1.4.min.js */,
+				985CD8401D5C64750021C58C /* osp-settings.js */,
+				985CD8411D5C64750021C58C /* OSP.Settings.js */,
+				985CD8421D5C64750021C58C /* readSNSettings.js */,
+				981697501D5CB84E00B8A23A /* testJS.js */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		985CD8471D5C672A0021C58C /* OSPSettings */ = {
+			isa = PBXGroup;
+			children = (
+				985CD8481D5C674E0021C58C /* OSPSettingsManager */,
+				985CD83D1D5C64600021C58C /* JavaScript */,
+			);
+			name = OSPSettings;
+			sourceTree = "<group>";
+		};
+		985CD8481D5C674E0021C58C /* OSPSettingsManager */ = {
+			isa = PBXGroup;
+			children = (
+				985CD84D1D5C851E0021C58C /* Providers */,
+				985CD8521D5C90FA0021C58C /* SettingsAppliers */,
+				985CD8491D5C679F0021C58C /* OSPSettingsManager.swift */,
+			);
+			name = OSPSettingsManager;
+			sourceTree = "<group>";
+		};
+		985CD84D1D5C851E0021C58C /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				985CD84E1D5C85440021C58C /* LocalJSSettingsProvider.swift */,
+			);
+			name = Providers;
+			sourceTree = "<group>";
+		};
+		985CD8521D5C90FA0021C58C /* SettingsAppliers */ = {
+			isa = PBXGroup;
+			children = (
+				985CD8531D5C91250021C58C /* WebViewSettingsApplier.swift */,
+			);
+			name = SettingsAppliers;
+			sourceTree = "<group>";
+		};
+		985CD8551D5CA8A30021C58C /* UISNSettingsReaderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				985CD8561D5CA8C50021C58C /* UISNSettingsReaderViewController.swift */,
+			);
+			name = UISNSettingsReaderViewController;
+			sourceTree = "<group>";
+		};
 		986BED2A1D116B160076DF16 /* UISecurityEventDetailsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +618,7 @@
 		9881D2321D0EC845005EE1FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				985CD8471D5C672A0021C58C /* OSPSettings */,
 				9844D00F1D12980000CA7281 /* CoreData */,
 				986BED321D1194AE0076DF16 /* Protocols */,
 				9881D1B01D0EAAE0005EE1FF /* ConnectionInfos */,
@@ -689,6 +773,7 @@
 			children = (
 				98EAF6831CCF86DC00C77649 /* OperandoTests.swift */,
 				98EAF6851CCF86DC00C77649 /* Info.plist */,
+				985CD8501D5C8FDF0021C58C /* LocalJSSettingsProviderTests.swift */,
 			);
 			path = OperandoTests;
 			sourceTree = "<group>";
@@ -696,6 +781,7 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				985CD8551D5CA8A30021C58C /* UISNSettingsReaderViewController */,
 				9882DCF81D14487F00C7A70F /* UIScanningView */,
 				986BED2D1D116E940076DF16 /* UISecurityEventTypeView */,
 				986BED2A1D116B160076DF16 /* UISecurityEventDetailsViewController */,
@@ -913,6 +999,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985CD8431D5C64750021C58C /* jquery-2.1.4.min.js in Resources */,
+				981697511D5CB84E00B8A23A /* testJS.js in Resources */,
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
 				986BED311D116F220076DF16 /* UISecurityEventTypeView.xib in Resources */,
 				98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */,
@@ -921,10 +1009,13 @@
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
 				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
 				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
+				985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */,
 				98EAF6A31CCF8A3400C77649 /* UILoginView.xib in Resources */,
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
 				9881D2411D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib in Resources */,
+				985CD8441D5C64750021C58C /* osp-settings.js in Resources */,
 				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
+				985CD8461D5C64750021C58C /* readSNSettings.js in Resources */,
 				98E56DBA1D10288300DBB0A6 /* UISecurityEventCell.xib in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982750141D08497400C73411 /* UIDashboardView.xib in Resources */,
@@ -949,6 +1040,7 @@
 				98DD92A91D12E4440070772E /* CDIpInfo.swift in Sources */,
 				98EAF6981CCF893500C77649 /* RSCommonUtilities.swift in Sources */,
 				986BED361D1195970076DF16 /* SecurityEventProtocol.swift in Sources */,
+				985CD84A1D5C679F0021C58C /* OSPSettingsManager.swift in Sources */,
 				98DD92961D129EFA0070772E /* CDSecurityEvent.swift in Sources */,
 				98DD92981D12B21D0070772E /* CoreDataRepository+ConnectionReportsProvider.swift in Sources */,
 				986BED341D1194ED0076DF16 /* IPReportProtocol.swift in Sources */,
@@ -972,6 +1064,7 @@
 				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
 				9881D2441D0EE317005EE1FF /* UIExternalConnectionsViewController.swift in Sources */,
 				9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */,
+				985CD84F1D5C85440021C58C /* LocalJSSettingsProvider.swift in Sources */,
 				98DD92731D1299220070772E /* CoreDataRepository.swift in Sources */,
 				9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */,
 				98E56DAF1D10182000DBB0A6 /* IPSecurityEventHelper.swift in Sources */,
@@ -992,6 +1085,7 @@
 				9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */,
 				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
 				986BED381D1196AE0076DF16 /* ConnectionReportsRepository.swift in Sources */,
+				985CD8571D5CA8C50021C58C /* UISNSettingsReaderViewController.swift in Sources */,
 				9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */,
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,
@@ -999,6 +1093,7 @@
 				9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */,
 				982750261D0849FA00C73411 /* OPConfigObject.swift in Sources */,
 				9827501A1D0849D400C73411 /* UserIdentityModel.swift in Sources */,
+				985CD8541D5C91250021C58C /* WebViewSettingsApplier.swift in Sources */,
 				986BED2F1D116EB30076DF16 /* UISecurityEventTypeView.swift in Sources */,
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
@@ -1015,6 +1110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98EAF6841CCF86DC00C77649 /* OperandoTests.swift in Sources */,
+				985CD8511D5C8FDF0021C58C /* LocalJSSettingsProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
