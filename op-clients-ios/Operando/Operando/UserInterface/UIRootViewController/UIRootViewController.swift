@@ -112,7 +112,7 @@ class UIRootViewController: UIViewController
     private func actionsForMenuController() -> [Int : VoidBlock]
     {
         weak var weakSelf = self;
-        return [2: {weakSelf?.setMainControllerTo(UINavigationManager.sensorMonitoringViewController)},
+        return [2: {weakSelf?.setMainControllerTo(UINavigationManager.snSettingsReaderViewController)},
                 3: {weakSelf?.setMainControllerTo(UINavigationManager.dataLeakageViewController)},
                 0: {weakSelf?.loadDashboardAsMainViewController()},
                 8: {weakSelf?.setMainControllerTo(UINavigationManager.identityManagementViewController)},

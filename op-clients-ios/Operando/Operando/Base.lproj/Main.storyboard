@@ -97,7 +97,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS9-JU-77R" userLabel="menuButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS9-JU-77R" userLabel="menuButton">
                                         <rect key="frame" x="33" y="30" width="26" height="22"/>
                                         <state key="normal" image="hamburger_Icon"/>
                                         <connections>
@@ -790,7 +790,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor monitoring" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2p-x3-p09">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SN Settings Reader" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2p-x3-p09">
                                                     <rect key="frame" x="27" y="14" width="152" height="19"/>
                                                     <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
@@ -1760,6 +1760,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="snE-eU-11I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1601" y="2249"/>
+        </scene>
+        <!--Settings Reader View Controller-->
+        <scene sceneID="9N1-mT-vNv">
+            <objects>
+                <viewController storyboardIdentifier="UISNSettingsReaderViewController" id="LZm-3F-LnC" customClass="UISNSettingsReaderViewController" customModule="Operando" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UsC-sE-BMV"/>
+                        <viewControllerLayoutGuide type="bottom" id="gef-X9-ood"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VDZ-si-NlO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UAT-1Z-14I">
+                                <rect key="frame" x="0.0" y="60" width="600" height="540"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyG-Gw-ruX">
+                                <rect key="frame" x="20" y="20" width="111" height="30"/>
+                                <state key="normal" title="Login is finished"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UAT-1Z-14I" firstAttribute="top" secondItem="UsC-sE-BMV" secondAttribute="bottom" constant="40" id="6zQ-vM-lFT"/>
+                            <constraint firstItem="gyG-Gw-ruX" firstAttribute="leading" secondItem="VDZ-si-NlO" secondAttribute="leadingMargin" id="DYe-pd-gsO"/>
+                            <constraint firstItem="gef-X9-ood" firstAttribute="top" secondItem="UAT-1Z-14I" secondAttribute="bottom" id="R5i-HW-OER"/>
+                            <constraint firstAttribute="trailing" secondItem="UAT-1Z-14I" secondAttribute="trailing" id="iI2-To-fbK"/>
+                            <constraint firstItem="UAT-1Z-14I" firstAttribute="leading" secondItem="VDZ-si-NlO" secondAttribute="leading" id="n7Z-Wt-hf4"/>
+                            <constraint firstItem="gyG-Gw-ruX" firstAttribute="top" secondItem="UsC-sE-BMV" secondAttribute="bottom" id="y3I-yX-luB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="gyG-Gw-ruX" id="peV-9l-XKz"/>
+                        <outlet property="webView" destination="UAT-1Z-14I" id="jRk-Kw-pQJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ONn-nr-JTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2395" y="2182"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PSf-YI-QHx">

@@ -31,11 +31,13 @@ class BackgroundConnectionsScanner
     @objc
     func applicationWillEnterForeground(notification: AnyObject)
     {
+        
         self.beginNewScan()
     }
     
     private func beginNewScan()
     {
+        
         self.timer?.invalidate()
         self.timer = NSTimer.scheduledTimerWithTimeInterval(BackgroundConnectionsScanner.timeInterval, target: self, selector: #selector(BackgroundConnectionsScanner.timerFired(_:)), userInfo: nil, repeats: false);
     }
@@ -43,6 +45,7 @@ class BackgroundConnectionsScanner
     
     private func addReportForConnectionInfoAtIndex(index: Int, fromSource source: [ExternalConnectionInfo])
     {
+        
         guard index >= 0 && index < source.count else {print("Scan ended");self.beginNewScan(); return}
         
         let stepToNext = {
@@ -71,6 +74,7 @@ class BackgroundConnectionsScanner
     @objc
     func timerFired(sender: NSTimer)
     {
+        
         print("Beginning new scan")
         ExternalConnectionsProvider.getCurrentConnectionsInfoWithCompletion { (result) in
             guard let connectionInfos = result else {return}
