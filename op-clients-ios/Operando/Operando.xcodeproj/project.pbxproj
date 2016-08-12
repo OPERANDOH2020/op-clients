@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		981697511D5CB84E00B8A23A /* testJS.js in Resources */ = {isa = PBXBuildFile; fileRef = 981697501D5CB84E00B8A23A /* testJS.js */; };
+		981697511D5CB84E00B8A23A /* testJQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 981697501D5CB84E00B8A23A /* testJQuery.js */; };
 		9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */; };
 		9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */; };
 		982750131D08497400C73411 /* UIDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750111D08497400C73411 /* UIDashboardView.swift */; };
@@ -35,7 +35,7 @@
 		9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */; };
 		9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */; };
 		9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */; };
-		985CD8431D5C64750021C58C /* jquery-2.1.4.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD83F1D5C64750021C58C /* jquery-2.1.4.min.js */; };
+		985CD8431D5C64750021C58C /* jquery214min.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD83F1D5C64750021C58C /* jquery214min.js */; };
 		985CD8441D5C64750021C58C /* osp-settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8401D5C64750021C58C /* osp-settings.js */; };
 		985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8411D5C64750021C58C /* OSP.Settings.js */; };
 		985CD8461D5C64750021C58C /* readSNSettings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8421D5C64750021C58C /* readSNSettings.js */; };
@@ -50,6 +50,7 @@
 		986BED341D1194ED0076DF16 /* IPReportProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED331D1194ED0076DF16 /* IPReportProtocol.swift */; };
 		986BED361D1195970076DF16 /* SecurityEventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED351D1195970076DF16 /* SecurityEventProtocol.swift */; };
 		986BED381D1196AE0076DF16 /* ConnectionReportsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BED371D1196AE0076DF16 /* ConnectionReportsRepository.swift */; };
+		9871FC7D1D5DC11E007CB684 /* jquery-3.1.0.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9871FC7C1D5DC11E007CB684 /* jquery-3.1.0.min.js */; };
 		9881D1D51D0EAAE1005EE1FF /* ConnectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9881D1B21D0EAAE0005EE1FF /* ConnectionInfo.m */; };
 		9881D22E1D0EC526005EE1FF /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9881D22D1D0EC526005EE1FF /* SwarmClient.framework */; };
 		9881D22F1D0EC61C005EE1FF /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9881D22D1D0EC526005EE1FF /* SwarmClient.framework */; };
@@ -63,6 +64,11 @@
 		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
+		98B2563E1D5DEE570043335A /* WebKitSettingsApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2563D1D5DEE570043335A /* WebKitSettingsApplier.swift */; };
+		98B256411D5E130B0043335A /* UISNSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B256401D5E130B0043335A /* UISNSettingsView.swift */; };
+		98B256451D5E13840043335A /* UISNSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B256431D5E13840043335A /* UISNSettingsTableViewCell.swift */; };
+		98B256461D5E13840043335A /* UISNSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B256441D5E13840043335A /* UISNSettingsTableViewCell.xib */; };
+		98B256481D5E16590043335A /* UISNSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B256471D5E16590043335A /* UISNSettingsView.xib */; };
 		98DD92731D1299220070772E /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92721D1299220070772E /* CoreDataRepository.swift */; };
 		98DD92761D12997D0070772E /* OperandoCD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92741D12997D0070772E /* OperandoCD.xcdatamodeld */; };
 		98DD92951D129EFA0070772E /* CDSecurityEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD92911D129EFA0070772E /* CDSecurityEvent+CoreDataProperties.swift */; };
@@ -126,7 +132,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		981697501D5CB84E00B8A23A /* testJS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = testJS.js; sourceTree = "<group>"; };
+		981697501D5CB84E00B8A23A /* testJQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = testJQuery.js; sourceTree = "<group>"; };
 		9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBrowsingNavigationBar.swift; sourceTree = "<group>"; };
 		9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIBrowsingNavigationBar.xib; sourceTree = "<group>"; };
 		982750111D08497400C73411 /* UIDashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDashboardView.swift; sourceTree = "<group>"; };
@@ -154,7 +160,7 @@
 		9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRootViewController.swift; path = UserInterface/UIRootViewController/UIRootViewController.swift; sourceTree = "<group>"; };
 		9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDashboardViewController.swift; path = UserInterface/UIDashboardViewController/UIDashboardViewController.swift; sourceTree = "<group>"; };
 		9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINavigationManager.swift; path = UserInterface/UINavigationManager/UINavigationManager.swift; sourceTree = "<group>"; };
-		985CD83F1D5C64750021C58C /* jquery-2.1.4.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-2.1.4.min.js"; sourceTree = "<group>"; };
+		985CD83F1D5C64750021C58C /* jquery214min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery214min.js; sourceTree = "<group>"; };
 		985CD8401D5C64750021C58C /* osp-settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "osp-settings.js"; sourceTree = "<group>"; };
 		985CD8411D5C64750021C58C /* OSP.Settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = OSP.Settings.js; sourceTree = "<group>"; };
 		985CD8421D5C64750021C58C /* readSNSettings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = readSNSettings.js; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 		986BED331D1194ED0076DF16 /* IPReportProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPReportProtocol.swift; path = Protocols/IPReportProtocol.swift; sourceTree = "<group>"; };
 		986BED351D1195970076DF16 /* SecurityEventProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityEventProtocol.swift; path = Protocols/SecurityEventProtocol.swift; sourceTree = "<group>"; };
 		986BED371D1196AE0076DF16 /* ConnectionReportsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionReportsRepository.swift; path = Protocols/ConnectionReportsRepository.swift; sourceTree = "<group>"; };
+		9871FC7C1D5DC11E007CB684 /* jquery-3.1.0.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-3.1.0.min.js"; sourceTree = "<group>"; };
 		9881D1B11D0EAAE0005EE1FF /* ConnectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionInfo.h; sourceTree = "<group>"; };
 		9881D1B21D0EAAE0005EE1FF /* ConnectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionInfo.m; sourceTree = "<group>"; };
 		9881D1B51D0EAAE0005EE1FF /* bootp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bootp.h; sourceTree = "<group>"; };
@@ -212,6 +219,11 @@
 		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
+		98B2563D1D5DEE570043335A /* WebKitSettingsApplier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebKitSettingsApplier.swift; path = OSPSettings/SettingsAppliers/WebKitSettingsApplier.swift; sourceTree = "<group>"; };
+		98B256401D5E130B0043335A /* UISNSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsView.swift; path = UISNSettingsView/UISNSettingsView.swift; sourceTree = "<group>"; };
+		98B256431D5E13840043335A /* UISNSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsTableViewCell.swift; path = UISNSettingsView/UISNSettingsTableViewCell/UISNSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		98B256441D5E13840043335A /* UISNSettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UISNSettingsTableViewCell.xib; path = UISNSettingsView/UISNSettingsTableViewCell/UISNSettingsTableViewCell.xib; sourceTree = "<group>"; };
+		98B256471D5E16590043335A /* UISNSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UISNSettingsView.xib; path = UISNSettingsView/UISNSettingsView.xib; sourceTree = "<group>"; };
 		98DD92721D1299220070772E /* CoreDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataRepository.swift; path = CoreData/CoreDataRepository.swift; sourceTree = "<group>"; };
 		98DD92751D12997D0070772E /* OperandoCD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OperandoCD.xcdatamodel; sourceTree = "<group>"; };
 		98DD92911D129EFA0070772E /* CDSecurityEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDSecurityEvent+CoreDataProperties.swift"; path = "CoreData/CDSecurityEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -466,11 +478,12 @@
 		985CD83E1D5C64750021C58C /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				985CD83F1D5C64750021C58C /* jquery-2.1.4.min.js */,
+				9871FC7C1D5DC11E007CB684 /* jquery-3.1.0.min.js */,
+				985CD83F1D5C64750021C58C /* jquery214min.js */,
 				985CD8401D5C64750021C58C /* osp-settings.js */,
 				985CD8411D5C64750021C58C /* OSP.Settings.js */,
 				985CD8421D5C64750021C58C /* readSNSettings.js */,
-				981697501D5CB84E00B8A23A /* testJS.js */,
+				981697501D5CB84E00B8A23A /* testJQuery.js */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -506,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				985CD8531D5C91250021C58C /* WebViewSettingsApplier.swift */,
+				98B2563D1D5DEE570043335A /* WebKitSettingsApplier.swift */,
 			);
 			name = SettingsAppliers;
 			sourceTree = "<group>";
@@ -683,6 +697,25 @@
 			name = UIScanningView;
 			sourceTree = "<group>";
 		};
+		98B2563F1D5E0DDF0043335A /* UISNSettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				98B256421D5E13640043335A /* UISNSettingsTableCell */,
+				98B256401D5E130B0043335A /* UISNSettingsView.swift */,
+				98B256471D5E16590043335A /* UISNSettingsView.xib */,
+			);
+			name = UISNSettingsView;
+			sourceTree = "<group>";
+		};
+		98B256421D5E13640043335A /* UISNSettingsTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				98B256431D5E13840043335A /* UISNSettingsTableViewCell.swift */,
+				98B256441D5E13840043335A /* UISNSettingsTableViewCell.xib */,
+			);
+			name = UISNSettingsTableCell;
+			sourceTree = "<group>";
+		};
 		98DD929B1D12CDB40070772E /* BackgroundConnectionsScanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -781,6 +814,7 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				98B2563F1D5E0DDF0043335A /* UISNSettingsView */,
 				985CD8551D5CA8A30021C58C /* UISNSettingsReaderViewController */,
 				9882DCF81D14487F00C7A70F /* UIScanningView */,
 				986BED2D1D116E940076DF16 /* UISecurityEventTypeView */,
@@ -999,8 +1033,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				985CD8431D5C64750021C58C /* jquery-2.1.4.min.js in Resources */,
-				981697511D5CB84E00B8A23A /* testJS.js in Resources */,
+				985CD8431D5C64750021C58C /* jquery214min.js in Resources */,
+				981697511D5CB84E00B8A23A /* testJQuery.js in Resources */,
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
 				986BED311D116F220076DF16 /* UISecurityEventTypeView.xib in Resources */,
 				98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */,
@@ -1009,13 +1043,16 @@
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
 				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
 				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
+				9871FC7D1D5DC11E007CB684 /* jquery-3.1.0.min.js in Resources */,
 				985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */,
 				98EAF6A31CCF8A3400C77649 /* UILoginView.xib in Resources */,
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
 				9881D2411D0EE082005EE1FF /* UIExternalConnectionInfoCell.xib in Resources */,
+				98B256461D5E13840043335A /* UISNSettingsTableViewCell.xib in Resources */,
 				985CD8441D5C64750021C58C /* osp-settings.js in Resources */,
 				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
 				985CD8461D5C64750021C58C /* readSNSettings.js in Resources */,
+				98B256481D5E16590043335A /* UISNSettingsView.xib in Resources */,
 				98E56DBA1D10288300DBB0A6 /* UISecurityEventCell.xib in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982750141D08497400C73411 /* UIDashboardView.xib in Resources */,
@@ -1044,6 +1081,7 @@
 				98DD92961D129EFA0070772E /* CDSecurityEvent.swift in Sources */,
 				98DD92981D12B21D0070772E /* CoreDataRepository+ConnectionReportsProvider.swift in Sources */,
 				986BED341D1194ED0076DF16 /* IPReportProtocol.swift in Sources */,
+				98B256411D5E130B0043335A /* UISNSettingsView.swift in Sources */,
 				98DD92AD1D12E5250070772E /* CDIPReport.swift in Sources */,
 				982750251D0849FA00C73411 /* HTMLLoginInputDetector.swift in Sources */,
 				9881D2401D0EE082005EE1FF /* UIExternalConnectionInfoCell.swift in Sources */,
@@ -1059,7 +1097,9 @@
 				98DD92AC1D12E5250070772E /* CDIPReport+CoreDataProperties.swift in Sources */,
 				98DD929A1D12C4FA0070772E /* CoreDataRepository+ConnectionReportsSource.swift in Sources */,
 				982750171D0849C700C73411 /* UIPrivateBrowsingViewController.swift in Sources */,
+				98B2563E1D5DEE570043335A /* WebKitSettingsApplier.swift in Sources */,
 				98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */,
+				98B256451D5E13840043335A /* UISNSettingsTableViewCell.swift in Sources */,
 				98EAF6911CCF884000C77649 /* OPUtils.swift in Sources */,
 				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
 				9881D2441D0EE317005EE1FF /* UIExternalConnectionsViewController.swift in Sources */,
