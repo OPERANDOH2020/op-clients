@@ -35,21 +35,40 @@ class SettingsReadResult: NSObject
     }
 }
 
+enum ErrorCode: Int {
+    case valuesMissing = -1
+    case jquerySettingsStringifyError = -2
+    case corruptSettingsDict = -3
+    case readingSettingsError = -4
+    
+}
+
+let operandoDomain = "com.operando.operando"
+
 extension NSError
 {
+
+    
+
+    
     static var errorValuesMissing: NSError
     {
-        return NSError(domain: "com.operando.operando", code: -1, userInfo: nil)
+        return NSError(domain: operandoDomain, code: ErrorCode.valuesMissing.rawValue, userInfo: nil)
     }
     
     static var errorOnJQuerySettingsStringify: NSError
     {
-        return NSError(domain: "com.operando.operando", code: -2, userInfo: nil)
+        return NSError(domain: operandoDomain, code: ErrorCode.jquerySettingsStringifyError.rawValue, userInfo: nil)
     }
     
     static var errorCorruptSettingsDict: NSError
     {
-        return NSError(domain: "com.operando.operando", code: -3, userInfo: nil)
+        return NSError(domain: operandoDomain, code: ErrorCode.corruptSettingsDict.rawValue, userInfo: nil)
+    }
+    
+    static var errorReadingSettings: NSError
+    {
+        return NSError(domain: operandoDomain, code: ErrorCode.readingSettingsError.rawValue, userInfo: nil)
     }
 }
 
@@ -155,8 +174,8 @@ class OSPSettingsManager
         guard keyIndex >= 0 && keyIndex < keys.count else {completion?(error: nil); return;}
         
         guard let settingsDict = siteDict[keys[keyIndex]]?["read"] as? NSDictionary,
-                  url = settingsDict["url"] as? String,
-                  jquerySettingsDict = settingsDict["jquery_selector"] as? NSDictionary
+                  url = settingsDict["url"] as? String
+        
         else
         {
             completion?(error: NSError.errorValuesMissing);
@@ -165,17 +184,18 @@ class OSPSettingsManager
         
         do
         {
-            let jquerySettingsData = try NSJSONSerialization.dataWithJSONObject(jquerySettingsDict, options: [])
-            let jquerySettingsString = NSString(data: jquerySettingsData, encoding: NSUTF8StringEncoding)
-            self.settingsApplier?.redirectAndReadSettings(jquerySettingsString as! String, onAddress: url, completion: { (readSettings, error) in
+            let settingsDictData = try NSJSONSerialization.dataWithJSONObject(settingsDict, options: [])
+            let settingsDictString = NSString(data: settingsDictData, encoding: NSUTF8StringEncoding)
+            self.settingsApplier?.redirectAndReadSettings(settingsDictString as! String, onAddress: url, completion: { (readSettings, error) in
                 
                 if let error = error
                 {
-                    completion?(error: error)
-                    return
+                    settingsResult.resultsPerSettingName[keys[keyIndex]] = ["An exception occurred": error.localizedDescription]
                 }
-                
-                settingsResult.resultsPerSettingName[keys[keyIndex]] = readSettings
+                else
+                {
+                    settingsResult.resultsPerSettingName[keys[keyIndex]] = readSettings
+                }
                 
                 self.readForSettingKeyAtIndex(keyIndex+1, inKeys: keys, inSiteDict: siteDict, populateSettingsResult: settingsResult, completion: completion)
                 

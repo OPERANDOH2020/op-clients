@@ -70,7 +70,7 @@ extension CoreDataRepository: ConnectionReportsSource
                     newSecEvent.cdEventDescription = secEvent.description
                     newSecEvent.cdEventTitle = secEvent.title
                     newSecEvent.cdTagRawValue = secEvent.securityEventTag.rawValue
-                    ipReportEntity.addCDSecurityEventsObject(newSecEvent);
+                    //ipReportEntity.addCDSecurityEventsObject(newSecEvent);
                 }
                 else
                 {

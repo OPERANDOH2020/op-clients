@@ -77,6 +77,12 @@ class WebViewSettingsApplier: NSObject, OSPSettingsApplier, UIWebViewDelegate
         self.clearAllCallbacks()
         weak var weakSelf = self
         
+        if self.isCurrentPageOnWebViewAtAddress(address)
+        {
+            self.readSettingsBasedOnJsonString(settingsAsJsonString, completion: completion)
+            return;
+        }
+        
         if let error = self.loadWebViewToURL(address)
         {
             completion?(readSettings: nil, error: error)
@@ -98,6 +104,7 @@ class WebViewSettingsApplier: NSObject, OSPSettingsApplier, UIWebViewDelegate
     private func readSettingsBasedOnJsonString(settingsAsJsonString: String, completion: ((readSettings: NSDictionary?, error: NSError?) -> Void)?)
     {
         
+        loadJQueryIfNeeded()
         loadReadingFunctionInWebView()
         let escapedString = settingsAsJsonString.stringByReplacingOccurrencesOfString("\"", withString: "\\\"").stringByReplacingOccurrencesOfString("\'", withString: "\\\'")
         
@@ -109,35 +116,30 @@ class WebViewSettingsApplier: NSObject, OSPSettingsApplier, UIWebViewDelegate
     
     private func loadReadingFunctionInWebView()
     {
-        guard let filePath = NSBundle.mainBundle().pathForResource("readSNSettings", ofType: "js") else {return}
-        if let jsString = try? NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        self.loadAndExecuteScriptNamed("readSNSettings")
+    }
+    
+    private func loadJQueryIfNeeded()
+    {
+        let exists = self.loadAndExecuteScriptNamed("testJQuery")
+        if exists == "false"
         {
-            self.webView?.stringByEvaluatingJavaScriptFromString(jsString as String)
+            self.loadAndExecuteScriptNamed("jquery214min")
         }
     }
     
-    private func readSNSettingsStringScriptCalledWith(param: String) -> String
-    {
-        let script = "(function (settingJsonString)" +
-        "{" +
-            "var jquery_selector = JSON.parse(settingJsonString);" +
-            "switch (jquery_selector.valueType){" +
-            "case 'attrValue': setting = jQuery(jquery_selector.element).attr(jquery_selector.attrValue); break;" +
-            "case 'checkbox': setting = jQuery(jquery_selector.element).attr(\"checked\")?true:false; break;" +
-            "case 'inner': setting = jQuery(jquery_selector.element).text(); break;" +
-            "case 'classname': setting = jQuery(jquery_selector.element).hasClass(jquery_selector.attrValue); break;" +
-            "case 'radio' :setting = jQuery(jquery_selector.element + \":checked\").attr(\"value\"); break;" +
-            "case 'selected' : setting = jQuery(jquery_selector.element).attr(\"value\"); break;" +
-            "case 'length' : setting = jQuery(jquery_selector.element).length?jQuery(jquery_selector.element).length:0; break;" +
-            "default: setting = null;" +
-            "}" +
-
-            "return JSON.stringify({settingKey:setting.settingKey, setting:setting});" +
-        "})" + "(\"" + param + "\")"
-        
-        return script.stringByReplacingOccurrencesOfString("\\'", withString: "")
-    }
     
+    
+    private func loadAndExecuteScriptNamed(scriptName: String) -> String
+    {
+        guard let filePath = NSBundle.mainBundle().pathForResource(scriptName, ofType: "js") else {return ""}
+        if let jsString = try? NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        {
+            return self.webView?.stringByEvaluatingJavaScriptFromString(jsString as String) ?? ""
+        }
+        
+        return ""
+    }
     
     //MARK: UIWebViewDelegate and button action
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -157,6 +159,17 @@ class WebViewSettingsApplier: NSObject, OSPSettingsApplier, UIWebViewDelegate
         self.whenLoginButtonIsPressed?()
     }
     
+    private func isCurrentPageOnWebViewAtAddress(urlString: String) -> Bool
+    {
+        if let currentURL = self.webView?.request?.mainDocumentURL?.absoluteString
+        {
+            if urlString == currentURL{
+                return true;
+            }
+        }
+        
+        return false;
+    }
     
     private func loadWebViewToURL(urlString: String) -> NSError?
     {
