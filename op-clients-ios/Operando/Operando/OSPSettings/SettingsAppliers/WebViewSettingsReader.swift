@@ -1,5 +1,5 @@
 //
-//  WebViewSettingsApplier.swift
+//  WebViewSettingsReader.swift
 //  Operando
 //
 //  Created by Costin Andronache on 8/11/16.
@@ -19,7 +19,7 @@ extension NSError
 
 let alertLoginMessage = "Please login with your own credentials on this site, and press the 'Done' button when you're finished"
 
-class WebViewSettingsApplier: NSObject, OSPSettingsApplier, UIWebViewDelegate
+class WebViewSettingsReader: NSObject, OSPSettingsReader, UIWebViewDelegate
 {
     weak var webView: UIWebView?
     weak var button: UIButton?
@@ -36,7 +36,7 @@ class WebViewSettingsApplier: NSObject, OSPSettingsApplier, UIWebViewDelegate
         super.init()
         webView?.delegate = self
         
-        button?.addTarget(self, action: #selector(WebViewSettingsApplier.loginFinishedButtonDidPress(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        button?.addTarget(self, action: #selector(WebViewSettingsReader.loginFinishedButtonDidPress(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     

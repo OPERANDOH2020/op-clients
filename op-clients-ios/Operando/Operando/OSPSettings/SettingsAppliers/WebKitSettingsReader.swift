@@ -1,5 +1,5 @@
 //
-//  WebKitSettingsApplier.swift
+//  WebKitSettingsReader.swift
 //  Operando
 //
 //  Created by Costin Andronache on 8/12/16.
@@ -9,7 +9,59 @@
 import Foundation
 import WebKit
 
-class WebKitSettingsApplier : NSObject, OSPSettingsApplier, WKNavigationDelegate
+
+extension WKWebView
+{
+    func loadAndExecuteScriptNamed(scriptName: String, withCompletion completion: ((result: AnyObject?, error: NSError?) -> Void)?)
+    {
+        guard let filePath = NSBundle.mainBundle().pathForResource(scriptName, ofType: "js") else {completion?(result: nil, error: nil);return}
+        if let jsString = try? NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        {
+            self.evaluateJavaScript(jsString as String, completionHandler: completion)
+        }
+    }
+    
+    func loadJQueryIfNeededWithCompletion(completion: VoidBlock?)
+    {
+        self.loadAndExecuteScriptNamed("testJQuery") { (result, error) in
+            if let resultString = result as? String
+            {
+                if resultString == "true"
+                {
+                    completion?();
+                    return;
+                }
+                
+                self.loadAndExecuteScriptNamed("jquery214min", withCompletion: { (result, error) in
+                    if error == nil
+                    {
+                        completion?()
+                    }
+                })
+            }
+        }
+    }
+    
+    func loadWebViewToURL(urlString: String) -> NSError?
+    {
+        guard let url = NSURL(string: urlString) else {return NSError.malformedURLError(urlString);}
+        let request = NSURLRequest(URL: url);
+        self.loadRequest(request)
+        
+        return nil
+    }
+
+}
+
+extension String
+{
+    var escapedStringForJS: String
+    {
+        return self.stringByReplacingOccurrencesOfString("\"", withString: "\\\"").stringByReplacingOccurrencesOfString("\'", withString: "\\\'")
+    }
+}
+
+class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
 {
     
     private(set) var webView : WKWebView
@@ -17,13 +69,13 @@ class WebKitSettingsApplier : NSObject, OSPSettingsApplier, WKNavigationDelegate
     private var whenNavigationFinishes: VoidBlock?
     private var whenUserFinishedLogin: VoidBlock?
     
-    init(loginIsDoneButton: UIButton)
+    init(loginIsDoneButton: UIButton, webView: WKWebView)
     {
-        self.webView = WKWebView(frame: CGRectZero);
+        self.webView = webView
         super.init()
         self.webView.navigationDelegate = self
         
-        loginIsDoneButton.addTarget(self, action: #selector(WebKitSettingsApplier.didPressFinishLoginButton(_:)), forControlEvents: .TouchUpInside);
+        loginIsDoneButton.addTarget(self, action: #selector(WebKitSettingsReader.didPressFinishLoginButton(_:)), forControlEvents: .TouchUpInside);
     }
     
     
@@ -71,7 +123,7 @@ class WebKitSettingsApplier : NSObject, OSPSettingsApplier, WKNavigationDelegate
     {
         self.clearAllCallbacks()
         
-        let escapedString = settingsAsJsonString.stringByReplacingOccurrencesOfString("\"", withString: "\\\"").stringByReplacingOccurrencesOfString("\'", withString: "\\\'")
+        let escapedString = settingsAsJsonString.escapedStringForJS
         
         let jsToExecute = "window.readSettings(\"\(escapedString)\")";
         
