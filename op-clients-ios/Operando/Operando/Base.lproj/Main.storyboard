@@ -1777,15 +1777,15 @@
                                 <rect key="frame" x="20" y="20" width="111" height="30"/>
                                 <state key="normal" title="Login is finished"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7mP-Jt-KSe">
-                                <rect key="frame" x="13" y="20" width="127" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7mP-Jt-KSe">
+                                <rect key="frame" x="12" y="20" width="127" height="30"/>
                                 <state key="normal" title="Begin new reading"/>
                                 <connections>
                                     <action selector="didPressBeginNewReading:" destination="LZm-3F-LnC" eventType="touchUpInside" id="f5v-95-d5U"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="There doesn't seem to be anything found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvh-T9-qO8">
-                                <rect key="frame" x="279" y="290" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There doesn't seem to be anything found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvh-T9-qO8">
+                                <rect key="frame" x="143" y="290" width="314" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -1798,6 +1798,13 @@
                                 <rect key="frame" x="0.0" y="60" width="600" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IH6-xP-xC7" userLabel="enforceFacebookButton">
+                                <rect key="frame" x="154" y="20" width="46" height="30"/>
+                                <state key="normal" title="Enforce Facebook"/>
+                                <connections>
+                                    <action selector="didPressToEnforceFacebook:" destination="LZm-3F-LnC" eventType="touchUpInside" id="q5A-Ez-SRi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1807,7 +1814,9 @@
                             <constraint firstItem="gyG-Gw-ruX" firstAttribute="leading" secondItem="VDZ-si-NlO" secondAttribute="leadingMargin" id="DYe-pd-gsO"/>
                             <constraint firstItem="3z1-eq-TqH" firstAttribute="centerY" secondItem="Ioh-iW-luX" secondAttribute="centerY" id="EyW-LH-XIu"/>
                             <constraint firstItem="7mP-Jt-KSe" firstAttribute="centerY" secondItem="gyG-Gw-ruX" secondAttribute="centerY" id="NZH-gv-rFg"/>
+                            <constraint firstItem="7mP-Jt-KSe" firstAttribute="top" secondItem="IH6-xP-xC7" secondAttribute="bottom" constant="-23" id="Npt-qU-fHu"/>
                             <constraint firstItem="Mvh-T9-qO8" firstAttribute="centerY" secondItem="VDZ-si-NlO" secondAttribute="centerY" id="Rji-4t-bTy"/>
+                            <constraint firstItem="IH6-xP-xC7" firstAttribute="centerY" secondItem="7mP-Jt-KSe" secondAttribute="centerY" id="d88-Uq-6sP"/>
                             <constraint firstItem="Mvh-T9-qO8" firstAttribute="centerX" secondItem="VDZ-si-NlO" secondAttribute="centerX" id="mDj-wc-0me"/>
                             <constraint firstAttribute="trailing" secondItem="Ioh-iW-luX" secondAttribute="trailing" id="n0Q-72-iMa"/>
                             <constraint firstItem="7mP-Jt-KSe" firstAttribute="centerX" secondItem="gyG-Gw-ruX" secondAttribute="centerX" id="qwO-5X-3Zt"/>
@@ -1815,7 +1824,13 @@
                             <constraint firstItem="gef-X9-ood" firstAttribute="top" secondItem="Ioh-iW-luX" secondAttribute="bottom" id="uvr-ei-OFS"/>
                             <constraint firstItem="3z1-eq-TqH" firstAttribute="height" secondItem="Ioh-iW-luX" secondAttribute="height" id="vdh-Qe-Zih"/>
                             <constraint firstItem="gyG-Gw-ruX" firstAttribute="top" secondItem="UsC-sE-BMV" secondAttribute="bottom" id="y3I-yX-luB"/>
+                            <constraint firstItem="IH6-xP-xC7" firstAttribute="leading" secondItem="7mP-Jt-KSe" secondAttribute="trailing" constant="15" id="zFZ-T0-QEU"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Npt-qU-fHu"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="beginNewReadingButton" destination="7mP-Jt-KSe" id="cuM-cr-76P"/>

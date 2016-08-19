@@ -17,7 +17,7 @@ protocol OSPSettingsProvider
     func getCurrentOSPSettingsWithCompletion(completion: ((settingsDict: NSDictionary?, error: NSError?) -> Void)?)
 }
 
-protocol OSPSettingsApplier
+protocol OSPSettingsReader
 {
     func logUserOnSite(site: String, withCompletion completion: ErrorCallback?)
     func redirectAndReadSettings(settingsAsJsonString: String, onAddress address: String, completion: ((readSettings: NSDictionary?, error: NSError?) -> Void)?)
@@ -35,52 +35,17 @@ class SettingsReadResult: NSObject
     }
 }
 
-enum ErrorCode: Int {
-    case valuesMissing = -1
-    case jquerySettingsStringifyError = -2
-    case corruptSettingsDict = -3
-    case readingSettingsError = -4
-    
-}
 
-let operandoDomain = "com.operando.operando"
-
-extension NSError
-{
-
-    
-
-    
-    static var errorValuesMissing: NSError
-    {
-        return NSError(domain: operandoDomain, code: ErrorCode.valuesMissing.rawValue, userInfo: nil)
-    }
-    
-    static var errorOnJQuerySettingsStringify: NSError
-    {
-        return NSError(domain: operandoDomain, code: ErrorCode.jquerySettingsStringifyError.rawValue, userInfo: nil)
-    }
-    
-    static var errorCorruptSettingsDict: NSError
-    {
-        return NSError(domain: operandoDomain, code: ErrorCode.corruptSettingsDict.rawValue, userInfo: nil)
-    }
-    
-    static var errorReadingSettings: NSError
-    {
-        return NSError(domain: operandoDomain, code: ErrorCode.readingSettingsError.rawValue, userInfo: nil)
-    }
-}
 
 
 
 class OSPSettingsManager
 {
     
-    var settingsApplier: OSPSettingsApplier?
+    var settingsApplier: OSPSettingsReader?
     var errorCallback: ErrorCallback?
     
-    func readSettingsWithProvider(provider: OSPSettingsProvider, andApplier applier: OSPSettingsApplier, withCompletion completion: ((results: [SettingsReadResult]?, error : NSError?) -> Void)?)
+    func readSettingsWithProvider(provider: OSPSettingsProvider, andApplier applier: OSPSettingsReader, withCompletion completion: ((results: [SettingsReadResult]?, error : NSError?) -> Void)?)
     {
         self.settingsApplier = applier
         provider.getCurrentOSPSettingsWithCompletion { (settingsDict, error) in
