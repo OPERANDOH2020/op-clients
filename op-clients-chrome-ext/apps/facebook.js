@@ -143,7 +143,10 @@ function postToFacebook(settings, item, total) {
                         url: settings.page
                     }, function (response) {
                         var cookies = "";
-                        for (var i = 0; i < response.length; i++) {
+                        for (var i = 0; i < response.length; i++) 
+                        {
+                            if(response[i].name === 'act'){continue;}
+                            if(response[i].name === 'wd'){continue;}
                             cookies += response[i].name + "=" + response[i].value + "; ";
                         }
 

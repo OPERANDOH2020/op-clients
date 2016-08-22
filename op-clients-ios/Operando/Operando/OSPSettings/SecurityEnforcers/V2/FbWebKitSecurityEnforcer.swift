@@ -9,18 +9,21 @@
 import UIKit
 import WebKit
 
+
+enum POSTRequestStatus: String
+{
+    case Finished = "finished"
+    case TerminatedWithError = "terminated"
+}
+
 extension NSHTTPCookieStorage
 {
     func cookieHeadersFromURL(url: String) -> [String: String]
     {
         guard let urlURL = NSURL(string: url) else {return [:]}
-        let cookies = self.cookiesForURL(urlURL)
+        let cookies = self.cookies
         return NSHTTPCookie.requestHeaderFieldsWithCookies(cookies ?? []);
     }
-    
-
-    
-    
 }
 
 typealias CallToLoginWithCompletion = (completion: VoidBlock?) -> Void
@@ -39,7 +42,8 @@ extension UIWebView
         guard let filePath = NSBundle.mainBundle().pathForResource(scriptName, ofType: "js") else {completion?(result: nil, error: nil);return}
         if let jsString = try? NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
         {
-            self.stringByEvaluatingJavaScriptFromString(jsString as String);
+            let result = self.stringByEvaluatingJavaScriptFromString(jsString as String);
+            completion?(result: result, error: nil);
         }
     }
     
@@ -63,9 +67,16 @@ extension UIWebView
             }
         }
     }
+    
+    
+    func evaluateJavaScript(script: String, completionHandler: ((result: AnyObject?, error: NSError?) -> Void)?)
+    {
+        let result = self.stringByEvaluatingJavaScriptFromString(script)
+        completionHandler?(result: result, error: nil);
+    }
 }
 
-class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
+class FbWebKitSecurityEnforcer: NSObject, UIWebViewDelegate
 {
     private let webView: UIWebView
     private var whenWebViewFinishesNavigation: VoidBlock?
@@ -74,6 +85,7 @@ class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
     {
         self.webView = webView
         super.init()
+        self.webView.delegate = self
 //        self.webView.UIDelegate = self
 //        self.webView.navigationDelegate = self
     }
@@ -110,34 +122,67 @@ class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
         
     }
     
+    
+    //MARK: WKWebView delegate
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         self.whenWebViewFinishesNavigation?();
     }
     
     func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
         
-        if let jsonData = message.dataUsingEncoding(NSUTF8StringEncoding),
-        jsonObject = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [String: AnyObject],
-        info = jsonObject
+        
+    }
+    
+    
+    //MARK: UIWebView delegate
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        self.whenWebViewFinishesNavigation?()
+    }
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool
+    {
+        let urlString = request.URL?.absoluteString ?? ""
+        if urlString.lowercaseString.containsString("didPreparePOSTInfo:".lowercaseString)
         {
-            var windowValue: String = "finished";
+            if let jsonString = webView.stringByEvaluatingJavaScriptFromString("window[\"didPreparePOSTInfo\"]")
+            {
+                self.handleIncomingPOSTInfo(jsonString, completionHandler: { status in
+                    
+                    webView.stringByEvaluatingJavaScriptFromString("window[\"lastRequestStatus\"]=\"\(status)\"");
+                    webView.stringByEvaluatingJavaScriptFromString("window.onFinishedPOST();")
+                    
+                })
+            }
+            return false;
+        }
+        
+        return true;
+    }
+    
+    
+    
+    //
+    
+    private func handleIncomingPOSTInfo(postInfoJSONString: String, completionHandler: ((status: String) -> Void)?)
+    {
+        if let jsonData = postInfoJSONString.dataUsingEncoding(NSUTF8StringEncoding),
+            jsonObject = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [String: AnyObject],
+            info = jsonObject
+        {
+            var windowValue: String = POSTRequestStatus.Finished.rawValue
             
             self.makePOSTRequestWithInfo(info, completion: { (error) in
                 if let _ = error
                 {
-                    windowValue  = "terminated";
+                    windowValue = POSTRequestStatus.TerminatedWithError.rawValue
                 }
                 
-                
-                self.webView.evaluateJavaScript("window[\"lastRequestStatus\"]=\(windowValue)", completionHandler: { result, error in
-                    completionHandler();
-                })
+                completionHandler?(status: windowValue)
                 
             })
         }
     }
-    
-    
     
     func makePOSTRequestWithInfo(info: [String: AnyObject], completion: ((error: NSError?) -> Void)?)
     {
@@ -191,9 +236,7 @@ class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
         
         var requestHeaders = headers
         
-        //trying to force webview to flush all cookies into sharedCookieStorage
-        self.webView.configuration.processPool = WKProcessPool()
-        //
+
         
         let cookieHeaders = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookieHeadersFromURL(cookiesURLSource)
         cookieHeaders.forEach { (key, value) in
