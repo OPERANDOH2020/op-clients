@@ -11,12 +11,13 @@ import WebKit
 
 class UISNSettingsReaderViewController: UIViewController {
 
-    var webView: WKWebView!
+    var webView: UIWebView!
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var beginNewReadingButton: UIButton!
     @IBOutlet weak var webViewHost: UIView!
     
+    var whenLoginButtonsIsPressed: VoidBlock?
     
     let ospSettingsManager = OSPSettingsManager()
     var fbSecurityEnforcer: FacebookSecurityEnforcer!
@@ -26,7 +27,7 @@ class UISNSettingsReaderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginButton.alpha = 0;
-        self.webView = WKWebView()
+        self.webView = UIWebView()
         UIView.constrainView(self.webView, inHostView: self.webViewHost)
         self.view.bringSubviewToFront(self.loginButton)
 
@@ -67,6 +68,11 @@ class UISNSettingsReaderViewController: UIViewController {
         
     }
     
+    @IBAction func didPressLoginButton(sender: AnyObject)
+    {
+        self.whenLoginButtonsIsPressed?()
+    }
+    
     @IBAction func didPressToEnforceFacebook(sender: AnyObject)
     {
         self.enforceFBSecurityV2()
@@ -75,10 +81,16 @@ class UISNSettingsReaderViewController: UIViewController {
     
     func enforceFBSecurityV2()
     {
+        self.alterUserAgentInDefaults()
         let fbEnforcer = FbWebKitSecurityEnforcer(webView: self.webView)
-        fbEnforcer.enforceWithCallToLogin({ (completion) in
+        fbEnforcer.enforceWithCallToLogin({ (callWhenLoginIsDone) in
             
-            completion?()
+            RSCommonUtilities.showOKAlertWithMessage("Please login and press 'Login Finished'");
+            self.whenLoginButtonsIsPressed = {
+                callWhenLoginIsDone?()
+            }
+            
+            
             
             }) { (error) in
                 print(error);
@@ -89,30 +101,30 @@ class UISNSettingsReaderViewController: UIViewController {
     func enforceFacebookSecurity()
     {
         
-        self.alterUserAgentInDefaults()
-        
-        let paramsProvider = FbWebKitParametersProvider(loginDoneButton: self.loginButton, webView: self.webView)
-        let webRequestHelper = NSURLSessionWebHelper()
-        self.fbSecurityEnforcer = FacebookSecurityEnforcer(paramsProvider: paramsProvider, webRequestHelper: webRequestHelper);
-        
-        self.fbSecurityEnforcer.enforceWithCompletion { (error) in
-            RSCommonUtilities.showOKAlertWithMessage("Done");
-            self.clearUserAgentFromDefaults()
-        }
+//        self.alterUserAgentInDefaults()
+//        
+//        let paramsProvider = FbWebKitParametersProvider(loginDoneButton: self.loginButton, webView: self.webView)
+//        let webRequestHelper = NSURLSessionWebHelper()
+//        self.fbSecurityEnforcer = FacebookSecurityEnforcer(paramsProvider: paramsProvider, webRequestHelper: webRequestHelper);
+//        
+//        self.fbSecurityEnforcer.enforceWithCompletion { (error) in
+//            RSCommonUtilities.showOKAlertWithMessage("Done");
+//            self.clearUserAgentFromDefaults()
+//        }
         
     }
     
     func beginNewReadingWithCompletion(completion: ((results: [SettingsReadResult]?, error: NSError?) -> Void)?)
     {
-        self.alterUserAgentInDefaults()
-        let settingsApplier = WebKitSettingsReader(loginIsDoneButton: self.loginButton, webView: self.webView)
-        let settingsProvider = LocalJSSettingsProvider()
-        self.ospSettingsManager.readSettingsWithProvider(settingsProvider, andApplier: settingsApplier) { (results, error) in
-            
-            self.clearUserAgentFromDefaults()
-            
-            completion?(results: results, error: error);
-        }
+//        self.alterUserAgentInDefaults()
+//        let settingsApplier = WebKitSettingsReader(loginIsDoneButton: self.loginButton, webView: self.webView)
+//        let settingsProvider = LocalJSSettingsProvider()
+//        self.ospSettingsManager.readSettingsWithProvider(settingsProvider, andApplier: settingsApplier) { (results, error) in
+//            
+//            self.clearUserAgentFromDefaults()
+//            
+//            completion?(results: results, error: error);
+//        }
     }
     
     

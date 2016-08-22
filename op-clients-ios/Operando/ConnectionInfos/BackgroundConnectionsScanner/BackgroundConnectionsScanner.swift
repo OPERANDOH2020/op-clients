@@ -16,6 +16,7 @@ class BackgroundConnectionsScanner
     
     func beginScanningProcessWithSource(source: ConnectionReportsSource)
     {
+        return;
         self.source = source;
         self.beginNewScan()
         

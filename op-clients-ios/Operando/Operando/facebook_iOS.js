@@ -18,7 +18,23 @@
      });
      return resultData;
   };
-  
+ 
+  Object.prototype.toFormString = function()
+  {
+     var formString = "";
+     var keys = Object.keys(this);
+     for(var i=0; i<keys.length; i++)
+     {
+        formString += keys[i] + "=" + this[keys[i]];
+        if(i < keys.length - 1)
+        {
+            formString += '&';
+        }
+     }
+ 
+    return formString;
+  };
+ 
   function hijackNextPOSTRequestWithTemplate(template, callback)
   {
       (function(open, send)
@@ -34,6 +50,7 @@
   
   			XMLHttpRequest.prototype.send = function(body)
   			{
+
   				if(this.lastRequestMethod === "POST")
   				{
   					 if(body)
@@ -59,6 +76,7 @@
                
                if(atLeastOneFound)
                {
+                  console.log('Found a template with data ' + JSON.stringify(template));
                   XMLHttpRequest.prototype.open = unalteredOpen;
                   XMLHttpRequest.prototype.send = unalteredSend;
                   callback(template);
@@ -210,50 +228,14 @@ function postToFacebook(settings, item, total) {
                     };
 
                     makePOSTRequest(settings.url, settings.page, headers, data, function(){
+                                    console.log('Did secure for url ' + settings.page);
                       resolve("Done");
                     }, function(){
+                                    console.log('Error for page ' + settings.page);
                         reject("Error");
                     });
 
                       return;
-                      $.ajax({
-                            type: "POST",
-                            xhrFields: { withCredentials: true },
-                            url: settings.url,
-                            data: data,
-                            beforeSend: function (request) {
-
-                                if (settings.headers) {
-                                    for (var i = 0; i < settings.headers.length; i++) {
-                                        var header = settings.headers[i];
-                                        request.setRequestHeader(header.name, header.value);
-                                    }
-                                }
-                                //request.setRequestHeader("content-length", data.length);
-                                request.setRequestHeader("accept", "*/*");
-                                request.setRequestHeader("accept-language", "en-US,en;q=0.8");
-                                request.setRequestHeader("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-                                //request.setRequestHeader("cookie", cookies);
-
-                                //request.setRequestHeader("origin", "https://www.facebook.com");
-                                request.setRequestHeader("X-Alt-Referer", settings.page);
-                                //request.setRequestHeader("user-agent", navigator.userAgent);
-
-                            },
-                            success: function (result) {
-                                //console.log(result)
-                                resolve(result);
-                            },
-                            error: function (error) {
-                                //console.error(error);
-                                reject(error);
-                            },
-                            complete: function (request, status) {
-                                console.log(request.status);
-                                console.log("Request completed...");
-                            }
-
-                        });
                 });
             });
         }
@@ -270,7 +252,72 @@ function makePOSTRequest(url, cookiesURLSource, headers, dataInJSON, onSuccess, 
         "headers" : headers,
         "dataInJSON" : dataInJSON
     };
+ 
+      var dataString = dataInJSON.toFormString();
+ console.log('Making a request with data: ' + dataString);
+     // using AJAX
+       $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        async: true,
+        beforeSend: function (request) {
+        
 
+        //request.setRequestHeader("content-length", data.length);
+        request.setRequestHeader("accept", "*/*");
+        request.setRequestHeader("accept-language", "en-US,en;q=0.8");
+        request.setRequestHeader("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+        //request.setRequestHeader("cookie", cookies);
+        
+        //request.setRequestHeader("origin", "https://www.facebook.com");
+        request.setRequestHeader("X-Alt-Referer", cookiesURLSource);
+        //request.setRequestHeader("user-agent", navigator.userAgent);
+        
+        },
+        success: function (result) {
+        //console.log(result)
+              onSuccess();
+        },
+        error: function (error) {
+        //console.error(error);
+              console.log('ERROR FOR POST ' + url + ' ' + JSON.stringify(error));
+              onError();
+        },
+        complete: function (request, status) {
+        console.log(request.status);
+        }
+        
+        });
+
+    return;
+
+    //using the UIWebView
+    var jsonString = JSON.stringify(request);
+    window["didPreparePOSTInfo"] = jsonString;
+    var iframeSrc = "didPreparePOSTInfo:";
+ 
+ 
+    window.onFinishedPOST = function()
+    {
+        if(window["lastRequestStatus"] && window["lastRequestStatus"] === 'finished')
+        {
+            onSuccess();
+        }
+        else
+        {
+            onError();
+        }
+    };
+ 
+    var iframe = document.createElement("IFRAME");
+    iframe.setAttribute("src", iframeSrc);
+    document.documentElement.appendChild(iframe);
+    iframe.parentNode.removeChild(iframe);
+    iframe = null;
+ 
+    return;
+ 
     // the WKUIDelegate will intercept this and continue the execution after the request has finished/ terminated
     alert(JSON.stringify(request));
 
@@ -287,7 +334,7 @@ function makePOSTRequest(url, cookiesURLSource, headers, dataInJSON, onSuccess, 
 
 function secureAccount(callback) 
 {
-
+ console.log('Will begin securing account');
 var fbdata = {
                 "__req": null,
                 "__dyn": null,

@@ -1776,6 +1776,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyG-Gw-ruX">
                                 <rect key="frame" x="20" y="20" width="111" height="30"/>
                                 <state key="normal" title="Login is finished"/>
+                                <connections>
+                                    <action selector="didPressLoginButton:" destination="LZm-3F-LnC" eventType="touchUpInside" id="drj-3N-QNs"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7mP-Jt-KSe">
                                 <rect key="frame" x="12" y="20" width="127" height="30"/>
