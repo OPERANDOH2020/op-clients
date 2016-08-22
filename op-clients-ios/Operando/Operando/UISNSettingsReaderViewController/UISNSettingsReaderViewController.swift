@@ -11,7 +11,7 @@ import WebKit
 
 class UISNSettingsReaderViewController: UIViewController {
 
-    var webView: WKWebView!
+    var webView: UIWebView!
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var beginNewReadingButton: UIButton!
@@ -27,7 +27,7 @@ class UISNSettingsReaderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginButton.alpha = 0;
-        self.webView = WKWebView()
+        self.webView = UIWebView()
         UIView.constrainView(self.webView, inHostView: self.webViewHost)
         self.view.bringSubviewToFront(self.loginButton)
 
