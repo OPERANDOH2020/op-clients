@@ -26,7 +26,7 @@ extension NSHTTPCookieStorage
     }
 }
 
-typealias CallToLoginWithCompletion = (completion: VoidBlock?) -> Void
+typealias CallToLoginWithCompletion = (callbackWhenLoginIsDone: VoidBlock?) -> Void
 
 extension UIWebView
 {
@@ -76,25 +76,24 @@ extension UIWebView
     }
 }
 
-class FbWebKitSecurityEnforcer: NSObject, UIWebViewDelegate
+class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
 {
-    private let webView: UIWebView
+    private let webView: WKWebView
     private var whenWebViewFinishesNavigation: VoidBlock?
     
-    init(webView: UIWebView)
+    init(webView: WKWebView)
     {
         self.webView = webView
         super.init()
-        self.webView.delegate = self
-//        self.webView.UIDelegate = self
-//        self.webView.navigationDelegate = self
+        self.webView.UIDelegate = self
+        self.webView.navigationDelegate = self
+        
     }
-    
-    
     
     
     func enforceWithCallToLogin(callToLoginWithCompletion: CallToLoginWithCompletion?, completion: ((error: NSError?) -> Void)?)
     {
+
         if let error = self.webView.loadWebViewToURL("https://www.facebook.com")
         {
             completion?(error: error);
@@ -102,26 +101,41 @@ class FbWebKitSecurityEnforcer: NSObject, UIWebViewDelegate
         }
         weak var weakSelf = self
         
-        self.whenWebViewFinishesNavigation = {
+        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * NSEC_PER_SEC))
+        dispatch_after(delay, dispatch_get_main_queue())
+        {
             callToLoginWithCompletion?{
-                weakSelf?.webView.loadJQueryIfNeededWithCompletion
-                    {
-                        weakSelf?.webView.loadAndExecuteScriptNamed("facebook_iOS", withCompletion: { (result, error) in
-                            if let error = error
-                            {
-                                completion?(error: error);
-                                return
-                            }
-                            
-                            
-                        })
-                }
+                self.loginIsDoneInitiateNextStep()
             }
+            
+            weakSelf?.whenWebViewFinishesNavigation = nil;
             
         }
         
     }
     
+    
+    private func loginIsDoneInitiateNextStep()
+    {
+        self.webView.loadAndExecuteScriptNamed("facebook_iOS") { (result, error) in
+            print(error);
+            print(result);
+        }
+    }
+    
+    private func loadJSFileInWebView()
+    {
+        let jsFile = self.getJSFile()
+        let userScript = WKUserScript(source: jsFile, injectionTime: WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: true)
+        self.webView.configuration.userContentController.addUserScript(userScript)
+    }
+    
+    private func getJSFile() -> String
+    {
+        guard let path = NSBundle.mainBundle().pathForResource("facebook_iOS", ofType: "js") else {return ""}
+        let js = try? String(contentsOfFile: path)
+        return js ?? ""
+    }
     
     //MARK: WKWebView delegate
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
@@ -129,127 +143,18 @@ class FbWebKitSecurityEnforcer: NSObject, UIWebViewDelegate
     }
     
     func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
-        
-        
+        print(message);
+        completionHandler()
     }
     
     
     //MARK: UIWebView delegate
     
-    func webViewDidFinishLoad(webView: UIWebView) {
-        self.whenWebViewFinishesNavigation?()
-    }
-    
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool
-    {
-        let urlString = request.URL?.absoluteString ?? ""
-        if urlString.lowercaseString.containsString("didPreparePOSTInfo:".lowercaseString)
-        {
-            if let jsonString = webView.stringByEvaluatingJavaScriptFromString("window[\"didPreparePOSTInfo\"]")
-            {
-                self.handleIncomingPOSTInfo(jsonString, completionHandler: { status in
-                    
-                    webView.stringByEvaluatingJavaScriptFromString("window[\"lastRequestStatus\"]=\"\(status)\"");
-                    webView.stringByEvaluatingJavaScriptFromString("window.onFinishedPOST();")
-                    
-                })
-            }
-            return false;
-        }
-        
-        return true;
-    }
-    
+
     
     
     //
-    
-    private func handleIncomingPOSTInfo(postInfoJSONString: String, completionHandler: ((status: String) -> Void)?)
-    {
-        if let jsonData = postInfoJSONString.dataUsingEncoding(NSUTF8StringEncoding),
-            jsonObject = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [String: AnyObject],
-            info = jsonObject
-        {
-            var windowValue: String = POSTRequestStatus.Finished.rawValue
-            
-            self.makePOSTRequestWithInfo(info, completion: { (error) in
-                if let _ = error
-                {
-                    windowValue = POSTRequestStatus.TerminatedWithError.rawValue
-                }
-                
-                completionHandler?(status: windowValue)
-                
-            })
-        }
-    }
-    
-    func makePOSTRequestWithInfo(info: [String: AnyObject], completion: ((error: NSError?) -> Void)?)
-    {
-        guard let request = createRequestWithInfo(info) else
-        {
-            completion?(error: NSError.errorPOSTinfoDict);
-            return;
-        }
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error  in
-            if let error = error
-            {
-                completion?(error: error);
-                return;
-            }
-            
-            if let data = data, stringData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            {
-                print(stringData);
-            }
-            
-            if let httpResponse = response as? NSHTTPURLResponse
-            {
-                if httpResponse.statusCode != 200
-                {
-                    completion?(error: NSError.errorPOSTFailed);
-                    return;
-                }
-            }
-            
-            completion?(error: nil);
-        }
-        
-        task.resume()
-        
-    }
-    
-    
-    func createRequestWithInfo(info: [String: AnyObject]) -> NSURLRequest?
-    {
-        guard let urlString = info["url"] as? String,
-                  cookiesURLSource = info["cookiesURLSource"] as? String,
-            url = NSURL(string: urlString),
-            headers = info["headers"] as? [String: String],
-            dataInJSON = info["dataInJSON"] as? NSDictionary
-            else
-        {
-            return nil
-        }
-        
-        
-        var requestHeaders = headers
-        
 
-        
-        let cookieHeaders = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookieHeadersFromURL(cookiesURLSource)
-        cookieHeaders.forEach { (key, value) in
-            requestHeaders[key] = value
-        }
-        
-        let requestPOSTData = dataInJSON.postBodyString
-        
-        let request = NSMutableURLRequest(URL: url)
-        request.allHTTPHeaderFields = requestHeaders
-        request.HTTPBody = requestPOSTData.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        return request
-    }
+    
     
 }

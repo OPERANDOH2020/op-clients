@@ -42,7 +42,6 @@
 		9853FF821D6475B6007E2502 /* FacebookSecurityEnforcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9853FF811D6475B6007E2502 /* FacebookSecurityEnforcer.swift */; };
 		9853FF851D647E40007E2502 /* fbExtractData.js in Resources */ = {isa = PBXBuildFile; fileRef = 9853FF841D647E40007E2502 /* fbExtractData.js */; };
 		9853FF871D64A5CA007E2502 /* FbWebKitParametersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9853FF861D64A5CA007E2502 /* FbWebKitParametersProvider.swift */; };
-		9854C9F61D6B224400D3E55D /* NSDictionary+CookieHijacked.m in Sources */ = {isa = PBXBuildFile; fileRef = 9854C9F51D6B224400D3E55D /* NSDictionary+CookieHijacked.m */; };
 		9854C9FB1D6B240700D3E55D /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9854C9FA1D6B240700D3E55D /* JRSwizzle.m */; };
 		985CD8431D5C64750021C58C /* jquery214min.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD83F1D5C64750021C58C /* jquery214min.js */; };
 		985CD8441D5C64750021C58C /* osp-settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8401D5C64750021C58C /* osp-settings.js */; };
@@ -176,8 +175,6 @@
 		9853FF811D6475B6007E2502 /* FacebookSecurityEnforcer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookSecurityEnforcer.swift; path = OSPSettings/SecurityEnforcers/FacebookSecurityEnforcer.swift; sourceTree = "<group>"; };
 		9853FF841D647E40007E2502 /* fbExtractData.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = fbExtractData.js; path = OSPSettings/SecurityEnforcers/fbExtractData.js; sourceTree = "<group>"; };
 		9853FF861D64A5CA007E2502 /* FbWebKitParametersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FbWebKitParametersProvider.swift; path = OSPSettings/SecurityEnforcers/FbWebKitParametersProvider.swift; sourceTree = "<group>"; };
-		9854C9F41D6B224400D3E55D /* NSDictionary+CookieHijacked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+CookieHijacked.h"; path = "Extensions/NSDictionary+CookieHijack/NSDictionary+CookieHijacked.h"; sourceTree = "<group>"; };
-		9854C9F51D6B224400D3E55D /* NSDictionary+CookieHijacked.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+CookieHijacked.m"; path = "Extensions/NSDictionary+CookieHijack/NSDictionary+CookieHijacked.m"; sourceTree = "<group>"; };
 		9854C9F91D6B240700D3E55D /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		9854C9FA1D6B240700D3E55D /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		985CD83F1D5C64750021C58C /* jquery214min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery214min.js; sourceTree = "<group>"; };
@@ -406,7 +403,6 @@
 		9848B2D41D67409100E0FD72 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9854C9F31D6B220600D3E55D /* NSDictionary+CookieHijack */,
 				9848B2D51D6740A500E0FD72 /* NSError+Utilities.swift */,
 			);
 			name = Extensions;
@@ -515,15 +511,6 @@
 				984C67F51D65A9FB009A8FE7 /* interceptPOST.js */,
 			);
 			name = SecurityEnforcers;
-			sourceTree = "<group>";
-		};
-		9854C9F31D6B220600D3E55D /* NSDictionary+CookieHijack */ = {
-			isa = PBXGroup;
-			children = (
-				9854C9F41D6B224400D3E55D /* NSDictionary+CookieHijacked.h */,
-				9854C9F51D6B224400D3E55D /* NSDictionary+CookieHijacked.m */,
-			);
-			name = "NSDictionary+CookieHijack";
 			sourceTree = "<group>";
 		};
 		9854C9F81D6B240700D3E55D /* JRSwizzle */ = {
@@ -1154,7 +1141,6 @@
 				985CD84A1D5C679F0021C58C /* OSPSettingsManager.swift in Sources */,
 				98DD92961D129EFA0070772E /* CDSecurityEvent.swift in Sources */,
 				98DD92981D12B21D0070772E /* CoreDataRepository+ConnectionReportsProvider.swift in Sources */,
-				9854C9F61D6B224400D3E55D /* NSDictionary+CookieHijacked.m in Sources */,
 				986BED341D1194ED0076DF16 /* IPReportProtocol.swift in Sources */,
 				98B256411D5E130B0043335A /* UISNSettingsView.swift in Sources */,
 				98DD92AD1D12E5250070772E /* CDIPReport.swift in Sources */,
