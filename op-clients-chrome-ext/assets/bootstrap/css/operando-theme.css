@@ -1,10 +1,26 @@
 body{
-    background: #E5E5E5;
+    background: #C9BEA1;
+
+}
+
+p, span{
+    font-family: 'Dosis', sans-serif;
+    font-weight: 400;
+}
+
+form label{
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+h2{
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
 }
 
 #wrapper{
     background: #FFFFFF;
-    border: 1px solid #eee;
     margin: 0 auto;
     position: relative;
     max-width: 1296px;
@@ -65,7 +81,7 @@ div.tab-content{
 #pfb_tab
 {
     display: block;
-    background: #fdfaef;
+    background: #4b4b4b;
 }
 
 #home_tab:after,
@@ -79,7 +95,7 @@ div.tab-content{
 }
 
 .navbar-default{
-    background: #fdfaef!important;
+    background: #FFF!important;
 }
 
 #bs-example-navbar-collapse-1 .navbar-nav {
@@ -94,10 +110,10 @@ div.tab-content{
 
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
-    color: #ff8f00;
+    color: #000;
     box-shadow: none;
     font-weight: bold;
-    background: #fdfaef!important;
+    background: #FFB400!important;
 }
 
 .operando .navbar-nav > li{
@@ -105,22 +121,17 @@ div.tab-content{
 }
 
 .operando .navbar-nav > li > a {
-    color: #ff8f00;
+    color: #000;
     text-transform: uppercase;
-    font-size: 14px;
-    font-family: arial;
+    font-size: 15px;
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
     font-style: inherit;
     box-shadow: none!important;
     cursor: pointer;
     line-height: 16px;
 }
 
-.navbar-nav > li > a:hover{
-    color: #ff8f00 !important;
-}
-
-.navbar-brand img{
-}
 
 .container-fluid{
     padding: 0;
@@ -164,7 +175,6 @@ div.tab-content{
 }
 
 #wrapper button{
-    border-radius:5px;
     border:1px solid #ffaa30;
     color:#777;
     padding: 6px 10px;
@@ -369,7 +379,7 @@ padding-left: 0px;
 
 footer{
     margin-top: 20px;
-    background: #fe9901;
+    background: #4B4B4B;
     width: 100%;
     height: 80px;
 }
@@ -379,6 +389,15 @@ footer{
     margin: 0 auto;
     height: 100%;
     padding: 10px;
+}
+
+#footer-copyright-content p{
+    text-align: center;
+    color:#FFF;
+    font-size: 16px;
+}
+#footer-copyright-content span.footer-operando{
+    color:#FFB400;
 }
 
 .active .isMockup:before{
@@ -486,7 +505,7 @@ footer{
 
 .content_tab .col-xs-3 {
     height: 100%;
-    background:#fdfaef;
+    background:#4b4b4b;
     padding-right: 0;
     margin-right: 0;
     padding-left: 0;
@@ -495,8 +514,9 @@ footer{
 .content_tab .col-xs-9 {
     padding-left: 30px;
     margin-left: 0;
-    background: #FFF;
+    background: #fdfaef;
     min-height: 100%;
+    padding-top: 20px;
 }
 
 .content_tab .col-xs-3 ul{
@@ -510,43 +530,38 @@ footer{
     padding-left: 20px;
     border-radius:0;
     border:0;
-    color:#ff8f00;
+    color:#FFF;
+    font-weight:500;
+    font-family: 'Dosis', sans-serif;
+    text-transform: uppercase;
+}
+
+.content_tab .col-xs-3 ul.tabs-left li a:hover{
+    color:#000;
 }
 
 .content_tab .col-xs-3 ul li a:hover{
     border:none;
 }
 
-.content_tab .tabs-left>li.active>a{
+.content_tab .col-xs-3 .tabs-left>li.active>a{
     border:none;
+    background: #FFB400;
+    color:#000;
 }
+.content_tab .col-xs-3 .tabs-left>li.active:after{
+    content:"";
+    width:100%;
+    position:absolute;
+    display: block;
+    background:#000;
+    height: 4px;
+}
+
 
 .content_tab .tabs-left>li.active{
-    z-index: 1;
     position: relative;
 }
-
-.content_tab .tabs-left>li.active:before{
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 15px;
-    left: 10px;
-    width: 100%;
-    height: 18px;
-    top: 52%;
-    max-width: 300px;
-    background: #cfc1ad;
-    -webkit-box-shadow: 0 15px 10px #cfc1ad;
-    -moz-box-shadow: 0 15px 10px #cfc1ad;
-    box-shadow: 0 15px 10px #cfc1ad;
-    -webkit-transform: rotate(-3deg);
-    -moz-transform: rotate(-3deg);
-    -o-transform: rotate(-3deg);
-    -ms-transform: rotate(-3deg);
-    transform: rotate(-3deg);
-}
-
 
 #pfbdeals_container table th{
     text-align: center;
@@ -578,11 +593,17 @@ footer{
 
 
 #wrapper button.single_click_privacy{
-    width:80%;
-    background:#ff8f00;
-    margin: 10%;
-    color:#FFF;
-    padding: 10px;
+    width: 100%;
+    background: #FFB400;
+    margin: 0%;
+    text-transform: uppercase;
+    color: #FFF;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+#wrapper button.single_click_privacy:hover{
+    background: #EDA801;
 }
 
 
@@ -616,16 +637,22 @@ footer{
 
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
-    background-color: #f9e8d2;
+    background-color: #FFB400;
 }
 
 .notification-counter {
-    padding: 6px 10px;
+    padding: 6px 13px 6px 10px;
     color: #FFF;
+    margin-left: 4px;
     width: 15px;
-    background: #ec9422;
-    border-radius: 14px;
-    height: 10px;
+    background: #FFB400;
+    border-radius: 16px;
+}
+
+.nav>li:hover .notification-counter,
+.content_tab .tabs-left>li.active .notification-counter{
+    background: #FFFFFF;
+    color:#000;
 }
 
 #wrapper .input-group-btn button{
@@ -735,4 +762,42 @@ border: none;
 .privacy_wizard .wizard_actions{
     border-top: 1px solid #f7f3ea;
     padding-top: 20px;
+}
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    -moz-opacity: 0;
+    -webkit-opacity: 0;
+    -o-opacity: 0;
+}
+
+input[type="radio"] + span {
+    position: relative;
+    padding: 0 0 0 25px;
+    font-size: 16px;
+    line-height: 25px;
+    margin:0 0 10px 0;
+}
+
+input[type="radio"] + span:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 3px;
+    height: 15px;
+    width: 15px;
+    background: white;
+    border: 1px solid gray;
+    box-shadow: inset 0px 0px 0px 2px white;
+    -webkit-box-shadow: inset 0px 0px 0px 2px white;
+    -moz-box-shadow: inset 0px 0px 0px 2px white;
+    -o-box-shadow: inset 0px 0px 0px 2px white;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+input[type="radio"]:checked + span:before {
+    background: #FFB400;
 }
