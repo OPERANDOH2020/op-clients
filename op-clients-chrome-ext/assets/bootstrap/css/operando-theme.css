@@ -12,6 +12,7 @@ form label{
     font-family: 'Dosis', sans-serif;
     font-weight: bold;
     font-size: 16px;
+    color: #4b4b4b;
 }
 
 h2{
@@ -447,31 +448,55 @@ footer{
 .operando .modal-content .btn-primary,
 .operando #wrapper .btn-primary
 {
-    background: #f6a62e;
-    border-color: #d58917;
+    background: #FFB400;
+    border-color:#FFB400;
     color:#FFF;
+    border-radius: 0;
+    font-family: 'Dosis', sans-serif;
+    font-size: 16px;
+}
+.operando .modal-content .btn-primary-black,
+.operando #wrapper .btn-primary-black{
+    background: #000;
+    border-color:#000;
+    color:#FFB400;
+    border-radius: 0;
+    font-family: 'Dosis', sans-serif;
+    font-size: 16px;
+}
+
+.operando .btn-primary.refresh_identity{
+    float:left;
 }
 
 #wrapper button.view_permissions{
     background: url("/operando/assets/images/view_permissions.png") no-repeat center;
     border: none;
     box-shadow: none;
-    height: 38px;
-    padding: 15px 30px;
+    height: 36px;
+    padding: 17px 28px;
+    background-size: 55%;
 }
 
 #wrapper button.view_permissions.hide_view_button{
     visibility: hidden;
 }
 
-
 #wrapper button.extension_uninstall{
     background: url("/operando/assets/images/uninstall.png") no-repeat center;
     border: none;
     box-shadow: none;
-    height: 38px;
+    height: 33px;
+    background-size: 55%;
     padding: 15px 20px;
 }
+
+#wrapper button.view_permissions:focus,
+#wrapper button.extension_uninstall:focus{
+    border:none;
+    outline: none;
+}
+
 
 .extension_enabled_container{
     width:85px;
@@ -603,7 +628,7 @@ footer{
 }
 
 #wrapper button.single_click_privacy:hover{
-    background: #EDA801;
+    background: #FF9900;
 }
 
 
@@ -800,4 +825,31 @@ input[type="radio"] + span:before {
 
 input[type="radio"]:checked + span:before {
     background: #FFB400;
+}
+
+
+input[type="checkbox"]{
+    display: none;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+input[type="checkbox"] + span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    padding-left: 25px;
+    background: url("/operando/assets/images/check-box.png");
+    font-size: 17px;
+
+}
+
+input[type="checkbox"]:checked + span {
+    background: url("/operando/assets/images/check-box-selected.png");
+    content: '\f14a';
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    padding-left: 25px;
 }

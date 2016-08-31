@@ -31,18 +31,23 @@
                     </div>
 
 
-                    <div class="form-group col-lg-12">
-                    <button type="button" ng-click="generateIdentity()" class="btn btn-primary">Refresh</button>
-                    </div>
+
                 </form>
             </div>
 
 
 
             <div class="modal-footer">
+                <div class="form-group col-lg-6">
+                    <button type="button" ng-click="generateIdentity()" class="btn btn-primary refresh_identity">Refresh</button>
+                </div>
 
-                <button type="button" ng-click="saveIdentity()" class="btn btn-primary" data-dismiss="modal">Save</button>
-                <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <div class="form-group col-lg-6">
+                    <button type="button" ng-click="saveIdentity()" class="btn btn-primary" data-dismiss="modal">Save</button>
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary-black" data-dismiss="modal">Close</button>
+                </div>
+
+
 
             </div>
         </div>

@@ -12,7 +12,7 @@
 
                     <label>
                         <input type="radio" ng-model="current_question.selected" ng-value="choice">
-                        {{choice}}
+                        <span>{{choice}}</span>
                     </label>
 
                 </div>
@@ -34,7 +34,7 @@
                         <div ng-repeat="option in q.options" class="radio">
                             <label>
                                 <input type="radio" ng-model="q.selected" ng-value="option">
-                                {{option}}
+                                <span>{{option}}</span>
                             </label>
                         </div>
                     </fieldset>
