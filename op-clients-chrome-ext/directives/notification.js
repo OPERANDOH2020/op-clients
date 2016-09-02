@@ -8,28 +8,29 @@ angular.module('notifications', [])
                 sender: "WatchDog",
                 title: "Warning!",
                 content: "Please review your Facebook settings.",
-                type: "alert-warning"
+                type: "warning-notification",
+
             },
             {
                 id: 1,
                 sender: "WatchDog",
                 title: "Well done!",
                 content: "Your LinkedIn privacy settings were successfully applied!",
-                type: "alert-success"
+                type: "success-notification"
             },
             {
                 id: 2,
                 sender: "WatchDog",
                 title: "Heads up!",
                 content: "A new privacy setting is available for Twitter!",
-                type: "alert-info"
+                type: "info-notification"
             },
             {
                 id: 3,
                 sender: "WatchDog",
                 title: "First scan!",
                 content: "Please perform a social network privacy settings scan in order to help you to apply the suitable settings.",
-                type: "alert-info"
+                type: "info-notification"
             }
         ];
 

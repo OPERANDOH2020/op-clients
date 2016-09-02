@@ -8,6 +8,11 @@ p, span{
     font-weight: 400;
 }
 
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
+}
+
 form label{
     font-family: 'Dosis', sans-serif;
     font-weight: bold;
@@ -20,8 +25,75 @@ h2{
     font-weight: bold;
 }
 
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+input[type="radio"].no_content{
+    opacity: 1;
+}
+input[type="radio"].no_content:after,
+input[type="radio"] + span {
+    position: relative;
+    padding: 0 0 0 25px;
+    font-size: 16px;
+    line-height: 25px;
+    margin:0 0 10px 0;
+}
+input[type="radio"].no_content:before,
+input[type="radio"] + span:before{
+    content: "";
+    display: block;
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background: white;
+    border: 1px solid gray;
+    box-shadow: inset 0px 0px 0px 2px white;
+    border-radius: 8px;
+}
+input[type="radio"].no_content:before{
+    top: 0px;
+}
+input[type="radio"] + span:before {
+    top: 3px;
+}
+
+input[type="radio"].no_content:checked:before,
+input[type="radio"]:checked + span:before {
+    background: #FFB400;
+}
+
+
+input[type="checkbox"]{
+    display: none;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+input[type="checkbox"] + span {
+    display: inline-block;
+    vertical-align: middle;
+    height: 24px;
+    padding-left: 25px;
+    background: url("/operando/assets/images/check-box.png");
+    background-repeat:no-repeat;
+    font-size: 17px;
+
+}
+
+input[type="checkbox"]:checked + span {
+    background: url("/operando/assets/images/check-box-selected.png");
+    background-repeat:no-repeat;
+    vertical-align: middle;
+    height: 24px;
+    padding-left: 25px;
+}
+
+
 #wrapper{
-    background: #FFFFFF;
+    background: #fdfaef;
     margin: 0 auto;
     position: relative;
     max-width: 1296px;
@@ -97,6 +169,7 @@ div.tab-content{
 
 .navbar-default{
     background: #FFF!important;
+    min-width: 1100px;
 }
 
 #bs-example-navbar-collapse-1 .navbar-nav {
@@ -168,7 +241,7 @@ div.tab-content{
 #wrapper{
     height: calc(100% - 198px);
     overflow: auto;
-    min-width: 1300px;
+    min-width: 1100px;
 }
 
 #wrapper .content_tab{
@@ -184,11 +257,12 @@ div.tab-content{
 #wrapper button:hover{
     background:#FFF1D2;
 }
-#wrapper button[disabled],
-#wrapper button:hover[disabled]
+#wrapper button.btn-primary[disabled],
+#wrapper button.btn-primary:hover[disabled]
 {
-    border-color:#e0e0e0;
-    background: none;
+    border-color: #d1c9b5;
+    background: #d8d0be;
+    font-family: 'Dosis', sans-serif;
 }
 
 #features{
@@ -234,25 +308,28 @@ padding-left: 0px;
 
 #can-do-more
 {
-    border-bottom: 4px solid #968D81;
+    border-bottom: 4px solid #FFB400;
 }
 
 .feature-malware-image
 {
-    background-image: url(../../../../skin/features/malware.png);
+    background-image: url("/operando/assets/images/malware-block.png");
     background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .feature-social-image
 {
-    background-image: url(../../../../skin/features/social.png);
+    background-image: url("/operando/assets/images/remove_socials.png");
     background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .feature-tracking-image
 {
-    background-image: url(../../../../skin/features/tracking.png);
+    background-image: url("/operando/assets/images/disable-tracking.png");
     background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 #can-do-more-content
@@ -330,35 +407,51 @@ padding-left: 0px;
     display: none;
 }
 .onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 20px;
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
     transition: margin 0.2s ease-in 0s;
 }
 .onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
-    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    display: block;
+    float: left;
+    width: 50%;
+    height: 34px;
+    padding: 0;
+    line-height: 34px;
+    font-size: 16px;
+    color: white;
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
     box-sizing: border-box;
 }
 .onoffswitch-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #FF8F00; color: #FFFFFF;
+    background-color: #FFB400;
+    color: #FFFFFF;
 }
 .onoffswitch-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
+    background-color: #484848;
+    color: #FFF;
     text-align: right;
 }
 .onoffswitch-switch {
-    display: block; width: 20px; margin: 6px;
+    display: block;
+    width: 16px;
+    margin: 8px;
     background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
     right: 56px;
-    border: 2px solid #999999; border-radius: 20px;
+    border-radius: 16px;
     transition: all 0.2s ease-in 0s;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
@@ -454,7 +547,16 @@ footer{
     border-radius: 0;
     font-family: 'Dosis', sans-serif;
     font-size: 16px;
+    text-shadow: none;
+    box-shadow: none;
 }
+
+.operando .modal-content .btn-primary:hover,
+.operando #wrapper .btn-primary:hover{
+    background: #FF9900;
+    border-color:#FF9900;
+}
+
 .operando .modal-content .btn-primary-black,
 .operando #wrapper .btn-primary-black{
     background: #000;
@@ -463,6 +565,18 @@ footer{
     border-radius: 0;
     font-family: 'Dosis', sans-serif;
     font-size: 16px;
+}
+
+.operando .modal-content .btn-primary-black:hover,
+.operando #wrapper .btn-primary-black:hover{
+color:#FFF;
+}
+
+.operando .modal-content .btn-primary:focus,
+.operando #wrapper .btn-primary:focus,
+.operando .modal-content .btn-primary-black:focus,
+.operando #wrapper .btn-primary-black:focus {
+    outline: none;
 }
 
 .operando .btn-primary.refresh_identity{
@@ -561,8 +675,9 @@ footer{
     text-transform: uppercase;
 }
 
-.content_tab .col-xs-3 ul.tabs-left li a:hover{
-    color:#000;
+
+.content_tab .col-xs-3 ul.tabs-left li:hover a{
+    color:#FFF;
 }
 
 .content_tab .col-xs-3 ul li a:hover{
@@ -662,7 +777,7 @@ footer{
 
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
-    background-color: #FFB400;
+    background-color: #000;
 }
 
 .notification-counter {
@@ -706,6 +821,11 @@ footer{
 .panel-notifications .panel-body{
     max-height: calc(100% - 125px);
     overflow-y: auto;
+}
+
+.alert{
+    background:#f1ebdf;
+    box-shadow: 0px 2px #CCC;
 }
 
 .alert.alert-info.no-notification
@@ -774,10 +894,6 @@ border: none;
     padding-top: 0px;
 }
 
-#wrapper .privacy_wizard button:not([disabled]){
-    border:1px solid #a28f60;
-}
-
 .wizard_question {
     border-bottom: 1px solid #dcd4c0;
     margin-bottom: 0px;
@@ -789,67 +905,21 @@ border: none;
     padding-top: 20px;
 }
 
-input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    -moz-opacity: 0;
-    -webkit-opacity: 0;
-    -o-opacity: 0;
+
+
+.social_network_settings_panel .setting_row{
+    padding: 10px 0px;
+    border-top:1px solid #FFF;
+    border-bottom:1px solid #efe4ce;
 }
 
-input[type="radio"] + span {
-    position: relative;
-    padding: 0 0 0 25px;
-    font-size: 16px;
-    line-height: 25px;
-    margin:0 0 10px 0;
+.social_network_settings_panel osp-setting:first-child .setting_row{
+    border-top:none
+}
+.social_network_settings_panel osp-setting:last-child .setting_row{
+    border-bottom: none;
 }
 
-input[type="radio"] + span:before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 3px;
-    height: 15px;
-    width: 15px;
-    background: white;
-    border: 1px solid gray;
-    box-shadow: inset 0px 0px 0px 2px white;
-    -webkit-box-shadow: inset 0px 0px 0px 2px white;
-    -moz-box-shadow: inset 0px 0px 0px 2px white;
-    -o-box-shadow: inset 0px 0px 0px 2px white;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -o-border-radius: 8px;
-}
+.warning-notification{
 
-input[type="radio"]:checked + span:before {
-    background: #FFB400;
-}
-
-
-input[type="checkbox"]{
-    display: none;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-input[type="checkbox"] + span {
-    display: inline-block;
-    vertical-align: middle;
-    width: 24px;
-    height: 24px;
-    padding-left: 25px;
-    background: url("/operando/assets/images/check-box.png");
-    font-size: 17px;
-
-}
-
-input[type="checkbox"]:checked + span {
-    background: url("/operando/assets/images/check-box-selected.png");
-    content: '\f14a';
-    vertical-align: middle;
-    width: 24px;
-    height: 24px;
-    padding-left: 25px;
 }

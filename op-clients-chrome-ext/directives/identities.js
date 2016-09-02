@@ -129,6 +129,7 @@ angular.module('identities', [])
                     $scope.identity.isDefault = false;
 
                     $scope.changeDefaultIdentity = function(){
+                        console.log($scope.defaultIdentity);
                         $scope.$parent.$emit("changedDefaultSID",$scope.identity);
                         $scope.identity.isDefault = true;
                     }
