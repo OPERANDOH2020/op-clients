@@ -715,7 +715,7 @@ color:#FFF;
 .pfbdeal{
     width: 90%;
     margin: 5%;
-    background: #e8e8e8;
+    background: #f1ebdf;
     display: inline-block;
     float:left;
     min-height: 170px;
@@ -759,7 +759,7 @@ color:#FFF;
 .table>thead>tr.defaultIdentity>th,
 .table>thead>tr>td.defaultIdentity,
 .table>thead>tr>th.defaultIdentity{
-    background: #fdebd2;
+    background: #ffebba;
 }
 
 .table tr>td.td_text{
@@ -809,12 +809,12 @@ color:#FFF;
 }
 
 .panel-group .panel-default .panel-heading {
-    background: #ec9422;
+    background: #FFB400;
     color: #FFF;
 }
 
 .panel-group .panel-default {
-    border: 1px solid #ec9422;
+    border: 1px solid #FFB400;
 }
 
 .panel-news .panel-body,
@@ -826,14 +826,38 @@ color:#FFF;
 .alert{
     background:#f1ebdf;
     box-shadow: 0px 2px #CCC;
+    position: relative;
 }
 
+.alert .close{
+    position: absolute;
+    top:50%;
+    margin-top: -10px;
+    right: 20px;
+}
 .alert.alert-info.no-notification
 {
 background: #f1ebdf;
 color: #654d14;
 border: none;
 }
+
+
+.alert .alert_container{
+    padding: 20px 70px;
+}
+.alert.warning-notification .alert_container{
+    background: url("/operando/assets/images/danger.png") no-repeat left center;
+}
+
+.alert.success-notification .alert_container{
+    background: url("/operando/assets/images/info.png") no-repeat left center;
+}
+
+.alert.info-notification .alert_container{
+    background: url("/operando/assets/images/caution.png") no-repeat left center;
+}
+
 
 /** READING SETTINGS**/
 

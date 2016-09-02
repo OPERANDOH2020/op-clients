@@ -9,6 +9,7 @@ angular.module('notifications', [])
                 title: "Warning!",
                 content: "Please review your Facebook settings.",
                 type: "warning-notification",
+                action:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nibh et leo porta mollis sed sed odio. Aenean et suscipit felis, id tristique ante. Ut vitae pretium tellus, ac tincidunt elit. Suspendisse scelerisque vel ligula at fermentum. Suspendisse consequat quam sit amet quam vestibulum auctor. Praesent nisi enim, aliquet."
 
             },
             {
