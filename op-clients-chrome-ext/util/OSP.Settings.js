@@ -1667,10 +1667,19 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"input[id='login_verification']",
                     valueType:"checkbox"
+                },
+                availableSettings:{
+                    allow:{
+                        name:"Allow"
+                    },
+
+                    disallow:{
+                        name:"Disallow"
+                    }
                 }
             },
             write:{
-                recommended:"Allow"
+                recommended:"allow"
             }
         },
         allow_password_reset:{
@@ -1680,47 +1689,62 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"input[id='user_no_username_only_password_reset']",
                     valueType:"checkbox"
+                },
+                availableSettings:{
+                    true:{
+                        name:"Allow"
+                    },
+
+                    false:{
+                        name:"Disallow"
+                    }
                 }
             },
             write:{
-                recommended:"Allow"
+                recommended:true
             }
         },
-        allow_login_with_code_1:{
+        allow_login_with_code:{
             read:{
                 name: "Allow/disallow login to your account with either a password or login code.",
                 url: "https://twitter.com/settings/security",
                 jquery_selector:{
-                    element:"input[id='one_factor_optout_settings_off']",
-                    valueType:"checkbox"
+                    element:"input[name='user[one_factor_optout_settings]']",
+                    valueType:"radio"
+                },
+                availableSettings:{
+                    on:{
+                        name:"Allow my account to log in with either a password or login code"
+                    },
+
+                    off:{
+                        name:"Always require a password to log in to my account"
+                    }
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:"off"
             }
         },
-        allow_login_with_code_2:{
-            read:{
-                name: "Allow/disallow to always require a password to log to your account.",
-                url: "https://twitter.com/settings/security",
-                jquery_selector:{
-                    element:"input[id='one_factor_optout_settings_on']",
-                    valueType:"checkbox"
-                }
-            },
-            write:{
-                recommended:"Allow"
-            }
-        },
+
         allow_photo_tag: {
             read: {
                 name: "Allow/disallow anyone to tag you in photos.",
                 url: "https://twitter.com/settings/security",
                 jquery_selector: {
-
                     element: "input[name='user[allow_media_tagging]']",
                     valueType: "radio"
-
+                },
+                availableSettings:{
+                    all:{
+                        name:"Allow anyone to tag me in photos"
+                    },
+                    following:{
+                        name:"Only allow people I follow to tag me in photos"
+                    },
+                    none:{
+                        name:"Do not allow anyone to tag me in photos"
+                    }
                 }
             },
             write: {
@@ -1734,10 +1758,18 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"input[id='user_protected']",
                     valueType:"checkbox"
+                },
+                availableSettings: {
+                    1: {
+                        name: "On"
+                    },
+                    0: {
+                        name: "Off"
+                    }
                 }
             },
             write:{
-                recommended:"Allow"
+                recommended:"0"
             }
         },
         allow_location:{
@@ -1747,10 +1779,18 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"input[id='user_geo_enabled']",
                     valueType:"checkbox"
+                },
+                availableSettings: {
+                    1: {
+                        name: "On"
+                    },
+                    0: {
+                        name: "Off"
+                    }
                 }
             },
             write:{
-                recommended:"Disabled"
+                recommended:"0"
             }
         },
         /*delete_locations:{
@@ -1772,10 +1812,18 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"input[id='user_discoverable_by_email']",
                     valueType:"checkbox"
+                },
+                availableSettings: {
+                    1: {
+                        name: "On"
+                    },
+                    0: {
+                        name: "Off"
+                    }
                 }
             },
             write:{
-                recommended:false
+                recommended:0
             }
         },
         allow_phone_search:{
@@ -1785,10 +1833,18 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"input[id='user_mobile_discoverable']",
                     valueType:"checkbox"
+                },
+                availableSettings: {
+                    1: {
+                        name: "On"
+                    },
+                    0: {
+                        name: "Off"
+                    }
                 }
             },
             write:{
-                recommended:false
+                recommended:0
             }
         },
         allow_promoted_content:{
@@ -1799,10 +1855,18 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"input[id='allow_ads_personalization']",
                     valueType:"checkbox"
+                },
+                availableSettings: {
+                    1: {
+                        name: "On"
+                    },
+                    0: {
+                        name: "Off"
+                    }
                 }
             },
             write:{
-                recommended:false
+                recommended:0
             }
         },
         //=============================================================================================================
@@ -1818,7 +1882,17 @@ var ospSettingsConfig = {
                     element:"input[name='user[allow_contributor_request]']",
                     valueType:"radio"
                 },
-                availableSettings:["all", "following","none"]
+                availableSettings:{
+                    all:{
+                        name:"Allow anyone to add me to their team"
+                    },
+                    following:{
+                        name:"Only allow people I follow to add me to their team"
+                    },
+                    none:{
+                        name:"Do not allow anyone to add me to their team"
+                    }
+                }
             },
             write:{
                 recommended:"none"
@@ -1835,10 +1909,18 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"input[id='allow_dms_from_anyone']",
                     valueType:"checkbox"
+                },
+                availableSettings: {
+                    1: {
+                        name: "On"
+                    },
+                    0: {
+                        name: "Off"
+                    }
                 }
             },
             write:{
-                recommended:"false"
+                recommended:"0"
             }
         }
         /*manage_contacts:{
