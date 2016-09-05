@@ -1,5 +1,5 @@
 angular.module('osp', ['cfp.loadingBar'])
-    .factory("ospService", ["messengerService",function (messengerSerivce) {
+    .factory("ospService", ["messengerService",function (messengerService) {
 
         getUserSettings = function (callback) {
 
@@ -37,7 +37,7 @@ angular.module('osp', ['cfp.loadingBar'])
                 chrome.storage.local.set({sn_privacy_settings: settings}, function() {
                 });
 
-                messengerSerivce.send("saveSocialNetworkSetting", {sn_privacy_settings: settings});
+                messengerService.send("saveSocialNetworkSetting", {sn_privacy_settings: settings});
 
             });
 

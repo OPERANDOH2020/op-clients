@@ -32,11 +32,18 @@ angular.module('privacyWizard', [])
             });
         }
 
+        getOSPSettings = function (callback){
+            messengerService.send("getOSPSettings", function (ospSettings) {
+                callback(ospSettings);
+            });
+        }
+
 
         return {
             getNextQuestion: getNextQuestion,
             completeWizard: completeWizard,
-            getSuggestedQuestions: getSuggestedQuestions
+            getSuggestedQuestions: getSuggestedQuestions,
+            getOSPSettings:getOSPSettings
         }
     }])
     .directive("privacyWizard", function ($rootScope) {
@@ -46,6 +53,8 @@ angular.module('privacyWizard', [])
             replace: true,
             scope: {},
             controller: ["$scope", "PrivacyWizardService", function ($scope, PrivacyWizardService) {
+
+                getOSPSettings(setOSPSettings);
 
                 $scope.current_settings = {};
                 $scope.current_question = {};

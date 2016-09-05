@@ -11,6 +11,12 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
+
+
+
+
+
+
 var SN_CONSTANTS ={
     FACEBOOK:{
         public:300645083384735,
@@ -1706,20 +1712,21 @@ var ospSettingsConfig = {
                 recommended:"Allow"
             }
         },
-        /*allow_photo_tag:{
-         read:{
-         name: "Allow/disallow anyone to tag you in photos.",
-         url: "https://twitter.com/settings/security",
-         jquery_selector:{
-         element:"input[name='user[allow_media_tagging]'",
-         valueType:"radio"
-         //TODO: Error, must fix jquery to correctly extract the wanted result.
-         }
-         },
-         write:{
-         recommended:"Disallow"
-         }
-         },*/
+        allow_photo_tag: {
+            read: {
+                name: "Allow/disallow anyone to tag you in photos.",
+                url: "https://twitter.com/settings/security",
+                jquery_selector: {
+
+                    element: "input[name='user[allow_media_tagging]']",
+                    valueType: "radio"
+
+                }
+            },
+            write: {
+                recommended: "none"
+            }
+        },
         tweet_privacy:{
             read:{
                 name: "Allow/disallow only those you approve to receive your Tweets.",
@@ -1768,7 +1775,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:false
             }
         },
         allow_phone_search:{
@@ -1781,7 +1788,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:false
             }
         },
         allow_promoted_content:{
@@ -1795,55 +1802,29 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:false
             }
         },
         //=============================================================================================================
         //=============================================================================================================
         //=============================================================================================================
         //TODO: Find a better way of reading this setting.
-        allow_tweetdeck_1:{
+        allow_tweetdeck:{
             read:{
                 name: "Allow/disallow organizations to invite anyone to tweet from their account using " +
-                "the teams feature in TweetDeck (1 option).",
+                "the teams feature in TweetDeck ?",
                 url: "https://twitter.com/settings/security",
                 jquery_selector:{
-                    element:"input[id='allow_contributor_request_all']",
-                    valueType:"checkbox"
-                }
+                    element:"input[name='user[allow_contributor_request]']",
+                    valueType:"radio"
+                },
+                availableSettings:["all", "following","none"]
             },
             write:{
-                recommended:"Disallow"
+                recommended:"none"
             }
         },
-        allow_tweetdeck_2:{
-            read:{
-                name: "Allow/disallow organizations to invite anyone to tweet from their account using " +
-                "the teams feature in TweetDeck (1 option).",
-                url: "https://twitter.com/settings/security",
-                jquery_selector:{
-                    element:"input[id='allow_contributor_request_following']",
-                    valueType:"checkbox"
-                }
-            },
-            write:{
-                recommended:"Disallow"
-            }
-        },
-        allow_tweetdeck_3:{
-            read:{
-                name: "Allow/disallow organizations to invite anyone to tweet from their account using " +
-                "the teams feature in TweetDeck (1 option).",
-                url: "https://twitter.com/settings/security",
-                jquery_selector:{
-                    element:"input[id='allow_contributor_request_none']",
-                    valueType:"checkbox"
-                }
-            },
-            write:{
-                recommended:"Allow"
-            }
-        },
+
         //=============================================================================================================
         //=============================================================================================================
         //=============================================================================================================
@@ -1857,7 +1838,7 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Disallow"
+                recommended:"false"
             }
         }
         /*manage_contacts:{
@@ -1910,9 +1891,6 @@ var ospSettingsConfig = {
          }*/
     }
 }
-
-
-
 
 function generateAngularForm(ospname){
     var schema = {
@@ -1979,4 +1957,8 @@ function getOSPs(){
         osps.push(v);
     }
     return osps;
+}
+
+var setOSPSettings = function (ospConfigs) {
+    ospSettingsConfig = ospConfigs;
 }

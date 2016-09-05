@@ -17,6 +17,7 @@ var identityService = require("identity-service").identityService;
 var pfbService = require("pfb-service").pfbService;
 var socialNetworkService = require("social-network-privacy-settings").socialNetworkService;
 var privacyWizardService = require("privacy-wizard").privacyWizardService;
+var ospService = require("osp-service").ospService;
 
 var clientPort = null;
 chrome.runtime.onConnect.addListener(function (_port) {
@@ -121,6 +122,12 @@ chrome.runtime.onConnect.addListener(function (_port) {
             if(request.action == "getSuggestedQuestions"){
                 privacyWizardService.getSuggestedQuestions(request.message,function(questions){
                     clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action,message: questions});
+                });
+            }
+
+            if (request.action == "getOSPSettings") {
+                ospService.getOSPService(function (ospSettings) {
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: ospSettings});
                 });
             }
         });
