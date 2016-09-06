@@ -25,6 +25,32 @@ var SN_CONSTANTS ={
         friends_except_acquaintances:284920934947802,
         only_me:286958161406148,
         friends:291667064279714
+    },
+    LINKEDIN:{
+        no_one:836780953350426,
+        only_you: 684875534556743,
+        your_connections:721336557845391,
+        your_network:2970896077664,
+        everyone:531109157014695,
+        make_my_public_profile_visible_to_no_one: 819243232510547,
+        make_my_public_profile_visible_to_everyone: 519591394213057,
+        basics: 238801631834504,
+        picture: 587299059848712,
+        headline: 821995173725199,
+        current_positions: 625720825657230,
+        past_positions: 979967691138134,
+        projects: 637873839297447,
+        skills: 775602587830170,
+        languages: 514514129962576,
+        education: 386390979258412,
+        interests: 111883819247020,
+        publications: 800087945809184,
+        groups: 794568533196227,
+        yes: 361117178629177,
+        no: 8429185262324,
+        full_profile: 35290152094234,
+        characteristics: 524717914036416,
+        private_mode: 589120893741529
 
     }
 };
@@ -1236,12 +1262,44 @@ var ospSettingsConfig = {
                   }
                 },
                 jquery_selector:{
-                    element:"input[id='option-broadcast']",
-                    valueType:"checkbox"
+                    element:"#setting-activity-broadcast .state",
+                    valueType:"inner"
                 }
             },
             write:{
-                recommended:"Do not allow your network to be notified of your profile changes"
+                name: "Sharing profile edits",
+                page: "https://www.linkedin.com/psettings/activity-broadcast",
+                //url: "https://www.linkedin.com/psettings/activity-broadcast",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
             }
         },
         suggest_you_email:{
@@ -1314,8 +1372,8 @@ var ospSettingsConfig = {
                 name: "Allow or disallow your connections and followers to know when you are mentioned in the news.",
                 url: "https://www.linkedin.com/psettings/news-mention-broadcast",
                 jquery_selector:{
-                    element:"input[id='option-news-mention']",
-                    valueType:"checkbox"
+                    element:"#setting-news-mention-broadcast .state",
+                    valueType:"inner"
                 }
             },
             write:{
@@ -1348,17 +1406,75 @@ var ospSettingsConfig = {
                 recommended:"Connections"
             }
         },
-        /*control_others_see:{
-         read:{
-         name: "Control what others see when you have viewed their profile",
-         url: "https://www.linkedin.com/psettings/account",
-         jquery_selector:{
-         }
-         },
-         write:{
-         recommended:"Limit to your name and headline"
-         }
-         },*/
+        profile_viewing_options:{
+            read:{
+                name: "Control what others see when you have viewed their profile",
+                url: "https://www.linkedin.com/psettings/profile-visibility",
+                availableSettings:{
+                    Full_profile:{
+                        name:"Full profile"
+                    },
+                    Characteristics:{
+                        name:"Characteristics"
+                    },
+                    Private_mode:{
+                        name:"Private mode"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-profile-visibility .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Control what others see when you have viewed their profile",
+                page: "https://www.linkedin.com/psettings/profile-visibility",
+                //url: "https://www.linkedin.com/psettings/profile-visibility",
+                availableSettings:{
+                    Full_profile: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.full_profile
+                            }
+                        },
+                        name: "Full profile"
+                    },
+                    Characteristics:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.characteristics
+                            }
+                        },
+                        name:"Characteristics"
+                    },
+                    Private_mode:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.private_mode
+                            }
+                        },
+                        name:"Private mode"
+                    }
+                },
+                data: {},
+                recommended:"Private mode"
+            }
+        },
         how_you_rank:{
             read:{
                 name: "Control showing “How You Rank”",
@@ -1366,6 +1482,14 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"#setting-how-you-rank .state",
                     valueType:"inner"
+                },
+                availableSettings: {
+                    Yes: {
+                        name: "Yes"
+                    },
+                    No: {
+                        name: "No"
+                    }
                 }
             },
             write:{
@@ -1379,13 +1503,21 @@ var ospSettingsConfig = {
                 jquery_selector:{
                     element:"#setting-connections-visibility .state",
                     valueType:"inner"
+                },
+                availableSettings: {
+                    Only_you: {
+                        name: "Only you"
+                    },
+                    Your_Connections: {
+                        name: "Your Connections"
+                    }
                 }
             },
             write:{
-                recommended:"Only you"
+                recommended:"Only_you"
             }
         },
-        linkedin_control_followers:{
+        control_followers:{
             read:{
                 name: "Control who can follow your updates.",
                 url: "https://www.linkedin.com/psettings/allow-follow",
@@ -1402,26 +1534,141 @@ var ospSettingsConfig = {
             read:{
                 name: "Control your profile photo and visibility.",
                 url: "https://www.linkedin.com/psettings/profile-photo-visibility",
+                availableSettings:{
+                    No_One:{
+                        name:"No One"
+                    },
+                    Your_Connections:{
+                        name:"Your Connections"
+                    },
+                    Your_Network:{
+                        name:"Your Network"
+                    },
+
+                    Everyone:{
+                        name:"Everyone"
+                    }
+                },
                 jquery_selector:{
                     element:"#setting-profile-photo-visibility .state",
                     valueType:"inner"
                 }
             },
-            write:{
-                recommended:"Connections"
+            write: {
+                name: "Control your profile photo and visibility.",
+                page: "https://www.linkedin.com/psettings/profile-photo-visibility",
+                //url_template: "https://www.linkedin.com/psettings/profile-photo-visibility",
+                availableSettings: {
+                    No_One: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no_one
+                            }
+                        },
+                        name: "No One"
+                    },
+                    Your_Connections: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.your_connections
+                            }
+                        },
+                        name: "Your Connections"
+                    },
+                    Your_Network: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.your_network
+                            }
+                        },
+                        name: "Your Network"
+                    },
+                    Everyone: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.everyone
+                            }
+                        },
+                        name: "Everyone"
+                    }
+                },
+                data: {},
+                recommended: "No_One"
             }
         },
-        /*control_also_viewed:{
-         read:{
-         name: "Control display of 'Viewers of this profile also viewed' box on your Profile page.",
-         url: "https://www.linkedin.com/psettings/account",
-         jquery_selector:{
-         }
-         },
-         write:{
-         recommended:"Do not display"
-         }
-         },*/
+        profile_viewers_feature: {
+            read: {
+                name: "Control the feature \"Viewers of this profile also viewed\"",
+                url: "https://www.linkedin.com/psettings/browse-map",
+                availableSettings: {
+                    Yes: {
+                        name: "Yes"
+                    },
+                    No: {
+                        name: "No"
+                    }
+                },
+                jquery_selector: {
+                    element: "#setting-browse-map .state",
+                    valueType: "inner"
+                }
+            },
+            write: {
+                name: "Control the feature \"Viewers of this profile also viewed\"",
+                page: "https://www.linkedin.com/psettings/browse-map",
+                //url: "https://www.linkedin.com/psettings/browse-map",
+                availableSettings: {
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.FACEBOOK.no
+                            }
+                        },
+                        name: "No"
+                    }
+                },
+                data: {},
+                recommended: "No"
+            }
+        },
         /*contrl_phone_info:{
          read:{
          name: "Control how your phone number can be used.",
