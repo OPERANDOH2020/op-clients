@@ -947,3 +947,49 @@ border: none;
 .warning-notification{
 
 }
+
+
+#return-to-top {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background: rgba(75, 75, 75, 0.7);
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+#return-to-top i {
+    background: url("/operando/assets/images/arrow-up.png") no-repeat left center;
+    color: #fff;
+    margin: 0;
+    position: relative;
+    display: block;
+    left: 10px;
+    top: 10px;
+    width: 32px;
+    height: 32px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top:hover {
+    background: rgba(75, 75, 75, 0.9);
+}
+#return-to-top:hover i {
+    color: #fff;
+    top: 5px;
+}
