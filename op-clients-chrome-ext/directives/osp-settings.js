@@ -1,7 +1,7 @@
 angular.module('osp', ['cfp.loadingBar'])
     .factory("ospService", ["messengerService",function (messengerService) {
 
-        //var ospSettingsConfig = {};
+        var ospSettingsConfig = {};
 
         function generateAngularForm(ospname) {
             var schema = {
@@ -117,6 +117,10 @@ angular.module('osp', ['cfp.loadingBar'])
 
         }
 
+        messengerService.send("getOSPSettings",{}, function(settings){
+            console.log(settings);
+            ospSettingsConfig = settings;
+        });
 
         return {
             generateAngularForm:generateAngularForm,

@@ -126,7 +126,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
             }
 
             if (request.action == "getOSPSettings") {
-                ospService.getOSPService(function (ospSettings) {
+                ospService.getOSPSettings(function (ospSettings) {
                     clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: ospSettings});
                 });
             }

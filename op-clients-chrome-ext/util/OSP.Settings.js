@@ -56,7 +56,7 @@ var SN_CONSTANTS ={
 };
 
 
-var ospSettingsConfig = {
+var ospSettingsConfig_OLD = {
 
     "facebook": {
        who_can_see_future_posts: {

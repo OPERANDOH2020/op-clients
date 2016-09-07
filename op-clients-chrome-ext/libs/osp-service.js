@@ -20,14 +20,14 @@ swarmHub.on("PrivacyWizardSwarm.js", "gotOSPSettings", function (swarm) {
 
     while (observer.gotOSPsSettings.length > 0) {
         var c = observer.gotOSPsSettings.pop();
-        c(swarm.OSPSettings);
+        c(swarm.ospSettings);
     }
 });
 
 
 var ospService = exports.ospService = {
-    getOSPService: function (success_callback) {
-        swarmHub.startSwarm('pfb.js', 'getOSPService');
+    getOSPSettings: function (success_callback) {
+        swarmHub.startSwarm('PrivacyWizardSwarm.js', 'getOSPSettings');
         observer.gotOSPsSettings.push(success_callback);
     }
 }
