@@ -15,7 +15,11 @@ port.onMessage.addListener(function (msg) {
             case "length": setting = jQuery(jquery_selector.element).length?jQuery(jquery_selector.element).length:0; break;
             default: setting = null;
         }
-        //console.log(setting);
+        if(setting == undefined || setting == null || setting ===""){
+            setting = "Not available";
+        }
+
+        console.log(msg.setting.settingKey, setting);
         console.log(msg.setting.settingKey, setting);
         port.postMessage({status: "finishedCommand", settingKey:msg.setting.settingKey, settingValue:setting});
     }

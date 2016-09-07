@@ -1207,17 +1207,108 @@ var ospSettingsConfig = {
         //=============================================================================================================
         //================================================Account======================================================
         //=============================================================================================================
+        control_profile_photo:{
+            read:{
+                name: "Control your profile photo and visibility.",
+                url: "https://www.linkedin.com/psettings/profile-photo-visibility",
+                availableSettings:{
+                    No_One:{
+                        name:"No One"
+                    },
+                    Your_Connections:{
+                        name:"Your Connections"
+                    },
+                    Your_Network:{
+                        name:"Your Network"
+                    },
+
+                    Everyone:{
+                        name:"Everyone"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-profile-photo-visibility .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Control your profile photo and visibility.",
+                page: "https://www.linkedin.com/psettings/profile-photo-visibility",
+                //url_template: "https://www.linkedin.com/psettings/profile-photo-visibility",
+                availableSettings:{
+                    No_One: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no_one
+                            }
+                        },
+                        name: "No One"
+                    },
+                    Your_Connections:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.your_connections
+                            }
+                        },
+                        name:"Your Connections"
+                    },
+                    Your_Network:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.your_network
+                            }
+                        },
+                        name:"Your Network"
+                    },
+                    Everyone:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.everyone
+                            }
+                        },
+                        name:"Everyone"
+                    }
+                },
+                data: {},
+                recommended:"No One"
+            }
+        },
         control_third_party:{
             read:{
                 name: "Third party apps",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/third-party-applications",
                 jquery_selector:{
                     element:"li[id='setting-third-party-applications'] .state",
                     valueType:"inner"
                 }
             },
             write:{
-                recommended:"Manual review and removal of redundant apps"
+                name: "Third party apps",
+                page: "https://www.linkedin.com/psettings/profile-photo-visibility",
+                //url_template: "https://www.linkedin.com/psettings/profile-photo-visibility",
+                data: {},
+                //Manual review and removal of redundant apps
+                recommended:"0 connected apps"
             }
         },
         manage_twitter:{
@@ -1230,36 +1321,451 @@ var ospSettingsConfig = {
                 }
             },
             write:{
-                recommended:"Do not connect to Twitter"
+                name: "Manage your Twitter info and activity on your LinkedIn account",
+                page: "https://www.linkedin.com/psettings/account",
+                //url: "https://www.linkedin.com/psettings/account",
+                data: {},
+                //Manual review and removal of connected twitter accounts.
+                recommended:"Not connected"
             }
         },
         manage_wechat:{
             read:{
                 name: "setting-wechat",
-                url: "https://www.linkedin.com/psettings/account",
+                url: "https://www.linkedin.com/psettings/wechat-accounts",
                 jquery_selector:{
                     element:"li[id='setting-wechat'] .state",
                     valueType:"inner"
                 }
             },
             write:{
+                name: "setting-wechat",
+                page: "https://www.linkedin.com/psettings/wechat-accounts",
+                //url: "https://www.linkedin.com/psettings/wechat-accounts",
+                data: {},
+                //Manual review and removal of connected wechat accounts.
                 recommended:"Not connected"
             }
         },
         //=============================================================================================================
         //================================================Privacy======================================================
         //=============================================================================================================
+        edit_profile_view:{
+            read:{
+                name: "Edit your public profile",
+                url: "https://www.linkedin.com/profile/public-profile-settings",
+                availableSettings:{
+                    Make_my_public_profile_visible_to_no_one:{
+                        name:"Make my public profile visible to no one"
+                    },
+                    Make_my_public_profile_visible_to_everyone:{
+                        name:"Make my public profile visible to everyone"
+                    },
+                    Basics:{
+                        name:"Basics"
+                    },
+
+                    Picture:{
+                        name:"Picture"
+                    },
+                    Headline:{
+                        name:"Headline"
+                    },
+                    Current_Positions:{
+                        name:"Current Positions"
+                    },
+                    Past_Positions:{
+                        name:"Past Positions"
+                    },
+                    Projects:{
+                        name:"Projects"
+                    },
+                    Skills:{
+                        name:"Skills"
+                    },
+                    Languages:{
+                        name:"Languages"
+                    },
+                    Education:{
+                        name:"Education"
+                    },
+                    Interests:{
+                        name:"Interests"
+                    },
+                    Publications:{
+                        name:"Publications"
+                    },
+                    Groups:{
+                        name:"Groups"
+                    }
+                },
+                jquery_selector:{
+                    element:"input[name='visibilityLevel']",
+                    valueType:"radio"
+                }
+            },
+            write:{
+                name: "Edit your public profile",
+                page: "https://www.linkedin.com/profile/public-profile-settings",
+                //url: "https://www.linkedin.com/profile/public-profile-settings",
+                availableSettings: {
+                    Make_my_public_profile_visible_to_no_one: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.make_my_public_profile_visible_to_no_one
+                            }
+                        },
+                        name: "Make my public profile visible to no one"
+                    },
+                    Make_my_public_profile_visible_to_everyone: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.make_my_public_profile_visible_to_everyone
+                            }
+                        },
+                        name: "Make my public profile visible to everyone"
+                    },
+                    Basics: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.basics
+                            }
+                        },
+                        name: "Basics"
+                    },
+                    Picture: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.picture
+                            }
+                        },
+                        name: "Picture"
+                    },
+                    Headline: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.headline
+                            }
+                        },
+                        name: "Headline"
+                    },
+                    Current_Positions: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.current_positions
+                            }
+                        },
+                        name: "Current Positions"
+                    },
+                    Past_Positions: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.past_positions
+                            }
+                        },
+                        name: "Past Positions"
+                    },
+                    Projects: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.projects
+                            }
+                        },
+                        name: "Projects"
+                    },
+                    Skills: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.skills
+                            }
+                        },
+                        name: "Skills"
+                    },
+                    Languages: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.languages
+                            }
+                        },
+                        name: "Languages"
+                    },
+                    Education: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.education
+                            }
+                        },
+                        name: "Education"
+                    },
+                    Interests: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.interests
+                            }
+                        },
+                        name: "Interests"
+                    },
+                    Publications: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.publications
+                            }
+                        },
+                        name: "Publications"
+                    },
+                    Groups: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.groups
+                            }
+                        },
+                        name: "Groups"
+                    }
+                },
+                data: {},
+                recommended:"off"
+            }
+        },
+        see_connections_list:{
+            read:{
+                name: "Select who can see your list of connections.",
+                url: "https://www.linkedin.com/psettings/connections-visibility",
+                availableSettings:{
+                    Only_you:{
+                        name:"Only you"
+                    },
+                    Your_Connections:{
+                        name:"Your Connections"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-connections-visibility .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Select who can see your list of connections.",
+                page: "https://www.linkedin.com/psettings/connections-visibility",
+                //url: "https://www.linkedin.com/psettings/connections-visibility",
+                availableSettings:{
+                    Only_you: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.only_you
+                            }
+                        },
+                        name: "Only you"
+                    },
+                    Your_Connections:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.your_connections
+                            }
+                        },
+                        name:"Your Connections"
+                    }
+                },
+                data: {},
+                recommended:"Only you"
+            }
+        },
+        how_you_rank:{
+            read:{
+                name: "Control showing “How You Rank”",
+                url: "https://www.linkedin.com/psettings/how-you-rank",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-how-you-rank .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Control showing “How You Rank”",
+                page: "https://www.linkedin.com/psettings/how-you-rank",
+                //url: "https://www.linkedin.com/psettings/how-you-rank",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
+            }
+        },
+        profile_viewers_feature:{
+            read:{
+                name: "Control the feature \"Viewers of this profile also viewed\"",
+                url: "https://www.linkedin.com/psettings/browse-map",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-browse-map .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Control the feature \"Viewers of this profile also viewed\"",
+                page: "https://www.linkedin.com/psettings/browse-map",
+                //url: "https://www.linkedin.com/psettings/browse-map",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
+            }
+        },
         share_edits:{
             read:{
-                name: "Sharing profile edits?",
+                name: "Sharing profile edits",
                 url: "https://www.linkedin.com/psettings/activity-broadcast",
                 availableSettings:{
-                  yes:{
-                      name:"Yes"
-                  },
-                  no:{
-                      name:"No"
-                  }
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
                 },
                 jquery_selector:{
                     element:"#setting-activity-broadcast .state",
@@ -1292,7 +1798,7 @@ var ospSettingsConfig = {
                             },
                             post_param: {
                                 placeholder: "OPERANDO_POST_PARAM",
-                                value: SN_CONSTANTS.FACEBOOK.no
+                                value: SN_CONSTANTS.LINKEDIN.no
                             }
                         },
                         name:"No"
@@ -1300,110 +1806,6 @@ var ospSettingsConfig = {
                 },
                 data: {},
                 recommended:"No"
-            }
-        },
-        suggest_you_email:{
-            read:{
-                name: "Suggesting you on the connection based on your email address",
-                url: "https://www.linkedin.com/psettings/visibility/email",
-                jquery_selector:{
-                    element:"#setting-visibility-email .state",
-                    valueType:"inner"
-                }
-            },
-            write:{
-                recommended:"Nobody"
-            }
-        },
-        suggest_you_phone:{
-            read:{
-                name: "Suggesting you as a connection based on your phone number",
-                url: "https://www.linkedin.com/psettings/visibility/phone",
-                jquery_selector:{
-                    element:"#setting-visibility-phone .state",
-                    valueType:"inner"
-                }
-            },
-            write:{
-                recommended:"Nobody"
-            }
-        },
-        share_data_with_third_party_applications:{
-            read:{
-                name: "Sharing data with third parties applications",
-                url: "https://www.linkedin.com/psettings/data-sharing",
-                jquery_selector:{
-                    element:"input[id='option-block-applications']",
-                    valueType:"checkbox"
-                }
-            },
-            write:{
-                recommended:"false"
-            }
-        },
-        share_data_with_third_party_platforms:{
-            read:{
-                name: "Sharing data with third parties platforms",
-                url: "https://www.linkedin.com/psettings/data-sharing",
-                jquery_selector:{
-                    element:"input[id='option-block-platforms']",
-                    valueType:"checkbox"
-                }
-            },
-            write:{
-                recommended:"no"
-            }
-        },
-        cookie_personalised_ads:{
-            read:{
-                name: "Use cookies to personalize ads",
-                url: "https://www.linkedin.com/psettings/enhanced-advertising",
-                jquery_selector:{
-                    element:"input[id='option-ads-choices']",
-                    valueType:"checkbox"
-                }
-            },
-            write:{
-                recommended:"false"
-            }
-        },
-        share_you_news:{
-            read:{
-                name: "Allow or disallow your connections and followers to know when you are mentioned in the news.",
-                url: "https://www.linkedin.com/psettings/news-mention-broadcast",
-                jquery_selector:{
-                    element:"#setting-news-mention-broadcast .state",
-                    valueType:"inner"
-                }
-            },
-            write:{
-                recommended:"false"
-            }
-        },
-        broadcast_activity:{
-            read:{
-                name: "Allow or disallow your activity broadcasts.",
-                url: "https://www.linkedin.com/psettings/activity-broadcast",
-                jquery_selector:{
-                    element:"input[id='option-broadcast']",
-                    valueType:"checkbox"
-                }
-            },
-            write:{
-                recommended:"false"
-            }
-        },
-        control_broadcast:{
-            read:{
-                name: "Control who can see your activity broadcast.",
-                url: "https://www.linkedin.com/psettings/allow-follow",
-                jquery_selector:{
-                    element:"#setting-allow-follow .state",
-                    valueType:"inner"
-                }
-            },
-            write:{
-                recommended:"Connections"
             }
         },
         profile_viewing_options:{
@@ -1452,7 +1854,7 @@ var ospSettingsConfig = {
                             },
                             post_param: {
                                 placeholder: "OPERANDO_POST_PARAM",
-                                value: SN_CONSTANTS.FACEBOOK.characteristics
+                                value: SN_CONSTANTS.LINKEDIN.characteristics
                             }
                         },
                         name:"Characteristics"
@@ -1465,179 +1867,38 @@ var ospSettingsConfig = {
                             },
                             post_param: {
                                 placeholder: "OPERANDO_POST_PARAM",
-                                value: SN_CONSTANTS.FACEBOOK.private_mode
+                                value: SN_CONSTANTS.LINKEDIN.private_mode
                             }
                         },
                         name:"Private mode"
                     }
                 },
                 data: {},
-                recommended:"Private mode"
+                recommended:"Private_mode"
             }
         },
-        how_you_rank:{
+        share_you_news:{
             read:{
-                name: "Control showing “How You Rank”",
-                url: "https://www.linkedin.com/psettings/how-you-rank",
-                jquery_selector:{
-                    element:"#setting-how-you-rank .state",
-                    valueType:"inner"
-                },
-                availableSettings: {
-                    Yes: {
-                        name: "Yes"
-                    },
-                    No: {
-                        name: "No"
-                    }
-                }
-            },
-            write:{
-                recommended:"No"
-            }
-        },
-        see_connections_list:{
-            read:{
-                name: "Select who can see your list of connections.",
-                url: "https://www.linkedin.com/psettings/connections-visibility",
-                jquery_selector:{
-                    element:"#setting-connections-visibility .state",
-                    valueType:"inner"
-                },
-                availableSettings: {
-                    Only_you: {
-                        name: "Only you"
-                    },
-                    Your_Connections: {
-                        name: "Your Connections"
-                    }
-                }
-            },
-            write:{
-                recommended:"Only_you"
-            }
-        },
-        control_followers:{
-            read:{
-                name: "Control who can follow your updates.",
-                url: "https://www.linkedin.com/psettings/allow-follow",
-                jquery_selector:{
-                    element:"option",
-                    valueType:"selected"
-                }
-            },
-            write:{
-                recommended:"Limit to your connections"
-            }
-        },
-        control_profile_photo:{
-            read:{
-                name: "Control your profile photo and visibility.",
-                url: "https://www.linkedin.com/psettings/profile-photo-visibility",
+                name: "Allow or disallow your connections and followers to know when you are mentioned in the news.",
+                url: "https://www.linkedin.com/psettings/news-mention-broadcast",
                 availableSettings:{
-                    No_One:{
-                        name:"No One"
+                    Yes:{
+                        name:"Yes"
                     },
-                    Your_Connections:{
-                        name:"Your Connections"
-                    },
-                    Your_Network:{
-                        name:"Your Network"
-                    },
-
-                    Everyone:{
-                        name:"Everyone"
+                    No:{
+                        name:"No"
                     }
                 },
                 jquery_selector:{
-                    element:"#setting-profile-photo-visibility .state",
+                    element:"#setting-news-mention-broadcast .state",
                     valueType:"inner"
                 }
             },
-            write: {
-                name: "Control your profile photo and visibility.",
-                page: "https://www.linkedin.com/psettings/profile-photo-visibility",
-                //url_template: "https://www.linkedin.com/psettings/profile-photo-visibility",
-                availableSettings: {
-                    No_One: {
-                        params: {
-                            privacy_lnid: {
-                                placeholder: "OPERANDO_PRIVACY_LNID",
-                                value: 0
-                            },
-                            post_param: {
-                                placeholder: "OPERANDO_POST_PARAM",
-                                value: SN_CONSTANTS.LINKEDIN.no_one
-                            }
-                        },
-                        name: "No One"
-                    },
-                    Your_Connections: {
-                        params: {
-                            privacy_lnid: {
-                                placeholder: "OPERANDO_PRIVACY_LNID",
-                                value: 0
-                            },
-                            post_param: {
-                                placeholder: "OPERANDO_POST_PARAM",
-                                value: SN_CONSTANTS.LINKEDIN.your_connections
-                            }
-                        },
-                        name: "Your Connections"
-                    },
-                    Your_Network: {
-                        params: {
-                            privacy_lnid: {
-                                placeholder: "OPERANDO_PRIVACY_LNID",
-                                value: 0
-                            },
-                            post_param: {
-                                placeholder: "OPERANDO_POST_PARAM",
-                                value: SN_CONSTANTS.LINKEDIN.your_network
-                            }
-                        },
-                        name: "Your Network"
-                    },
-                    Everyone: {
-                        params: {
-                            privacy_lnid: {
-                                placeholder: "OPERANDO_PRIVACY_LNID",
-                                value: 0
-                            },
-                            post_param: {
-                                placeholder: "OPERANDO_POST_PARAM",
-                                value: SN_CONSTANTS.LINKEDIN.everyone
-                            }
-                        },
-                        name: "Everyone"
-                    }
-                },
-                data: {},
-                recommended: "No_One"
-            }
-        },
-        profile_viewers_feature: {
-            read: {
-                name: "Control the feature \"Viewers of this profile also viewed\"",
-                url: "https://www.linkedin.com/psettings/browse-map",
-                availableSettings: {
-                    Yes: {
-                        name: "Yes"
-                    },
-                    No: {
-                        name: "No"
-                    }
-                },
-                jquery_selector: {
-                    element: "#setting-browse-map .state",
-                    valueType: "inner"
-                }
-            },
-            write: {
-                name: "Control the feature \"Viewers of this profile also viewed\"",
-                page: "https://www.linkedin.com/psettings/browse-map",
-                //url: "https://www.linkedin.com/psettings/browse-map",
-                availableSettings: {
+            write:{
+                name: "Allow or disallow your connections and followers to know when you are mentioned in the news.",
+                page: "https://www.linkedin.com/psettings/news-mention-broadcast",
+                //url: "https://www.linkedin.com/psettings/news-mention-broadcast",
+                availableSettings:{
                     Yes: {
                         params: {
                             privacy_lnid: {
@@ -1651,7 +1912,7 @@ var ospSettingsConfig = {
                         },
                         name: "Yes"
                     },
-                    No: {
+                    No:{
                         params: {
                             privacy_lnid: {
                                 placeholder: "OPERANDO_PRIVACY_LNID",
@@ -1659,16 +1920,498 @@ var ospSettingsConfig = {
                             },
                             post_param: {
                                 placeholder: "OPERANDO_POST_PARAM",
-                                value: SN_CONSTANTS.FACEBOOK.no
+                                value: SN_CONSTANTS.LINKEDIN.no
                             }
                         },
-                        name: "No"
+                        name:"No"
                     }
                 },
                 data: {},
-                recommended: "No"
+                recommended:"No"
             }
         },
+        control_followers:{
+            read:{
+                name: "Control who can follow you and see your public updates.",
+                url: "https://www.linkedin.com/psettings/allow-follow",
+                availableSettings:{
+                    Your_Connections:{
+                        name:"Your Connections"
+                    },
+                    Everyone:{
+                        name:"Everyone"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-allow-follow .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Control who can follow you and see your public updates.",
+                page: "https://www.linkedin.com/psettings/allow-follow",
+                //url: "https://www.linkedin.com/psettings/allow-follow",
+                availableSettings:{
+                    Your_Connections: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.your_connections
+                            }
+                        },
+                        name: "Your Connections"
+                    },
+                    Everyone:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.everyone
+                            }
+                        },
+                        name:"Everyone"
+                    }
+                },
+                data: {},
+                recommended:"connections"
+            }
+        },
+        //TODO: Add management capabilities for Blocking list. (https://www.linkedin.com/psettings/member-blocking)
+        //TODO: Add management capabilities for Unfollowed list. (https://www.linkedin.com/psettings/customize-stream)
+        suggest_you_email:{
+            read:{
+                name: "Suggesting you on the connection based on your email address",
+                url: "https://www.linkedin.com/psettings/visibility/email",
+                availableSettings:{
+                    Everyone:{
+                        name:"Everyone"
+                    },
+                    second_degree:{
+                        name:"2nd degree"
+                    },
+                    Nobody:{
+                        name:"Nobody"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-visibility-email .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Suggesting you on the connection based on your email address",
+                page: "https://www.linkedin.com/psettings/visibility/email",
+                //url: "https://www.linkedin.com/psettings/visibility/email",
+                availableSettings:{
+                    Everyone:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.everyone
+                            }
+                        },
+                        name:"Everyone"
+                    },
+                    second_degree:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.second_degree
+                            }
+                        },
+                        name:"2nd degree"
+                    },
+                    Nobody:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no_one
+                            }
+                        },
+                        name:"Nobody"
+                    }
+                },
+                data: {},
+                recommended:"connections"
+            }
+        },
+        suggest_you_phone:{
+            read:{
+                name: "Suggesting you as a connection based on your phone number",
+                url: "https://www.linkedin.com/psettings/visibility/phone",
+                availableSettings:{
+                    Everyone:{
+                        name:"Everyone"
+                    },
+                    second_degree:{
+                        name:"2nd degree"
+                    },
+                    Nobody:{
+                        name:"Nobody"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-visibility-phone .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Suggesting you as a connection based on your phone number",
+                page: "https://www.linkedin.com/psettings/visibility/phone",
+                //url: "https://www.linkedin.com/psettings/visibility/phone",
+                availableSettings:{
+                    Everyone:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.everyone
+                            }
+                        },
+                        name:"Everyone"
+                    },
+                    second_degree:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.second_degree
+                            }
+                        },
+                        name:"2nd degree"
+                    },
+                    Nobody:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no_one
+                            }
+                        },
+                        name:"Nobody"
+                    }
+                },
+                data: {},
+                recommended:"connections"
+            }
+        },
+        //TODO: Linkedin bug. Despite changing it to No it still depicts yes.
+        meet_the_team:{
+            read:{
+                name: "Control if linkedin can show your profile information on your employer’s pages",
+                url: "https://www.linkedin.com/psettings/meet-the-team",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-meet-the-team .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Control if linkedin can show your profile information on your employer’s pages",
+                page: "https://www.linkedin.com/psettings/meet-the-team",
+                //url: "https://www.linkedin.com/psettings/meet-the-team",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
+            }
+        },
+        //============================================
+        share_data_with_third_party_applications:{
+            read:{
+                name: "Sharing data with third parties applications",
+                url: "https://www.linkedin.com/psettings/data-sharing",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-data-sharing .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Sharing data with third parties applications",
+                page: "https://www.linkedin.com/psettings/data-sharing",
+                //url: "https://www.linkedin.com/psettings/data-sharing",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
+            }
+        },
+        share_data_with_third_party_platforms:{
+            read:{
+                name: "Sharing data with third parties platforms",
+                url: "https://www.linkedin.com/psettings/data-sharing",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
+                jquery_selector:{
+                    element:"input[id='option-block-platforms']",
+                    valueType:"checkbox"
+                }
+            },
+            write:{
+                name: "Sharing data with third parties platforms",
+                page: "https://www.linkedin.com/psettings/data-sharing",
+                //url: "https://www.linkedin.com/psettings/data-sharing",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
+            }
+        },
+        cookie_personalised_ads:{
+            read:{
+                name: "Use cookies to personalize ads",
+                url: "https://www.linkedin.com/psettings/enhanced-advertising",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-enhanced-advertising .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Use cookies to personalize ads",
+                page: "https://www.linkedin.com/psettings/enhanced-advertising",
+                //url: "https://www.linkedin.com/psettings/enhanced-advertising",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
+            }
+        },
+        two_step_verification:{
+            read:{
+                name: "Toggle on/off two-factor authentication",
+                url: "https://www.linkedin.com/psettings/two-step-verification",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
+                jquery_selector:{
+                    element:"#setting-two-step-verification .state",
+                    valueType:"inner"
+                }
+            },
+            write:{
+                name: "Use cookies to personalize ads",
+                page: "https://www.linkedin.com/psettings/enhanced-advertising",
+                //url: "https://www.linkedin.com/psettings/enhanced-advertising",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
+            }
+        },
+        /*control_others_see:{
+         read:{
+         name: "Control what others see when you have viewed their profile",
+         url: "https://www.linkedin.com/psettings/account",
+         jquery_selector:{
+         }
+         },
+         write:{
+         recommended:"Limit to your name and headline"
+         }
+         },*/
+        /*control_also_viewed:{
+         read:{
+         name: "Control display of 'Viewers of this profile also viewed' box on your Profile page.",
+         url: "https://www.linkedin.com/psettings/account",
+         jquery_selector:{
+         }
+         },
+         write:{
+         recommended:"Do not display"
+         }
+         },*/
         /*contrl_phone_info:{
          read:{
          name: "Control how your phone number can be used.",
@@ -1698,26 +2441,106 @@ var ospSettingsConfig = {
             read:{
                 name: "Control whether you're willing to receive invitations to join your network.",
                 url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
                 jquery_selector:{
                     element:"input[id='invitationsGroup']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Control whether you're willing to receive invitations to join your network.",
+                page: "https://www.linkedin.com/psettings/email-controls",
+                //url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
             }
         },
         control_messages_messages:{
             read:{
                 name: "Control whether you're willing to receive messages from other LinkedIn members.",
                 url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
                 jquery_selector:{
-                    element:"input[id='messagesGroup']",
+                    element:"input[id='invitationsGroup']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Control whether you're willing to receive messages from other LinkedIn members.",
+                page: "https://www.linkedin.com/psettings/email-controls",
+                //url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
             }
         },
         control_messages_notifications:{
@@ -1725,65 +2548,266 @@ var ospSettingsConfig = {
                 name: "Control whether you're willing to receive news and activity related to your profile " +
                 "and what you share.",
                 url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
                 jquery_selector:{
-                    element:"input[id='notificationsGroup']",
+                    element:"input[id='invitationsGroup']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Control whether you're willing to receive news and activity related to your profile " +
+                "and what you share.",
+                page: "https://www.linkedin.com/psettings/email-controls",
+                //url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
             }
         },
         control_messages_network_updates:{
             read:{
                 name: "Control whether you're willing to receive Updates about your connections.",
                 url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
                 jquery_selector:{
                     element:"input[id='updatesFromNetworkGroup']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Control whether you're willing to receive Updates about your connections.",
+                page: "https://www.linkedin.com/psettings/email-controls",
+                //url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
             }
         },
         control_messages_jobs_and_opportunities:{
             read:{
                 name: "Control whether you're willing to receive Updates about Jobs and opportunities.",
                 url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
                 jquery_selector:{
                     element:"input[id='jobSeekerGroup']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Control whether you're willing to receive Updates about Jobs and opportunities.",
+                page: "https://www.linkedin.com/psettings/email-controls",
+                //url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
             }
         },
         control_messages_news:{
             read:{
                 name: "Control whether you're willing to receive News and articles relevant to you.",
                 url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
                 jquery_selector:{
                     element:"input[id='newsGroup']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Control whether you're willing to receive News and articles relevant to you.",
+                page: "https://www.linkedin.com/psettings/email-controls",
+                //url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
             }
         },
         control_messages_group_updates:{
             read:{
                 name: "Control whether you're willing to receive News about what's going on in your groups.",
                 url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
                 jquery_selector:{
                     element:"input[id='groupsNode']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Control whether you're willing to receive News about what's going on in your groups.",
+                page: "https://www.linkedin.com/psettings/email-controls",
+                //url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
             }
         },
         control_messages_from_linkedIn:{
@@ -1791,13 +2815,54 @@ var ospSettingsConfig = {
                 name: "Control whether you're willing to receive occasional emails with tips and offers " +
                 "to help you get the most out of LinkedIn.",
                 url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
                 jquery_selector:{
                     element:"input[id='messagesFromLinkedinGroup']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Control whether you're willing to receive occasional emails with tips and offers " +
+                "to help you get the most out of LinkedIn.",
+                page: "https://www.linkedin.com/psettings/email-controls",
+                //url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
             }
         },
         control_messages_from_linkedIn_learning:{
@@ -1805,26 +2870,123 @@ var ospSettingsConfig = {
                 name: "Control whether you're willing to receive recommendations to help you get the most " +
                 "out of LinkedIn Learning.",
                 url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On:{
+                        name:"On"
+                    },
+                    Off:{
+                        name:"Off"
+                    }
+                },
                 jquery_selector:{
                     element:"input[id='messagesFromLearningGroup']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Control whether you're willing to receive recommendations to help you get the most " +
+                "out of LinkedIn Learning.",
+                page: "https://www.linkedin.com/psettings/email-controls",
+                //url: "https://www.linkedin.com/psettings/email-controls",
+                availableSettings:{
+                    On: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.on
+                            }
+                        },
+                        name: "On"
+                    },
+                    Off:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.off
+                            }
+                        },
+                        name:"Off"
+                    }
+                },
+                data: {},
+                recommended:"Off"
             }
         },
         who_can_invite_you:{
             read:{
                 name: "Select who can send you invitations",
                 url: "https://www.linkedin.com/psettings/invite-receive",
+                availableSettings:{
+                    Everyone:{
+                        name:"Everyone"
+                    },
+                    Email_and_Imported_contacts:{
+                        name:"Email and Imported contacts"
+                    },
+                    Imported_contacts:{
+                        name:"Imported contacts"
+                    }
+                },
                 jquery_selector:{
-                    element:"li[id='setting-invite-receive'] .state",
+                    element:"#setting-invite-receive .state",
                     valueType:"inner"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Select who can send you invitations",
+                page: "https://www.linkedin.com/psettings/invite-receive",
+                //url: "https://www.linkedin.com/psettings/invite-receive",
+                availableSettings:{
+                    Everyone: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.everyone
+                            }
+                        },
+                        name: "Everyone"
+                    },
+                    Email_and_Imported_contacts:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.email_and_imported_contacts
+                            }
+                        },
+                        name:"Email and Imported contacts"
+                    },
+                    Imported_contacts:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.imported_contacts
+                            }
+                        },
+                        name:"Imported contacts"
+                    }
+                },
+                data: {},
+                recommended:"Imported contacts"
             }
         },
         /*messages_from_members:{
@@ -1843,38 +3005,158 @@ var ospSettingsConfig = {
             read:{
                 name: "Choose whether you want to receive invitations to join groups",
                 url: "https://www.linkedin.com/psettings/group-invitations",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
                 jquery_selector:{
                     element:"#setting-group-invitations .state",
                     valueType:"inner"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Choose whether you want to receive invitations to join groups",
+                page: "https://www.linkedin.com/psettings/group-invitations",
+                //url: "https://www.linkedin.com/psettings/group-invitations",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
             }
         },
         enable_group_notifications:{
             read:{
                 name: "Choose whether we notify your network when you join a group",
                 url: "https://www.linkedin.com/psettings/group-join-notifications",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
                 jquery_selector:{
                     element:"#setting-group-join-notifications .state",
                     valueType:"inner"
                 }
             },
             write:{
-                recommended:undefined
+                name: "Choose whether we notify your network when you join a group",
+                page: "https://www.linkedin.com/psettings/group-join-notifications",
+                //url: "https://www.linkedin.com/psettings/group-join-notifications",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
             }
         },
         enable_research_invitations:{
             read:{
                 name: "Turn on/off invitations to participate in research",
                 url: "https://www.linkedin.com/psettings/research-invitations",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
                 jquery_selector:{
                     element:"#setting-research-invitations .state",
                     valueType:"inner"
                 }
             },
             write:{
+                name: "Turn on/off invitations to participate in research",
+                page: "https://www.linkedin.com/psettings/research-invitations",
+                //url: "https://www.linkedin.com/psettings/research-invitations",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
                 recommended:"No"
             }
         },
@@ -1882,26 +3164,106 @@ var ospSettingsConfig = {
             read:{
                 name: "Allow or disallow Partner InMail",
                 url: "https://www.linkedin.com/psettings/partner-inmail",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
                 jquery_selector:{
                     element:"input[id='option-partner-inmail-marketing']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:"false"
+                name: "Allow or disallow Partner InMail",
+                page: "https://www.linkedin.com/psettings/partner-inmail",
+                //url: "https://www.linkedin.com/psettings/partner-inmail",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
             }
         },
         allow_hiring_campaign_partner_inmail:{
             read:{
                 name: "Allow or disallow hiring campaign Partner InMail",
                 url: "https://www.linkedin.com/psettings/partner-inmail",
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+                    No:{
+                        name:"No"
+                    }
+                },
                 jquery_selector:{
-                    element:"input[id='option-partner-inmail-hiring']",
+                    element:"input[id='option-partner-inmail-marketing']",
                     valueType:"checkbox"
                 }
             },
             write:{
-                recommended:"false"
+                name: "Allow or disallow hiring campaign Partner InMail",
+                page: "https://www.linkedin.com/psettings/partner-inmail",
+                //url: "https://www.linkedin.com/psettings/partner-inmail",
+                availableSettings:{
+                    Yes: {
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.yes
+                            }
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        params: {
+                            privacy_lnid: {
+                                placeholder: "OPERANDO_PRIVACY_LNID",
+                                value: 0
+                            },
+                            post_param: {
+                                placeholder: "OPERANDO_POST_PARAM",
+                                value: SN_CONSTANTS.LINKEDIN.no
+                            }
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"No"
             }
         }
     },
