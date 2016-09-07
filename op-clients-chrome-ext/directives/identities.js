@@ -69,7 +69,7 @@ angular.module('identities', [])
 
                                 messengerService.send("listDomains",{},function(domains){
                                     $scope.domains.availableDomains = domains;
-                                    $scope.identity.domain = $scope.domains.availableDomains[0].name;
+                                    $scope.identity.domain = $scope.domains.availableDomains[0];
                                 });
 
                                 $scope.saveIdentity = function () {
@@ -93,13 +93,13 @@ angular.module('identities', [])
                                     messengerService.send("generateIdentity",{},function(generatedIdentity){
                                         console.log(generatedIdentity);
                                         $scope.identity.name = generatedIdentity.email;
-                                        $scope.identity.email = $scope.identity.name+"@"+$scope.identity.domain;
+                                        $scope.refreshSID();
                                         $scope.$apply();
                                     })
                                 }
 
                                 $scope.refreshSID = function(){
-                                    $scope.identity.email = $scope.identity.name+"@"+$scope.identity.domain;
+                                    $scope.identity.email = $scope.identity.name+"@"+$scope.identity.domain.name;
                                 }
 
                                 $scope.close = function (result) {

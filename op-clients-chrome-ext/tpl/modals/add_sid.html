@@ -19,9 +19,21 @@
 
                     <div class="form-group col-lg-5">
                         <label for="domain">Domain:</label>
-                        <select class="form-control" id="domain" ng-model="identity.domain" ng-change="refreshSID()">
+
+                        <!--<select class="form-control" id="domain" ng-model="identity.domain" ng-change="refreshSID()">
                             <option ng-repeat="domain in domains.availableDomains" value="{{domain.name}}">{{domain.name}}</option>
-                        </select>
+                        </select>-->
+
+                        <ui-select id="domain" ng-model="identity.domain" ng-change="refreshSID()"
+                                   title="Choose a setting" theme="selectize">
+                            <ui-select-match placeholder="Select or search a domain">{{$select.selected.name}}</ui-select-match>
+
+                            <ui-select-choices repeat="domain in domains.availableDomains | filter: $select.search"">
+                                <span ng-bind-html="domain.name"></span>
+                            </ui-select-choices>
+                        </ui-select>
+
+
                     </div>
 
 

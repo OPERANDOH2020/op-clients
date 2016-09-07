@@ -31,12 +31,23 @@
                 <div ng-repeat="(q_key, q) in suggestedQuestions" class="suggested_question">
                     <h4>question_id: {{q_key}}</h4>
                     <fieldset class="form-group">
-                        <div ng-repeat="option in q.options" class="radio">
+                        <!--<div ng-repeat="option in q.options" class="radio">
                             <label>
                                 <input type="radio" ng-model="q.selected" ng-value="option">
                                 <span>{{option}}</span>
                             </label>
-                        </div>
+                        </div>-->
+
+                        <!--<select ng-options="option for option in q.options" ng-model="q.selected">  </select>-->
+
+                        <ui-select ng-model="q.selected" style="min-width: 300px;" title="Choose a setting" theme="selectize">
+                            <ui-select-match placeholder="Select or search a setting...">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="option in q.options | filter: $select.search"">
+                                <span ng-bind-html="option"></span>
+                            </ui-select-choices>
+                        </ui-select>
+
+
                     </fieldset>
                 </div>
             </div>
