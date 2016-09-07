@@ -99,17 +99,10 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: deals});
                 });
             }
-
+ 
             if(request.action == "getMyPfbDeals"){
                 pfbService.getMyDeals(function(deals){
                     clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: deals});
-                });
-            }
-
-            if(request.action == "getNextQuestion"){
-                privacyWizardService.getNextQuestion(request.message,function(question){
-
-                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: question});
                 });
             }
 
@@ -119,9 +112,9 @@ chrome.runtime.onConnect.addListener(function (_port) {
                 });
             }
 
-            if(request.action == "getSuggestedQuestions"){
-                privacyWizardService.getSuggestedQuestions(request.message,function(questions){
-                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action,message: questions});
+            if (request.action == "getNextQuestionAndSuggestions") {
+                privacyWizardService.getNextQuestionAndSuggestions(request.message.activeOptions,function (questionAndSuggestions) {
+                    clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: questionAndSuggestions});
                 });
             }
 

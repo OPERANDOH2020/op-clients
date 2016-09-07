@@ -12,12 +12,11 @@
 
 
 var observer = {
-    gotOSPsSettings:[],
+    gotOSPsSettings:[]
 };
 
 
 swarmHub.on("PrivacyWizardSwarm.js", "gotOSPSettings", function (swarm) {
-
     while (observer.gotOSPsSettings.length > 0) {
         var c = observer.gotOSPsSettings.pop();
         c(swarm.ospSettings);

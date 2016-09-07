@@ -10,13 +10,6 @@
  *    RAFAEL MASTALERU (ROMSOFT)
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
-
-
-
-
-
-
-
 var SN_CONSTANTS ={
     FACEBOOK:{
         public:300645083384735,
@@ -3616,8 +3609,13 @@ function generateAngularForm(ospname){
 }
 
 
-function getOSPSettings(ospname){
-    return ospSettingsConfig[ospname];
+function getOSPSettings(ospname) {
+    if (ospname === undefined) {
+        return ospSettingsConfig;
+    }
+    else {
+        return ospSettingsConfig[ospname];
+    }
 }
 */
 
