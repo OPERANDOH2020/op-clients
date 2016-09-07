@@ -1,13 +1,13 @@
 angular.module("operando").
-controller("readSocialNetworkPrivacySettings", ["$scope","$state", function($scope, $state){
-    var osps = getOSPs();
+controller("readSocialNetworkPrivacySettings", ["$scope","$state","ospService", function($scope, $state, ospService){
+    var osps = ospService.getOSPs();
 
     $scope.osps = [];
     osps.forEach(function(osp){
         $scope.osps.push({
             key:osp.toLowerCase(),
             title:osp,
-            settings:getOSPSettings(osp)
+            settings:ospService.getOSPSettings(osp)
         });
     });
 

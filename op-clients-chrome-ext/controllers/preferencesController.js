@@ -10,13 +10,13 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module('operando').controller('PreferencesController', ["$scope", "$attrs", "cfpLoadingBar", function ($scope, $attrs, cfpLoadingBar) {
+angular.module('operando').controller('PreferencesController', ["$scope", "$attrs", "cfpLoadingBar", "ospService", function ($scope, $attrs, cfpLoadingBar, ospService) {
 
 
     var settings = [];
 
     if ($attrs.socialNetwork) {
-        $scope.schema = generateAngularForm($attrs.socialNetwork);
+        $scope.schema = ospService.generateAngularForm($attrs.socialNetwork);
 
         $scope.form = [];
         for (var key in $scope.schema.properties) {
@@ -37,7 +37,7 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
         $scope.model = {};
         $scope.submitPreferences = function () {
 
-            var ospWriteSettings = getOSPSettings($attrs.socialNetwork);
+            var ospWriteSettings = ospService.getOSPSettings($attrs.socialNetwork);
             settings = [];
 
             for (var settingKey in $scope.model) {

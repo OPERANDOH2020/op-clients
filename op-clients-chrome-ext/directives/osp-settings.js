@@ -1,6 +1,80 @@
 angular.module('osp', ['cfp.loadingBar'])
     .factory("ospService", ["messengerService",function (messengerService) {
 
+        //var ospSettingsConfig = {};
+
+        function generateAngularForm(ospname) {
+            var schema = {
+                type: "object"
+            }
+
+            schema.properties = {};
+            for (var v in ospSettingsConfig[ospname]) {
+                var conf = ospSettingsConfig[ospname][v];
+
+                var availableSettings = conf["read"].availableSettings;
+                var jquerySelector = conf["read"].jquery_selector;
+
+                if (Object.keys(jquerySelector).length !== 0 && availableSettings) {
+                    var settingEnum = [];
+                    for (var key in availableSettings) {
+                        settingEnum.push({
+                            value: key,
+                            name: availableSettings[key].name
+                        })
+                    }
+                    schema.properties[v] = {
+                        title: conf["read"].name,
+                        type: "string",
+                        enum: conf["read"].availableSettings ? settingEnum : ["Yes", "No"]
+
+                    };
+                }
+            }
+            return schema;
+        }
+
+
+        function getOSPSettings(ospname) {
+            return ospSettingsConfig[ospname];
+        }
+
+
+        function getSettingKeyValue(osp, settingKey, settingValue) {
+
+            /**
+             * write settings are more close to what we read
+             */
+            var availableSettings = ospSettingsConfig[osp][settingKey].write.availableSettings;
+
+            if (!availableSettings) {
+                availableSettings = ospSettingsConfig[osp][settingKey].read.availableSettings;
+            }
+
+            for (key in availableSettings) {
+                console.log(key, availableSettings[key].name);
+                if (availableSettings[key].name === settingValue) {
+                    console.log(key);
+                    return key;
+                }
+            }
+            return settingValue;
+        }
+
+
+        function getOSPs() {
+            var osps = [];
+            for (var v in ospSettingsConfig) {
+                osps.push(v);
+            }
+            return osps;
+        }
+
+        function setOSPSettings(ospConfigs) {
+            ospSettingsConfig = ospConfigs;
+        }
+
+
         getUserSettings = function (callback) {
 
             chrome.storage.local.get('sn_privacy_settings', function (settings) {
@@ -8,33 +82,33 @@ angular.module('osp', ['cfp.loadingBar'])
             });
         };
 
-        setUserSetting = function(settingName, settingValue){
+        setUserSetting = function (settingName, settingValue) {
 
-            chrome.storage.local.get('sn_privacy_settings', function(settings){
+            chrome.storage.local.get('sn_privacy_settings', function (settings) {
 
-                if(!(settings instanceof Object) || Object.keys(settings).length === 0){
+                if (!(settings instanceof Object) || Object.keys(settings).length === 0) {
                     settings = [];
                 }
-                else{
+                else {
                     settings = settings.sn_privacy_settings;
                 }
 
                 var isNew = true;
-                for(var i = 0; i<settings.length; i++){
+                for (var i = 0; i < settings.length; i++) {
 
-                    if(settings[i].settingKey == settingName){
+                    if (settings[i].settingKey == settingName) {
                         settings[i].settingValue = settingValue;
                         isNew = false;
                         break;
                     }
                 }
 
-                if(isNew == true){
+                if (isNew == true) {
                     settings.push({settingKey: settingName, settingValue: settingValue});
                 }
 
 
-                chrome.storage.local.set({sn_privacy_settings: settings}, function() {
+                chrome.storage.local.set({sn_privacy_settings: settings}, function () {
                 });
 
                 messengerService.send("saveSocialNetworkSetting", {sn_privacy_settings: settings});
@@ -45,6 +119,11 @@ angular.module('osp', ['cfp.loadingBar'])
 
 
         return {
+            generateAngularForm:generateAngularForm,
+            getOSPSettings:getOSPSettings,
+            getSettingKeyValue:getSettingKeyValue,
+            getOSPs:getOSPs,
+            setOSPSettings:setOSPSettings,
             getUserSettings: getUserSettings,
             setUserSetting: setUserSetting
         }
@@ -202,7 +281,7 @@ angular.module('osp', ['cfp.loadingBar'])
                                                 //console.log(getSettingKeyValue($scope.osp, msg.settingKey, msg.settingValue));
                                                 $scope.$parent.$broadcast("received-setting", {
                                                     settingKey: msg.settingKey,
-                                                    settingValue: getSettingKeyValue($scope.osp, msg.settingKey, msg.settingValue)
+                                                    settingValue: ospService.getSettingKeyValue($scope.osp, msg.settingKey, msg.settingValue)
                                                 });
                                                 console.log( msg.settingKey, msg.settingValue);
                                                 currentCallback();

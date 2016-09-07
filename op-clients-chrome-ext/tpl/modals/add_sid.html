@@ -25,7 +25,7 @@
                         </select>-->
 
                         <ui-select id="domain" ng-model="identity.domain" ng-change="refreshSID()"
-                                   title="Choose a setting" theme="selectize">
+                                   title="Choose a setting" theme="selectize" class="mCustomScrollbar">
                             <ui-select-match placeholder="Select or search a domain">{{$select.selected.name}}</ui-select-match>
 
                             <ui-select-choices repeat="domain in domains.availableDomains | filter: $select.search"">

@@ -3583,6 +3583,7 @@ var ospSettingsConfig = {
     }
 }
 
+/*
 function generateAngularForm(ospname){
     var schema = {
         type: "object"
@@ -3618,14 +3619,14 @@ function generateAngularForm(ospname){
 function getOSPSettings(ospname){
     return ospSettingsConfig[ospname];
 }
+*/
 
-
-function getSettingKeyValue(osp, settingKey, settingValue){
+//function getSettingKeyValue(osp, settingKey, settingValue){
 
     /**
      * write settings are more close to what we read
      */
-    var availableSettings = ospSettingsConfig[osp][settingKey].write.availableSettings;
+    /*var availableSettings = ospSettingsConfig[osp][settingKey].write.availableSettings;
 
     if(!availableSettings){
         availableSettings = ospSettingsConfig[osp][settingKey].read.availableSettings;
@@ -3653,3 +3654,4 @@ function getOSPs(){
 var setOSPSettings = function (ospConfigs) {
     ospSettingsConfig = ospConfigs;
 }
+*/
