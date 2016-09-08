@@ -52,7 +52,10 @@ swarmHub.on("PrivacyWizardSwarm.js", "gotReccomenderParams", function (swarm) {
 
 
 
+
+
 var privacyWizardService = exports.privacyWizardService = {
+
     completeWizard: function (current_settings,  provided_suggestions, success_callback) {
         swarmHub.startSwarm('PrivacyWizardSwarm.js', 'completeWizard', current_settings, provided_suggestions);
         observer.onWizardCompleted.push(success_callback);
