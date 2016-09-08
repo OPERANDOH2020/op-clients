@@ -4,15 +4,14 @@
 
     <div ng-switch="view" class="privacy_wizard">
         <div ng-switch-when="options">
-            <h4>{{current_question.question_id}}</h4>
+            <h4>{{idToQuestion[current_question.question_id]}}</h4>
 
             <fieldset class="form-group wizard_question">
 
                 <div ng-repeat="choice in current_question.possible_choices_ids" class="radio" >
-
                     <label>
                         <input type="radio" ng-model="current_question.selected" ng-value="choice">
-                        <span>{{choice}}</span>
+                        <span>{{idToAnswer[choice].answer}}</span>
                     </label>
 
                 </div>
@@ -28,8 +27,8 @@
         <div ng-switch-when="suggestions" class="sugesstions">
 
             <div>
-                <div ng-repeat="(q_key, q) in suggestedQuestions" class="suggested_question">
-                    <h4>question_id: {{q_key}}</h4>
+                <div ng-repeat="(question,answer) in suggestedQuestions" class="suggested_question">
+                    <h4>Question: {{idToAnswer[suggestion]['question']}}</h4>
                     <fieldset class="form-group">
                         <!--<div ng-repeat="option in q.options" class="radio">
                             <label>
