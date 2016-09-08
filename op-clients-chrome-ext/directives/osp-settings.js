@@ -150,11 +150,15 @@ angular.module('osp', ['cfp.loadingBar'])
             setUserSetting: setUserSetting,
             loadOSPs: function () {
                 var deferred = $q.defer();
-
-                messengerService.send("getOSPSettings",{}, function(settings){
-                    ospSettingsConfig = settings;
-                    deferred.resolve(settings);
-                });
+                if (Object.keys(ospSettingsConfig).length > 0) {
+                    deferred.resolve(ospSettingsConfig);
+                }
+                else {
+                    messengerService.send("getOSPSettings", {}, function (settings) {
+                        ospSettingsConfig = settings;
+                        deferred.resolve(settings);
+                    });
+                }
 
                 return deferred.promise;
             }
