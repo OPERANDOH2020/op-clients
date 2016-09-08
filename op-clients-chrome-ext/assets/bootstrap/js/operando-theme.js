@@ -9,6 +9,7 @@ $(document).ready(function () {
                 scrollButtons: {enable: true},
                 theme: "light-thick",
                 scrollbarPosition: "outside",
+                scrollInertia:300,
                 callbacks: {
                     whileScrolling: function () {
                         if (this.mcs.top < -100) {

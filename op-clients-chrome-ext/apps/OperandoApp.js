@@ -56,9 +56,13 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 /*templateUrl: "views/home/privacy_questionnaire.html",*/
                 template:"<privacy-wizard></privacy-wizard>",
                 resolve: {
+                    settings:['ospService', function (ospService) {
+                        return ospService.loadOSPs();
+                    }],
                     loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('/operando/controllers/questionnaireController.js');
                     }]
+
                 }
             })
             .state("home.notifications", {
@@ -75,6 +79,9 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 abstract: true,
                 templateUrl: "views/preferences.html",
                 resolve: {
+                    settings:['ospService', function (ospService) {
+                        return ospService.loadOSPs();
+                    }],
                     loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('/operando/controllers/preferencesController.js');
                     }]
@@ -151,29 +158,27 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 resolve: {
                     sn:['$stateParams', function ($stateParams) {
                         return $stateParams.sn;
-                    }]
+                    }],
+                    settings:['ospService', function (ospService) {
+                        return ospService.loadOSPs();
+                    }],
                 },
                 templateUrl:"views/admin/privacy_settings/social_network.html",
-                controller:["$scope","$stateParams","ospService", function($scope, $stateParams, ospService) {
+                controller:["$scope","$stateParams","settings", function($scope, $stateParams, settings) {
                     if (!$stateParams.sn) {
-
-                        ospService.getOSPSettings(function(settings){
-                            $scope.osp = {
-                                key: 'facebook',
-                                title: 'facebook',
-                                settings: settings
-                            }
-                        },'facebook');
+                        $scope.osp = {
+                            key: 'facebook',
+                            title: 'facebook',
+                            settings: settings['facebook']
+                        }
 
                     }
                     else {
-                        ospService.getOSPSettings(function(settings){
-                            $scope.osp = {
-                                key: $stateParams.sn,
-                                title: $stateParams.sn,
-                                settings: settings
-                            }
-                        },$stateParams.sn);
+                        $scope.osp = {
+                            key: $stateParams.sn,
+                            title: $stateParams.sn,
+                            settings: settings[$stateParams.sn]
+                        }
                     }
 
                     $scope.sn = $stateParams.sn;
