@@ -368,6 +368,8 @@
 .selectize-control.single .selectize-input,
 .selectize-dropdown.single {
     border-color: #FFB400;
+    background: #fdfaef;
+    border-radius: 5px;
 }
 
 .selectize-dropdown .optgroup-header {

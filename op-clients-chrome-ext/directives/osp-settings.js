@@ -1,5 +1,5 @@
 angular.module('osp', ['cfp.loadingBar'])
-    .factory("ospService", ["messengerService",function (messengerService) {
+    .factory("ospService", ["messengerService", '$q', function (messengerService, $q) {
 
         var ospSettingsConfig = {};
 
@@ -35,8 +35,16 @@ angular.module('osp', ['cfp.loadingBar'])
         }
 
 
-        function getOSPSettings(ospname) {
-            return ospSettingsConfig[ospname];
+        function getOSPSettings(callback, ospname) {
+
+            loadOSPSettings(function (ospSettingsConfig) {
+                if (!ospname) {
+                    callback(ospSettingsConfig);
+                }
+                else {
+                    callback(ospSettingsConfig[ospname]);
+                }
+            })
         }
 
 
@@ -62,12 +70,14 @@ angular.module('osp', ['cfp.loadingBar'])
         }
 
 
-        function getOSPs() {
-            var osps = [];
-            for (var v in ospSettingsConfig) {
-                osps.push(v);
-            }
-            return osps;
+        function getOSPs(callback) {
+            loadOSPSettings(function () {
+                var osps = [];
+                for (var v in ospSettingsConfig) {
+                    osps.push(v);
+                }
+                callback(osps);
+            })
         }
 
         function setOSPSettings(ospConfigs) {
@@ -117,10 +127,18 @@ angular.module('osp', ['cfp.loadingBar'])
 
         }
 
-        messengerService.send("getOSPSettings",{}, function(settings){
-            console.log(settings);
-            ospSettingsConfig = settings;
-        });
+        function loadOSPSettings (callback){
+            if(Object.keys(ospSettingsConfig).length == 0){
+                messengerService.send("getOSPSettings",{}, function(settings){
+                    ospSettingsConfig = settings;
+                        callback(settings);
+                    });
+             }
+            else{
+                callback(ospSettingsConfig);
+            }
+        }
+
 
         return {
             generateAngularForm:generateAngularForm,
@@ -204,7 +222,7 @@ angular.module('osp', ['cfp.loadingBar'])
             scope: {
                 osp: "="
             },
-            controller: function ($scope, cfpLoadingBar) {
+            controller: function ($scope, cfpLoadingBar, ospService) {
 
                 var tabId = null;
                 $scope.readSocialNetworkPrivacySettings = function () {
@@ -216,124 +234,129 @@ angular.module('osp', ['cfp.loadingBar'])
 
                         var tabIsNew = true;
 
-                        var snSettings = ospSettingsConfig[$scope.osp];
-                        var settings_arr = [];
+                         ospService.getOSPSettings(function(snSettings){
 
-                        for (var key in snSettings) {
+                             var settings_arr = [];
 
-                            var currentSetting = snSettings[key]["read"];
+                             for (var key in snSettings) {
 
-                            currentSetting.settingKey = key;
-                            settings_arr.push(currentSetting);
+                                 var currentSetting = snSettings[key]["read"];
 
-                        }
+                                 currentSetting.settingKey = key;
+                                 settings_arr.push(currentSetting);
 
-
-                        var queryPage = function (setting) {
-
-                            return new Promise(function (resolve, reject) {
-
-                                if (currentTabUrl == setting.url) {
-                                    tabIsNew = false;
-                                    port.postMessage({command: "scan", setting: setting});
-                                }
-                                else {
-                                    chrome.tabs.update(tabId, {url: setting.url}, function (tab) {
-                                        currentTab = tab;
-                                        tabIsNew = true;
-                                    });
-                                }
-
-                                currentCallback = function () {
-                                    resolve("finishedCommand");
-                                }
-
-                                currentSetting = setting;
-                                currentTabUrl = setting.url;
-
-                            });
-
-                        }
-
-                        var sequence = Promise.resolve();
+                             }
 
 
-                        sequence = sequence.then(function () {
-                            return new Promise(function (resolve, reject) {
-                                chrome.tabs.create({active: false}, function (tab) {
-                                    cfpLoadingBar.start();
-                                    tabId = tab.id;
-                                    resolve(tabId);
-                                });
-                            });
-                        });
+                             var queryPage = function (setting) {
+
+                                 return new Promise(function (resolve, reject) {
+
+                                     if (currentTabUrl == setting.url) {
+                                         tabIsNew = false;
+                                         port.postMessage({command: "scan", setting: setting});
+                                     }
+                                     else {
+                                         chrome.tabs.update(tabId, {url: setting.url}, function (tab) {
+                                             currentTab = tab;
+                                             tabIsNew = true;
+                                         });
+                                     }
+
+                                     currentCallback = function () {
+                                         resolve("finishedCommand");
+                                     }
+
+                                     currentSetting = setting;
+                                     currentTabUrl = setting.url;
+
+                                 });
+
+                             }
+
+                             var sequence = Promise.resolve();
 
 
-                        sequence = sequence.then(function () {
-                            chrome.runtime.onConnect.addListener(function (_port) {
-
-                                port = _port;
-                                if (port.name == "getSNSettings") {
-                                    port.onMessage.addListener(function (msg) {
-                                        if (msg.status == "waitingCommand" && tabIsNew == true) {
-                                            if (currentSetting !== undefined) {
-                                                port.postMessage({command: "scan", setting: currentSetting});
-                                            }
-                                        }
-                                        else {
-                                            if (msg.status == "finishedCommand") {
-                                                //console.log(getSettingKeyValue($scope.osp, msg.settingKey, msg.settingValue));
-                                                $scope.$parent.$broadcast("received-setting", {
-                                                    settingKey: msg.settingKey,
-                                                    settingValue: ospService.getSettingKeyValue($scope.osp, msg.settingKey, msg.settingValue)
-                                                });
-                                                console.log( msg.settingKey, msg.settingValue);
-                                                currentCallback();
-                                            }
-                                        }
-                                    })
-
-                                }
-
-                            });
+                             sequence = sequence.then(function () {
+                                 return new Promise(function (resolve, reject) {
+                                     chrome.tabs.create({active: false}, function (tab) {
+                                         cfpLoadingBar.start();
+                                         tabId = tab.id;
+                                         resolve(tabId);
+                                     });
+                                 });
+                             });
 
 
-                        });
+                             sequence = sequence.then(function () {
+                                 chrome.runtime.onConnect.addListener(function (_port) {
 
-                        sequence = sequence.then(function () {
-                            chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
-                                if (tabId == currentTab.id && changeInfo.status == "complete" && tabIsNew == true) {
-                                    insertJavascriptFile(currentTab.id, "operando/utils/jquery-2.1.4.min.js", function () {
-                                        insertJavascriptFile(currentTab.id, "operando/modules/osp/readSocialNetworkSettings.js", function () {
-                                        });
-                                    });
-                                }
-                            });
-                        });
+                                     port = _port;
+                                     if (port.name == "getSNSettings") {
+                                         port.onMessage.addListener(function (msg) {
+                                             if (msg.status == "waitingCommand" && tabIsNew == true) {
+                                                 if (currentSetting !== undefined) {
+                                                     port.postMessage({command: "scan", setting: currentSetting});
+                                                 }
+                                             }
+                                             else {
+                                                 if (msg.status == "finishedCommand") {
+                                                     //console.log(getSettingKeyValue($scope.osp, msg.settingKey, msg.settingValue));
+                                                     $scope.$parent.$broadcast("received-setting", {
+                                                         settingKey: msg.settingKey,
+                                                         settingValue: ospService.getSettingKeyValue($scope.osp, msg.settingKey, msg.settingValue)
+                                                     });
+                                                     console.log( msg.settingKey, msg.settingValue);
+                                                     currentCallback();
+                                                 }
+                                             }
+                                         })
 
-                        settings_arr.forEach(function (setting) {
-                            sequence = sequence.then(function () {
-                                return queryPage(setting);
-                            }).then(function (result) {
-                                cfpLoadingBar.set(cfpLoadingBar.status()+(1/settings_arr.length));
-                            }).catch(function (err) {
-                                console.log(err);
-                            });
-                        });
+                                     }
+
+                                 });
 
 
-                        sequence = sequence.then(function () {
-                            chrome.tabs.remove(tabId);
-                            cfpLoadingBar.complete();
-                            port.disconnect();
-                            port = null;
-                            /*
-                             TODO remove this
-                             fix the event listener
-                             */
-                            window.location.reload();
+                             });
 
-                        });
+                             sequence = sequence.then(function () {
+                                 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
+                                     if (tabId == currentTab.id && changeInfo.status == "complete" && tabIsNew == true) {
+                                         insertJavascriptFile(currentTab.id, "operando/utils/jquery-2.1.4.min.js", function () {
+                                             insertJavascriptFile(currentTab.id, "operando/modules/osp/readSocialNetworkSettings.js", function () {
+                                             });
+                                         });
+                                     }
+                                 });
+                             });
+
+                             settings_arr.forEach(function (setting) {
+                                 sequence = sequence.then(function () {
+                                     return queryPage(setting);
+                                 }).then(function (result) {
+                                     cfpLoadingBar.set(cfpLoadingBar.status()+(1/settings_arr.length));
+                                 }).catch(function (err) {
+                                     console.log(err);
+                                 });
+                             });
+
+
+                             sequence = sequence.then(function () {
+                                 chrome.tabs.remove(tabId);
+                                 cfpLoadingBar.complete();
+                                 port.disconnect();
+                                 port = null;
+                                 /*
+                                  TODO remove this
+                                  fix the event listener
+                                  */
+                                 window.location.reload();
+
+                             });
+
+                        },$scope.osp);
+
+
 
                     })();
                 }

@@ -156,18 +156,24 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 templateUrl:"views/admin/privacy_settings/social_network.html",
                 controller:["$scope","$stateParams","ospService", function($scope, $stateParams, ospService) {
                     if (!$stateParams.sn) {
-                        $scope.osp = {
-                            key: 'facebook',
-                            title: 'facebook',
-                            settings: ospService.getOSPSettings('facebook')
-                        }
+
+                        ospService.getOSPSettings(function(settings){
+                            $scope.osp = {
+                                key: 'facebook',
+                                title: 'facebook',
+                                settings: settings
+                            }
+                        },'facebook');
+
                     }
                     else {
-                        $scope.osp = {
-                            key: $stateParams.sn,
-                            title: $stateParams.sn,
-                            settings: ospService.getOSPSettings($stateParams.sn)
-                        }
+                        ospService.getOSPSettings(function(settings){
+                            $scope.osp = {
+                                key: $stateParams.sn,
+                                title: $stateParams.sn,
+                                settings: settings
+                            }
+                        },$stateParams.sn);
                     }
 
                     $scope.sn = $stateParams.sn;

@@ -993,3 +993,13 @@ border: none;
     color: #fff;
     top: 5px;
 }
+
+
+.privacy_wizard .alert{
+    background: #fdfaef;
+    padding: 0px 15px;
+}
+
+h3.privacy_wizard_suggestions_heading{
+    font-size: 16px;
+}

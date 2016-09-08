@@ -11,7 +11,7 @@
                 <div ng-repeat="choice in current_question.possible_choices_ids" class="radio" >
                     <label>
                         <input type="radio" ng-model="current_question.selected" ng-value="choice">
-                        <span>{{idToAnswer[choice].answer}}</span>
+                        <span>{{idToAnswer[choice].option.name}}</span>
                     </label>
 
                 </div>
@@ -26,28 +26,36 @@
 
         <div ng-switch-when="suggestions" class="sugesstions">
 
+            <div class = "alert success-notification">
+                <div class="alert_container ng-binding">
+                    <h3 class="privacy_wizard_suggestions_heading">According to your previous answers, we're thinking that the following privacy settings are suitable for you!</h3>
+                </div>
+
+            </div>
+
+
             <div>
+
                 <div ng-repeat="(question,answer) in suggestedQuestions" class="suggested_question">
-                    <h4>Question: {{idToAnswer[suggestion]['question']}}</h4>
-                    <fieldset class="form-group">
-                        <!--<div ng-repeat="option in q.options" class="radio">
-                            <label>
-                                <input type="radio" ng-model="q.selected" ng-value="option">
-                                <span>{{option}}</span>
-                            </label>
-                        </div>-->
 
-                        <!--<select ng-options="option for option in q.options" ng-model="q.selected">  </select>-->
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h4>{{question}}</h4>
+                        </div>
 
-                        <ui-select ng-model="q.selected" style="min-width: 300px;" title="Choose a setting" theme="selectize">
-                            <ui-select-match placeholder="Select or search a setting...">{{$select.selected}}</ui-select-match>
-                            <ui-select-choices repeat="option in q.options | filter: $select.search"">
-                                <span ng-bind-html="option"></span>
-                            </ui-select-choices>
-                        </ui-select>
+                        <div class="col-lg-4">
+                            <fieldset class="form-group">
 
+                                <ui-select ng-model="answer.option" style="min-width: 150px;" title="Choose a setting" theme="selectize">
+                                    <ui-select-match placeholder="Select or search a setting...">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="option in answersForQuestion[question] | filter: $select.search"">
+                                    <span ng-bind-html="option.name"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </fieldset>
+                        </div>
+                    </div>
 
-                    </fieldset>
                 </div>
             </div>
 
@@ -57,20 +65,28 @@
         </div>
 
         <div ng-switch-when="completed">
-            <h3>Congratulations! You finished the wizard!</h3>
+
+            <div class = "alert success-notification">
+                <div class="alert_container ng-binding">
+                    <h3 class="privacy_wizard_suggestions_heading">Congratulations! You finished the wizard!</h3>
+                </div>
+
+            </div>
+
+
         </div>
 
 
     </div>
 
-    <div class="debug">
+    <!--<div class="debug">
         <hr/>
         <div><b>Current Settings:</b> {{current_settings}}</div>
         <hr/>
         <div><b>Question:</b> {{current_question}}</div>
         <hr/>
         <div><b>Suggested Questions:</b> {{suggestedQuestions}}</div>
-    </div>
+    </div>-->
 
 
 </div>

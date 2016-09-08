@@ -37,51 +37,51 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
         $scope.model = {};
         $scope.submitPreferences = function () {
 
-            var ospWriteSettings = ospService.getOSPSettings($attrs.socialNetwork);
-            settings = [];
+            ospService.getOSPSettings(function(ospWriteSettings){
 
-            for (var settingKey in $scope.model) {
-                console.log($scope.model[settingKey]);
-                if (ospWriteSettings[settingKey].write.availableSettings) {
-                    console.log(ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]]);
-                    var name = ospWriteSettings[settingKey].write.name;
-                    var urlToPost = ospWriteSettings[settingKey].write.url_template;
-                    var page = ospWriteSettings[settingKey].write.page;
-                    var data = ospWriteSettings[settingKey].write.data ? ospWriteSettings[settingKey].write.data : {};
+                settings = [];
+                for (var settingKey in $scope.model) {
+                    console.log($scope.model[settingKey]);
+                    if (ospWriteSettings[settingKey].write.availableSettings) {
+                        console.log(ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]]);
+                        var name = ospWriteSettings[settingKey].write.name;
+                        var urlToPost = ospWriteSettings[settingKey].write.url_template;
+                        var page = ospWriteSettings[settingKey].write.page;
+                        var data = ospWriteSettings[settingKey].write.data ? ospWriteSettings[settingKey].write.data : {};
 
-                    var params = ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].params;
+                        var params = ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].params;
 
 
-                    for (key in params) {
-                        var param = params[key];
-                        urlToPost = urlToPost.replace("{" + param.placeholder + "}", param.value);
-                    }
-
-                    if (ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].data) {
-                        var specificData = ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].data
-                        for (var attrname in specificData) {
-                            data[attrname] = specificData[attrname];
+                        for (key in params) {
+                            var param = params[key];
+                            urlToPost = urlToPost.replace("{" + param.placeholder + "}", param.value);
                         }
+
+                        if (ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].data) {
+                            var specificData = ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].data
+                            for (var attrname in specificData) {
+                                data[attrname] = specificData[attrname];
+                            }
+                        }
+
+                        settings.push({
+                            name: name,
+                            url: urlToPost,
+                            page: page,
+                            data: data
+                        });
+
                     }
-
-                    settings.push({
-                        name: name,
-                        url: urlToPost,
-                        page: page,
-                        data: data
-                    });
-
+                    else {
+                        console.log(settingKey + " setting not found!");
+                    }
                 }
-                else {
-                    console.log(settingKey + " setting not found!");
-                }
-            }
 
-            console.log(settings);
-            increaseFacebookPrivacy(settings);
+                console.log(settings);
+                increaseFacebookPrivacy(settings);
+            },$attrs.socialNetwork);
 
         }
-
     }
 
     var FACEBOOK_PRIVACY_URL = "https://www.facebook.com/settings?tab=privacy&section=composer&view";

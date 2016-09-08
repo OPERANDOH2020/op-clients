@@ -13,17 +13,17 @@
 angular.module('privacyWizard', [])
     .factory("PrivacyWizardService", ["messengerService", function (messengerService) {
         return {
-            getNextQuestionAndSuggestions: function(activeOptions,callback){
+            getNextQuestionAndSuggestions: function (activeOptions, callback) {
                 messengerService.send("getNextQuestionAndSuggestions",
                     {
-                        'activeOptions':activeOptions
+                        'activeOptions': activeOptions
                     },
                     callback)
             },
-            completeWizard: function (currentSetting,callback) {
-                messengerService.send("completeWizard",currentSetting, callback)
-                }
+            completeWizard: function (currentSetting, callback) {
+                messengerService.send("completeWizard", currentSetting, callback)
             }
+        }
         }
     ])
 
@@ -37,99 +37,101 @@ angular.module('privacyWizard', [])
 
 
                 
-                var ospSettings = ospService.getOSPSettings();
+                ospService.getOSPSettings(function(ospSettings){
 
-                var numOptions = 0;
-                $scope.idToQuestion = {};
-                $scope.idToAnswer = {};
-                $scope.answerToId = {}
-                
-                for(var network in ospSettings){
-                    for(var setting in ospSettings[network]){
-                        if(ospSettings[network][setting].id){
-                            $scope.idToQuestion[ospSettings[network][setting].id] = setting;
-                            for(var option in ospSettings[network][setting]['read']){
-                                $scope.idToAnswer[ospSettings[network][setting]['read'].index] = {
-                                    'answer':option,
-                                    'question':setting
-                                }
+                    var numOptions = 0;
+                    $scope.idToQuestion = {};
+                    $scope.idToAnswer = {};
+                    $scope.answersForQuestion = {}
+                    for(var network in ospSettings){
+                        for(var setting in ospSettings[network]){
+                            if(ospSettings[network][setting].id){
+                                numOptions++;
+                                var settingObject = ospSettings[network][setting]
+                                $scope.idToQuestion[ospSettings[network][setting].id] = settingObject.read.name;
+                                $scope.answersForQuestion[settingObject.read.name] = []
+                                for(var option in settingObject['read']['availableSettings']){
+                                    $scope.idToAnswer[settingObject['read']['availableSettings'][option].index] = {
+                                        /*'answer':option,*/
+                                        'question':settingObject.read.name,
+                                        'index':settingObject['read']['availableSettings'][option].index,
+                                        'option': settingObject['read']['availableSettings'][option]
+                                    }
 
-                                $scope.answerToId[option] = ospSettings[network][setting]['read'].index;
+                                    $scope.answersForQuestion[settingObject.read.name].push(settingObject['read']['availableSettings'][option])
 
-                                if(numOptions<ospSettings[network][setting]['read'].index+1){
-                                    numOptions = ospSettings[network][setting]['read'].index+1
                                 }
                             }
                         }
                     }
-                }
 
 
 
+                    $scope.current_settings = [];
+                    $scope.current_question = {};
+                    $scope.view = "options";
 
-
-                $scope.current_settings = {};
-                $scope.current_question = {};
-                $scope.currentAnswers = [];
-                $scope.view = "options";
-
-                var getNextQuestion = function () {
-                    PrivacyWizardService.getNextQuestionAndSuggestions($scope.current_settings, function (current_question) {
-                        $scope.current_question = current_question;
-
-                        $scope.current_question.possible_answers = $scope.current_question.map(function(answerId){
-                            return idToAnswer[answerId]['answer']
-                        });
-                        $scope.current_question['question'] = idToQuestion[$scope.current_question['question_id']];
-
-                        $scope.$apply();
-                    });
-                };
-
-                getNextQuestion();
-
-                $scope.next = function () {
-
-                    if ($scope.view == "options") {
-                        
-                        $scope.currentAnswers.push($scope.current_question.selected);
-
-
-                        $scope.suggestedQuestions = {};
-
-                        $scope.current_question.suggestions[$scope.possible_choices_ids.indexOf($scope.current_question.selected)].forEach(function(answerId){
-                            $scope.suggestedQuestions[$scope.idToAnswer[answerId]['question']] = answerId;
-                        });
-
-                        $scope.view = "suggestions";
-                        $scope.$apply();
-
-                    }
-                    else {
-                        if ($scope.current_settings[$scope.current_question.question_id]) {
-                            for (var sq in  $scope.suggestedQuestions) {
-                                $scope.current_settings[$scope.current_question.question_id].push($scope.suggestedQuestions[sq].selected);
+                    var getNextQuestion = function () {
+                        PrivacyWizardService.getNextQuestionAndSuggestions($scope.current_settings, function (current_question) {
+                            $scope.current_question = current_question;
+                            if($scope.current_question.question_id>0){
+                                $scope.view = "options";
                             }
-                        }
-
-                        var step = angular.copy($scope.current_question);
-                        step.current_settings = angular.copy($scope.current_settings);
-
-                        if(step.currentAnswers.length===numOptions){
-                            $scope.view = "completed";
+                            else{
+                                $scope.view = "completed";
+                            }
                             $scope.$apply();
+                        });
+                    };
+
+                    getNextQuestion();
+
+
+
+                    $scope.next = function () {
+
+                        if ($scope.view == "options") {
+
+                            $scope.current_settings.push($scope.current_question.selected);
+
+                            $scope.suggestedQuestions = {};
+                            $scope.current_question.suggestions[$scope.current_question.possible_choices_ids.indexOf($scope.current_question.selected)].forEach(function(answerId){
+
+                                if($scope.idToAnswer[answerId]){
+                                    $scope.suggestedQuestions[$scope.idToAnswer[answerId]['question']] = $scope.idToAnswer[answerId];
+                                }
+
+                            });
+
+                            if($scope.current_settings.length === numOptions){
+                                $scope.view = "completed";
+                            } else{
+                                $scope.view = "suggestions";
+                            }
+
                         }
                         else {
-                            $scope.view = "options";
-                            getNextQuestion();
+
+                            for (var sq in  $scope.suggestedQuestions) {
+                                $scope.current_settings.push($scope.suggestedQuestions[sq].option.index);
+                            }
+
+
+                            if($scope.current_settings.length === numOptions){
+                                $scope.view = "completed";
+                            }
+                            else {
+                                getNextQuestion();
+                            }
+
                         }
+                    };
 
+                    $scope.someSelected = function () {
+                        return $scope.current_question.selected;
                     }
-                };
+                });
 
-                $scope.someSelected = function () {
-                    return $scope.current_question.selected;
-                }
 
             }],
             templateUrl: "/operando/tpl/privacy-wizard/privacy_wizard.html"
