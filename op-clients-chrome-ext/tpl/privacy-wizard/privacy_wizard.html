@@ -20,10 +20,10 @@
             <div class="sk-circle12 sk-circle"></div>
         </div>
 
-
-
+        <progress-bar current="current_settings.length" total="numOptions" interval="current_question.suggestions[0].length" ng-if="idToQuestion[current_question.question_id]"></progress-bar>
 
         <div ng-switch-when="options">
+
             <h4>{{idToQuestion[current_question.question_id]}}</h4>
 
             <fieldset class="form-group wizard_question">

@@ -901,7 +901,7 @@ border: none;
 }
 
 .privacy_wizard h3{
-   text-align:center;
+   text-align:left;
 }
 
 .sugesstions .suggested_question{
@@ -1002,7 +1002,17 @@ border: none;
 
 h3.privacy_wizard_suggestions_heading{
     font-size: 16px;
+    margin: 10px ;
 }
+
+.privacy_wizard .alert .alert_container{
+    padding: 10px 35px;
+}
+
+.privacy_wizard .alert_container{
+    background-size:32px!important;
+}
+
 
 .sk-fading-circle {
     margin: 50px auto;
@@ -1138,4 +1148,54 @@ h3.privacy_wizard_suggestions_heading{
 @keyframes sk-circleFadeDelay {
     0%, 39%, 100% { opacity: 0; }
     40% { opacity: 1; }
+}
+
+
+
+.custom-progress-bar{
+    position: relative;
+    margin: 10px 20px 30px 20px;
+    height: 8px;
+    background: #e0d8c4;
+}
+.custom-progress-bar .progress-bar{
+    background: #c5bca5;
+    color: #444;
+    height: 8px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.bs-wizard-dot {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: #d8d0be;
+    top: 4px;
+    left: 0%;
+    margin-top: -15px;
+    margin-left: -15px;
+    border-radius: 50%;
+}
+
+.bs-wizard-dot.completed{
+    background: #c5bca5;
+}
+
+.bs-wizard-dot:after{
+    content: ' ';
+    width: 14px;
+    height: 14px;
+    background: #9c9276;
+    border-radius: 50px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    opacity:0;
+}
+
+.bs-wizard-dot.completed:after {
+    opacity:1;
+    transition:opacity 0.5s linear;
 }

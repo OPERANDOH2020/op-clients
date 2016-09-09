@@ -35,18 +35,17 @@ angular.module('privacyWizard', [])
             scope: {},
             controller: ["$scope", "PrivacyWizardService","ospService", function ($scope, PrivacyWizardService,ospService) {
 
-
                 
                 ospService.getOSPSettings(function(ospSettings){
 
-                    var numOptions = 0;
+                    $scope.numOptions = 0;
                     $scope.idToQuestion = {};
                     $scope.idToAnswer = {};
                     $scope.answersForQuestion = {}
                     for(var network in ospSettings){
                         for(var setting in ospSettings[network]){
                             if(ospSettings[network][setting].id){
-                                numOptions++;
+                                $scope.numOptions++;
                                 var settingObject = ospSettings[network][setting]
                                 $scope.idToQuestion[ospSettings[network][setting].id] = settingObject.read.name;
                                 $scope.answersForQuestion[settingObject.read.name] = []
@@ -70,6 +69,7 @@ angular.module('privacyWizard', [])
                     $scope.current_settings = [];
                     $scope.current_question = {};
                     $scope.view = "options";
+
 
                     var getNextQuestion = function () {
                         PrivacyWizardService.getNextQuestionAndSuggestions($scope.current_settings, function (current_question) {
@@ -103,7 +103,7 @@ angular.module('privacyWizard', [])
 
                             });
 
-                            if($scope.current_settings.length === numOptions){
+                            if($scope.current_settings.length === $scope.numOptions){
                                 $scope.view = "completed";
                             } else{
                                 $scope.view = "suggestions";
@@ -117,7 +117,7 @@ angular.module('privacyWizard', [])
                             }
 
 
-                            if($scope.current_settings.length === numOptions){
+                            if($scope.current_settings.length === $scope.numOptions){
                                 $scope.view = "completed";
                             }
                             else {

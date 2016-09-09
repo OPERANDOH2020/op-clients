@@ -129,6 +129,7 @@ operando/directives.js = operando/directives/deals.js
                   operando/directives/single-click-privacy.js
                   operando/directives/abp_data_leakage_prevention.js
                   operando/directives/privacy_wizard.js
+                  operando/directives/progress-bar.js
 
 operando/schema-form.js =operando/utils/angular-sanitize/angular-sanitize.min.js
                    operando/utils/schema-form/tv4/tv4.js
