@@ -1644,7 +1644,7 @@ var ospSettingsConfig_OLD = {
         },
         how_you_rank:{
             read:{
-                name: "Control showing “How You Rank”",
+                name: "Control showing \"How You Rank\"",
                 url: "https://www.linkedin.com/psettings/how-you-rank",
                 availableSettings:{
                     Yes:{
@@ -1660,7 +1660,7 @@ var ospSettingsConfig_OLD = {
                 }
             },
             write:{
-                name: "Control showing “How You Rank”",
+                name: "Control showing \"How You Rank\"",
                 page: "https://www.linkedin.com/psettings/how-you-rank",
                 //url: "https://www.linkedin.com/psettings/how-you-rank",
                 availableSettings:{
@@ -2119,7 +2119,7 @@ var ospSettingsConfig_OLD = {
         //TODO: Linkedin bug. Despite changing it to No it still depicts yes.
         meet_the_team:{
             read:{
-                name: "Control if linkedin can show your profile information on your employer’s pages",
+                name: "Control if linkedin can show your profile information on your employer's pages",
                 url: "https://www.linkedin.com/psettings/meet-the-team",
                 availableSettings:{
                     Yes:{
@@ -2135,7 +2135,7 @@ var ospSettingsConfig_OLD = {
                 }
             },
             write:{
-                name: "Control if linkedin can show your profile information on your employer’s pages",
+                name: "Control if linkedin can show your profile information on your employer's pages",
                 page: "https://www.linkedin.com/psettings/meet-the-team",
                 //url: "https://www.linkedin.com/psettings/meet-the-team",
                 availableSettings:{
@@ -2418,7 +2418,7 @@ var ospSettingsConfig_OLD = {
          },*/
         /*meet_the_team:{
          read:{
-         name: "Control “Meet the team”",
+         name: "Control \"Meet the team\"",
          url: "https://www.linkedin.com/psettings/account",
          jquery_selector:{
          }
@@ -3452,7 +3452,7 @@ var ospSettingsConfig_OLD = {
         allow_promoted_content:{
             read:{
                 name: "Allow/disallow Twitter to display ads about things you've already shown " +
-                "interest in (aka “promoted content”",
+                "interest in (aka \"promoted content\"",
                 url: "https://twitter.com/settings/security",
                 jquery_selector:{
                     element:"input[id='allow_ads_personalization']",
@@ -3576,80 +3576,3 @@ var ospSettingsConfig_OLD = {
     }
 }
 
-/*
-function generateAngularForm(ospname){
-    var schema = {
-        type: "object"
-    }
-
-    schema.properties={};
-    for(var v in ospSettingsConfig[ospname]){
-        var conf = ospSettingsConfig[ospname][v];
-
-        var availableSettings = conf["read"].availableSettings;
-        var jquerySelector = conf["read"].jquery_selector;
-
-        if (Object.keys(jquerySelector).length !== 0 && availableSettings) {
-            var settingEnum = [];
-            for (var key in availableSettings) {
-                settingEnum.push({
-                    value: key,
-                    name: availableSettings[key].name
-                })
-            }
-            schema.properties[v] = {
-                title: conf["read"].name,
-                type: "string",
-                enum: conf["read"].availableSettings ? settingEnum : ["Yes", "No"]
-
-            };
-        }
-    }
-    return schema;
-}
-
-
-function getOSPSettings(ospname) {
-    if (ospname === undefined) {
-        return ospSettingsConfig;
-    }
-    else {
-        return ospSettingsConfig[ospname];
-    }
-}
-*/
-
-//function getSettingKeyValue(osp, settingKey, settingValue){
-
-    /**
-     * write settings are more close to what we read
-     */
-    /*var availableSettings = ospSettingsConfig[osp][settingKey].write.availableSettings;
-
-    if(!availableSettings){
-        availableSettings = ospSettingsConfig[osp][settingKey].read.availableSettings;
-    }
-
-    for(key in availableSettings){
-        console.log(key, availableSettings[key].name);
-        if(availableSettings[key].name === settingValue){
-            console.log(key);
-            return key;
-        }
-    }
-    return settingValue;
-}
-
-
-function getOSPs(){
-    var osps = [];
-    for(var v in ospSettingsConfig){
-        osps.push(v);
-    }
-    return osps;
-}
-
-var setOSPSettings = function (ospConfigs) {
-    ospSettingsConfig = ospConfigs;
-}
-*/
