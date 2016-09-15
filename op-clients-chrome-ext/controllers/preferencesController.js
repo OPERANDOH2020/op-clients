@@ -54,7 +54,14 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
 
                         for (key in params) {
                             var param = params[key];
-                            urlToPost = urlToPost.replace("{" + param.placeholder + "}", param.value);
+
+                            if(param.value){
+                                urlToPost = urlToPost.replace("{" + param.placeholder + "}", param.value);
+                            }
+                            /**
+                             * else we replace later when we are in SN page and will take the value from there
+                             */
+
                         }
 
                         if (ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].data) {
@@ -66,7 +73,9 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
 
                         settings.push({
                             name: name,
+                            type:ospWriteSettings[settingKey].write.type,
                             url: urlToPost,
+                            params:ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].params,
                             page: page,
                             data: data
                         });
@@ -78,15 +87,22 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
                 }
 
                 console.log(settings);
-                increaseFacebookPrivacy(settings);
+                switch ($attrs.socialNetwork){
+                    case "facebook" : increaseFacebookPrivacy(settings); break;
+                    case "linkedin" : increaseLinkedInPrivacy(settings); break;
+                }
+
+
             },$attrs.socialNetwork);
 
         }
     }
 
     var FACEBOOK_PRIVACY_URL = "https://www.facebook.com/settings?tab=privacy&section=composer&view";
+    var LINKEDIN_PRIVACY_URL = "https://www.linkedin.com/psettings/"
     var port = null;
     var facebookTabId = null;
+    var linkedinTabId = null;
 
     var increaseFacebookPrivacy = function () {
         chrome.tabs.create({url: FACEBOOK_PRIVACY_URL, "selected": false}, function (tab) {
@@ -116,6 +132,34 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
         });
     }
 
+    var increaseLinkedInPrivacy = function(){
+        chrome.tabs.create({url: LINKEDIN_PRIVACY_URL, "selected": false}, function (tab) {
+            cfpLoadingBar.start();
+            linkedinTabId = tab.id;
+            chrome.runtime.sendMessage({
+                message: "waitForAPost",
+                template: {
+                    "__req": null,
+                    "__dyn": null,
+                    "__a": null,
+                    "fb_dtsg": null,
+                    "__user": null,
+                    "ttstamp": null,
+                    "__rev": null
+                }
+            }, function (response) {
+                console.log(response);
+
+                chrome.tabs.executeScript(linkedinTabId, {
+                    code: "window.FACEBOOK_PARAMS = " + JSON.stringify(response.template)
+                }, function () {
+                    insertCSS(linkedinTabId, "operando/assets/css/feedback.css");
+                    injectScript(linkedinTabId, "operando/modules/osp/writeLinkedinSettings.js", ["FeedbackProgress", "jQuery"]);
+                });
+            });
+        });
+    }
+
 
     chrome.runtime.onConnect.addListener(function (_port) {
         if (_port.name == "applyFacebookSettings") {
@@ -138,4 +182,29 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
             });
         }
     });
+
+
+    chrome.runtime.onConnect.addListener(function (_port) {
+        if (_port.name == "applyLinkedinSettings") {
+            port = _port;
+            port.onMessage.addListener(function (msg) {
+                if (msg.status == "waitingCommand") {
+                    port.postMessage({command: "applySettings", settings: settings});
+                } else {
+                    if (msg.status == "settings_applied") {
+                        cfpLoadingBar.complete();
+                        //chrome.tabs.update(facebookTabId, {url: "https://www.facebook.com/settings?tab=privacy"});
+                    }
+                    else {
+                        if (msg.status == "progress") {
+                            console.log(msg.progress);
+                            cfpLoadingBar.set(msg.progress);
+                        }
+                    }
+                }
+            });
+        }
+    });
+
+
 }]);

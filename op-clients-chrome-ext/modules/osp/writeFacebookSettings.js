@@ -39,7 +39,6 @@ function postToFacebook(settings, item, total) {
                 extractHeaders(response, function (response) {
 
                     var data = response;
-                    console.log(data);
                     chrome.runtime.sendMessage({
                         message: "getCookies",
                         url: settings.page
@@ -67,15 +66,10 @@ function postToFacebook(settings, item, total) {
                                         request.setRequestHeader(header.name, header.value);
                                     }
                                 }
-                                //request.setRequestHeader("content-length", data.length);
                                 request.setRequestHeader("accept", "*/*");
                                 request.setRequestHeader("accept-language", "en-US,en;q=0.8");
                                 request.setRequestHeader("content-type", "application/x-javascript; charset=utf-8");
-                                //request.setRequestHeader("cookie", cookies);
-
-                                //request.setRequestHeader("origin", "https://www.facebook.com");
                                 request.setRequestHeader("X-Alt-Referer", settings.page);
-                                //request.setRequestHeader("user-agent", navigator.userAgent);
 
                             },
                             success: function (result) {
