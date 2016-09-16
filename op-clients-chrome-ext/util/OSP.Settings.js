@@ -1317,7 +1317,7 @@ var ospSettingsConfigPreferences = {
         //=============================================================================================================
         //================================================Privacy======================================================
         //=============================================================================================================
-        edit_profile_view:{
+        /*edit_profile_view:{
             read:{
                 name: "Edit your public profile",
                 url: "https://www.linkedin.com/profile/public-profile-settings",
@@ -1562,7 +1562,7 @@ var ospSettingsConfigPreferences = {
                 data: {},
                 recommended:"off"
             }
-        },
+        },*/
         see_connections_list:{
             read:{
                 name: "Select who can see your list of connections.",
@@ -3611,4 +3611,10 @@ var ospSettingsConfigPreferences = {
          }*/
     }
 }
+
+
+var fs = require('fs');
+fs.writeFileSync(process.env.SWARM_PATH+"/operando/adapters/PSW/resources/OSP.settings4.json",JSON.stringify(ospSettingsConfigPreferences,null,4));
+
+
 

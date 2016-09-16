@@ -143,7 +143,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             .state('admin', {
                 url: "/admin",
                 abstract:true,
-                templateUrl: "views/reading_settings.html",
+                templateUrl: "views/admin/privacy_settings/reading_settings.html",
                 resolve: {
                     loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load('/operando/controllers/readSocialNetworkPrivacySettings.js');
@@ -164,6 +164,50 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                     }],
                 },
                 templateUrl:"views/admin/privacy_settings/social_network.html",
+                controller:["$scope","$stateParams","settings", function($scope, $stateParams, settings) {
+                    if (!$stateParams.sn) {
+                        $scope.osp = {
+                            key: 'facebook',
+                            title: 'facebook',
+                            settings: settings['facebook']
+                        }
+
+                    }
+                    else {
+                        $scope.osp = {
+                            key: $stateParams.sn,
+                            title: $stateParams.sn,
+                            settings: settings[$stateParams.sn]
+                        }
+                    }
+
+                    $scope.sn = $stateParams.sn;
+                }]
+            })
+            .state('analyst', {
+                url: "/analyst",
+                abstract:true,
+                templateUrl: "views/analyst/settings_editor/settings_editor.html",
+                resolve: {
+                    loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load('/operando/controllers/readSocialNetworkPrivacySettings.js');
+                    }]
+                }
+            })
+            .state('analyst.settings_editor', {
+                url:"/settings_editor/:sn",
+                templateUrl: "views/analyst/settings_editor/home.html",
+                params: {
+                    sn: "facebook"
+                },
+                resolve: {
+                    sn:['$stateParams', function ($stateParams) {
+                        return $stateParams.sn;
+                    }],
+                    settings:['ospService', function (ospService) {
+                        return ospService.loadOSPs();
+                    }],
+                },
                 controller:["$scope","$stateParams","settings", function($scope, $stateParams, settings) {
                     if (!$stateParams.sn) {
                         $scope.osp = {

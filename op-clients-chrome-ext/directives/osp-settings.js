@@ -2,7 +2,6 @@ angular.module('osp', ['cfp.loadingBar'])
     .factory("ospService", ["messengerService", '$q', function (messengerService, $q) {
 
         var ospSettingsConfig = {};
-        ospSettingsConfig = ospSettingsConfigPreferences;
 
         function generateAngularForm(ospname) {
             var schema = {
