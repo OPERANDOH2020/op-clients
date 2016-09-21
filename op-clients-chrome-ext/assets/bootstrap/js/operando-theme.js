@@ -37,5 +37,17 @@ $(document).ready(function () {
         });
     })(jQuery);
 
+    /**menu black magic here**/
+
+
+    $(".no-sub-menu a").on("click", function () {
+        $('.collapse').collapse('hide');
+        $('.opened').removeClass('opened');
+    })
+
+    $('a.panel-heading').click(function() {
+        $(this).parents('.panel').toggleClass('opened');
+    });
+
 })
 

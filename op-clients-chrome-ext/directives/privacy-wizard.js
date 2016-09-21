@@ -64,12 +64,9 @@ angular.module('privacyWizard', [])
                         }
                     }
 
-
-
                     $scope.current_settings = [];
                     $scope.current_question = {};
                     $scope.view = "options";
-
 
                     var getNextQuestion = function () {
                         PrivacyWizardService.getNextQuestionAndSuggestions($scope.current_settings, function (current_question) {
@@ -85,8 +82,6 @@ angular.module('privacyWizard', [])
                     };
 
                     getNextQuestion();
-
-
 
                     $scope.next = function () {
 

@@ -96,7 +96,6 @@ input[type="checkbox"]:checked + span {
     background: #fdfaef;
     margin: 0 auto;
     position: relative;
-    max-width: 1296px;
     margin-top: 20px;
 }
 
@@ -154,7 +153,7 @@ div.tab-content{
 #pfb_tab
 {
     display: block;
-    background: #4b4b4b;
+    padding: 20px;
 }
 
 #home_tab:after,
@@ -170,10 +169,6 @@ div.tab-content{
 .navbar-default{
     background: #FFF!important;
     min-width: 1100px;
-}
-
-#bs-example-navbar-collapse-1 .navbar-nav {
-
 }
 
 #bs-example-navbar-collapse-1{
@@ -242,10 +237,7 @@ div.tab-content{
     height: calc(100% - 198px);
     overflow: auto;
     min-width: 1100px;
-}
-
-#wrapper .content_tab{
-
+    margin: 0px 35px 0 20px;
 }
 
 #wrapper button{
@@ -637,20 +629,19 @@ color:#FFF;
     background: rgba(255,127,0,0.15);
 }
 
-.content_tab .tabs-left{
+.tabs-left{
     border-right:0;
     margin-top: 83px;
 }
 
-.content_tab .col-xs-3 {
-    height: 100%;
+.col-xs-2 {
     background:#4b4b4b;
     padding-right: 0;
     margin-right: 0;
     padding-left: 0;
 }
 
-.content_tab .col-xs-9 {
+.col-xs-9 {
     padding-left: 30px;
     margin-left: 0;
     background: #fdfaef;
@@ -658,12 +649,16 @@ color:#FFF;
     padding-top: 20px;
 }
 
-.content_tab .col-xs-3 ul{
+.col-xs-2 ul{
     margin: 0;
     padding: 0;
 }
 
-.content_tab .col-xs-3 ul.tabs-left li a{
+.col-xs-2 ul.primary-menu{
+    height: 100%;
+}
+
+.col-xs-2 ul.tabs-left li a{
     line-height: 40px;
     font-size: 16px;
     padding-left: 20px;
@@ -676,31 +671,29 @@ color:#FFF;
 }
 
 
-.content_tab .col-xs-3 ul.tabs-left li:hover a{
+.col-xs-2 ul.tabs-left li:hover a{
     color:#FFF;
 }
 
-.content_tab .col-xs-3 ul li a:hover{
+.col-xs-2 ul li a:hover{
     border:none;
 }
 
-.content_tab .col-xs-3 .tabs-left>li.active>a{
+.col-xs-2 .sub-menu.tabs-left>li.active>a,
+.col-xs-2 li.no-sub-menu.active>a
+{
+    background: #000;
     border:none;
-    background: #FFB400;
-    color:#000;
+    color:#FFF;
 }
-.content_tab .col-xs-3 .tabs-left>li.active:after{
-    content:"";
-    width:100%;
-    position:absolute;
-    display: block;
-    background:#000;
-    height: 4px;
+.col-xs-2 li.no-sub-menu.active>a
+{
+border-left:4px solid #FFB400;
 }
 
-
-.content_tab .tabs-left>li.active{
+.tabs-left>li.active{
     position: relative;
+    margin-right: 0px;
 }
 
 #pfbdeals_container table th{
@@ -790,7 +783,7 @@ color:#FFF;
 }
 
 .nav>li:hover .notification-counter,
-.content_tab .tabs-left>li.active .notification-counter{
+.tabs-left>li.active .notification-counter{
     background: #FFFFFF;
     color:#000;
 }
@@ -822,6 +815,8 @@ color:#FFF;
     max-height: calc(100% - 125px);
     overflow-y: auto;
 }
+
+
 
 .alert{
     background:#f1ebdf;
@@ -1198,4 +1193,170 @@ h3.privacy_wizard_suggestions_heading{
 .bs-wizard-dot.completed:after {
     opacity:1;
     transition:opacity 0.5s linear;
+}
+
+.edit-setting .setting_actions{
+    float:right;
+}
+
+.edit-setting .panel-heading span{
+    float: left;
+}
+
+.edit-setting .panel-heading:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.edit-setting .input-group{
+    margin: 15px 10px;
+}
+
+.edit-setting .read_write_settings{
+    text-align:center;
+
+}
+
+.panel-setting.panel-default{
+    border-color: #d2c6ad;
+}
+.panel-setting.panel-default>.panel-heading{
+    background-color: #F1EBDF;
+    border-color: #d2c6ad;
+    background-image: none!important;
+}
+.input-group-addon{
+    background-color: #F1EBDF;
+}
+
+.setting_actions{
+    visibility: hidden;
+}
+
+.setting_actions button{
+    opacity: 0.8;
+}
+
+.setting_actions button:hover{
+    opacity: 1;
+}
+
+.edit-setting{
+    opacity: 0.6;
+}
+.edit-setting:hover,
+.edit-setting.editMode
+{
+    opacity: 1;
+}
+
+.edit-setting:hover .setting_actions{
+visibility: visible;
+}
+
+#wrapper button.edit-setting-edit{
+    background: url("/operando/assets/images/edit.png") no-repeat left center;
+    text-indent: -9999em;
+    width: 24px;
+    height: 24px;
+    border: none;
+    margin: 0px 3px;
+}
+
+#wrapper button.edit-setting-deactivate{
+    background: url("/operando/assets/images/deactivate.png") no-repeat left center;
+    text-indent: -9999em;
+    width: 24px;
+    height: 24px;
+    border: none;
+    margin: 0px 3px;
+}
+
+#wrapper button.edit-setting-delete{
+    background: url("/operando/assets/images/remove.png") no-repeat left center;
+    text-indent: -9999em;
+    width: 24px;
+    height: 24px;
+    border: none;
+    margin: 0px 3px;
+}
+
+#wrapper button.delete-btn{
+    background: url("/operando/assets/images/delete.png") no-repeat left center;
+    text-indent: -9999em;
+    width: 16px;
+    height: 16px;
+    border: none;
+    margin: 10px;
+    position: absolute;
+    opacity: 0.8;
+}
+
+#wrapper button.delete-btn:hover{
+    opacity: 1;
+}
+
+.add_new_option {
+    padding-left: 48px;
+    background: url("/operando/assets/images/arrow_new_option.png") no-repeat left top;
+    margin-left: 26px;
+}
+
+.row-no-padding > [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.sidebar_expandable_menu{
+ height: auto;
+}
+
+.sidebar_expandable_menu .col-xs-2{
+    width: 300px;
+    float: left;
+    display: block;
+    position: relative;
+    margin-right: -100%;
+}
+
+.sidebar_expandable_menu .tabs-left{
+    border-right:0;
+    border-top: none!important;
+}
+.sidebar_expandable_menu .tabs-left.sub-menu li a{
+    padding-left:40px;
+    text-transform: capitalize;
+}
+
+.sidebar_expandable_menu .tabs-left.sub-menu{
+    margin: 10px 0px;
+}
+
+.content_wrapper{
+    width: 100%;
+    float: left;
+}
+.content_wrapper .content{
+    margin-left:300px;
+    padding: 0px 20px;
+}
+
+.sidebar_expandable_menu .panel,
+.sidebar_expandable_menu .panel-group .panel-default .panel-heading
+{
+    background: url(/operando/assets/images/arrow-expand.png) no-repeat right 20px center;
+    border:none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.sidebar_expandable_menu li.panel.opened a.panel-heading{
+    background: url("/operando/assets/images/arrow-collapse.png") no-repeat right 20px center;
+}
+
+
+.sidebar_expandable_menu .panel.opened{
+ border-left:4px solid #FFB400;
+ background: #393939;
 }

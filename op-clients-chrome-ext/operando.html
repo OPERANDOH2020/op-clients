@@ -23,7 +23,8 @@
     <script type="text/javascript" src="/operando/utils/ui-router/angular-ui-router.js"></script>
     <script type="text/javascript" src="/operando/utils/angular-animate.js"></script>
     <script type="text/javascript" src="/operando/utils/angular-loading-bar/loading-bar.min.js"></script>
-    <script type="text/javascript" src="/operando/utils/jquery-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript"
+            src="/operando/utils/jquery-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="/operando/utils/ui-select/select.min.js"></script>
     <script type="text/javascript" src="/operando/utils/angular-modal-service.js"></script>
     <script type="text/javascript" src="/operando/DependencyManager.js" charset="utf-8"></script>
@@ -64,13 +65,18 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li ui-sref-active="active"><a ui-sref="home"> Home</a></li>
-                <li ng-class="{active: $state.includes('preferences')}"><a ui-sref="preferences.facebook">Preferences</a></li>
+                <li ng-class="{active: $state.includes('preferences')}"><a
+                        ui-sref="preferences.facebook">Preferences</a></li>
                 <li ng-class="{active: $state.includes('deals')}"><a ui-sref="deals.availableOffers">Deals</a></li>
                 <li ui-sref-active="active"><a ui-sref="identityManagement">Identity Management</a></li>
                 <li ui-sref-active="active"><a ui-sref="extensions">Extensions & Apps</a></li>
                 <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">READING SETTINGS</a></li>
                 <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">EDIT SETTINGS</a></li>
-                <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a></li>
+
+                <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
+
+                <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a>
+                </li>
             </ul>
 
         </div><!-- /.navbar-collapse -->
@@ -78,9 +84,113 @@
 </nav>
 
 
-
 <div id="wrapper">
-    <div ui-view></div>
+
+    <div class="sidebar_expandable_menu">
+
+        <div class="col-xs-2"> <!-- required for floating -->
+
+
+            <ul class="nav nav-tabs tabs-left primary-menu panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                <li ng-class="{active: $state.includes('home')}" class="panel panel-default">
+
+                         <a class="panel-heading" role="tab" id="headingOne" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne"> Home</a>
+
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <ul class="nav nav-tabs tabs-left sub-menu panel-body">
+                                <li ui-sref-active-eq="active"><a ui-sref="home">Main</a></li>
+                                <li ui-sref-active="active"><a ui-sref="home.privacyQuestionnaire">Privacy
+                                    Questionnaire</a>
+                                </li>
+                                <li ui-sref-active="active"><a ui-sref="home.notifications"><span>Notifications</span>
+                                    <notification-counter></notification-counter>
+                                </a></li>
+                                <li ui-sref-active="active"><a ui-sref="home.blog">Blog</a></li>
+                            </ul>
+                    </div>
+                </li>
+
+                <li ng-class="{active: $state.includes('preferences')}" class="panel panel-default">
+
+                        <a class="panel-heading" role="tab" id="headingTwo" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseTwo">Social Networks</a>
+
+
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <ul class="nav nav-tabs tabs-left sub-menu panel-body">
+                                <li ui-sref-active="active"><a ui-sref="preferences.facebook">Facebook</a></li>
+                                <li ui-sref-active="active"><a ui-sref="preferences.linkedin">Linkedin</a></li>
+                                <li ui-sref-active="active"><a ui-sref="preferences.twitter">Twitter</a></li>
+                                <li ui-sref-active="active"><a ui-sref="preferences.google">Google</a></li>
+                                <!--<li ui-sref-active="active"><a ui-sref="preferences.abp">Ad Blocking</a></li>
+                                <li ui-sref-active="active"><a ui-sref="preferences.mobile">Mobile</a></li>-->
+                            </ul>
+                    </div>
+                </li>
+
+
+
+                <li ng-class="{active: $state.includes('deals')}" class="panel panel-default">
+                    <a class="panel-heading" role="tab" id="headingThree" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseThree">Privacy Deals</a>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <ul class="nav nav-tabs tabs-left sub-menu panel-body">
+                            <li ui-sref-active="active"><a ui-sref="deals.availableOffers" >Available Offers</a></li>
+                            <li ui-sref-active="active"><a ui-sref="deals.myDeals">Deals</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li ui-sref-active="active" class="no-sub-menu">
+                    <a ui-sref="identityManagement" >Identity Management</a></li>
+                <li ui-sref-active="active" class="no-sub-menu"><a ui-sref="extensions">Extensions & Apps</a></li>
+
+
+
+                <li ng-class="{active: $state.includes('dashboard')}" class="panel panel-default">
+                    <a class="panel-heading" role="tab" id="headingFour" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-controls="collapseFour">Dashboard</a>
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                        <ul class="nav nav-tabs tabs-left sub-menu panel-body">
+                            <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">Reading Settings</a></li>
+                            <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">Edit Settings</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <!--<li ng-class="{active: $state.includes('deals')}"><a ui-sref="deals.availableOffers">Deals</a></li>
+                <li ui-sref-active="active"><a ui-sref="identityManagement">Identity Management</a></li>
+                <li ui-sref-active="active"><a ui-sref="extensions">Extensions & Apps</a></li>
+                <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">READING SETTINGS</a></li>
+                <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">EDIT SETTINGS</a></li>
+
+                <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
+
+                <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a></li>-->
+            </ul>
+
+
+            <!--<singleclickprivacy></singleclickprivacy>-->
+
+
+            <!-- Nav tabs -->
+            <!--<ul class="nav nav-tabs tabs-left">
+                <li ui-sref-active-eq="active"><a ui-sref="home">Main</a></li>
+                <li ui-sref-active="active"><a ui-sref="home.privacyQuestionnaire">Privacy Questionnaire</a></li>
+                <li ui-sref-active="active"><a ui-sref="home.notifications"><span>Notifications</span>
+                    <notification-counter></notification-counter>
+                </a></li>
+                <li ui-sref-active="active"><a ui-sref="home.blog">Blog</a></li>
+
+            </ul>-->
+        </div>
+    </div>
+
+
+    <div class="content_wrapper">
+        <div class="content" ui-view></div>
+    </div>
+
+
 </div>
 
 <div id="loading-bar-container"></div>
@@ -92,7 +202,7 @@
             <p>{ Copyright <span class="footer-operando">OPERANDO</span> }</p>
 
             <p>This work is supported by the European Commission under the Horizon 2020 Programme (H2020), as part
-                    of the OPERANDO project (GA no. 653704).
+                of the OPERANDO project (GA no. 653704).
             </p>
 
         </div>

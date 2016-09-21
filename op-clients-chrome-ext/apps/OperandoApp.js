@@ -12,7 +12,7 @@
 
 angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClickPrivacy', 'privacyWizard',
     'notifications', 'osp', 'angularModalService', 'operandoCore', 'schemaForm', 'abp', 'ui.router',
-    'oc.lazyLoad','angular-loading-bar','progressBar','ui.select','ngAnimate'])
+    'settingEditor', 'oc.lazyLoad','angular-loading-bar','progressBar','ui.select','ngAnimate'])
     .config([
         '$compileProvider',
         function ($compileProvider) {   //to accept chrome protocol
@@ -138,6 +138,10 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             })
             .state('extensions', {
                 url: "/extensions",
+                templateUrl: "views/extensions.html"
+            })
+            .state('dashboard', {
+                url: "/dashboard",
                 templateUrl: "views/extensions.html"
             })
             .state('admin', {

@@ -2,24 +2,7 @@
 
 <div id="home_tab" class="active content_tab">
 
-    <div class="col-xs-3"> <!-- required for floating -->
-
-        <singleclickprivacy></singleclickprivacy>
-
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
-
-            <li ui-sref-active-eq="active"><a ui-sref="home">Main</a></li>
-            <li ui-sref-active="active"><a ui-sref="home.privacyQuestionnaire" >Privacy Questionnaire</a></li>
-            <li ui-sref-active="active"><a ui-sref="home.notifications"><span>Notifications</span><notification-counter></notification-counter></a></li>
-            <li ui-sref-active="active"><a ui-sref="home.blog">Blog</a></li>
-
-        </ul>
-    </div>
-
-
-
-        <div class="col-xs-9">
+        <div>
             <!-- Tab panes -->
             <div class="tab-content">
                 <div ui-view>
