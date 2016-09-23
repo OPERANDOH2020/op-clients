@@ -682,13 +682,21 @@ color:#FFF;
 .col-xs-2 .sub-menu.tabs-left>li.active>a,
 .col-xs-2 li.no-sub-menu.active>a
 {
-    background: #000;
+    background-color: #000;
     border:none;
     color:#FFF;
 }
 .col-xs-2 li.no-sub-menu.active>a
 {
 border-left:4px solid #FFB400;
+}
+
+.sidebar_expandable_menu .tabs-left.sub-menu ul li a{
+    padding-left: 80px;
+}
+
+.sidebar_expandable_menu .panel-body{
+    padding: 0;
 }
 
 .tabs-left>li.active{
@@ -801,12 +809,12 @@ border-left:4px solid #FFB400;
     margin-top: 20px;
 }
 
-.panel-group .panel-default .panel-heading {
+.panel-group .panel .panel-heading {
     background: #FFB400;
     color: #FFF;
 }
 
-.panel-group .panel-default {
+.panel-group .panel {
     border: 1px solid #FFB400;
 }
 
@@ -1218,10 +1226,10 @@ h3.privacy_wizard_suggestions_heading{
 
 }
 
-.panel-setting.panel-default{
+.panel-setting.panel{
     border-color: #d2c6ad;
 }
-.panel-setting.panel-default>.panel-heading{
+.panel-setting.panel>.panel-heading{
     background-color: #F1EBDF;
     border-color: #d2c6ad;
     background-image: none!important;
@@ -1310,6 +1318,7 @@ visibility: visible;
 
 .sidebar_expandable_menu{
  height: auto;
+ zoom:90%;
 }
 
 .sidebar_expandable_menu .col-xs-2{
@@ -1324,8 +1333,13 @@ visibility: visible;
     border-right:0;
     border-top: none!important;
 }
+
+.sidebar_expandable_menu .tabs-left.primary-menu li a{
+    padding-left: 50px;
+}
+
 .sidebar_expandable_menu .tabs-left.sub-menu li a{
-    padding-left:40px;
+    padding-left:80px;
     text-transform: capitalize;
 }
 
@@ -1338,25 +1352,113 @@ visibility: visible;
     float: left;
 }
 .content_wrapper .content{
-    margin-left:300px;
+    margin-left:270px;
     padding: 0px 20px;
 }
 
-.sidebar_expandable_menu .panel,
-.sidebar_expandable_menu .panel-group .panel-default .panel-heading
-{
-    background: url(/operando/assets/images/arrow-expand.png) no-repeat right 20px center;
+.sidebar_expandable_menu .panel-group  .panel{
     border:none;
     border-radius: 0;
     box-shadow: none;
+    background-color: transparent;
 }
 
-.sidebar_expandable_menu li.panel.opened a.panel-heading{
+
+.sidebar_expandable_menu .panel-group .panel .panel-heading
+{
+    background: url(/operando/assets/images/arrow-expand.png) no-repeat right 20px center;
+    border: none;
+    color:#FFF;
+}
+
+.sidebar_expandable_menu li.panel.opened a.panel-heading,
+.sidebar_expandable_menu .panel-group li.panel.opened a.panel-heading.collapsed{
     background: url("/operando/assets/images/arrow-collapse.png") no-repeat right 20px center;
 }
 
 
-.sidebar_expandable_menu .panel.opened{
+.sidebar_expandable_menu .primary-menu > .panel.opened {
  border-left:4px solid #FFB400;
- background: #393939;
+ background-color: #393939;
 }
+
+ul li ul li:not(.opened) a.panel-heading{
+    background: url("/operando/assets/images/arrow-expand.png") no-repeat right 20px center!important;
+}
+
+
+.primary-menu .menu_icon{
+    background-position:15px 20px;
+    background-repeat:no-repeat;
+}
+.sub-menu .menu_icon{
+    background-position:45px 20px;
+    background-repeat:no-repeat;
+}
+.menu_icon.home_icon {
+    background-image:url("/operando/assets/images/menu_icons/home.png");
+}
+
+.menu_icon.privacy_icon {
+    background-image:url("/operando/assets/images/menu_icons/privacy.png");
+}
+
+.menu_icon.notifications_icon {
+    background-image:url("/operando/assets/images/menu_icons/notifications.png");
+}
+
+.menu_icon.social_networks_icon{
+    background-image:url("/operando/assets/images/menu_icons/social_networks.png");
+}
+
+.menu_icon.privacy_deals_icon{
+    background-image:url("/operando/assets/images/menu_icons/privacy_deals.png");
+}
+
+.menu_icon.deals_icon{
+    background-image:url("/operando/assets/images/menu_icons/deals.png");
+}
+
+.menu_icon.offers_icon{
+    background-image:url("/operando/assets/images/menu_icons/offers.png");
+}
+
+.menu_icon.facebook_icon{
+    background-image:url("/operando/assets/images/menu_icons/facebook.png");
+}
+
+.menu_icon.twitter_icon{
+    background-image:url("/operando/assets/images/menu_icons/twitter.png");
+}
+
+.menu_icon.linkedin_icon{
+    background-image:url("/operando/assets/images/menu_icons/linkedin.png");
+}
+
+.menu_icon.google_icon{
+    background-image:url("/operando/assets/images/menu_icons/google.png");
+}
+.menu_icon.identity_management_icon{
+    background-image:url("/operando/assets/images/menu_icons/identity_management.png");
+}
+
+.menu_icon.extensions_icon{
+    background-image:url("/operando/assets/images/menu_icons/extensions.png");
+}
+
+.menu_icon.dashboard_icon{
+    background-image:url("/operando/assets/images/menu_icons/dashboard.png");
+}
+
+.menu_icon.reading_privacy_icon{
+    background-image:url("/operando/assets/images/menu_icons/reading_privacy.png");
+}
+
+.menu_icon.edit_privacy_icon{
+    background-image:url("/operando/assets/images/menu_icons/edit_privacy.png");
+}
+
+.menu_icon.abp_icon{
+    background-image:url("/operando/assets/images/menu_icons/abp.png");
+}
+

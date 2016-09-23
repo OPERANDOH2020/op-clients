@@ -36,6 +36,8 @@
     <script type="text/javascript" src="/operando/services/messenger-service.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/apps/OperandoApp.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/controllers/appController.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/controllers/readSocialNetworkPrivacySettings.js" charset="utf-8"></script>
+
     <!--<script type="text/javascript" src="/operando/util/OSP.Settings.js" charset="utf-8"></script>-->
 
     <script type="text/javascript" src="/operando/schema-form.js"></script>
@@ -93,79 +95,151 @@
 
             <ul class="nav nav-tabs tabs-left primary-menu panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
-                <li ng-class="{active: $state.includes('home')}" class="panel panel-default">
+               <li ng-class="{active: $state.includes('home')}" class="panel menu_icon home_icon">
 
-                         <a class="panel-heading" role="tab" id="headingOne" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne"> Home</a>
+                         <a class="panel-heading" role="tab" id="headingOne" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">Home</a>
 
                     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                             <ul class="nav nav-tabs tabs-left sub-menu panel-body">
-                                <li ui-sref-active-eq="active"><a ui-sref="home">Main</a></li>
-                                <li ui-sref-active="active"><a ui-sref="home.privacyQuestionnaire">Privacy
+
+                                <li ui-sref-active="active"><a class="menu_icon privacy_icon" ui-sref="home.privacyQuestionnaire">Privacy
                                     Questionnaire</a>
                                 </li>
-                                <li ui-sref-active="active"><a ui-sref="home.notifications"><span>Notifications</span>
+                                <li ui-sref-active="active"><a class="menu_icon notifications_icon" ui-sref="home.notifications"><span>Notifications</span>
                                     <notification-counter></notification-counter>
                                 </a></li>
-                                <li ui-sref-active="active"><a ui-sref="home.blog">Blog</a></li>
                             </ul>
                     </div>
                 </li>
 
-                <li ng-class="{active: $state.includes('preferences')}" class="panel panel-default">
+                <li ng-class="{active: $state.includes('preferences')}" class="panel menu_icon social_networks_icon">
 
                         <a class="panel-heading" role="tab" id="headingTwo" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseTwo">Social Networks</a>
 
-
                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <ul class="nav nav-tabs tabs-left sub-menu panel-body">
-                                <li ui-sref-active="active"><a ui-sref="preferences.facebook">Facebook</a></li>
-                                <li ui-sref-active="active"><a ui-sref="preferences.linkedin">Linkedin</a></li>
-                                <li ui-sref-active="active"><a ui-sref="preferences.twitter">Twitter</a></li>
-                                <li ui-sref-active="active"><a ui-sref="preferences.google">Google</a></li>
-                                <!--<li ui-sref-active="active"><a ui-sref="preferences.abp">Ad Blocking</a></li>
-                                <li ui-sref-active="active"><a ui-sref="preferences.mobile">Mobile</a></li>-->
+                                <li ui-sref-active="active"><a class="menu_icon facebook_icon" ui-sref="preferences.facebook">Facebook</a></li>
+                                <li ui-sref-active="active"><a class="menu_icon linkedin_icon" ui-sref="preferences.linkedin">Linkedin</a></li>
+                                <li ui-sref-active="active"><a class="menu_icon twitter_icon" ui-sref="preferences.twitter">Twitter</a></li>
+                                <li ui-sref-active="active"><a class="menu_icon google_icon" ui-sref="preferences.google">Google</a></li>
                             </ul>
                     </div>
                 </li>
 
 
 
-                <li ng-class="{active: $state.includes('deals')}" class="panel panel-default">
+                <li ng-class="{active: $state.includes('deals')}" class="panel menu_icon privacy_deals_icon">
                     <a class="panel-heading" role="tab" id="headingThree" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseThree">Privacy Deals</a>
                     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <ul class="nav nav-tabs tabs-left sub-menu panel-body">
-                            <li ui-sref-active="active"><a ui-sref="deals.availableOffers" >Available Offers</a></li>
-                            <li ui-sref-active="active"><a ui-sref="deals.myDeals">Deals</a></li>
+                            <li ui-sref-active="active"><a class="menu_icon offers_icon" ui-sref="deals.availableOffers" >Available Offers</a></li>
+                            <li ui-sref-active="active"><a class="menu_icon deals_icon" ui-sref="deals.myDeals">Deals</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li ui-sref-active="active" class="no-sub-menu">
-                    <a ui-sref="identityManagement" >Identity Management</a></li>
-                <li ui-sref-active="active" class="no-sub-menu"><a ui-sref="extensions">Extensions & Apps</a></li>
-
-
-
-                <li ng-class="{active: $state.includes('dashboard')}" class="panel panel-default">
-                    <a class="panel-heading" role="tab" id="headingFour" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-controls="collapseFour">Dashboard</a>
-                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                        <ul class="nav nav-tabs tabs-left sub-menu panel-body">
-                            <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">Reading Settings</a></li>
-                            <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">Edit Settings</a></li>
-                        </ul>
-                    </div>
+                    <a class="menu_icon identity_management_icon" ui-sref="identityManagement" >Identity Management</a>
+                </li>
+                <li ui-sref-active="active" class="no-sub-menu">
+                    <a class="menu_icon extensions_icon" ui-sref="extensions">Extensions & Apps</a>
                 </li>
 
 
-                <!--<li ng-class="{active: $state.includes('deals')}"><a ui-sref="deals.availableOffers">Deals</a></li>
-                <li ui-sref-active="active"><a ui-sref="identityManagement">Identity Management</a></li>
-                <li ui-sref-active="active"><a ui-sref="extensions">Extensions & Apps</a></li>
-                <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">READING SETTINGS</a></li>
-                <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">EDIT SETTINGS</a></li>
 
-                <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
+                <li ng-class="{active: $state.includes('dashboard')}" class="panel menu_icon dashboard_icon has_children" id="dashboard" >
+                    <a class="panel-heading" role="tab" id="headingFour" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-controls="collapseFour">Dashboard</a>
 
-                <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a></li>-->
+
+
+                    <div id="collapseFour" class="panel-collapse collapse panel-body" role="tabpanel" aria-labelledby="headingFour">
+
+
+
+                    <ul class="panel-group nav nav-tabs tabs-left sub-menu" id="dashboard_content">
+
+                        <li ng-class="{active: $state.includes('admin')}" class="panel menu_icon reading_privacy_icon">
+                            <a class="panel-heading" role="button" data-toggle="collapse" data-parent="#dashboard_content" href="#collapseFive" >Reading Settings</a>
+
+                            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                <ul class="nav nav-tabs tabs-left sub-menu panel-body" ng-controller="readSocialNetworkPrivacySettings">
+
+                                    <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a class="menu_icon" ng-class="osp.key+'_icon'" ui-sref="admin.privacy_settings({sn:osp.key})">{{osp.title}}</a></li>
+
+                                </ul>
+                            </div>
+
+
+                        </li>
+                        <li ng-class="{active: $state.includes('admin')}" class="panel menu_icon edit_privacy_icon">
+
+                                <a class="panel-heading" data-toggle="collapse" data-parent="#dashboard_content" href="#collapseSix" >Edit Settings</a>
+
+                            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                                <ul class="nav nav-tabs tabs-left sub-menu panel-body" ng-controller="readSocialNetworkPrivacySettings">
+
+                                    <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a class="menu_icon" ng-class="osp.key+'_icon'" ui-sref="analyst.settings_editor({sn:osp.key})">{{osp.title}}</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!--<ul class="nav nav-tabs tabs-left sub-menu" >
+
+                            <li ng-class="{active: $state.includes('admin')}" class="panel menu_icon reading_privacy_icon">
+                                <a class="panel-heading" role="tab" id="headingFive" role="button" data-toggle="collapse" data-parent="#dashboard" href="#collapseFive" aria-controls="collapseFive">Reading Settings</a>
+                                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                    <ul class="nav nav-tabs tabs-left sub-menu panel-body" ng-controller="readSocialNetworkPrivacySettings">
+
+                                        <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a class="menu_icon" ng-class="osp.key+'_icon'" ui-sref="admin.privacy_settings({sn:osp.key})">{{osp.title}}</a></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                            <li ng-class="{active: $state.includes('admin')}" class="panel menu_icon edit_privacy_icon">
+                                <a class="panel-heading" role="tab" id="headingSix" role="button" data-toggle="collapse" data-parent="#dashboard" href="#collapseSix" aria-controls="collapseSix">Edit Settings</a>
+                                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                                    <ul class="nav nav-tabs tabs-left sub-menu panel-body" ng-controller="readSocialNetworkPrivacySettings">
+
+                                        <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a class="menu_icon" ng-class="osp.key+'_icon'" ui-sref="analyst.settings_editor({sn:osp.key})">{{osp.title}}</a></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                        </ul>!-->
+                    </div>
+
+                </li>
+
+                <li ui-sref-active="active" class="no-sub-menu"><a class="menu_icon abp_icon" ui-sref="preferences.abp">Ad Blocking</a></li>
+
+
+
+               <!--<li ng-class="{active: $state.includes('deals')}"><a ui-sref="deals.availableOffers">Deals</a></li>
+               <li ui-sref-active="active"><a ui-sref="identityManagement">Identity Management</a></li>
+               <li ui-sref-active="active"><a ui-sref="extensions">Extensions & Apps</a></li>
+               <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">READING SETTINGS</a></li>
+               <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">EDIT SETTINGS</a></li>
+
+               <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
+
+               <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a></li>-->
             </ul>
 
 

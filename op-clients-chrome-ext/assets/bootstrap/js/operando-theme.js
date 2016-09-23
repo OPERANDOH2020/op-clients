@@ -45,9 +45,22 @@ $(document).ready(function () {
         $('.opened').removeClass('opened');
     })
 
-    $('a.panel-heading').click(function() {
-        $(this).parents('.panel').toggleClass('opened');
+
+
+    $('.panel-collapse').on('hide.bs.collapse', function(){
+        console.log( $(this).closest(".panel"));
+
+        $(this).closest(".panel").each(function(){
+            if(!$(this).hasClass("has_children")){
+                $(this).removeClass('opened');
+            }
+        })
     });
 
-})
+    $('.panel-collapse').on('show.bs.collapse', function(){
+        $(this).closest(".panel").addClass('opened');
+    });
+
+
+});
 
