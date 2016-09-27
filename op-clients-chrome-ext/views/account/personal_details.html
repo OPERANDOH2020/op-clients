@@ -1,11 +1,11 @@
 <div class="tab-pane active" id="personal_details" ng-controller="accountCtrl">
 
 
-    <h2>Personal Details</h2>
+    <h2>Account Details</h2>
 
     <div class="row">
 
-        <div class="col-lg-9">
+        <div class="col-lg-12">
             <label>Email address (main identity)</label>
 
             <div class="input-group">
@@ -24,7 +24,7 @@
 
     </div>
     <div class="row">
-        <div class="col-lg-9" ng-switch on="passwordIsEditMode">
+        <div class="col-lg-12" ng-switch on="passwordIsEditMode">
 
             <div ng-switch-when="false">
                 <label>Password</label>
@@ -66,7 +66,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-12">
             <label>Phone number (for verification only, never disclosed to 3rd parties)</label>
 
             <div class="input-group">

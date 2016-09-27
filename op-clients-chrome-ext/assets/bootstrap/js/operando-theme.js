@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     /**
      *Custom scrollbar
      */
@@ -20,47 +19,48 @@ $(document).ready(function () {
                         }
                     }
                 }
-
-            });
-        });
-    })(jQuery);
-
-    /**
-     *Scroll Up Button
-     */
-    (function ($) {
-        $('#return-to-top').click(function () {
-            $("#wrapper").mCustomScrollbar("scrollTo", "top", {
-                scrollEasing: "easeOut"
             });
 
+            /**
+             *Scroll Up Button
+             */
+            (function ($) {
+                $('#return-to-top').click(function () {
+                    $("#wrapper").mCustomScrollbar("scrollTo", "top", {
+                        scrollEasing: "easeOut"
+                    });
+
+                });
+            })(jQuery);
+
+            /**menu black magic here**/
+
+            $(".no-sub-menu a").on("click", function () {
+                $('.collapse').collapse('hide');
+                $('.opened').removeClass('opened');
+            })
+
+            $('.panel-collapse').on('hide.bs.collapse', function(e){
+
+                if ($(this).is(e.target)) {
+                    $(this).closest(".panel").each(function(){
+                        $(this).removeClass('opened');
+                    })
+                }
+            });
+
+            $('.panel-collapse').on('show.bs.collapse', function(e){
+                if ($(this).is(e.target)) {
+                    $(this).closest(".panel").each(function () {
+                        $(this).addClass('opened');
+                    })
+                }
+
+            });
+
         });
+
     })(jQuery);
-
-    /**menu black magic here**/
-
-
-    $(".no-sub-menu a").on("click", function () {
-        $('.collapse').collapse('hide');
-        $('.opened').removeClass('opened');
-    })
-
-
-
-    $('.panel-collapse').on('hide.bs.collapse', function(){
-        console.log( $(this).closest(".panel"));
-
-        $(this).closest(".panel").each(function(){
-            if(!$(this).hasClass("has_children")){
-                $(this).removeClass('opened');
-            }
-        })
-    });
-
-    $('.panel-collapse').on('show.bs.collapse', function(){
-        $(this).closest(".panel").addClass('opened');
-    });
-
 
 });
 

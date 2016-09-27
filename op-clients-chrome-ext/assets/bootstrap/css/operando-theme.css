@@ -93,14 +93,60 @@ input[type="checkbox"]:checked + span {
 
 
 #wrapper{
-    background: #fdfaef;
+    background: #4b4b4b;
     margin: 0 auto;
     position: relative;
     margin-top: 20px;
 }
 
-.navbar-default .container-fluid{
-    max-width: 1296px;
+.operando-navbar .container-fluid{
+    margin: 0px 20px;
+}
+
+.operando .navbar-nav>li>ul.dropdown-menu{
+    width: 100%;
+    background: #4B4B4B;
+    margin-top: 10px;
+    left:auto;
+    right: 0px;
+}
+
+.operando .navbar-nav>li>ul.dropdown-menu:before{
+    position: absolute;
+    top: -8px;
+    right: 30px;
+    display: inline-block !important;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #4B4B4B;
+    border-left: 8px solid transparent;
+    content: '';
+}
+
+.operando .dropdown-menu>.active>a,
+.operando .dropdown-menu>.active>a:focus,
+.operando .dropdown-menu>.active>a:hover{
+    background-color: #000;
+}
+
+.operando .dropdown-menu>li>a {
+    display: block;
+    line-height: 40px;
+    padding: 3px 20px;
+    font-size: 15px;
+    font-family: 'Dosis', sans-serif;
+    color: #FFF;
+    text-transform: uppercase;
+}
+
+.operando .dropdown-menu>li>a:focus,
+.operando .dropdown-menu>li>a:hover{
+    background: #000;
+}
+
+.operando .dropdown-menu .divider {
+    margin: 0px 0;
+    border-top: 1px solid #393939;
+    border-bottom: 1px solid #555;
 }
 
 .tabs-left > .nav-tabs > li,
@@ -166,8 +212,11 @@ div.tab-content{
     content:"";
 }
 
-.navbar-default{
-    background: #FFF!important;
+.operando-navbar{
+    background: #4b4b4b!important;
+    height: 78px;
+    border-radius: 0!important;
+    border: none;
     min-width: 1100px;
 }
 
@@ -177,16 +226,36 @@ div.tab-content{
     padding: 15px;
 }
 
+.operando-navbar .navbar-brand {
+    margin-left: 0px;
+}
 
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
-    color: #000;
-    box-shadow: none;
-    font-weight: bold;
-    background: #FFB400!important;
+
+
+.operando .nav.navbar-nav.pull-right>.active>a,
+.operando .nav.navbar-nav.pull-right>.active>a:focus,
+.operando .nav.navbar-nav.pull-right>.active>a:hover{
+    background-color: #393939;
 }
 
 .operando .navbar-nav > li{
     margin: 0 4px;
+}
+
+.nav.navbar-nav.pull-right .menu_icon {
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    padding-left: 50px;
+}
+
+ul.nav.navbar-nav.pull-right li,
+ul.nav.navbar-nav.pull-right li>a{
+    height: 100%;
+}
+
+ul.nav.navbar-nav.pull-right li>a>.menu_item_content{
+    margin-top: 15px;
+    color: #FFF;
 }
 
 .operando .navbar-nav > li > a {
@@ -202,13 +271,18 @@ div.tab-content{
 }
 
 
+.operando .nav .open>a,
+.operando .nav .open>a:focus,
+.operando .nav .open>a:hover{
+    background-color: #393939;
+}
+
 .container-fluid{
     padding: 0;
 }
 .image_logo{
-    height: 58px;
-    margin-top: -5px;
-    margin-left: 0px;
+    margin-left: 40px;
+    margin-top: 15px;
 }
 
 #extensions_container .extension{
@@ -240,17 +314,22 @@ div.tab-content{
     margin: 0px 35px 0 20px;
 }
 
-#wrapper button{
+#wrapper button,
+.login_container_wrapper button,
+.login_container_wrapper button{
     border:1px solid #ffaa30;
     color:#777;
     padding: 6px 10px;
     background: none;
 }
-#wrapper button:hover{
+#wrapper button:hover,
+.login_container_wrapper button.btn-primary{
     background:#FFF1D2;
 }
 #wrapper button.btn-primary[disabled],
-#wrapper button.btn-primary:hover[disabled]
+#wrapper button.btn-primary:hover[disabled],
+.login_container_wrapper button.btn-primary[disabled],
+.login_container_wrapper button.btn-primary:hover[disabled]
 {
     border-color: #d1c9b5;
     background: #d8d0be;
@@ -531,7 +610,8 @@ footer{
 
 
 .operando .modal-content .btn-primary,
-.operando #wrapper .btn-primary
+.operando #wrapper .btn-primary,
+.login_container_wrapper button.btn-primary
 {
     background: #FFB400;
     border-color:#FFB400;
@@ -544,7 +624,8 @@ footer{
 }
 
 .operando .modal-content .btn-primary:hover,
-.operando #wrapper .btn-primary:hover{
+.operando #wrapper .btn-primary:hover,
+.login_container_wrapper button.btn-primary:hover{
     background: #FF9900;
     border-color:#FF9900;
 }
@@ -566,6 +647,7 @@ color:#FFF;
 
 .operando .modal-content .btn-primary:focus,
 .operando #wrapper .btn-primary:focus,
+.login_container_wrapper button.btn-primary:focus,
 .operando .modal-content .btn-primary-black:focus,
 .operando #wrapper .btn-primary-black:focus {
     outline: none;
@@ -783,18 +865,18 @@ border-left:4px solid #FFB400;
 
 .notification-counter {
     padding: 6px 13px 6px 10px;
-    color: #FFF;
+    color: #000;
     margin-left: 4px;
     width: 15px;
-    background: #FFB400;
+    background: #FFF;
     border-radius: 16px;
 }
 
-.nav>li:hover .notification-counter,
+/*.nav>li:hover .notification-counter,
 .tabs-left>li.active .notification-counter{
     background: #FFFFFF;
     color:#000;
-}
+}*/
 
 #wrapper .input-group-btn button{
     border-top-left-radius:0;
@@ -954,8 +1036,8 @@ border: none;
 
 #return-to-top {
     position: fixed;
-    bottom: 90px;
-    right: 20px;
+    bottom: 110px;
+    right: 45px;
     background: rgba(75, 75, 75, 0.7);
     width: 50px;
     height: 50px;
@@ -1352,8 +1434,11 @@ visibility: visible;
     float: left;
 }
 .content_wrapper .content{
-    margin-left:270px;
+    margin-left: 270px;
+    background: #fdfaef;
+    min-height: 100%;
     padding: 0px 20px;
+
 }
 
 .sidebar_expandable_menu .panel-group  .panel{
@@ -1361,6 +1446,10 @@ visibility: visible;
     border-radius: 0;
     box-shadow: none;
     background-color: transparent;
+}
+
+.sidebar_expandable_menu .primary-menu > .panel{
+    border-left:5px solid #4B4B4B;
 }
 
 
@@ -1462,3 +1551,70 @@ ul li ul li:not(.opened) a.panel-heading{
     background-image:url("/operando/assets/images/menu_icons/abp.png");
 }
 
+.menu_icon.user-account{
+    background-image:url("/operando/assets/images/menu_icons/user_account.png");
+}
+
+.menu_icon.account{
+    background-image:url("/operando/assets/images/menu_icons/account.png")!important;
+}
+.menu_icon.logout{
+    background-image:url("/operando/assets/images/menu_icons/logout.png")!important;
+    cursor: pointer;
+}
+
+.sidebar_expandable_menu .tabs-left>li {
+    margin-right: 0px;
+}
+.loggedin_status_false {
+    height: 100%;
+    display: table;
+    width: 100%;
+}
+
+.login_container_wrapper {
+    height: 100%;
+    vertical-align: middle;
+    display: table-cell;
+    margin: 0 auto;
+}
+
+.login_container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 60px 20px 20px;
+    position: relative;
+    display: block;
+    background: url('/operando/assets/images/icons/operando.png') #fdfaef no-repeat center 20px;
+}
+
+.login_container input{
+    margin: 20px 0px 5px;
+    border: 1px solid #FFB400;
+    height: 40px;
+    border-radius: 0px;
+}
+.login_container .form-control:focus
+{
+    border-color:#FF9900;
+    box-shadow: none;
+}
+
+.login_container .checkbox{
+    margin-top:10px;
+}
+
+.login_container .checkbox label{
+padding-left: 0px;
+}
+
+.login_container .forgot-password{
+    color:#FFB400;
+}
+
+.login_container .or_separator{
+    font-size: 18px;
+    text-align: center;
+    margin: 5px;
+    display: block;
+}

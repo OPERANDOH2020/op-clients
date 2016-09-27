@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/operando/utils/jquery-custom-scrollbar/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" type="text/css" href="/operando/utils/ui-select/select.min.css">
     <link rel="stylesheet" type="text/css" href="/operando/utils/ui-select/selectize.css">
+    <link rel="stylesheet" type="text/css" href="/operando/utils/angular-ui-notification/angular-ui-notification.min.css">
     <script type="text/javascript" src="/operando/assets/bootstrap/js/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="/operando/assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/operando/assets/bootstrap/js/jquery.bootstrap.wizard.js"></script>
@@ -27,6 +28,7 @@
             src="/operando/utils/jquery-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="/operando/utils/ui-select/select.min.js"></script>
     <script type="text/javascript" src="/operando/utils/angular-modal-service.js"></script>
+    <script type="text/javascript" src="/operando/utils/angular-ui-notification/angular-ui-notification.min.js"></script>
     <script type="text/javascript" src="/operando/DependencyManager.js" charset="utf-8"></script>
     <!--<script type="text/javascript" src="/operando/options.js" charset="utf-8"></script>-->
     <script type="text/javascript" src="/operando/swarms.js"></script>
@@ -36,7 +38,9 @@
     <script type="text/javascript" src="/operando/services/messenger-service.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/apps/OperandoApp.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/controllers/appController.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/operando/controllers/readSocialNetworkPrivacySettings.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/controllers/readSocialNetworkPrivacySettings.js"
+            charset="utf-8"></script>
+    <script type="text/javascript" src="/operando/controllers/accountController.js" charset="utf-8"></script>
 
     <!--<script type="text/javascript" src="/operando/util/OSP.Settings.js" charset="utf-8"></script>-->
 
@@ -47,240 +51,252 @@
 
 </head>
 <body ng-controller="appCtrl" class="operando">
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-                <img class="image_logo" alt="Brand" src="/operando/assets/images/icons/operando_logo82.png">
-            </a>
-        </div>
+<div ng-switch="userIsLoggedIn">
+    <div ng-switch-when="true">
+    <nav class="navbar operando-navbar">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img class="image_logo" alt="Brand" src="/operando/assets/images/icons/logo-light-big.png">
+                </a>
+            </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li ui-sref-active="active"><a ui-sref="home"> Home</a></li>
-                <li ng-class="{active: $state.includes('preferences')}"><a
-                        ui-sref="preferences.facebook">Preferences</a></li>
-                <li ng-class="{active: $state.includes('deals')}"><a ui-sref="deals.availableOffers">Deals</a></li>
-                <li ui-sref-active="active"><a ui-sref="identityManagement">Identity Management</a></li>
-                <li ui-sref-active="active"><a ui-sref="extensions">Extensions & Apps</a></li>
-                <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">READING SETTINGS</a></li>
-                <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">EDIT SETTINGS</a></li>
+            <ul class="nav navbar-nav pull-right">
 
-                <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
 
-                <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a>
+                <li ui-sref-active="active">
+                    <a class="menu_icon notifications_icon" ui-sref="home.notifications">
+                        <div class="menu_item_content">
+                            <notification-counter></notification-counter>
+                        </div>
+                    </a>
+                </li>
+
+
+                <li ui-sref-active="active" class="dropdown dropdown-user dropdown-dark">
+
+                    <a class="menu_icon user-account dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                       data-close-others="true">
+                        <div class="menu_item_content">
+                            <span class="username"> {{user.userName}} </span>
+                        </div>
+                    </a>
+
+
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li ng-class="{active: $state.includes('account')}">
+                            <a class="menu_icon account" ui-sref="account.personal-details">Account</a>
+                        </li>
+                        <li class="divider"></li>
+
+                        <li>
+                            <a class="menu_icon logout" ng-click="logout()">
+                                Log Out </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
 
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+        </div><!-- /.container-fluid -->
+    </nav>
 
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <div class="sidebar_expandable_menu">
+        <div class="sidebar_expandable_menu">
 
-        <div class="col-xs-2"> <!-- required for floating -->
+            <div class="col-xs-2"> <!-- required for floating -->
 
 
-            <ul class="nav nav-tabs tabs-left primary-menu panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <ul class="nav nav-tabs tabs-left primary-menu panel-group" id="accordion" role="tablist"
+                    aria-multiselectable="true">
 
-               <li ng-class="{active: $state.includes('home')}" class="panel menu_icon home_icon">
+                    <li ng-class="{active: $state.includes('home')}" class="panel menu_icon home_icon">
 
-                         <a class="panel-heading" role="tab" id="headingOne" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">Home</a>
+                        <a class="panel-heading" role="tab" id="headingOne" role="button" data-toggle="collapse"
+                           data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">Home</a>
 
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel"
+                             aria-labelledby="headingOne">
                             <ul class="nav nav-tabs tabs-left sub-menu panel-body">
 
-                                <li ui-sref-active="active"><a class="menu_icon privacy_icon" ui-sref="home.privacyQuestionnaire">Privacy
+                                <li ui-sref-active="active"><a class="menu_icon privacy_icon"
+                                                               ui-sref="home.privacyQuestionnaire">Privacy
                                     Questionnaire</a>
                                 </li>
-                                <li ui-sref-active="active"><a class="menu_icon notifications_icon" ui-sref="home.notifications"><span>Notifications</span>
+                                <li ui-sref-active="active"><a class="menu_icon notifications_icon"
+                                                               ui-sref="home.notifications"><span>Notifications</span>
                                     <notification-counter></notification-counter>
                                 </a></li>
                             </ul>
-                    </div>
-                </li>
+                        </div>
+                    </li>
 
-                <li ng-class="{active: $state.includes('preferences')}" class="panel menu_icon social_networks_icon">
+                    <li ng-class="{active: $state.includes('preferences')}"
+                        class="panel menu_icon social_networks_icon">
 
-                        <a class="panel-heading" role="tab" id="headingTwo" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseTwo">Social Networks</a>
+                        <a class="panel-heading" role="tab" id="headingTwo" role="button" data-toggle="collapse"
+                           data-parent="#accordion" data-target="#collapseTwo" aria-controls="collapseTwo">Social Networks</a>
 
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                             aria-labelledby="headingTwo">
                             <ul class="nav nav-tabs tabs-left sub-menu panel-body">
-                                <li ui-sref-active="active"><a class="menu_icon facebook_icon" ui-sref="preferences.facebook">Facebook</a></li>
-                                <li ui-sref-active="active"><a class="menu_icon linkedin_icon" ui-sref="preferences.linkedin">Linkedin</a></li>
-                                <li ui-sref-active="active"><a class="menu_icon twitter_icon" ui-sref="preferences.twitter">Twitter</a></li>
-                                <li ui-sref-active="active"><a class="menu_icon google_icon" ui-sref="preferences.google">Google</a></li>
+                                <li ui-sref-active="active"><a class="menu_icon facebook_icon"
+                                                               ui-sref="preferences.facebook">Facebook</a></li>
+                                <li ui-sref-active="active"><a class="menu_icon linkedin_icon"
+                                                               ui-sref="preferences.linkedin">Linkedin</a></li>
+                                <li ui-sref-active="active"><a class="menu_icon twitter_icon"
+                                                               ui-sref="preferences.twitter">Twitter</a></li>
+                                <li ui-sref-active="active"><a class="menu_icon google_icon"
+                                                               ui-sref="preferences.google">Google</a></li>
                             </ul>
-                    </div>
-                </li>
+                        </div>
+                    </li>
 
 
+                    <li ng-class="{active: $state.includes('deals')}" class="panel menu_icon privacy_deals_icon">
+                        <a class="panel-heading" role="tab" id="headingThree" role="button" data-toggle="collapse"
+                           data-parent="#accordion" href="#collapseThree" aria-controls="collapseThree">Privacy
+                            Deals</a>
 
-                <li ng-class="{active: $state.includes('deals')}" class="panel menu_icon privacy_deals_icon">
-                    <a class="panel-heading" role="tab" id="headingThree" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseThree">Privacy Deals</a>
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                        <ul class="nav nav-tabs tabs-left sub-menu panel-body">
-                            <li ui-sref-active="active"><a class="menu_icon offers_icon" ui-sref="deals.availableOffers" >Available Offers</a></li>
-                            <li ui-sref-active="active"><a class="menu_icon deals_icon" ui-sref="deals.myDeals">Deals</a></li>
-                        </ul>
-                    </div>
-                </li>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                             aria-labelledby="headingThree">
+                            <ul class="nav nav-tabs tabs-left sub-menu panel-body">
+                                <li ui-sref-active="active"><a class="menu_icon offers_icon"
+                                                               ui-sref="deals.availableOffers">Available Offers</a></li>
+                                <li ui-sref-active="active"><a class="menu_icon deals_icon" ui-sref="deals.myDeals">Deals</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
-                <li ui-sref-active="active" class="no-sub-menu">
-                    <a class="menu_icon identity_management_icon" ui-sref="identityManagement" >Identity Management</a>
-                </li>
-                <li ui-sref-active="active" class="no-sub-menu">
-                    <a class="menu_icon extensions_icon" ui-sref="extensions">Extensions & Apps</a>
-                </li>
-
-
-
-                <li ng-class="{active: $state.includes('dashboard')}" class="panel menu_icon dashboard_icon has_children" id="dashboard" >
-                    <a class="panel-heading" role="tab" id="headingFour" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-controls="collapseFour">Dashboard</a>
-
-
-
-                    <div id="collapseFour" class="panel-collapse collapse panel-body" role="tabpanel" aria-labelledby="headingFour">
+                    <li ui-sref-active="active" class="no-sub-menu">
+                        <a class="menu_icon identity_management_icon" ui-sref="identityManagement">Identity
+                            Management</a>
+                    </li>
+                    <li ui-sref-active="active" class="no-sub-menu">
+                        <a class="menu_icon extensions_icon" ui-sref="extensions">Extensions & Apps</a>
+                    </li>
 
 
-
-                    <ul class="panel-group nav nav-tabs tabs-left sub-menu" id="dashboard_content">
-
-                        <li ng-class="{active: $state.includes('admin')}" class="panel menu_icon reading_privacy_icon">
-                            <a class="panel-heading" role="button" data-toggle="collapse" data-parent="#dashboard_content" href="#collapseFive" >Reading Settings</a>
-
-                            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                                <ul class="nav nav-tabs tabs-left sub-menu panel-body" ng-controller="readSocialNetworkPrivacySettings">
-
-                                    <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a class="menu_icon" ng-class="osp.key+'_icon'" ui-sref="admin.privacy_settings({sn:osp.key})">{{osp.title}}</a></li>
-
-                                </ul>
-                            </div>
+                    <li ng-class="{active: $state.includes('dashboard')}"
+                        class="panel menu_icon dashboard_icon has_children" id="dashboard">
+                        <a class="panel-heading" role="tab" id="headingFour" role="button" data-toggle="collapse"
+                           data-parent="#accordion" href="#collapseFour" aria-controls="collapseFour">Dashboard</a>
 
 
-                        </li>
-                        <li ng-class="{active: $state.includes('admin')}" class="panel menu_icon edit_privacy_icon">
-
-                                <a class="panel-heading" data-toggle="collapse" data-parent="#dashboard_content" href="#collapseSix" >Edit Settings</a>
-
-                            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-                                <ul class="nav nav-tabs tabs-left sub-menu panel-body" ng-controller="readSocialNetworkPrivacySettings">
-
-                                    <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a class="menu_icon" ng-class="osp.key+'_icon'" ui-sref="analyst.settings_editor({sn:osp.key})">{{osp.title}}</a></li>
-
-                                </ul>
-                            </div>
-                        </li>
-
-                    </ul>
+                        <div id="collapseFour" class="panel-collapse collapse panel-body" role="tabpanel"
+                             aria-labelledby="headingFour">
 
 
+                            <ul class="panel-group nav nav-tabs tabs-left sub-menu" id="dashboard_content">
+
+                                <li ng-class="{active: $state.includes('admin')}"
+                                    class="panel menu_icon reading_privacy_icon">
+                                    <a class="panel-heading" role="button" data-toggle="collapse"
+                                       data-parent="#dashboard_content" href="#collapseFive">Reading Settings</a>
+
+                                    <div id="collapseFive" class="panel-collapse-child collapse" role="tabpanel"
+                                         aria-labelledby="headingFive">
+                                        <ul class="nav nav-tabs tabs-left sub-menu panel-body"
+                                            ng-controller="readSocialNetworkPrivacySettings">
+
+                                            <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a
+                                                    class="menu_icon" ng-class="osp.key+'_icon'"
+                                                    ui-sref="admin.privacy_settings({sn:osp.key})">{{osp.title}}</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
 
 
+                                </li>
+                                <li ng-class="{active: $state.includes('admin')}"
+                                    class="panel menu_icon edit_privacy_icon">
+
+                                    <a class="panel-heading" data-toggle="collapse" data-parent="#dashboard_content"
+                                       href="#collapseSix">Edit Settings</a>
+
+                                    <div id="collapseSix" class="panel-collapse-child collapse" role="tabpanel"
+                                         aria-labelledby="headingSix">
+                                        <ul class="nav nav-tabs tabs-left sub-menu panel-body"
+                                            ng-controller="readSocialNetworkPrivacySettings">
+
+                                            <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a
+                                                    class="menu_icon" ng-class="osp.key+'_icon'"
+                                                    ui-sref="analyst.settings_editor({sn:osp.key})">{{osp.title}}</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </li>
+
+                    <li ui-sref-active="active" class="no-sub-menu"><a class="menu_icon abp_icon"
+                                                                       ui-sref="preferences.abp">Ad Blocking</a></li>
 
 
+                    <!--<li ng-class="{active: $state.includes('deals')}"><a ui-sref="deals.availableOffers">Deals</a></li>
+                    <li ui-sref-active="active"><a ui-sref="identityManagement">Identity Management</a></li>
+                    <li ui-sref-active="active"><a ui-sref="extensions">Extensions & Apps</a></li>
+                    <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">READING SETTINGS</a></li>
+                    <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">EDIT SETTINGS</a></li>
+
+                    <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
+
+                    <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a></li>-->
+                </ul>
 
 
+                <!--<singleclickprivacy></singleclickprivacy>-->
 
 
+                <!-- Nav tabs -->
+                <!--<ul class="nav nav-tabs tabs-left">
+                    <li ui-sref-active-eq="active"><a ui-sref="home">Main</a></li>
+                    <li ui-sref-active="active"><a ui-sref="home.privacyQuestionnaire">Privacy Questionnaire</a></li>
+                    <li ui-sref-active="active"><a ui-sref="home.notifications"><span>Notifications</span>
+                        <notification-counter></notification-counter>
+                    </a></li>
+                    <li ui-sref-active="active"><a ui-sref="home.blog">Blog</a></li>
 
-
-                        <!--<ul class="nav nav-tabs tabs-left sub-menu" >
-
-                            <li ng-class="{active: $state.includes('admin')}" class="panel menu_icon reading_privacy_icon">
-                                <a class="panel-heading" role="tab" id="headingFive" role="button" data-toggle="collapse" data-parent="#dashboard" href="#collapseFive" aria-controls="collapseFive">Reading Settings</a>
-                                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                                    <ul class="nav nav-tabs tabs-left sub-menu panel-body" ng-controller="readSocialNetworkPrivacySettings">
-
-                                        <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a class="menu_icon" ng-class="osp.key+'_icon'" ui-sref="admin.privacy_settings({sn:osp.key})">{{osp.title}}</a></li>
-
-                                    </ul>
-                                </div>
-                            </li>
-
-
-                            <li ng-class="{active: $state.includes('admin')}" class="panel menu_icon edit_privacy_icon">
-                                <a class="panel-heading" role="tab" id="headingSix" role="button" data-toggle="collapse" data-parent="#dashboard" href="#collapseSix" aria-controls="collapseSix">Edit Settings</a>
-                                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-                                    <ul class="nav nav-tabs tabs-left sub-menu panel-body" ng-controller="readSocialNetworkPrivacySettings">
-
-                                        <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a class="menu_icon" ng-class="osp.key+'_icon'" ui-sref="analyst.settings_editor({sn:osp.key})">{{osp.title}}</a></li>
-
-                                    </ul>
-                                </div>
-                            </li>
-
-                        </ul>!-->
-                    </div>
-
-                </li>
-
-                <li ui-sref-active="active" class="no-sub-menu"><a class="menu_icon abp_icon" ui-sref="preferences.abp">Ad Blocking</a></li>
-
-
-
-               <!--<li ng-class="{active: $state.includes('deals')}"><a ui-sref="deals.availableOffers">Deals</a></li>
-               <li ui-sref-active="active"><a ui-sref="identityManagement">Identity Management</a></li>
-               <li ui-sref-active="active"><a ui-sref="extensions">Extensions & Apps</a></li>
-               <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">READING SETTINGS</a></li>
-               <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">EDIT SETTINGS</a></li>
-
-               <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
-
-               <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a></li>-->
-            </ul>
-
-
-            <!--<singleclickprivacy></singleclickprivacy>-->
-
-
-            <!-- Nav tabs -->
-            <!--<ul class="nav nav-tabs tabs-left">
-                <li ui-sref-active-eq="active"><a ui-sref="home">Main</a></li>
-                <li ui-sref-active="active"><a ui-sref="home.privacyQuestionnaire">Privacy Questionnaire</a></li>
-                <li ui-sref-active="active"><a ui-sref="home.notifications"><span>Notifications</span>
-                    <notification-counter></notification-counter>
-                </a></li>
-                <li ui-sref-active="active"><a ui-sref="home.blog">Blog</a></li>
-
-            </ul>-->
+                </ul>-->
+            </div>
         </div>
+
+
+        <div class="content_wrapper">
+            <div class="content" ui-view></div>
+        </div>
+
+
     </div>
 
+    <div id="loading-bar-container"></div>
+    <footer>
+        <span id="return-to-top"><i class="icon-chevron-up"></i></span>
 
-    <div class="content_wrapper">
-        <div class="content" ui-view></div>
-    </div>
+        <div id="footer-copyright">
+            <div id="footer-copyright-content" class="clearfix">
+                <p>{ Copyright <span class="footer-operando">OPERANDO</span> }</p>
 
+                <p>This work is supported by the European Commission under the Horizon 2020 Programme (H2020), as part
+                    of the OPERANDO project (GA no. 653704).
+                </p>
 
+            </div>
+        </div>
+    </footer>
 </div>
-
-<div id="loading-bar-container"></div>
-<footer>
-    <span id="return-to-top"><i class="icon-chevron-up"></i></span>
-
-    <div id="footer-copyright">
-        <div id="footer-copyright-content" class="clearfix">
-            <p>{ Copyright <span class="footer-operando">OPERANDO</span> }</p>
-
-            <p>This work is supported by the European Commission under the Horizon 2020 Programme (H2020), as part
-                of the OPERANDO project (GA no. 653704).
-            </p>
-
-        </div>
-    </div>
-</footer>
+<div ng-switch-when="false" class="loggedin_status_false">
+    <login-form></login-form>
+</div>
+</div>
 </body>
 </html>

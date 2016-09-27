@@ -18,12 +18,6 @@ controller("accountCtrl", ["$scope","messengerService", function($scope, messeng
     $scope.passwordIsEditMode = false;
     $scope.phoneIsEditMode = true;
 
-    messengerService.send("getCurrentUser",{}, function(user){
-        $scope.user = user;
-        $scope.$apply();
-    });
-
-
     $scope.changeEmailState = function(){
         $scope.emailIsEditMode = !$scope.emailIsEditMode;
     }
@@ -38,8 +32,6 @@ controller("accountCtrl", ["$scope","messengerService", function($scope, messeng
     $scope.changePhoneState = function(){
         $scope.phoneIsEditMode = !$scope.phoneIsEditMode;
     }
-
-
 
 }]);
 

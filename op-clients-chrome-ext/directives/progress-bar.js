@@ -10,7 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module("progressBar",[])
+angular.module("UIComponent",[])
     .directive('progressBar',function(){
         return{
             restrict: 'E',
@@ -32,7 +32,7 @@ angular.module("progressBar",[])
 
 
             },
-            templateUrl: '/operando/tpl/progress_bar.html'
+            templateUrl: '/operando/tpl/ui/progress_bar.html'
 
         }
-    })
+    });

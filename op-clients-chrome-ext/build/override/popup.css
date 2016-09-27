@@ -447,6 +447,10 @@ label
   height: 70px;
 }
 
+.user_area .keep_user_logged_in{
+  margin: 10px;
+}
+
 .user_area span{
   margin-left: 40px;
   margin-top: 4px;
@@ -454,7 +458,7 @@ label
 }
 
 .user_area_login{
-  height:120px;
+  height:160px;
 }
 
 .user_area_register{
@@ -544,3 +548,4 @@ div#expand_abp.expanded{
   width: 280px;
   margin: 10px 10px 10px;
 }
+

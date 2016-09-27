@@ -152,3 +152,15 @@ swarmHub.on("pfb.js", "success", function (swarm) {
         }
     });
 });
+
+chrome.notifications.onButtonClicked.addListener(function (notificationId, buttonIndex){
+
+    if(notificationId == "USER-LOGGED-OUT")
+    {
+        if(buttonIndex === 0 || buttonIndex === 1 ){
+            chrome.tabs.create({url:"http://operando.eu" , "selected": true}, function (tab) {
+                chrome.notifications.clear("USER-LOGGED-OUT");
+            });
+        }
+    }
+});

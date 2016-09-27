@@ -131,6 +131,8 @@ operando/directives.js = operando/directives/deals.js
                   operando/directives/privacy-wizard.js
                   operando/directives/progress-bar.js
                   operando/directives/setting-editor.js
+                  operando/directives/loader.js
+                  operando/directives/login.js
 
 operando/schema-form.js =operando/utils/angular-sanitize/angular-sanitize.min.js
                    operando/utils/schema-form/tv4/tv4.js
