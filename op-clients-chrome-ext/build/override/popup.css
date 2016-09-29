@@ -391,7 +391,7 @@ label
 }
 
 .operando_wrapper ul > li > div.item_icon{
-  top: 6px;
+  top: 8px;
   width:32px;
   height: 32px;
   float:left;
@@ -451,6 +451,10 @@ label
   margin: 10px;
 }
 
+ul.popup-login-area{
+  margin-bottom: 0px;
+}
+
 .user_area span{
   margin-left: 40px;
   margin-top: 4px;
@@ -480,6 +484,11 @@ label
   margin-left: 40px;
   margin-top: 14px;
 }
+
+#about_operando_ctn{
+
+}
+
 .user_actions button,
 #about_operando_ctn button{
   background: #F5A43C;

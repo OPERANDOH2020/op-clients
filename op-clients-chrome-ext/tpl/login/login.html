@@ -1,8 +1,9 @@
 <div class="login_container_wrapper">
     <div class="login_container" ng-switch="currentView">
+        <div class="icon_header"></div>
         <form class="form-signin" ng-submit="login()" ng-switch-when="login">
 
-            <h2 class="form-signin-heading">Sign in</h2>
+            <h2 class="form-signin-heading">Authentication</h2>
             <label for="login_input_email" class="sr-only">Email address</label>
             <input type="email" id="login_input_email" class="form-control" placeholder="Email address" required=""
                    ng-model="user.email"
@@ -15,7 +16,7 @@
             <div class="row">
                 <div class="checkbox col-lg-7">
                     <label>
-                        <input type="checkbox" value="remember-me"><span>Remember me</span>
+                        <input type="checkbox" value="remember-me" ng-model="user.remember_me" ng-checked="true"><span>Remember me</span>
                     </label>
                 </div>
 
@@ -46,29 +47,29 @@
 
             <label for="signup_input_email" class="sr-only">Email address</label>
             <input type="email" id="signup_input_email" class="form-control" placeholder="Email address" required=""
-                   ng-model="user.email"
+                   ng-model="new_user.email"
                    autofocus="">
 
             <label for="signup_input_username" class="sr-only">Username</label>
-            <input type="email" id="signup_input_username" class="form-control" placeholder="Username" required=""
-                   ng-model="user.username"
+            <input type="text" id="signup_input_username" class="form-control" placeholder="Username" required=""
+                   ng-model="new_user.username"
                    autofocus="">
 
 
             <label for="signup_input_password" class="sr-only">Password</label>
             <input type="password" id="signup_input_password" class="form-control" placeholder="Password" required=""
-                   ng-model="user.password">
+                   ng-model="new_user.password">
 
             <label for="signup_input_repeat_password" class="sr-only">Repeat Password</label>
             <input type="password" id="signup_input_repeat_password" class="form-control" placeholder="Confirm Password" required=""
-                   ng-model="user.password">
+                   ng-model="new_user.repeat_password">
 
 
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <button class="btn-primary btn-block" type="submit">Register</button>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-lg-2">
                     <span class="or_separator">OR</span>
                 </div>
                 <div class="col-lg-3">
@@ -83,7 +84,7 @@
 
             <label for="recover_input_email" class="sr-only">Email address</label>
             <input type="email" id="recover_input_email" class="form-control" placeholder="Your email address" required=""
-                   ng-model="user.email"
+                   ng-model="reset_email"
                    autofocus="">
 
             <div class="row">

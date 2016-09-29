@@ -12,11 +12,14 @@
 
 
 angular.module("operando").
-controller("accountCtrl", ["$scope","messengerService", function($scope, messengerService){
+controller("accountCtrl", ["$scope","messengerService","Notification", function($scope, messengerService,Notification){
 
     $scope.emailIsEditMode = false;
     $scope.passwordIsEditMode = false;
     $scope.phoneIsEditMode = true;
+    if($scope.user.phone !== undefined){
+        $scope.phoneIsEditMode = false;
+    }
 
     $scope.changeEmailState = function(){
         $scope.emailIsEditMode = !$scope.emailIsEditMode;
@@ -32,6 +35,21 @@ controller("accountCtrl", ["$scope","messengerService", function($scope, messeng
     $scope.changePhoneState = function(){
         $scope.phoneIsEditMode = !$scope.phoneIsEditMode;
     }
+
+    $scope.updateEmail = function(){
+        messengerService.send("updateUserInfo",{email:$scope.user.email}, function(){
+            Notification.success({message: "Email successfully updated!", positionY: 'bottom', positionX: 'center', delay: 3000});
+        })
+    }
+
+    $scope.updatePhone = function(){
+        messengerService.send("updateUserInfo",{phone:$scope.user.phone}, function(){
+            Notification.success({message: "Phone successfully updated!", positionY: 'bottom', positionX: 'center', delay: 3000});
+            $scope.phoneIsEditMode = false;
+        })
+    }
+
+
 
 }]);
 

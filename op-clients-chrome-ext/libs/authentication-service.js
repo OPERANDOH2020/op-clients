@@ -24,15 +24,20 @@ var authenticationService = exports.authenticationService = {
     getUser : function(){
       return authenticatedUser;
     },
-    authenticateUser: function (username, password, securityFn, successFn) {
+    authenticateUser: function (login_details, securityFn, successFn) {
         var self = this;
 
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, username, password, "chromeBrowserExtension", "userLogin", securityFn);
-
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, login_details.username, login_details.password, "chromeBrowserExtension", "userLogin", securityFn);
+        console.log("Keep session ",login_details.remember_me);
         swarmHub.on('login.js', "success", function (swarm) {
             loggedIn = swarm.authenticated;
-            Cookies.set("sessionId", swarm.meta.sessionId);
-            Cookies.set("userId", swarm.userId);
+
+            var daysUntilCookieExpire = 1;
+            if(login_details.remember_me === true){
+                daysUntilCookieExpire = 365;
+            }
+            Cookies.set("sessionId", swarm.meta.sessionId,  { expires: daysUntilCookieExpire });
+            Cookies.set("userId", swarm.userId,{ expires: daysUntilCookieExpire });
             self.setUser(swarm.userId,successFn);
             swarmHub.off("login.js", "success");
         });
@@ -98,7 +103,7 @@ var authenticationService = exports.authenticationService = {
     disconnectUser: function (callback) {
         notLoggedInObservable.observe(function () {
             callback();
-        });
+        }, true);
     },
 
     getStatus: function () {

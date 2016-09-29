@@ -51,7 +51,7 @@
 <div class="operando_wrapper" ng-controller="menuCtrl" ng-switch="popupAreaState">
 
 
-        <ul ng-controller="loginCtrl" ng-switch-when="normalState">
+        <ul ng-controller="loginCtrl" ng-switch-when="normalState" class="popup-login-area">
             <li id="login_area" ng-switch="loginAreaState">
 
                 <div ng-if="info.status">
@@ -81,7 +81,7 @@
             <menu-item icon-class="privacy_settings_icon" menu-label="Preferences" tab-to-open = "preferences/facebook" ng-show="isAuthenticated"></menu-item>
             <menu-item icon-class="dashboard_icon" menu-label="Dashboard" tab-to-open = "home" ng-show="isAuthenticated"></menu-item>
 
-            <li id="operando_abp">
+            <li id="operando_abp" ng-show="isAuthenticated">
                 <div class="item_icon abp_icon"></div>
                 <a id="abp_expand" href="#">AdBlock Plus </a>
 

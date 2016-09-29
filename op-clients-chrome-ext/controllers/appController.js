@@ -12,26 +12,27 @@
 
 
 angular.module("operando").
-controller("appCtrl", ["$scope", "messengerService", function ($scope, messengerService) {
+controller("appCtrl", ["$scope", "messengerService","$window", function ($scope, messengerService,$window) {
 
     $scope.userIsLoggedIn = false;
 
     $scope.logout = function () {
         messengerService.send("logout", {}, function () {
             $scope.userIsLoggedIn = false;
-            $scope.$apply();
-
-            /*chrome.tabs.getCurrent(function (tab) {
-                chrome.tabs.remove(tab.id);
-            });*/
         });
     }
 
-    messengerService.send("getCurrentUser",{}, function(user){
-        $scope.user = user;
-        $scope.userIsLoggedIn = true;
-        $scope.$apply();
-    });
+        messengerService.send("getCurrentUser",{}, function(user){
+            $scope.user = user;
+            $scope.userIsLoggedIn = true;
+            $scope.$apply();
+        });
+
+        messengerService.send("notifyWhenLogout", {}, function () {
+            //$scope.userIsLoggedIn = false;
+            //$scope.$apply();
+            $window.location.reload();
+        });
 
 }]);
 

@@ -44,7 +44,10 @@ $(document).ready(function () {
 
                 if ($(this).is(e.target)) {
                     $(this).closest(".panel").each(function(){
-                        $(this).removeClass('opened');
+                        if($(this).find("li.active").length == 0){
+                            $(this).removeClass('opened');
+                        }
+
                     })
                 }
             });
@@ -55,7 +58,6 @@ $(document).ready(function () {
                         $(this).addClass('opened');
                     })
                 }
-
             });
 
         });

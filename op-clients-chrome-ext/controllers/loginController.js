@@ -13,7 +13,7 @@
 
 angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService', function($scope, messengerService){
 
-    $scope.user = {};
+    $scope.user = {remember_me:true};
     $scope.isAuthenticated = false;
 
     $scope.info = {
@@ -78,8 +78,11 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
     $scope.login = function () {
 
         messengerService.send("login", {
-            username: $scope.user.email,
-            password: $scope.user.password
+            login_details: {
+                username: $scope.user.email,
+                password: $scope.user.password,
+                remember_me: $scope.user.remember_me
+            }
         }, function (response) {
             if (response.success) {
                 successFunction();

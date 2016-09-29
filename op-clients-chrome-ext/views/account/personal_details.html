@@ -8,18 +8,20 @@
         <div class="col-lg-12">
             <label>Email address (main identity)</label>
 
-            <div class="input-group">
-                <input type="email" class="form-control" ng-model="user.email"
-                       ng-disabled="emailIsEditMode == false">
+            <form ng-submit="updateEmail()">
+                <div class="input-group">
+                    <input type="email" class="form-control" ng-model="user.email"
+                           ng-disabled="emailIsEditMode == false">
                                 <span class="input-group-btn" ng-switch on="emailIsEditMode">
                                     <button ng-click="changeEmailState()" class="btn btn-secondary" type="button"
                                             ng-switch-when="false">Edit
                                     </button>
-                                    <button ng-click="changeEmailState()" class="btn btn-secondary" type="button"
+                                    <button class="btn btn-secondary" type="submit"
                                             ng-switch-when="true">Save
                                     </button>
                                 </span>
-            </div>
+                </div>
+            </form>
         </div>
 
     </div>
@@ -67,15 +69,18 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <label>Phone number (for verification only, never disclosed to 3rd parties)</label>
 
-            <div class="input-group">
-                <input type="text" class="form-control" ng-disabled="phoneIsEditMode==false">
-                                <span class="input-group-btn" ng-switch on="phoneIsEditMode">
-                                        <button ng-switch-when="false" class="btn btn-secondary" type="button" ng-click="changePhoneState()">Change</button>
-                                        <button ng-switch-when="true" class="btn btn-secondary" type="button" ng-click="changePhoneState()">Add</button>
-                                </span>
-            </div>
+            <form ng-submit="updatePhone()">
+                <label>Phone number (for verification only, never disclosed to 3rd parties)</label>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-disabled="phoneIsEditMode==false" ng-model="user.phone">
+                                    <span class="input-group-btn" ng-switch on="phoneIsEditMode">
+                                            <button ng-switch-when="false" class="btn btn-secondary" type="button" ng-click="changePhoneState()">Change</button>
+                                            <button ng-switch-when="true" class="btn btn-secondary" type="submit">Save</button>
+                                    </span>
+                </div>
+            </form>
         </div>
     </div>
 

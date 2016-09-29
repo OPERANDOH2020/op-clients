@@ -88,30 +88,26 @@ var identityService = exports.identityService = {
 
 
     generateIdentity: function (success_callback, error_callback) {
-        var sessionId = Cookies.get("sessionId");
-        swarmHub.startSwarm('identity.js', 'generateIdentity', sessionId);
+        swarmHub.startSwarm('identity.js', 'generateIdentity');
         observer.generate_identity.success.push(success_callback);
         observer.generate_identity.error.push(error_callback);
     },
 
     addIdentity: function (identity, success_callback, error_callback) {
-        var sessionId = Cookies.get("sessionId");
-        swarmHub.startSwarm('identity.js', 'createIdentity', sessionId, identity);
+        swarmHub.startSwarm('identity.js', 'createIdentity', identity);
         observer.add_identity.success.push(success_callback);
         observer.add_identity.error.push(error_callback);
     },
 
     removeIdentity: function (identity, success_callback, error_callback) {
-        var sessionId = Cookies.get("sessionId");
-        swarmHub.startSwarm('identity.js', 'removeIdentity', sessionId, identity);
+        swarmHub.startSwarm('identity.js', 'removeIdentity', identity);
         observer.remove_identity.success.push(success_callback);
         observer.remove_identity.error.push(error_callback);
     },
 
 
     listIdentities: function (callback) {
-        var sessionId = Cookies.get("sessionId");
-        swarmHub.startSwarm('identity.js', 'getMyIdentities', sessionId);
+        swarmHub.startSwarm('identity.js', 'getMyIdentities');
         observer.list_identities.success.push(callback);
     },
 

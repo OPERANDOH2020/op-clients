@@ -157,7 +157,7 @@
 
                     <li ng-class="{active: $state.includes('deals')}" class="panel menu_icon privacy_deals_icon">
                         <a class="panel-heading" role="tab" id="headingThree" role="button" data-toggle="collapse"
-                           data-parent="#accordion" href="#collapseThree" aria-controls="collapseThree">Privacy
+                           data-parent="#accordion" data-target="#collapseThree" aria-controls="collapseThree">Privacy
                             Deals</a>
 
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
@@ -183,7 +183,7 @@
                     <li ng-class="{active: $state.includes('dashboard')}"
                         class="panel menu_icon dashboard_icon has_children" id="dashboard">
                         <a class="panel-heading" role="tab" id="headingFour" role="button" data-toggle="collapse"
-                           data-parent="#accordion" href="#collapseFour" aria-controls="collapseFour">Dashboard</a>
+                           data-parent="#accordion" data-target="#collapseFour" aria-controls="collapseFour">Dashboard</a>
 
 
                         <div id="collapseFour" class="panel-collapse collapse panel-body" role="tabpanel"
@@ -195,7 +195,7 @@
                                 <li ng-class="{active: $state.includes('admin')}"
                                     class="panel menu_icon reading_privacy_icon">
                                     <a class="panel-heading" role="button" data-toggle="collapse"
-                                       data-parent="#dashboard_content" href="#collapseFive">Reading Settings</a>
+                                       data-parent="#dashboard_content" data-target="#collapseFive">Reading Settings</a>
 
                                     <div id="collapseFive" class="panel-collapse-child collapse" role="tabpanel"
                                          aria-labelledby="headingFive">
@@ -206,17 +206,15 @@
                                                     class="menu_icon" ng-class="osp.key+'_icon'"
                                                     ui-sref="admin.privacy_settings({sn:osp.key})">{{osp.title}}</a>
                                             </li>
-
                                         </ul>
                                     </div>
-
 
                                 </li>
                                 <li ng-class="{active: $state.includes('admin')}"
                                     class="panel menu_icon edit_privacy_icon">
 
                                     <a class="panel-heading" data-toggle="collapse" data-parent="#dashboard_content"
-                                       href="#collapseSix">Edit Settings</a>
+                                       data-target="#collapseSix">Edit Settings</a>
 
                                     <div id="collapseSix" class="panel-collapse-child collapse" role="tabpanel"
                                          aria-labelledby="headingSix">

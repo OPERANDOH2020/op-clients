@@ -18,16 +18,13 @@ var pfbService = require("pfb-service").pfbService;
 var socialNetworkService = require("social-network-privacy-settings").socialNetworkService;
 var privacyWizardService = require("privacy-wizard").privacyWizardService;
 var ospService = require("osp-service").ospService;
+var userService = require("user-service").userService;
 
 chrome.runtime.onConnect.addListener(function (_port) {
 
     (function(clientPort){
 
-
-
-
         if (clientPort.name == "OPERANDO_MESSAGER") {
-
 
             /**
              * Listen for swarm connection events
@@ -37,7 +34,6 @@ chrome.runtime.onConnect.addListener(function (_port) {
                 if (clientPort != null) {
                     clientPort.postMessage({type: "BACKGROUND_DEMAND", action: "onReconnect", message: {}});
                 }
-
             });
 
             swarmService.onConnectionError(function () {
@@ -59,7 +55,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
             clientPort.onMessage.addListener(function (request) {
 
                 if (request.action == "login" && request.message) {
-                    login(request.message.username, request.message.password, function () {
+                    login(request.message.login_details, function () {
                         clientPort.postMessage({
                             type: "SOLVED_REQUEST",
                             action: request.action,
@@ -76,6 +72,14 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     });
                 }
 
+                if (request.action == "notifyWhenLogout") {
+                    authenticationService.disconnectUser(function(){
+                        if(clientPort){
+                            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
+                        }
+                    });
+                }
+
                 if (request.action == "getCurrentUser") {
                     getCurrentUser(function (user) {
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: user});
@@ -88,6 +92,12 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     })
                 }
 
+                if(request.action == "updateUserInfo"){
+                    userService.updateUserInfo(request.message, function(status){
+                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: status});
+                    })
+                }
+
                 if(request.action == "listIdentities"){
                     identityService.listIdentities(function(identities){
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identities});
@@ -96,7 +106,10 @@ chrome.runtime.onConnect.addListener(function (_port) {
 
                 if(request.action == "addIdentity"){
                     identityService.addIdentity(request.message, function(identity){
-                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identity});
+                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success",identity: identity}});
+                    },
+                    function(error){
+                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error", message : error.message}});
                     });
                 }
 
@@ -155,22 +168,24 @@ chrome.runtime.onConnect.addListener(function (_port) {
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: ospSettings});
                     });
                 }
+
+                clientPort.onDisconnect.addListener(function () {
+                    clientPort = null;
+
+                });
             });
         }
 
     }(_port));
 
 
-    /*clientPort.onDisconnect.addListener(function () {
-        clientPort = null;
 
-    });*/
 
 });
 
 
-function login(username, password, securityErrorFunction, successFunction) {
-    authenticationService.authenticateUser(username, password, securityErrorFunction, successFunction);
+function login(login_details, securityErrorFunction, successFunction) {
+    authenticationService.authenticateUser(login_details, securityErrorFunction, successFunction);
 }
 
 function logout(callback) {

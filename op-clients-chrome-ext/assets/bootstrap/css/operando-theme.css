@@ -1450,6 +1450,7 @@ visibility: visible;
 
 .sidebar_expandable_menu .primary-menu > .panel{
     border-left:5px solid #4B4B4B;
+    z-index: 2;
 }
 
 
@@ -1458,6 +1459,37 @@ visibility: visible;
     background: url(/operando/assets/images/arrow-expand.png) no-repeat right 20px center;
     border: none;
     color:#FFF;
+    cursor: pointer;
+}
+
+
+.sidebar_expandable_menu .panel-group.primary-menu>.panel:not(.opened):hover:before,
+.sidebar_expandable_menu .panel-group.primary-menu>.panel:not(.opened):focus:before{
+    background-color:#000;
+    height: 60px;
+    width: 300px;
+    position: absolute;
+    display: block;
+    content:"";
+    z-index:-1;
+    top:0px;
+    left:-4px;
+    background-image: inherit;
+    background-position: 20px 20px;
+    background-repeat: no-repeat;
+}
+
+.sidebar_expandable_menu .panel-group .panel.has_children .sub-menu .panel:not(.active):hover:before,
+.sidebar_expandable_menu .panel-group .panel.has_children .sub-menu .panel:not(.active):focus:before{
+    background-color:#000;
+    height: 60px;
+    width: 296px;
+    position: absolute;
+    display: block;
+    content:"";
+    z-index:-1;
+    top:0px;
+    left:0px;
 }
 
 .sidebar_expandable_menu li.panel.opened a.panel-heading,
@@ -1580,12 +1612,12 @@ ul li ul li:not(.opened) a.panel-heading{
 }
 
 .login_container {
-    width: 400px;
+    width: 440px;
     margin: 0 auto;
-    padding: 60px 20px 20px;
+    padding: 0px 40px 25px;
     position: relative;
     display: block;
-    background: url('/operando/assets/images/icons/operando.png') #fdfaef no-repeat center 20px;
+    background: #fdfaef;
 }
 
 .login_container input{
@@ -1610,6 +1642,7 @@ padding-left: 0px;
 
 .login_container .forgot-password{
     color:#FFB400;
+    cursor:pointer;
 }
 
 .login_container .or_separator{
@@ -1617,4 +1650,29 @@ padding-left: 0px;
     text-align: center;
     margin: 5px;
     display: block;
+}
+
+.login_container .row{
+    margin-top:20px;
+}
+
+.login_container h2{
+    text-align: center;
+    color: #FFB400;
+    font-weight: 400;
+}
+
+.icon_header{
+    border-radius: 48px;
+    z-index: 100;
+    background: url(/operando/assets/images/icons/operando_48.png) #FFF no-repeat center center;
+    width: 96px;
+    height: 96px;
+    border: 1px solid #FFB400;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: -48px;
+    margin-bottom: -48px;
+
 }

@@ -50,6 +50,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             .state('home', {
                 url: "/home",
                 templateUrl: "views/home.html",
+                cache: false
             })
             .state("home.privacyQuestionnaire", {
                 url: "/privacy-questionnaire",

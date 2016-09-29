@@ -114,6 +114,7 @@ lib/adblockplus.js = adblockpluscore/lib/events.js
   operando/libs/social-network-privacy-settings.js
   operando/libs/privacy-wizard.js
   operando/libs/osp-service.js
+  operando/libs/user-service.js
   --arg module=true source_repo=https://hg.adblockplus.org/adblockpluscore/
 ext/common.js = ext/common.js chrome/ext/common.js
 operando/swarms.js = operando/services/swarm-services/socket.io-1.0.6.js

@@ -62,7 +62,7 @@ angular.module('identities', [])
                         var identities = $scope.identities;
                         ModalService.showModal({
                             templateUrl: '/operando/tpl/modals/add_sid.html',
-                            controller: ["$scope", "close", "messengerService", function ($scope, close, messengerService) {
+                            controller: ["$scope", "$element", "close", "messengerService","Notification", function ($scope, $element, close, messengerService, Notification) {
 
                                 $scope.identity = {};
                                 $scope.domains = {};
@@ -73,18 +73,17 @@ angular.module('identities', [])
                                 });
 
                                 $scope.saveIdentity = function () {
-                                    messengerService.send("addIdentity",$scope.identity, function (identity) {
-                                        identities.push(identity);
-                                        refreshIdentities();
-                                        close(null, 500);
-                                    }, function (error) {
-                                        console.log(error.message);
+                                    messengerService.send("addIdentity",$scope.identity, function (response) {
 
-                                        if($scope.identity.email){
-                                            $scope.addSidForm.email.$setValidity("invalid", false);
-                                            $scope.error = error.message;
-                                            $scope.$apply();
+                                        if(response.status == "success"){
+                                            identities.push(response.identity);
+                                            refreshIdentities();
+                                            $scope.close(response.identity);
                                         }
+                                        else{
+                                            Notification.error({message:response.message, positionY: 'bottom', positionX: 'center', delay: 2000});
+                                        }
+
                                     });
                                 }
 
@@ -103,6 +102,7 @@ angular.module('identities', [])
                                 }
 
                                 $scope.close = function (result) {
+                                    $element.modal('hide');
                                     close(result, 500);
                                 };
 
