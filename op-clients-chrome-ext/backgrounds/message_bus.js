@@ -151,6 +151,19 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     });
                 }
 
+                if(request.action == "acceptPfbDeal"){
+                    pfbService.acceptPfbDeal(request.message.serviceId,function(deal){
+                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: deal});
+                    });
+                }
+
+                if(request.action == "unsubscribePfbDeal"){
+                    pfbService.unsubscribePfbDeal(request.message.serviceId,function(deal){
+                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: deal});
+                    });
+                }
+
+
                 if(request.action == "completeWizard"){
                     privacyWizardService.completeWizard(request.message.currentSetting, request.message.all_suggestions, function(){
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action});

@@ -1,5 +1,5 @@
 [general]
-version = 0.2.0
+version = 0.3.0
 backgroundScripts =lib/polyfills/url.js
   lib/polyfills/promise.js
   lib/polyfills/fetch.js
@@ -17,6 +17,7 @@ backgroundScripts =lib/polyfills/url.js
   messageResponder.js
   background.js
   operando/utils/js.cookie.js
+  operando/backgrounds/utils/background_utils.js
   operando/backgrounds/operando_background.js
   operando/backgrounds/message_bus.js
 testScripts = ../ext/common.js

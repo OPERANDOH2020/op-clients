@@ -71,13 +71,23 @@ angular.module('pfbdeals', [])
                 restrict: 'A',
                 replace: true,
                 scope: {deal: "="},
-                controller: function ($scope) {
+                controller: ["$scope","messengerService","Notification","$state",function ($scope, messengerService, Notification,$state) {
 
-                    $scope.visitWebsite = function(){
-                        location.href="http://"+$scope.deal.website;
+                    $scope.acceptDeal = function(){
+                         messengerService.send("acceptPfbDeal", {serviceId:$scope.deal.serviceId}, function(deal){
+                             Notification.success({message:"You have successfully subscribed to deal", positionY: 'bottom', positionX: 'center', delay: 2000});
+                             $state.reload();
+                         })
                     }
 
-                },
+                    $scope.unsubscribeDeal = function(){
+                        messengerService.send("unsubscribePfbDeal", {serviceId:$scope.deal.serviceId}, function(deal){
+                            Notification.success({message:"You have successfully unsubscribed to deal", positionY: 'bottom', positionX: 'center', delay: 2000});
+                            $state.reload();
+                        })
+                    }
+
+                }],
                 templateUrl: '/operando/tpl/deals/pfbdealRow.html'
             }
         }

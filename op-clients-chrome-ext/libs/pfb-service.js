@@ -13,7 +13,9 @@
 
 var observer = {
     gotActiveDealsCallbacks:[],
-    gotMyDealsCallbacks:[]
+    gotMyDealsCallbacks:[],
+    acceptDealCallbacks:[],
+    unsubscribeDealCallbacks:[]
 };
 
 
@@ -32,6 +34,20 @@ swarmHub.on("pfb.js", "gotMyDeals", function (swarm) {
     }
 });
 
+swarmHub.on("pfb.js", "dealAccepted", function (swarm) {
+    while (observer.acceptDealCallbacks.length > 0) {
+        var c = observer.acceptDealCallbacks.pop();
+        c(swarm.deal);
+    }
+});
+
+swarmHub.on("pfb.js", "dealUnsubscribed", function (swarm) {
+    while (observer.unsubscribeDealCallbacks.length > 0) {
+        var c = observer.unsubscribeDealCallbacks.pop();
+        c(swarm.deal);
+    }
+});
+
 
 var pfbService = exports.pfbService = {
 
@@ -43,6 +59,16 @@ var pfbService = exports.pfbService = {
     getMyDeals: function (success_callback) {
         swarmHub.startSwarm('pfb.js', 'getMyDeals');
         observer.gotMyDealsCallbacks.push(success_callback);
+    },
+
+    acceptPfbDeal: function(pfbDealId, success_callback){
+        swarmHub.startSwarm("pfb.js", "acceptDeal", pfbDealId);
+        observer.acceptDealCallbacks.push(success_callback);
+    },
+
+    unsubscribePfbDeal: function(pfbDealId, success_callback){
+        swarmHub.startSwarm("pfb.js", "unsubscribeDeal", pfbDealId);
+        observer.unsubscribeDealCallbacks.push(success_callback);
     }
 
 }

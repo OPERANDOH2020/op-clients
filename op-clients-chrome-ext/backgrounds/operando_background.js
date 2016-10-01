@@ -143,7 +143,7 @@ swarmHub.on("pfb.js", "success", function (swarm) {
             insertJavascriptFile(tabId, "operando/modules/pfb/operando_content.js", function(){
                 chrome.tabs.sendMessage(tabId, {pfbDeal:deal},{}, function(response){
 
-                    if(response!==undefined){
+                    if(response!== undefined){
                         swarmHub.startSwarm("pfb.js", "acceptDeal", deal.serviceId);
                     }
 

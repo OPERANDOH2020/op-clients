@@ -92,6 +92,24 @@ input[type="checkbox"]:checked + span {
 }
 
 
+table.table{
+    background: #FFF;
+}
+
+
+table.table thead th{
+    background: #e6d8ba;
+    color: #907b4f;
+    font-family: "Dosis";
+    font-weight: 500;
+    border-bottom: none;
+    font-size: 17px;
+}
+
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #e6d8ba;
+}
+
 #wrapper{
     background: #4b4b4b;
     margin: 0 auto;
@@ -786,8 +804,14 @@ border-left:4px solid #FFB400;
     margin-right: 0px;
 }
 
-#pfbdeals_container table th{
+#pfbdeals_container table th,
+#identities_container table th{
     text-align: center;
+}
+
+#identities_container .real_identity{
+    text-align: center;
+    vertical-align: middle;
 }
 
 #pfbdeals_container table td.actions,
@@ -795,23 +819,28 @@ border-left:4px solid #FFB400;
     vertical-align: middle;
 }
 
-.pfbdeal{
-    width: 90%;
-    margin: 5%;
-    background: #f1ebdf;
-    display: inline-block;
-    float:left;
-    min-height: 170px;
+#pfbdeals_container .pfb_reward{
+    text-align: center;
+    vertical-align: middle;
 }
 
-.pfb_logo{
-    width:50%;
-    margin: 10% 25% 0 25%;
+#pfbdeals_container .supplier_logo{
+    width: 64px;
+    vertical-align: middle;
 }
 
-.pfbdeal_website{
-    font-size: 14px;
-    margin-top: 10px;
+#pfbdeals_container .pfbdeal_website{
+    font-size: 15px;
+}
+
+#pfbdeals_container .voucher_code{
+    text-align: center;
+    vertical-align: middle;
+}
+
+#pfbdeals_container table.table tr:hover td,
+#identities_container table.table tr:hover td{
+    background:#fdfaef;
 }
 
 
@@ -830,18 +859,18 @@ border-left:4px solid #FFB400;
 }
 
 
-.table>tbody>tr.defaultIdentity>td,
-.table>tbody>tr.defaultIdentity>th,
-.table>tbody>tr>td.defaultIdentity,
-.table>tbody>tr>th.defaultIdentity,
-.table>tfoot>tr.defaultIdentity>td,
-.table>tfoot>tr.defaultIdentity>th,
-.table>tfoot>tr>td.defaultIdentity,
-.table>tfoot>tr>th.defaultIdentity,
-.table>thead>tr.defaultIdentity>td,
-.table>thead>tr.defaultIdentity>th,
-.table>thead>tr>td.defaultIdentity,
-.table>thead>tr>th.defaultIdentity{
+#identities_container .table>tbody>tr.defaultIdentity>td,
+#identities_container .table>tbody>tr.defaultIdentity>th,
+#identities_container .table>tbody>tr>td.defaultIdentity,
+#identities_container .table>tbody>tr>th.defaultIdentity,
+#identities_container .table>tfoot>tr.defaultIdentity>td,
+#identities_container .table>tfoot>tr.defaultIdentity>th,
+#identities_container .table>tfoot>tr>td.defaultIdentity,
+#identities_container .table>tfoot>tr>th.defaultIdentity,
+#identities_container .table>thead>tr.defaultIdentity>td,
+#identities_container .table>thead>tr.defaultIdentity>th,
+#identities_container .table>thead>tr>td.defaultIdentity,
+#identities_container.table>thead>tr>th.defaultIdentity{
     background: #ffebba;
 }
 
