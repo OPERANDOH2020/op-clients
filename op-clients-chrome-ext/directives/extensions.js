@@ -67,10 +67,10 @@ angular.module('extensions', [])
             templateUrl: '/operando/tpl/extensions.html'
         }
     })
-    .directive('extension', function (ModalService) {
+    .directive('extensionRow', function (ModalService) {
         return {
             require: "^extensions",
-            restrict: 'E',
+            restrict: 'A',
             replace: true,
             scope: {extension: "="},
             link: function ($scope, element, attrs, extensionsCtrl) {

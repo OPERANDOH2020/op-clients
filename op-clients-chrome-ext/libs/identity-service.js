@@ -32,6 +32,10 @@ var observer = {
     list_identities:{
         success:[],
         error:[]
+    },
+    updateDefaultSubstituteIdentity:{
+        success:[],
+        error:[]
     }
 };
 
@@ -83,6 +87,14 @@ swarmHub.on("identity.js", "deleteIdentity_error", function (swarm) {
     }
 });
 
+swarmHub.on("identity.js", "defaultIdentityUpdated", function (swarm) {
+    while (observer.updateDefaultSubstituteIdentity.success.length > 0) {
+        var c = observer.updateDefaultSubstituteIdentity.success.pop();
+        c(swarm.identity);
+    }
+});
+
+
 
 var identityService = exports.identityService = {
 
@@ -109,6 +121,11 @@ var identityService = exports.identityService = {
     listIdentities: function (callback) {
         swarmHub.startSwarm('identity.js', 'getMyIdentities');
         observer.list_identities.success.push(callback);
+    },
+
+    updateDefaultSubstituteIdentity:function(identity, callback){
+        swarmHub.startSwarm('identity.js', 'updateDefaultSubstituteIdentity', identity);
+        observer.updateDefaultSubstituteIdentity.success.push(callback);
     },
 
     listDomains: function (callback) {

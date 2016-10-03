@@ -1,3 +1,24 @@
-<div id="extensions_container">
-        <extension ng-repeat="extension in extensions" extension="extension"></extension>
+<div>
+    <h3>Extensions & Apps</h3>
+
+    <div id="extensions_container">
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Extension/App name</th>
+                <th>Privacy Pollution</th>
+                <th>Type</th>
+                <th>Version</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                <tr extension-row ng-repeat="extension in extensions" extension="extension"></tr>
+            </tbody>
+        </table>
+
+
+    </div>
 </div>

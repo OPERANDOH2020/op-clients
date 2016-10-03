@@ -104,6 +104,7 @@ table.table thead th{
     font-weight: 500;
     border-bottom: none;
     font-size: 17px;
+    padding: 15px 0px 15px 10px;
 }
 
 .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
@@ -305,19 +306,16 @@ ul.nav.navbar-nav.pull-right li>a>.menu_item_content{
 
 #extensions_container .extension{
     width:100%;
-    padding:10px;
-    border-bottom: 1px solid #cccccc;
-}
-
-
-#extensions_container .extension:last-child{
-    border-bottom: none;
 }
 
 
 #extensions_container .extension_actions{
-    float:right;
-    margin-top: 23px;
+    width: 210px;
+}
+
+#extensions_container table.table td{
+    vertical-align: middle;
+    text-align: left;
 }
 
 .extension .extension_icon img.disabled{
@@ -361,20 +359,21 @@ padding-left: 0px;
 .extension_icon{
     width:120px;
     text-align: center;
-    float:left;
 }
 
 .extension_icon.no_icon img{
     background: url(/operando/assets/images/extension_icon.png) no-repeat center;
-    width: 64px;
-    height: 64px;
+    width: 32px;
+    height: 32px;
 }
 .extension_name{
-    display: block;
-    font-weight: bold;
+    font-size: 16px;
+    padding-left: 10px;
 }
 
-#identity_management_tab{
+#identity_management_tab,
+#extensions_tab
+{
  padding: 20px;
 }
 
@@ -663,6 +662,16 @@ footer{
 color:#FFF;
 }
 
+
+.operando .modal-content .btn-primary-black[disabled],
+.operando #wrapper .btn-primary-black[disabled],
+.operando .modal-content .btn-primary-black[disabled]:hover,
+.operando #wrapper .btn-primary-black[disabled]:hover{
+    opacity: 0.5;
+    color:#FFB400;
+}
+
+
 .operando .modal-content .btn-primary:focus,
 .operando #wrapper .btn-primary:focus,
 .login_container_wrapper button.btn-primary:focus,
@@ -681,7 +690,7 @@ color:#FFF;
     box-shadow: none;
     height: 36px;
     padding: 17px 28px;
-    background-size: 55%;
+    background-size: 45%;
 }
 
 #wrapper button.view_permissions.hide_view_button{
@@ -693,7 +702,7 @@ color:#FFF;
     border: none;
     box-shadow: none;
     height: 33px;
-    background-size: 55%;
+    background-size: 45%;
     padding: 15px 20px;
 }
 
@@ -710,23 +719,41 @@ color:#FFF;
 }
 
 .pp-red{
- background: rgba(255,0,0,0.05);
+ background: #d0c09e;
+
+}
+.pp-red:hover{
+    background: rgba(226,27,46,0.35);
 }
 
 .pp-blue{
-    background: rgba(51,153,255,0.05);
+    background:#ebe1cc;
+}
+.pp-blue:hover{
+    background: rgba(27,163,226,0.35);
 }
 
 .pp-green{
-    background: rgba(0,255,0,0.05);
+    background:#f3ecdc;
+}
+.pp-green:hover{
+    background: rgba(32,226,27,0.35);
 }
 
 .pp-yellow{
-    background: rgba(255,255,0,0.15);
+    background:#e3d7bd;
+}
+
+.pp-yellow:hover{
+    background: rgba(226,219,27,0.35);
 }
 
 .pp-orange{
-    background: rgba(255,127,0,0.15);
+    background: #dacbac;
+}
+
+.pp-orange:hover{
+    background: rgba(226,149,27,0.35);
 }
 
 .tabs-left{
@@ -846,16 +873,23 @@ border-left:4px solid #FFB400;
 
 #wrapper button.single_click_privacy{
     width: 100%;
-    background: #FFB400;
+    background: url(/operando/assets/images/single_click.png) no-repeat left center #FFB400;
     margin: 0%;
     text-transform: uppercase;
     color: #FFF;
     margin-bottom: 40px;
-    padding: 20px;
+    background-size: 30%;
+    font-size: 100%;
+    font-size: 20px;
+    padding: 15% 10px 15% 30%;
 }
 
-#wrapper button.single_click_privacy:hover{
-    background: #FF9900;
+#wrapper button.single_click_privacy:hover,
+#wrapper button.single_click_privacy:active,
+#wrapper button.single_click_privacy:focus{
+    background-color: #FF9900;
+    border-color: #FF9900;
+    outline:#FF9900;
 }
 
 
@@ -894,18 +928,12 @@ border-left:4px solid #FFB400;
 
 .notification-counter {
     padding: 6px 13px 6px 10px;
-    color: #000;
+    color: #FFB400;
     margin-left: 4px;
     width: 15px;
     background: #FFF;
     border-radius: 16px;
 }
-
-/*.nav>li:hover .notification-counter,
-.tabs-left>li.active .notification-counter{
-    background: #FFFFFF;
-    color:#000;
-}*/
 
 #wrapper .input-group-btn button{
     border-top-left-radius:0;
@@ -921,12 +949,12 @@ border-left:4px solid #FFB400;
 }
 
 .panel-group .panel .panel-heading {
-    background: #FFB400;
-    color: #FFF;
+    background: #e6d8ba;
+    color: #907b4f;
 }
 
 .panel-group .panel {
-    border: 1px solid #FFB400;
+    border: 1px solid #e6d8ba;
 }
 
 .panel-news .panel-body,
@@ -958,7 +986,7 @@ border: none;
 
 
 .alert .alert_container{
-    padding: 20px 70px;
+    padding: 10px 70px;
 }
 .alert.warning-notification .alert_container{
     background: url("/operando/assets/images/danger.png") no-repeat left center;
@@ -1555,6 +1583,9 @@ ul li ul li:not(.opened) a.panel-heading{
 
 .menu_icon.notifications_icon {
     background-image:url("/operando/assets/images/menu_icons/notifications.png");
+}
+.menu_icon.notifications_orange_icon{
+    background-image:url("/operando/assets/images/menu_icons/notifications_orange.png");
 }
 
 .menu_icon.social_networks_icon{

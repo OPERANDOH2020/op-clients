@@ -22,7 +22,7 @@ angular.module("UIComponent",[])
             },
             controller : function($scope){
                 $scope.$watch("current", function(val){
-                    $scope.percent = Math.round(val*100/$scope.total);
+                    $scope.percent = Math.floor(val*100/$scope.total);
                     var nr_steps = Math.round($scope.total/($scope.interval+1));
                     $scope.steps = [];
                     for(i = 0; i<= nr_steps; i++){

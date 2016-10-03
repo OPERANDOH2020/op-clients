@@ -82,13 +82,17 @@ chrome.runtime.onConnect.addListener(function (_port) {
 
                 if (request.action == "getCurrentUser") {
                     getCurrentUser(function (user) {
-                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: user});
+                        if(clientPort){
+                            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: user});
+                        }
                     })
                 }
 
                 if (request.action == "restoreUserSession") {
                     restoreUserSession(function (status) {
-                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: status});
+                        if(clientPort) {
+                            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: status});
+                        }
                     })
                 }
 
@@ -124,6 +128,19 @@ chrome.runtime.onConnect.addListener(function (_port) {
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identity});
                     });
                 }
+
+                if(request.action == "removeIdentity"){
+                    identityService.removeIdentity(request.message,function(identity){
+                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identity});
+                    });
+                }
+
+                if(request.action == "updateDefaultSubstituteIdentity"){
+                    identityService.updateDefaultSubstituteIdentity(request.message,function(identity){
+                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identity});
+                    });
+                }
+
 
                 if(request.action == "listDomains"){
                     identityService.listDomains(function(availableDomains){

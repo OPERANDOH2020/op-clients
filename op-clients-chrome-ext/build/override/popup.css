@@ -422,6 +422,11 @@ label
   background: url(../operando/assets/images/icons/operando_logo.png) no-repeat left center;
 }
 
+.operando_wrapper ul > li > div.user_logged_in{
+  background: url(../operando/assets/images/icons/user.png) no-repeat left center;
+  padding-left: 10px;
+}
+
 .operando_wrapper ul > li .right_content{
   width: 100%;
 }

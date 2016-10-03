@@ -13,7 +13,9 @@
 
 angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService', function($scope, messengerService){
 
-    $scope.user = {remember_me:true};
+    var defaultUser = {remember_me:true};
+
+    $scope.user = defaultUser ;
     $scope.isAuthenticated = false;
 
     $scope.info = {
@@ -129,15 +131,10 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
         messengerService.send("logout",{},function(){
             $scope.loginAreaState = "loggedout";
             $scope.isAuthenticated = false;
-            $scope.user = {};
+            $scope.user = defaultUser;
             $scope.$apply();
         });
     }
-
-    $scope.manage_accounts = function(){
-        window.open(chrome.runtime.getURL("operando/operando.html#identity_management_tab"),"operando");
-    }
-
 
     messengerService.send("restoreUserSession",{}, function(status){
         if(status.success){

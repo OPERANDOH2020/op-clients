@@ -1,8 +1,7 @@
 <div class="custom-progress-bar progresss">
+
     <div class="progress-bar active" role="progressbar"
          aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100" style="width:{{percent}}%">
-        <!--Progress:<b>{{percent}}%</b>-->
-
         <div ng-repeat="step in steps">
             <span href="#" style="left:{{step}}%" class="bs-wizard-dot" ng-class="{completed:percent>=step}"></span>
         </div>

@@ -124,15 +124,21 @@ angular.module('identities', [])
                 restrict: 'A',
                 replace: true,
                 scope: {identity: "="},
-                controller: function ($scope, ModalService) {
+                controller: function ($scope, ModalService, messengerService, Notification) {
 
-                    $scope.identity.isDefault = false;
+                    //$scope.identity.isDefault = false;
 
                     $scope.changeDefaultIdentity = function(){
                         console.log($scope.defaultIdentity);
-                        $scope.$parent.$emit("changedDefaultSID",$scope.identity);
-                        $scope.identity.isDefault = true;
+
+                        messengerService.send("updateDefaultSubstituteIdentity",$scope.identity, function(){
+                            $scope.$parent.$emit("changedDefaultSID",$scope.identity);
+                            $scope.identity.isDefault = true;
+                            Notification.success({message:"You're default identity is set to "+$scope.identity.email, positionY: 'bottom', positionX: 'center', delay: 2000});
+
+                        });
                     }
+
 
                     $scope.remove_identity = function () {
                         var identity = $scope.identity;

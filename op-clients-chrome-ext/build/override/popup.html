@@ -68,7 +68,7 @@
                     <div ng-include src="'operando/tpl/panel/login_form_state.html'"></div>
                 </div>
 
-                <div ng-switch-when="loggedin">
+                <div ng-switch-when="loggedin" class="user_logged_in">
                     <div ng-include src="'operando/tpl/panel/loggedin_state.html'"></div>
                 </div>
 
@@ -77,8 +77,8 @@
                 </div>
             </li>
 
-            <menu-item icon-class="privacy_issues_icon" menu-label="Notifications" tab-to-open = "home/notifications" ng-show="isAuthenticated"></menu-item >
-            <menu-item icon-class="privacy_settings_icon" menu-label="Preferences" tab-to-open = "preferences/facebook" ng-show="isAuthenticated"></menu-item>
+            <!--<menu-item icon-class="privacy_issues_icon" menu-label="Notifications" tab-to-open = "home/notifications" ng-show="isAuthenticated"></menu-item >
+            <menu-item icon-class="privacy_settings_icon" menu-label="Preferences" tab-to-open = "preferences/facebook" ng-show="isAuthenticated"></menu-item>-->
             <menu-item icon-class="dashboard_icon" menu-label="Dashboard" tab-to-open = "home" ng-show="isAuthenticated"></menu-item>
 
             <li id="operando_abp" ng-show="isAuthenticated">
