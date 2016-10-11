@@ -563,3 +563,13 @@ div#expand_abp.expanded{
   margin: 10px 10px 10px;
 }
 
+
+#close_popup{
+  width: 12px;
+  height: 12px;
+  background: url("../operando/assets/images/close.png") no-repeat left center;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}

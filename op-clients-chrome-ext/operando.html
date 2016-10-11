@@ -121,10 +121,6 @@
                              aria-labelledby="headingOne">
                             <ul class="nav nav-tabs tabs-left sub-menu panel-body">
 
-                                <li ui-sref-active="active"><a class="menu_icon privacy_icon"
-                                                               ui-sref="home.privacyQuestionnaire">Privacy
-                                    Questionnaire</a>
-                                </li>
                                 <li ui-sref-active="active"><a class="menu_icon notifications_icon"
                                                                ui-sref="home.notifications"><span>Notifications</span>
                                     <notification-counter></notification-counter>
@@ -154,8 +150,17 @@
                         </div>
                     </li>-->
 
+                    <li ui-sref-active="active" class="no-sub-menu">
+                        <a class="menu_icon social_networks_icon" ui-sref="home.privacyQuestionnaire">Social Networks</a>
+                    </li>
 
-                    <li ng-class="{active: $state.includes('deals')}" class="panel menu_icon privacy_deals_icon">
+
+
+                    <li ui-sref-active="active" class="no-sub-menu">
+                        <a class="menu_icon privacy_deals_icon" ui-sref="deals">Privacy Deals</a>
+                    </li>
+
+                    <!--<li ng-class="{active: $state.includes('deals')}" class="panel menu_icon privacy_deals_icon">
                         <a class="panel-heading" role="tab" id="headingThree" role="button" data-toggle="collapse"
                            data-parent="#accordion" data-target="#collapseThree" aria-controls="collapseThree">Privacy
                             Deals</a>
@@ -169,11 +174,10 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li>-->
 
                     <li ui-sref-active="active" class="no-sub-menu">
-                        <a class="menu_icon identity_management_icon" ui-sref="identityManagement">Identity
-                            Management</a>
+                        <a class="menu_icon identity_management_icon" ui-sref="identityManagement">My Identities</a>
                     </li>
                     <li ui-sref-active="active" class="no-sub-menu">
                         <a class="menu_icon extensions_icon" ui-sref="extensions">Extensions & Apps</a>
@@ -239,32 +243,7 @@
                     <li ui-sref-active="active" class="no-sub-menu"><a class="menu_icon abp_icon"
                                                                        ui-sref="preferences.abp">Ad Blocking</a></li>
 
-
-                    <!--<li ng-class="{active: $state.includes('deals')}"><a ui-sref="deals.availableOffers">Deals</a></li>
-                    <li ui-sref-active="active"><a ui-sref="identityManagement">Identity Management</a></li>
-                    <li ui-sref-active="active"><a ui-sref="extensions">Extensions & Apps</a></li>
-                    <li ui-sref-active="active"><a ui-sref="admin.privacy_settings">READING SETTINGS</a></li>
-                    <li ui-sref-active="active"><a ui-sref="analyst.settings_editor">EDIT SETTINGS</a></li>
-
-                    <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
-
-                    <li ng-class="{active: $state.includes('account')}"><a ui-sref="account.personal-details">Account</a></li>-->
                 </ul>
-
-
-                <!--<singleclickprivacy></singleclickprivacy>-->
-
-
-                <!-- Nav tabs -->
-                <!--<ul class="nav nav-tabs tabs-left">
-                    <li ui-sref-active-eq="active"><a ui-sref="home">Main</a></li>
-                    <li ui-sref-active="active"><a ui-sref="home.privacyQuestionnaire">Privacy Questionnaire</a></li>
-                    <li ui-sref-active="active"><a ui-sref="home.notifications"><span>Notifications</span>
-                        <notification-counter></notification-counter>
-                    </a></li>
-                    <li ui-sref-active="active"><a ui-sref="home.blog">Blog</a></li>
-
-                </ul>-->
             </div>
         </div>
 

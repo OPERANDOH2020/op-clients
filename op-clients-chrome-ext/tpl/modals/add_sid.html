@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title">Add New Substitute Identity</h3>
+                <h3 class="modal-title">Add Identity</h3>
             </div>
             <div class="modal-body">
                 <form name="addSidForm" class="clearfix">
@@ -19,10 +19,6 @@
 
                     <div class="form-group col-lg-5">
                         <label for="domain">Domain:</label>
-
-                        <!--<select class="form-control" id="domain" ng-model="identity.domain" ng-change="refreshSID()">
-                            <option ng-repeat="domain in domains.availableDomains" value="{{domain.name}}">{{domain.name}}</option>
-                        </select>-->
 
                         <ui-select id="domain" ng-model="identity.domain" ng-change="refreshSID()"
                                    title="Choose a setting" theme="selectize" class="mCustomScrollbar">
@@ -42,12 +38,8 @@
                         <input type="text" class="form-control" id="usr" disabled ng-model="identity.email"/>
                     </div>
 
-
-
                 </form>
             </div>
-
-
 
             <div class="modal-footer">
                 <div class="form-group col-lg-6">
@@ -58,8 +50,6 @@
                     <button type="button" ng-click="saveIdentity()" class="btn btn-primary">Save</button>
                     <button type="button" ng-click="close('Yes')" class="btn btn-primary-black" data-dismiss="modal">Close</button>
                 </div>
-
-
 
             </div>
         </div>

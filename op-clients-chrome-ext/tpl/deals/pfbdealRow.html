@@ -14,7 +14,20 @@
     <td class="pfb_reward" ng-if="deal.type=='availableOffer'">{{deal.benefit}}</td>
     <td class="voucher_code" ng-if="deal.type=='myDeal'">{{deal.voucher}}</td>
     <td class="actions">
-        <button ng-if="deal.type=='myDeal'" class="btn-primary-black" ng-click="unsubscribeDeal()">Unsubscribe</button>
-        <button ng-click="acceptDeal()" ng-if="deal.type=='availableOffer'" class="btn-primary">Accept</button>
+
+        <div class="toggle_container">
+            <div class="toggle">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" ng-checked="deal.subscribed==false"
+                       id="toggle-{{deal.serviceId}}" ng-click="toggleDeal()">
+                <label class="onoffswitch-label" for="toggle-{{deal.serviceId}}" >
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                </label>
+            </div>
+        </div>
+
+
+        <!--<button ng-if="deal.type=='myDeal'" class="btn-primary-black" ng-click="unsubscribeDeal()">Unsubscribe</button>
+        <button ng-click="acceptDeal()" ng-if="deal.type=='availableOffer'" class="btn-primary">Accept</button>-->
     </td>
 </tr>

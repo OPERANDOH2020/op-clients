@@ -546,8 +546,8 @@ padding-left: 0px;
     margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0;
-}
+     right: 0;
+ }
 
 .extension_left_ctn{
     float:left;
@@ -697,8 +697,10 @@ color:#FFF;
     visibility: hidden;
 }
 
-#wrapper button.extension_uninstall{
-    background: url("/operando/assets/images/uninstall.png") no-repeat center;
+#wrapper button.extension_uninstall,
+#wrapper button.trash
+{
+    background: url("/operando/assets/images/trash.png") no-repeat center;
     border: none;
     box-shadow: none;
     height: 33px;
@@ -707,9 +709,15 @@ color:#FFF;
 }
 
 #wrapper button.view_permissions:focus,
-#wrapper button.extension_uninstall:focus{
+#wrapper button.extension_uninstall:focus,
+#wrapper button.trash:focus{
     border:none;
     outline: none;
+}
+
+#wrapper button.trash[disabled]{
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 
@@ -915,6 +923,7 @@ border-left:4px solid #FFB400;
 .table tr>td.td_radio,
 .table tr>td.actions{
     text-align: center;
+    position: relative;
 }
 
 .preferences_form{
@@ -1640,7 +1649,7 @@ ul li ul li:not(.opened) a.panel-heading{
 }
 
 .menu_icon.abp_icon{
-    background-image:url("/operando/assets/images/menu_icons/abp.png");
+    background-image:url("/operando/assets/images/menu_icons/ad_block.png");
 }
 
 .menu_icon.user-account{
@@ -1735,4 +1744,37 @@ padding-left: 0px;
     top: -48px;
     margin-bottom: -48px;
 
+}
+
+
+#pfbdeals_container td.actions .toggle_container{
+    position: relative;
+    display: block;
+    min-height: 35px;
+}
+
+#pfbdeals_container td.actions .toggle{
+z-index: 100;
+top:0;
+}
+
+
+#pfbdeals_container .toggle{
+    margin-top: 0px;
+    width: 130px;
+}
+
+#pfbdeals_container .onoffswitch-switch{
+    right:96px;
+}
+
+#pfbdeals_container .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0;
+}
+
+#pfbdeals_container .onoffswitch-inner:before {
+    content: "Subscribe";
+}
+#pfbdeals_container .onoffswitch-inner:after {
+    content: "Unsubscribe";
 }

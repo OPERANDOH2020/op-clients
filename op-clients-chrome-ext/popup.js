@@ -26,6 +26,10 @@
 
     function init() {
         handleClick();
+        //close icon
+        document.getElementById("close_popup").addEventListener("click", function(){
+            window.close();
+        });
 
         var backgroundPage = ext.backgroundPage.getWindow();
         var require = backgroundPage.require;
