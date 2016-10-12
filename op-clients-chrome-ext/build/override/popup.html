@@ -27,7 +27,6 @@
     <script src="i18n.js"></script>
     <script src="popup.js"></script>
     <script src="notification.js"></script>
-    <script src="stats.js"></script>
     <script src="operando/popup.js"></script>
     <script src="operando/utils/angular.min.js"></script>
     <script src="operando/utils/angular-cookies.js"></script>
@@ -52,10 +51,10 @@
 
 </div>
 
-<div class="operando_wrapper" ng-controller="menuCtrl" ng-switch="popupAreaState">
+<div class="operando_wrapper" ng-controller="menuCtrl" >
 
 
-        <ul ng-controller="loginCtrl" ng-switch-when="normalState" class="popup-login-area">
+        <ul ng-controller="loginCtrl" class="popup-login-area">
             <li id="login_area" ng-switch="loginAreaState">
 
                 <div ng-if="info.status">
@@ -81,13 +80,11 @@
                 </div>
             </li>
 
-            <!--<menu-item icon-class="privacy_issues_icon" menu-label="Notifications" tab-to-open = "home/notifications" ng-show="isAuthenticated"></menu-item >
-            <menu-item icon-class="privacy_settings_icon" menu-label="Preferences" tab-to-open = "preferences/facebook" ng-show="isAuthenticated"></menu-item>-->
             <menu-item icon-class="dashboard_icon" menu-label="Dashboard" tab-to-open = "home" ng-show="isAuthenticated"></menu-item>
 
             <li id="operando_abp" ng-show="isAuthenticated">
                 <div class="item_icon abp_icon"></div>
-                <a id="abp_expand" href="#">AdBlock Plus </a>
+                <a id="abp_expand" href="#">AdBlocker Options </a>
 
                 <div id="expand_abp"></div>
 
@@ -137,30 +134,6 @@
                                 <div class="collapse-icon-placeholder safari-inline-block"></div>
                                 <div class="collapse-icon"></div>
                             </div>
-                            <ul id="stats" class="collapsable">
-                                <li>
-                                    <div>
-                                        <div id="stats-page"></div>
-                                        <div id="stats-total"></div>
-                                    </div>
-
-                                    <div id="share">
-                                        <span class="i18n_stats_share_title"></span>
-
-                                        <div id="share-box">
-                                            <div data-social="facebook"></div>
-                                            <div data-social="twitter"></div>
-                                            <div data-social="gplus"></div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="operando_hide">
-                                    <div id="show-iconnumber" class="checkbox" role="checkbox" aria-checked></div>
-                                    <label for="show-iconnumber" class="i18n_stats_show_iconnumber"></label>
-                                </li>
-                            </ul>
-
                         </li>
                         <li id="options" role="button" class="menu-item">
                             <div class="icon"></div>
@@ -170,27 +143,7 @@
                 </div>
 
             </li>
-
-            <li id="about_operando" ng-click="aboutOperando()">
-
-                <div class="item_icon about_icon"></div>
-                <div class="right_content">
-                    <a href="#">About OPERANDO</a>
-                </div>
-            </li>
-
         </ul>
-        <div ng-switch-when="aboutOperandoState" id="about_operando_ctn">
-            <div>
-                <p>
-                    The OPERANDO project will integrate and extend the state of the art to create a platform that will used by independent Privacy Service Providers (PSPs) to provide comprehensive user privacy enforcement in the form of a dedicated online service, called "Privacy Authority". The OPERANDO platform will support flexible and viable business models, including targeting of individual market segments such as public administration, social networks and Internet of Things
-                </p>
-                <p>
-                    Version: 0.3 (development)
-                </p>
-            </div>
-            <button ng-click="normalState()">Back</button>
-        </div>
     </div>
 </div>
 

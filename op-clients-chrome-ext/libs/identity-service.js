@@ -36,7 +36,12 @@ var observer = {
     updateDefaultSubstituteIdentity:{
         success:[],
         error:[]
+    },
+    listDomains:{
+        success:[],
+        error:[]
     }
+
 };
 
 //TODO refactor this
@@ -83,7 +88,7 @@ swarmHub.on("identity.js", "deleteIdentity_success", function (swarm) {
 swarmHub.on("identity.js", "deleteIdentity_error", function (swarm) {
     while (observer.remove_identity.error.length > 0) {
         var c = observer.remove_identity.error.pop();
-        c(swarm.identity);
+        c(swarm.error);
     }
 });
 
@@ -94,10 +99,16 @@ swarmHub.on("identity.js", "defaultIdentityUpdated", function (swarm) {
     }
 });
 
+swarmHub.on("identity.js", "gotDomains", function (swarm) {
+    while (observer.listDomains.success.length > 0) {
+        var c = observer.listDomains.success.pop();
+        c(swarm.domains);
+    }
+});
+
 
 
 var identityService = exports.identityService = {
-
 
     generateIdentity: function (success_callback, error_callback) {
         swarmHub.startSwarm('identity.js', 'generateIdentity');
@@ -128,19 +139,8 @@ var identityService = exports.identityService = {
         observer.updateDefaultSubstituteIdentity.success.push(callback);
     },
 
-    listDomains: function (callback) {
-        //TODO load domains
-        var availableDomains = [];
-        for (var i = 0; i < 10; i++) {
-            var domain = {
-                id: "op" + i,
-                name: "operando" + i + ".eu"
-            }
-            availableDomains.push(domain);
-        }
-
-        callback(availableDomains);
-
+    listDomains: function(callback){
+        swarmHub.startSwarm('identity.js', 'listDomains');
+        observer.listDomains.success.push(callback);
     }
-
 }

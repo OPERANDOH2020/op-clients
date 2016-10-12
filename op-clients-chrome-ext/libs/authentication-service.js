@@ -53,7 +53,7 @@ var authenticationService = exports.authenticationService = {
          *
          */
         setTimeout(function(){
-            swarmHub.startSwarm("register.js", "registeNewUser", user);
+            swarmHub.startSwarm("register.js", "registerNewUser", user);
             swarmHub.on('register.js', "success", function (swarm) {
                 successFunction("success");
             });

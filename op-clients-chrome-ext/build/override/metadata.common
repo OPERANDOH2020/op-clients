@@ -97,7 +97,6 @@ lib/adblockplus.js = adblockpluscore/lib/events.js
   adblockpluscore/lib/antiadblockInit.js
   lib/messaging.js
   lib/url.js
-  lib/stats.js
   lib/devtools.js
   lib/whitelisting.js
   lib/filterValidation.js

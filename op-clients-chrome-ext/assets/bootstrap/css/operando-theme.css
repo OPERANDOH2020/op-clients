@@ -215,7 +215,8 @@ div.tab-content{
 #home_tab,
 #reading_settings_tab,
 #preferences_tab,
-#pfb_tab
+#pfb_tab,
+#social_networks_tab
 {
     display: block;
     padding: 20px;
@@ -534,7 +535,7 @@ padding-left: 0px;
     display: block;
     width: 16px;
     margin: 8px;
-    background: #FFFFFF;
+    background: #FFB400;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -547,6 +548,7 @@ padding-left: 0px;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
      right: 0;
+    background: #FFF;
  }
 
 .extension_left_ctn{
@@ -1774,6 +1776,7 @@ top:0;
 
 #pfbdeals_container .onoffswitch-inner:before {
     content: "Subscribe";
+    padding-right: 20px;
 }
 #pfbdeals_container .onoffswitch-inner:after {
     content: "Unsubscribe";

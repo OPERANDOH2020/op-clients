@@ -112,7 +112,7 @@
                 <ul class="nav nav-tabs tabs-left primary-menu panel-group" id="accordion" role="tablist"
                     aria-multiselectable="true">
 
-                    <li ng-class="{active: $state.includes('home')}" class="panel menu_icon home_icon">
+                    <!--<li ng-class="{active: $state.includes('home')}" class="panel menu_icon home_icon">
 
                         <a class="panel-heading" role="tab" id="headingOne" role="button" data-toggle="collapse"
                            data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">Home</a>
@@ -127,31 +127,14 @@
                                 </a></li>
                             </ul>
                         </div>
-                    </li>
-
-                    <!--<li ng-class="{active: $state.includes('preferences')}"
-                        class="panel menu_icon social_networks_icon">
-
-                        <a class="panel-heading" role="tab" id="headingTwo" role="button" data-toggle="collapse"
-                           data-parent="#accordion" data-target="#collapseTwo" aria-controls="collapseTwo">Social Networks</a>
-
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
-                             aria-labelledby="headingTwo">
-                            <ul class="nav nav-tabs tabs-left sub-menu panel-body">
-                                <li ui-sref-active="active"><a class="menu_icon facebook_icon"
-                                                               ui-sref="preferences.facebook">Facebook</a></li>
-                                <li ui-sref-active="active"><a class="menu_icon linkedin_icon"
-                                                               ui-sref="preferences.linkedin">Linkedin</a></li>
-                                <li ui-sref-active="active"><a class="menu_icon twitter_icon"
-                                                               ui-sref="preferences.twitter">Twitter</a></li>
-                                <li ui-sref-active="active"><a class="menu_icon google_icon"
-                                                               ui-sref="preferences.google">Google</a></li>
-                            </ul>
-                        </div>
                     </li>-->
 
                     <li ui-sref-active="active" class="no-sub-menu">
-                        <a class="menu_icon social_networks_icon" ui-sref="home.privacyQuestionnaire">Social Networks</a>
+                        <a class="menu_icon home_icon" ui-sref="home">Home</a>
+                    </li>
+
+                    <li ui-sref-active="active" class="no-sub-menu">
+                        <a class="menu_icon social_networks_icon" ui-sref="socialNetworks">Social Networks</a>
                     </li>
 
 
@@ -159,22 +142,6 @@
                     <li ui-sref-active="active" class="no-sub-menu">
                         <a class="menu_icon privacy_deals_icon" ui-sref="deals">Privacy Deals</a>
                     </li>
-
-                    <!--<li ng-class="{active: $state.includes('deals')}" class="panel menu_icon privacy_deals_icon">
-                        <a class="panel-heading" role="tab" id="headingThree" role="button" data-toggle="collapse"
-                           data-parent="#accordion" data-target="#collapseThree" aria-controls="collapseThree">Privacy
-                            Deals</a>
-
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                             aria-labelledby="headingThree">
-                            <ul class="nav nav-tabs tabs-left sub-menu panel-body">
-                                <li ui-sref-active="active"><a class="menu_icon offers_icon"
-                                                               ui-sref="deals.availableOffers">Available Offers</a></li>
-                                <li ui-sref-active="active"><a class="menu_icon deals_icon" ui-sref="deals.myDeals">Deals</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>-->
 
                     <li ui-sref-active="active" class="no-sub-menu">
                         <a class="menu_icon identity_management_icon" ui-sref="identityManagement">My Identities</a>

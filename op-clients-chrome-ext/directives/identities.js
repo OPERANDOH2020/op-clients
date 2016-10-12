@@ -70,6 +70,7 @@ angular.module('identities', [])
                                 messengerService.send("listDomains",{},function(domains){
                                     $scope.domains.availableDomains = domains;
                                     $scope.identity.domain = $scope.domains.availableDomains[0];
+                                    $scope.generateIdentity();
                                 });
 
                                 $scope.saveIdentity = function () {
@@ -106,8 +107,6 @@ angular.module('identities', [])
                                     close(result, 500);
                                 };
 
-                                $scope.generateIdentity();
-
                             }]
                         }).then(function (modal) {
                             modal.element.modal();
@@ -125,8 +124,6 @@ angular.module('identities', [])
                 replace: true,
                 scope: {identity: "="},
                 controller: function ($scope, ModalService, messengerService, Notification) {
-
-                    //$scope.identity.isDefault = false;
 
                     $scope.changeDefaultIdentity = function(){
                         console.log($scope.defaultIdentity);

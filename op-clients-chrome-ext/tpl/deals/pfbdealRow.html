@@ -11,8 +11,8 @@
         </div>
         </div>
     </td>
-    <td class="pfb_reward" ng-if="deal.type=='availableOffer'">{{deal.benefit}}</td>
-    <td class="voucher_code" ng-if="deal.type=='myDeal'">{{deal.voucher}}</td>
+    <td class="pfb_reward" ng-if="deal.subscribed == true">{{deal.voucher}}</td>
+    <td class="voucher_code" ng-if="deal.subscribed == false">{{deal.benefit}}</td>
     <td class="actions">
 
         <div class="toggle_container">
@@ -26,8 +26,5 @@
             </div>
         </div>
 
-
-        <!--<button ng-if="deal.type=='myDeal'" class="btn-primary-black" ng-click="unsubscribeDeal()">Unsubscribe</button>
-        <button ng-click="acceptDeal()" ng-if="deal.type=='availableOffer'" class="btn-primary">Accept</button>-->
     </td>
 </tr>

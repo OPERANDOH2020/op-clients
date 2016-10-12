@@ -97,6 +97,7 @@ angular.module('pfbdeals', [])
                          messengerService.send("acceptPfbDeal", {serviceId:$scope.deal.serviceId}, function(deal){
 
                              $scope.deal.subscribed = true;
+                             $scope.deal.voucher = deal.voucher;
                              Notification.success({message:"You have successfully subscribed to deal", positionY: 'bottom', positionX: 'center', delay: 2000});
                          })
 

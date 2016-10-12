@@ -52,8 +52,8 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 templateUrl: "views/home.html",
                 cache: false
             })
-            .state("home.privacyQuestionnaire", {
-                url: "/privacy-questionnaire",
+            .state("socialNetworks", {
+                url: "/social-networks",
                 /*templateUrl: "views/home/privacy_questionnaire.html",*/
                 template:"<privacy-wizard></privacy-wizard>",
                 resolve: {
@@ -66,7 +66,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
 
                 }
             })
-            .state("home.notifications", {
+            .state("notifications", {
                 url: "/notifications",
                 templateUrl: "views/home/notifications.html"
             })

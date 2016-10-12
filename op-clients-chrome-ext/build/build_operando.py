@@ -82,7 +82,13 @@ files = [
     "src": "build/override/adblockplus/chrome/locale/ro/meta.properties",
     "dest": "adblockpluschrome/adblockplus/chrome/locale/ro/meta.properties",
     "is_directory":0
-  }]
+  },
+  {
+      "src": "build/override/adblockpluschrome/chrome/ext/background.js",
+      "dest": "adblockpluschrome/chrome/ext/background.js",
+      "is_directory":0
+    }
+  ]
 
 configFiles = [
     {

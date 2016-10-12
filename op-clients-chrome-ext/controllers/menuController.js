@@ -14,14 +14,4 @@
 angular.module("op-popup").
 controller("menuCtrl", ["$scope", function ($scope) {
 
-    $scope.popupAreaState = "normalState";
-
-    $scope.aboutOperando = function () {
-        $scope.popupAreaState = "aboutOperandoState";
-    }
-
-    $scope.normalState = function () {
-        $scope.popupAreaState = "normalState";
-    }
-
 }]);
