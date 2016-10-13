@@ -10,7 +10,7 @@ import UIKit
 
 struct UIBrowsingNavigationBarCallbacks {
     let whenUserPressedBack: (() -> Void)?
-    let whenUserPressedSearchWithString: ((searchString: String) -> Void)?
+    let whenUserPressedSearchWithString: ((_ searchString: String) -> Void)?
 }
 
 class UIBrowsingNavigationBar: RSNibDesignableView, UISearchBarDelegate
@@ -34,17 +34,14 @@ class UIBrowsingNavigationBar: RSNibDesignableView, UISearchBarDelegate
         self.searchBarSearchButtonClicked(self.searchBar)
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar)
-    {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text
         {
-            self.callbacks?.whenUserPressedSearchWithString?(searchString: searchText)
+            self.callbacks?.whenUserPressedSearchWithString?(searchText)
         }
         
         searchBar.endEditing(true)
     }
-    
-    
     
     
     func setupWithCallbacks(callbacks: UIBrowsingNavigationBarCallbacks?)

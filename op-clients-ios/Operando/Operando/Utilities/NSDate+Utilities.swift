@@ -11,22 +11,16 @@ import Foundation
 
 extension NSDate
 {
-    @nonobjc static var formatter: NSDateFormatter? = nil
-    
-    func withoutTime() -> NSDate
-    {
-        let comps = NSCalendar.currentCalendar().components([NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year], fromDate: self)
-        return NSCalendar.currentCalendar().dateFromComponents(comps)!
-    }
+    @nonobjc static var formatter: DateFormatter? = nil
     
     func prettyPrinted() -> String
     {
         if(NSDate.formatter == nil)
         {
-            NSDate.formatter = NSDateFormatter();
+            NSDate.formatter = DateFormatter();
             NSDate.formatter?.dateFormat = "dd MMMM yyyy";
         }
         
-        return NSDate.formatter!.stringFromDate(self);
+        return NSDate.formatter!.string(from: self as Date);
     }
 }

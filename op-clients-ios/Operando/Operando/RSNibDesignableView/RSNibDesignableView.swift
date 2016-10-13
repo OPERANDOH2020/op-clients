@@ -25,22 +25,22 @@ public class RSNibDesignableView: UIView
     internal func commonInit()
     {
         let myClass : AnyClass = self.classForCoder;
-        var nibName : NSString = NSStringFromClass(myClass);
+        var nibName : NSString = NSStringFromClass(myClass) as NSString;
         
-        let bundle : NSBundle = NSBundle(forClass: myClass);
+        let bundle : Bundle = Bundle(for: myClass);
         
         if let targetName = bundle.infoDictionary?["CFBundleName"] as? String
         {
-            nibName = nibName.stringByReplacingOccurrencesOfString(targetName + ".", withString: "");
+            nibName = nibName.replacingOccurrences(of: targetName + ".", with: "") as NSString;
         }
         
         let nib = UINib(nibName: nibName as String, bundle: bundle);
         
-        _contentView = nib.instantiateWithOwner(self, options: nil).first as? UIView;
+        _contentView = nib.instantiate(withOwner: self, options: nil).first as? UIView;
         
         if _contentView != nil
         {
-            UIView.constrainView(_contentView!, inHostView: self);
+            UIView.constrainView(view: _contentView!, inHostView: self);
         }
         
     }

@@ -21,6 +21,7 @@ let alertLoginMessage = "Please login with your own credentials on this site, an
 
 class WebViewSettingsReader: NSObject, OSPSettingsReader, UIWebViewDelegate
 {
+    
     weak var webView: UIWebView?
     weak var button: UIButton?
     
@@ -36,7 +37,7 @@ class WebViewSettingsReader: NSObject, OSPSettingsReader, UIWebViewDelegate
         super.init()
         webView?.delegate = self
         
-        button?.addTarget(self, action: #selector(WebViewSettingsReader.loginFinishedButtonDidPress(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        button?.addTarget(self, action: #selector(WebViewSettingsReader.loginFinishedButtonDidPress(sender:)), for: UIControlEvents.touchUpInside)
     }
     
     
@@ -49,9 +50,9 @@ class WebViewSettingsReader: NSObject, OSPSettingsReader, UIWebViewDelegate
     
     func logUserOnSite(site: String, withCompletion completion: ErrorCallback?)
     {
-        if let error = self.loadWebViewToURL(site)
+        if let error = self.loadWebViewToURL(urlString: site)
         {
-            completion?(error: error)
+            completion?(error)
             return
         }
         
@@ -62,96 +63,91 @@ class WebViewSettingsReader: NSObject, OSPSettingsReader, UIWebViewDelegate
         self.whenWebViewFinishesLoad = {
             
             weakSelf?.whenWebViewFinishesLoad = nil
-            RSCommonUtilities.showOKAlertWithMessage(alertLoginMessage)
+            RSCommonUtilities.showOKAlertWithMessage(message: alertLoginMessage)
             weakSelf?.whenLoginButtonIsPressed =
             {
                 weakSelf?.clearAllCallbacks()
-                completion?(error: nil)
+                completion?(nil)
             }
             
         }
     }
     
-    func redirectAndReadSettings(settingsAsJsonString: String, onAddress address: String, completion: ((readSettings: NSDictionary?, error: NSError?) -> Void)?)
+    func redirectAndReadSettings(settingsAsJsonString: String, onAddress address: String, completion: ((_ readSettings: NSDictionary?, _ error: NSError?) -> Void)?)
     {
         self.clearAllCallbacks()
         weak var weakSelf = self
         
-        if self.isCurrentPageOnWebViewAtAddress(address)
+        if self.isCurrentPageOnWebViewAtAddress(urlString: address)
         {
-            self.readSettingsBasedOnJsonString(settingsAsJsonString, completion: completion)
+            self.readSettingsBasedOnJsonString(settingsAsJsonString: settingsAsJsonString, completion: completion)
             return;
         }
         
-        if let error = self.loadWebViewToURL(address)
+        if let error = self.loadWebViewToURL(urlString: address)
         {
-            completion?(readSettings: nil, error: error)
+            completion?(nil, error)
             return
         }
         
         self.whenWebViewFinishesLoad = {
             weakSelf?.whenWebViewFinishesLoad = nil
-            weakSelf?.readSettingsBasedOnJsonString(settingsAsJsonString, completion: completion)
+            weakSelf?.readSettingsBasedOnJsonString(settingsAsJsonString: settingsAsJsonString, completion: completion)
         }
         
         self.whenWebViewLoadsWithError = { error in
             weakSelf?.whenWebViewLoadsWithError = nil
-            completion?(readSettings: nil, error: error)
+            completion?(nil,error)
         }
     }
     
     
-    private func readSettingsBasedOnJsonString(settingsAsJsonString: String, completion: ((readSettings: NSDictionary?, error: NSError?) -> Void)?)
+    private func readSettingsBasedOnJsonString(settingsAsJsonString: String, completion: ((_ readSettings: NSDictionary?, _ error: NSError?) -> Void)?)
     {
         
         loadJQueryIfNeeded()
         loadReadingFunctionInWebView()
-        let escapedString = settingsAsJsonString.stringByReplacingOccurrencesOfString("\"", withString: "\\\"").stringByReplacingOccurrencesOfString("\'", withString: "\\\'")
+        let escapedString = settingsAsJsonString.replacingOccurrences(of: "\"", with: "\\\"").replacingOccurrences(of: "\'", with: "\\\'")
         
-        let results = self.webView?.stringByEvaluatingJavaScriptFromString("window.readSettings(\"\(escapedString)\")")
+        let _ = self.webView?.stringByEvaluatingJavaScript(from: "window.readSettings(\"\(escapedString)\")")
         
         
-        completion?(readSettings: nil, error: nil)
+        completion?(nil, nil)
     }
     
     private func loadReadingFunctionInWebView()
     {
-        self.loadAndExecuteScriptNamed("readSNSettings")
+        self.loadAndExecuteScriptNamed(scriptName: "readSNSettings")
     }
     
     private func loadJQueryIfNeeded()
     {
-        let exists = self.loadAndExecuteScriptNamed("testJQuery")
+        let exists = self.loadAndExecuteScriptNamed(scriptName: "testJQuery")
         if exists == "false"
         {
-            self.loadAndExecuteScriptNamed("jquery214min")
+            self.loadAndExecuteScriptNamed(scriptName: "jquery214min")
         }
     }
     
     
-    
+    @discardableResult
     private func loadAndExecuteScriptNamed(scriptName: String) -> String
     {
-        guard let filePath = NSBundle.mainBundle().pathForResource(scriptName, ofType: "js") else {return ""}
-        if let jsString = try? NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        guard let filePath = Bundle.main.path(forResource: scriptName, ofType: "js") else {return ""}
+        if let jsString = try? NSString(contentsOfFile: filePath, encoding: String.Encoding.utf8.rawValue)
         {
-            return self.webView?.stringByEvaluatingJavaScriptFromString(jsString as String) ?? ""
+            return self.webView?.stringByEvaluatingJavaScript(from: jsString as String) ?? ""
         }
         
         return ""
     }
     
     //MARK: UIWebViewDelegate and button action
-    func webViewDidFinishLoad(webView: UIWebView) {
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         self.whenWebViewFinishesLoad?()
     }
     
-    
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?)
-    {
-        return;
-        self.whenWebViewLoadsWithError?(error: error)
-    }
     
     
     func loginFinishedButtonDidPress(sender: UIButton)
@@ -173,10 +169,10 @@ class WebViewSettingsReader: NSObject, OSPSettingsReader, UIWebViewDelegate
     
     private func loadWebViewToURL(urlString: String) -> NSError?
     {
-        guard let url = NSURL(string: urlString) else {return NSError.malformedURLError(urlString)}
-        let request = NSURLRequest(URL: url)
+        guard let url = NSURL(string: urlString) else {return NSError.malformedURLError(url: urlString)}
+        let request = NSURLRequest(url: url as URL)
         
-        self.webView?.loadRequest(request)
+        self.webView?.loadRequest(request as URLRequest)
         
         return nil
     }

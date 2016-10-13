@@ -20,7 +20,7 @@ extension UIViewController
         if useAutoLayout
         {
             controller.view.translatesAutoresizingMaskIntoConstraints = false;
-            UIView.constrainView(controller.view, inHostView: hostView!);
+            UIView.constrainView(view: controller.view, inHostView: hostView!);
         }
         else
         {
@@ -28,19 +28,19 @@ extension UIViewController
             controller.view.frame = self.view.bounds;
             hostView!.addSubview(controller.view);
         }
-        controller.didMoveToParentViewController(self);
+        controller.didMove(toParentViewController: self);
     }
     
     func removeContentController(controller: UIViewController)
     {
-        controller.willMoveToParentViewController(nil);
+        controller.willMove(toParentViewController: nil);
         controller.view.removeFromSuperview();
         controller.removeFromParentViewController();
     }
     
     func bringContentControllerInFront(controller: UIViewController)
     {
-        self.view.bringSubviewToFront(controller.view);
+        self.view.bringSubview(toFront: controller.view);
     }
     
     func moveContentController(contentController: UIViewController, behindContentController frontContentController: UIViewController)

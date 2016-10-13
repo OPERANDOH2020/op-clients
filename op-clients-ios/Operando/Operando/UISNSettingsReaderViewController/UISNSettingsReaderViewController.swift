@@ -20,7 +20,6 @@ class UISNSettingsReaderViewController: UIViewController {
     var whenLoginButtonsIsPressed: VoidBlock?
     
     let ospSettingsManager = OSPSettingsManager()
-    var fbSecurityEnforcer: FacebookSecurityEnforcer!
     
     
     @IBOutlet weak var snSettingsView: UISNSettingsView!
@@ -28,12 +27,12 @@ class UISNSettingsReaderViewController: UIViewController {
         super.viewDidLoad()
         self.loginButton.alpha = 0;
         self.webView = WKWebView()
-        UIView.constrainView(self.webView, inHostView: self.webViewHost)
-        self.view.bringSubviewToFront(self.loginButton)
+        UIView.constrainView(view: self.webView, inHostView: self.webViewHost)
+        self.view.bringSubview(toFront: self.loginButton)
 
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -62,7 +61,7 @@ class UISNSettingsReaderViewController: UIViewController {
             if let results = results
             {
                 self.snSettingsView.alpha = 1.0;
-                self.snSettingsView.reloadWithItems(results)
+                self.snSettingsView.reloadWithItems(items: results)
             }
         }
         
@@ -83,16 +82,17 @@ class UISNSettingsReaderViewController: UIViewController {
     {
         self.alterUserAgentInDefaults()
         let fbEnforcer = FbWebKitSecurityEnforcer(webView: self.webView)
-        fbEnforcer.enforceWithCallToLogin({ (callWhenLoginIsDone) in
+        fbEnforcer.enforceWithCallToLogin(callToLoginWithCompletion: { (callWhenLoginIsDone) in
             
-            RSCommonUtilities.showOKAlertWithMessage("Please login and press 'Login Finished'");
+            RSCommonUtilities.showOKAlertWithMessage(message: "Please login and press 'Login Finished'");
             self.whenLoginButtonsIsPressed = {
                 callWhenLoginIsDone?()
             }
             
-            
-            
-            }) { (error) in
+            }, whenDisplayingMessage: { message in
+                RSCommonUtilities.showOKAlertWithMessage(message: message);
+            })
+                { (error) in
                 print(error);
                 print(fbEnforcer.self)
         }
@@ -101,45 +101,27 @@ class UISNSettingsReaderViewController: UIViewController {
     func enforceFacebookSecurity()
     {
         
-//        self.alterUserAgentInDefaults()
-//        
-//        let paramsProvider = FbWebKitParametersProvider(loginDoneButton: self.loginButton, webView: self.webView)
-//        let webRequestHelper = NSURLSessionWebHelper()
-//        self.fbSecurityEnforcer = FacebookSecurityEnforcer(paramsProvider: paramsProvider, webRequestHelper: webRequestHelper);
-//        
-//        self.fbSecurityEnforcer.enforceWithCompletion { (error) in
-//            RSCommonUtilities.showOKAlertWithMessage("Done");
-//            self.clearUserAgentFromDefaults()
-//        }
         
     }
     
-    func beginNewReadingWithCompletion(completion: ((results: [SettingsReadResult]?, error: NSError?) -> Void)?)
+    func beginNewReadingWithCompletion(completion: ((_ results: [SettingsReadResult]?, _ error: NSError?) -> Void)?)
     {
-//        self.alterUserAgentInDefaults()
-//        let settingsApplier = WebKitSettingsReader(loginIsDoneButton: self.loginButton, webView: self.webView)
-//        let settingsProvider = LocalJSSettingsProvider()
-//        self.ospSettingsManager.readSettingsWithProvider(settingsProvider, andApplier: settingsApplier) { (results, error) in
-//            
-//            self.clearUserAgentFromDefaults()
-//            
-//            completion?(results: results, error: error);
-//        }
+
     }
     
     
     
     private func alterUserAgentInDefaults()
     {
-        let defaultsUserAgent: [String : AnyObject] = ["UserAgent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12"]
+        let defaultsUserAgent: [String : AnyObject] = ["UserAgent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12" as AnyObject]
         
-        NSUserDefaults.standardUserDefaults().registerDefaults(defaultsUserAgent)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.register(defaults: defaultsUserAgent)
+        UserDefaults.standard.synchronize()
     }
     
     private func clearUserAgentFromDefaults()
     {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("UserAgent");
-        NSUserDefaults.standardUserDefaults().synchronize();
+        UserDefaults.standard.removeObject(forKey: "UserAgent");
+        UserDefaults.standard.synchronize();
     }
 }

@@ -1,11 +1,37 @@
  (function()
   {
   
-  window.console = {};
-  window.console.log = function(message)
+  var kMessageTypeKey = "messageType";
+  var kLogMessageTypeContentKey = "logContent";
+  var kLogMessageType = "log";
+  
+  var kStatusMessageMessageType = "statusMessageType";
+  var kStatusMessageContentKey = "statusMessageContent";
+  
+  var webkitSendMessage  = function(message)
   {
   alert(message);
   };
+  
+  window.console = {};
+  window.console.log = function(logMessage)
+  {
+  var webkitMessage = {};
+  webkitMessage[kMessageTypeKey] = kLogMessageType;
+  webkitMessage[kLogMessageTypeContentKey] = logMessage;
+  
+  webkitSendMessage(JSON.stringify(webkitMessage));
+  
+  };
+  
+  var sendStatusMessage = function(settingName)
+  {
+  var webkitMessage = {};
+  webkitMessage[kMessageTypeKey] = kStatusMessageMessageType;
+  webkitMessage[kStatusMessageContentKey] = settingName;
+  webkitSendMessage(JSON.stringify(webkitMessage));
+  };
+  
   
   Object.prototype.formStringToObject = function()
   {
@@ -254,16 +280,12 @@
                                           data[prop] = settings.data[prop];
                                           }
                                           
-                                          var headers = {
-                                          "accept" : "*/*",
-                                          "accept-language" : "en-US,en;q=0.8",
-                                          "content-type" : "application/x-www-form-urlencoded; charset=UTF-8",
-                                          "origin" : "https://www.facebook.com",
-                                          "X-Alt-Referer" : settings.page
-                                          };
                                           
-                                          makePOSTRequest(settings.url, settings.page, headers, data, function(){
-                                                          console.log('Did secure for url ' + settings.page);
+                                          makePOSTRequest(settings.url, settings.page, data, function()
+                                                          {
+                                                          
+                                                          sendStatusMessage('Did secure \'' + settings.name + '\'');
+                                                          
                                                           resolve("Done");
                                                           }, function(){
                                                           console.log('Error for page ' + settings.page);
@@ -279,14 +301,9 @@
   
   }
   
-  function makePOSTRequest(url, cookiesURLSource, headers, dataInJSON, onSuccess, onError)
+  function makePOSTRequest(url, cookiesURLSource, dataInJSON, onSuccess, onError)
   {
-  var request = {
-  "cookiesURLSource" : cookiesURLSource,
-  "url" : url,
-  "headers" : headers,
-  "dataInJSON" : dataInJSON
-  };
+  
   
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function ()
@@ -316,50 +333,6 @@
   
   xmlHttp.send(dataInJSON.toFormString());
   return;
-  
-  console.log('Making a request with data: ' + JSON.stringify(dataInJSON));
-  
-  
-  return;
-  
-  //using the UIWebView
-  var jsonString = JSON.stringify(request);
-  window["didPreparePOSTInfo"] = jsonString;
-  var iframeSrc = "didPreparePOSTInfo:";
-  
-  
-  window.onFinishedPOST = function()
-  {
-  if(window["lastRequestStatus"] && window["lastRequestStatus"] === 'finished')
-  {
-  onSuccess();
-  }
-  else
-  {
-  onError();
-  }
-  };
-  
-  var iframe = document.createElement("IFRAME");
-  iframe.setAttribute("src", iframeSrc);
-  document.documentElement.appendChild(iframe);
-  iframe.parentNode.removeChild(iframe);
-  iframe = null;
-  
-  return;
-  
-  // the WKUIDelegate will intercept this and continue the execution after the request has finished/ terminated
-  alert(JSON.stringify(request));
-  
-  //At this point, the request should be finished
-  if(window["lastRequestStatus"] && window["lastRequestStatus"] === 'finished')
-  {
-  onSuccess();
-  }
-  else
-  {
-  onError();
-  }
   }
   
   function secureAccount(callback)

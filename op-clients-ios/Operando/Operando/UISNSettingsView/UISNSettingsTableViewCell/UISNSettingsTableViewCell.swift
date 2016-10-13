@@ -17,7 +17,7 @@ class UISNSettingsTableViewCell: UITableViewCell
     func setupWithSNSettingsDict(snSettings: NSDictionary)
     {
         let firstKey = snSettings.allKeys.first
-        let firstValue = snSettings.objectForKey(firstKey ?? "")
+        let firstValue = snSettings.object(forKey: firstKey ?? "")
         
         self.titleLabel.text = firstKey as? String ?? "N/A"
         self.valueLabel.text = firstValue as? String ?? "N/A"

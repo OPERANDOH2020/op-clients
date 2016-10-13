@@ -33,7 +33,7 @@ class UIRegistrationViewController: UIViewController {
     */
     @IBAction func signInButtonPressed(sender: AnyObject)
     {
-        self.navigationController?.popViewControllerAnimated(true);
+        self.navigationController?.popViewController(animated: true);
     }
 
 }

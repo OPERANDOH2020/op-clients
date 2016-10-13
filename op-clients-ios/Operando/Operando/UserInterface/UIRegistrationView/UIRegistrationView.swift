@@ -23,21 +23,21 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     override func commonInit() {
         super.commonInit()
         
-        self.invalidEmailLabel.hidden = true;
-        self.passwordsDontMatchLabel.hidden = true;
+        self.invalidEmailLabel.isHidden = true;
+        self.passwordsDontMatchLabel.isHidden = true;
         
         self.emailTF.delegate = self;
         self.confirmPasswordTF.delegate = self;
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIRegistrationView.keyboardWillAppear(_:)), name: UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIRegistrationView.keyboardWillDisappear(_:)), name: UIKeyboardWillHideNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(UIRegistrationView.keyboardWillAppear(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(UIRegistrationView.keyboardWillDisappear(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil);
         
         self.disableSignupButton();
     }
     
     deinit
     {
-        NSNotificationCenter.defaultCenter().removeObserver(self);
+        NotificationCenter.default.removeObserver(self);
     }
     
     func keyboardWillAppear(notification: NSNotification)
@@ -47,7 +47,7 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     
     func keyboardWillDisappear(notification: NSNotification)
     {
-        self.scrollView.contentInset = UIEdgeInsetsZero;
+        self.scrollView.contentInset = UIEdgeInsets.zero;
     }
     
     @IBAction func didPressSignUp(sender: AnyObject)
@@ -57,13 +57,13 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     
     @IBAction func didSwitchShowPasswordsOnOrOff(sender: UISwitch)
     {
-        self.setSecureTextEntry(!sender.on);
+        self.setSecureTextEntry(entry: !sender.isOn);
     }
     
     
     //MARK: textfield delegate
     
-    func textFieldDidEndEditing(textField: UITextField)
+    func textFieldDidEndEditing(_ textField: UITextField)
     {
         if textField == self.emailTF
         {
@@ -77,7 +77,7 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.endEditing(true);
         return true;
     }
@@ -88,11 +88,11 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     {
         if self.isEmailValid() == false
         {
-            self.invalidEmailLabel.hidden = false;
+            self.invalidEmailLabel.isHidden = false;
         }
         else
         {
-            self.invalidEmailLabel.hidden = true;
+            self.invalidEmailLabel.isHidden = true;
             
             if self.doPasswordsMatch()
             {
@@ -109,12 +109,12 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     {
         if self.doPasswordsMatch() == false
         {
-            self.passwordsDontMatchLabel.hidden = false;
+            self.passwordsDontMatchLabel.isHidden = false;
             self.disableSignupButton();
         }
         else
         {
-            self.passwordsDontMatchLabel.hidden = true;
+            self.passwordsDontMatchLabel.isHidden = true;
             if self.isEmailValid()
             {
                 self.enableSignupButton();
@@ -129,7 +129,7 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     private func isEmailValid() -> Bool
     {
         guard let email = self.emailTF.text else {return false}
-        return OPUtils.isValidEmail(email);
+        return OPUtils.isValidEmail(testStr: email);
     }
     
     private func doPasswordsMatch() -> Bool
@@ -144,25 +144,26 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     
     private func disableSignupButton()
     {
-        self.signUpBtn.userInteractionEnabled = false;
+        self.signUpBtn.isUserInteractionEnabled = false;
         self.signUpBtn.alpha = 0.6;
     }
     
     private func enableSignupButton()
     {
-        self.signUpBtn.userInteractionEnabled = true;
+        self.signUpBtn.isUserInteractionEnabled = true;
         self.signUpBtn.alpha = 1.0;
     }
     
     private func setSecureTextEntry(entry: Bool)
     {
-        self.confirmPasswordTF.secureTextEntry = entry;
-        self.passwordTF.secureTextEntry = entry;
+        
+        self.confirmPasswordTF.isSecureTextEntry = entry;
+        self.passwordTF.isSecureTextEntry = entry;
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
-    {
-        super.touchesCancelled(touches, withEvent: event);
-        self.endEditing(true);
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        self.endEditing(true)
     }
+    
 }

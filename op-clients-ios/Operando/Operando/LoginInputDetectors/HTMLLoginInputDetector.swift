@@ -19,7 +19,7 @@ class HTMLLoginInputDetector: NSObject
 {
     
     
-    func detectLoginInputsInWebView(webView: WKWebView, withCompletion completion: ((result: HTMLLoginInputDetectionResult?) -> Void))
+    func detectLoginInputsInWebView(webView: WKWebView, withCompletion completion: @escaping ((_ result: HTMLLoginInputDetectionResult?) -> Void))
     {
         // Naive way to check for the existence of login and password input types
         
@@ -27,12 +27,12 @@ class HTMLLoginInputDetector: NSObject
             
             if let html = htmlString
             {
-                let detectionResult = self.analyzeHTML(html);
-                completion(result: detectionResult)
+                let detectionResult = self.analyzeHTML(html: html);
+                completion(detectionResult)
                 return;
             }
             
-            completion(result: nil);
+            completion(nil);
         }
     }
     
@@ -47,21 +47,24 @@ class HTMLLoginInputDetector: NSObject
         
         let htmlIdEquals = "id=\"";
         
-        if let rangeOfInputTypePassword = html.rangeOfString(htmlInputTypePassword, options: .LiteralSearch)
+        if let rangeOfInputTypePassword = html.range(of: htmlInputTypePassword)
         {
-            let searchRange = rangeOfInputTypePassword.startIndex ... html.endIndex.predecessor()
-            if let rangeOfIdEquals =  html.rangeOfString(htmlIdEquals,options: .LiteralSearch, range: searchRange)
+            let searchRange = rangeOfInputTypePassword.lowerBound ..< html.endIndex
+            
+            if let rangeOfIdEquals =  html.range(of: htmlIdEquals, options: .literal,  range: searchRange, locale: nil)
             {
-                passwordInputId = self.loopInString(html, fromIndex: rangeOfIdEquals.endIndex, stopWhenNextCharIs: "\"")
+                passwordInputId = self.loopInString(sourceString: html, fromIndex: rangeOfIdEquals.upperBound, stopWhenNextCharIs: "\"")
             }
         }
         
-        if let rangeOfInputTypeEmail = html.rangeOfString(htmlInputTypeEmail, options: .LiteralSearch)
+        if let rangeOfInputTypeEmail = html.range(of: htmlInputTypeEmail)
         {
-            let searchRange = rangeOfInputTypeEmail.startIndex ... html.endIndex.predecessor()
-            if let  rangeOfIdEquals = html.rangeOfString(htmlIdEquals,options: .LiteralSearch, range: searchRange)
+            let searchRange = rangeOfInputTypeEmail.lowerBound ..< html.endIndex
+            
+            
+            if let  rangeOfIdEquals = html.range(of: htmlIdEquals,options: .literal, range: searchRange, locale: nil)
             {
-                loginInputId = self.loopInString(html, fromIndex: rangeOfIdEquals.endIndex, stopWhenNextCharIs: "\"")
+                loginInputId = self.loopInString(sourceString: html, fromIndex: rangeOfIdEquals.upperBound, stopWhenNextCharIs: "\"")
                 
             }
         }
@@ -77,7 +80,8 @@ class HTMLLoginInputDetector: NSObject
         
         while currentChar != limitChar {
             result.append(currentChar);
-            loopingIndex = loopingIndex.advancedBy(1);
+            
+            loopingIndex = sourceString.index(loopingIndex, offsetBy: 1)
             currentChar = sourceString.characters[loopingIndex]
         }
         

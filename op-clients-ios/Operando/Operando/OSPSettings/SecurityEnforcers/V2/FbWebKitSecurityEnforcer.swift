@@ -16,145 +16,123 @@ enum POSTRequestStatus: String
     case TerminatedWithError = "terminated"
 }
 
-extension NSHTTPCookieStorage
-{
-    func cookieHeadersFromURL(url: String) -> [String: String]
-    {
-        guard let urlURL = NSURL(string: url) else {return [:]}
-        let cookies = self.cookies
-        return NSHTTPCookie.requestHeaderFieldsWithCookies(cookies ?? []);
-    }
-}
 
-typealias CallToLoginWithCompletion = (callbackWhenLoginIsDone: VoidBlock?) -> Void
 
-extension UIWebView
-{
-    func loadWebViewToURL(urlString: String) -> NSError?
-    {
-        guard let url = NSURL(string: urlString) else {return NSError.malformedURLError(urlString);}
-        self.loadRequest(NSURLRequest(URL: url));
-        return nil;
-    }
-    
-    func loadAndExecuteScriptNamed(scriptName: String, withCompletion completion: ((result: AnyObject?, error: NSError?) -> Void)?)
-    {
-        guard let filePath = NSBundle.mainBundle().pathForResource(scriptName, ofType: "js") else {completion?(result: nil, error: nil);return}
-        if let jsString = try? NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
-        {
-            let result = self.stringByEvaluatingJavaScriptFromString(jsString as String);
-            completion?(result: result, error: nil);
-        }
-    }
-    
-    func loadJQueryIfNeededWithCompletion(completion: VoidBlock?)
-    {
-        self.loadAndExecuteScriptNamed("testJQuery") { (result, error) in
-            if let resultString = result as? String
-            {
-                if resultString == "true"
-                {
-                    completion?();
-                    return;
-                }
-                
-                self.loadAndExecuteScriptNamed("jquery214min", withCompletion: { (result, error) in
-                    if error == nil
-                    {
-                        completion?()
-                    }
-                })
-            }
-        }
-    }
-    
-    
-    func evaluateJavaScript(script: String, completionHandler: ((result: AnyObject?, error: NSError?) -> Void)?)
-    {
-        let result = self.stringByEvaluatingJavaScriptFromString(script)
-        completionHandler?(result: result, error: nil);
-    }
-}
+typealias CallToLoginWithCompletion = (_ callbackWhenLoginIsDone: VoidBlock?) -> Void
+
+let kMessageTypeKey = "messageType";
+
+let kLogMessageTypeContentKey = "logContent";
+let kLogMessageType = "log";
+
+let kStatusMessageMessageType = "statusMessageType";
+let kStatusMessageContentKey = "statusMessageContent";
 
 class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
 {
     private let webView: WKWebView
     private var whenWebViewFinishesNavigation: VoidBlock?
+    private var whenDisplayingMessage: ((_ message: String) -> Void)?
+    
     
     init(webView: WKWebView)
     {
         self.webView = webView
         super.init()
-        self.webView.UIDelegate = self
+        self.webView.uiDelegate = self
         self.webView.navigationDelegate = self
         
     }
     
     
-    func enforceWithCallToLogin(callToLoginWithCompletion: CallToLoginWithCompletion?, completion: ((error: NSError?) -> Void)?)
+    func enforceWithCallToLogin(callToLoginWithCompletion: CallToLoginWithCompletion?, whenDisplayingMessage: ((_ message: String) -> Void)? ,completion: ((_ error: NSError?) -> Void)?)
     {
-
-        if let error = self.webView.loadWebViewToURL("https://www.facebook.com")
+        if let error = self.webView.loadWebViewToURL(urlString: "https://www.facebook.com")
         {
-            completion?(error: error);
+            completion?(error);
             return
         }
+        
+        self.whenDisplayingMessage = whenDisplayingMessage;
+        
         weak var weakSelf = self
         
-        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * NSEC_PER_SEC))
-        dispatch_after(delay, dispatch_get_main_queue())
-        {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { 
             callToLoginWithCompletion?{
                 self.loginIsDoneInitiateNextStep()
             }
             
             weakSelf?.whenWebViewFinishesNavigation = nil;
-            
+
         }
+        
         
     }
     
     
     private func loginIsDoneInitiateNextStep()
     {
-        self.webView.loadAndExecuteScriptNamed("facebook_iOS") { (result, error) in
+        self.webView.loadAndExecuteScriptNamed(scriptName: "facebook_iOS") { (result, error) in
             print(error);
             print(result);
         }
     }
     
+    
+
+    
     private func loadJSFileInWebView()
     {
         let jsFile = self.getJSFile()
-        let userScript = WKUserScript(source: jsFile, injectionTime: WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: true)
+        let userScript = WKUserScript(source: jsFile, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: true)
         self.webView.configuration.userContentController.addUserScript(userScript)
     }
     
     private func getJSFile() -> String
     {
-        guard let path = NSBundle.mainBundle().pathForResource("facebook_iOS", ofType: "js") else {return ""}
+        guard let path = Bundle.main.path(forResource: "facebook_iOS", ofType: "js") else {return ""}
         let js = try? String(contentsOfFile: path)
         return js ?? ""
     }
     
     //MARK: WKWebView delegate
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        self.whenWebViewFinishesNavigation?();
-    }
     
-    func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
-        print(message);
-        completionHandler()
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.whenWebViewFinishesNavigation?()
     }
     
     
-    //MARK: UIWebView delegate
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        
+        completionHandler();
+        
+        if let data = message.data(using: String.Encoding.utf8),
+            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+            let messageDict = jsonObject as? [String: String]
+        {
+            self.handleMessage(message: messageDict)
+        }
+        
+    }
     
 
     
+    //MARK: internal utils
     
-    //
-
-    
-    
+    private func handleMessage(message: [String: String])
+    {
+        guard let messageType = message[kMessageTypeKey] else {return}
+        
+        if messageType == kLogMessageType
+        {
+            print(message[kLogMessageTypeContentKey])
+            return;
+        }
+        
+        //
+        if let statusMessage = message[kStatusMessageContentKey]
+        {
+            self.whenDisplayingMessage?(statusMessage)
+        }
+    }
 }

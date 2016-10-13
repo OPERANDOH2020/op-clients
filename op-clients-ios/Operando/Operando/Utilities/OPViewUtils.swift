@@ -16,7 +16,7 @@ class OPViewUtils
         for view in views
         {
             view.alpha = 0.6;
-            view.userInteractionEnabled = false;
+            view.isUserInteractionEnabled = false;
         }
     }
     
@@ -25,7 +25,7 @@ class OPViewUtils
         for view in views
         {
             view.alpha = 1.0;
-            view.userInteractionEnabled = true;
+            view.isUserInteractionEnabled = true;
         }
     }
     

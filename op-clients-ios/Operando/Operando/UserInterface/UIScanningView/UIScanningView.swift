@@ -23,6 +23,7 @@ class UIScanningView: RSNibDesignableView {
     }
     
     
+    
     @IBAction func didPressScanButton(sender: AnyObject) {
         self.whenPressingScanButton?()
     }
@@ -30,11 +31,11 @@ class UIScanningView: RSNibDesignableView {
     
     func beginScanningState()
     {
-        UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
             self.setScanningUIState()
             
         }) { (finished:Bool) in
-            self.scanningImage.layer.addAnimation(self.createRotatingAnimation(), forKey: nil);
+            self.scanningImage.layer.add(self.createRotatingAnimation(), forKey: nil);
         }
     }
     
@@ -65,9 +66,9 @@ class UIScanningView: RSNibDesignableView {
     {
         let animation = CABasicAnimation(keyPath: "transform.rotation.z");
         
-        animation.toValue = NSNumber(double: 2 * M_PI)
+        animation.toValue = NSNumber(value: 2 * M_PI)
         animation.duration = 5.2
-        animation.cumulative = true
+        animation.isCumulative = true
         animation.repeatCount = 100;
         
         return animation;

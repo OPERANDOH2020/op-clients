@@ -18,7 +18,7 @@ class UISNSettingsView: RSNibDesignableView, UITableViewDataSource, UITableViewD
     
     override func commonInit() {
         super.commonInit()
-        self.setupTableView(self.tableView)
+        self.setupTableView(tv: self.tableView)
     }
     
     func reloadWithItems(items: [SettingsReadResult])
@@ -30,7 +30,7 @@ class UISNSettingsView: RSNibDesignableView, UITableViewDataSource, UITableViewD
     private func setupTableView(tv: UITableView)
     {
         let nib = UINib(nibName: UISNSettingsTableViewCell.identifierNibName, bundle: nil)
-        tv.registerNib(nib, forCellReuseIdentifier: UISNSettingsTableViewCell.identifierNibName)
+        tv.register(nib, forCellReuseIdentifier: UISNSettingsTableViewCell.identifierNibName)
         tv.delegate = self
         tv.dataSource = self
         
@@ -40,36 +40,38 @@ class UISNSettingsView: RSNibDesignableView, UITableViewDataSource, UITableViewD
     
     //TableView delegate and datasource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.items.count;
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.items.count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.items[section].siteName
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         let item = self.items[section]
         return item.resultsPerSettingName.count
         
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(UISNSettingsTableViewCell.identifierNibName) as! UISNSettingsTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: UISNSettingsTableViewCell.identifierNibName) as! UISNSettingsTableViewCell
         
         let item = self.items[indexPath.section]
         let keys = Array(item.resultsPerSettingName.keys)
         let dict = item.resultsPerSettingName[ keys[indexPath.row] ]
-        cell.setupWithSNSettingsDict(dict ?? [:])
+        cell.setupWithSNSettingsDict(snSettings: dict ?? [:])
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     

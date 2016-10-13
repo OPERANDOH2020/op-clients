@@ -14,6 +14,6 @@ import UIKit
 
 public protocol SwarmClientProtocol {
     
-    func didFailedToCreateSocket(error: NSError)
-    func didReceiveData(data: [AnyObject])
+    func didFailedToCreateSocket(_ error: NSError)
+    func didReceiveData(_ data: [Any])
 }

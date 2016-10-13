@@ -11,11 +11,11 @@ import WebKit
 
 extension WKWebView
 {
-    func getCurrentPageHtmlStringWithCompletion(completion: ((htmlString: String?) -> Void))
+    func getCurrentPageHtmlStringWithCompletion(completion: @escaping ((_ htmlString: String?) -> Void))
     {
         self.evaluateJavaScript("document.documentElement.outerHTML",
-                                completionHandler: { (html: AnyObject?, error: NSError?) in
-                                    completion(htmlString: html as? String);
+                                completionHandler: { (html: Any?, error: Error?) in
+                                    completion(html as? String);
         })
     }
 }

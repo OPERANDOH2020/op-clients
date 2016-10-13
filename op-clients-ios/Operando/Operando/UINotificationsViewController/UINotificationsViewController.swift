@@ -19,13 +19,13 @@ class UINotificationsViewController: UIViewController {
     
     @IBAction func didChangeDecisionOnNotifications(sender: UISwitch)
     {
-        if sender.on
+        if sender.isOn
         {
-            OPViewUtils.enbleViews(self.notificationViews);
+            OPViewUtils.enbleViews(views: self.notificationViews);
         }
         else
         {
-            OPViewUtils.disableViews(self.notificationViews)
+            OPViewUtils.disableViews(views: self.notificationViews)
         }
     }
     

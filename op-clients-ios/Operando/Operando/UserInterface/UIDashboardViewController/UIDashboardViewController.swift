@@ -20,7 +20,7 @@ class UIDashboardViewController: UIViewController
         self.showOrHideAuthenticationButton()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.showOrHideAuthenticationButton()
     }
@@ -33,10 +33,10 @@ class UIDashboardViewController: UIViewController
     
     private func showOrHideAuthenticationButton()
     {
-        self.registerOrLoginButton.hidden = false
+        self.registerOrLoginButton.isHidden = false
         if let _ = OPConfigObject.sharedInstance.getCurrentUserIdentityIfAny()
         {
-           self.registerOrLoginButton.hidden = true
+           self.registerOrLoginButton.isHidden = true
         }
     }
 }

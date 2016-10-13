@@ -22,8 +22,8 @@ class UIOperandoTitleView: RSNibDesignableView {
     
     override func commonInit() {
         super.commonInit()
-        self.contentView?.backgroundColor = UIColor.clearColor();
-        self.backgroundColor = UIColor.clearColor();
+        self.contentView?.backgroundColor = UIColor.clear;
+        self.backgroundColor = UIColor.clear;
     }
 
 }

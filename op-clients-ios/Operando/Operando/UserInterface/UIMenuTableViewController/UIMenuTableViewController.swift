@@ -16,9 +16,9 @@ class UIMenuTableViewController: UITableViewController
     @IBOutlet weak var usernameLabel: UILabel!
     var actionsPerIndex: [Int : VoidBlock] = [:]
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: false);
+        tableView.deselectRow(at: indexPath, animated: false);
         if let action = self.actionsPerIndex[indexPath.row]
         {
             action();

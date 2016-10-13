@@ -12,18 +12,18 @@ import WebKit
 
 extension WKWebView
 {
-    func loadAndExecuteScriptNamed(scriptName: String, withCompletion completion: ((result: AnyObject?, error: NSError?) -> Void)?)
+    func loadAndExecuteScriptNamed(scriptName: String, withCompletion completion: ((_ result: AnyObject?, _ error: NSError?) -> Void)?)
     {
-        guard let filePath = NSBundle.mainBundle().pathForResource(scriptName, ofType: "js") else {completion?(result: nil, error: nil);return}
-        if let jsString = try? NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        guard let filePath = Bundle.main.path(forResource: scriptName, ofType: "js") else {completion?(nil, nil);return}
+        if let jsString = try? NSString(contentsOfFile: filePath, encoding: String.Encoding.utf8.rawValue)
         {
-            self.evaluateJavaScript(jsString as String, completionHandler: completion)
+            self.evaluateJavaScript(jsString as String, completionHandler: completion as! ((Any?, Error?) -> Void)?)
         }
     }
     
     func loadJQueryIfNeededWithCompletion(completion: VoidBlock?)
     {
-        self.loadAndExecuteScriptNamed("testJQuery") { (result, error) in
+        self.loadAndExecuteScriptNamed(scriptName: "testJQuery") { (result, error) in
             if let resultString = result as? String
             {
                 if resultString == "true"
@@ -32,7 +32,7 @@ extension WKWebView
                     return;
                 }
                 
-                self.loadAndExecuteScriptNamed("jquery214min", withCompletion: { (result, error) in
+                self.loadAndExecuteScriptNamed(scriptName: "jquery214min", withCompletion: { (result, error) in
                     if error == nil
                     {
                         completion?()
@@ -44,9 +44,9 @@ extension WKWebView
     
     func loadWebViewToURL(urlString: String) -> NSError?
     {
-        guard let url = NSURL(string: urlString) else {return NSError.malformedURLError(urlString);}
-        let request = NSURLRequest(URL: url);
-        self.loadRequest(request)
+        guard let url = NSURL(string: urlString) else {return NSError.malformedURLError(url: urlString);}
+        let request = NSURLRequest(url: url as URL);
+        self.load(request as URLRequest)
         
         return nil
     }
@@ -57,7 +57,7 @@ extension String
 {
     var escapedStringForJS: String
     {
-        return self.stringByReplacingOccurrencesOfString("\"", withString: "\\\"").stringByReplacingOccurrencesOfString("\'", withString: "\\\'")
+        return self.replacingOccurrences(of: "\"", with: "\\\"").replacingOccurrences(of: "\'", with: "\\\'")
     }
 }
 
@@ -75,7 +75,7 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
         super.init()
         self.webView.navigationDelegate = self
         
-        loginIsDoneButton.addTarget(self, action: #selector(WebKitSettingsReader.didPressFinishLoginButton(_:)), forControlEvents: .TouchUpInside);
+        loginIsDoneButton.addTarget(self, action: #selector(WebKitSettingsReader.didPressFinishLoginButton(sender:)), for: .touchUpInside);
     }
     
     
@@ -87,7 +87,9 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
     }
     
     
-    func didPressFinishLoginButton(sender: UIButton)
+    
+    
+    @IBAction func didPressFinishLoginButton(sender: Any?)
     {
         self.whenUserFinishedLogin?()
     }
@@ -95,9 +97,9 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
     
     
     func logUserOnSite(site: String, withCompletion completion: ErrorCallback?) {
-        if let error = self.loadWebViewToURL(site)
+        if let error = self.loadWebViewToURL(urlString: site)
         {
-            completion?(error: error)
+            completion?(error)
             return
         }
         
@@ -108,18 +110,18 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
         self.whenNavigationFinishes = {
             
             weakSelf?.whenNavigationFinishes = nil
-            RSCommonUtilities.showOKAlertWithMessage(alertLoginMessage)
+            RSCommonUtilities.showOKAlertWithMessage(message: alertLoginMessage)
             weakSelf?.whenUserFinishedLogin =
                 {
                     weakSelf?.clearAllCallbacks()
-                    completion?(error: nil)
+                    completion?(nil)
             }
             
         }
 
     }
     
-    func redirectAndReadSettings(settingsAsJsonString: String, onAddress address: String, completion: ((readSettings: NSDictionary?, error: NSError?) -> Void)?)
+    func redirectAndReadSettings(settingsAsJsonString: String, onAddress address: String, completion: ((_ readSettings: NSDictionary?, _ error: NSError?) -> Void)?)
     {
         self.clearAllCallbacks()
         
@@ -127,27 +129,27 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
         
         let jsToExecute = "window.readSettings(\"\(escapedString)\")";
         
-        if self.isWebViewAlreadyAtURL(address)
+        if self.isWebViewAlreadyAtURL(urlString: address)
         {
-            self.extractSettingsByExecuting(jsToExecute, withCompletion: completion);
+            self.extractSettingsByExecuting(jsToExecute: jsToExecute, withCompletion: completion);
             return;
         }
         
         weak var weakSelf = self
         
-        if let error = self.loadWebViewToURL(address)
+        if let error = self.loadWebViewToURL(urlString: address)
         {
-            completion?(readSettings: nil, error: error);
+            completion?(nil, error);
             return;
         }
         
         self.whenNavigationFails = { error in
-            completion?(readSettings: nil, error: error)
+            completion?(nil, error)
             weakSelf?.clearAllCallbacks()
         }
         
         self.whenNavigationFinishes = {
-            weakSelf?.extractSettingsByExecuting(jsToExecute, withCompletion: completion)
+            weakSelf?.extractSettingsByExecuting(jsToExecute: jsToExecute, withCompletion: completion)
             weakSelf?.clearAllCallbacks()
         }
         
@@ -155,27 +157,28 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
     }
     
     
-    private func extractSettingsByExecuting(jsToExecute: String, withCompletion completion: ((readSettings: NSDictionary?, error: NSError?) -> Void)?)
+    private func extractSettingsByExecuting(jsToExecute: String, withCompletion completion: ((_ readSettings: NSDictionary?, _ error: NSError?) -> Void)?)
     {
         self.loadJQueryIfNeededWithCompletion {
             self.loadReadingFunctionInWebViewWithCompletion{
                 self.webView.evaluateJavaScript(jsToExecute, completionHandler: { result, error in
                     if let error = error
                     {
-                        completion?(readSettings: nil, error: error);
+                        completion?(nil, error as NSError?);
                         return;
                     }
                     
-                    if let resultString = result as? String, resultData = resultString.dataUsingEncoding(NSUTF8StringEncoding),
-                        resultJsonObj = try? NSJSONSerialization.JSONObjectWithData(resultData, options: .AllowFragments),
-                        resultDict = resultJsonObj as? NSDictionary
+                    if let resultString = result as? String,
+                        let resultData = resultString.data(using: String.Encoding.utf8),
+                        let resultJsonObj = try? JSONSerialization.jsonObject(with: resultData, options: .allowFragments),
+                        let resultDict = resultJsonObj as? NSDictionary
                     {
                         print(resultString);
-                        completion?(readSettings: resultDict, error: nil)
+                        completion?(resultDict, nil)
                         return;
                     }
                     
-                    completion?(readSettings: nil, error: NSError.errorReadingSettings)
+                    completion?(nil, NSError.errorReadingSettings)
                     
                 })
             }
@@ -184,23 +187,24 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
     
     //MARK: WKNavigationDelegate
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.whenNavigationFinishes?()
     }
     
-    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
-        self.whenNavigationFails?(error: error)
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.whenNavigationFails?(error as NSError?)
     }
     
-    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        decisionHandler(WKNavigationActionPolicy.Allow)
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        decisionHandler(WKNavigationActionPolicy.allow)
     }
+    
     
     //MARK: internal utils
     
     private func isWebViewAlreadyAtURL(urlString: String) -> Bool
     {
-        if let url = self.webView.URL?.absoluteString
+        if let url = self.webView.url?.absoluteString
         {
             if url == urlString
             {
@@ -214,9 +218,9 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
     
     private func loadWebViewToURL(urlString: String) -> NSError?
     {
-        guard let url = NSURL(string: urlString) else {return NSError.malformedURLError(urlString);}
-        let request = NSURLRequest(URL: url);
-        self.webView.loadRequest(request)
+        guard let url = NSURL(string: urlString) else {return NSError.malformedURLError(url: urlString);}
+        let request = NSURLRequest(url: url as URL);
+        self.webView.load(request as URLRequest)
         
         return nil
     }
@@ -224,7 +228,7 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
     
     private func loadJQueryIfNeededWithCompletion(completion: VoidBlock?)
     {
-        self.loadAndExecuteScriptNamed("testJQuery") { (result, error) in
+        self.loadAndExecuteScriptNamed(scriptName: "testJQuery") { (result, error) in
             if let resultString = result as? String
             {
                 if resultString == "true"
@@ -233,7 +237,7 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
                     return;
                 }
                 
-                self.loadAndExecuteScriptNamed("jquery214min", withCompletion: { (result, error) in
+                self.loadAndExecuteScriptNamed(scriptName: "jquery214min", withCompletion: { (result, error) in
                     if error == nil
                     {
                         completion?()
@@ -246,18 +250,18 @@ class WebKitSettingsReader : NSObject, OSPSettingsReader, WKNavigationDelegate
     
     private func loadReadingFunctionInWebViewWithCompletion(completion: VoidBlock?)
     {
-        self.loadAndExecuteScriptNamed("readSNSettings") { (result, error) in
-            if error == nil || error?.code == 5
+        self.loadAndExecuteScriptNamed(scriptName: "readSNSettings") { (result, error) in
+            if error == nil || (error as? NSError)?.code ?? 0 == 5
             {
                 completion?()
             }
         }
     }
     
-    private func loadAndExecuteScriptNamed(scriptName: String, withCompletion completion: ((result: AnyObject?, error: NSError?) -> Void)?)
+    private func loadAndExecuteScriptNamed(scriptName: String, withCompletion completion: ((_ result: Any?, _ error: Error?) -> Void)?)
     {
-        guard let filePath = NSBundle.mainBundle().pathForResource(scriptName, ofType: "js") else {completion?(result: nil, error: nil);return}
-        if let jsString = try? NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+        guard let filePath = Bundle.main.path(forResource: scriptName, ofType: "js") else {completion?(nil, nil);return}
+        if let jsString = try? NSString(contentsOfFile: filePath, encoding: String.Encoding.utf8.rawValue)
         {
             self.webView.evaluateJavaScript(jsString as String, completionHandler: completion)
         }

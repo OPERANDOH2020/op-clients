@@ -17,16 +17,16 @@ enum SocketIOEventsNames: String {
     case Connect = "connect"
 }
 
-public class SwarmClient: NSObject {
+open class SwarmClient: NSObject {
     
     // MARK: - Properties
-    private var socketIO: SocketIOClient?
-    private var tenantId: String
-    private var connectionURL: String
-    private var didConnect: Bool
-    private var emitsArray: [NSDictionary]
+    fileprivate var socketIO: SocketIOClient?
+    fileprivate var tenantId: String
+    fileprivate var connectionURL: String
+    fileprivate var didConnect: Bool
+    fileprivate var emitsArray: [NSDictionary]
     
-    public var delegate: SwarmClientProtocol?
+    open var delegate: SwarmClientProtocol?
     
     // MARK: - Lifecycle
     public init(connectionURL: String) {
@@ -37,7 +37,7 @@ public class SwarmClient: NSObject {
     }
     
     // MARK: - Private Methods
-    private func setupListeners(socketIO: SocketIOClient) {
+    fileprivate func setupListeners(_ socketIO: SocketIOClient) {
         socketIO.on(SocketIOEventsNames.Message.rawValue) { (receivedData, emitterSocket) in
             self.delegate?.didReceiveData(receivedData)
         }
@@ -47,34 +47,34 @@ public class SwarmClient: NSObject {
         }
     }
     
-    private func handleSocketCreationEvent() {
+    fileprivate func handleSocketCreationEvent() {
         didConnect = true
         for swarmDictionary in self.emitsArray {
             emitSwarmMessage(swarmDictionary)
         }
     }
     
-    private func createSocket() {
+    fileprivate func createSocket() {
         didConnect = false
-        if let url = NSURL(string: connectionURL) {
+        if let url = URL(string: connectionURL) {
             initSocket(url)
         } else {
             delegate?.didFailedToCreateSocket(SwarmClientErrorGenerator.getInvalidURLError())
         }
     }
     
-    private func initSocket(url: NSURL) {
+    fileprivate func initSocket(_ url: URL) {
         socketIO = SocketIOClient(socketURL: url)
         setupListeners(socketIO!)
         socketIO!.connect()
     }
     
-    private func emitSwarmMessage(swarmDictionary: NSDictionary) {
+    fileprivate func emitSwarmMessage(_ swarmDictionary: NSDictionary) {
         socketIO?.emit(SocketIOEventsNames.Message.rawValue, swarmDictionary)
     }
     
     // MARK: - Public Methods
-    public func startSwarm(swarmName: String, phase: String, ctor: String, arguments: [AnyObject]) {
+    open func startSwarm(_ swarmName: String, phase: String, ctor: String, arguments: [AnyObject]) {
         let swarmDictionary = Swarm.getSwarmDictionary(tenantId, swarmName: swarmName, phase: phase, ctor: ctor, arguments: arguments)
         if didConnect {
             emitSwarmMessage(swarmDictionary)

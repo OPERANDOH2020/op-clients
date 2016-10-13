@@ -19,10 +19,10 @@ class CredentialsStore: NSObject
     
     class func retrieveLastSavedCredentialsIfAny() -> (username: String, password: String)?
     {
-        let defaults = NSUserDefaults.standardUserDefaults();
+        let defaults = UserDefaults.standard;
         
-        if let username = defaults.objectForKey(DefaultsUsernameKey) as? String,
-               password = defaults.objectForKey(DefaultsPasswordKey) as? String
+        if let username = defaults.object(forKey: DefaultsUsernameKey) as? String,
+               let password = defaults.object(forKey: DefaultsPasswordKey) as? String
         {
             return (username, password);
         }
@@ -33,10 +33,10 @@ class CredentialsStore: NSObject
     
     class func saveCredentials(username: String, password: String)
     {
-        let defaults = NSUserDefaults.standardUserDefaults();
+        let defaults = UserDefaults.standard;
         
-        defaults.setObject(username, forKey: DefaultsUsernameKey);
-        defaults.setObject(password, forKey: DefaultsPasswordKey);
+        defaults.set(username, forKey: DefaultsUsernameKey);
+        defaults.set(password, forKey: DefaultsPasswordKey);
         
         defaults.synchronize()
     }

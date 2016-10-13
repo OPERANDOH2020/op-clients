@@ -16,10 +16,11 @@ extension String
     {
         var result: [String: String] = [:];
         
-        let keyValuePairs = self.componentsSeparatedByString("&");
+        
+        let keyValuePairs = self.components(separatedBy: "&")
         keyValuePairs.forEach { keyValuePairString in
-            let nameAndValueArray = keyValuePairString.componentsSeparatedByString("=")
-            if let name = nameAndValueArray.first, value = nameAndValueArray.last
+            let nameAndValueArray = keyValuePairString.components(separatedBy: "=")
+            if let name = nameAndValueArray.first, let value = nameAndValueArray.last
             {
                 result[name] = value;
             }
@@ -31,25 +32,27 @@ extension String
 
 class FbWebKitParametersProvider: NSObject, FacebookPostParametersProvider, WKNavigationDelegate, WKUIDelegate
 {
+    
+    
     private let webView: WKWebView
     
     private var whenUserLogsIn: VoidBlock?
-    private var whenWebViewHasPOSTRequest: ((postDataAsJSON: [String: String] ) -> Void)?
+    private var whenWebViewHasPOSTRequest: ((_ postDataAsJSON: [String: String] ) -> Void)?
     
     init(loginDoneButton: UIButton, webView: WKWebView)
     {
         self.webView = webView
         super.init()
-        loginDoneButton.addTarget(self, action: #selector(FbWebKitParametersProvider.userDidLogin(_:)), forControlEvents: .TouchUpInside)
+        loginDoneButton.addTarget(self, action: #selector(FbWebKitParametersProvider.userDidLogin(sender:)), for: .touchUpInside)
         webView.navigationDelegate = self
-        webView.UIDelegate = self
+        webView.uiDelegate = self
     }
     
     
-    func getCurrentUserParametersWithCompletion(completion: ((error: NSError?, params: [String : String]) -> Void)?)
+    func getCurrentUserParametersWithCompletion(completion: ((_ error: NSError?, _ params: [String : String]) -> Void)?)
     {
         self.navigateWebViewToFacebook()
-        RSCommonUtilities.showOKAlertWithMessage("Please login on Facebook and when you're done, press the \'Finished Button\'")
+        RSCommonUtilities.showOKAlertWithMessage(message: "Please login on Facebook and when you're done, press the \'Finished Button\'")
         weak var weakSelf = self
         
         self.whenUserLogsIn =
@@ -59,7 +62,7 @@ class FbWebKitParametersProvider: NSObject, FacebookPostParametersProvider, WKNa
                 weakSelf?.whenWebViewHasPOSTRequest = nil
                 weakSelf?.whenUserLogsIn = nil
                 
-                completion?(error: nil, params: postDataDict);
+                completion?(nil, postDataDict);
                 
             }
         }
@@ -68,7 +71,7 @@ class FbWebKitParametersProvider: NSObject, FacebookPostParametersProvider, WKNa
     
     private func displayAllCookies()
     {
-        let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies ?? []
+        let cookies = HTTPCookieStorage.shared.cookies ?? []
         for cookie in cookies
         {
             print(cookie.name + " -- " + cookie.value)
@@ -78,8 +81,8 @@ class FbWebKitParametersProvider: NSObject, FacebookPostParametersProvider, WKNa
     
     private func loadHijackXHRScript()
     {
-        guard let path = NSBundle.mainBundle().pathForResource("interceptPOST", ofType: "js"),
-                  jsString = try? String(contentsOfFile: path) else {return}
+        guard let path = Bundle.main.path(forResource: "interceptPOST", ofType: "js"),
+                  let jsString = try? String(contentsOfFile: path) else {return}
         
         self.webView.evaluateJavaScript(jsString) { result, error  in
             
@@ -97,15 +100,16 @@ class FbWebKitParametersProvider: NSObject, FacebookPostParametersProvider, WKNa
     func navigateWebViewToFacebook()
     {
         let url = NSURL(string: "https://www.facebook.com")
-        let request = NSURLRequest(URL: url!)
-        self.webView.loadRequest(request);
+        let request = NSURLRequest(url: url! as URL)
+        self.webView.load(request as URLRequest);
     }
-//    
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.loadHijackXHRScript()
     }
     
-    func webViewWebContentProcessDidTerminate(webView: WKWebView) {
+    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         self.loadHijackXHRScript()
     }
     
@@ -117,10 +121,10 @@ class FbWebKitParametersProvider: NSObject, FacebookPostParametersProvider, WKNa
             print(jsonString);
         }
     }
-    func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
-        
-        self.whenWebViewHasPOSTRequest?(postDataAsJSON: message.toPOSTDictionary);
-        
+    
+    
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        self.whenWebViewHasPOSTRequest?(message.toPOSTDictionary);
         completionHandler()
     }
     

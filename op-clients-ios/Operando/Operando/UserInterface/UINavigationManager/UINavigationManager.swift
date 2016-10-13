@@ -18,7 +18,7 @@ class UINavigationManager
     {
         get
         {
-            return main.instantiateViewControllerWithIdentifier("UIRootViewController") as! UIRootViewController
+            return main.instantiateViewController(withIdentifier: "UIRootViewController") as! UIRootViewController
         }
     }
     
@@ -26,7 +26,7 @@ class UINavigationManager
     {
         get
         {
-            return main.instantiateViewControllerWithIdentifier("UIMenuTableViewController") as! UIMenuTableViewController
+            return main.instantiateViewController(withIdentifier: "UIMenuTableViewController") as! UIMenuTableViewController
         }
     }
     
@@ -34,7 +34,7 @@ class UINavigationManager
     {
         get
         {
-            return main.instantiateViewControllerWithIdentifier("MainNavigationController") as! UINavigationController;
+            return main.instantiateViewController(withIdentifier: "MainNavigationController") as! UINavigationController;
         }
     }
     
@@ -42,7 +42,7 @@ class UINavigationManager
     {
         get
         {
-            return main.instantiateViewControllerWithIdentifier("UISensorMonitoringViewController") as! UISensorMonitoringViewController;
+            return main.instantiateViewController(withIdentifier: "UISensorMonitoringViewController") as! UISensorMonitoringViewController;
         }
     }
     
@@ -50,7 +50,7 @@ class UINavigationManager
     {
         get
         {
-            return main.instantiateViewControllerWithIdentifier("UINotificationsViewController") as!
+            return main.instantiateViewController(withIdentifier: "UINotificationsViewController") as!
             UINotificationsViewController
         }
     }
@@ -59,7 +59,7 @@ class UINavigationManager
     {
         get
         {
-            return main.instantiateViewControllerWithIdentifier("UIDataLeakageProtectionViewController") as! UIDataLeakageProtectionViewController
+            return main.instantiateViewController(withIdentifier: "UIDataLeakageProtectionViewController") as! UIDataLeakageProtectionViewController
         }
     }
     
@@ -67,7 +67,7 @@ class UINavigationManager
     {
         get
         {
-            return main.instantiateViewControllerWithIdentifier("UIIdentityManagementViewController") as! UIIdentityManagementViewController
+            return main.instantiateViewController(withIdentifier: "UIIdentityManagementViewController") as! UIIdentityManagementViewController
         }
     }
     
@@ -75,7 +75,7 @@ class UINavigationManager
     {
         get
         {
-            return main.instantiateViewControllerWithIdentifier("UIDashboardViewController") as! UIDashboardViewController
+            return main.instantiateViewController(withIdentifier: "UIDashboardViewController") as! UIDashboardViewController
         }
     }
     
@@ -84,29 +84,15 @@ class UINavigationManager
     {
         get
         {
-            return main.instantiateViewControllerWithIdentifier("UIPrivateBrowsingViewController") as! UIPrivateBrowsingViewController
+            return main.instantiateViewController(withIdentifier: "UIPrivateBrowsingViewController") as! UIPrivateBrowsingViewController
         }
     }
     
-    static var externalConnectionsViewController: UIExternalConnectionsViewController
-    {
-        return main.instantiateViewControllerWithIdentifier("UIExternalConnectionsViewController") as! UIExternalConnectionsViewController
-    }
-    
-    static var securityEventsViewController: UISecurityEventsViewController
-    {
-        return main.instantiateViewControllerWithIdentifier("UISecurityEventsViewController") as! UISecurityEventsViewController
-    }
-    
-    static var securityEventDetailsViewController: UISecurityEventDetailsViewController
-    {
-        return main.instantiateViewControllerWithIdentifier("UISecurityEventDetailsViewController") as! UISecurityEventDetailsViewController
-    }
     
     
     static var snSettingsReaderViewController: UISNSettingsReaderViewController
     {
-        return main.instantiateViewControllerWithIdentifier("UISNSettingsReaderViewController") as! UISNSettingsReaderViewController
+        return main.instantiateViewController(withIdentifier: "UISNSettingsReaderViewController") as! UISNSettingsReaderViewController
     }
     
 }

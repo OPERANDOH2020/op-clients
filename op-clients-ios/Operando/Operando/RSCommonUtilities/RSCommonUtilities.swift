@@ -14,7 +14,7 @@ class RSCommonUtilities: NSObject {
     
     class func currentDeviceIsAnIPad() -> Bool
     {
-        return UI_USER_INTERFACE_IDIOM() == .Pad;
+        return UI_USER_INTERFACE_IDIOM() == .pad;
     }
     
     class func showOKAlertWithMessage(message: String)

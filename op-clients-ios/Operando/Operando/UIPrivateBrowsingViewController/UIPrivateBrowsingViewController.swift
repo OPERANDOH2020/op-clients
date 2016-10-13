@@ -19,12 +19,12 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.wkWebView = self.createWebViewInHostView(self.webViewHostView);
-        self.wkWebView?.loadRequest(NSURLRequest(URL: NSURL(string: "https://www.google.ro")!));
-        self.browsingNavigationBar.setupWithCallbacks(self.callBacksForBrowsingBar(self.browsingNavigationBar));
+        self.wkWebView = self.createWebViewInHostView(hostView: self.webViewHostView);
+        self.wkWebView?.load(NSURLRequest(url: NSURL(string: "https://www.google.ro")! as URL) as URLRequest);
+        self.browsingNavigationBar.setupWithCallbacks(callbacks: self.callBacksForBrowsingBar(browsingBar: self.browsingNavigationBar));
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.layoutIfNeeded()
     }
@@ -33,10 +33,10 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
     
     
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!)
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
     {
         let detector = HTMLLoginInputDetector()
-        detector.detectLoginInputsInWebView(webView) { (result) in
+        detector.detectLoginInputsInWebView(webView: webView) { (result) in
             if let detectionResult = result
             {
                 print("login input id \(detectionResult.loginInputId), password input id = \(detectionResult.passwordInputId)")
@@ -56,7 +56,7 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
             weakSelf?.wkWebView?.goBack()
             },
             whenUserPressedSearchWithString: { (searchString) in
-                weakSelf?.goToAddressOrSearch(searchString)
+                weakSelf?.goToAddressOrSearch(string: searchString)
         })
     }
     
@@ -64,7 +64,7 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
     {
         if let url = NSURL(string: "https://" + string) ?? NSURL(string: string)
         {
-            self.wkWebView?.loadRequest(NSURLRequest(URL: url))
+            self.wkWebView?.load(NSURLRequest(url: url as URL) as URLRequest)
         }
         else
         {
@@ -75,9 +75,9 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
     private func createWebViewInHostView(hostView: UIView) -> WKWebView
     {
         let configuration = WKWebViewConfiguration()
-        let webView = WKWebView(frame: CGRectZero, configuration: configuration)
+        let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
         webView.navigationDelegate = self
-        UIView.constrainView(webView, inHostView: hostView)
+        UIView.constrainView(view: webView, inHostView: hostView)
         return webView
     }
 }

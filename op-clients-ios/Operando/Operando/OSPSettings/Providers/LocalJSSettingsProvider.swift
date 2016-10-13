@@ -12,32 +12,32 @@ import JavaScriptCore
 
 class LocalJSSettingsProvider : OSPSettingsProvider
 {
-    func getCurrentOSPSettingsWithCompletion(completion: ((settingsDict: NSDictionary?, error: NSError?) -> Void)?) {
+    func getCurrentOSPSettingsWithCompletion(completion: ((_ settingsDict: NSDictionary?, _ error: NSError?) -> Void)?) {
         
-        guard let path = NSBundle.mainBundle().pathForResource("OSP.Settings", ofType: "js") else
+        guard let path = Bundle.main.path(forResource: "OSP.Settings", ofType: "js") else
         {
-            completion?(settingsDict: nil, error: nil);
+            completion?(nil, nil);
             return
         }
             
 
         let urlPath = NSURL(fileURLWithPath: path)
-        if let data = NSData(contentsOfURL: urlPath)
+        if let data = NSData(contentsOf: urlPath as URL)
         {
-            let fileString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            let fileString = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue)
             let context = JSContext()
             
-            let value =  context.evaluateScript(fileString as! String)
-            let jsonString = value.toString()
+            let value =  context?.evaluateScript(fileString as! String)
+            let jsonString = value?.toString()
             
             do
             {
-                let dictionary = try NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments)
-                completion?(settingsDict: dictionary as? NSDictionary, error: nil)
+                let dictionary = try JSONSerialization.jsonObject(with: (jsonString?.data(using: String.Encoding.utf8)!)!, options: .allowFragments)
+                completion?(dictionary as? NSDictionary, nil)
                 
             } catch
             {
-                completion?(settingsDict: nil, error: nil)
+                completion?(nil, nil)
             }
             
         }

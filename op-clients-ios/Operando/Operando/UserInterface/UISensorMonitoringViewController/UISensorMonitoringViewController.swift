@@ -24,13 +24,13 @@ class UISensorMonitoringViewController: UIViewController {
     
     @IBAction func didChangeDecisionOnMonitoring(sender: UISwitch)
     {
-        if sender.on
+        if sender.isOn
         {
-            OPViewUtils.enbleViews(self.sensorMonitoringViews);
+            OPViewUtils.enbleViews(views: self.sensorMonitoringViews);
         }
         else
         {
-            OPViewUtils.disableViews(self.sensorMonitoringViews);
+            OPViewUtils.disableViews(views: self.sensorMonitoringViews);
         }
     }
     

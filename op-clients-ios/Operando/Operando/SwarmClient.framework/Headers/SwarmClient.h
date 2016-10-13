@@ -1,23 +1,19 @@
-/*
- * Copyright (c) 2016 ROMSOFT.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the The MIT License (MIT).
- * which accompanies this distribution, and is available at
- * http://opensource.org/licenses/MIT
- *
- * Contributors:
- *    Cătălin Pomîrleanu (ROMSOFT)
- * Initially developed in the context of OPERANDO EU project www.operando.eu
- */
+//
+//  GenericFrameworkProject.h
+//  GenericFrameworkProject
+//
+//  Created by Costin Andronache on 7/20/16.
+//  Copyright © 2016 RomSoft. All rights reserved.
+//
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for SwarmClient.
-FOUNDATION_EXPORT double SwarmClientVersionNumber;
+//! Project version number for GenericFrameworkProject.
+FOUNDATION_EXPORT double SwarmClientProjectVersionNumber;
 
-//! Project version string for SwarmClient.
-FOUNDATION_EXPORT const unsigned char SwarmClientVersionString[];
+//! Project version string for GenericFrameworkProject.
+FOUNDATION_EXPORT const unsigned char SwarmClientProjectVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <SwarmClient/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <GenericFrameworkProject/PublicHeader.h>
 
 

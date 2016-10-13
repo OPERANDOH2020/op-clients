@@ -17,7 +17,7 @@ struct LoginInfo
 
 struct UILoginViewCallbacks
 {
-    let whenUserWantsToLogin : ((info : LoginInfo) -> ())?
+    let whenUserWantsToLogin : ((_ info : LoginInfo) -> ())?
     let whenUserForgetsPassword: (() -> ())?
 }
 
@@ -42,12 +42,15 @@ class UILoginView: RSNibDesignableView {
     
     @IBAction func didPressSignInButton(sender: AnyObject)
     {
-        let loginInfo = LoginInfo(username: self.emailTF.text ?? "", password: self.passwordTF.text ?? "", wishesToBeRemembered: self.rememberMeSwitch.on);
-        self.callbacks?.whenUserWantsToLogin?(info: loginInfo);
+        let loginInfo = LoginInfo(username: self.emailTF.text ?? "", password: self.passwordTF.text ?? "", wishesToBeRemembered: self.rememberMeSwitch.isOn);
+        self.callbacks?.whenUserWantsToLogin?(loginInfo);
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event);
-        self.endEditing(true);
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        self.endEditing(true)
     }
+    
+
 }

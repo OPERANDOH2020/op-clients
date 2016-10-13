@@ -14,8 +14,6 @@ class OPConfigObject: NSObject
     
     private var currentUserIdentity : UserIdentityModel? = nil
     private let swarmClientHelper : SwarmClientHelper = SwarmClientHelper()
-    private let cdRepository = CoreDataRepository()
-    private let backgroundScanner = BackgroundConnectionsScanner()
     
     
     func getCurrentUserIdentityIfAny() -> UserIdentityModel?
@@ -23,22 +21,18 @@ class OPConfigObject: NSObject
         return self.currentUserIdentity
     }
     
-    func getCurrentConnectionReportsProvider() -> ConnectionReportsProvider?
-    {
-        return self.cdRepository
-    }
+
     
     func applicationDidStartInWindow(window: UIWindow)
     {
         let rootController = UINavigationManager.rootViewController;
         window.rootViewController = rootController
         
-        self.backgroundScanner.beginScanningProcessWithSource(self.cdRepository);
 
         if let (username, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
         {
             weak var weakSelf = self
-            self.swarmClientHelper.loginWithUsername(username, password: password, withCompletion: { (error, data) in
+            self.swarmClientHelper.loginWithUsername(username: username, password: password, withCompletion: { (error, data) in
                 defer
                 {
                     rootController.beginDisplayingUI()
@@ -55,23 +49,23 @@ class OPConfigObject: NSObject
     }
     
     
-    func loginUserWithInfo(loginInfo: LoginInfo, withCompletion completion: ((error: NSError?, identity: UserIdentityModel?) -> Void))
+    func loginUserWithInfo(loginInfo: LoginInfo, withCompletion completion: @escaping ((_ error: NSError?, _ identity: UserIdentityModel?) -> Void))
     {
         weak var weakSelf = self
-        self.swarmClientHelper.loginWithUsername(loginInfo.username, password: loginInfo.password) { (error, data) in
+        self.swarmClientHelper.loginWithUsername(username: loginInfo.username, password: loginInfo.password) { (error, data) in
             guard error == nil else
             {
-                completion(error: error, identity: nil)
+                completion(error, nil)
                 return;
             }
             
             if loginInfo.wishesToBeRemembered
             {
-                CredentialsStore.saveCredentials(loginInfo.username, password: loginInfo.password)
+                CredentialsStore.saveCredentials(username: loginInfo.username, password: loginInfo.password)
             }
             
             weakSelf?.currentUserIdentity = UserIdentityModel(username: loginInfo.username, password: loginInfo.password);
-            completion(error: nil, identity: weakSelf?.currentUserIdentity)
+            completion(nil, weakSelf?.currentUserIdentity)
             
         }
     }

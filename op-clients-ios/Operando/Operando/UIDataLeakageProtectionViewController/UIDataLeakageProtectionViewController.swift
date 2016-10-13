@@ -19,7 +19,7 @@ class UIDataLeakageProtectionViewController: UIViewController, UITableViewDelega
     {
         super.viewDidLoad()
         self.certifiedAppsModels = self.dummyAppModels();
-        self.setupTableView(self.tableView);
+        self.setupTableView(tableView: self.tableView);
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +33,7 @@ class UIDataLeakageProtectionViewController: UIViewController, UITableViewDelega
     {
         let nib = UINib(nibName: UICertifiedApplicationCell.identifierNibName, bundle: nil);
         
-        tableView?.registerNib(nib, forCellReuseIdentifier: UICertifiedApplicationCell.identifierNibName);
+        tableView?.register(nib, forCellReuseIdentifier: UICertifiedApplicationCell.identifierNibName);
         
         tableView?.dataSource = self;
         tableView?.delegate = self;
@@ -59,18 +59,16 @@ class UIDataLeakageProtectionViewController: UIViewController, UITableViewDelega
         return 1;
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.certifiedAppsModels.count;
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier(UICertifiedApplicationCell.identifierNibName) as! UICertifiedApplicationCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UICertifiedApplicationCell.identifierNibName) as! UICertifiedApplicationCell
         
         let model = self.certifiedAppsModels[indexPath.row];
-        cell.setupWithModel(model);
+        cell.setupWithModel(model: model);
         
         return cell;
     }
