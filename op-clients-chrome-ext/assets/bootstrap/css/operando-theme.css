@@ -801,15 +801,10 @@ color:#FFF;
     padding-left: 20px;
     border-radius:0;
     border:0;
-    color:#FFF;
+    color:#fdfaef;
     font-weight:500;
     font-family: 'Dosis', sans-serif;
     text-transform: uppercase;
-}
-
-
-.col-xs-2 ul.tabs-left li:hover a{
-    color:#FFF;
 }
 
 .col-xs-2 ul li a:hover{
@@ -819,13 +814,13 @@ color:#FFF;
 .col-xs-2 .sub-menu.tabs-left>li.active>a,
 .col-xs-2 li.no-sub-menu.active>a
 {
-    background-color: #000;
-    border:none;
-    color:#FFF;
+    background-color: #fdfaef;
+    border: none;
+    color: #393939;
 }
 .col-xs-2 li.no-sub-menu.active>a
 {
-border-left:4px solid #FFB400;
+border-left:2px solid #fe9901;
 }
 
 .sidebar_expandable_menu .tabs-left.sub-menu ul li a{
@@ -1567,7 +1562,7 @@ visibility: visible;
 
 
 .sidebar_expandable_menu .primary-menu > .panel.opened {
- border-left:4px solid #FFB400;
+ border-left:2px solid #fe9901;
  background-color: #393939;
 }
 
@@ -1588,6 +1583,10 @@ ul li ul li:not(.opened) a.panel-heading{
     background-image:url("/operando/assets/images/menu_icons/home.png");
 }
 
+.active .menu_icon.home_icon {
+    background-image:url("/operando/assets/images/menu_icons/home_selected.png");
+}
+
 .menu_icon.privacy_icon {
     background-image:url("/operando/assets/images/menu_icons/privacy.png");
 }
@@ -1603,12 +1602,24 @@ ul li ul li:not(.opened) a.panel-heading{
     background-image:url("/operando/assets/images/menu_icons/social_networks.png");
 }
 
+.active .menu_icon.social_networks_icon{
+    background-image:url("/operando/assets/images/menu_icons/social_networks_selected.png");
+}
+
 .menu_icon.privacy_deals_icon{
     background-image:url("/operando/assets/images/menu_icons/privacy_deals.png");
 }
 
+.active .menu_icon.privacy_deals_icon{
+    background-image:url("/operando/assets/images/menu_icons/privacy_deals_selected.png");
+}
+
 .menu_icon.deals_icon{
     background-image:url("/operando/assets/images/menu_icons/deals.png");
+}
+
+.active .menu_icon.deals_icon{
+    background-image:url("/operando/assets/images/menu_icons/deals_selected.png");
 }
 
 .menu_icon.offers_icon{
@@ -1630,28 +1641,52 @@ ul li ul li:not(.opened) a.panel-heading{
 .menu_icon.google_icon{
     background-image:url("/operando/assets/images/menu_icons/google.png");
 }
+
 .menu_icon.identity_management_icon{
     background-image:url("/operando/assets/images/menu_icons/identity_management.png");
+}
+
+.active .menu_icon.identity_management_icon{
+    background-image:url("/operando/assets/images/menu_icons/identity_management_selected.png");
 }
 
 .menu_icon.extensions_icon{
     background-image:url("/operando/assets/images/menu_icons/extensions.png");
 }
 
+.active .menu_icon.extensions_icon{
+    background-image:url("/operando/assets/images/menu_icons/extensions_selected.png");
+}
+
 .menu_icon.dashboard_icon{
     background-image:url("/operando/assets/images/menu_icons/dashboard.png");
+}
+.active .menu_icon.dashboard_icon{
+    background-image:url("/operando/assets/images/menu_icons/dashboard_selected.png");
 }
 
 .menu_icon.reading_privacy_icon{
     background-image:url("/operando/assets/images/menu_icons/reading_privacy.png");
 }
 
+.active .menu_icon.reading_privacy_icon{
+    background-image:url("/operando/assets/images/menu_icons/reading_privacy_selected.png");
+}
+
 .menu_icon.edit_privacy_icon{
     background-image:url("/operando/assets/images/menu_icons/edit_privacy.png");
 }
 
+.active .menu_icon.edit_privacy_icon{
+    background-image:url("/operando/assets/images/menu_icons/edit_privacy_selected.png");
+}
+
 .menu_icon.abp_icon{
     background-image:url("/operando/assets/images/menu_icons/ad_block.png");
+}
+
+.active .menu_icon.abp_icon{
+    background-image:url("/operando/assets/images/menu_icons/ad_block_selected.png");
 }
 
 .menu_icon.user-account{

@@ -66,7 +66,7 @@
 
 
                 <li ui-sref-active="active">
-                    <a class="menu_icon notifications_orange_icon" ui-sref="home.notifications">
+                    <a class="menu_icon notifications_orange_icon" ui-sref="notifications">
                         <div class="menu_item_content">
                             <notification-counter></notification-counter>
                         </div>
@@ -112,23 +112,6 @@
                 <ul class="nav nav-tabs tabs-left primary-menu panel-group" id="accordion" role="tablist"
                     aria-multiselectable="true">
 
-                    <!--<li ng-class="{active: $state.includes('home')}" class="panel menu_icon home_icon">
-
-                        <a class="panel-heading" role="tab" id="headingOne" role="button" data-toggle="collapse"
-                           data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">Home</a>
-
-                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel"
-                             aria-labelledby="headingOne">
-                            <ul class="nav nav-tabs tabs-left sub-menu panel-body">
-
-                                <li ui-sref-active="active"><a class="menu_icon notifications_icon"
-                                                               ui-sref="home.notifications"><span>Notifications</span>
-                                    <notification-counter></notification-counter>
-                                </a></li>
-                            </ul>
-                        </div>
-                    </li>-->
-
                     <li ui-sref-active="active" class="no-sub-menu">
                         <a class="menu_icon home_icon" ui-sref="home">Home</a>
                     </li>
@@ -151,7 +134,7 @@
                     </li>
 
 
-                    <li ng-class="{active: $state.includes('dashboard')}"
+                    <li ng-class="{active: $state.includes('dashboard')}" ng-if="user.organisationId =='Analysts'"
                         class="panel menu_icon dashboard_icon has_children" id="dashboard">
                         <a class="panel-heading" role="tab" id="headingFour" role="button" data-toggle="collapse"
                            data-parent="#accordion" data-target="#collapseFour" aria-controls="collapseFour">Dashboard</a>

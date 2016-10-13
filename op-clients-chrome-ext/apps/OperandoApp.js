@@ -133,15 +133,11 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 templateUrl: "views/deals/my_deals.html"
             })*/
             .state('identityManagement', {
-                url: "/identity_management",
+                url: "/identities",
                 templateUrl: "views/identity_management.html"
             })
             .state('extensions', {
                 url: "/extensions",
-                templateUrl: "views/extensions.html"
-            })
-            .state('dashboard', {
-                url: "/dashboard",
                 templateUrl: "views/extensions.html"
             })
             .state('admin', {
@@ -165,7 +161,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                     }],
                     settings:['ospService', function (ospService) {
                         return ospService.loadOSPs();
-                    }],
+                    }]
                 },
                 templateUrl:"views/admin/privacy_settings/social_network.html",
                 controller:["$scope","$stateParams","settings", function($scope, $stateParams, settings) {
