@@ -66,6 +66,7 @@ angular.module('privacyWizard', [])
 
                     $scope.current_settings = [];
                     $scope.current_question = {};
+                    $scope.started = false;
                     $scope.view = "options";
 
                     var getNextQuestion = function () {
@@ -118,7 +119,6 @@ angular.module('privacyWizard', [])
                             else {
                                 getNextQuestion();
                             }
-
                         }
                     };
 
@@ -126,7 +126,6 @@ angular.module('privacyWizard', [])
                         return $scope.current_question.selected;
                     }
                 });
-
 
             }],
             templateUrl: "/operando/tpl/privacy-wizard/privacy_wizard.html"

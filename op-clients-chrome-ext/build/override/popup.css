@@ -28,6 +28,10 @@ body.local #stats-page
   display: none;
 }
 
+body.local #operando_abp{
+  display: none;
+}
+
 body.nohtml #clickhide,
 body.disabled #clickhide
 {
@@ -401,21 +405,12 @@ label
 .operando_wrapper ul > li > div.item_icon.user_icon{
   background: url(../operando/assets/images/icons/48X48_OP_User.png) no-repeat left center;
 }
-
-.operando_wrapper ul > li > div.item_icon.privacy_issues_icon{
-  background: url(../operando/assets/images/icons/48X48_OP_Privacy_Issues.png) no-repeat left center;
-}
-
-.operando_wrapper ul > li > div.item_icon.privacy_settings_icon{
-  background: url(../operando/assets/images/icons/48X48_OP_Privacy_Settings.png) no-repeat left center;
-}
-
 .operando_wrapper ul > li > div.item_icon.dashboard_icon{
   background: url(../operando/assets/images/icons/48X48_OP_Dashboard.png) no-repeat left center;
 }
 
 .operando_wrapper ul > li > div.item_icon.abp_icon{
-  background: url(../operando/assets/images/icons/48X48_OP_ABP.png) no-repeat left center;
+  background: url(../operando/assets/images/icons/ad_block_options.png) no-repeat left center;
 }
 
 .operando_wrapper ul > li > div.item_icon.about_icon{

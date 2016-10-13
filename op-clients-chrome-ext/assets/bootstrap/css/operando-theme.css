@@ -878,8 +878,9 @@ border-left:2px solid #fe9901;
 
 #wrapper button.single_click_privacy{
     width: 100%;
-    background: url(/operando/assets/images/single_click.png) no-repeat left center #FFB400;
-    margin: 0%;
+    background: url("/operando/assets/images/single_click.png") no-repeat left center #e0d7bf;
+    border:1px solid #c3b99c;
+    margin:0%;
     text-transform: uppercase;
     color: #FFF;
     margin-bottom: 40px;
@@ -1681,6 +1682,14 @@ ul li ul li:not(.opened) a.panel-heading{
     background-image:url("/operando/assets/images/menu_icons/edit_privacy_selected.png");
 }
 
+.menu_icon.mobile_icon{
+    background-image:url("/operando/assets/images/menu_icons/phone.png");
+}
+
+.active .menu_icon.mobile_icon{
+    background-image:url("/operando/assets/images/menu_icons/phone_selected.png");
+}
+
 .menu_icon.abp_icon{
     background-image:url("/operando/assets/images/menu_icons/ad_block.png");
 }
@@ -1815,4 +1824,15 @@ top:0;
 }
 #pfbdeals_container .onoffswitch-inner:after {
     content: "Unsubscribe";
+}
+
+.privacy_wizard_panel{
+    background: #e4d7be;
+    border: 1px solid #c5b79b;
+}
+
+.privacy_wizard_panel .take_wizard_icon {
+    background: url("/operando/assets/images/privacy_wizard.png") no-repeat left center;
+    height: 248px;
+    background-size:70%;
 }

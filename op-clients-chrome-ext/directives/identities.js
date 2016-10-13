@@ -49,13 +49,11 @@ angular.module('identities', [])
                     $scope.$on('changedDefaultSID',function(defaultIdentity) {
                         $scope.identities.forEach(function(identity){
 
-                            if(identity.name != defaultIdentity.name){
+                            if(identity.email != defaultIdentity.email){
                                 identity.isDefault = false;
                             }
                         });
                     });
-
-
 
 
                     $scope.add_new_sid = function () {
@@ -92,14 +90,14 @@ angular.module('identities', [])
                                 $scope.generateIdentity = function(){
                                     messengerService.send("generateIdentity",{},function(generatedIdentity){
                                         console.log(generatedIdentity);
-                                        $scope.identity.name = generatedIdentity.email;
+                                        $scope.identity.alias = generatedIdentity.email;
                                         $scope.refreshSID();
                                         $scope.$apply();
                                     })
                                 }
 
                                 $scope.refreshSID = function(){
-                                    $scope.identity.email = $scope.identity.name+"@"+$scope.identity.domain.name;
+                                    $scope.identity.email = $scope.identity.alias+"@"+$scope.identity.domain.name;
                                 }
 
                                 $scope.close = function (result) {
@@ -126,7 +124,6 @@ angular.module('identities', [])
                 controller: function ($scope, ModalService, messengerService, Notification) {
 
                     $scope.changeDefaultIdentity = function(){
-                        console.log($scope.defaultIdentity);
 
                         messengerService.send("updateDefaultSubstituteIdentity",$scope.identity, function(){
                             $scope.$parent.$emit("changedDefaultSID",$scope.identity);
@@ -137,7 +134,7 @@ angular.module('identities', [])
                     }
 
 
-                    $scope.remove_identity = function () {
+                    $scope.removeIdentity = function () {
                         var identity = $scope.identity;
                         var emitToParent = function(event){
                             $scope.$emit(event);

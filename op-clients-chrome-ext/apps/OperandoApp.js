@@ -54,8 +54,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             })
             .state("socialNetworks", {
                 url: "/social-networks",
-                /*templateUrl: "views/home/privacy_questionnaire.html",*/
-                template:"<privacy-wizard></privacy-wizard>",
+                templateUrl:"views/social_networks.html",
                 resolve: {
                     settings:['ospService', function (ospService) {
                         return ospService.loadOSPs();
