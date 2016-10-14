@@ -50,6 +50,18 @@
 		985CD8511D5C8FDF0021C58C /* LocalJSSettingsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CD8501D5C8FDF0021C58C /* LocalJSSettingsProviderTests.swift */; };
 		985CD8541D5C91250021C58C /* WebViewSettingsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CD8531D5C91250021C58C /* WebViewSettingsReader.swift */; };
 		985CD8571D5CA8C50021C58C /* UISNSettingsReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CD8561D5CA8C50021C58C /* UISNSettingsReaderViewController.swift */; };
+		9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9860B4541DB136C600AFE113 /* UIIdentitiesListView.xib */; };
+		98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B4D1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m */; };
+		98668B5A1DB0D0D900FDE63A /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B4F1DB0D0D800FDE63A /* ECSlidingAnimationController.m */; };
+		98668B5B1DB0D0D900FDE63A /* ECSlidingInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B521DB0D0D800FDE63A /* ECSlidingInteractiveTransition.m */; };
+		98668B5C1DB0D0D900FDE63A /* ECSlidingSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B541DB0D0D800FDE63A /* ECSlidingSegue.m */; };
+		98668B5D1DB0D0D900FDE63A /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B561DB0D0D800FDE63A /* ECSlidingViewController.m */; };
+		98668B5E1DB0D0D900FDE63A /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B581DB0D0D800FDE63A /* UIViewController+ECSlidingViewController.m */; };
+		98668B611DB0D1F100FDE63A /* UIFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B601DB0D1F100FDE63A /* UIFlowController.swift */; };
+		98668B631DB1018600FDE63A /* OPErrorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B621DB1018600FDE63A /* OPErrorContainer.swift */; };
+		98668B671DB1167900FDE63A /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98668B651DB1167200FDE63A /* SwarmClient.framework */; };
+		98668B681DB1167900FDE63A /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98668B651DB1167200FDE63A /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B6A1DB1346600FDE63A /* UIIdentitiesListView.swift */; };
 		9871FC7D1D5DC11E007CB684 /* jquery-3.1.0.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9871FC7C1D5DC11E007CB684 /* jquery-3.1.0.min.js */; };
 		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
@@ -70,15 +82,13 @@
 		98EAF6991CCF893500C77649 /* RSNibDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6971CCF893500C77649 /* RSNibDesignableView.swift */; };
 		98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF69B1CCF899500C77649 /* UIView+Utilities.swift */; };
 		98EAF69F1CCF899500C77649 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF69D1CCF899500C77649 /* UIViewController+Extensions.swift */; };
-		98EAF6A11CCF8A1800C77649 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6A01CCF8A1800C77649 /* LoginView.swift */; };
+		98EAF6A11CCF8A1800C77649 /* UILoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6A01CCF8A1800C77649 /* UILoginView.swift */; };
 		98EAF6A31CCF8A3400C77649 /* UILoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6A21CCF8A3400C77649 /* UILoginView.xib */; };
 		98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6A51CCF92CA00C77649 /* UISignInViewController.swift */; };
 		98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6A81CCF974500C77649 /* UIRegistrationView.swift */; };
 		98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6AA1CCF976200C77649 /* UIRegistrationView.xib */; };
 		98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6AE1CCF995B00C77649 /* IHKeyboardAvoiding.m */; };
 		98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */; };
-		98EDE3E31DAFB904001B305B /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98580D7F1DAFB70700F6F4BA /* SwarmClient.framework */; };
-		98EDE3E41DAFB904001B305B /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98580D7F1DAFB70700F6F4BA /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,13 +102,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9827502B1D084A2B00C73411 /* Embed Frameworks */ = {
+		98668B691DB1167900FDE63A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				98EDE3E41DAFB904001B305B /* SwarmClient.framework in Embed Frameworks */,
+				98668B681DB1167900FDE63A /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,7 +150,6 @@
 		9853FF811D6475B6007E2502 /* FacebookSecurityEnforcer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookSecurityEnforcer.swift; path = OSPSettings/SecurityEnforcers/FacebookSecurityEnforcer.swift; sourceTree = "<group>"; };
 		9853FF841D647E40007E2502 /* fbExtractData.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = fbExtractData.js; path = OSPSettings/SecurityEnforcers/fbExtractData.js; sourceTree = "<group>"; };
 		9853FF861D64A5CA007E2502 /* FbWebKitParametersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FbWebKitParametersProvider.swift; path = OSPSettings/SecurityEnforcers/FbWebKitParametersProvider.swift; sourceTree = "<group>"; };
-		98580D7F1DAFB70700F6F4BA /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		985CD83F1D5C64750021C58C /* jquery214min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery214min.js; sourceTree = "<group>"; };
 		985CD8401D5C64750021C58C /* osp-settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "osp-settings.js"; sourceTree = "<group>"; };
 		985CD8411D5C64750021C58C /* OSP.Settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = OSP.Settings.js; sourceTree = "<group>"; };
@@ -150,6 +159,24 @@
 		985CD8501D5C8FDF0021C58C /* LocalJSSettingsProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalJSSettingsProviderTests.swift; sourceTree = "<group>"; };
 		985CD8531D5C91250021C58C /* WebViewSettingsReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewSettingsReader.swift; path = OSPSettings/SettingsAppliers/WebViewSettingsReader.swift; sourceTree = "<group>"; };
 		985CD8561D5CA8C50021C58C /* UISNSettingsReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsReaderViewController.swift; path = UISNSettingsReaderViewController/UISNSettingsReaderViewController.swift; sourceTree = "<group>"; };
+		9860B4541DB136C600AFE113 /* UIIdentitiesListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIIdentitiesListView.xib; path = UserInterface/UIIdentityManagementViewController/UIIdentitiesListView/UIIdentitiesListView.xib; sourceTree = "<group>"; };
+		98668B4C1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
+		98668B4D1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
+		98668B4E1DB0D0D800FDE63A /* ECSlidingAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingAnimationController.h; sourceTree = "<group>"; };
+		98668B4F1DB0D0D800FDE63A /* ECSlidingAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingAnimationController.m; sourceTree = "<group>"; };
+		98668B501DB0D0D800FDE63A /* ECSlidingConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingConstants.h; sourceTree = "<group>"; };
+		98668B511DB0D0D800FDE63A /* ECSlidingInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingInteractiveTransition.h; sourceTree = "<group>"; };
+		98668B521DB0D0D800FDE63A /* ECSlidingInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingInteractiveTransition.m; sourceTree = "<group>"; };
+		98668B531DB0D0D800FDE63A /* ECSlidingSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingSegue.h; sourceTree = "<group>"; };
+		98668B541DB0D0D800FDE63A /* ECSlidingSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingSegue.m; sourceTree = "<group>"; };
+		98668B551DB0D0D800FDE63A /* ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingViewController.h; sourceTree = "<group>"; };
+		98668B561DB0D0D800FDE63A /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
+		98668B571DB0D0D800FDE63A /* UIViewController+ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ECSlidingViewController.h"; sourceTree = "<group>"; };
+		98668B581DB0D0D800FDE63A /* UIViewController+ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ECSlidingViewController.m"; sourceTree = "<group>"; };
+		98668B601DB0D1F100FDE63A /* UIFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIFlowController.swift; path = UserInterface/UIFlowController/UIFlowController.swift; sourceTree = "<group>"; };
+		98668B621DB1018600FDE63A /* OPErrorContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OPErrorContainer.swift; path = Utilities/OPErrorContainer.swift; sourceTree = "<group>"; };
+		98668B651DB1167200FDE63A /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		98668B6A1DB1346600FDE63A /* UIIdentitiesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIdentitiesListView.swift; path = UserInterface/UIIdentityManagementViewController/UIIdentitiesListView/UIIdentitiesListView.swift; sourceTree = "<group>"; };
 		9871FC7C1D5DC11E007CB684 /* jquery-3.1.0.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-3.1.0.min.js"; sourceTree = "<group>"; };
 		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
@@ -174,7 +201,7 @@
 		98EAF6971CCF893500C77649 /* RSNibDesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSNibDesignableView.swift; sourceTree = "<group>"; };
 		98EAF69B1CCF899500C77649 /* UIView+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
 		98EAF69D1CCF899500C77649 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		98EAF6A01CCF8A1800C77649 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = UserInterface/LoginView/LoginView.swift; sourceTree = "<group>"; };
+		98EAF6A01CCF8A1800C77649 /* UILoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILoginView.swift; path = UserInterface/LoginView/UILoginView.swift; sourceTree = "<group>"; };
 		98EAF6A21CCF8A3400C77649 /* UILoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UILoginView.xib; path = UserInterface/LoginView/UILoginView.xib; sourceTree = "<group>"; };
 		98EAF6A51CCF92CA00C77649 /* UISignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISignInViewController.swift; path = UserInterface/UISignInViewController/UISignInViewController.swift; sourceTree = "<group>"; };
 		98EAF6A81CCF974500C77649 /* UIRegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRegistrationView.swift; path = UserInterface/UIRegistrationView/UIRegistrationView.swift; sourceTree = "<group>"; };
@@ -190,7 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98EDE3E31DAFB904001B305B /* SwarmClient.framework in Frameworks */,
+				98668B671DB1167900FDE63A /* SwarmClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +356,7 @@
 			children = (
 				9852C6F41CD0F66100AF2BE5 /* UIIdentityCell */,
 				9852C6F21CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift */,
+				9860B4561DB1373500AFE113 /* UIIdentitiesListView */,
 			);
 			name = UIIdentityManagementViewController;
 			sourceTree = "<group>";
@@ -460,6 +488,51 @@
 			name = UISNSettingsReaderViewController;
 			sourceTree = "<group>";
 		};
+		9860B4561DB1373500AFE113 /* UIIdentitiesListView */ = {
+			isa = PBXGroup;
+			children = (
+				98668B6A1DB1346600FDE63A /* UIIdentitiesListView.swift */,
+				9860B4541DB136C600AFE113 /* UIIdentitiesListView.xib */,
+			);
+			name = UIIdentitiesListView;
+			sourceTree = "<group>";
+		};
+		98668B4B1DB0D0D800FDE63A /* ECSlidingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98668B4C1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.h */,
+				98668B4D1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m */,
+				98668B4E1DB0D0D800FDE63A /* ECSlidingAnimationController.h */,
+				98668B4F1DB0D0D800FDE63A /* ECSlidingAnimationController.m */,
+				98668B501DB0D0D800FDE63A /* ECSlidingConstants.h */,
+				98668B511DB0D0D800FDE63A /* ECSlidingInteractiveTransition.h */,
+				98668B521DB0D0D800FDE63A /* ECSlidingInteractiveTransition.m */,
+				98668B531DB0D0D800FDE63A /* ECSlidingSegue.h */,
+				98668B541DB0D0D800FDE63A /* ECSlidingSegue.m */,
+				98668B551DB0D0D800FDE63A /* ECSlidingViewController.h */,
+				98668B561DB0D0D800FDE63A /* ECSlidingViewController.m */,
+				98668B571DB0D0D800FDE63A /* UIViewController+ECSlidingViewController.h */,
+				98668B581DB0D0D800FDE63A /* UIViewController+ECSlidingViewController.m */,
+			);
+			path = ECSlidingViewController;
+			sourceTree = "<group>";
+		};
+		98668B5F1DB0D1D500FDE63A /* UIFlowController */ = {
+			isa = PBXGroup;
+			children = (
+				98668B601DB0D1F100FDE63A /* UIFlowController.swift */,
+			);
+			name = UIFlowController;
+			sourceTree = "<group>";
+		};
+		98668B641DB1018A00FDE63A /* OPErrorContainer */ = {
+			isa = PBXGroup;
+			children = (
+				98668B621DB1018600FDE63A /* OPErrorContainer.swift */,
+			);
+			name = OPErrorContainer;
+			sourceTree = "<group>";
+		};
 		9881D2321D0EC845005EE1FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +542,7 @@
 				9827501E1D0849EB00C73411 /* SwarmClientHelper */,
 				9827501B1D0849E200C73411 /* CredentialsStore */,
 				982750181D0849D400C73411 /* UserIdentityModel */,
+				98668B641DB1018A00FDE63A /* OPErrorContainer */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -551,6 +625,7 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				98668B5F1DB0D1D500FDE63A /* UIFlowController */,
 				98B2563F1D5E0DDF0043335A /* UISNSettingsView */,
 				985CD8551D5CA8A30021C58C /* UISNSettingsReaderViewController */,
 				9882DCF81D14487F00C7A70F /* UIScanningView */,
@@ -588,7 +663,7 @@
 		98EAF6921CCF88B300C77649 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
-				98EAF6A01CCF8A1800C77649 /* LoginView.swift */,
+				98EAF6A01CCF8A1800C77649 /* UILoginView.swift */,
 				98EAF6A21CCF8A3400C77649 /* UILoginView.xib */,
 			);
 			name = LoginView;
@@ -597,7 +672,8 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				98580D7F1DAFB70700F6F4BA /* SwarmClient.framework */,
+				98668B651DB1167200FDE63A /* SwarmClient.framework */,
+				98668B4B1DB0D0D800FDE63A /* ECSlidingViewController */,
 				98EAF6AC1CCF995B00C77649 /* IHKeyboardAvoiding */,
 				98EAF69A1CCF899500C77649 /* UIView+Utilities */,
 				98EAF69C1CCF899500C77649 /* UIViewController+Extensions */,
@@ -691,7 +767,7 @@
 				98EAF6671CCF86DC00C77649 /* Sources */,
 				98EAF6681CCF86DC00C77649 /* Frameworks */,
 				98EAF6691CCF86DC00C77649 /* Resources */,
-				9827502B1D084A2B00C73411 /* Embed Frameworks */,
+				98668B691DB1167900FDE63A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -772,6 +848,7 @@
 				9848B2D31D67393B00E0FD72 /* facebook_iOS.js in Resources */,
 				9853FF851D647E40007E2502 /* fbExtractData.js in Resources */,
 				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
+				9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */,
 				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
 				9871FC7D1D5DC11E007CB684 /* jquery-3.1.0.min.js in Resources */,
 				985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */,
@@ -808,10 +885,13 @@
 				98B256411D5E130B0043335A /* UISNSettingsView.swift in Sources */,
 				982750251D0849FA00C73411 /* HTMLLoginInputDetector.swift in Sources */,
 				9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */,
+				98668B5E1DB0D0D900FDE63A /* UIViewController+ECSlidingViewController.m in Sources */,
 				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
+				98668B5D1DB0D0D900FDE63A /* ECSlidingViewController.m in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
+				98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */,
 				9848B2D11D6738DD00E0FD72 /* FbWebKitSecurityEnforcer.swift in Sources */,
 				98EAF69F1CCF899500C77649 /* UIViewController+Extensions.swift in Sources */,
 				9852C6F71CD0F68D00AF2BE5 /* UIIdentityCell.swift in Sources */,
@@ -826,25 +906,31 @@
 				9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */,
 				982750131D08497400C73411 /* UIDashboardView.swift in Sources */,
 				9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */,
+				98668B5B1DB0D0D900FDE63A /* ECSlidingInteractiveTransition.m in Sources */,
 				9853FF871D64A5CA007E2502 /* FbWebKitParametersProvider.swift in Sources */,
 				9848B2D61D6740A500E0FD72 /* NSError+Utilities.swift in Sources */,
-				98EAF6A11CCF8A1800C77649 /* LoginView.swift in Sources */,
+				98EAF6A11CCF8A1800C77649 /* UILoginView.swift in Sources */,
 				9827501D1D0849E200C73411 /* CredentialsStore.swift in Sources */,
 				9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */,
+				98668B5C1DB0D0D900FDE63A /* ECSlidingSegue.m in Sources */,
 				9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */,
 				982750201D0849EB00C73411 /* SwarmClientHelper.swift in Sources */,
+				98668B5A1DB0D0D900FDE63A /* ECSlidingAnimationController.m in Sources */,
 				9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */,
 				9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */,
 				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
 				985CD8571D5CA8C50021C58C /* UISNSettingsReaderViewController.swift in Sources */,
 				9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */,
+				98668B631DB1018600FDE63A /* OPErrorContainer.swift in Sources */,
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,
 				9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */,
 				982750261D0849FA00C73411 /* OPConfigObject.swift in Sources */,
+				98668B611DB0D1F100FDE63A /* UIFlowController.swift in Sources */,
 				9827501A1D0849D400C73411 /* UserIdentityModel.swift in Sources */,
 				985CD8541D5C91250021C58C /* WebViewSettingsReader.swift in Sources */,
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
+				98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
 				9853FF821D6475B6007E2502 /* FacebookSecurityEnforcer.swift in Sources */,

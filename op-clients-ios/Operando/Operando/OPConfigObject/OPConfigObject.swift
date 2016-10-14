@@ -14,6 +14,7 @@ class OPConfigObject: NSObject
     
     private var currentUserIdentity : UserIdentityModel? = nil
     private let swarmClientHelper : SwarmClientHelper = SwarmClientHelper()
+    private let flowController = UIFlowController()
     
     
     func getCurrentUserIdentityIfAny() -> UserIdentityModel?
@@ -25,38 +26,46 @@ class OPConfigObject: NSObject
     
     func applicationDidStartInWindow(window: UIWindow)
     {
-        let rootController = UINavigationManager.rootViewController;
-        window.rootViewController = rootController
         
-
+        self.flowController.setupBaseHierarchyInWindow(window)
+        
+        weak var weakSelf = self
         if let (username, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
         {
-            weak var weakSelf = self
             self.swarmClientHelper.loginWithUsername(username: username, password: password, withCompletion: { (error, data) in
-                defer
+                if let error = error
                 {
-                    rootController.beginDisplayingUI()
+                    OPErrorContainer.displayError(error: error)
+                    weakSelf?.flowController.displayLoginHierarchyWith(loginCallback: { loginInfo in
+                        weakSelf?.logiWithInfoAndUpdateUI(loginInfo)
+                    })
+                    
+                    
+                    return
                 }
                 
-                guard error == nil else {return}
-                weakSelf?.currentUserIdentity = UserIdentityModel(username: username, password: password)
+                weakSelf?.currentUserIdentity = data
+                weakSelf?.flowController.setupHierarchyStartingWithDashboardIn(window)
             })
         }
         else
         {
-            rootController.beginDisplayingUI()
+            weakSelf?.flowController.displayLoginHierarchyWith(loginCallback: { loginInfo in
+                weakSelf?.logiWithInfoAndUpdateUI(loginInfo)
+            })
         }
     }
     
     
-    func loginUserWithInfo(loginInfo: LoginInfo, withCompletion completion: @escaping ((_ error: NSError?, _ identity: UserIdentityModel?) -> Void))
+    func logiWithInfoAndUpdateUI(_ loginInfo: LoginInfo)
     {
         weak var weakSelf = self
         self.swarmClientHelper.loginWithUsername(username: loginInfo.username, password: loginInfo.password) { (error, data) in
-            guard error == nil else
+            
+            if let error = error
             {
-                completion(error, nil)
-                return;
+                OPErrorContainer.displayError(error: error);
+                return
             }
             
             if loginInfo.wishesToBeRemembered
@@ -64,9 +73,8 @@ class OPConfigObject: NSObject
                 CredentialsStore.saveCredentials(username: loginInfo.username, password: loginInfo.password)
             }
             
-            weakSelf?.currentUserIdentity = UserIdentityModel(username: loginInfo.username, password: loginInfo.password);
-            completion(nil, weakSelf?.currentUserIdentity)
-            
+            weakSelf?.currentUserIdentity = data
+            weakSelf?.flowController.displayDashboard()
         }
     }
 }

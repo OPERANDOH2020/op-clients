@@ -15,6 +15,7 @@ import UIKit
 enum SocketIOEventsNames: String {
     case Message = "message"
     case Connect = "connect"
+    case Disconnect = "disconnect"
 }
 
 open class SwarmClient: NSObject {
@@ -44,6 +45,10 @@ open class SwarmClient: NSObject {
         
         socketIO.on(SocketIOEventsNames.Connect.rawValue) { (receivedData, emitterSocket) in
             self.handleSocketCreationEvent()
+        }
+        
+        socketIO.on(SocketIOEventsNames.Disconnect.rawValue) { (data, emitterSocket) in
+            self.delegate?.socketDidDisconnect()
         }
     }
     

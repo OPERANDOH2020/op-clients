@@ -8,23 +8,26 @@
 
 import Foundation
 
-class UserIdentityModel: NSObject
+class UserIdentityModel
 {
-    private var _username: String = ""
-    private var _password: String = ""
+
+    let sessionId: String
+    let userId: String
     
-    var username : String
+    init?(swarmClientLoginReply: [String: Any])
     {
-        get
+        guard let userId = swarmClientLoginReply["userId"] as? String,
+              let sessionId = swarmClientLoginReply["sessionId"] as? String,
+              let authenticated = swarmClientLoginReply["authenticated"] as? Bool
+            else
         {
-            return _username
+                return nil
         }
-    }
-    
-    init(username: String, password: String)
-    {
-        super.init()
-        _username = username
-        _password = password
+        
+        if !authenticated {return nil}
+        
+        
+        self.userId = userId
+        self.sessionId = sessionId
     }
 }

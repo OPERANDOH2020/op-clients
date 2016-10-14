@@ -11,32 +11,4 @@ import UIKit
 class UIDashboardViewController: UIViewController
 {
 
-    var whenPrivateBrowsingButtonPressed: (() -> ())?
-    
-    @IBOutlet weak var registerOrLoginButton: UIButton!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.showOrHideAuthenticationButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.showOrHideAuthenticationButton()
-    }
-    
-    @IBAction func didPressPrivateBrowsing(sender: AnyObject)
-    {
-        self.whenPrivateBrowsingButtonPressed?()
-    }
-    
-    
-    private func showOrHideAuthenticationButton()
-    {
-        self.registerOrLoginButton.isHidden = false
-        if let _ = OPConfigObject.sharedInstance.getCurrentUserIdentityIfAny()
-        {
-           self.registerOrLoginButton.isHidden = true
-        }
-    }
 }

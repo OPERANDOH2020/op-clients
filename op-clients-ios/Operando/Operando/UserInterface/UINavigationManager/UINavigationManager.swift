@@ -95,4 +95,16 @@ class UINavigationManager
         return main.instantiateViewController(withIdentifier: "UISNSettingsReaderViewController") as! UISNSettingsReaderViewController
     }
     
+    
+    static var loginViewController: UISignInViewController
+    {
+        return main.instantiateViewController(withIdentifier: "UISignInViewController") as! UISignInViewController
+    }
+    
+    
+    static var registerViewController: UIRegistrationViewController
+    {
+        return main.instantiateViewController(withIdentifier: "UIRegistrationViewController") as! UIRegistrationViewController
+    }
+    
 }

@@ -8,43 +8,42 @@
 
 import UIKit
 
+typealias LoginCallback = (_ loginInfo: LoginInfo) -> Void
+
+struct UISignInViewControllerCallbacks
+{
+    let whenUserWantsToLogin: LoginCallback?
+    let whenUserPressedRegister: VoidBlock?
+}
+
 class UISignInViewController: UIViewController {
     
 
     @IBOutlet weak var loginView: UILoginView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    fileprivate var callbacks: UISignInViewControllerCallbacks?
+    
+    
+    
+    func setupWithCallbacks(_ cbs: UISignInViewControllerCallbacks?)
+    {
+        let _ = self.view
+        self.callbacks = cbs
         self.loginView.setupWithCallbacks(callbacks: self.callbacksForLoginView(loginView: self.loginView));
+
+    }
+    
+    
+    @IBAction func didPressRegisterButton(_ sender: UIButton)
+    {
+        self.callbacks?.whenUserPressedRegister?()
     }
     
     
     private func callbacksForLoginView(loginView: UILoginView) -> UILoginViewCallbacks?
     {
-        weak var weakSelf = self;
-        
-        return UILoginViewCallbacks(whenUserWantsToLogin: { (info) in
-            weakSelf?.loginUserWithLoginInfo(loginInfo: info)
-            }, whenUserForgetsPassword: { 
+        return UILoginViewCallbacks(whenUserWantsToLogin: self.callbacks?.whenUserWantsToLogin, whenUserForgetsPassword: {
                 OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "Will be available soon")
         })
     }
     
-    private func loginUserWithLoginInfo(loginInfo: LoginInfo)
-    {
-        self.view.alpha = 0.8;
-        
-        OPConfigObject.sharedInstance.loginUserWithInfo(loginInfo: loginInfo) { (error, identity) in
-            self.view.alpha = 1.0;
-            
-            if let err = error
-            {
-                OPViewUtils.showOkAlertWithTitle(title: "Error", andMessage: err.localizedDescription);
-            }
-            else
-            {
-                self.navigationController?.popToRootViewController(animated: true);
-            }
-        }
-    }
 }

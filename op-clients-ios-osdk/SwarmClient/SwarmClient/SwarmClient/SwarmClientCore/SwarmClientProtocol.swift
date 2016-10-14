@@ -16,4 +16,5 @@ public protocol SwarmClientProtocol {
     
     func didFailedToCreateSocket(_ error: NSError)
     func didReceiveData(_ data: [Any])
+    func socketDidDisconnect()
 }

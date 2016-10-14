@@ -29,6 +29,9 @@ extension UIViewController
             hostView!.addSubview(controller.view);
         }
         controller.didMove(toParentViewController: self);
+        
+        hostView?.setNeedsLayout()
+        hostView?.layoutIfNeeded()
     }
     
     func removeContentController(controller: UIViewController)

@@ -10,5 +10,6 @@
 #define Operando_BridgingHeader_h
 
 #include "IHKeyboardAvoiding.h"
+#include "ECSlidingViewController.h"
 
 #endif /* Operando_BridgingHeader_h */
