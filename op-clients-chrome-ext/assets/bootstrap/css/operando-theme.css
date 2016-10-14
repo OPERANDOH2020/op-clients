@@ -216,7 +216,8 @@ div.tab-content{
 #reading_settings_tab,
 #preferences_tab,
 #pfb_tab,
-#social_networks_tab
+#social_networks_tab,
+#privacy_wizard_tab
 {
     display: block;
     padding: 20px;
@@ -565,6 +566,7 @@ footer{
     margin-top: 20px;
     background: #4B4B4B;
     width: 100%;
+    min-width: 1100px;
     height: 80px;
 }
 
@@ -875,30 +877,6 @@ border-left:2px solid #fe9901;
     background:#fdfaef;
 }
 
-
-#wrapper button.single_click_privacy{
-    width: 100%;
-    background: url("/operando/assets/images/single_click.png") no-repeat left center #e0d7bf;
-    border:1px solid #c3b99c;
-    margin:0%;
-    text-transform: uppercase;
-    color: #FFF;
-    margin-bottom: 40px;
-    background-size: 30%;
-    font-size: 100%;
-    font-size: 20px;
-    padding: 15% 10px 15% 30%;
-}
-
-#wrapper button.single_click_privacy:hover,
-#wrapper button.single_click_privacy:active,
-#wrapper button.single_click_privacy:focus{
-    background-color: #FF9900;
-    border-color: #FF9900;
-    outline:#FF9900;
-}
-
-
 #identities_container .table>tbody>tr.defaultIdentity>td,
 #identities_container .table>tbody>tr.defaultIdentity>th,
 #identities_container .table>tbody>tr>td.defaultIdentity,
@@ -1042,7 +1020,7 @@ border: none;
 }
 
 .privacy_wizard{
-    margin-top: 50px;
+    margin-top: 23px;
     background: #f1ebdf;
     padding: 30px;
     color:#654d14;
@@ -1792,7 +1770,6 @@ padding-left: 0px;
 
 }
 
-
 #pfbdeals_container td.actions .toggle_container{
     position: relative;
     display: block;
@@ -1829,10 +1806,47 @@ top:0;
 .privacy_wizard_panel{
     background: #e4d7be;
     border: 1px solid #c5b79b;
+    padding-bottom: 15px;
 }
 
 .privacy_wizard_panel .take_wizard_icon {
     background: url("/operando/assets/images/privacy_wizard.png") no-repeat left center;
-    height: 248px;
-    background-size:70%;
+    background-size: 155px;
+    height: 190px;
+    max-width: 155px;
+}
+
+
+
+.single_click_privacy_panel{
+    background:#e0d7bf;
+    border:1px solid #c3b99c;
+    padding-bottom: 15px;
+}
+
+.single_click_privacy_panel .apply_settings_icon{
+    background: url("/operando/assets/images/single_click.png") no-repeat left center;
+    background-size: 155px;
+    height: 190px;
+    max-width: 155px;
+}
+
+.single_click_privacy_panel .col-xs-7,
+.privacy_wizard_panel .col-xs-7{
+    height: 190px;
+    display: table;
+}
+
+.single_click_privacy_panel .col-xs-7 h3,
+.privacy_wizard_panel .col-xs-7 h3{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.single_click_privacy_panel p,
+.privacy_wizard_panel p
+{
+    font-size: 16px;
+    text-align: justify;
+    text-indent: 50px;
 }

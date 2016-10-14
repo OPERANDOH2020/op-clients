@@ -1,114 +1,105 @@
-<div>
+<div id="privacy_wizard_tab">
+    <h3>Privacy Questionnaire</h3>
+    <div ng-switch="view" class="privacy_wizard">
 
-    <div ng-switch="started">
+        <ui-loader ng-if="!idToQuestion[current_question.question_id]"></ui-loader>
 
-        <div ng-switch-when="false">
-            bau bau here
+        <progress-bar current="current_settings.length" total="numOptions"
+                      interval="current_question.suggestions[0].length"
+                      ng-if="idToQuestion[current_question.question_id]"></progress-bar>
+
+        <div ng-switch-when="options">
+
+            <h4>{{idToQuestion[current_question.question_id]}}</h4>
+
+            <fieldset class="form-group wizard_question">
+
+                <div ng-repeat="choice in current_question.possible_choices_ids" class="radio">
+                    <label>
+                        <input type="radio" ng-model="current_question.selected" ng-value="choice">
+                        <span>{{idToAnswer[choice].option.name}}</span>
+                    </label>
+
+                </div>
+
+            </fieldset>
+
+            <div class="wizard_actions">
+                <button class="btn-primary" ng-click="next()" ng-disabled="!someSelected()">Next</button>
+            </div>
+
         </div>
 
-        <div ng-switch-when="true">
-            <div ng-switch="view" class="privacy_wizard">
+        <div ng-switch-when="suggestions" class="sugesstions">
 
-                <ui-loader ng-if="!idToQuestion[current_question.question_id]"></ui-loader>
-
-                <progress-bar current="current_settings.length" total="numOptions"
-                              interval="current_question.suggestions[0].length"
-                              ng-if="idToQuestion[current_question.question_id]"></progress-bar>
-
-                <div ng-switch-when="options">
-
-                    <h4>{{idToQuestion[current_question.question_id]}}</h4>
-
-                    <fieldset class="form-group wizard_question">
-
-                        <div ng-repeat="choice in current_question.possible_choices_ids" class="radio">
-                            <label>
-                                <input type="radio" ng-model="current_question.selected" ng-value="choice">
-                                <span>{{idToAnswer[choice].option.name}}</span>
-                            </label>
-
-                        </div>
-
-                    </fieldset>
-
-                    <div class="wizard_actions">
-                        <button class="btn-primary" ng-click="next()" ng-disabled="!someSelected()">Next</button>
-                    </div>
-
+            <div class="alert success-notification">
+                <div class="alert_container ng-binding">
+                    <h3 class="privacy_wizard_suggestions_heading">According to your previous answers, we're
+                        thinking that the following privacy settings are suitable for you!</h3>
                 </div>
-
-                <div ng-switch-when="suggestions" class="sugesstions">
-
-                    <div class="alert success-notification">
-                        <div class="alert_container ng-binding">
-                            <h3 class="privacy_wizard_suggestions_heading">According to your previous answers, we're
-                                thinking that the following privacy settings are suitable for you!</h3>
-                        </div>
-
-                    </div>
-
-
-                    <div>
-
-                        <div ng-repeat="(question,answer) in suggestedQuestions" class="suggested_question">
-
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h4>{{question}}</h4>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <fieldset class="form-group">
-
-                                        <ui-select ng-model="answer.option" style="min-width: 150px;"
-                                                   title="Choose a setting" theme="selectize">
-                                            <ui-select-match placeholder="Select or search a setting...">
-                                                {{$select.selected.name}}
-                                            </ui-select-match>
-                                            <ui-select-choices
-                                                    repeat="option in answersForQuestion[question] | filter: $select.search"
-                                            ">
-                                            <span ng-bind-html="option.name"></span>
-                                            </ui-select-choices>
-                                        </ui-select>
-                                    </fieldset>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="wizard_actions">
-                        <button class="btn-primary" ng-click="next()">Continue</button>
-                    </div>
-                </div>
-
-                <div ng-switch-when="completed">
-
-                    <div class="alert success-notification">
-                        <div class="alert_container ng-binding">
-                            <h3 class="privacy_wizard_suggestions_heading">Congratulations! You finished the
-                                wizard!</h3>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
 
             </div>
 
-            <!--<div class="debug">
-                <hr/>
-                <div><b>Current Settings:</b> {{current_settings}}</div>
-                <hr/>
-                <div><b>Question:</b> {{current_question}}</div>
-                <hr/>
-                <div><b>Suggested Questions:</b> {{suggestedQuestions}}</div>
-            </div>-->
+
+            <div>
+
+                <div ng-repeat="(question,answer) in suggestedQuestions" class="suggested_question">
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h4>{{question}}</h4>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <fieldset class="form-group">
+
+                                <ui-select ng-model="answer.option" style="min-width: 150px;"
+                                           title="Choose a setting" theme="selectize">
+                                    <ui-select-match placeholder="Select or search a setting...">
+                                        {{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices
+                                            repeat="option in answersForQuestion[question] | filter: $select.search"
+                                    ">
+                                    <span ng-bind-html="option.name"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="wizard_actions">
+                <button class="btn-primary" ng-click="next()">Continue</button>
+            </div>
+        </div>
+
+        <div ng-switch-when="completed">
+
+            <div class="alert success-notification">
+                <div class="alert_container ng-binding">
+                    <h3 class="privacy_wizard_suggestions_heading">Congratulations! You finished the
+                        wizard!</h3>
+                </div>
+
+            </div>
 
 
         </div>
+
+
     </div>
+
+    <!--<div class="debug">
+        <hr/>
+        <div><b>Current Settings:</b> {{current_settings}}</div>
+        <hr/>
+        <div><b>Question:</b> {{current_question}}</div>
+        <hr/>
+        <div><b>Suggested Questions:</b> {{suggestedQuestions}}</div>
+    </div>-->
+
+
 </div>

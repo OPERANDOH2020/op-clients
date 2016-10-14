@@ -1,21 +1,57 @@
-<div id="social_networks_tab">
+<div id="social_networks_tab" ui-view>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="single_click_privacy_panel clearfix">
 
-    <div class="panel-group col-xs-6">
-        <singleclickprivacy></singleclickprivacy>
-    </div>
+                <div class="apply_settings_icon col-xs-5">
+                </div>
+                <div class="col-xs-7">
+                    <h3>Single Click Privacy</h3>
+                </div>
 
+                <div class="col-xs-12">
 
-    <div class="panel-group col-xs-6 privacy_wizard_panel">
-
-        <div class="take_wizard_icon col-xs-5">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod semper turpis ac faucibus.
+                        Phasellus sit amet neque nunc. Curabitur eu consequat nunc. Quisque fringilla est nisi, eget
+                        hendrerit mi dapibus nec. Morbi et leo ac urna lacinia dapibus. Integer tellus odio, consequat a
+                        sodales vel, imperdiet nec diam. Maecenas at magna a mauris tempus consequat. Suspendisse
+                        scelerisque turpis sed erat consectetur, eget sollicitudin eros ornare. Integer nec lorem a
+                        magna elementum rhoncus ullamcorper id augue. Nam vitae erat feugiat, mollis nisi nec, imperdiet
+                        purus.</p>
+                    <singleclickprivacy></singleclickprivacy>
+                </div>
+            </div>
         </div>
 
-        <div class="col-xs-7">
-            <h3>Privacy Questionnaire</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod semper turpis ac faucibus. Phasellus sit amet neque nunc. Curabitur eu consequat nunc. Quisque fringilla est nisi, eget hendrerit mi dapibus nec. Morbi et leo ac urna lacinia dapibus. Integer tellus odio, consequat a sodales vel, imperdiet nec diam. Maecenas at magna a mauris tempus consequat. Suspendisse scelerisque turpis sed erat consectetur, eget sollicitudin eros ornare. Integer nec lorem a magna elementum rhoncus ullamcorper id augue. Nam vitae erat feugiat, mollis nisi nec, imperdiet purus.</p>
+        <div class="col-md-6">
+            <div class="privacy_wizard_panel clearfix">
+
+                <div class="take_wizard_icon col-xs-5">
+                </div>
+
+                <div class="col-xs-7">
+                    <h3>Privacy Questionnaire</h3>
+                </div>
+
+                <div class="col-xs-12">
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod semper turpis ac faucibus.
+                        Phasellus sit amet neque nunc. Curabitur eu consequat nunc. Quisque fringilla est nisi, eget
+                        hendrerit mi dapibus nec. Morbi et leo ac urna lacinia dapibus. Integer tellus odio, consequat a
+                        sodales vel, imperdiet nec diam. Maecenas at magna a mauris tempus consequat. Suspendisse
+                        scelerisque turpis sed erat consectetur, eget sollicitudin eros ornare. Integer nec lorem a
+                        magna elementum rhoncus ullamcorper id augue. Nam vitae erat feugiat, mollis nisi nec, imperdiet
+                        purus.
+                    </p>
+
+
+                    <button class="btn-primary" ui-sref="socialNetworks.privacyQuestionnaire" >Take the privacy questionnaire</button>
+
+                </div>
+            </div>
+
         </div>
-
     </div>
+</div>
 
-    <!--<privacy-wizard></privacy-wizard>-->
 </div>

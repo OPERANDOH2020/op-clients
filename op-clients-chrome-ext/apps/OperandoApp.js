@@ -64,6 +64,12 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                     }]
 
                 }
+
+            })
+            .state("socialNetworks.privacyQuestionnaire", {
+                url: "/privacy-questionnaire",
+                template: "<privacy-wizard></privacy-wizard>",
+                parent:"socialNetworks"
             })
             .state("notifications", {
                 url: "/notifications",
