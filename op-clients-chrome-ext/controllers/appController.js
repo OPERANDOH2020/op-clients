@@ -12,7 +12,7 @@
 
 
 angular.module("operando").
-controller("appCtrl", ["$scope", "messengerService","$window", function ($scope, messengerService,$window) {
+controller("appCtrl", ["$scope", "messengerService","$window","notificationService", function ($scope, messengerService,$window, notificationService) {
 
     $scope.userIsLoggedIn = false;
 
@@ -33,6 +33,11 @@ controller("appCtrl", ["$scope", "messengerService","$window", function ($scope,
             //$scope.$apply();
             $window.location.reload();
         });
+
+
+    setTimeout(function(){
+        notificationService.notifyUserNow();
+    },2000);
 
 }]);
 

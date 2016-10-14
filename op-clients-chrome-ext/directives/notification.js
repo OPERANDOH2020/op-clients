@@ -10,40 +10,39 @@ angular.module('notifications', ['ui-notification'])
             positionY: 'bottom'
         })
     })
-    .factory("notificationService", function ($rootScope) {
+    .factory("notificationService", function ($rootScope, Notification) {
 
 
         var notifications = [
+
+
             {
                 id: 0,
                 sender: "WatchDog",
-                title: "Warning!",
-                content: "Please review your Facebook settings.",
-                type: "warning-notification",
-                action:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis nibh et leo porta mollis sed sed odio. Aenean et suscipit felis, id tristique ante. Ut vitae pretium tellus, ac tincidunt elit. Suspendisse scelerisque vel ligula at fermentum. Suspendisse consequat quam sit amet quam vestibulum auctor. Praesent nisi enim, aliquet."
+                title: "Add a identity",
+                content: "Explain why user should add a identity!",
+                action:"identity",
+                type: "info-notification"
+            },
 
-            },
-            {
-                id: 1,
-                sender: "WatchDog",
-                title: "Well done!",
-                content: "Your LinkedIn privacy settings were successfully applied!",
-                type: "success-notification"
-            },
             {
                 id: 2,
                 sender: "WatchDog",
-                title: "Heads up!",
-                content: "A new privacy setting is available for Twitter!",
+                title: "Privacy Questionnaire!",
+                content: "Explain why user should take the privacy questionnaire!",
+                action:"privacy-questionnaire",
                 type: "info-notification"
             },
+
             {
                 id: 3,
                 sender: "WatchDog",
-                title: "First scan!",
-                content: "Please perform a social network privacy settings scan in order to help you to apply the suitable settings.",
+                title: "Privacy for Benefits!",
+                content: "Explain why user should subscribe!",
+                action:"privacy-for-benefits",
                 type: "info-notification"
             }
+
         ];
 
         /*  var getNotifications = function(){
@@ -62,9 +61,39 @@ angular.module('notifications', ['ui-notification'])
         }
 
 
+        var notifyUserNow = function(){
+
+            var sequence = Promise.resolve();
+            notifications.filter(function(notification){
+                return notification.type == "info-notification"
+                return true;
+            }).forEach(function(notification){
+                sequence = sequence.then(function () {
+                    return new Promise(function (resolve, reject) {
+
+                        Notification(
+                            {
+                                title: notification.title,
+                                message: notification.content,
+                                positionY: "top",
+                                positionX: "right",
+                                delay: "60000",
+                                templateUrl: "tpl/notifications/user-notification.html"
+                            }, 'warning');
+
+                        setTimeout(function () {
+                            resolve();
+                        }, 200);
+                    })
+                })
+            });
+        }
+
+
         return {
             notifications: notifications,
-            hideNotification: hideNotification
+            hideNotification: hideNotification,
+            notifyUserNow:notifyUserNow
         }
 
     });
@@ -122,12 +151,19 @@ angular.module('notifications').
             link: function ($scope) {
 
             },
-            controller: function ($scope, notificationService) {
+            controller: function ($scope, notificationService, $state ) {
 
                 $scope.hideNotification = function () {
                     notificationService.hideNotification($scope.notification.id);
                 }
 
+                $scope.takeAction = function(){
+                    switch ($scope.notification.action){
+                        case "identity": $state.transitionTo('identityManagement'); break;
+                        case "privacy-questionnaire": $state.transitionTo('socialNetworks.privacyQuestionnaire'); break;
+                        case "privacy-for-benefits": $state.transitionTo('deals'); break;
+                    }
+                }
             },
             templateUrl: '/operando/tpl/notifications/notification.html'
         }

@@ -217,7 +217,8 @@ div.tab-content{
 #preferences_tab,
 #pfb_tab,
 #social_networks_tab,
-#privacy_wizard_tab
+#privacy_wizard_tab,
+#notifications_tab
 {
     display: block;
     padding: 20px;
@@ -652,7 +653,8 @@ footer{
 }
 
 .operando .modal-content .btn-primary-black,
-.operando #wrapper .btn-primary-black{
+.operando #wrapper .btn-primary-black,
+.btn-primary-black{
     background: #000;
     border-color:#000;
     color:#FFB400;
@@ -662,15 +664,30 @@ footer{
 }
 
 .operando .modal-content .btn-primary-black:hover,
-.operando #wrapper .btn-primary-black:hover{
+.operando #wrapper .btn-primary-black:hover,
+.btn-primary-black:hover{
 color:#FFF;
+}
+
+.ui-notification .btn-primary-black{
+    color:#FFF;
+}
+
+button.btn-primary.notification-action
+{
+position: absolute;
+margin-top: -18px;
+top: 50%;
+right: 60px;
 }
 
 
 .operando .modal-content .btn-primary-black[disabled],
 .operando #wrapper .btn-primary-black[disabled],
 .operando .modal-content .btn-primary-black[disabled]:hover,
-.operando #wrapper .btn-primary-black[disabled]:hover{
+.operando #wrapper .btn-primary-black[disabled]:hover,
+.btn-primary-black[disabled],
+.btn-primary-black[disabled]:hover{
     opacity: 0.5;
     color:#FFB400;
 }
@@ -680,7 +697,8 @@ color:#FFF;
 .operando #wrapper .btn-primary:focus,
 .login_container_wrapper button.btn-primary:focus,
 .operando .modal-content .btn-primary-black:focus,
-.operando #wrapper .btn-primary-black:focus {
+.operando #wrapper .btn-primary-black:focus,
+.btn-primary-black:focus{
     outline: none;
 }
 
@@ -985,6 +1003,27 @@ border: none;
     background: url("/operando/assets/images/caution.png") no-repeat left center;
 }
 
+.custom_notification{
+    padding: 10px;
+}
+
+.custom_notification.ui-notification>h3 {
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+    margin: 0px 10px 0;
+    padding: 10px 0 10px 40px;
+    text-align: left;
+    border-bottom: 1px solid #d49607;
+    background: url(/operando/assets/images/new_notification.png) no-repeat left center;
+}
+
+.custom_notification.ui-notification>.message {
+    margin: 0px 10px 10px 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ffcb54;
+}
+
 
 /** READING SETTINGS**/
 
@@ -1036,9 +1075,6 @@ border: none;
     border-top: 1px solid #f7f3ea;
     padding-top: 20px;
 }
-/*.sugesstions .suggested_question:last-child{
-    border-bottom: none;
-}*/
 
 .sugesstions .suggested_question:first-child{
     border-top: none;
