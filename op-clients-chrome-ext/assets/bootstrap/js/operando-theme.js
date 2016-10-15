@@ -35,7 +35,7 @@ $(document).ready(function () {
 
             /**menu black magic here**/
 
-            $(".no-sub-menu a").on("click", function () {
+            /*$(".no-sub-menu a").on("click", function () {
                 $('.collapse').collapse('hide');
                 $('.opened').removeClass('opened');
             })
@@ -58,7 +58,7 @@ $(document).ready(function () {
                         $(this).addClass('opened');
                     })
                 }
-            });
+            });*/
 
         });
 

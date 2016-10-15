@@ -26,6 +26,10 @@ controller("appCtrl", ["$scope", "messengerService","$window","notificationServi
             $scope.user = user;
             $scope.userIsLoggedIn = true;
             $scope.$apply();
+
+
+            checkNotifications($scope.user.userId);
+
         });
 
         messengerService.send("notifyWhenLogout", {}, function () {
@@ -35,9 +39,37 @@ controller("appCtrl", ["$scope", "messengerService","$window","notificationServi
         });
 
 
-    setTimeout(function(){
-        notificationService.notifyUserNow();
-    },2000);
+
+    function checkNotifications(userId){
+
+        //TODO check notifications from server
+        chrome.storage.local.get("user_notifications", function(notifications){
+            console.log(notifications);
+            if(Object.keys(notifications).length>0){
+
+                if(notifications.user_notifications.indexOf(userId)=== -1){
+                    setTimeout(function(){
+                        notifications.user_notifications.push(userId);
+                        notificationService.notifyUserNow();
+
+                        chrome.storage.local.set(notifications);
+                    },2000);
+
+                }
+            }
+            else{
+                setTimeout(function(){
+                    notificationService.notifyUserNow();
+                    var notifications = {
+                        user_notifications: [userId]
+
+                    }
+                    chrome.storage.local.set(notifications);
+                },2000);
+
+            }
+        })
+    }
 
 }]);
 

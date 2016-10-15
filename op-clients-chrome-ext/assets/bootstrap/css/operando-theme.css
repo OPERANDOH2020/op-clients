@@ -671,6 +671,9 @@ color:#FFF;
 
 .ui-notification .btn-primary-black{
     color:#FFF;
+    padding: 5px 10px;
+    background: #4B4B4B;
+    border:none;
 }
 
 button.btn-primary.notification-action
@@ -831,7 +834,6 @@ right: 60px;
     border:none;
 }
 
-.col-xs-2 .sub-menu.tabs-left>li.active>a,
 .col-xs-2 li.no-sub-menu.active>a
 {
     background-color: #fdfaef;
@@ -924,9 +926,15 @@ border-left:2px solid #fe9901;
     padding: 20px;
 }
 
-.nav>li>a:focus, .nav>li>a:hover {
+.nav>li>a:focus, .nav>li>a:hover,
+.nav>li.has_children:not(.active):hover{
     text-decoration: none;
     background-color: #000;
+}
+
+.nav>li.has_children.active>a.collapsed{
+    background-color: #FDFAEF;
+    color:#393939;
 }
 
 .notification-counter {
@@ -1007,6 +1015,10 @@ border: none;
     padding: 10px;
 }
 
+.custom_notification.ui-notification.clickable:hover{
+    opacity: 1;
+}
+
 .custom_notification.ui-notification>h3 {
     font-size: 16px;
     font-weight: 700;
@@ -1022,6 +1034,14 @@ border: none;
     margin: 0px 10px 10px 10px;
     padding-top: 10px;
     border-top: 1px solid #ffcb54;
+}
+
+.custom_notification.ui-notification a{
+    color:#4B4B4B;
+}
+
+.custom_notification.ui-notification a:hover{
+    text-decoration: none;
 }
 
 
@@ -1504,7 +1524,7 @@ visibility: visible;
 }
 
 .sidebar_expandable_menu .tabs-left.sub-menu{
-    margin: 10px 0px;
+    margin:0px;
 }
 
 .content_wrapper{
@@ -1527,7 +1547,6 @@ visibility: visible;
 }
 
 .sidebar_expandable_menu .primary-menu > .panel{
-    border-left:5px solid #4B4B4B;
     z-index: 2;
 }
 
@@ -1540,49 +1559,19 @@ visibility: visible;
     cursor: pointer;
 }
 
-
-.sidebar_expandable_menu .panel-group.primary-menu>.panel:not(.opened):hover:before,
-.sidebar_expandable_menu .panel-group.primary-menu>.panel:not(.opened):focus:before{
-    background-color:#000;
-    height: 60px;
-    width: 300px;
-    position: absolute;
-    display: block;
-    content:"";
-    z-index:-1;
-    top:0px;
-    left:-4px;
-    background-image: inherit;
-    background-position: 20px 20px;
-    background-repeat: no-repeat;
+.sidebar_expandable_menu .panel-group .panel.has_children.active{
+    background-color:#333;
 }
 
-.sidebar_expandable_menu .panel-group .panel.has_children .sub-menu .panel:not(.active):hover:before,
-.sidebar_expandable_menu .panel-group .panel.has_children .sub-menu .panel:not(.active):focus:before{
-    background-color:#000;
-    height: 60px;
-    width: 296px;
-    position: absolute;
-    display: block;
-    content:"";
-    z-index:-1;
-    top:0px;
-    left:0px;
+.sidebar_expandable_menu .panel-group .panel.has_children li a.active{
+    background-color: #FDFAEF;
+    border-left: 2px solid #FFB400;
+    margin-left: 0px;
+    color: #4b4b4b;
 }
 
-.sidebar_expandable_menu li.panel.opened a.panel-heading,
-.sidebar_expandable_menu .panel-group li.panel.opened a.panel-heading.collapsed{
+.sidebar_expandable_menu .panel-group li.panel a.panel-heading:not(.collapsed){
     background: url("/operando/assets/images/arrow-collapse.png") no-repeat right 20px center;
-}
-
-
-.sidebar_expandable_menu .primary-menu > .panel.opened {
- border-left:2px solid #fe9901;
- background-color: #393939;
-}
-
-ul li ul li:not(.opened) a.panel-heading{
-    background: url("/operando/assets/images/arrow-expand.png") no-repeat right 20px center!important;
 }
 
 
@@ -1645,16 +1634,32 @@ ul li ul li:not(.opened) a.panel-heading{
     background-image:url("/operando/assets/images/menu_icons/facebook.png");
 }
 
+.active.menu_icon.facebook_icon{
+    background-image:url("/operando/assets/images/menu_icons/facebook_selected.png");
+}
+
 .menu_icon.twitter_icon{
     background-image:url("/operando/assets/images/menu_icons/twitter.png");
+}
+
+.active.menu_icon.twitter_icon{
+    background-image:url("/operando/assets/images/menu_icons/twitter_selected.png");
 }
 
 .menu_icon.linkedin_icon{
     background-image:url("/operando/assets/images/menu_icons/linkedin.png");
 }
 
+.active.menu_icon.linkedin_icon{
+    background-image:url("/operando/assets/images/menu_icons/linkedin_selected.png");
+}
+
 .menu_icon.google_icon{
     background-image:url("/operando/assets/images/menu_icons/google.png");
+}
+
+.active.menu_icon.google_icon{
+    background-image:url("/operando/assets/images/menu_icons/google_selected.png");
 }
 
 .menu_icon.identity_management_icon{
@@ -1676,25 +1681,30 @@ ul li ul li:not(.opened) a.panel-heading{
 .menu_icon.dashboard_icon{
     background-image:url("/operando/assets/images/menu_icons/dashboard.png");
 }
-.active .menu_icon.dashboard_icon{
+.active.menu_icon.dashboard_icon>a.collapsed{
     background-image:url("/operando/assets/images/menu_icons/dashboard_selected.png");
+    background-position: 15px 20px;
+}
+.active.menu_icon.dashboard_icon>a.collapsed:after{
+    position: absolute;
+    right: 20px;
+    width: 16px;
+    height: 16px;
+    content: "";
+    display: block;
+    background: url(/operando/assets/images/arrow-expand-orange.png) no-repeat center center;
+    top:23px
 }
 
 .menu_icon.reading_privacy_icon{
     background-image:url("/operando/assets/images/menu_icons/reading_privacy.png");
 }
 
-.active .menu_icon.reading_privacy_icon{
-    background-image:url("/operando/assets/images/menu_icons/reading_privacy_selected.png");
-}
 
 .menu_icon.edit_privacy_icon{
     background-image:url("/operando/assets/images/menu_icons/edit_privacy.png");
 }
 
-.active .menu_icon.edit_privacy_icon{
-    background-image:url("/operando/assets/images/menu_icons/edit_privacy_selected.png");
-}
 
 .menu_icon.mobile_icon{
     background-image:url("/operando/assets/images/menu_icons/phone.png");
@@ -1851,8 +1861,6 @@ top:0;
     height: 190px;
     max-width: 155px;
 }
-
-
 
 .single_click_privacy_panel{
     background:#e0d7bf;

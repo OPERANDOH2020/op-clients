@@ -134,9 +134,10 @@
                     </li>
 
 
-                    <li ng-class="{active: $state.includes('dashboard')}" ng-if="user.organisationId =='Analysts'"
+                    <li ng-class="{active: $state.includes('admin')||$state.includes('analyst')}" ng-if="user.organisationId =='Analysts'"
                         class="panel menu_icon dashboard_icon has_children" id="dashboard">
                         <a class="panel-heading" role="tab" id="headingFour" role="button" data-toggle="collapse"
+                           ui-sref="admin.privacy_settings({sn:'facebook'})"
                            data-parent="#accordion" data-target="#collapseFour" aria-controls="collapseFour">Dashboard</a>
 
 
@@ -149,6 +150,7 @@
                                 <li ng-class="{active: $state.includes('admin')}"
                                     class="panel menu_icon reading_privacy_icon">
                                     <a class="panel-heading" role="button" data-toggle="collapse"
+                                       ui-sref="admin.privacy_settings({sn:'facebook'})"
                                        data-parent="#dashboard_content" data-target="#collapseFive">Reading Settings</a>
 
                                     <div id="collapseFive" class="panel-collapse-child collapse" role="tabpanel"
@@ -156,8 +158,9 @@
                                         <ul class="nav nav-tabs tabs-left sub-menu panel-body"
                                             ng-controller="readSocialNetworkPrivacySettings">
 
-                                            <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a
+                                            <li ng-repeat="osp in osps"><a
                                                     class="menu_icon" ng-class="osp.key+'_icon'"
+                                                    ui-sref-active="active"
                                                     ui-sref="admin.privacy_settings({sn:osp.key})">{{osp.title}}</a>
                                             </li>
                                         </ul>
@@ -168,6 +171,7 @@
                                     class="panel menu_icon edit_privacy_icon">
 
                                     <a class="panel-heading" data-toggle="collapse" data-parent="#dashboard_content"
+                                       ui-sref="analyst.settings_editor({sn:'facebook'})"
                                        data-target="#collapseSix">Edit Settings</a>
 
                                     <div id="collapseSix" class="panel-collapse-child collapse" role="tabpanel"
@@ -177,6 +181,7 @@
 
                                             <li ng-repeat="osp in osps" ng-class="{active: $state.includes(osp.key)}"><a
                                                     class="menu_icon" ng-class="osp.key+'_icon'"
+                                                    ui-sref-active="active"
                                                     ui-sref="analyst.settings_editor({sn:osp.key})">{{osp.title}}</a>
                                             </li>
 

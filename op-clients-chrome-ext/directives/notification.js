@@ -83,7 +83,7 @@ angular.module('notifications', ['ui-notification'])
 
                         setTimeout(function () {
                             resolve();
-                        }, 200);
+                        }, 400);
                     })
                 })
             });
