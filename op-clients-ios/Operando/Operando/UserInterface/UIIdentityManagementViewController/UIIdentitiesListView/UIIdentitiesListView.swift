@@ -10,7 +10,7 @@ import UIKit
 
 struct UIIdentitiesListCallbacks
 {
-    let whenPressedToItemAtIndex: ((_ item: String, _ index: Int ) -> Void)?
+    let whenPressedToDeleteItemAtIndex: ((_ item: String, _ index: Int ) -> Void)?
     
 }
 
@@ -35,6 +35,8 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
         
         tableView?.register(nib, forCellReuseIdentifier: UIIdentityCell.identifierNibName);
         tableView?.rowHeight = 44;
+        
+        
     }
     
     func setupWith(initialList: [String], andCallbacks callbacks: UIIdentitiesListCallbacks?)
@@ -81,7 +83,7 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
         {
             if let tvCell = weakCell, let tvCellIndexPath = weakTV?.indexPath(for: tvCell), let item = weakSelf?.identitiesList[tvCellIndexPath.row]
             {
-                weakSelf?.callbacks?.whenPressedToItemAtIndex?(item, tvCellIndexPath.row)
+                weakSelf?.callbacks?.whenPressedToDeleteItemAtIndex?(item, tvCellIndexPath.row)
             }
         }
         

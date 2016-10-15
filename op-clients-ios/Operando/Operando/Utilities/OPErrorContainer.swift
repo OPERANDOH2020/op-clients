@@ -12,13 +12,40 @@ import Foundation
 
 enum OPErrorCodes: Int
 {
-    case InvalidInput = 1
-    case InvalidServerResponse = 2
+    case unknownError = 0
+    case invalidInput = 1
+    case invalidServerResponse = 2
+    case connectionLost = 3
+    case noIdentityProvided = 4
+    case identityDoesntExist = 5
+    case emptyEmail = 6
+    case userIdMissing = 7
+    case identityEmailNotUnique = 8
 }
 
+
+let localizableCodesPerErrorMessage: [String: Int] =
+    [
+        "no_identity_provided":             OPErrorCodes.noIdentityProvided.rawValue,
+        "identity_not_exists":              OPErrorCodes.identityDoesntExist.rawValue,
+        "empty_email":                      OPErrorCodes.emptyEmail.rawValue,
+        "userId_is_required":               OPErrorCodes.userIdMissing.rawValue,
+        "identity_email_should_be_unique":  OPErrorCodes.identityEmailNotUnique.rawValue,
+        
+]
+
+
 let localizableKeysPerErrorCode: [Int: String] =
-    [ OPErrorCodes.InvalidInput.rawValue: "kInvalidInputLocalizableKey",
-      OPErrorCodes.InvalidServerResponse.rawValue : "kInvalidServerResponseLocalizableKey"
+    [
+      OPErrorCodes.unknownError.rawValue: "kUnknownErrorLocalizableKey",
+      OPErrorCodes.invalidInput.rawValue: "kInvalidInputLocalizableKey",
+      OPErrorCodes.invalidServerResponse.rawValue : "kInvalidServerResponseLocalizableKey",
+      OPErrorCodes.connectionLost.rawValue: "kConnectionLostLocalizableKey",
+      OPErrorCodes.noIdentityProvided.rawValue: "kNoIdentityProvidedLocalizableKey",
+      OPErrorCodes.identityDoesntExist.rawValue: "kIdentityDoesntExistLocalizableKey",
+      OPErrorCodes.emptyEmail.rawValue: "kEmptyEmailLocalizableKey",
+      OPErrorCodes.userIdMissing.rawValue: "kUserIdIsRequiredLocalizableKey",
+      OPErrorCodes.identityEmailNotUnique.rawValue: "kIdentityEmailShouldBeUnique"
     ]
 
 extension Bundle
@@ -34,9 +61,11 @@ class OPErrorContainer
     static let kOperandoDomain = "com.operando.eu"
     
     
-    static let errorInvalidInput: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.InvalidInput.rawValue, userInfo: nil)
-    static let errorInvalidServerResponse: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.InvalidServerResponse.rawValue, userInfo: nil)
+    static let errorInvalidInput: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.invalidInput.rawValue, userInfo: nil)
+    static let errorInvalidServerResponse: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.invalidServerResponse.rawValue, userInfo: nil)
     
+    static let errorConnectionLost: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.connectionLost.rawValue, userInfo: nil)
+    static let unknownError: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.unknownError.rawValue, userInfo: nil)
     
     static func displayError(error: NSError)
     {

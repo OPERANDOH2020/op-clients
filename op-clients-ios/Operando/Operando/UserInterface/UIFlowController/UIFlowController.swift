@@ -60,9 +60,27 @@ class UIFlowController
     func displayDashboard()
     {
         let dashBoardVC = UINavigationManager.dashboardViewController
+        
+        weak var weakSelf = self
+        
+        let dashboardCallbacks = UIDashBoardViewControllerCallbacks(whenChoosingIdentitiesManagement: { 
+             weakSelf?.displayIdentitiesManagement()
+            },
+                                                                    whenChoosingPrivacyForBenefits: nil,
+                                                                    whenChoosingPrivateBrowsing: nil,
+                                                                    whenChoosingNotifications: nil)
+        
+        dashBoardVC.setupWith(callbacks: dashboardCallbacks)
         self.rootController.setMainControllerTo(newController: dashBoardVC)
     }
     
+    
+    
+    func displayIdentitiesManagement()
+    {
+        let vc = UINavigationManager.identityManagementViewController
+        self.rootController.setMainControllerTo(newController: vc)
+    }
     
     func setupBaseHierarchyInWindow(_ window: UIWindow)
     {

@@ -32,16 +32,22 @@ class OPConfigObject: NSObject
         weak var weakSelf = self
         if let (username, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
         {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             self.swarmClientHelper.loginWithUsername(username: username, password: password, withCompletion: { (error, data) in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if let error = error
                 {
                     OPErrorContainer.displayError(error: error)
                     weakSelf?.flowController.displayLoginHierarchyWith(loginCallback: { loginInfo in
                         weakSelf?.logiWithInfoAndUpdateUI(loginInfo)
                     })
-                    
-                    
                     return
+                }
+                
+                DispatchQueue.main.async {
+                    weakSelf?.swarmClientHelper.subscribeFor(serviceId: 2, withCompletion: { success, error  in
+                        
+                    })
                 }
                 
                 weakSelf?.currentUserIdentity = data

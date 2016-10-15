@@ -62,6 +62,9 @@
 		98668B671DB1167900FDE63A /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98668B651DB1167200FDE63A /* SwarmClient.framework */; };
 		98668B681DB1167900FDE63A /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98668B651DB1167200FDE63A /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B6A1DB1346600FDE63A /* UIIdentitiesListView.swift */; };
+		986D4CA71DB233840006DA0B /* IdentitiesManagementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986D4CA61DB233840006DA0B /* IdentitiesManagementRepository.swift */; };
+		986D4CA91DB23AA80006DA0B /* SwarmClientResponseParsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986D4CA81DB23AA80006DA0B /* SwarmClientResponseParsers.swift */; };
+		986D4CAC1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986D4CAB1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift */; };
 		9871FC7D1D5DC11E007CB684 /* jquery-3.1.0.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9871FC7C1D5DC11E007CB684 /* jquery-3.1.0.min.js */; };
 		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
@@ -177,6 +180,9 @@
 		98668B621DB1018600FDE63A /* OPErrorContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OPErrorContainer.swift; path = Utilities/OPErrorContainer.swift; sourceTree = "<group>"; };
 		98668B651DB1167200FDE63A /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		98668B6A1DB1346600FDE63A /* UIIdentitiesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIdentitiesListView.swift; path = UserInterface/UIIdentityManagementViewController/UIIdentitiesListView/UIIdentitiesListView.swift; sourceTree = "<group>"; };
+		986D4CA61DB233840006DA0B /* IdentitiesManagementRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdentitiesManagementRepository.swift; path = OSPSettings/IdentitiesManagementRepository/IdentitiesManagementRepository.swift; sourceTree = "<group>"; };
+		986D4CA81DB23AA80006DA0B /* SwarmClientResponseParsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmClientResponseParsers.swift; sourceTree = "<group>"; };
+		986D4CAB1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrivacyForBenefitsRepository.swift; path = PrivacyForBenefitsRepository/PrivacyForBenefitsRepository.swift; sourceTree = "<group>"; };
 		9871FC7C1D5DC11E007CB684 /* jquery-3.1.0.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-3.1.0.min.js"; sourceTree = "<group>"; };
 		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
@@ -279,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				9827501F1D0849EB00C73411 /* SwarmClientHelper.swift */,
+				986D4CA81DB23AA80006DA0B /* SwarmClientResponseParsers.swift */,
 			);
 			path = SwarmClientHelper;
 			sourceTree = "<group>";
@@ -533,9 +540,27 @@
 			name = OPErrorContainer;
 			sourceTree = "<group>";
 		};
+		986D4CA51DB233170006DA0B /* IdentitiesManagementRepository */ = {
+			isa = PBXGroup;
+			children = (
+				986D4CA61DB233840006DA0B /* IdentitiesManagementRepository.swift */,
+			);
+			name = IdentitiesManagementRepository;
+			sourceTree = "<group>";
+		};
+		986D4CAA1DB27F700006DA0B /* PrivacyForBenefitsRepository */ = {
+			isa = PBXGroup;
+			children = (
+				986D4CAB1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift */,
+			);
+			name = PrivacyForBenefitsRepository;
+			sourceTree = "<group>";
+		};
 		9881D2321D0EC845005EE1FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				986D4CAA1DB27F700006DA0B /* PrivacyForBenefitsRepository */,
+				986D4CA51DB233170006DA0B /* IdentitiesManagementRepository */,
 				985CD8471D5C672A0021C58C /* OSPSettings */,
 				982750211D0849FA00C73411 /* LoginInputDetectors */,
 				982750231D0849FA00C73411 /* OPConfigObject */,
@@ -885,6 +910,7 @@
 				98B256411D5E130B0043335A /* UISNSettingsView.swift in Sources */,
 				982750251D0849FA00C73411 /* HTMLLoginInputDetector.swift in Sources */,
 				9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */,
+				986D4CA71DB233840006DA0B /* IdentitiesManagementRepository.swift in Sources */,
 				98668B5E1DB0D0D900FDE63A /* UIViewController+ECSlidingViewController.m in Sources */,
 				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
@@ -914,6 +940,7 @@
 				9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */,
 				98668B5C1DB0D0D900FDE63A /* ECSlidingSegue.m in Sources */,
 				9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */,
+				986D4CAC1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift in Sources */,
 				982750201D0849EB00C73411 /* SwarmClientHelper.swift in Sources */,
 				98668B5A1DB0D0D900FDE63A /* ECSlidingAnimationController.m in Sources */,
 				9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */,
@@ -932,6 +959,7 @@
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
 				98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
+				986D4CA91DB23AA80006DA0B /* SwarmClientResponseParsers.swift in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
 				9853FF821D6475B6007E2502 /* FacebookSecurityEnforcer.swift in Sources */,
 			);

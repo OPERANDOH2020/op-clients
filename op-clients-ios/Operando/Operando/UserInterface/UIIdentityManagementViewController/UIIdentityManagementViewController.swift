@@ -11,27 +11,39 @@ import UIKit
 
 let kNewSIDGeneratedLocalizableKey = "kNewSIDGeneratedLocalizableKey"
 let kDoYouWantToDeleteSIDLocalizableKey = "kDoYouWantToDeleteSIDLocalizableKey"
+let kAddNewIdentityLocalizableKey = "kAddNewIdentityLocalizableKey"
+
+
+
 
 class UIIdentityManagementViewController: UIViewController
 {
     
     private var identitiesList : [String] = [];
+    private var identitiesRepository: IdentitiesManagementRepository?
+    
+    @IBOutlet var identitiesListView: UIIdentitiesListView?
+    @IBOutlet var addNewIdentityButton: UIButton?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.identitiesList = self.dummyIdentities();
-        
+        self.addNewIdentityButton?.setTitle(Bundle.localizedStringFor(key: kAddNewIdentityLocalizableKey), for: .normal)
     }
     
-    
+    func setupWith(identitiesRepository: IdentitiesManagementRepository?)
+    {
+        let _  = self.view
+        self.identitiesRepository = identitiesRepository
+        self.loadCurrentIdentitiesWith(repository: identitiesRepository)
+    }
     
     //MARK: IBActions
     
     @IBAction func didPressToAddNewSID(sender: AnyObject)
     {
         let item = "rr0ky5p1c0@operando7.eu";
-        self.displayAlertForItem(item: item, withTitle: "New SID generated", addCancelAction: false, withConfirmation: nil);
+        self.displayAlertForItem(item: item, withTitle: Bundle.localizedStringFor(key: kNewSIDGeneratedLocalizableKey), addCancelAction: false, withConfirmation: nil);
     }
     
     
@@ -63,11 +75,38 @@ class UIIdentityManagementViewController: UIViewController
     }
     
 
-    
-    private func dummyIdentities() -> [String]
+    private func loadCurrentIdentitiesWith(repository: IdentitiesManagementRepository?)
     {
-        return ["g67ash@operando.eu",
-                "jd8skg@operando.eu",
-                "9dsfdsg8@operando.eu"];
+        repository?.getCurrentIdentitiesListWith(completion: { (identities, error) in
+            if let error = error
+            {
+                OPErrorContainer.displayError(error: error)
+                return
+            }
+            
+            self.identitiesListView?.setupWith(initialList: identities.identitiesList, andCallbacks: self.callbacksFor(identitiesListView: self.identitiesListView))
+        })
     }
+    
+    
+    
+    private func callbacksFor(identitiesListView: UIIdentitiesListView?) -> UIIdentitiesListCallbacks
+    {
+        weak var weakSelf = self
+        weak var weakIdentitiesListView = identitiesListView
+        
+        return UIIdentitiesListCallbacks(whenPressedToDeleteItemAtIndex: { item, index in
+            weakSelf?.identitiesRepository?.remove(identity: item, withCompletion: { success, error in
+                if let error = error
+                {
+                    OPErrorContainer.displayError(error: error)
+                    return
+                }
+                
+                weakIdentitiesListView?.deleteItemAt(index: index)
+            })
+        })
+        
+    }
+    
 }
