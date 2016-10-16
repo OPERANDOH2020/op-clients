@@ -12,7 +12,7 @@
 
 import UIKit
 
-let SwarmClientErrorDomain = "operando.error.domain"
+public let SwarmClientErrorDomain = "operando.error.domain"
 
 public enum SwarmClientErrorCode: Int {
     case invalidURLError   = 10001

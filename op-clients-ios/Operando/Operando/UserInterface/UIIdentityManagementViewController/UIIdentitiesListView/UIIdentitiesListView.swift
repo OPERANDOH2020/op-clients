@@ -8,9 +8,12 @@
 
 import UIKit
 
+typealias IdentityIndexCallback = ((_ item: String, _ index: Int ) -> Void)
+
 struct UIIdentitiesListCallbacks
 {
-    let whenPressedToDeleteItemAtIndex: ((_ item: String, _ index: Int ) -> Void)?
+    let whenPressedToDeleteItemAtIndex: IdentityIndexCallback?
+    let whenActivatedItemAtIndex: IdentityIndexCallback?
     
 }
 
@@ -19,6 +22,7 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
     
     private var identitiesList: [String] = []
     private var callbacks: UIIdentitiesListCallbacks?
+    private var currentDefaultIdentityIndex: Int = 0
     
     @IBOutlet var tableView: UITableView?
     
@@ -39,9 +43,10 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
         
     }
     
-    func setupWith(initialList: [String], andCallbacks callbacks: UIIdentitiesListCallbacks?)
+    func setupWith(initialList: [String], defaultIdentityIndex: Int, andCallbacks callbacks: UIIdentitiesListCallbacks?)
     {
         self.identitiesList = initialList
+        self.currentDefaultIdentityIndex = defaultIdentityIndex
         self.callbacks = callbacks
         self.tableView?.reloadData()
     }
@@ -57,6 +62,17 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
     {
         self.identitiesList.remove(at: index)
         self.tableView?.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
+    func displayAsDefaultItemAt(index: Int)
+    {
+        guard index != self.currentDefaultIdentityIndex else{
+            return
+        }
+        
+        self.currentDefaultIdentityIndex = index
+        self.tableView?.reloadData()
+        
     }
     
     //MARK: tableView delegate and dataSource
@@ -75,17 +91,19 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentityCell.identifierNibName) as! UIIdentityCell
         
         let index = indexPath.row;
+        let identity = self.identitiesList[index]
         weak var weakSelf = self;
         
-        weak var  weakCell = cell;
-        weak var  weakTV = tableView;
-        cell.setupWithIdentity(identity: self.identitiesList[index])
-        {
-            if let tvCell = weakCell, let tvCellIndexPath = weakTV?.indexPath(for: tvCell), let item = weakSelf?.identitiesList[tvCellIndexPath.row]
-            {
-                weakSelf?.callbacks?.whenPressedToDeleteItemAtIndex?(item, tvCellIndexPath.row)
-            }
+        let whenSwitchActivated: VoidBlock? = (index == self.currentDefaultIdentityIndex) ? nil : {
+            weakSelf?.callbacks?.whenActivatedItemAtIndex?(identity, index)
         }
+        
+        cell.setupWithIdentity(identity: self.identitiesList[index], whenDeletingButtonPressed: {
+            
+            if let item = weakSelf?.identitiesList[index]{
+                weakSelf?.callbacks?.whenPressedToDeleteItemAtIndex?(item, index)
+            }
+        }, whenSwitchActivated: whenSwitchActivated)
         
         return cell;
     }

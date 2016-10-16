@@ -11,55 +11,22 @@
 //   in a DispatchQueue.whateverQueueYouAreCalling.async{}
 // 
 
-import UIKit
-
+import Foundation
 import SwarmClient
-typealias SwarmClientCallback = ((_ error: NSError?, _ data: Any?) -> Void)
-typealias SwarmClientLoginCallback = (_ error: NSError?, _ identityModel: UserIdentityModel?) -> Void
 
-enum SwarmName: String
-{
-    case identity = "identity.js"
-    case login = "login.js"
-    case pfb = "pfb.js"
-}
-
-enum SwarmPhase: String
-{
-    case start = "start"
-}
-
-
-enum LoginConstructor: String
-{
-    case userLogin = "userLogin"
-}
-
-enum IdentityConstructor: String
-{
-    case getMyIdentities = "getMyIdentities"
-    case listDomains = "listDomains"
-    case generateIdentity = "generateIdentity"
-    case createIdentity = "createIdentity"
-    case removeIdentity = "removeIdentity"
-    case updateDefaultSubstituteIdentity = "updateDefaultSubstituteIdentity"
-}
-
-enum PFBConstructor: String
-{
-    case getAllDeals = "getAllDeals"
-    case acceptPfbDeal = "acceptPfbDeal"
-    case unsubscribeDeal = "unsubscribeDeal"
-}
-
-
-class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepository, PrivacyForBenefitsRepository
+class SwarmClientHelper: NSObject, SwarmClientProtocol,
+                        IdentitiesManagementRepository,
+                        PrivacyForBenefitsRepository,
+                        UsersRepository,
+                        UserInfoRepository
 {
     static let ServerURL = "http://192.168.100.86:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
     var whenReceivingData: ((_ data: [Any]) -> Void)?
     var whenThereWasAnError: ((_ error: NSError?) -> Void)?
+    
+    var whenThereWasAnErrorInCreatingTheSocket: ((_ error: NSError?) -> Void)?
     var whenSockedDidDisconnect: VoidBlock?
     
     override init() {
@@ -67,16 +34,13 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
         self.swarmClient.delegate = self
     }
     
+    //MARK: UsersRepository
     
-    func loginWithUsername(username: String, password: String, withCompletion completion: SwarmClientLoginCallback?)
+    func loginWithUsername(username: String, password: String, withCompletion completion: UserOperationCallback?)
     {
 
         self.whenThereWasAnError = { error in
             completion?(error, nil)
-        }
-        
-        self.whenSockedDidDisconnect = {
-            completion?(OPErrorContainer.errorInvalidInput, nil)
         }
         
         
@@ -96,6 +60,22 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
         swarmClient.startSwarm(SwarmName.login.rawValue, phase: SwarmPhase.start.rawValue, ctor: LoginConstructor.userLogin.rawValue, arguments: [username as AnyObject, password as AnyObject])
     }
     
+    func registerNewUserWith(username: String, password: String, withCompletion completion: UserOperationCallback?)
+    {
+        
+    }
+    
+    //MARK: UserInfoRepository
+    
+    func getCurrentUserInfo(in completion: UserInfoCallback?)
+    {
+        
+    }
+    
+    func updateCurrentInfoWith(properties: [String: Any], withCompletion completion: UserInfoCallback?)
+    {
+        
+    }
     
     //MARK: IdentitiesManagementRepository
     
@@ -106,9 +86,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
             completion?(.defaultEmptyResponse, error)
         }
         
-        self.whenSockedDidDisconnect = {
-            completion?(.defaultEmptyResponse, OPErrorContainer.errorConnectionLost)
-        }
         
         self.whenReceivingData = { dataArray in
             guard let dataDict = dataArray.first as? [String: Any] else {
@@ -134,9 +111,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
             completion?([], error)
         }
         
-        self.whenSockedDidDisconnect = { error in
-            completion?([], OPErrorContainer.errorConnectionLost)
-        }
         
         self.whenReceivingData = { dataArray in
             guard let dataDict = dataArray.first as? [String: Any] else {
@@ -162,9 +136,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
             completion?("", error)
         }
         
-        self.whenSockedDidDisconnect = {
-            completion?("", OPErrorContainer.errorConnectionLost)
-        }
         
         self.whenReceivingData = { dataArray in
             guard let dataDict = dataArray.first as? [String: Any] else {
@@ -191,9 +162,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
             completion?(false, error)
         }
         
-        self.whenSockedDidDisconnect = {
-            completion?(false, OPErrorContainer.errorConnectionLost)
-        }
         
         self.whenReceivingData = { dataArray in
             guard let dataDict = dataArray.first as? [String: Any] else {
@@ -209,7 +177,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
             completion?(successStatus, nil)
         }
         
-        self.swarmClient.startSwarm(SwarmName.identity.rawValue, phase: SwarmPhase.start.rawValue, ctor: IdentityConstructor.createIdentity.rawValue, arguments: [["email": identity] as AnyObject])
+        self.swarmClient.startSwarm(SwarmName.identity.rawValue, phase: SwarmPhase.start.rawValue, ctor: IdentityConstructor.createIdentity.rawValue, arguments: [["email": identity] as AnyObject ])
     }
     
     func remove(identity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
@@ -236,7 +204,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
             completion?(successStatus, nil)
         }
         
-        self.swarmClient.startSwarm(SwarmName.identity.rawValue, phase: SwarmPhase.start.rawValue, ctor: IdentityConstructor.removeIdentity.rawValue, arguments: [["email": identity] as AnyObject])
+        self.swarmClient.startSwarm(SwarmName.identity.rawValue, phase: SwarmPhase.start.rawValue, ctor: IdentityConstructor.removeIdentity.rawValue, arguments: [["email": identity] as AnyObject ])
     }
     
     func updateDefaultIdentity(to newIdentity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
@@ -245,9 +213,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
             completion?(false, error)
         }
         
-        self.whenSockedDidDisconnect = {
-            completion?(false, OPErrorContainer.errorConnectionLost)
-        }
         
         self.whenReceivingData = { dataArray in
             guard let dataDict = dataArray.first as? [String: Any] else {
@@ -265,13 +230,17 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
         }
     
         
-        self.swarmClient.startSwarm(SwarmName.identity.rawValue, phase: SwarmPhase.start.rawValue, ctor: IdentityConstructor.updateDefaultSubstituteIdentity.rawValue, arguments: [ ["email": newIdentity] as AnyObject])
+        self.swarmClient.startSwarm(SwarmName.identity.rawValue, phase: SwarmPhase.start.rawValue, ctor: IdentityConstructor.updateDefaultSubstituteIdentity.rawValue, arguments: [ ["email": newIdentity] as AnyObject ])
     }
     
     //MARK: Privacy for benefits
     
     func getCurrentPfbDealsWith(completion: ((_ deals: [PfbDeal], _ error: NSError?) -> Void)?)
     {
+        self.whenThereWasAnError = { error in
+            completion?([], error)
+        }
+        
         self.whenReceivingData = { dataArray in
             guard let dataDict = dataArray.first as? [String: Any] else {
                 completion?([], OPErrorContainer.errorInvalidServerResponse)
@@ -293,16 +262,53 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
     func subscribeFor(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
     {
         
-        self.whenReceivingData = { dataArray in
-            print(dataArray.first)
+        self.whenThereWasAnError = { error in
+            completion?(false, error)
         }
         
         
-        self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.acceptPfbDeal.rawValue, arguments: [ ["pfbDealId": serviceId] as AnyObject ] )
+        self.whenReceivingData = { dataArray in
+            guard let dataDict = dataArray.first as? [String: Any] else {
+                completion?(false, OPErrorContainer.errorInvalidServerResponse)
+                return
+            }
+            guard let successStatus = SwarmClientResponseParsers.parseSubscribeToDealSuccessStatus(from: dataDict) else {
+                    let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
+                    completion?(false, error)
+                    return
+            }
+            
+            completion?(successStatus, nil)
+        }
+        
+        
+        self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.acceptPfbDeal.rawValue, arguments: [ serviceId as AnyObject ] )
     }
+    
+    
     func unSubscribeFrom(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
     {
+        self.whenThereWasAnError = { error in
+            completion?(false, error)
+        }
         
+        
+        self.whenReceivingData = { dataArray in
+            guard let dataDict = dataArray.first as? [String: Any] else {
+                completion?(false, OPErrorContainer.errorInvalidServerResponse)
+                return
+            }
+            guard let successStatus = SwarmClientResponseParsers.parseSubscribeToDealSuccessStatus(from: dataDict) else {
+                let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
+                completion?(false, error)
+                return
+            }
+            
+            completion?(successStatus, nil)
+        }
+        
+        
+        self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.acceptPfbDeal.rawValue, arguments: [ serviceId as AnyObject ] )
     }
     
 
@@ -310,31 +316,29 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol, IdentitiesManagementRepo
     
     //MARK: SwarmClientProtocol
     
-    func didFailedToCreateSocket(_ error: NSError)
-    {
-        self.whenThereWasAnError?(error)
-        self.removeAllCallbacks()
-    }
-    
-    
-    func didReceiveData(_ data: [Any])
-    {
-        self.whenReceivingData?(data)
-        self.removeAllCallbacks()
+    func didFailedToCreateSocket(_ error: NSError){
+        self.whenThereWasAnErrorInCreatingTheSocket?(error)
     }
     
     func socketDidDisconnect() {
         print("Socket did disconnect")
         self.whenSockedDidDisconnect?()
-        self.removeAllCallbacks()
     }
     
+    func didReceiveData(_ data: [Any]){
+        self.whenReceivingData?(data)
+        self.removeCallbacksForSwarmCalls()
+    }
+    
+    func didFailOperationWith(reason: String) {
+        let error = NSError(domain: SwarmClientErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: reason])
+        self.whenThereWasAnError?(error)
+        self.removeCallbacksForSwarmCalls()
+    }
     
     //internal 
     
-    private func removeAllCallbacks()
-    {
-        self.whenSockedDidDisconnect = nil
+    private func removeCallbacksForSwarmCalls(){
         self.whenReceivingData = nil
         self.whenThereWasAnError = nil
     }

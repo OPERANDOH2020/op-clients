@@ -19,3 +19,53 @@ protocol IdentitiesManagementRepository {
 }
 
 
+class DummyIdentitiesRepository: IdentitiesManagementRepository{
+    func getCurrentIdentitiesListWith(completion: ((_ identitiesListResponse: IdentitiesListResponse, _ error: NSError?) -> Void)?){
+        
+        var identities: [String] = []
+        for i in 1...15 {
+            identities.append("identity \(i)")
+        }
+        
+        DispatchQueue.main.async {
+            completion?(IdentitiesListResponse(identitiesList: identities, indexOfDefaultIdentity: 0), nil)
+        }
+        
+    }
+    func getCurrentListOfDomainsWith(completion: ((_ domainsList: [Domain], _ error: NSError?) -> Void)?){
+        
+        var domains: [Domain] = []
+        for i in 1...15 {
+            domains.append(Domain(id: "id\(i)", name: "domain\(i)"))
+        }
+        DispatchQueue.main.async {
+            completion?(domains, nil)
+        }
+    }
+    
+    func generateNewIdentityWith(completion: ((_ generatedIdentity: String, _ error: NSError?) -> Void)?){
+        
+        DispatchQueue.main.async {
+            completion?("rx45745", nil);
+        }
+        
+    }
+    func add(identity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?){
+        
+        DispatchQueue.main.async {
+            completion?(true, nil)
+        }
+        
+    }
+    func remove(identity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?){
+        DispatchQueue.main.async {
+            completion?(true, nil)
+        }
+    }
+    
+    func updateDefaultIdentity(to newIdentity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?){
+        DispatchQueue.main.async {
+            completion?(true, nil)
+        }
+    }
+}

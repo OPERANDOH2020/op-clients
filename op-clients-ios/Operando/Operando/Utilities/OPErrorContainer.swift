@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SwarmClient
 
 
 enum OPErrorCodes: Int
@@ -77,6 +77,7 @@ class OPErrorContainer
             OPViewUtils.showOkAlertWithTitle(title: "", andMessage: message)
             return
         }
+        
         
         OPViewUtils.showOkAlertWithTitle(title: "", andMessage: error.localizedDescription)
     }

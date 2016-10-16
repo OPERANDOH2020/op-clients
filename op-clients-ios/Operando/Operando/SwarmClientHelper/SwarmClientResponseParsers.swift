@@ -155,33 +155,25 @@ class SwarmClientResponseParsers
     
     static func parseAddIdentitySuccessStatus(from dataDict: [String: Any]) -> Bool?
     {
-        guard let metaDict = dataDict["meta"] as? [String: Any],
-              let currentPhaseStatus = metaDict["currentPhase"] as? String else
-        {
-            return nil
-        }
-        
-        if currentPhaseStatus == "createIdentity_success" {return true}
-        if currentPhaseStatus == "createIdentity_error" {return nil}
-        
-        return nil
+        return parseMetaCurrentPhaseEqualTo(item: "createIdentity_success", in: dataDict)
     }
     
     static func parseDeleteIdentitySuccessStatus(from dataDict: [String: Any]) -> Bool?
     {
-        guard let metaDict = dataDict["meta"] as? [String: Any],
-            let currentPhaseStatus = metaDict["currentPhase"] as? String else
-        {
-            return nil
-        }
-        
-        if currentPhaseStatus == "deleteIdentity_success" {return true}
-        if currentPhaseStatus == "deleteIdentity_error" {return nil}
-        
-        return nil
+        return parseMetaCurrentPhaseEqualTo(item: "deleteIdentity_success", in: dataDict)
     }
     
     static func parseUpdateSubstituteIdentitySuccessStatus(from dataDict: [String: Any]) -> Bool?
+    {
+        return parseMetaCurrentPhaseEqualTo(item: "defaultIdentityUpdated", in: dataDict)
+    }
+    
+    static func parseSubscribeToDealSuccessStatus(from dataDict: [String: Any]) -> Bool?
+    {
+        return parseMetaCurrentPhaseEqualTo(item: "dealAccepted", in: dataDict)
+    }
+    
+    static private func parseMetaCurrentPhaseEqualTo(item: String, in dataDict: [String: Any]) -> Bool?
     {
         guard let metaDict = dataDict["meta"] as? [String: Any],
             let currentPhaseStatus = metaDict["currentPhase"] as? String else
@@ -189,7 +181,7 @@ class SwarmClientResponseParsers
             return nil
         }
         
-        if currentPhaseStatus == "defaultIdentityUpdated" // sau oare cu success?
+        if currentPhaseStatus == item
         {
             return true
         }

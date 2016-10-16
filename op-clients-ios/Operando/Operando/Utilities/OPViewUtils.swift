@@ -34,4 +34,23 @@ class OPViewUtils
         let alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "Ok");
         alert.show();
     }
+    
+    
+    class func displayAlertWithMessage(message: String, withTitle title: String, addCancelAction:Bool, withConfirmation confirmation: (() -> ())?)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert);
+        
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) { (action: UIAlertAction) in
+            confirmation?();
+        }
+        alert.addAction(okAction);
+        
+        if addCancelAction
+        {
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil);
+            alert.addAction(cancelAction);
+        }
+        
+        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil);
+    }
 }

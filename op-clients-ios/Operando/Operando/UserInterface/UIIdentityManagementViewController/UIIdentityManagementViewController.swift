@@ -19,9 +19,7 @@ let kAddNewIdentityLocalizableKey = "kAddNewIdentityLocalizableKey"
 class UIIdentityManagementViewController: UIViewController
 {
     
-    private var identitiesList : [String] = [];
     private var identitiesRepository: IdentitiesManagementRepository?
-    
     @IBOutlet var identitiesListView: UIIdentitiesListView?
     @IBOutlet var addNewIdentityButton: UIButton?
     
@@ -40,40 +38,8 @@ class UIIdentityManagementViewController: UIViewController
     
     //MARK: IBActions
     
-    @IBAction func didPressToAddNewSID(sender: AnyObject)
-    {
-        let item = "rr0ky5p1c0@operando7.eu";
-        self.displayAlertForItem(item: item, withTitle: Bundle.localizedStringFor(key: kNewSIDGeneratedLocalizableKey), addCancelAction: false, withConfirmation: nil);
-    }
-    
-    
-    //MARK: tableView delegate / datasource
-    
-    
-    
-    
-    
     //MARK: helper
-    
-    
-    private func displayAlertForItem(item: String, withTitle title: String, addCancelAction:Bool, withConfirmation confirmation: (() -> ())?)
-    {
-        let alert = UIAlertController(title: title, message: item, preferredStyle: UIAlertControllerStyle.alert);
-        
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) { (action: UIAlertAction) in
-            confirmation?();
-        }
-        alert.addAction(okAction);
-        
-        if addCancelAction
-        {
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil);
-            alert.addAction(cancelAction);
-        }
-        
-        self.present(alert, animated: true, completion: nil);
-    }
-    
+
 
     private func loadCurrentIdentitiesWith(repository: IdentitiesManagementRepository?)
     {
@@ -84,29 +50,59 @@ class UIIdentityManagementViewController: UIViewController
                 return
             }
             
-            self.identitiesListView?.setupWith(initialList: identities.identitiesList, andCallbacks: self.callbacksFor(identitiesListView: self.identitiesListView))
+            self.identitiesListView?.setupWith(initialList: identities.identitiesList, defaultIdentityIndex: identities.indexOfDefaultIdentity ,andCallbacks: self.callbacksFor(identitiesListView: self.identitiesListView))
         })
     }
     
     
     
-    private func callbacksFor(identitiesListView: UIIdentitiesListView?) -> UIIdentitiesListCallbacks
-    {
+    private func callbacksFor(identitiesListView: UIIdentitiesListView?) -> UIIdentitiesListCallbacks{
         weak var weakSelf = self
         weak var weakIdentitiesListView = identitiesListView
         
         return UIIdentitiesListCallbacks(whenPressedToDeleteItemAtIndex: { item, index in
-            weakSelf?.identitiesRepository?.remove(identity: item, withCompletion: { success, error in
-                if let error = error
-                {
+            weakSelf?.delete(identity: item, atIndex: index)
+          }, whenActivatedItemAtIndex: { item, index in
+             weakSelf?.setAsDefault(identity: item, atIndex: index)
+        })
+        
+    }
+    
+    private func delete(identity: String, atIndex index: Int){
+        
+        OPViewUtils.displayAlertWithMessage(message: Bundle.localizedStringFor(key: kDoYouWantToDeleteSIDLocalizableKey), withTitle: identity, addCancelAction: true) {
+            
+            self.identitiesRepository?.remove(identity: identity, withCompletion: { success, error  in
+                if let error = error {
                     OPErrorContainer.displayError(error: error)
                     return
                 }
+                if !success{
+                    OPErrorContainer.displayError(error: OPErrorContainer.unknownError)
+                    return
+                }
                 
-                weakIdentitiesListView?.deleteItemAt(index: index)
+                self.identitiesListView?.deleteItemAt(index: index)
             })
+        }
+    }
+    
+    private func setAsDefault(identity: String, atIndex index: Int)
+    {
+        self.identitiesRepository?.updateDefaultIdentity(to: identity, withCompletion: { success, error  in
+            if let error = error {
+                OPErrorContainer.displayError(error: error);
+                return
+            }
+            
+            if !success {
+                OPErrorContainer.displayError(error: OPErrorContainer.unknownError)
+                return
+            }
+            
+            self.identitiesListView?.displayAsDefaultItemAt(index: index)
+            
         })
-        
     }
     
 }

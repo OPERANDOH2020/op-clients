@@ -13,9 +13,10 @@
 import UIKit
 
 enum SocketIOEventsNames: String {
-    case Message = "message"
-    case Connect = "connect"
-    case Disconnect = "disconnect"
+    case message = "message"
+    case connect = "connect"
+    case disconnect = "disconnect"
+    case error = "error"
 }
 
 open class SwarmClient: NSObject {
@@ -39,16 +40,22 @@ open class SwarmClient: NSObject {
     
     // MARK: - Private Methods
     fileprivate func setupListeners(_ socketIO: SocketIOClient) {
-        socketIO.on(SocketIOEventsNames.Message.rawValue) { (receivedData, emitterSocket) in
+        socketIO.on(SocketIOEventsNames.message.rawValue) { (receivedData, emitterSocket) in
             self.delegate?.didReceiveData(receivedData)
         }
         
-        socketIO.on(SocketIOEventsNames.Connect.rawValue) { (receivedData, emitterSocket) in
+        socketIO.on(SocketIOEventsNames.connect.rawValue) { (receivedData, emitterSocket) in
             self.handleSocketCreationEvent()
         }
         
-        socketIO.on(SocketIOEventsNames.Disconnect.rawValue) { (data, emitterSocket) in
+        socketIO.on(SocketIOEventsNames.disconnect.rawValue) { (data, emitterSocket) in
             self.delegate?.socketDidDisconnect()
+        }
+        
+        socketIO.on(SocketIOEventsNames.error.rawValue) { (data, emitter) in
+            let reason = (data.first as? String) ?? "Unknown socket error"
+            self.delegate?.didFailOperationWith(reason: reason)
+            
         }
     }
     
@@ -75,7 +82,7 @@ open class SwarmClient: NSObject {
     }
     
     fileprivate func emitSwarmMessage(_ swarmDictionary: NSDictionary) {
-        socketIO?.emit(SocketIOEventsNames.Message.rawValue, swarmDictionary)
+        socketIO?.emit(SocketIOEventsNames.message.rawValue, swarmDictionary)
     }
     
     // MARK: - Public Methods

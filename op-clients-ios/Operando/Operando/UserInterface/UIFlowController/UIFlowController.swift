@@ -79,6 +79,7 @@ class UIFlowController
     func displayIdentitiesManagement()
     {
         let vc = UINavigationManager.identityManagementViewController
+        vc.setupWith(identitiesRepository: DummyIdentitiesRepository())
         self.rootController.setMainControllerTo(newController: vc)
     }
     

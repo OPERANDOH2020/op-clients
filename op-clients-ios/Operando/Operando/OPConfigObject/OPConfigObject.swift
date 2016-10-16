@@ -14,8 +14,16 @@ class OPConfigObject: NSObject
     
     private var currentUserIdentity : UserIdentityModel? = nil
     private let swarmClientHelper : SwarmClientHelper = SwarmClientHelper()
+    
+    private let userRepository: UsersRepository
+    
     private let flowController = UIFlowController()
     
+    override init()
+    {
+        self.userRepository = DummyUsersRepository()
+        super.init()
+    }
     
     func getCurrentUserIdentityIfAny() -> UserIdentityModel?
     {
@@ -33,7 +41,7 @@ class OPConfigObject: NSObject
         if let (username, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
         {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            self.swarmClientHelper.loginWithUsername(username: username, password: password, withCompletion: { (error, data) in
+            self.userRepository.loginWithUsername(username: username, password: password, withCompletion: { (error, data) in
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if let error = error
                 {
@@ -44,11 +52,7 @@ class OPConfigObject: NSObject
                     return
                 }
                 
-                DispatchQueue.main.async {
-                    weakSelf?.swarmClientHelper.subscribeFor(serviceId: 2, withCompletion: { success, error  in
-                        
-                    })
-                }
+                
                 
                 weakSelf?.currentUserIdentity = data
                 weakSelf?.flowController.setupHierarchyStartingWithDashboardIn(window)
@@ -66,7 +70,7 @@ class OPConfigObject: NSObject
     func logiWithInfoAndUpdateUI(_ loginInfo: LoginInfo)
     {
         weak var weakSelf = self
-        self.swarmClientHelper.loginWithUsername(username: loginInfo.username, password: loginInfo.password) { (error, data) in
+        self.userRepository.loginWithUsername(username: loginInfo.username, password: loginInfo.password) { (error, data) in
             
             if let error = error
             {
