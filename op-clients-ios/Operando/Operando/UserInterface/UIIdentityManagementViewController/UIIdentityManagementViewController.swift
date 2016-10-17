@@ -12,7 +12,7 @@ import UIKit
 let kNewSIDGeneratedLocalizableKey = "kNewSIDGeneratedLocalizableKey"
 let kDoYouWantToDeleteSIDLocalizableKey = "kDoYouWantToDeleteSIDLocalizableKey"
 let kAddNewIdentityLocalizableKey = "kAddNewIdentityLocalizableKey"
-
+let kNoIncompleteFieldsLocalizableKey = "kNoIncompleteFieldsLocalizableKey"
 
 
 
@@ -23,11 +23,11 @@ class UIIdentityManagementViewController: UIViewController
     @IBOutlet var identitiesListView: UIIdentitiesListView?
     @IBOutlet var addNewIdentityButton: UIButton?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addNewIdentityButton?.setTitle(Bundle.localizedStringFor(key: kAddNewIdentityLocalizableKey), for: .normal)
     }
+    
     
     func setupWith(identitiesRepository: IdentitiesManagementRepository?)
     {
@@ -38,8 +38,13 @@ class UIIdentityManagementViewController: UIViewController
     
     //MARK: IBActions
     
+    @IBAction func didPressToAddNewIdentity(_ sender: AnyObject) {
+        self.addNewIdentity()
+    }
+    
+    
     //MARK: helper
-
+    
 
     private func loadCurrentIdentitiesWith(repository: IdentitiesManagementRepository?)
     {
@@ -58,7 +63,6 @@ class UIIdentityManagementViewController: UIViewController
     
     private func callbacksFor(identitiesListView: UIIdentitiesListView?) -> UIIdentitiesListCallbacks{
         weak var weakSelf = self
-        weak var weakIdentitiesListView = identitiesListView
         
         return UIIdentitiesListCallbacks(whenPressedToDeleteItemAtIndex: { item, index in
             weakSelf?.delete(identity: item, atIndex: index)
@@ -103,6 +107,14 @@ class UIIdentityManagementViewController: UIViewController
             self.identitiesListView?.displayAsDefaultItemAt(index: index)
             
         })
+    }
+    
+    
+    private func addNewIdentity(){
+        UIAddIdentityAlertViewController.displayAndAddIdentityWith(identitiesRepository: self.identitiesRepository) { identity in
+            self.identitiesListView?.appendAndDisplayNew(item: identity)
+        }
+        
     }
     
 }

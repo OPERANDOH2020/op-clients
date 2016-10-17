@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */; };
+		9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */; };
 		981697511D5CB84E00B8A23A /* testJQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 981697501D5CB84E00B8A23A /* testJQuery.js */; };
 		9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */; };
 		9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */; };
@@ -124,6 +126,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAddIdentityAlertViewController.swift; path = UserInterface/UIAddIdentityAlertViewController/UIAddIdentityAlertViewController.swift; sourceTree = "<group>"; };
+		9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UtilityControllers.storyboard; sourceTree = "<group>"; };
 		981697501D5CB84E00B8A23A /* testJQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = testJQuery.js; sourceTree = "<group>"; };
 		9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBrowsingNavigationBar.swift; sourceTree = "<group>"; };
 		9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIBrowsingNavigationBar.xib; sourceTree = "<group>"; };
@@ -247,6 +251,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9812DB591DB52B94009DD50A /* UIAddIdentityAlertViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */,
+			);
+			name = UIAddIdentityAlertViewController;
+			sourceTree = "<group>";
+		};
 		9827500B1D08496C00C73411 /* UIBrowsingNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,6 +684,7 @@
 				98EAF6751CCF86DC00C77649 /* Assets.xcassets */,
 				98EAF6771CCF86DC00C77649 /* LaunchScreen.storyboard */,
 				98EAF67A1CCF86DC00C77649 /* Info.plist */,
+				9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */,
 			);
 			path = Operando;
 			sourceTree = "<group>";
@@ -689,6 +702,7 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				9812DB591DB52B94009DD50A /* UIAddIdentityAlertViewController */,
 				98668B5F1DB0D1D500FDE63A /* UIFlowController */,
 				98B2563F1D5E0DDF0043335A /* UISNSettingsView */,
 				985CD8551D5CA8A30021C58C /* UISNSettingsReaderViewController */,
@@ -908,6 +922,7 @@
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
 				98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */,
 				98EAF6761CCF86DC00C77649 /* Assets.xcassets in Resources */,
+				9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */,
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
 				9848B2D31D67393B00E0FD72 /* facebook_iOS.js in Resources */,
 				9853FF851D647E40007E2502 /* fbExtractData.js in Resources */,
@@ -958,6 +973,7 @@
 				98668B5D1DB0D0D900FDE63A /* ECSlidingViewController.m in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
+				9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */,
 				98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */,
 				9848B2D11D6738DD00E0FD72 /* FbWebKitSecurityEnforcer.swift in Sources */,
 				98EAF69F1CCF899500C77649 /* UIViewController+Extensions.swift in Sources */,

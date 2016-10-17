@@ -54,3 +54,28 @@ class OPViewUtils
         UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil);
     }
 }
+
+extension UIView{
+    public func attachPopUpAnimationWithDuration(_ duration: CFTimeInterval)
+    {
+        let animation = CAKeyframeAnimation(keyPath: "transform");
+        
+        let scale1 = CATransform3DMakeScale(1.3, 1.3, 1) //CATransform3DMakeScale(0.5, 0.5, 1);
+        let scale2 = CATransform3DMakeScale(1.2, 1.2, 1)//CATransform3DMakeScale(1.2, 1.2, 1);
+        let scale3 = CATransform3DMakeScale(1.1, 1.1, 1)//CATransform3DMakeScale(0.9, 0.9, 1);
+        let scale4 = CATransform3DMakeScale(1.0, 1.0, 1);
+        
+        let frameValues = [NSValue(caTransform3D: scale1),
+                           NSValue(caTransform3D:scale2), NSValue(caTransform3D: scale3), NSValue(caTransform3D: scale4)];
+        
+        animation.values = frameValues;
+        animation.fillMode = kCAFillModeForwards;
+        animation.isRemovedOnCompletion = false;
+        animation.duration = duration;
+        
+        
+        animation.keyTimes = [NSNumber(value: 0.0 as Float), NSNumber(value: 0.3 as Float), NSNumber(value: 0.6 as Float), NSNumber(value: 1.0 as Float)];
+        self.layer.add(animation, forKey: nil);
+    }
+
+}

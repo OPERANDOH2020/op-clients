@@ -7,12 +7,12 @@
 //
 
 import Foundation
-
 import UIKit
 
 class UINavigationManager
 {
     static let main = UIStoryboard(name: "Main", bundle: nil);
+    static let utility = UIStoryboard(name: "UtilityControllers", bundle: nil)
     
     static var rootViewController : UIRootViewController
     {
@@ -105,6 +105,11 @@ class UINavigationManager
     static var registerViewController: UIRegistrationViewController
     {
         return main.instantiateViewController(withIdentifier: "UIRegistrationViewController") as! UIRegistrationViewController
+    }
+    
+    
+    static var addIdentityController: UIAddIdentityAlertViewController {
+        return utility.instantiateViewController(withIdentifier: "UIAddIdentityAlertViewController") as! UIAddIdentityAlertViewController
     }
     
 }
