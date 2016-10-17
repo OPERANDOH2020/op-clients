@@ -54,11 +54,9 @@ function SwarmHub(swarmConnection){
         }
     }
 
+
     this.off = function(swarm, phase, callBack){
-
-        delete callBacks[swarm][phase];
-
-        /*var c = callBacks[swarm][phase];
+        var c = callBacks[swarm][phase];
         if(c instanceof Array){
             var idx = c.indexOf(callBack)
             if(idx != -1){
@@ -66,17 +64,33 @@ function SwarmHub(swarmConnection){
             }
         } else {
             delete callBacks[swarm][phase];
-        }*/
+        }
     }
 
     var pendingCommands = [];
-    this.startSwarm = function(){
+
+    var disconected_start_swarm = function(){
         var args = [];
-        for(var i= 0,len= arguments.length; i<len;i++){
+        var newCmd = {
+            meta: {
+                swarmingName: arguments[0]
+            },
+            pending:{
+
+            }
+        }
+        newCmd.onResult = function(phaseName, callback){
+            newCmd.pending[phaseName] = callback;
+        }
+        args.push(newCmd);
+        for(var i = 1,len = arguments.length; i<len;i++){
             args.push(arguments[i]);
         }
         pendingCommands.push(args);
+
     }
+
+    this.startSwarm = disconected_start_swarm;
 
     this.getConnection = function(){
         return swarmConnection;
@@ -91,6 +105,7 @@ function SwarmHub(swarmConnection){
         }
     }
 
+
     var swarmSystemAuthenticated = false;
     var swarmConnectionCallbacks = [];
 
@@ -99,7 +114,10 @@ function SwarmHub(swarmConnection){
         self.startSwarm =  swarmConnection.startSwarm.bind(swarmConnection);
 
         pendingCommands.forEach(function(args){
-            self.startSwarm.apply(self, args);
+            var cmd = self.startSwarm.apply(self, args);
+            for(var phaseName in cmd.pending){
+                cmd.onResponse(phaseName,cmd.pending[phaseName] );
+            }
         })
         pendingCommands = [];
 
@@ -111,8 +129,6 @@ function SwarmHub(swarmConnection){
     }
     this.on("login.js", "success", startWaitingCallbacks);
     this.on("login.js", "restoreSucceed", startWaitingCallbacks);
-    this.on("register.js", "success", startWaitingCallbacks);
-    this.on("register.js", "error", startWaitingCallbacks);
 
     this.onSwarmConnection = function (callback) {
         if (swarmSystemAuthenticated) {
@@ -144,14 +160,9 @@ function SwarmHub(swarmConnection){
             }
 
             this.notify = function(){
-                /*observers.forEach(function(c){
-                 c();
-                 })*/
-
-                while(observers.length>0){
-                    var c = observers.pop();
+                observers.forEach(function(c){
                     c();
-                }
+                })
                 notifiedAtLeastOnce = true;
             }
         }

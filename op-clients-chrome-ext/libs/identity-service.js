@@ -11,136 +11,60 @@
  */
 
 
-var identities = [];
-var observer = {
-    generate_identity:{
-        success:[],
-        error:[]
-    },
-    add_identity:{
-        success:[],
-        error:[]
-    },
-    remove_identity:{
-        success:[],
-        error:[]
-    },
-    update_identity:{
-        success:[],
-        error:[]
-    },
-    list_identities:{
-        success:[],
-        error:[]
-    },
-    updateDefaultSubstituteIdentity:{
-        success:[],
-        error:[]
-    },
-    listDomains:{
-        success:[],
-        error:[]
-    }
-
-};
-
-//TODO refactor this
-swarmHub.on("identity.js", "createIdentity_success", function (swarm) {
-
-    while (observer.add_identity.success.length > 0) {
-        var c = observer.add_identity.success.pop();
-        c(swarm.identity);
-    }
-});
-
-swarmHub.on("identity.js", "createIdentity_error", function (swarm) {
-    while (observer.add_identity.error.length > 0) {
-        var c = observer.add_identity.error.pop();
-        c(swarm.error);
-    }
-});
-
-swarmHub.on("identity.js", "getMyIdentities_success", function (swarm) {
-
-    while (observer.list_identities.success.length > 0) {
-        var c = observer.list_identities.success.pop();
-        c(swarm.identities);
-    }
-});
-
-swarmHub.on("identity.js", "generateIdentity_success", function (swarm) {
-    while (observer.generate_identity.success.length > 0) {
-        var c = observer.generate_identity.success.pop();
-        c(swarm.generatedIdentity);
-    }
-});
-
-
-//remove callbacks
-swarmHub.on("identity.js", "deleteIdentity_success", function (swarm) {
-    while (observer.remove_identity.success.length > 0) {
-        var c = observer.remove_identity.success.pop();
-        c(swarm.identity);
-    }
-});
-
-
-swarmHub.on("identity.js", "deleteIdentity_error", function (swarm) {
-    while (observer.remove_identity.error.length > 0) {
-        var c = observer.remove_identity.error.pop();
-        c(swarm.error);
-    }
-});
-
-swarmHub.on("identity.js", "defaultIdentityUpdated", function (swarm) {
-    while (observer.updateDefaultSubstituteIdentity.success.length > 0) {
-        var c = observer.updateDefaultSubstituteIdentity.success.pop();
-        c(swarm.identity);
-    }
-});
-
-swarmHub.on("identity.js", "gotDomains", function (swarm) {
-    while (observer.listDomains.success.length > 0) {
-        var c = observer.listDomains.success.pop();
-        c(swarm.domains);
-    }
-});
-
-
-
 var identityService = exports.identityService = {
 
     generateIdentity: function (success_callback, error_callback) {
-        swarmHub.startSwarm('identity.js', 'generateIdentity');
-        observer.generate_identity.success.push(success_callback);
-        observer.generate_identity.error.push(error_callback);
+        var generateIdentityHandler = swarmHub.startSwarm('identity.js', 'generateIdentity');
+        generateIdentityHandler.onResponse("generateIdentity_success", function(swarm){
+             success_callback(swarm.generatedIdentity);
+        });
+
+        generateIdentityHandler.onResponse("generateIdentity_error", function(swarm){
+             error_callback(swarm.error);
+        });
     },
 
     addIdentity: function (identity, success_callback, error_callback) {
-        swarmHub.startSwarm('identity.js', 'createIdentity', identity);
-        observer.add_identity.success.push(success_callback);
-        observer.add_identity.error.push(error_callback);
+        var addIdentityHandler = swarmHub.startSwarm('identity.js', 'createIdentity', identity);
+
+        addIdentityHandler.onResponse("createIdentity_success", function(swarm){
+            success_callback(swarm.identity);
+        });
+
+        addIdentityHandler.onResponse("createIdentity_error", function(swarm){
+            error_callback(swarm.error);
+        });
     },
 
     removeIdentity: function (identity, success_callback, error_callback) {
-        swarmHub.startSwarm('identity.js', 'removeIdentity', identity);
-        observer.remove_identity.success.push(success_callback);
-        observer.remove_identity.error.push(error_callback);
+        var removeIdentityHandler = swarmHub.startSwarm('identity.js', 'removeIdentity', identity);
+        removeIdentityHandler.onResponse("deleteIdentity_success",function(swarm){
+            success_callback(swarm.identity);
+        });
+
+        removeIdentityHandler.onResponse("deleteIdentity_error",function(swarm){
+            error_callback(swarm.error);
+        });
     },
 
-
     listIdentities: function (callback) {
-        swarmHub.startSwarm('identity.js', 'getMyIdentities');
-        observer.list_identities.success.push(callback);
+        var listIdentitiesHandler = swarmHub.startSwarm('identity.js', 'getMyIdentities');
+        listIdentitiesHandler.onResponse("getMyIdentities_success",function(swarm){
+            callback(swarm.identities);
+        });
     },
 
     updateDefaultSubstituteIdentity:function(identity, callback){
-        swarmHub.startSwarm('identity.js', 'updateDefaultSubstituteIdentity', identity);
-        observer.updateDefaultSubstituteIdentity.success.push(callback);
+        var updateDefaultIdentityHandler = swarmHub.startSwarm('identity.js', 'updateDefaultSubstituteIdentity', identity);
+        updateDefaultIdentityHandler.onResponse("defaultIdentityUpdated", function(swarm){
+            callback(swarm.identity);
+        })
     },
 
     listDomains: function(callback){
-        swarmHub.startSwarm('identity.js', 'listDomains');
-        observer.listDomains.success.push(callback);
+        var listDomainsHandler = swarmHub.startSwarm('identity.js', 'listDomains');
+        listDomainsHandler.onResponse("gotDomains", function(swarm){
+           callback(swarm.domains);
+        });
     }
 }

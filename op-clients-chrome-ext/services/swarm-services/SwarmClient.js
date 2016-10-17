@@ -62,7 +62,6 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
             socket.on('connect', socket_onConnect);
             socket.on('data', socket_onStreamData);
             socket.on('message', socket_onStreamData);
-
             socket.on('error', socket_onError);
             socket.on('connect_error', socket_onError);
             socket.on('disconnect', socket_onDisconnect);
@@ -84,6 +83,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
                 }
             }, 1000);
         }
+
     }
 
     function socket_onConnect(){
@@ -101,14 +101,14 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
             delete this;
         } else {
 
-            socket.onerror = function () {
-            };
+            socket.onerror = function(){};
             socket.onclose = socket.onerror;
-            socket.onopen = socket.onerror;
+            socket.onopen  = socket.onerror;
 
             socket.close();
             delete socket;
         }
+
     }
 
     this.logout = this.destroySocket;
@@ -176,8 +176,6 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         if (reconnectCbk) {
             reconnectCbk();
         }
-
-
         //getIdentity();
     }
 
@@ -202,6 +200,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         if(reconnectFn){
             reconnectCbk = reconnectFn;
         }
+
 
         /*if(!isConnected){
          return;
@@ -241,7 +240,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
             if (apiVersion !== "2.0") {
                 lprint("Api version doesn't match !", "Api version error, 2.0 expected");
             }
-                doLogin(userId, authToken, tenantId, loginCtor);
+            doLogin(userId, authToken, tenantId, loginCtor);
         }
     }
 
@@ -286,6 +285,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         }
 
         callSwarmingCallBack(data.meta.swarmingName, data);
+        filter_onResult(data);
     }
 
     function callSwarmingCallBack(swarmingName, data) {
@@ -327,25 +327,58 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         return outletId + "/" + requestCounter;
     }
 
+    var counter = 0;
+    var filters = {};
+
+    this.template_onResponse = function(phaseName, callback){
+        console.log(this.meta.requestId + phaseName);
+        filters[this.meta.requestId + phaseName] = callback;
+    }
+
+    function filter_onResult(data){
+        console.log(data.meta.requestId + data.meta.currentPhase);
+        var name = data.meta.requestId + data.meta.currentPhase;
+        var callback = filters[name];
+        if(callback){
+            callback(data);
+        }
+    }
+
     this.startSwarm = function (swarmName, ctorName) {
+        var cmd;
+        counter++;
+        var requestId = outletId + counter;
+        if(typeof swarmName !== "string"){
+            cmd = swarmName;
+            swarmName = swarmName.meta.swarmingName;
+        } else {
+            var cmd = {};
+            cmd.onResponse = this.template_onResponse.bind(cmd);
+        }
+
         var args = Array.prototype.slice.call(arguments,2);
         for(var i=0;i<args.length; i++ ){
             if(objectIsShapeSerializable(args[i])){
                 args[i] = args[i].getInnerValues();
             }
         }
-        var cmd = {
-            meta: {
-                sessionId: sessionId,
-                processIdentity:createRequestIdentity(),
-                swarmingName: swarmName,
-                tenantId: tenantId,
-                outletId: outletId,
-                command: "start",
-                ctor: ctorName,
-                commandArguments: args
-            }
-        };
+
+        var meta =  {
+            sessionId: sessionId,
+            processIdentity:createRequestIdentity(),
+            swarmingName: swarmName,
+            tenantId: tenantId,
+            outletId: outletId,
+            command: "start",
+            ctor: ctorName,
+            commandArguments: args,
+            requestId:requestId
+        }
+
+        cmd.meta = meta;
+
+
+
 
         if (loginOk == true) {
             self.writeObject(cmd);
@@ -353,6 +386,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         else {
             pendingCmds.push(cmd);
         }
+
         return cmd;
     }
 
@@ -396,4 +430,3 @@ if(typeof(objectIsShapeSerializable) == "undefined"){
         return false;
     }
 }
-

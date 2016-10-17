@@ -20,8 +20,8 @@ angular.module('privacyWizard', [])
                     },
                     callback)
             },
-            completeWizard: function (currentSetting, callback) {
-                messengerService.send("completeWizard", currentSetting, callback)
+            completeWizard: function (currentSettings, callback) {
+                messengerService.send("completeWizard",{currentSettings:currentSettings}, callback);
             }
         }
         }
@@ -76,7 +76,10 @@ angular.module('privacyWizard', [])
                                 $scope.view = "options";
                             }
                             else{
-                                $scope.view = "completed";
+                                //PrivacyWizardService.completeWizard($scope.current_settings, function(){
+                                    $scope.view = "completed";
+                                    $scope.$apply()
+                                //});
                             }
                             $scope.$apply();
                         });
@@ -100,7 +103,10 @@ angular.module('privacyWizard', [])
                             });
 
                             if($scope.current_settings.length === $scope.numOptions){
-                                $scope.view = "completed";
+                                PrivacyWizardService.completeWizard($scope.current_settings, function(){
+                                    $scope.view = "completed";
+                                    $scope.$apply()
+                                });
                             } else{
                                 $scope.view = "suggestions";
                             }
@@ -114,7 +120,11 @@ angular.module('privacyWizard', [])
 
 
                             if($scope.current_settings.length === $scope.numOptions){
-                                $scope.view = "completed";
+                                console.log($scope.current_settings);
+                                PrivacyWizardService.completeWizard($scope.current_settings, function(){
+                                    $scope.view = "completed";
+                                    $scope.$apply()
+                                });
                             }
                             else {
                                 getNextQuestion();

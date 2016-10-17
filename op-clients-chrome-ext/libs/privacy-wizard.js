@@ -10,58 +10,40 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
+var recommenderInitialized = false;
 
-var observer = {
-    onWizardCompleted: [],
-    onReccomenderParameters:[]
-};
-
-var reccomenderInitialized = false;
-
-var num_suggestions = 6;
+var num_suggestions = 17;
 var conditionalProbabilitiesMatrix ;
 var initialProbabilities ;
 var settingsToOptions = [];
 var optionsToSettings = [];
 var num_options = 0;
 
-
-swarmHub.on("PrivacyWizardSwarm.js", "wizardCompleted", function () {
-    while (observer.onWizardCompleted.length > 0) {
-        var c = observer.onWizardCompleted.pop();
-        c();
-    }
-});
-
-swarmHub.on("PrivacyWizardSwarm.js", "gotReccomenderParams", function (swarm) {
-
-    conditionalProbabilitiesMatrix = swarm.reccomenderParameters.conditionalProbabilitiesMatrix;
-    initialProbabilities = swarm.reccomenderParameters.initialProbabilities;
-    settingsToOptions = swarm.reccomenderParameters.settingsToOptions;
-    optionsToSettings = swarm.reccomenderParameters.optionsToSettings;
-    num_options = optionsToSettings.length;
-
-    reccomenderInitialized = true;
-    while (observer.onReccomenderParameters.length > 0) {
-        var c = observer.onReccomenderParameters.pop();
-        c();
-    }
-});
-
-
-
 var privacyWizardService = exports.privacyWizardService = {
 
-    completeWizard: function (current_settings,  provided_suggestions, success_callback) {
-        swarmHub.startSwarm('PrivacyWizardSwarm.js', 'completeWizard', current_settings, provided_suggestions);
-        observer.onWizardCompleted.push(success_callback);
+    completeWizard: function (current_settings,  success_callback) {
+        var completeWizardHandler = swarmHub.startSwarm('PrivacyWizardSwarm.js', 'completeWizard', current_settings);
+        completeWizardHandler.onResponse("wizardCompleted", function(swarm){
+            success_callback();
+        })
+
     },
     getNextQuestionAndSuggestions : function(activeOptions,callback) {
 
-        if (reccomenderInitialized === false) {
-            swarmHub.startSwarm('PrivacyWizardSwarm.js', 'fetchReccomenderParams');
-            observer.onReccomenderParameters.push(function () {
+        if (recommenderInitialized === false) {
+            var getNextQuestionAndSuggestionHandler = swarmHub.startSwarm('PrivacyWizardSwarm.js', 'fetchRecommenderParams');
+
+            getNextQuestionAndSuggestionHandler.onResponse("gotRecommenderParams", function(swarm){
+
+                conditionalProbabilitiesMatrix = swarm.recommenderParameters.conditionalProbabilitiesMatrix;
+                initialProbabilities = swarm.recommenderParameters.initialProbabilities;
+                settingsToOptions = swarm.recommenderParameters.settingsToOptions;
+                optionsToSettings = swarm.recommenderParameters.optionsToSettings;
+                num_options = optionsToSettings.length;
+
+                recommenderInitialized = true;
                 privacyWizardService.getNextQuestionAndSuggestions(activeOptions, callback);
+
             });
             return;
         }

@@ -93,6 +93,9 @@ angular.module('identities', [])
                                         $scope.identity.alias = generatedIdentity.email;
                                         $scope.refreshSID();
                                         $scope.$apply();
+                                    },
+                                    function(){
+                                        Notification.error({message:error.message,positionY: 'bottom', positionX: 'center', delay: 2000});
                                     })
                                 }
 
@@ -133,7 +136,6 @@ angular.module('identities', [])
                         });
                     }
 
-
                     $scope.removeIdentity = function () {
                         var identity = $scope.identity;
                         var emitToParent = function(event){
@@ -147,12 +149,12 @@ angular.module('identities', [])
                                 $scope.identity = identity;
                                 $scope.deleteIdentity = function(){
                                     messengerService.send("removeIdentity",identity, function(identity){
-                                        console.log("success", identity);
-                                            emitToParent("refreshIdentities");
+                                        Notification.success({message:"Identity "+identity.email+" was successfully deleted!",positionY: 'bottom', positionX: 'center', delay: 2000});
+                                        emitToParent("refreshIdentities");
 
                                     },
-                                    function(identity){
-                                            console.log("fail", identity);
+                                    function(error){
+                                        Notification.error({message:error.message,positionY: 'bottom', positionX: 'center', delay: 2000});
                                    })
                                 }
 

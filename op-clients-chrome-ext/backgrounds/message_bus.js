@@ -129,12 +129,6 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     });
                 }
 
-                if(request.action == "removeIdentity"){
-                    identityService.removeIdentity(request.message,function(identity){
-                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identity});
-                    });
-                }
-
                 if(request.action == "updateDefaultSubstituteIdentity"){
                     identityService.updateDefaultSubstituteIdentity(request.message,function(identity){
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: identity});
@@ -153,18 +147,6 @@ chrome.runtime.onConnect.addListener(function (_port) {
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
                     },  function(success){
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
-                    });
-                }
-
-                if(request.action == "listPfbDeals"){
-                    pfbService.getActiveDeals(function(deals){
-                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: deals});
-                    });
-                }
-
-                if(request.action == "getMyPfbDeals"){
-                    pfbService.getMyDeals(function(deals){
-                        clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: deals});
                     });
                 }
 
@@ -188,7 +170,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
 
 
                 if(request.action == "completeWizard"){
-                    privacyWizardService.completeWizard(request.message.currentSetting, request.message.all_suggestions, function(){
+                    privacyWizardService.completeWizard(request.message.currentSettings, function(){
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action});
                     });
                 }
