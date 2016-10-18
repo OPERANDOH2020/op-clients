@@ -16,69 +16,49 @@
                 <frame key="frameInset" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfq-Fl-Wgx" userLabel="identityLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfq-Fl-Wgx" userLabel="identityLabel">
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oes-VD-5jm" userLabel="separatorView">
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oes-VD-5jm" userLabel="separatorView">
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="uI9-je-Qms"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvO-Ww-2bJ">
-                        <color key="backgroundColor" red="0.87058823529999996" green="0.76078431369999999" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmarkDefault" translatesAutoresizingMaskIntoConstraints="NO" id="kt7-gE-QdI">
                         <constraints>
-                            <constraint firstAttribute="height" constant="27" id="Jqp-aG-q4h"/>
-                            <constraint firstAttribute="width" constant="86" id="rdf-aM-e1l"/>
+                            <constraint firstAttribute="width" constant="30" id="O1Y-wO-ovf"/>
                         </constraints>
-                        <state key="normal" title="Delete">
-                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </state>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="8"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="deleteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Rtf-Nb-GTS"/>
-                        </connections>
-                    </button>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VA4-6x-D7w">
-                        <connections>
-                            <action selector="switchActivated:" destination="KGk-i7-Jjw" eventType="valueChanged" id="xBn-j8-69U"/>
-                        </connections>
-                    </switch>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="vvO-Ww-2bJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="10t-jY-cAc"/>
-                    <constraint firstItem="Rfq-Fl-Wgx" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="RFX-zb-eK4"/>
+                    <constraint firstItem="kt7-gE-QdI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5gg-hp-XKC"/>
+                    <constraint firstItem="Rfq-Fl-Wgx" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="A8B-2x-J3i"/>
+                    <constraint firstAttribute="trailing" secondItem="Rfq-Fl-Wgx" secondAttribute="trailing" constant="10" id="CIH-4v-QEK"/>
                     <constraint firstAttribute="bottomMargin" secondItem="oes-VD-5jm" secondAttribute="bottom" id="VKE-iq-lho"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="vvO-Ww-2bJ" secondAttribute="trailing" id="Yxe-s7-ouh"/>
-                    <constraint firstItem="vvO-Ww-2bJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="a4y-lR-eCV"/>
-                    <constraint firstItem="oes-VD-5jm" firstAttribute="top" secondItem="vvO-Ww-2bJ" secondAttribute="bottom" constant="8" id="aGy-zK-HcG"/>
-                    <constraint firstAttribute="bottom" secondItem="vvO-Ww-2bJ" secondAttribute="bottom" constant="8" id="aL1-rx-Btt"/>
-                    <constraint firstItem="VA4-6x-D7w" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-1" id="dEY-o5-Ztg"/>
+                    <constraint firstAttribute="bottom" secondItem="oes-VD-5jm" secondAttribute="bottom" id="aqr-sP-wmp"/>
                     <constraint firstItem="Rfq-Fl-Wgx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hTF-IL-6Tr"/>
-                    <constraint firstItem="VA4-6x-D7w" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pkY-Kv-9xC"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="kt7-gE-QdI" secondAttribute="leading" id="mIn-KB-MMp"/>
                     <constraint firstItem="oes-VD-5jm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="sjk-0U-53t"/>
                     <constraint firstAttribute="trailingMargin" secondItem="oes-VD-5jm" secondAttribute="trailing" id="zdE-xE-1Sl"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="VKE-iq-lho"/>
-                        <exclude reference="10t-jY-cAc"/>
-                        <exclude reference="aL1-rx-Btt"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="1000" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="defaultSwitch" destination="VA4-6x-D7w" id="NcI-hE-7lM"/>
+                <outlet property="checkmarkImageView" destination="kt7-gE-QdI" id="hrg-HX-cu7"/>
                 <outlet property="identityLabel" destination="Rfq-Fl-Wgx" id="LFm-RZ-3Gd"/>
             </connections>
-            <point key="canvasLocation" x="28" y="180"/>
+            <point key="canvasLocation" x="-203" y="140"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="checkmarkDefault" width="25" height="25"/>
+    </resources>
 </document>

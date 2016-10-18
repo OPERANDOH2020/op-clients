@@ -51,7 +51,8 @@ class OPViewUtils
             alert.addAction(cancelAction);
         }
         
-        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil);
+        let hostController = UIApplication.shared.delegate?.window??.rootViewController?.topMostPresentedControllerOrSelf
+        hostController?.present(alert, animated: true, completion: nil)
     }
 }
 

@@ -112,4 +112,12 @@ class UINavigationManager
         return utility.instantiateViewController(withIdentifier: "UIAddIdentityAlertViewController") as! UIAddIdentityAlertViewController
     }
     
+    static var pfbDealsController: UIPfbDealsViewController{
+        return main.instantiateViewController(withIdentifier: "UIPfbDealsViewController") as! UIPfbDealsViewController
+    }
+    
+    static var pfbDealDetailsAlertViewController: UIPfbDetailsAlertViewController {
+        return utility.instantiateViewController(withIdentifier: "UIPfbDetailsAlertViewController") as! UIPfbDetailsAlertViewController
+    }
+    
 }

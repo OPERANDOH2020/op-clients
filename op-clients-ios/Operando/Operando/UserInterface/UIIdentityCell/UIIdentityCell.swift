@@ -10,35 +10,18 @@ import UIKit
 
 class UIIdentityCell: UITableViewCell {
     
-    @IBOutlet weak var defaultSwitch: UISwitch!
+    static let identifierNibName = "UIIdentityCell"
+    
+    @IBOutlet weak var checkmarkImageView: UIImageView!
+    
     @IBOutlet weak var identityLabel: UILabel!
     
-    private var whenDeletingButtonPressed: VoidBlock?
-    private var whenSwitchActivated: VoidBlock?
-    
-    
-    func setupWithIdentity(identity: String?, whenDeletingButtonPressed: VoidBlock?, whenSwitchActivated: VoidBlock?)
+
+    func setupWithIdentity(identity: String?, isDefault: Bool)
     {
-        self.whenDeletingButtonPressed = whenDeletingButtonPressed;
-        self.whenSwitchActivated = whenSwitchActivated
+        checkmarkImageView.isHidden = !isDefault
         self.identityLabel.text = identity;
-        self.defaultSwitch.isOn = true
-        
-        self.defaultSwitch.isOn = whenSwitchActivated == nil
-        self.defaultSwitch.isUserInteractionEnabled = !self.defaultSwitch.isOn
     }
     
     
-    
-    
-    @IBAction func switchActivated(_ sender: AnyObject) {
-        self.whenSwitchActivated?()
-    }
-    
-    
-    @IBAction func deleteButtonPressed(_ sender: AnyObject)
-    {
-        self.whenDeletingButtonPressed?();
-    }
-    static let identifierNibName = "UIIdentityCell"
 }

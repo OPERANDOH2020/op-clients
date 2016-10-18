@@ -89,22 +89,44 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentityCell.identifierNibName) as! UIIdentityCell
-        
-        let index = indexPath.row;
-        let identity = self.identitiesList[index]
-        weak var weakSelf = self;
-        
-        let whenSwitchActivated: VoidBlock? = (index == self.currentDefaultIdentityIndex) ? nil : {
-            weakSelf?.callbacks?.whenActivatedItemAtIndex?(identity, index)
-        }
-        
-        cell.setupWithIdentity(identity: self.identitiesList[index], whenDeletingButtonPressed: {
-            
-            if let item = weakSelf?.identitiesList[index]{
-                weakSelf?.callbacks?.whenPressedToDeleteItemAtIndex?(item, index)
-            }
-        }, whenSwitchActivated: whenSwitchActivated)
+
+        cell.setupWithIdentity(identity: self.identitiesList[indexPath.row], isDefault: indexPath.row == self.currentDefaultIdentityIndex)
         
         return cell;
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != self.currentDefaultIdentityIndex
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        guard indexPath.row != self.currentDefaultIdentityIndex else {
+            return nil
+        }
+        weak var welf = self
+        
+        let makeDefaultAction = UITableViewRowAction(style: .normal, title: "Default", handler: { action, idxPath in
+            guard let item = welf?.identitiesList[idxPath.row] else {
+                return
+            }
+            DispatchQueue.main.async {
+                welf?.callbacks?.whenActivatedItemAtIndex?(item, idxPath.row)
+            }
+        })
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { action, idxPath in
+            guard let item = welf?.identitiesList[idxPath.row] else {
+                return
+            }
+            DispatchQueue.main.async {
+                welf?.callbacks?.whenPressedToDeleteItemAtIndex?(item, idxPath.row)
+            }
+        })
+        
+        makeDefaultAction.backgroundColor = UIColor(colorLiteralRed: 10.0/255.0, green: 96.0/255, blue: 254.0/255.0, alpha: 1.0)
+        
+        
+        return [deleteAction, makeDefaultAction]
     }
 }

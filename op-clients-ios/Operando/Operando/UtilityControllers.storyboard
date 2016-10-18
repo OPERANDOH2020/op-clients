@@ -45,5 +45,50 @@
             </objects>
             <point key="canvasLocation" x="40.799999999999997" y="121.88905547226388"/>
         </scene>
+        <!--Pfb Details Alert View Controller-->
+        <scene sceneID="vw2-Bw-C9o">
+            <objects>
+                <viewController storyboardIdentifier="UIPfbDetailsAlertViewController" automaticallyAdjustsScrollViewInsets="NO" id="PwT-CM-Avn" customClass="UIPfbDetailsAlertViewController" customModule="Operando" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BQT-gL-MmY"/>
+                        <viewControllerLayoutGuide type="bottom" id="3UX-YJ-WwC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hdS-ZZ-HNM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ocE-V9-19X" userLabel="blackBackgroundView">
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wIf-hg-6yv" customClass="UIPfbDetailsView" customModule="Operando" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ocE-V9-19X" secondAttribute="trailing" id="2Mt-fU-A92"/>
+                            <constraint firstItem="ocE-V9-19X" firstAttribute="top" secondItem="hdS-ZZ-HNM" secondAttribute="top" id="9DL-1O-xf2"/>
+                            <constraint firstAttribute="bottom" secondItem="wIf-hg-6yv" secondAttribute="bottom" constant="5" id="HYL-6x-6r0"/>
+                            <constraint firstItem="wIf-hg-6yv" firstAttribute="leading" secondItem="hdS-ZZ-HNM" secondAttribute="leading" constant="5" id="Jmp-hW-KPo"/>
+                            <constraint firstItem="wIf-hg-6yv" firstAttribute="top" secondItem="BQT-gL-MmY" secondAttribute="bottom" constant="5" id="qqd-y2-DI1"/>
+                            <constraint firstItem="3UX-YJ-WwC" firstAttribute="top" secondItem="ocE-V9-19X" secondAttribute="bottom" id="qyE-Rk-FMx"/>
+                            <constraint firstAttribute="trailing" secondItem="wIf-hg-6yv" secondAttribute="trailing" constant="5" id="tMZ-4b-NEF"/>
+                            <constraint firstItem="ocE-V9-19X" firstAttribute="leading" secondItem="hdS-ZZ-HNM" secondAttribute="leading" id="u12-PI-pOi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="blackBackgroundView" destination="ocE-V9-19X" id="rF9-Ma-Ynd"/>
+                        <outlet property="pfbDetailsView" destination="wIf-hg-6yv" id="qE9-wi-yBx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gD6-9e-0u8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-543.20000000000005" y="221.73913043478262"/>
+        </scene>
     </scenes>
 </document>

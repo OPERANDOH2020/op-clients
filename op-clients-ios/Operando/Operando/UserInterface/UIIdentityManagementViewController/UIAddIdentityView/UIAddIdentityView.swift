@@ -102,7 +102,7 @@ class UIAddIdentityView: RSNibDesignableView, UITableViewDelegate, UITableViewDa
     
     @IBAction func didPressSave(_ sender: UIButton) {
         var domain: Domain? = nil
-        if self.selectedDomainIndex > 0 && self.selectedDomainIndex < self.currentlyShownDomains.count{
+        if self.selectedDomainIndex >= 0 && self.selectedDomainIndex < self.currentlyShownDomains.count{
             domain = self.currentlyShownDomains[self.selectedDomainIndex]
         }
         self.callbacks?.whenPressedSave?(UIAddIdentityViewResult(email: self.aliasTF.text, domain: domain))
@@ -113,6 +113,11 @@ class UIAddIdentityView: RSNibDesignableView, UITableViewDelegate, UITableViewDa
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
         self.editingTextField = textField
+        if textField == self.domainTF {
+            if ( textField.text?.characters.count ?? 0 ) == 0 {
+                self.displayAllDomains()
+            }
+        }
     }
     
     

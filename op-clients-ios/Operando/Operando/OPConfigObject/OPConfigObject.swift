@@ -52,7 +52,7 @@ class OPConfigObject: NSObject
                     return
                 }
                 
-                
+                weakSelf?.swarmClientHelper
                 
                 weakSelf?.currentUserIdentity = data
                 weakSelf?.flowController.setupHierarchyStartingWithDashboardIn(window)

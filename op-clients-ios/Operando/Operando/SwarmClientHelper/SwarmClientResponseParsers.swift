@@ -27,7 +27,7 @@ struct Domain
 
 
 
-struct PfbDeal
+class PfbDeal
 {
     let serviceId: Int
     let benefit: String?

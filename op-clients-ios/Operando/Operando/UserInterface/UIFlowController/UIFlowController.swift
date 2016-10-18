@@ -65,9 +65,9 @@ class UIFlowController
         
         let dashboardCallbacks = UIDashBoardViewControllerCallbacks(whenChoosingIdentitiesManagement: { 
              weakSelf?.displayIdentitiesManagement()
-            },
-                                                                    whenChoosingPrivacyForBenefits: nil,
-                                                                    whenChoosingPrivateBrowsing: nil,
+            },whenChoosingPrivacyForBenefits: {
+              weakSelf?.displayPfbDeals()
+            },whenChoosingPrivateBrowsing: nil,
                                                                     whenChoosingNotifications: nil)
         
         dashBoardVC.setupWith(callbacks: dashboardCallbacks)
@@ -80,6 +80,12 @@ class UIFlowController
     {
         let vc = UINavigationManager.identityManagementViewController
         vc.setupWith(identitiesRepository: DummyIdentitiesRepository())
+        self.rootController.setMainControllerTo(newController: vc)
+    }
+    
+    func displayPfbDeals() {
+        let vc = UINavigationManager.pfbDealsController
+        vc.setupWith(dealsRepository: DummyPfbRepository())
         self.rootController.setMainControllerTo(newController: vc)
     }
     
