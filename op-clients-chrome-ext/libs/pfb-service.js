@@ -10,9 +10,12 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
+
+var bus = require("bus-service").bus;
+
 var pfbService = exports.pfbService = {
 
-    getAllDeals: function (success_callback) {
+    getAllPfbDeals: function (success_callback) {
         var getAllDealsHandler = swarmHub.startSwarm('pfb.js', 'getAllDeals');
         getAllDealsHandler.onResponse("gotAllDeals", function(swarm){
             success_callback(swarm.deals);
@@ -33,4 +36,6 @@ var pfbService = exports.pfbService = {
         })
     }
 }
+
+bus.registerService(pfbService);
 

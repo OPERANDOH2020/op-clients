@@ -13,14 +13,80 @@
 
 var authenticationService = require("authentication-service").authenticationService;
 var swarmService = require("swarm-service").swarmService;
-var identityService = require("identity-service").identityService;
+/*var identityService = require("identity-service").identityService;
 var pfbService = require("pfb-service").pfbService;
 var socialNetworkService = require("social-network-privacy-settings").socialNetworkService;
 var privacyWizardService = require("privacy-wizard").privacyWizardService;
 var ospService = require("osp-service").ospService;
-var userService = require("user-service").userService;
+var userService = require("user-service").userService;*/
+
+var bus = require("bus-service").bus;
+
+
+var busActions = {
+    login: function(request, clientPort){
+        login(request.message.login_details, function () {
+            clientPort.postMessage({
+                type: "SOLVED_REQUEST",
+                action: request.action,
+                message: {error: "securityError"}
+            });
+        }, function () {
+            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
+        });
+    },
+
+    logout : function (request, clientPort) {
+        logout(function () {
+            console.log("here");
+            if(clientPort){
+                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
+            }
+        });
+    },
+
+    notifyWhenLogout : function(request, clientPort){
+        authenticationService.disconnectUser(function(){
+            if(clientPort){
+                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
+            }
+        });
+    },
+
+    getCurrentUser: function(request, clientPort){
+        getCurrentUser(function (user) {
+            if(clientPort){
+                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: user});
+            }
+        })
+    },
+
+
+    restoreUserSession: function(request, clientPort){
+        restoreUserSession(function (status) {
+            if(clientPort) {
+                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: status});
+            }
+        })
+    },
+    registerUser: function(request, clientPort){
+        authenticationService.registerUser(request.message.user, function(error){
+            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
+        },  function(success){
+            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
+        });
+    }
+
+};
+
+
+
+
+
 
 chrome.runtime.onConnect.addListener(function (_port) {
+
+
 
     (function(clientPort){
 
@@ -54,7 +120,37 @@ chrome.runtime.onConnect.addListener(function (_port) {
              **/
             clientPort.onMessage.addListener(function (request) {
 
-                if (request.action == "login" && request.message) {
+                if(busActions[request.action]){
+                        var action = busActions[request.action];
+                        action(request, clientPort);
+                }
+
+                else {
+                    if(bus.hasAction(request.action)){
+                        var actionFn = bus.getAction(request.action);
+                        var args = [];
+
+                        if(request.message!== undefined && (typeof request.message!=="object" && typeof request.message !== null || Object.keys(request.message).length > 0)){
+                            args.push(request.message);
+                        }
+
+                        args.push(function(data){
+                            var response = data;
+                            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success", data: response}});
+                        });
+
+                        args.push(function(err){
+                            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {error:err.message}});
+                        });
+
+                        actionFn.apply(actionFn, args);
+
+                    } else{
+                        console.log("Error: Unable to process action",request.action);
+                    }
+                }
+
+                /*if (request.action == "login" && request.message) {
                     login(request.message.login_details, function () {
                         clientPort.postMessage({
                             type: "SOLVED_REQUEST",
@@ -142,7 +238,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     });
                 }
 
-                if(request.action == "registerUser"){
+               if(request.action == "registerUser"){
                     authenticationService.registerUser(request.message.user, function(error){
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
                     },  function(success){
@@ -185,7 +281,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     ospService.getOSPSettings(function (ospSettings) {
                         clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: ospSettings});
                     });
-                }
+                }*/
 
                 clientPort.onDisconnect.addListener(function () {
                     clientPort = null;

@@ -331,12 +331,10 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
     var filters = {};
 
     this.template_onResponse = function(phaseName, callback){
-        console.log(this.meta.requestId + phaseName);
         filters[this.meta.requestId + phaseName] = callback;
     }
 
     function filter_onResult(data){
-        console.log(data.meta.requestId + data.meta.currentPhase);
         var name = data.meta.requestId + data.meta.currentPhase;
         var callback = filters[name];
         if(callback){

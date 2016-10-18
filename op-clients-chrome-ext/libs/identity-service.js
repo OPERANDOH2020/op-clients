@@ -10,6 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
+var bus = require("bus-service").bus;
 
 var identityService = exports.identityService = {
 
@@ -68,3 +69,5 @@ var identityService = exports.identityService = {
         });
     }
 }
+
+bus.registerService(identityService);

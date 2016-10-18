@@ -11,23 +11,15 @@
  */
 
 
-var observer = {
-    updateUserInfoCallbacks:[]
-};
-
-
-swarmHub.on("UserInfo.js", "updatedUserInfo", function (swarm) {
-    while (observer.updateUserInfoCallbacks.length > 0) {
-        var c = observer.updateUserInfoCallbacks.pop();
-        c(swarm);
-    }
-});
-
+var bus = require("bus-service").bus;
 
 var userService = exports.userService = {
     updateUserInfo: function (user_details, success_callback) {
-        swarmHub.startSwarm('UserInfo.js', 'updateUserInfo', user_details);
-        observer.updateUserInfoCallbacks.push(success_callback);
-
+        var updateUserInfoHandler = swarmHub.startSwarm('UserInfo.js', 'updateUserInfo', user_details);
+        updateUserInfoHandler.onResponse("updatedUserInfo", function(response){
+            success_callback(response);
+        });
     }
 }
+
+bus.registerService(userService);

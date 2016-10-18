@@ -48,15 +48,23 @@ operandoCore
             events[event].push(callback);
         }
 
-        var send = function (action, message, callback) {
-            port.postMessage({action: action, message: message});
+        var send = function (){
+
+            var action = arguments[0];
+            if(arguments.length == 2){
+                if(typeof arguments[1] === "function"){
+                    port.postMessage({action: action});
+                }
+            }
+            else{
+                port.postMessage({action: action, message: arguments[1]});
+            }
 
             if (!callbacks[action]) {
                 callbacks[action] = [];
             }
-            callbacks[action].push(callback);
+            callbacks[action].push(arguments[arguments.length-1]);
         }
-
 
         return {
             send: send,

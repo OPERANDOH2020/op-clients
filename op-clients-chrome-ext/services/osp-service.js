@@ -121,7 +121,9 @@ angular.module('osp')
                 chrome.storage.local.set({sn_privacy_settings: settings}, function () {
                 });
 
-                messengerService.send("saveSocialNetworkSetting", {sn_privacy_settings: settings});
+                messengerService.send("saveSocialNetworkSetting", {sn_privacy_settings: settings}, function(){
+
+                });
 
             });
 
@@ -129,7 +131,8 @@ angular.module('osp')
 
         function loadOSPSettings (callback){
             if(Object.keys(ospSettingsConfig).length == 0){
-                messengerService.send("getOSPSettings",{}, function(settings){
+                messengerService.send("getOSPSettings",function(response){
+                    var settings = response.data;
                     ospSettingsConfig = settings;
                     callback(settings);
                 });
@@ -154,7 +157,8 @@ angular.module('osp')
                     deferred.resolve(ospSettingsConfig);
                 }
                 else {
-                    messengerService.send("getOSPSettings", {}, function (settings) {
+                    messengerService.send("getOSPSettings", function (response) {
+                        var settings = response.data;
                         ospSettingsConfig = settings;
                         deferred.resolve(settings);
                     });

@@ -16,7 +16,7 @@ angular.module('privacyWizard', [])
             getNextQuestionAndSuggestions: function (activeOptions, callback) {
                 messengerService.send("getNextQuestionAndSuggestions",
                     {
-                        'activeOptions': activeOptions
+                        activeOptions: activeOptions
                     },
                     callback)
             },
@@ -37,7 +37,6 @@ angular.module('privacyWizard', [])
 
                 
                 ospService.getOSPSettings(function(ospSettings){
-
                     $scope.numOptions = 0;
                     $scope.idToQuestion = {};
                     $scope.idToAnswer = {};
@@ -70,16 +69,16 @@ angular.module('privacyWizard', [])
                     $scope.view = "options";
 
                     var getNextQuestion = function () {
-                        PrivacyWizardService.getNextQuestionAndSuggestions($scope.current_settings, function (current_question) {
+                        PrivacyWizardService.getNextQuestionAndSuggestions($scope.current_settings, function (response) {
+                            console.log(response.data);
+                            var current_question = response.data;
                             $scope.current_question = current_question;
                             if($scope.current_question.question_id>0){
                                 $scope.view = "options";
                             }
                             else{
-                                //PrivacyWizardService.completeWizard($scope.current_settings, function(){
                                     $scope.view = "completed";
                                     $scope.$apply()
-                                //});
                             }
                             $scope.$apply();
                         });

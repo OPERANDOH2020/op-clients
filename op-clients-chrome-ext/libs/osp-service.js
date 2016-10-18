@@ -11,23 +11,16 @@
  */
 
 
-var observer = {
-    gotOSPsSettings:[]
-};
-
-
-swarmHub.on("PrivacyWizardSwarm.js", "gotOSPSettings", function (swarm) {
-    while (observer.gotOSPsSettings.length > 0) {
-        var c = observer.gotOSPsSettings.pop();
-        c(swarm.ospSettings);
-    }
-});
-
+var bus = require("bus-service").bus;
 
 var ospService = exports.ospService = {
     getOSPSettings: function (success_callback) {
-        swarmHub.startSwarm('PrivacyWizardSwarm.js', 'getOSPSettings');
-        observer.gotOSPsSettings.push(success_callback);
+        var getOSPSettingsHandler = swarmHub.startSwarm('PrivacyWizardSwarm.js', 'getOSPSettings');
+        getOSPSettingsHandler.onResponse("gotOSPSettings",function(swarm){
+            success_callback(swarm.ospSettings);
+        });
     }
 }
+
+bus.registerService(ospService);
 

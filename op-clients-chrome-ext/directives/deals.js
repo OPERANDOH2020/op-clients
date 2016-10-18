@@ -16,7 +16,6 @@ angular.module('pfbdeals', [])
             return {
                 restrict: 'E',
                 replace: true,
-                scope: {dealsType: "@"},
                 link: function ($scope, element, attrs) {
 
                     if ($scope.dealsType == "available-deals") {
@@ -25,53 +24,21 @@ angular.module('pfbdeals', [])
                     else {
                         templateContent = '/operando/tpl/deals/pfb-my-deals.html';
                     }
-
                 },
-                controller: function ($scope, $element, $attrs) {
+                controller: function ($scope) {
                     $scope.deals = [];
+                        messengerService.send("getAllPfbDeals", function (response) {
 
-                    if ($scope.dealsType == "available-deals") {
-                        messengerService.send("listPfbDeals", {}, function (pfbdeals) {
-
-                            for(var i=0; i<pfbdeals.length; i++){
-                                pfbdeals[i].type = "availableOffer";
-                            }
-
-                            $scope.deals = pfbdeals;
-                            $scope.$apply();
-                        });
-                    }
-                    else if ($scope.dealsType == "my-deals") {
-                        messengerService.send("getMyPfbDeals", {}, function (pfbdeals) {
-
-                            for(var i=0; i<pfbdeals.length; i++){
+                            var pfbdeals = response.data;
+                            for (var i = 0; i < pfbdeals.length; i++) {
                                 pfbdeals[i].type = "myDeal";
                             }
 
                             $scope.deals = pfbdeals;
                             $scope.$apply();
                         });
-                    }
-                    else if($scope.dealsType == "all-deals"){
-                        messengerService.send("getAllPfbDeals", {}, function (pfbdeals) {
-
-                            for(var i=0; i<pfbdeals.length; i++){
-                                pfbdeals[i].type = "myDeal";
-                            }
-
-                            $scope.deals = pfbdeals;
-                            $scope.$apply();
-                        });
-                    }
-
                 },
-                templateUrl: function(element, attrs) {
-                    switch (attrs.dealsType){
-                        case "available-deals": return '/operando/tpl/deals/pfb-available-deals.html';
-                        case "my-deals": return '/operando/tpl/deals/pfb-my-deals.html';
-                        case "all-deals": return '/operando/tpl/deals/all-deals.html';
-                    }
-                }
+                templateUrl: "/operando/tpl/deals/all-deals.html"
             }
         }]
     )
@@ -81,7 +48,7 @@ angular.module('pfbdeals', [])
                 restrict: 'A',
                 replace: true,
                 scope: {deal: "="},
-                controller: ["$scope","messengerService","Notification","$state",function ($scope, messengerService, Notification,$state) {
+                controller: ["$scope","messengerService","Notification","$state",function ($scope, messengerService, Notification) {
 
                     $scope.toggleDeal = function(){
                         if($scope.deal.subscribed == false){
@@ -94,8 +61,8 @@ angular.module('pfbdeals', [])
                     }
 
                     $scope.acceptDeal = function(){
-                         messengerService.send("acceptPfbDeal", {serviceId:$scope.deal.serviceId}, function(deal){
-
+                         messengerService.send("acceptPfbDeal", $scope.deal.serviceId, function(response){
+                             var deal = response.data;
                              $scope.deal.subscribed = true;
                              $scope.deal.voucher = deal.voucher;
                              Notification.success({message:"You have successfully subscribed to deal", positionY: 'bottom', positionX: 'center', delay: 2000});
@@ -104,12 +71,12 @@ angular.module('pfbdeals', [])
                     }
 
                     $scope.unsubscribeDeal = function(){
-                        messengerService.send("unsubscribePfbDeal", {serviceId:$scope.deal.serviceId}, function(deal){
+                        messengerService.send("unsubscribePfbDeal", $scope.deal.serviceId, function(response){
+                            var deal = response.data;
                             $scope.deal.subscribed = false;
                             Notification.success({message:"You have successfully unsubscribed to deal", positionY: 'bottom', positionX: 'center', delay: 2000});
                         })
                     }
-
                 }],
                 templateUrl: '/operando/tpl/deals/pfbdealRow.html'
             }

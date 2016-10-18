@@ -21,35 +21,24 @@ angular.module('identities', [])
                 controller: function ($scope, ModalService) {
                     $scope.identities = [];
 
-
-
-                    messengerService.send("getCurrentUser",{}, function(user){
+                    messengerService.send("getCurrentUser", {}, function (user) {
                         $scope.user = user;
                         $scope.$apply();
                     });
 
 
                     var refreshIdentities = function () {
-                        $scope.$apply();
+                        messengerService.send("listIdentities", {}, function (response) {
+                            $scope.identities = response.data;
+                            $scope.$apply();
+                        });
                     }
 
-                    messengerService.send("listIdentities",{},function (identities) {
-                        $scope.identities = identities;
-                        refreshIdentities();
-                    });
+                    $scope.$on('refreshIdentities', refreshIdentities);
+                    $scope.$on('changedDefaultSID', function (defaultIdentity) {
+                        $scope.identities.forEach(function (identity) {
 
-
-                    $scope.$on('refreshIdentities',function() {
-                        messengerService.send("listIdentities",{},function (identities) {
-                            $scope.identities = identities;
-                            refreshIdentities();
-                        });
-                    });
-
-                    $scope.$on('changedDefaultSID',function(defaultIdentity) {
-                        $scope.identities.forEach(function(identity){
-
-                            if(identity.email != defaultIdentity.email){
+                            if (identity.email != defaultIdentity.email) {
                                 identity.isDefault = false;
                             }
                         });
@@ -60,47 +49,58 @@ angular.module('identities', [])
                         var identities = $scope.identities;
                         ModalService.showModal({
                             templateUrl: '/operando/tpl/modals/add_sid.html',
-                            controller: ["$scope", "$element", "close", "messengerService","Notification", function ($scope, $element, close, messengerService, Notification) {
+                            controller: ["$scope", "$element", "close", "messengerService", "Notification", function ($scope, $element, close, messengerService, Notification) {
 
                                 $scope.identity = {};
                                 $scope.domains = {};
 
-                                messengerService.send("listDomains",{},function(domains){
-                                    $scope.domains.availableDomains = domains;
+                                messengerService.send("listDomains", {}, function (response) {
+                                    $scope.domains.availableDomains = response.data;
                                     $scope.identity.domain = $scope.domains.availableDomains[0];
                                     $scope.generateIdentity();
                                 });
 
                                 $scope.saveIdentity = function () {
-                                    messengerService.send("addIdentity",$scope.identity, function (response) {
+                                    messengerService.send("addIdentity", $scope.identity, function (response) {
 
-                                        if(response.status == "success"){
-                                            identities.push(response.identity);
+                                        if (response.status == "success") {
+                                            identities.push(response.data);
                                             refreshIdentities();
-                                            $scope.close(response.identity);
+                                            $scope.close(response.data);
                                         }
-                                        else{
-                                            Notification.error({message:response.message, positionY: 'bottom', positionX: 'center', delay: 2000});
+                                        else {
+                                            Notification.error({
+                                                message: response.error,
+                                                positionY: 'bottom',
+                                                positionX: 'center',
+                                                delay: 2000
+                                            });
                                         }
-
                                     });
                                 }
 
 
-                                $scope.generateIdentity = function(){
-                                    messengerService.send("generateIdentity",{},function(generatedIdentity){
-                                        console.log(generatedIdentity);
-                                        $scope.identity.alias = generatedIdentity.email;
-                                        $scope.refreshSID();
-                                        $scope.$apply();
-                                    },
-                                    function(){
-                                        Notification.error({message:error.message,positionY: 'bottom', positionX: 'center', delay: 2000});
-                                    })
-                                }
+                                $scope.generateIdentity = function () {
+                                    messengerService.send("generateIdentity", {}, function (response) {
+                                        if (response.status == "success") {
+                                            $scope.identity.alias = response.data.email;
+                                            $scope.refreshSID();
+                                            $scope.$apply();
+                                        }
+                                        else {
+                                            Notification.error({
+                                                message: response.error,
+                                                positionY: 'bottom',
+                                                positionX: 'center',
+                                                delay: 2000
+                                            });
+                                        }
 
-                                $scope.refreshSID = function(){
-                                    $scope.identity.email = $scope.identity.alias+"@"+$scope.identity.domain.name;
+                                    })
+                                };
+
+                                $scope.refreshSID = function () {
+                                    $scope.identity.email = $scope.identity.alias + "@" + $scope.identity.domain.name;
                                 }
 
                                 $scope.close = function (result) {
@@ -113,6 +113,8 @@ angular.module('identities', [])
                             modal.element.modal();
                         });
                     }
+
+                    refreshIdentities();
                 },
                 templateUrl: '/operando/tpl/identities.html'
             }
@@ -126,19 +128,24 @@ angular.module('identities', [])
                 scope: {identity: "="},
                 controller: function ($scope, ModalService, messengerService, Notification) {
 
-                    $scope.changeDefaultIdentity = function(){
+                    $scope.changeDefaultIdentity = function () {
 
-                        messengerService.send("updateDefaultSubstituteIdentity",$scope.identity, function(){
-                            $scope.$parent.$emit("changedDefaultSID",$scope.identity);
+                        messengerService.send("updateDefaultSubstituteIdentity", $scope.identity, function () {
+                            $scope.$parent.$emit("changedDefaultSID", $scope.identity);
                             $scope.identity.isDefault = true;
-                            Notification.success({message:"You're default identity is set to "+$scope.identity.email, positionY: 'bottom', positionX: 'center', delay: 2000});
+                            Notification.success({
+                                message: "You're default identity is set to " + $scope.identity.email,
+                                positionY: 'bottom',
+                                positionX: 'center',
+                                delay: 2000
+                            });
 
                         });
                     }
 
                     $scope.removeIdentity = function () {
                         var identity = $scope.identity;
-                        var emitToParent = function(event){
+                        var emitToParent = function (event) {
                             $scope.$emit(event);
                         }
 
@@ -147,15 +154,28 @@ angular.module('identities', [])
                             templateUrl: '/operando/tpl/modals/delete_sid.html',
                             controller: ["$scope", "close", "messengerService", function ($scope, close, messengerService) {
                                 $scope.identity = identity;
-                                $scope.deleteIdentity = function(){
-                                    messengerService.send("removeIdentity",identity, function(identity){
-                                        Notification.success({message:"Identity "+identity.email+" was successfully deleted!",positionY: 'bottom', positionX: 'center', delay: 2000});
-                                        emitToParent("refreshIdentities");
+                                $scope.deleteIdentity = function () {
+                                    messengerService.send("removeIdentity", identity, function (response) {
 
-                                    },
-                                    function(error){
-                                        Notification.error({message:error.message,positionY: 'bottom', positionX: 'center', delay: 2000});
-                                   })
+                                        if (response.status == "success") {
+                                            var identity = response.data;
+                                            Notification.success({
+                                                message: "Identity " + identity.email + " was successfully deleted!",
+                                                positionY: 'bottom',
+                                                positionX: 'center',
+                                                delay: 2000
+                                            });
+                                            emitToParent("refreshIdentities");
+                                        }
+                                        else {
+                                            Notification.error({
+                                                message: response.error,
+                                                positionY: 'bottom',
+                                                positionX: 'center',
+                                                delay: 2000
+                                            });
+                                        }
+                                    })
                                 }
 
                                 $scope.close = function (result) {
@@ -167,7 +187,7 @@ angular.module('identities', [])
                             modal.element.modal();
                         })
                     }
-                    
+
                 },
                 templateUrl: '/operando/tpl/identityRow.html'
             }

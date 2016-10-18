@@ -47,18 +47,28 @@ var authenticationService = exports.authenticationService = {
 
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest", "guest", "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest", "guest", "chromeBrowserExtension", "userLogin", function(){
+            console.log("Invalid credentials");
+        }, function(){
+            console.log("Error occurred!");
+        }, function(){
+            console.log("connected URRRRA");
+        });
+
         /**
          * TODO
          * Remove this, add guest login from the first step
          *
          */
         setTimeout(function(){
-            swarmHub.startSwarm("register.js", "registerNewUser", user);
-            swarmHub.on('register.js', "success", function (swarm) {
+            var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
+            registerHandler.onResponse("success", function(swarm){
+                console.log("HEEEEERE1111");
                 successFunction("success");
             });
 
-            swarmHub.on('register.js', "error", function (swarm) {
+            registerHandler.onResponse("error", function(swarm){
+                console.log("HEEEEERE222");
                 errorFunction(swarm.error);
             });
         },300);
@@ -83,14 +93,13 @@ var authenticationService = exports.authenticationService = {
     },
 
     setUser: function (userId, callback) {
-        swarmHub.startSwarm('UserInfo.js', 'info', userId);
-        swarmHub.on('UserInfo.js', 'result', function (response) {
+        var setUserHandler = swarmHub.startSwarm('UserInfo.js', 'info', userId);
+        setUserHandler.onResponse("result", function(response){
             authenticatedUser = response.result;
             loggedInObservable.notify();
             if(callback){
                 callback();
             }
-            swarmHub.off("UserInfo.js", "result");
         });
     },
 

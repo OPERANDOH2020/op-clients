@@ -107,6 +107,7 @@ lib/adblockplus.js = adblockpluscore/lib/events.js
   lib/requestBlocker.js
   lib/popupBlocker.js
   operando/util/LocalRepo.js
+  operando/libs/bus-service.js
   operando/libs/swarm-service.js
   operando/libs/authentication-service.js
   operando/libs/identity-service.js

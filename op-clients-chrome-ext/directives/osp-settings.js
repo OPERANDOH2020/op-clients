@@ -34,7 +34,6 @@ angular.module('osp', ['cfp.loadingBar'])
             return schema;
         }
 
-
         function getOSPSettings(callback, ospname) {
 
             loadOSPSettings(function (ospSettingsConfig) {
@@ -121,7 +120,9 @@ angular.module('osp', ['cfp.loadingBar'])
                 chrome.storage.local.set({sn_privacy_settings: settings}, function () {
                 });
 
-                messengerService.send("saveSocialNetworkSetting", {sn_privacy_settings: settings});
+                messengerService.send("saveSocialNetworkSetting", {sn_privacy_settings: settings}, function(){
+
+                });
 
             });
 
@@ -129,7 +130,8 @@ angular.module('osp', ['cfp.loadingBar'])
 
         function loadOSPSettings (callback){
             if(Object.keys(ospSettingsConfig).length == 0){
-                messengerService.send("getOSPSettings",{}, function(settings){
+                messengerService.send("getOSPSettings", function(response){
+                    var settings = response.data;
                     ospSettingsConfig = settings;
                         callback(settings);
                     });
@@ -154,7 +156,8 @@ angular.module('osp', ['cfp.loadingBar'])
                     deferred.resolve(ospSettingsConfig);
                 }
                 else {
-                    messengerService.send("getOSPSettings", {}, function (settings) {
+                    messengerService.send("getOSPSettings", function (response) {
+                        var settings = response.data;
                         ospSettingsConfig = settings;
                         deferred.resolve(settings);
                     });

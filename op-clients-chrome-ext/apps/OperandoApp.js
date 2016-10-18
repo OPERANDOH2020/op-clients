@@ -129,14 +129,6 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 url: "/deals",
                 templateUrl: "views/deals.html",
             })
-            /*.state('deals.availableOffers', {
-                url: "/offers",
-                templateUrl: "views/deals/available_offers.html"
-            })
-            .state('deals.myDeals', {
-                url: "/my-deals",
-                templateUrl: "views/deals/my_deals.html"
-            })*/
             .state('identityManagement', {
                 url: "/identities",
                 templateUrl: "views/identity_management.html"

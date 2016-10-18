@@ -10,8 +10,9 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-var recommenderInitialized = false;
+var bus = require("bus-service").bus;
 
+var recommenderInitialized = false;
 var num_suggestions = 17;
 var conditionalProbabilitiesMatrix ;
 var initialProbabilities ;
@@ -28,7 +29,8 @@ var privacyWizardService = exports.privacyWizardService = {
         })
 
     },
-    getNextQuestionAndSuggestions : function(activeOptions,callback) {
+    getNextQuestionAndSuggestions : function(options, callback) {
+        var activeOptions = options.activeOptions;
 
         if (recommenderInitialized === false) {
             var getNextQuestionAndSuggestionHandler = swarmHub.startSwarm('PrivacyWizardSwarm.js', 'fetchRecommenderParams');
@@ -186,3 +188,5 @@ var privacyWizardService = exports.privacyWizardService = {
         }
     }
 };
+
+bus.registerService(privacyWizardService);
