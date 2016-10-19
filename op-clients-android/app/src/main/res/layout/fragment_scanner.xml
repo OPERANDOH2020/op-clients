@@ -10,6 +10,8 @@
     <at.grabner.circleprogress.CircleProgressView
         android:id="@+id/circle_progress_view"
         android:layout_width="250dp"
+        app:cpv_barColor="#f4a42c"
+        app:cpv_contourColor="@android:color/black"
         android:layout_height="250dp"
         android:layout_centerInParent="true"
         app:cpv_maxValue="100"

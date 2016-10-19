@@ -29,4 +29,22 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/app_icon"/>
+
+    <ImageView
+        android:id="@+id/eye_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_eye"/>
+
+    <ImageView
+        android:id="@+id/trash_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/eye_btn"
+        android:src="@drawable/ic_action_trashcan"/>
 </RelativeLayout>

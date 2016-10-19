@@ -1,6 +1,7 @@
 package eu.operando.activity;
 
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import eu.operando.R;
 
@@ -26,6 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mEventBus = EventBus.getDefault();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -80,6 +83,11 @@ public abstract class BaseActivity extends AppCompatActivity  {
     protected void onPause() {
         EventBus.getDefault().unregister(this);
         super.onPause();
+
+    }
+
+    @Subscribe
+    public void onEvent(String ignoredEvent){
 
     }
 

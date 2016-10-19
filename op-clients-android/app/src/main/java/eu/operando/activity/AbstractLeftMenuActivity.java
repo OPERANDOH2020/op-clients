@@ -14,16 +14,9 @@ import eu.operando.util.OnBackPressedListener;
  * Created by raluca on 08.04.2016.
  */
 public class AbstractLeftMenuActivity  extends  BaseActivity{
-    public static final int SIGNINGS = 1;
-    public static final int INVOICES = 2;
-    public static final int SETTINGS = 3;
-    public static final int PROFILE = 4;
-    public static final int UPS = 5;
-    public static final int TUTORIALS = 6;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private int menuMode;
     private OnBackPressedListener onBackPressedListener;
 
 
@@ -60,7 +53,10 @@ public class AbstractLeftMenuActivity  extends  BaseActivity{
                return;
             }
         }
-        if(getFragmentManager().getBackStackEntryCount() > 0){
+        if(getFragmentManager().getBackStackEntryCount() ==0){
+            setTitle("Operando");
+        }
+        if(getFragmentManager().getBackStackEntryCount() > 1){
             getFragmentManager().popBackStack();
             return;
         }
@@ -69,10 +65,9 @@ public class AbstractLeftMenuActivity  extends  BaseActivity{
 
     }
 
-    protected void setComponents(ActionBarDrawerToggle drawerToggle, DrawerLayout drawerLayout, int menuMode) {
+    protected void setComponents(ActionBarDrawerToggle drawerToggle, DrawerLayout drawerLayout ) {
         this.mDrawerLayout = drawerLayout;
         this.mDrawerToggle = drawerToggle;
-        this.menuMode = menuMode;
     }
 
     public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {

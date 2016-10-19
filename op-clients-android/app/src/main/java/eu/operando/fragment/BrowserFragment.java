@@ -36,6 +36,7 @@ public class BrowserFragment extends Fragment implements AdvancedWebView.Listene
         rootView = inflater.inflate(R.layout.fragment_browser, container, false);
         initUI();
         setListeners();
+        getActivity().setTitle("Private browsing");
         ((AbstractLeftMenuActivity)getActivity()).setOnBackPressedListener(this);
         return rootView;
     }

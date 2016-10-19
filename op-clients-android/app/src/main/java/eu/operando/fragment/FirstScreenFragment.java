@@ -16,7 +16,10 @@ import eu.operando.BuildConfig;
 import eu.operando.MainActivity;
 import eu.operando.R;
 import eu.operando.activity.BaseActivity;
+import eu.operando.activity.NotificationsActivity;
+import eu.operando.activity.SensorsActivity;
 import eu.operando.events.EventLoginPage;
+import eu.operando.proxy.MainProxyActivity;
 import eu.operando.util.Constants;
 
 /**
@@ -51,6 +54,24 @@ public class FirstScreenFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).addFragment(R.id.main_fragment_container, new BrowserFragment(), "browse");
+            }
+        });
+        v.findViewById(R.id.proxy_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainProxyActivity.start(getActivity());
+            }
+        });
+        v.findViewById(R.id.notification_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificationsActivity.start(getActivity());
+            }
+        });
+        v.findViewById(R.id.sensor_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SensorsActivity.start(getActivity());
             }
         });
         return v;

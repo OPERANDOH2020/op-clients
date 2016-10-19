@@ -1,10 +1,16 @@
 package eu.operando.util;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import eu.operando.model.InstalledApp;
 
@@ -17,16 +23,16 @@ public class PermissionUtils {
 
     static {
         colors = new int[]{
-                Color.parseColor("#3300FF"),
-                Color.parseColor("#3366FF"),
-                Color.parseColor("#33FF66"),
-                Color.parseColor("#CCFF66"),
-                Color.parseColor("#FFFF66"),
-                Color.parseColor("#FFFF00"),
-                Color.parseColor("#FFCC00"),
-                Color.parseColor("#FF9900"),
-                Color.parseColor("#FF6600"),
-                Color.parseColor("#FF0000")};
+                Color.parseColor("#FFFFFF"),
+                Color.parseColor("#4D3366FF"),
+                Color.parseColor("#4D33FF66"),
+                Color.parseColor("#4DCCFF66"),
+                Color.parseColor("#4DFFFF66"),
+                Color.parseColor("#4DFFFF00"),
+                Color.parseColor("#4DFFCC00"),
+                Color.parseColor("#4DFF9900"),
+                Color.parseColor("#4DFF6600"),
+                Color.parseColor("#4DFF0000")};
         permissionRisks = new HashMap<>();
         permissionRisks.put("android.permission.ACCESS_ALL_EXTERNAL_STORAGE", 5);
         permissionRisks.put("android.permission.ACCESS_COARSE_LOCATION", 8);
@@ -110,10 +116,14 @@ public class PermissionUtils {
     }
 
     @ColorInt
-    public static int computePrivacyPollution(InstalledApp app) {
-        if (app.getPermissions() == null) return Color.WHITE;
-        if (app.getPackageName().equals("fm.clean") || app.getPackageName().equals("com.facebook.orca")) {
-            breakpoint();
+    public static int getColor(InstalledApp app) {
+        return colors[app.getPollutionScore() - 1];
+    }
+
+    public static void calculatePollutionScore(InstalledApp app) {
+        if (app.getPermissions() == null) {
+            app.setPollutionScore(1);
+            return;
         }
         boolean over7 = false;
         int counter = 0;
@@ -129,10 +139,44 @@ public class PermissionUtils {
             totalScore += 5 * counter;
         }
         totalScore = totalScore / counter;
-        return colors[totalScore < 10 ? totalScore-1 : 9];
+        if (totalScore > 10) totalScore = 10;
+        app.setPollutionScore(totalScore);
+
     }
 
-    private static void breakpoint() {
+    @ColorInt
+    public static int getPermissionColor(String permission) {
+        Integer score = permissionRisks.get(permission);
+        if (score == null) {
+            return colors[3];
+        }
+        return colors[score-1];
+    }
 
+
+    public static ArrayList<InstalledApp> getApps(Context c,boolean systemAppsAllowed) throws PackageManager.NameNotFoundException {
+        final PackageManager pm = c.getPackageManager();
+        ArrayList<InstalledApp> apps = new ArrayList<>();
+        List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+        for (ApplicationInfo applicationInfo : packages) {
+            PackageInfo info = pm.getPackageInfo(applicationInfo.packageName, PackageManager.GET_PERMISSIONS|PackageManager.GET_CONFIGURATIONS);
+            String packageName = applicationInfo.packageName;
+            if(!systemAppsAllowed) {
+                if (packageName.startsWith("com.android") || packageName.startsWith("android") /*|| packageName.startsWith("com.google")**/)
+                    continue;
+                if ((applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0)
+                    continue;
+                if (packageName.equals(c.getPackageName()))
+                    continue;
+            }
+            String appName = pm.getApplicationLabel(applicationInfo).toString();
+            String[] requestedPermissions = info.requestedPermissions;
+            System.out.println(applicationInfo.packageName);
+            System.out.println(Arrays.toString(requestedPermissions));
+            InstalledApp app = new InstalledApp(appName, packageName, requestedPermissions,info.reqFeatures);
+            PermissionUtils.calculatePollutionScore(app);
+            apps.add(app);
+        }
+        return apps;
     }
 }

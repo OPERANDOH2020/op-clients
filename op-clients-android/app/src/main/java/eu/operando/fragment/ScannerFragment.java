@@ -1,5 +1,7 @@
 package eu.operando.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -22,6 +24,7 @@ import at.grabner.circleprogress.CircleProgressView;
 import eu.operando.R;
 import eu.operando.adapter.ScannerListAdapter;
 import eu.operando.model.InstalledApp;
+import eu.operando.util.PermissionUtils;
 
 /**
  * Created by Edy on 6/14/2016.
@@ -40,36 +43,32 @@ public class ScannerFragment extends Fragment {
         spinner.setSpinSpeed(1);
         spinner.setValue(0);
         new LoadingAsyncTask().execute();
+        getActivity().setTitle("Application Scanner");
         return rootView;
     }
 
     private void showList() throws PackageManager.NameNotFoundException {
-        if(!isAdded())return;
+        if (!isAdded()) return;
         ListView listView = (ListView) rootView.findViewById(R.id.app_list_view);
         spinner.setVisibility(View.GONE);
         listView.setVisibility(View.VISIBLE);
-        ScannerListAdapter adapter = new ScannerListAdapter(getActivity(), apps);
+        ScannerListAdapter adapter = new ScannerListAdapter(getActivity(), apps, this);
         listView.setAdapter(adapter);
     }
 
-    private ArrayList<InstalledApp> getApps() throws PackageManager.NameNotFoundException {
-        final PackageManager pm = getActivity().getPackageManager();
-        ArrayList<InstalledApp> apps = new ArrayList<>();
-        List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-        for (ApplicationInfo applicationInfo : packages) {
-            PackageInfo info = pm.getPackageInfo(applicationInfo.packageName, PackageManager.GET_PERMISSIONS);
-            String packageName = applicationInfo.packageName;
-            if (packageName.startsWith("com.android") || packageName.startsWith("android") || packageName.startsWith("com.google"))
-                continue;
-            if ((applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0)
-                continue;
-            String appName = pm.getApplicationLabel(applicationInfo).toString();
-            String[] requestedPermissions = info.requestedPermissions;
-            System.out.println(applicationInfo.packageName);
-            System.out.println(Arrays.toString(requestedPermissions));
-            apps.add(new InstalledApp(appName, packageName, requestedPermissions));
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            try {
+                apps = PermissionUtils.getApps(getActivity(),false);
+                showList();
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        return apps;
     }
 
     class LoadingAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -79,9 +78,9 @@ public class ScannerFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                apps = getApps();
+                apps = PermissionUtils.getApps(getActivity(),false);
                 while (i < 100) {
-                    Thread.sleep(random.nextInt(5) * 100);
+                    Thread.sleep(random.nextInt(3) * 40);
                     publishProgress();
                 }
                 Thread.sleep(1000);
@@ -94,7 +93,7 @@ public class ScannerFragment extends Fragment {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
-            i += new Random().nextInt(7) + 1;
+            i += new Random().nextInt(15) + 1;
             if (i > 100) {
                 spinner.setValueAnimated(100);
                 return;

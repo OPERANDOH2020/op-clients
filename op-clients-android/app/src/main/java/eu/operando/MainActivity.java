@@ -100,7 +100,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
 
 
         this.mDrawerLayout.setDrawerListener(drawerToggle);
-        setComponents(drawerToggle, mDrawerLayout, INVOICES);
+        setComponents(drawerToggle, mDrawerLayout);
 
     }
 
@@ -129,6 +129,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
         //login
         /*String[] commandArguments = {"rafa", "swarm"};
         swarmClient.startSwarm("login.js", "start", "userLogin", commandArguments);*/
+
     }
 
     @Subscribe
@@ -148,6 +149,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
 
     @Subscribe
     public void onEvent(EventSignIn event) {
+
         //showFirstFragment();
     }
 
@@ -159,7 +161,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
 
     @Subscribe
     public void onSwarmEvent(SwarmLoginEvent loginEvent) {
-        showDashboardFragment();
+        showFirstFragment();
         System.out.println("TODO with login event");
         String sessionId = "";
         try {
@@ -168,8 +170,10 @@ public class MainActivity extends AbstractLeftMenuActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        //Userinfo - email pe userId
+//        swarmClient.startSwarm("UserInfo.js","start","info");
+        //Identities list
 
-        swarmClient.startSwarm("login.js", "start", "logout");
     }
 
     @Subscribe
@@ -177,6 +181,9 @@ public class MainActivity extends AbstractLeftMenuActivity {
         //doOnInit();
     }
 
+    public DrawerLayout getmDrawerLayout() {
+        return mDrawerLayout;
+    }
 
     private void showScanPage() {
         replaceFragment(
@@ -197,12 +204,11 @@ public class MainActivity extends AbstractLeftMenuActivity {
     }
 
     private void showFirstFragment() {
-        replaceFragment(R.id.main_fragment_container, firstScreenFragment, FirstScreenFragment.FRAGMENT_TAG, "st1");
+        replaceFragment(R.id.main_fragment_container, firstScreenFragment, FirstScreenFragment.FRAGMENT_TAG, "st3");
     }
 
     private void showDashboardFragment() {
         authenticatedFragment = new AuthenticatedFragment();
-        addFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG);
-        replaceFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG, "st3");
+        replaceFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG,null);
     }
 }

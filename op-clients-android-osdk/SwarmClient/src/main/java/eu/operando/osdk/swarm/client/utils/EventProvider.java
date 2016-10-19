@@ -10,6 +10,7 @@ import java.util.Set;
 
 import eu.operando.osdk.swarm.client.events.ISwarmEvent;
 import eu.operando.osdk.swarm.client.events.SwarmEvent;
+import eu.operando.osdk.swarm.client.events.SwarmIdentityListEvent;
 import eu.operando.osdk.swarm.client.events.SwarmLoginEvent;
 import eu.operando.osdk.swarm.client.events.SwarmLogoutEvent;
 
@@ -19,9 +20,9 @@ import eu.operando.osdk.swarm.client.events.SwarmLogoutEvent;
 public class EventProvider {
     private static EventProvider instance = null;
 
-    HashMap<String, Class> eventDictionary = new HashMap<String, Class>();
+    private HashMap<String, Class> eventDictionary = new HashMap<String, Class>();
 
-    public EventProvider() {
+    private EventProvider() {
         prepareSwarmEvents();
     }
 
@@ -39,11 +40,11 @@ public class EventProvider {
     private void prepareSwarmEvents() {
         insertEventInDictionary("login.js", "success", SwarmLoginEvent.class);
         insertEventInDictionary("login.js", "logoutSucceed", SwarmLogoutEvent.class);
+        insertEventInDictionary("identity.js","getMyIdentities_success",SwarmIdentityListEvent.class);
     }
 
     public Class<?> getEvent(String swarmName, String swarmPhase) {
-        Class<?> eventClass = eventDictionary.get(swarmName + swarmPhase);
-        return eventClass;
+        return (Class<?>) eventDictionary.get(swarmName + swarmPhase);
     }
 
 }
