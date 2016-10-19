@@ -125,6 +125,8 @@
 		98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6AA1CCF976200C77649 /* UIRegistrationView.xib */; };
 		98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6AE1CCF995B00C77649 /* IHKeyboardAvoiding.m */; };
 		98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */; };
+		ADB2AD4E1DB7FC85003E3AC1 /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */; };
+		ADB2AD501DB80474003E3AC1 /* LeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,6 +302,8 @@
 		98EAF6AE1CCF995B00C77649 /* IHKeyboardAvoiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHKeyboardAvoiding.m; sourceTree = "<group>"; };
 		98EAF6B11CCF99C300C77649 /* Operando-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Operando-BridgingHeader.h"; path = "BridgingHeader/Operando-BridgingHeader.h"; sourceTree = "<group>"; };
 		98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRegistrationViewController.swift; path = UserInterface/UIRegistrationViewController/UIRegistrationViewController.swift; sourceTree = "<group>"; };
+		ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
+		ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LeftMenu.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -860,10 +864,11 @@
 				98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */,
 				98EAF6701CCF86DC00C77649 /* ViewController.swift */,
 				98EAF6721CCF86DC00C77649 /* Main.storyboard */,
+				9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */,
 				98EAF6751CCF86DC00C77649 /* Assets.xcassets */,
 				98EAF6771CCF86DC00C77649 /* LaunchScreen.storyboard */,
 				98EAF67A1CCF86DC00C77649 /* Info.plist */,
-				9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */,
+				ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */,
 			);
 			path = Operando;
 			sourceTree = "<group>";
@@ -935,6 +940,7 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */,
 				982DF0271DB6579200231BBD /* AFNetworking */,
 				986A58EC1DB3952D00B622F5 /* SwarmClient.framework */,
 				98668B4B1DB0D0D800FDE63A /* ECSlidingViewController */,
@@ -1019,6 +1025,14 @@
 				98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */,
 			);
 			name = UIRegistrationController;
+			sourceTree = "<group>";
+		};
+		ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */,
+			);
+			path = SSASideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1131,6 +1145,7 @@
 				984C67F61D65A9FB009A8FE7 /* interceptPOST.js in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982DF0641DB6618700231BBD /* UIPfbDealTableViewCell.xib in Resources */,
+				ADB2AD501DB80474003E3AC1 /* LeftMenu.storyboard in Resources */,
 				982750141D08497400C73411 /* UIDashboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1208,6 +1223,7 @@
 				982DF0531DB6579B00231BBD /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				98668B5A1DB0D0D900FDE63A /* ECSlidingAnimationController.m in Sources */,
 				9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */,
+				ADB2AD4E1DB7FC85003E3AC1 /* SSASideMenu.swift in Sources */,
 				9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */,
 				982DF0631DB6618700231BBD /* UIPfbDealTableViewCell.swift in Sources */,
 				982DF0521DB6579B00231BBD /* AFNetworkActivityIndicatorManager.m in Sources */,

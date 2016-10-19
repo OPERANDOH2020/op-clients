@@ -13,6 +13,7 @@ class UINavigationManager
 {
     static let main = UIStoryboard(name: "Main", bundle: nil);
     static let utility = UIStoryboard(name: "UtilityControllers", bundle: nil)
+    static let leftMenu = UIStoryboard(name: "LeftMenu", bundle: nil)
     
     static var rootViewController : UIRootViewController
     {
@@ -118,6 +119,11 @@ class UINavigationManager
     
     static var pfbDealDetailsAlertViewController: UIPfbDetailsAlertViewController {
         return utility.instantiateViewController(withIdentifier: "UIPfbDetailsAlertViewController") as! UIPfbDetailsAlertViewController
+    }
+    
+    // MARK: - Left Menu Storyboard
+    static var leftMenuViewController: UIViewController {
+        return leftMenu.instantiateViewController(withIdentifier: "UILeftSideMenuViewControllerStoryboardId")
     }
     
 }

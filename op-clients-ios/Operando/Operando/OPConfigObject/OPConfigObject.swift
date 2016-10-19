@@ -30,7 +30,11 @@ class OPConfigObject: NSObject
         return self.currentUserIdentity
     }
     
-
+    func applicationDidStart(inWindow window: UIWindow) {
+        let sideMenu = SSASideMenu(contentViewController: UINavigationManager.rootViewController, leftMenuViewController: UINavigationManager.leftMenuViewController)
+        sideMenu.configure(configuration: SSASideMenu.MenuViewEffect(fade: true, scale: true, scaleBackground: false, parallaxEnabled: true, bouncesHorizontally: false, statusBarStyle: SSASideMenu.SSAStatusBarStyle.Black))
+        window.rootViewController = sideMenu
+    }
     
     func applicationDidStartInWindow(window: UIWindow)
     {
