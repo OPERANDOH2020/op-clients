@@ -10,14 +10,21 @@ import Foundation
 
 struct UserInfo{
     let email: String
-    let phoneNumber: String?
-    init?(dataDict: [String: Any]){
-        return nil
+    let name: String
+    init?(dict: [String: Any]){
+        guard let email = dict["email"] as? String,
+            let name = dict["name"] as? String else {
+                return nil
+        }
+        
+        self.email = email
+        self.name = name
     }
     private init(){
         self.email = ""
-        self.phoneNumber = ""
+        self.name = ""
     }
+    
     static let defaultEmpty = UserInfo()
 }
 

@@ -78,9 +78,12 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     OPErrorContainer.displayError(error: OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
-                
-                print(dataDict)
-                
+                guard let userInfo = SwarmClientResponseParsers.parseUserInfo(from: dataDict) else {
+                    let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.unknownError
+                    OPErrorContainer.displayError(error: error)
+                    return
+                }
+                completion?(userInfo, nil)
             }
             
             self.whenThereWasAnError = { error in

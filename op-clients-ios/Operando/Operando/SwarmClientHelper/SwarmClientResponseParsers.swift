@@ -153,6 +153,15 @@ class SwarmClientResponseParsers
         return deals
     }
     
+    static func parseUserInfo(from dataDict: [String: Any]) -> UserInfo? {
+        guard let resultDict = dataDict["result"] as? [String: Any],
+              let userInfo = UserInfo(dict: resultDict) else {
+            return nil
+        }
+        
+        return userInfo
+    }
+    
     static func parseAddIdentitySuccessStatus(from dataDict: [String: Any]) -> Bool?
     {
         return parseMetaCurrentPhaseEqualTo(item: "createIdentity_success", in: dataDict)
