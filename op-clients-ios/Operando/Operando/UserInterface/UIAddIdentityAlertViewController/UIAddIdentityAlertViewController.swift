@@ -92,7 +92,7 @@ class UIAddIdentityAlertViewController: UIViewController {
             }
             
             vc.addIdentityView.setupWith(domains: domains, andCallbacks: callbacks)
-            UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: false, completion: nil)
+            UIApplication.shared.keyWindow?.rootViewController?.topMostPresentedControllerOrSelf.present(vc, animated: false, completion: nil)
             
         })
         

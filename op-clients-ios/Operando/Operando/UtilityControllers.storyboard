@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -57,7 +58,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ocE-V9-19X" userLabel="blackBackgroundView">
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ocE-V9-19X" userLabel="blackBackgroundView">
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wIf-hg-6yv" customClass="UIPfbDetailsView" customModule="Operando" customModuleProvider="target">
@@ -73,11 +74,11 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ocE-V9-19X" secondAttribute="trailing" id="2Mt-fU-A92"/>
                             <constraint firstItem="ocE-V9-19X" firstAttribute="top" secondItem="hdS-ZZ-HNM" secondAttribute="top" id="9DL-1O-xf2"/>
-                            <constraint firstAttribute="bottom" secondItem="wIf-hg-6yv" secondAttribute="bottom" constant="5" id="HYL-6x-6r0"/>
-                            <constraint firstItem="wIf-hg-6yv" firstAttribute="leading" secondItem="hdS-ZZ-HNM" secondAttribute="leading" constant="5" id="Jmp-hW-KPo"/>
-                            <constraint firstItem="wIf-hg-6yv" firstAttribute="top" secondItem="BQT-gL-MmY" secondAttribute="bottom" constant="5" id="qqd-y2-DI1"/>
+                            <constraint firstItem="wIf-hg-6yv" firstAttribute="top" secondItem="hdS-ZZ-HNM" secondAttribute="topMargin" constant="20" id="AAm-dI-lZZ"/>
+                            <constraint firstAttribute="bottom" secondItem="wIf-hg-6yv" secondAttribute="bottom" constant="20" id="HYL-6x-6r0"/>
+                            <constraint firstItem="wIf-hg-6yv" firstAttribute="leading" secondItem="hdS-ZZ-HNM" secondAttribute="leading" constant="10" id="Jmp-hW-KPo"/>
                             <constraint firstItem="3UX-YJ-WwC" firstAttribute="top" secondItem="ocE-V9-19X" secondAttribute="bottom" id="qyE-Rk-FMx"/>
-                            <constraint firstAttribute="trailing" secondItem="wIf-hg-6yv" secondAttribute="trailing" constant="5" id="tMZ-4b-NEF"/>
+                            <constraint firstAttribute="trailing" secondItem="wIf-hg-6yv" secondAttribute="trailing" constant="10" id="tMZ-4b-NEF"/>
                             <constraint firstItem="ocE-V9-19X" firstAttribute="leading" secondItem="hdS-ZZ-HNM" secondAttribute="leading" id="u12-PI-pOi"/>
                         </constraints>
                     </view>
@@ -88,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gD6-9e-0u8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-543.20000000000005" y="221.73913043478262"/>
+            <point key="canvasLocation" x="-834" y="191"/>
         </scene>
     </scenes>
 </document>

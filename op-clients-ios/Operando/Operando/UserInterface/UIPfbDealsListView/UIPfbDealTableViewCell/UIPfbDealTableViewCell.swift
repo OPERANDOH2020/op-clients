@@ -21,6 +21,7 @@ class UIPfbDealTableViewCell: UITableViewCell, UIPfbDisplayingView {
     private var callbacks: UIPfbDisplayingViewCallbacks?
     
     func setupWith(model: PfbDeal, andCallbacks cbs: UIPfbDisplayingViewCallbacks?){
+        self.model = model
         self.callbacks = cbs
         self.websiteURL.text = model.website
         if let url = model.logo, let actualURL  = URL(string: url){

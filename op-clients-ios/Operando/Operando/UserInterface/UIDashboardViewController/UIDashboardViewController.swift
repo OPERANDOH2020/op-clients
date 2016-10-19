@@ -25,51 +25,32 @@ let kNotificationsLocalizableKey = "kNotificationsLocalizableKey"
 class UIDashboardViewController: UIViewController
 {
     
-    private var callbacks: UIDashBoardViewControllerCallbacks?
-    
-    @IBOutlet var identityManagementButton: UIButton?
-    @IBOutlet var privacyForBenefitsButton: UIButton?
-    @IBOutlet var privateBrowsingButton: UIButton?
-    @IBOutlet var notificationsButton: UIButton?
+    @IBOutlet var identityManagementButton: UIDashboardButton?
+    @IBOutlet var privacyForBenefitsButton: UIDashboardButton?
+    @IBOutlet var privateBrowsingButton: UIDashboardButton?
+    @IBOutlet var notificationsButton: UIDashboardButton?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.localizeButtonTitles()
     }
     
     
     func setupWith(callbacks: UIDashBoardViewControllerCallbacks?)
     {
-        self.callbacks = callbacks
+        let _ = self.view
+    
+        self.identityManagementButton?.setupWith(model: UIDashboardButtonModel(backgroundColor: UIColor.operandoDarkGreen, title: Bundle.localizedStringFor(key: kIdentitiesManagementLocalizableKey), image: UIImage(named: "identitiesIcon"), onTap: callbacks?.whenChoosingIdentitiesManagement))
+        
+        self.privacyForBenefitsButton?.setupWith(model: UIDashboardButtonModel(backgroundColor: UIColor.operandoRed, title: Bundle.localizedStringFor(key: kPrivacyForBenefitsLocalizableKey), image: UIImage(named: "dealsIcon"), onTap: callbacks?.whenChoosingPrivacyForBenefits))
+        
+        self.privateBrowsingButton?.setupWith(model: UIDashboardButtonModel(backgroundColor: UIColor.operandoOrange, title: Bundle.localizedStringFor(key: kPrivateBrowsingLocalizableKey), image: UIImage(named: "browsingIcon"), onTap: callbacks?.whenChoosingPrivateBrowsing))
+        
+        
+        self.notificationsButton?.setupWith(model: UIDashboardButtonModel(backgroundColor: UIColor.operandoLightGreen, title: Bundle.localizedStringFor(key: kNotificationsLocalizableKey), image: UIImage(named: "notificationsIcon"), onTap: callbacks?.whenChoosingNotifications))
+        
     }
     
-    private func localizeButtonTitles()
-    {
-        self.identityManagementButton?.setTitle(Bundle.localizedStringFor(key: kIdentitiesManagementLocalizableKey), for: .normal)
-        self.privacyForBenefitsButton?.setTitle(Bundle.localizedStringFor(key: kPrivacyForBenefitsLocalizableKey), for: .normal)
-        self.privateBrowsingButton?.setTitle(Bundle.localizedStringFor(key: kPrivateBrowsingLocalizableKey), for: .normal)
-        self.notificationsButton?.setTitle(Bundle.localizedStringFor(key: kNotificationsLocalizableKey), for: .normal)
-    }
     
-    
-    @IBAction func didPressIdentityManagement(_ sender: UIButton)
-    {
-        self.callbacks?.whenChoosingIdentitiesManagement?()
-    }
-    
-    @IBAction func didPressPrivacyForBenefits(_ sender: UIButton)
-    {
-        self.callbacks?.whenChoosingPrivacyForBenefits?()
-    }
-    
-    @IBAction func didPressPrivateBrowsing(_ sender: UIButton)
-    {
-        self.callbacks?.whenChoosingPrivateBrowsing?()
-    }
-    
-    @IBAction func didPressNotifications(_ sender: UIButton)
-    {
-        self.callbacks?.whenChoosingNotifications?()
-    }
+
 }

@@ -29,6 +29,7 @@ class UIPfbDetailsAlertViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.pfbDetailsView.attachPopUpAnimationWithDuration(0.3)
         self.whenViewWillAppear?()
         
     }

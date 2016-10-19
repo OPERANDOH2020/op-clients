@@ -10,18 +10,18 @@ import UIKit
 
 class OPConfigObject: NSObject
 {
+    private let dependencies: Dependencies
     static let sharedInstance = OPConfigObject()
-    
     private var currentUserIdentity : UserIdentityModel? = nil
     private let swarmClientHelper : SwarmClientHelper = SwarmClientHelper()
-    
     private let userRepository: UsersRepository
-    
-    private let flowController = UIFlowController()
+    private let flowController: UIFlowController
     
     override init()
     {
-        self.userRepository = DummyUsersRepository()
+        self.userRepository = self.swarmClientHelper
+        self.dependencies = Dependencies(identityManagementRepo: self.swarmClientHelper, privacyForBenefitsRepo: self.swarmClientHelper, userInfoRepo: self.swarmClientHelper)
+        self.flowController = UIFlowController(dependencies: self.dependencies)
         super.init()
     }
     
@@ -52,7 +52,9 @@ class OPConfigObject: NSObject
                     return
                 }
                 
-                weakSelf?.swarmClientHelper
+                weakSelf?.dependencies.userInfoRepo.getCurrentUserInfo(in: { info, error  in
+                    print(error)
+                })
                 
                 weakSelf?.currentUserIdentity = data
                 weakSelf?.flowController.setupHierarchyStartingWithDashboardIn(window)

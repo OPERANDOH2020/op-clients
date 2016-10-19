@@ -152,72 +152,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="A3A-OQ-mT1">
-                                <color key="backgroundColor" red="0.043137254899999998" green="0.22352941179999999" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Identity Management">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didPressIdentityManagement:" destination="G67-bu-p9p" eventType="touchUpInside" id="KM9-vh-kyz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3gG-rn-U0r">
-                                <color key="backgroundColor" red="0.035294117649999998" green="0.43137254899999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Privacy for benefits"/>
-                                <connections>
-                                    <action selector="didPressPrivacyForBenefits:" destination="G67-bu-p9p" eventType="touchUpInside" id="MLK-po-kwe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwq-H0-Zas">
-                                <color key="backgroundColor" red="0.024959818963862301" green="0.3834332534783419" blue="0.63485576923076925" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Private browsing">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didPressPrivateBrowsing:" destination="G67-bu-p9p" eventType="touchUpInside" id="VFu-z4-IjK"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="act-0V-Q7U">
-                                <color key="backgroundColor" red="0.052204893133811901" green="0.28991914288259446" blue="0.45813419113333342" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Notifications">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didPressNotifications:" destination="G67-bu-p9p" eventType="touchUpInside" id="6kb-SD-ZFT"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6b-GY-fTq" userLabel="identitiesManagementButton" customClass="UIDashboardButton" customModule="Operando" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZe-tQ-Ctd" userLabel="privateBrowsingButton" customClass="UIDashboardButton" customModule="Operando" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kf6-DK-fav" userLabel="privacyForBenefitsButton" customClass="UIDashboardButton" customModule="Operando" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWf-Jh-xYI" userLabel="notificationsButton" customClass="UIDashboardButton" customModule="Operando" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="A3A-OQ-mT1" firstAttribute="leading" secondItem="yQY-wI-nZ0" secondAttribute="leading" id="3ur-ya-ilJ"/>
-                            <constraint firstItem="act-0V-Q7U" firstAttribute="width" secondItem="Uwq-H0-Zas" secondAttribute="width" id="A81-t4-OBc"/>
-                            <constraint firstItem="3gG-rn-U0r" firstAttribute="centerY" secondItem="A3A-OQ-mT1" secondAttribute="centerY" id="DAU-uA-Tof"/>
-                            <constraint firstItem="A3A-OQ-mT1" firstAttribute="width" secondItem="yQY-wI-nZ0" secondAttribute="width" multiplier="0.5" id="JWo-li-XXH"/>
-                            <constraint firstItem="3gG-rn-U0r" firstAttribute="width" secondItem="A3A-OQ-mT1" secondAttribute="width" id="JcI-P0-U9s"/>
-                            <constraint firstItem="3gG-rn-U0r" firstAttribute="leading" secondItem="A3A-OQ-mT1" secondAttribute="trailing" id="OuK-Zz-j30"/>
-                            <constraint firstItem="A3A-OQ-mT1" firstAttribute="top" secondItem="yQY-wI-nZ0" secondAttribute="top" constant="1" id="RdX-WJ-O4V"/>
-                            <constraint firstItem="act-0V-Q7U" firstAttribute="leading" secondItem="Uwq-H0-Zas" secondAttribute="trailing" id="Rwz-dp-DKr"/>
-                            <constraint firstItem="3gG-rn-U0r" firstAttribute="height" secondItem="A3A-OQ-mT1" secondAttribute="height" id="TN6-h7-Zq5"/>
-                            <constraint firstItem="Uwq-H0-Zas" firstAttribute="centerX" secondItem="A3A-OQ-mT1" secondAttribute="centerX" id="TW4-So-kBa"/>
-                            <constraint firstItem="Uwq-H0-Zas" firstAttribute="width" secondItem="A3A-OQ-mT1" secondAttribute="width" id="Yh2-GD-qpG"/>
-                            <constraint firstItem="act-0V-Q7U" firstAttribute="height" secondItem="Uwq-H0-Zas" secondAttribute="height" id="mbG-kV-jPY"/>
-                            <constraint firstItem="Uwq-H0-Zas" firstAttribute="top" secondItem="A3A-OQ-mT1" secondAttribute="bottom" constant="-1" id="rxd-OE-5Id"/>
-                            <constraint firstItem="A3A-OQ-mT1" firstAttribute="height" secondItem="yQY-wI-nZ0" secondAttribute="height" multiplier="0.5" id="sh3-eH-4aU"/>
-                            <constraint firstItem="act-0V-Q7U" firstAttribute="centerY" secondItem="Uwq-H0-Zas" secondAttribute="centerY" id="u3d-NC-SB9"/>
-                            <constraint firstItem="Uwq-H0-Zas" firstAttribute="height" secondItem="A3A-OQ-mT1" secondAttribute="height" id="z9J-UK-nqN"/>
+                            <constraint firstItem="HWf-Jh-xYI" firstAttribute="leading" secondItem="cZe-tQ-Ctd" secondAttribute="trailing" id="3XM-1x-ILL"/>
+                            <constraint firstItem="j6b-GY-fTq" firstAttribute="height" secondItem="yQY-wI-nZ0" secondAttribute="height" multiplier="0.5" id="5fI-5H-qPH"/>
+                            <constraint firstItem="cZe-tQ-Ctd" firstAttribute="centerX" secondItem="j6b-GY-fTq" secondAttribute="centerX" id="ANo-tT-Cva"/>
+                            <constraint firstItem="j6b-GY-fTq" firstAttribute="top" secondItem="yQY-wI-nZ0" secondAttribute="top" id="Azf-uQ-iR9"/>
+                            <constraint firstItem="Kf6-DK-fav" firstAttribute="height" secondItem="j6b-GY-fTq" secondAttribute="height" id="Cyf-jf-3PQ"/>
+                            <constraint firstItem="Kf6-DK-fav" firstAttribute="leading" secondItem="j6b-GY-fTq" secondAttribute="trailing" id="DJ5-6L-BUY"/>
+                            <constraint firstItem="j6b-GY-fTq" firstAttribute="width" secondItem="yQY-wI-nZ0" secondAttribute="width" multiplier="0.5" id="EAG-If-MhC"/>
+                            <constraint firstItem="cZe-tQ-Ctd" firstAttribute="width" secondItem="j6b-GY-fTq" secondAttribute="width" id="HSh-4i-dEF"/>
+                            <constraint firstItem="cZe-tQ-Ctd" firstAttribute="height" secondItem="j6b-GY-fTq" secondAttribute="height" id="Qc8-7Z-7nv"/>
+                            <constraint firstItem="Kf6-DK-fav" firstAttribute="centerY" secondItem="j6b-GY-fTq" secondAttribute="centerY" id="Qqn-LE-Sbt"/>
+                            <constraint firstItem="Kf6-DK-fav" firstAttribute="width" secondItem="j6b-GY-fTq" secondAttribute="width" id="R7v-kZ-LAf"/>
+                            <constraint firstItem="HWf-Jh-xYI" firstAttribute="height" secondItem="cZe-tQ-Ctd" secondAttribute="height" id="bl7-10-zSj"/>
+                            <constraint firstItem="HWf-Jh-xYI" firstAttribute="width" secondItem="cZe-tQ-Ctd" secondAttribute="width" id="glG-sM-rch"/>
+                            <constraint firstItem="cZe-tQ-Ctd" firstAttribute="top" secondItem="j6b-GY-fTq" secondAttribute="bottom" id="qmz-76-98N"/>
+                            <constraint firstItem="HWf-Jh-xYI" firstAttribute="centerY" secondItem="cZe-tQ-Ctd" secondAttribute="centerY" id="r5q-g1-vpD"/>
+                            <constraint firstItem="j6b-GY-fTq" firstAttribute="leading" secondItem="yQY-wI-nZ0" secondAttribute="leading" id="rBB-wa-cQg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8iO-qa-A3G"/>
                     <connections>
-                        <outlet property="identityManagementButton" destination="A3A-OQ-mT1" id="aiA-F0-Ksu"/>
-                        <outlet property="notificationsButton" destination="act-0V-Q7U" id="KJI-At-nK3"/>
-                        <outlet property="privacyForBenefitsButton" destination="3gG-rn-U0r" id="IFV-Qm-ngS"/>
-                        <outlet property="privateBrowsingButton" destination="Uwq-H0-Zas" id="1Yh-MP-Vwu"/>
+                        <outlet property="identityManagementButton" destination="j6b-GY-fTq" id="Afb-IF-RUe"/>
+                        <outlet property="notificationsButton" destination="HWf-Jh-xYI" id="RRy-nk-Rx1"/>
+                        <outlet property="privacyForBenefitsButton" destination="Kf6-DK-fav" id="W4O-yQ-qpx"/>
+                        <outlet property="privateBrowsingButton" destination="cZe-tQ-Ctd" id="zrp-GF-9yg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fz3-4L-VU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="196" y="-326.08695652173918"/>
+            <point key="canvasLocation" x="195" y="-326.25"/>
         </scene>
         <!--Registration-->
         <scene sceneID="ghl-GG-Khu">

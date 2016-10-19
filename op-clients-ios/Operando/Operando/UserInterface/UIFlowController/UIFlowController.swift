@@ -8,15 +8,21 @@
 
 import UIKit
 
+struct Dependencies{
+    let identityManagementRepo: IdentitiesManagementRepository
+    let privacyForBenefitsRepo: PrivacyForBenefitsRepository
+    let userInfoRepo: UserInfoRepository
+}
 
 class UIFlowController
 {
-    
+    let dependencies: Dependencies
     let rootController: UIRootViewController
     let slidingViewController: ECSlidingViewController
     
-    init()
+    init(dependencies: Dependencies)
     {
+        self.dependencies = dependencies
         self.rootController = UINavigationManager.rootViewController
         
         self.slidingViewController = ECSlidingViewController(topViewController: self.rootController)
@@ -57,8 +63,7 @@ class UIFlowController
     }
     
     
-    func displayDashboard()
-    {
+    func displayDashboard(){
         let dashBoardVC = UINavigationManager.dashboardViewController
         
         weak var weakSelf = self
@@ -67,8 +72,10 @@ class UIFlowController
              weakSelf?.displayIdentitiesManagement()
             },whenChoosingPrivacyForBenefits: {
               weakSelf?.displayPfbDeals()
-            },whenChoosingPrivateBrowsing: nil,
-                                                                    whenChoosingNotifications: nil)
+            },whenChoosingPrivateBrowsing: {
+              weakSelf?.displayPrivateBrowsing()
+            },
+              whenChoosingNotifications: nil)
         
         dashBoardVC.setupWith(callbacks: dashboardCallbacks)
         self.rootController.setMainControllerTo(newController: dashBoardVC)
@@ -76,21 +83,24 @@ class UIFlowController
     
     
     
-    func displayIdentitiesManagement()
-    {
+    func displayIdentitiesManagement(){
         let vc = UINavigationManager.identityManagementViewController
-        vc.setupWith(identitiesRepository: DummyIdentitiesRepository())
+        vc.setupWith(identitiesRepository: dependencies.identityManagementRepo)
         self.rootController.setMainControllerTo(newController: vc)
     }
     
     func displayPfbDeals() {
         let vc = UINavigationManager.pfbDealsController
-        vc.setupWith(dealsRepository: DummyPfbRepository())
+        vc.setupWith(dealsRepository: dependencies.privacyForBenefitsRepo)
         self.rootController.setMainControllerTo(newController: vc)
     }
     
-    func setupBaseHierarchyInWindow(_ window: UIWindow)
-    {
+    func displayPrivateBrowsing() {
+        let vc = UINavigationManager.privateBrowsingViewController
+        self.rootController.setMainControllerTo(newController: vc)
+    }
+    
+    func setupBaseHierarchyInWindow(_ window: UIWindow){
         window.rootViewController = self.slidingViewController
     }
 }

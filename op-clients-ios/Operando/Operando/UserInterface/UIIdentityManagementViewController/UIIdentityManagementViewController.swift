@@ -13,7 +13,7 @@ let kNewSIDGeneratedLocalizableKey = "kNewSIDGeneratedLocalizableKey"
 let kDoYouWantToDeleteSIDLocalizableKey = "kDoYouWantToDeleteSIDLocalizableKey"
 let kAddNewIdentityLocalizableKey = "kAddNewIdentityLocalizableKey"
 let kNoIncompleteFieldsLocalizableKey = "kNoIncompleteFieldsLocalizableKey"
-
+let kNoIdentitiesAtTheMomentLocalizableKey = "kNoIdentitiesAtTheMomentLocalizableKey"
 
 
 class UIIdentityManagementViewController: UIViewController
@@ -52,6 +52,11 @@ class UIIdentityManagementViewController: UIViewController
             if let error = error
             {
                 OPErrorContainer.displayError(error: error)
+                return
+            }
+            
+            if identities.identitiesList.count == 0 {
+                OPViewUtils.displayAlertWithMessage(message: Bundle.localizedStringFor(key: kNoIdentitiesAtTheMomentLocalizableKey), withTitle: "", addCancelAction: false, withConfirmation: nil)
                 return
             }
             
