@@ -1,11 +1,10 @@
 <div class="alert {{notification.type}} fade in">
 
-    <a class="close" ng-click="hideNotification()" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+    <!--<a class="close" ng-click="hideNotification()" data-dismiss="alert" aria-label="close" title="close">&times;</a>-->
     <div class="alert_container">
         <h4>{{notification.title}}</h4>
-        {{notification.content}}
-    </div>
+            <div class="notification_content" ng-bind-html="notification.content | trusthtml"></div>
 
-    <button ng-click="takeAction()" class="btn-primary notification-action">Take action</button>
+    </div>
 
 </div>

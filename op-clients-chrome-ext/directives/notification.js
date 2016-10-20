@@ -15,12 +15,20 @@ angular.module('notifications', ['ui-notification'])
 
         var notifications = [
 
-
             {
                 id: 0,
                 sender: "WatchDog",
-                title: "Add a identity",
-                content: "Explain why user should add a identity!",
+                title: "Privacy Questionnaire!",
+                content: "You have not filled the privacy questionnaire yet. Doing so will tailor your social network privacy settings to your preferences.  You can also skip the questionnaire and optimize your social network privacy settings in a single click <a href='#'>Take me to privacy questionnaire</a>. <a href='#'>Take me to single click privacy</a>.",
+                action:["privacy-questionnaire","single-click-privacy"],
+                type: "info-notification"
+            },
+
+            {
+                id: 1,
+                sender: "WatchDog",
+                title: "Add identity",
+                content:"You have not yet generated alternative email identities. Doing so will enable you to sign up on websites without disclosing your real email. <a href='#'>Go to email identities.</a>",
                 action:"identity",
                 type: "info-notification"
             },
@@ -28,17 +36,8 @@ angular.module('notifications', ['ui-notification'])
             {
                 id: 2,
                 sender: "WatchDog",
-                title: "Privacy Questionnaire!",
-                content: "Explain why user should take the privacy questionnaire!",
-                action:"privacy-questionnaire",
-                type: "info-notification"
-            },
-
-            {
-                id: 3,
-                sender: "WatchDog",
-                title: "Privacy for Benefits!",
-                content: "Explain why user should subscribe!",
+                title: "Privacy deals!",
+                content: "You have not yet accepted any privacy deals. Privacy deals enable you to trade some of your privacy for valuable benefits. <a href='#'> Go to deals</a>",
                 action:"privacy-for-benefits",
                 type: "info-notification"
             }
@@ -65,7 +64,7 @@ angular.module('notifications', ['ui-notification'])
 
             var sequence = Promise.resolve();
             notifications.filter(function(notification){
-                return notification.type == "info-notification"
+                return notification.type == "info-notification";
                 return true;
             }).forEach(function(notification){
                 sequence = sequence.then(function () {
@@ -148,20 +147,54 @@ angular.module('notifications').
             restrict: 'E',
             replace: true,
             scope: {notification: "="},
-            link: function ($scope) {
+            link: function ($scope,element) {
 
+               setTimeout(function(){
+                   var actionLinks = element[0].getElementsByClassName('notification_content')[0].getElementsByTagName("a");
+                   console.log(actionLinks);
+
+                   actionLinks = [].slice.call(actionLinks);
+
+                   for (var i = 0; i < actionLinks.length; i++) {
+                       (function(i){
+
+                           actionLinks[i].addEventListener("click", function(e){
+                               e.stopPropagation();
+                               $scope.takeAction(i);
+                           });
+                       })(i);
+
+                   }
+               },10);
             },
             controller: function ($scope, notificationService, $state ) {
 
-                $scope.hideNotification = function () {
+                var notificationContent = $scope.notification.content;
+                var matchActionLink = /<action-link>([\S\s])*?<\/action-link>/g;
+                var match;
+
+                while ((match = matchActionLink.exec(notificationContent)) !== null) {
+                    console.log(match);
+                }
+
+                    $scope.hideNotification = function () {
                     notificationService.hideNotification($scope.notification.id);
                 }
 
-                $scope.takeAction = function(){
-                    switch ($scope.notification.action){
+                $scope.takeAction = function(index){
+                    var nAction;
+
+                    if (Array.isArray($scope.notification.action)) {
+                        nAction = $scope.notification.action[index];
+                    }
+                    else {
+                        nAction = $scope.notification.action;
+                    }
+                    switch (nAction){
                         case "identity": $state.transitionTo('identityManagement'); break;
                         case "privacy-questionnaire": $state.transitionTo('socialNetworks.privacyQuestionnaire'); break;
                         case "privacy-for-benefits": $state.transitionTo('deals'); break;
+                        case "single-click-privacy": $state.transitionTo('socialNetworks'); break;
                     }
                 }
             },

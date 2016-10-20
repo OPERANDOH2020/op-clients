@@ -19,6 +19,7 @@ controller("appCtrl", ["$scope", "messengerService","$window","notificationServi
     $scope.logout = function () {
         messengerService.send("logout", {}, function () {
             $scope.userIsLoggedIn = false;
+            $window.location.href = "http://b2c.operando.eu";
         });
     }
 
@@ -27,7 +28,6 @@ controller("appCtrl", ["$scope", "messengerService","$window","notificationServi
             $scope.userIsLoggedIn = true;
             $scope.$apply();
 
-
             checkNotifications($scope.user.userId);
 
         });
@@ -35,7 +35,7 @@ controller("appCtrl", ["$scope", "messengerService","$window","notificationServi
         messengerService.send("notifyWhenLogout", {}, function () {
             //$scope.userIsLoggedIn = false;
             //$scope.$apply();
-            $window.location.reload();
+            $window.location.href = "http://b2c.operando.eu";
         });
 
 

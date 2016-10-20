@@ -11,20 +11,13 @@
         </div>
         </div>
     </td>
+    <td class="deal_description">{{deal.description}}</td>
     <td class="pfb_reward" ng-if="deal.subscribed == true">{{deal.voucher}}</td>
     <td class="voucher_code" ng-if="deal.subscribed == false">{{deal.benefit}}</td>
     <td class="actions">
 
-        <div class="toggle_container">
-            <div class="toggle">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" ng-checked="deal.subscribed==false"
-                       id="toggle-{{deal.serviceId}}" ng-click="toggleDeal()">
-                <label class="onoffswitch-label" for="toggle-{{deal.serviceId}}" >
-                    <span class="onoffswitch-inner"></span>
-                    <span class="onoffswitch-switch"></span>
-                </label>
-            </div>
-        </div>
+        <label><input ng-checked="deal.subscribed==true" ng-click="toggleDeal()"
+                      type="checkbox"/><span>Subscribe</span></label>
 
     </td>
 </tr>

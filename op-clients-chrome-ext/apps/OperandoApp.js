@@ -29,6 +29,11 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
         cfpLoadingBarProvider.autoIncrement = false;
 
     }])
+    .filter("trusthtml", ['$sce', function($sce) {
+        return function(htmlCode){
+            return $sce.trustAsHtml(htmlCode);
+        }
+    }])
     .run(['$rootScope', '$state', '$stateParams',
         function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;

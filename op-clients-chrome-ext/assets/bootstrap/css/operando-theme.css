@@ -97,7 +97,8 @@ table.table{
 }
 
 
-table.table thead th{
+table.table thead th,
+table tr.thead td{
     background: #e6d8ba;
     color: #907b4f;
     font-family: "Dosis";
@@ -105,6 +106,10 @@ table.table thead th{
     border-bottom: none;
     font-size: 17px;
     padding: 15px 0px 15px 10px;
+}
+
+table tr.thead td{
+    text-align: center;
 }
 
 .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
@@ -166,6 +171,10 @@ table.table thead th{
     margin: 0px 0;
     border-top: 1px solid #393939;
     border-bottom: 1px solid #555;
+}
+
+.operando .dropdown.dropdown-user a.user-account .email{
+    text-transform: lowercase;
 }
 
 .tabs-left > .nav-tabs > li,
@@ -676,15 +685,6 @@ color:#FFF;
     border:none;
 }
 
-button.btn-primary.notification-action
-{
-position: absolute;
-margin-top: -18px;
-top: 50%;
-right: 60px;
-}
-
-
 .operando .modal-content .btn-primary-black[disabled],
 .operando #wrapper .btn-primary-black[disabled],
 .operando .modal-content .btn-primary-black[disabled]:hover,
@@ -878,6 +878,10 @@ border-left:2px solid #fe9901;
     vertical-align: middle;
 }
 
+#pfbdeals_container .deal_description{
+    width: 50%;
+}
+
 #pfbdeals_container .supplier_logo{
     width: 64px;
     vertical-align: middle;
@@ -890,6 +894,7 @@ border-left:2px solid #fe9901;
 #pfbdeals_container .voucher_code{
     text-align: center;
     vertical-align: middle;
+    min-width: 120px;
 }
 
 #pfbdeals_container table.table tr:hover td,
@@ -910,6 +915,7 @@ border-left:2px solid #fe9901;
 #identities_container .table>thead>tr>td.defaultIdentity,
 #identities_container.table>thead>tr>th.defaultIdentity{
     background: #ffebba;
+    font-weight: bold;
 }
 
 .table tr>td.td_text{

@@ -19,30 +19,30 @@ angular.module("abp", []).controller('abpController', ['$scope', function ($scop
 
     $scope.featureSubscriptions = [
         {
-            feature: "malware",
-            homepage: "http://malwaredomains.com/",
-            title: "Malware Domains",
-            feature_title:"Malware Blocking",
-            feature_description:"Make your browsing more secure by blocking known malware domains.",
-            url: "https://easylist-downloads.adblockplus.org/malwaredomains_full.txt"
-
+            feature: "tracking",
+            homepage: "https://easylist.adblockplus.org/",
+            title: "EasyPrivacy",
+            feature_title:"Protect against tracking",
+            feature_description:"Browse privately by disabling tracking - hiding your tracks from ad companies that would track your every move.",
+            url: "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
         },
         {
             feature: "social",
             homepage: "https://www.fanboy.co.nz/",
             title: "Fanboy's Social Blocking List",
-            feature_title:"Remove Social Media Buttons",
+            feature_title:"Remove social media buttons",
             feature_description:"Automatically rid your browsing experience of social media buttons, such as the Facebook Like, which appear on web pages and track your behavior.",
             url: "https://easylist-downloads.adblockplus.org/fanboy-social.txt"
         },
         {
-            feature: "tracking",
-            homepage: "https://easylist.adblockplus.org/",
-            title: "EasyPrivacy",
-            feature_title:"Disable Tracking",
-            feature_description:"Browse privately by disabling tracking - hiding your tracks from ad companies that would track your every move.",
-            url: "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
+            feature: "malware",
+            homepage: "http://malwaredomains.com/",
+            title: "Block malware",
+            feature_title:"Malware Blocking",
+            feature_description:"Make your browsing more secure by blocking known malware domains.",
+            url: "https://easylist-downloads.adblockplus.org/malwaredomains_full.txt"
         }
+
     ];
 
 

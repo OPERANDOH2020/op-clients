@@ -87,7 +87,12 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
             }
         }, function (response) {
             if (response.success) {
-                successFunction();
+                chrome.runtime.openOptionsPage();
+
+                setTimeout(function(){
+                    window.close();
+                },50);
+                //successFunction();
             }
             else if (response.error)
                 securityErrorFunction();

@@ -245,7 +245,6 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
     }
 
 
-
     function waitingForLogin(data) {
         var i;
         var command;
@@ -324,7 +323,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
     var requestCounter = 0;
     function createRequestIdentity(){
         requestCounter++;
-        return outletId + "/" + requestCounter;
+        return outletId + "/" + requestCounter%96;
     }
 
     var counter = 0;
@@ -374,9 +373,6 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         }
 
         cmd.meta = meta;
-
-
-
 
         if (loginOk == true) {
             self.writeObject(cmd);

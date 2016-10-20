@@ -13,18 +13,18 @@
 
 var authenticationService = require("authentication-service").authenticationService;
 var swarmService = require("swarm-service").swarmService;
-/*var identityService = require("identity-service").identityService;
-var pfbService = require("pfb-service").pfbService;
-var socialNetworkService = require("social-network-privacy-settings").socialNetworkService;
-var privacyWizardService = require("privacy-wizard").privacyWizardService;
-var ospService = require("osp-service").ospService;
-var userService = require("user-service").userService;*/
 
 var bus = require("bus-service").bus;
 
-
 var busActions = {
+    //TODO refactor this
     login: function(request, clientPort){
+
+        clientPort.onDisconnect.addListener(function () {
+            clientPort = null;
+
+        });
+
         login(request.message.login_details, function () {
             clientPort.postMessage({
                 type: "SOLVED_REQUEST",
@@ -32,11 +32,19 @@ var busActions = {
                 message: {error: "securityError"}
             });
         }, function () {
-            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
+            if(clientPort){
+                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
+            }
         });
     },
 
     logout : function (request, clientPort) {
+
+        clientPort.onDisconnect.addListener(function () {
+            clientPort = null;
+
+        });
+
         logout(function () {
             console.log("here");
             if(clientPort){
@@ -46,6 +54,12 @@ var busActions = {
     },
 
     notifyWhenLogout : function(request, clientPort){
+
+        clientPort.onDisconnect.addListener(function () {
+            clientPort = null;
+
+        });
+
         authenticationService.disconnectUser(function(){
             if(clientPort){
                 clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
@@ -54,6 +68,12 @@ var busActions = {
     },
 
     getCurrentUser: function(request, clientPort){
+
+        clientPort.onDisconnect.addListener(function () {
+            clientPort = null;
+
+        });
+
         getCurrentUser(function (user) {
             if(clientPort){
                 clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: user});
@@ -63,6 +83,12 @@ var busActions = {
 
 
     restoreUserSession: function(request, clientPort){
+
+        clientPort.onDisconnect.addListener(function () {
+            clientPort = null;
+
+        });
+
         restoreUserSession(function (status) {
             if(clientPort) {
                 clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: status});
@@ -70,6 +96,12 @@ var busActions = {
         })
     },
     registerUser: function(request, clientPort){
+
+        clientPort.onDisconnect.addListener(function () {
+            clientPort = null;
+
+        });
+
         authenticationService.registerUser(request.message.user, function(error){
             clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
         },  function(success){
@@ -81,12 +113,7 @@ var busActions = {
 
 
 
-
-
-
 chrome.runtime.onConnect.addListener(function (_port) {
-
-
 
     (function(clientPort){
 
@@ -95,6 +122,11 @@ chrome.runtime.onConnect.addListener(function (_port) {
             /**
              * Listen for swarm connection events
              **/
+
+            clientPort.onDisconnect.addListener(function () {
+                clientPort = null;
+
+            });
 
             swarmService.onReconnect(function () {
                 if (clientPort != null) {
@@ -119,6 +151,8 @@ chrome.runtime.onConnect.addListener(function (_port) {
              * Listen for commands
              **/
             clientPort.onMessage.addListener(function (request) {
+
+
 
                 if(busActions[request.action]){
                         var action = busActions[request.action];
@@ -283,17 +317,10 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     });
                 }*/
 
-                clientPort.onDisconnect.addListener(function () {
-                    clientPort = null;
-
-                });
             });
         }
 
     }(_port));
-
-
-
 
 });
 
@@ -303,24 +330,7 @@ function login(login_details, securityErrorFunction, successFunction) {
 }
 
 function logout(callback) {
-    authenticationService.logoutCurrentUser(function () {
-
-        chrome.notifications.create("USER-LOGGED-OUT", {
-            type: "basic",
-            iconUrl: "/operando/assets/images/icons/operando_logo.png",
-            title: "You are logged out!",
-            message: "You have successfully logged out! Please give us feedback",
-            requireInteraction: true,
-            buttons: [{
-                title: "Give Feedback"
-            },
-                {
-                    title: "Visit OPERANDO website"
-                }]
-
-        }, callback);
-
-    });
+    authenticationService.logoutCurrentUser(callback);
 }
 
 function getCurrentUser(callback) {

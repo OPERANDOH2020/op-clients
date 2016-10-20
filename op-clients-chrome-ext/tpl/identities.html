@@ -2,17 +2,21 @@
     <div id="identities_container">
         <div class="table-responsive">
         <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th colspan="2">My identities</th>
-                <th style="width:100px; text-align:center">Actions</th>
-            </tr>
-            </thead>
+
             <tbody>
 
-
             <tr>
-                <td class="td_text real_identity" colspan="3"><span><b>{{user.email}}</b></span></td>
+                <td class="td_text td_radio">
+                    <label>
+                        <input type="radio" class="no_content" ng-click="changeDefaultIdentity()" name="default_sid" ng-checked="identity.isDefault">
+                    </label>
+                </td>
+                <td class="td_text real_identity" colspan="2"><span><b>{{user.email}}</b></span></td>
+            </tr>
+
+
+            <tr class="thead">
+                <td colspan="3">Alternative identities</td>
             </tr>
 
 

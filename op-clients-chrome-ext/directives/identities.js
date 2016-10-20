@@ -133,12 +133,7 @@ angular.module('identities', [])
                         messengerService.send("updateDefaultSubstituteIdentity", $scope.identity, function () {
                             $scope.$parent.$emit("changedDefaultSID", $scope.identity);
                             $scope.identity.isDefault = true;
-                            Notification.success({
-                                message: "You're default identity is set to " + $scope.identity.email,
-                                positionY: 'bottom',
-                                positionX: 'center',
-                                delay: 2000
-                            });
+                            $scope.$apply();
 
                         });
                     }
