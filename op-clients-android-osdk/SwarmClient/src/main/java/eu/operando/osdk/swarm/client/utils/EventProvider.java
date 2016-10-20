@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.ServiceLoader;
 import java.util.Set;
 
+import eu.operando.osdk.swarm.client.events.CreateIdentitySuccessEvent;
+import eu.operando.osdk.swarm.client.events.DomainsListSuccessEvent;
+import eu.operando.osdk.swarm.client.events.GenerateIdentitySuccessEvent;
 import eu.operando.osdk.swarm.client.events.ISwarmEvent;
 import eu.operando.osdk.swarm.client.events.SwarmEvent;
 import eu.operando.osdk.swarm.client.events.SwarmIdentityListEvent;
@@ -41,6 +44,9 @@ public class EventProvider {
         insertEventInDictionary("login.js", "success", SwarmLoginEvent.class);
         insertEventInDictionary("login.js", "logoutSucceed", SwarmLogoutEvent.class);
         insertEventInDictionary("identity.js","getMyIdentities_success",SwarmIdentityListEvent.class);
+        insertEventInDictionary("identity.js","generateIdentity_success",GenerateIdentitySuccessEvent.class);
+        insertEventInDictionary("identity.js","createIdentity_success",CreateIdentitySuccessEvent.class);
+        insertEventInDictionary("identity.js","gotDomains",DomainsListSuccessEvent.class);
     }
 
     public Class<?> getEvent(String swarmName, String swarmPhase) {

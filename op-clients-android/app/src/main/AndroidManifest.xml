@@ -118,6 +118,7 @@
         <activity android:name=".activity.NotificationsActivity" android:label="Notifications"/>
         <activity android:name=".activity.SensorsActivity" android:label="Sensors"/>
         <activity android:name=".activity.FeaturesActivity" android:label="Sensors"/>
+        <activity android:name=".activity.CreateIdentityActivity"/>
     </application>
 
 </manifest>

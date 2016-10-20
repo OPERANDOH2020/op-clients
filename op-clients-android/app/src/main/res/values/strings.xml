@@ -138,6 +138,7 @@
     <string name="real_identity">This is your real identity</string>
     <string name="alternative_identities">Alternative identities</string>
     <string name="add_identity">Add identity</string>
+    <string name="domain">Domain:</string>
     <!-- about end -->
 
 
