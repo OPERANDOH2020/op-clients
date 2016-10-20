@@ -127,6 +127,10 @@
 		98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */; };
 		ADB2AD4E1DB7FC85003E3AC1 /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */; };
 		ADB2AD501DB80474003E3AC1 /* LeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */; };
+		ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */; };
+		ADF3CA691DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3CA681DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift */; };
+		ADF3CA6D1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3CA6C1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift */; };
+		ADF3CA6F1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3CA6E1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -304,6 +308,10 @@
 		98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRegistrationViewController.swift; path = UserInterface/UIRegistrationViewController/UIRegistrationViewController.swift; sourceTree = "<group>"; };
 		ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
 		ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LeftMenu.storyboard; sourceTree = "<group>"; };
+		ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SideMenu.xcassets; sourceTree = "<group>"; };
+		ADF3CA681DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILeftSideMenuViewController.swift; sourceTree = "<group>"; };
+		ADF3CA6C1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILeftSideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		ADF3CA6E1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILeftSideMenuViewController+DataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -865,10 +873,11 @@
 				98EAF6701CCF86DC00C77649 /* ViewController.swift */,
 				98EAF6721CCF86DC00C77649 /* Main.storyboard */,
 				9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */,
+				ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */,
 				98EAF6751CCF86DC00C77649 /* Assets.xcassets */,
 				98EAF6771CCF86DC00C77649 /* LaunchScreen.storyboard */,
 				98EAF67A1CCF86DC00C77649 /* Info.plist */,
-				ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */,
+				ADF3CA621DB892DA00BD2B7A /* Resources */,
 			);
 			path = Operando;
 			sourceTree = "<group>";
@@ -887,6 +896,7 @@
 			isa = PBXGroup;
 			children = (
 				98387BC11DB7631600A76F01 /* Extensions */,
+				ADF3CA661DB89BD000BD2B7A /* UISideMenu */,
 				98387BBC1DB75A5F00A76F01 /* UIDashboardButton */,
 				982DF0661DB6793800231BBD /* UIPfbDetailsAlertViewController */,
 				982DF05C1DB6608900231BBD /* UIPfbDealsListView */,
@@ -1035,6 +1045,57 @@
 			path = SSASideMenu;
 			sourceTree = "<group>";
 		};
+		ADF3CA621DB892DA00BD2B7A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA631DB892DA00BD2B7A /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ADF3CA631DB892DA00BD2B7A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		ADF3CA661DB89BD000BD2B7A /* UISideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA671DB89BD000BD2B7A /* UILeftSideMenuViewController */,
+			);
+			name = UISideMenu;
+			path = UserInterface/UISideMenu;
+			sourceTree = "<group>";
+		};
+		ADF3CA671DB89BD000BD2B7A /* UILeftSideMenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA6A1DB89D2A00BD2B7A /* UILeftSideMenuTableViewCells */,
+				ADF3CA681DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift */,
+				ADF3CA6E1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift */,
+			);
+			path = UILeftSideMenuViewController;
+			sourceTree = "<group>";
+		};
+		ADF3CA6A1DB89D2A00BD2B7A /* UILeftSideMenuTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA6B1DB89D2A00BD2B7A /* UILeftSideMenuTableViewCell */,
+			);
+			path = UILeftSideMenuTableViewCells;
+			sourceTree = "<group>";
+		};
+		ADF3CA6B1DB89D2A00BD2B7A /* UILeftSideMenuTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA6C1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift */,
+			);
+			path = UILeftSideMenuTableViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1086,6 +1147,7 @@
 				TargetAttributes = {
 					98EAF66A1CCF86DC00C77649 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = JK2EHVVGUU;
 					};
 					98EAF67E1CCF86DC00C77649 = {
 						CreatedOnToolsVersion = 7.3;
@@ -1117,6 +1179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */,
 				985CD8431D5C64750021C58C /* jquery214min.js in Resources */,
 				981697511D5CB84E00B8A23A /* testJQuery.js in Resources */,
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
@@ -1181,6 +1244,7 @@
 				98668B5D1DB0D0D900FDE63A /* ECSlidingViewController.m in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
+				ADF3CA6F1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift in Sources */,
 				982DF0371DB6579200231BBD /* AFSecurityPolicy.m in Sources */,
 				9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */,
 				98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */,
@@ -1198,6 +1262,7 @@
 				98EAF6911CCF884000C77649 /* OPUtils.swift in Sources */,
 				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
 				9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */,
+				ADF3CA691DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift in Sources */,
 				986A58F21DB39C7300B622F5 /* SwarmClientHelperTypes.swift in Sources */,
 				985CD84F1D5C85440021C58C /* LocalJSSettingsProvider.swift in Sources */,
 				9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */,
@@ -1241,6 +1306,7 @@
 				982DF0581DB6579B00231BBD /* UIWebView+AFNetworking.m in Sources */,
 				985CD8541D5C91250021C58C /* WebViewSettingsReader.swift in Sources */,
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
+				ADF3CA6D1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift in Sources */,
 				98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				986D4CA91DB23AA80006DA0B /* SwarmClientResponseParsers.swift in Sources */,
@@ -1389,6 +1455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JK2EHVVGUU;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1399,6 +1466,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "54d01d4c-05f2-4121-b64a-933ee590d231";
+				PROVISIONING_PROFILE_SPECIFIER = "TS Development Provisioning Profile";
 			};
 			name = Debug;
 		};
@@ -1406,6 +1475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JK2EHVVGUU;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1416,6 +1486,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "54d01d4c-05f2-4121-b64a-933ee590d231";
+				PROVISIONING_PROFILE_SPECIFIER = "TS Development Provisioning Profile";
 			};
 			name = Release;
 		};

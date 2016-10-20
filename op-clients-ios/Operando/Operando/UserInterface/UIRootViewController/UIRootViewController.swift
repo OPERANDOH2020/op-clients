@@ -30,7 +30,7 @@ class UIRootViewController: UIViewController
     
     @IBAction func didPressMenuButton(_ sender: UIButton?)
     {
-        self.presentLeftMenuViewController()
+        self.callbacks?.whenMenuButtonPressed?()
     }
     
     @IBAction func didPressAccountButton(_ sender: UIButton?)

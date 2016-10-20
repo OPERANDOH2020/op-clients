@@ -20,7 +20,7 @@ class DummyUsersRepository: UsersRepository{
     func loginWithUsername(username: String, password: String, withCompletion completion: UserOperationCallback?){
         
         let idm = UserIdentityModel(swarmClientLoginReply: ["userId": "1", "sessionId": "0xcebe", "authenticated": true])!
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             completion?(nil, idm)
         }
         

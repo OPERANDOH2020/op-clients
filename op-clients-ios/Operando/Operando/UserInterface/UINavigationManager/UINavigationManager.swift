@@ -122,8 +122,11 @@ class UINavigationManager
     }
     
     // MARK: - Left Menu Storyboard
-    static var leftMenuViewController: UIViewController {
-        return leftMenu.instantiateViewController(withIdentifier: "UILeftSideMenuViewControllerStoryboardId")
+    static var leftMenuViewController: UILeftSideMenuViewController {
+        return leftMenu.instantiateViewController(withIdentifier: "UILeftSideMenuViewControllerStoryboardId") as! UILeftSideMenuViewController
     }
     
+    static var profileNavigationViewController: UIViewController {
+        return leftMenu.instantiateViewController(withIdentifier: "UIProfileNavigationViewControllerStoryboardId")
+    }
 }

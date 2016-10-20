@@ -19,9 +19,10 @@ class OPConfigObject: NSObject
     
     override init()
     {
-        self.userRepository = self.swarmClientHelper
+        self.userRepository = DummyUsersRepository()
         self.dependencies = Dependencies(identityManagementRepo: self.swarmClientHelper, privacyForBenefitsRepo: self.swarmClientHelper, userInfoRepo: self.swarmClientHelper)
         self.flowController = UIFlowController(dependencies: self.dependencies)
+        
         super.init()
     }
     
@@ -40,7 +41,7 @@ class OPConfigObject: NSObject
     {
         
         self.flowController.setupBaseHierarchyInWindow(window)
-        
+        flowController.setSideMenu(enabled: false)
         weak var weakSelf = self
         if let (username, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
         {
@@ -56,12 +57,9 @@ class OPConfigObject: NSObject
                     return
                 }
                 
-                weakSelf?.dependencies.userInfoRepo.getCurrentUserInfo(in: { info, error  in
-                    print(error)
-                })
-                
                 weakSelf?.currentUserIdentity = data
                 weakSelf?.flowController.setupHierarchyStartingWithDashboardIn(window)
+                weakSelf?.flowController.setSideMenu(enabled: true)
             })
         }
         else
@@ -91,6 +89,7 @@ class OPConfigObject: NSObject
             
             weakSelf?.currentUserIdentity = data
             weakSelf?.flowController.displayDashboard()
+            weakSelf?.flowController.setSideMenu(enabled: true)
         }
     }
 }

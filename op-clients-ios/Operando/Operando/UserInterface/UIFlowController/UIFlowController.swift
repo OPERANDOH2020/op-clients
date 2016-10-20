@@ -18,27 +18,27 @@ class UIFlowController
 {
     let dependencies: Dependencies
     let rootController: UIRootViewController
-    let slidingViewController: ECSlidingViewController
+    private var sideMenu: SSASideMenu?
     
     init(dependencies: Dependencies)
     {
         self.dependencies = dependencies
         self.rootController = UINavigationManager.rootViewController
         
-        self.slidingViewController = ECSlidingViewController(topViewController: self.rootController)
-        self.slidingViewController.underLeftViewController = UINavigationManager.menuViewController
-        
-        weak var weakSlidingController = self.slidingViewController
-        let rootControllerCallbacks = UIRootViewControllerCallbacks(whenMenuButtonPressed: {
-            
-            weakSlidingController?.anchorTopViewToRight(animated: true)
+        let rootControllerCallbacks = UIRootViewControllerCallbacks(whenMenuButtonPressed: { [unowned self] in
+            self.sideMenu?._presentLeftMenuViewController()
             }, whenAccountButtonPressed: nil)
         
         self.rootController.setupWithCallbacks(rootControllerCallbacks)
-    
-        
     }
     
+    func setSideMenu(enabled: Bool) {
+        if enabled {
+            sideMenu?.leftMenuViewController = getLeftSideMenuViewController()
+        } else {
+            sideMenu?.leftMenuViewController = nil
+        }
+    }
     
     func displayLoginHierarchyWith(loginCallback: LoginCallback?)
     {
@@ -81,8 +81,6 @@ class UIFlowController
         self.rootController.setMainControllerTo(newController: dashBoardVC)
     }
     
-    
-    
     func displayIdentitiesManagement(){
         let vc = UINavigationManager.identityManagementViewController
         vc.setupWith(identitiesRepository: dependencies.identityManagementRepo)
@@ -101,6 +99,29 @@ class UIFlowController
     }
     
     func setupBaseHierarchyInWindow(_ window: UIWindow){
-        window.rootViewController = self.slidingViewController
+        let sideMenu = SSASideMenu(contentViewController: self.rootController, leftMenuViewController: getLeftSideMenuViewController())
+        sideMenu.configure(configuration: SSASideMenu.MenuViewEffect(fade: true, scale: true, scaleBackground: false, parallaxEnabled: true, bouncesHorizontally: false, statusBarStyle: SSASideMenu.SSAStatusBarStyle.Black))
+        window.rootViewController = sideMenu
+        self.sideMenu = sideMenu
+    }
+    
+    private func getLeftSideMenuViewController() -> UILeftSideMenuViewController {
+        let leftSideMenu = UINavigationManager.leftMenuViewController
+        leftSideMenu.callbacks = getLeftSideMenuCallbacks()
+        return leftSideMenu
+    }
+    
+    private func getLeftSideMenuCallbacks() -> UIDashBoardViewControllerCallbacks {
+        return UIDashBoardViewControllerCallbacks(whenChoosingIdentitiesManagement: { [unowned self] in
+                self.displayIdentitiesManagement()
+                self.sideMenu?.hideMenuViewController()
+            },whenChoosingPrivacyForBenefits: {
+                self.displayPfbDeals()
+                self.sideMenu?.hideMenuViewController()
+            },whenChoosingPrivateBrowsing: {
+                self.displayPrivateBrowsing()
+                self.sideMenu?.hideMenuViewController()
+            },
+              whenChoosingNotifications: nil)
     }
 }
