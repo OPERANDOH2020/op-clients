@@ -177,8 +177,9 @@ angular.module('notifications').
                     console.log(match);
                 }
 
-                    $scope.hideNotification = function () {
-                    notificationService.hideNotification($scope.notification.id);
+                    $scope.doNotShowNexTime = function () {
+                    //TODO implement this
+
                 }
 
                 $scope.takeAction = function(index){

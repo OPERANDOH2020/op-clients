@@ -1,10 +1,13 @@
 <div class="alert {{notification.type}} fade in">
 
-    <!--<a class="close" ng-click="hideNotification()" data-dismiss="alert" aria-label="close" title="close">&times;</a>-->
     <div class="alert_container">
         <h4>{{notification.title}}</h4>
             <div class="notification_content" ng-bind-html="notification.content | trusthtml"></div>
-
     </div>
+
+    <label>
+    <input type="checkbox" class="close" ng-click="doNotShowNexTime()" data-dismiss="alert" aria-label="close" title="close"/>
+        <span>Never show this warning again</span>
+    </label>
 
 </div>

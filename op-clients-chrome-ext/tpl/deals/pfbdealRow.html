@@ -13,7 +13,7 @@
     </td>
     <td class="deal_description">{{deal.description}}</td>
     <td class="pfb_reward" ng-if="deal.subscribed == true">{{deal.voucher}}</td>
-    <td class="voucher_code" ng-if="deal.subscribed == false">{{deal.benefit}}</td>
+    <td class="voucher_code" ng-if="deal.subscribed == false" ng-bind-html="deal.benefit | trusthtml"></td>
     <td class="actions">
 
         <label><input ng-checked="deal.subscribed==true" ng-click="toggleDeal()"
