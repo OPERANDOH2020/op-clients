@@ -10,13 +10,25 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
+var bus = require("bus-service").bus;
 
 var notificationService = exports.notificationService = {
 
-    getNotifications: function () {
+    getNotifications: function (callback) {
 
-        swarmHub.startSwarm('identity.js', 'generateIdentity');
+        var getNotificationHandler = swarmHub.startSwarm('notification.js', 'getNotifications');
+        getNotificationHandler.onResponse("gotNotifications", function(swarm){
+            callback(swarm.notifications);
+        });
+
+    },
+
+    dismissNotification:function(notificationData, callback){
+        var dismissNotificationHandler = swarmHub.startSwarm("notification.js", "dismissNotification", notificationData.notificationId, notificationData.dismissed);
+        dismissNotificationHandler.onResponse("notificationDismissed", function(){
+            callback();
+        })
 
     }
-
 }
+bus.registerService(notificationService);

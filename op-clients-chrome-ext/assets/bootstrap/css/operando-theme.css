@@ -642,7 +642,8 @@ footer{
 
 .operando .modal-content .btn-primary,
 .operando #wrapper .btn-primary,
-.login_container_wrapper button.btn-primary
+.login_container_wrapper button.btn-primary,
+.notification_content a
 {
     background: #FFB400;
     border-color:#FFB400;
@@ -656,7 +657,8 @@ footer{
 
 .operando .modal-content .btn-primary:hover,
 .operando #wrapper .btn-primary:hover,
-.login_container_wrapper button.btn-primary:hover{
+.login_container_wrapper button.btn-primary:hover,
+.notification_content a:hover{
     background: #FF9900;
     border-color:#FF9900;
 }
@@ -1000,6 +1002,30 @@ background: #f1ebdf;
 color: #654d14;
 border: none;
 }
+
+.notification_content a:first-child:before{
+    content:"\a";
+    white-space:pre;
+}
+
+.notification_content a{
+    background: #FFB400;
+    padding: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    left:-10px;
+    position: relative;
+    margin-left: 10px;
+}
+
+
+.panel-notifications .alert .dont_show_again{
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+    display: block;
+}
+
 
 
 .alert .alert_container{

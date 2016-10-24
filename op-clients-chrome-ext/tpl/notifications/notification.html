@@ -2,11 +2,11 @@
 
     <div class="alert_container">
         <h4>{{notification.title}}</h4>
-            <div class="notification_content" ng-bind-html="notification.content | trusthtml"></div>
+            <div class="notification_content" ng-bind-html="notification.description | trusthtml"></div>
     </div>
 
-    <label>
-    <input type="checkbox" class="close" ng-click="doNotShowNexTime()" data-dismiss="alert" aria-label="close" title="close"/>
+    <label class="dont_show_again">
+    <input type="checkbox" ng-change="doNotShowNexTime()" ng-model="dismissed"/>
         <span>Never show this warning again</span>
     </label>
 

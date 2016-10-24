@@ -10,53 +10,15 @@ angular.module('notifications', ['ui-notification'])
             positionY: 'bottom'
         })
     })
-    .factory("notificationService", function ($rootScope, Notification) {
+    .factory("notificationService", function ($rootScope, Notification, messengerService,$q) {
 
+       var notifications = [];
 
-        var notifications = [
+        var dismissNotification = function (notificationId, dismissed, callback) {
 
-            {
-                id: 0,
-                sender: "WatchDog",
-                title: "Privacy Questionnaire!",
-                content: "You have not filled the privacy questionnaire yet. Doing so will tailor your social network privacy settings to your preferences.  You can also skip the questionnaire and optimize your social network privacy settings in a single click <a href='#'>Take me to privacy questionnaire</a>. <a href='#'>Take me to single click privacy</a>.",
-                action:["privacy-questionnaire","single-click-privacy"],
-                type: "info-notification"
-            },
-
-            {
-                id: 1,
-                sender: "WatchDog",
-                title: "Add identity",
-                content:"You have not yet generated alternative email identities. Doing so will enable you to sign up on websites without disclosing your real email. <a href='#'>Go to email identities.</a>",
-                action:"identity",
-                type: "info-notification"
-            },
-
-            {
-                id: 2,
-                sender: "WatchDog",
-                title: "Privacy deals!",
-                content: "You have not yet accepted any privacy deals. Privacy deals enable you to trade some of your privacy for valuable benefits. <a href='#'> Go to deals</a>",
-                action:"privacy-for-benefits",
-                type: "info-notification"
-            }
-
-        ];
-
-        /*  var getNotifications = function(){
-         return notifications;
-         }*/
-
-        var hideNotification = function (notificationId) {
-            for (var i = 0; i < notifications.length; i++) {
-                if (notifications[i].id == notificationId) {
-                    notifications.splice(i, 1);
-                    $rootScope.$broadcast("notifications", notifications);
-                    break;
-
-                }
-            }
+            messengerService.send("dismissNotification", {notificationId:notificationId,dismissed:dismissed}, function(data){
+                callback();
+            });
         }
 
 
@@ -88,11 +50,31 @@ angular.module('notifications', ['ui-notification'])
             });
         }
 
+         function loadUserNotifications(callback) {
+            var deferred = $q.defer();
+            if (Object.keys(notifications).length > 0) {
+                deferred.resolve(notifications);
+                callback(notifications);
+            }
+            else {
+                messengerService.send("getNotifications", function(response){
+                    var notifications = response.data;
+                    deferred.resolve(notifications);
+                    callback(notifications);
+
+                });
+            }
+            return deferred.promise;
+        }
+
+        var getUserNotifications = function(callback){
+            loadUserNotifications(callback);
+        }
 
         return {
-            notifications: notifications,
-            hideNotification: hideNotification,
-            notifyUserNow:notifyUserNow
+            dismissNotification: dismissNotification,
+            notifyUserNow:notifyUserNow,
+            getUserNotifications:getUserNotifications
         }
 
     });
@@ -109,7 +91,9 @@ angular.module('notifications')
             },
             controller: function ($scope, notificationService) {
                 $scope.notifications = {};
-                $scope.notifications.counter = notificationService.notifications.length;
+                notificationService.getUserNotifications(function(notifications){
+                    $scope.notifications.counter = notifications.length;
+                });
 
                 $scope.$on('notifications', function (event, notifications) {
                     console.log(notifications);
@@ -131,7 +115,12 @@ angular.module('notifications').
 
             },
             controller: function ($scope, notificationService) {
-                $scope.notifications = notificationService.notifications;
+                $scope.notifications = [];
+
+                notificationService.getUserNotifications(function(notifications){
+                    $scope.notifications = notifications;
+                    $scope.$apply();
+                });
 
                 $scope.$on('notifications', function (event, notifications) {
                     $scope.notifications.counter = notifications;
@@ -168,18 +157,12 @@ angular.module('notifications').
                },10);
             },
             controller: function ($scope, notificationService, $state ) {
-
-                var notificationContent = $scope.notification.content;
-                var matchActionLink = /<action-link>([\S\s])*?<\/action-link>/g;
-                var match;
-
-                while ((match = matchActionLink.exec(notificationContent)) !== null) {
-                    console.log(match);
-                }
-
+                    $scope.dismissed = false;
                     $scope.doNotShowNexTime = function () {
-                    //TODO implement this
 
+                        notificationService.dismissNotification($scope.notification.notificationId, $scope.dismissed, function(){
+
+                        });
                 }
 
                 $scope.takeAction = function(index){
