@@ -8,20 +8,46 @@
 
 import UIKit
 
-class UIIdentityCell: UITableViewCell {
+
+struct UIIdentityCellStyle {
+    let backgroundColor: UIColor?
+    let textColor: UIColor?
+    let displaysDisclosureIcon: Bool
+    let displaysDefaultIdentityIcon: Bool
+    
+    
+    static let normal = UIIdentityCellStyle(backgroundColor: UIColor.operandoYellow,
+                                            textColor: UIColor.black,
+                                            displaysDisclosureIcon: true,
+                                            displaysDefaultIdentityIcon: false)
+    
+    static let selected = UIIdentityCellStyle(backgroundColor: UIColor.operandoDarkYellow,
+                                              textColor: UIColor.operandoLightBrown,
+                                              displaysDisclosureIcon: false,
+                                              displaysDefaultIdentityIcon: true)
+}
+
+class UIIdentityCell: MGSwipeTableCell {
     
     static let identifierNibName = "UIIdentityCell"
     
     @IBOutlet weak var checkmarkImageView: UIImageView!
-    
     @IBOutlet weak var identityLabel: UILabel!
-    
-
-    func setupWithIdentity(identity: String?, isDefault: Bool)
+    @IBOutlet weak var disclosureImageView: UIImageView!
+        
+    func setupWithIdentity(identity: String?, style: UIIdentityCellStyle)
     {
-        checkmarkImageView.isHidden = !isDefault
-        self.identityLabel.text = identity;
+        self.checkmarkImageView.isHidden = !style.displaysDefaultIdentityIcon
+        self.disclosureImageView.isHidden = !style.displaysDisclosureIcon
+        
+        self.contentView.backgroundColor = style.backgroundColor
+        self.textLabel?.textColor = style.textColor
+        
+        self.identityLabel.text = identity
+        
     }
     
+    
+    //Mark:
     
 }

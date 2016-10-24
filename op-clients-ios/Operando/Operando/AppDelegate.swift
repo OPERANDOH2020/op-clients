@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         let window = UIWindow(frame: UIScreen.main.bounds)
         OPConfigObject.sharedInstance.applicationDidStartInWindow(window: window)
-        //OPConfigObject.sharedInstance.applicationDidStart(inWindow: window)
         self.window = window
         window.makeKeyAndVisible()
         return true

@@ -8,6 +8,9 @@
 
 import UIKit
 
+let kMakeDefaultLocalizableKey = "kMakeDefaultLocalizableKey"
+let kDeleteLocalizableKey = "kDeleteLocalizableKey"
+
 typealias IdentityIndexCallback = ((_ item: String, _ index: Int ) -> Void)
 
 struct UIIdentitiesListCallbacks
@@ -17,12 +20,17 @@ struct UIIdentitiesListCallbacks
     
 }
 
-class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableViewDelegate
+
+
+class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate
 {
     
     private var identitiesList: [String] = []
     private var callbacks: UIIdentitiesListCallbacks?
-    private var currentDefaultIdentityIndex: Int = 0
+    private var currentDefaultIdentity: String = ""
+    private var currentDefaultIdentityIndex: Int {
+        return self.identitiesList.index(of: self.currentDefaultIdentity) ?? -1
+    }
     
     @IBOutlet var tableView: UITableView?
     
@@ -38,15 +46,30 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
         let nib = UINib(nibName: UIIdentityCell.identifierNibName, bundle: nil);
         
         tableView?.register(nib, forCellReuseIdentifier: UIIdentityCell.identifierNibName);
-        tableView?.rowHeight = 44;
-        
+        tableView?.rowHeight = 50;
+        tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
         
     }
     
     func setupWith(initialList: [String], defaultIdentityIndex: Int, andCallbacks callbacks: UIIdentitiesListCallbacks?)
     {
+        guard let first = initialList.first else {
+            return
+        }
+        
+        let defaultIdentity = initialList[defaultIdentityIndex]
         self.identitiesList = initialList
-        self.currentDefaultIdentityIndex = defaultIdentityIndex
+        
+        if defaultIdentityIndex != 0 {
+            self.identitiesList.remove(at: defaultIdentityIndex)
+            self.identitiesList.remove(at: 0)
+            
+            self.identitiesList.insert(defaultIdentity, at: 0)
+            self.identitiesList.insert(first, at: defaultIdentityIndex)
+        }
+        
+        self.currentDefaultIdentity = defaultIdentity
+        
         self.callbacks = callbacks
         self.tableView?.reloadData()
     }
@@ -64,13 +87,9 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
         self.tableView?.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
-    func displayAsDefaultItemAt(index: Int)
+    func displayAsDefault(identity: String)
     {
-        guard index != self.currentDefaultIdentityIndex else{
-            return
-        }
-        
-        self.currentDefaultIdentityIndex = index
+        self.currentDefaultIdentity = identity
         self.tableView?.reloadData()
         
     }
@@ -89,44 +108,52 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UIIdentityCell.identifierNibName) as! UIIdentityCell
-
-        cell.setupWithIdentity(identity: self.identitiesList[indexPath.row], isDefault: indexPath.row == self.currentDefaultIdentityIndex)
         
+        
+        let style: UIIdentityCellStyle = (indexPath.row == self.currentDefaultIdentityIndex) ? .selected : .normal
+        
+        cell.setupWithIdentity(identity: self.identitiesList[indexPath.row], style: style)
+        cell.delegate = self
         return cell;
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row != self.currentDefaultIdentityIndex
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? UIIdentityCell else {
+            return
+        }
+        
+        cell.showSwipe(MGSwipeDirection.rightToLeft, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        guard indexPath.row != self.currentDefaultIdentityIndex else {
-            return nil
+    func swipeTableCell(_ cell: MGSwipeTableCell!, swipeButtonsFor direction: MGSwipeDirection, swipeSettings: MGSwipeSettings!, expansionSettings: MGSwipeExpansionSettings!) -> [Any]!
+    {
+        guard direction == MGSwipeDirection.rightToLeft,
+              let indexPath = self.tableView?.indexPath(for: cell),
+              indexPath.row != self.currentDefaultIdentityIndex  else {
+            return []
         }
-        weak var welf = self
+        weak var weakSelf = self
+        let identity = self.identitiesList[indexPath.row]
         
-        let makeDefaultAction = UITableViewRowAction(style: .normal, title: "Default", handler: { action, idxPath in
-            guard let item = welf?.identitiesList[idxPath.row] else {
-                return
-            }
-            DispatchQueue.main.async {
-                welf?.callbacks?.whenActivatedItemAtIndex?(item, idxPath.row)
-            }
-        })
+        let deleteButton = MGSwipeButton(title: Bundle.localizedStringFor(key: kDeleteLocalizableKey), backgroundColor: UIColor.red) { cell -> Bool in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
+                weakSelf?.callbacks?.whenPressedToDeleteItemAtIndex?(identity, indexPath.row)
+            })
         
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { action, idxPath in
-            guard let item = welf?.identitiesList[idxPath.row] else {
-                return
-            }
-            DispatchQueue.main.async {
-                welf?.callbacks?.whenPressedToDeleteItemAtIndex?(item, idxPath.row)
-            }
-        })
+            return true
+        }
         
-        makeDefaultAction.backgroundColor = UIColor(colorLiteralRed: 10.0/255.0, green: 96.0/255, blue: 254.0/255.0, alpha: 1.0)
+        let defaultButton = MGSwipeButton(title: Bundle.localizedStringFor(key: kMakeDefaultLocalizableKey), backgroundColor: UIColor.operandoCyan) { cell -> Bool in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                weakSelf?.callbacks?.whenActivatedItemAtIndex?(identity, indexPath.row)
+            })
+            
+            
+            return true
+        }
         
-        
-        return [deleteAction, makeDefaultAction]
+        return [defaultButton!, deleteButton!]
     }
 }

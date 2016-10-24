@@ -38,6 +38,11 @@ class UIPfbDetailsView: RSNibDesignableView, UIPfbDisplayingView {
     
     
     
+    override func commonInit() {
+        super.commonInit()
+        self.subscribedSwitch.onTintColor = UIColor.operandoCyan
+    }
+    
     func setupWith(model: PfbDeal, andCallbacks cbs: UIPfbDetailsViewCallbacks?)
     {
         self.model = model

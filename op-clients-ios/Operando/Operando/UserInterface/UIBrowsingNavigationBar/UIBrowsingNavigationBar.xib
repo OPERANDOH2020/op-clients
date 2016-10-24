@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIBrowsingNavigationBar" customModule="Operando" customModuleProvider="target">
@@ -16,27 +17,35 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBx-LI-LsG" userLabel="backButton">
-                    <rect key="frame" x="8" y="-3" width="30" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="M71-7O-H24"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                    <state key="normal" title="&lt;"/>
+                    <state key="normal" title="&lt;">
+                        <color key="titleColor" red="0.1843137255" green="0.12941176469999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="didPressBackButton:" destination="-1" eventType="touchUpInside" id="SWr-2N-rNO"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYe-Gh-2c1" userLabel="goButton">
-                    <rect key="frame" x="406" y="8" width="30" height="30"/>
-                    <state key="normal" title="GO"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="HMk-H8-bdk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="GO">
+                        <color key="titleColor" red="0.1843137255" green="0.12941176469999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="didPressSearchButton:" destination="-1" eventType="touchUpInside" id="SbT-hI-xUl"/>
                     </connections>
                 </button>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="GwV-ib-efK">
-                    <rect key="frame" x="38" y="0.0" width="368" height="45"/>
-                    <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
                 </searchBar>
             </subviews>
-            <color key="backgroundColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="0.90980392160000001" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="uBx-LI-LsG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6H7-DD-gpY"/>
                 <constraint firstAttribute="trailing" secondItem="uYe-Gh-2c1" secondAttribute="trailing" constant="8" id="HHR-qt-YRR"/>
@@ -49,7 +58,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="362" y="282.5"/>
+            <point key="canvasLocation" x="65" y="-34"/>
         </view>
     </objects>
 </document>

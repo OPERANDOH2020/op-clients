@@ -11,7 +11,7 @@ import Foundation
 protocol PrivacyForBenefitsRepository
 {
     func getCurrentPfbDealsWith(completion: ((_ deals: [PfbDeal], _ error: NSError?) -> Void)?)
-    func subscribeFor(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
+    func subscribeFor(serviceId: Int, withCompletion completion: ((_ newDeal: PfbDeal, _ error: NSError?) -> Void)?)
     func unSubscribeFrom(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
     
 }
@@ -48,20 +48,20 @@ class DummyPfbRepository: PrivacyForBenefitsRepository
                                          "website": "http://www.google.ro"])!)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             completion?(deals, nil)
         }
         
     }
-    func subscribeFor(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?){
+    func subscribeFor(serviceId: Int, withCompletion completion: ((_ newDeal: PfbDeal, _ error: NSError?) -> Void)?){
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { 
-            completion?(true, nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            completion?(PfbDeal.withAllFieldsEmpty, nil)
         }
         
     }
     func unSubscribeFrom(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             completion?(true, nil)
         }
     }

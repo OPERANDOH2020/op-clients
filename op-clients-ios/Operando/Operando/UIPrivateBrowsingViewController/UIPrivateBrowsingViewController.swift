@@ -9,6 +9,9 @@
 import UIKit
 import WebKit
 
+let kSearchEngineURL = "https://www.duckduckgo.com"
+let queryURLPart = "\(kSearchEngineURL)/?q="
+
 class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
 {
     
@@ -20,7 +23,8 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
         super.viewDidLoad()
         
         self.wkWebView = self.createWebViewInHostView(hostView: self.webViewHostView);
-        self.wkWebView?.load(NSURLRequest(url: NSURL(string: "https://www.google.ro")! as URL) as URLRequest);
+        self.wkWebView?.load(URLRequest(url: URL(string: kSearchEngineURL)!));
+        
         self.browsingNavigationBar.setupWithCallbacks(callbacks: self.callBacksForBrowsingBar(browsingBar: self.browsingNavigationBar));
     }
     
@@ -62,19 +66,25 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
     
     private func goToAddressOrSearch(string: String)
     {
-        if let url = NSURL(string: "https://" + string) ?? NSURL(string: string)
-        {
-            self.wkWebView?.load(NSURLRequest(url: url as URL) as URLRequest)
-        }
-        else
-        {
-            print("Must apply search for " + string)
-        }
+        
+        let searchURL = queryURLPart + (string.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) ?? "")
+        
+        self.wkWebView?.load(URLRequest(url: URL(string: searchURL)!))
+
+        
     }
     
     private func createWebViewInHostView(hostView: UIView) -> WKWebView
     {
         let configuration = WKWebViewConfiguration()
+        configuration.preferences.javaScriptEnabled = false
+        if #available(iOS 9.0, *) {
+            configuration.allowsAirPlayForMediaPlayback = false
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        
         let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
         webView.navigationDelegate = self
         UIView.constrainView(view: webView, inHostView: hostView)

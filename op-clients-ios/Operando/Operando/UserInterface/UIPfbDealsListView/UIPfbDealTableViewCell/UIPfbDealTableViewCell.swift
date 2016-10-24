@@ -14,6 +14,10 @@ class UIPfbDealTableViewCell: UITableViewCell, UIPfbDisplayingView {
     @IBOutlet weak var subscriebdSwitch: UISwitch!
     @IBOutlet weak var logoImageView: UIImageView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.subscriebdSwitch.onTintColor = UIColor.operandoCyan
+    }
     
     static let identifierNibName = "UIPfbDealTableViewCell"
    
@@ -23,7 +27,7 @@ class UIPfbDealTableViewCell: UITableViewCell, UIPfbDisplayingView {
     func setupWith(model: PfbDeal, andCallbacks cbs: UIPfbDisplayingViewCallbacks?){
         self.model = model
         self.callbacks = cbs
-        self.websiteURL.text = model.website
+        self.websiteURL.text = model.identitifer ?? model.website
         if let url = model.logo, let actualURL  = URL(string: url){
             self.logoImageView.setImageWith(actualURL)
         }

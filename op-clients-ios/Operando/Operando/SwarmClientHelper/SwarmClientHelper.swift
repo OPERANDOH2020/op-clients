@@ -29,6 +29,8 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     var whenThereWasAnErrorInCreatingTheSocket: ((_ error: NSError?) -> Void)?
     var whenSockedDidDisconnect: VoidBlock?
     
+    private var whenAskedForRealIdentityWithCompletion: ((((String, NSError?) -> Void)?) -> Void)?
+    
     let workingQueue: DispatchQueue = DispatchQueue.main
     
     override init() {
@@ -55,12 +57,20 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     return
                 }
                 
+                self.whenAskedForRealIdentityWithCompletion = { identityCompletion in
+                    identityCompletion?(identityModel.userId, nil)
+                }
+                
                 completion?(nil, identityModel)
                 
             }
         }
         
         swarmClient.startSwarm(SwarmName.login.rawValue, phase: SwarmPhase.start.rawValue, ctor: LoginConstructor.userLogin.rawValue, arguments: [username as AnyObject, password as AnyObject])
+    }
+    
+    func getRealIdentityWith(completion: ((String, NSError?) -> Void)?) {
+        self.whenAskedForRealIdentityWithCompletion?(completion)
     }
     
     func registerNewUserWith(username: String, password: String, withCompletion completion: UserOperationCallback?)
@@ -294,26 +304,26 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.getAllDeals.rawValue, arguments: [])
 
     }
-    func subscribeFor(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
+    func subscribeFor(serviceId: Int, withCompletion completion: ((_ newDeal: PfbDeal, _ error: NSError?) -> Void)?)
     {
         workingQueue.async {
             self.whenThereWasAnError = { error in
-                completion?(false, error)
+                completion?(PfbDeal.withAllFieldsEmpty, error)
             }
             
             
             self.whenReceivingData = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
-                    completion?(false, OPErrorContainer.errorInvalidServerResponse)
+                    completion?(PfbDeal.withAllFieldsEmpty, OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
-                guard let successStatus = SwarmClientResponseParsers.parseSubscribeToDealSuccessStatus(from: dataDict) else {
+                guard let deal = SwarmClientResponseParsers.parseSubscribedPfbDeal(from: dataDict) else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
-                    completion?(false, error)
+                    completion?(PfbDeal.withAllFieldsEmpty, error)
                     return
                 }
                 
-                completion?(successStatus, nil)
+                completion?(deal, nil)
             }
         }
         

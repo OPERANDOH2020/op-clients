@@ -29,13 +29,13 @@ struct Domain
 
 class PfbDeal
 {
-    let serviceId: Int
-    let benefit: String?
-    let identitifer: String?
-    let description: String?
-    let logo: String?
-    let voucher: String?
-    let website: String?
+    private(set) var serviceId: Int
+    private(set) var benefit: String?
+    private(set) var identitifer: String?
+    private(set) var description: String?
+    private(set) var logo: String?
+    private(set) var voucher: String?
+    private(set) var website: String?
     var subscribed: Bool
     
     
@@ -56,6 +56,23 @@ class PfbDeal
         self.identitifer = dict["identifier"] as? String
         
     }
+    
+    func copyAllFields(from deal: PfbDeal){
+        self.serviceId = deal.serviceId
+        self.benefit = deal.benefit
+        self.description = deal.description
+        self.logo = deal.logo
+        self.voucher = deal.voucher
+        self.website = deal.website
+        self.subscribed = deal.subscribed
+        self.identitifer = deal.identitifer
+    }
+    
+    static var withAllFieldsEmpty: PfbDeal {
+        return PfbDeal(dict: ["serviceId": 1, "subscribed": true])!
+    }
+    
+    
 }
 
 
@@ -151,6 +168,10 @@ class SwarmClientResponseParsers
         }
         
         return deals
+    }
+    
+    static func parseSubscribedPfbDeal(from dataDict: [String: Any]) -> PfbDeal?{
+        return PfbDeal.withAllFieldsEmpty
     }
     
     static func parseUserInfo(from dataDict: [String: Any]) -> UserInfo? {

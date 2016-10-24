@@ -63,14 +63,14 @@
                         <constraint firstAttribute="height" constant="34" id="1hg-9A-q9O"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MVb-eY-EeK" userLabel="emailTF">
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="XhU-Sf-lX2"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykb-KS-oKB">
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -125,9 +125,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="SAz-vI-QSq"/>
                     <exclude reference="wva-1Z-Ugp"/>
                     <exclude reference="Gao-Sc-GVK"/>
-                    <exclude reference="SAz-vI-QSq"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="39" y="281"/>

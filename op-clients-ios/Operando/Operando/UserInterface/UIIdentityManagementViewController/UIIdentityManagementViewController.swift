@@ -109,7 +109,7 @@ class UIIdentityManagementViewController: UIViewController
                 return
             }
             
-            self.identitiesListView?.displayAsDefaultItemAt(index: index)
+            self.identitiesListView?.displayAsDefault(identity: identity)
             
         })
     }

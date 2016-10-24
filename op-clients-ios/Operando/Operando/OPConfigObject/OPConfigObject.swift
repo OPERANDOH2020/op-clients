@@ -19,8 +19,10 @@ class OPConfigObject: NSObject
     
     override init()
     {
-        self.userRepository = DummyUsersRepository()
-        self.dependencies = Dependencies(identityManagementRepo: self.swarmClientHelper, privacyForBenefitsRepo: self.swarmClientHelper, userInfoRepo: self.swarmClientHelper)
+        self.userRepository = DummyUsersRepository()//self.swarmClientHelper
+        self.dependencies = Dependencies(identityManagementRepo: DummyIdentitiesRepository(),
+                                         privacyForBenefitsRepo: DummyPfbRepository(),
+                                         userInfoRepo: self.swarmClientHelper)
         self.flowController = UIFlowController(dependencies: self.dependencies)
         
         super.init()

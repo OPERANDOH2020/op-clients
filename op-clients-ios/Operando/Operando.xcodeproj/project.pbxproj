@@ -102,6 +102,9 @@
 		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
+		989C41861DBE18E800951AE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989C41811DBE18E800951AE5 /* Info.plist */; };
+		989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41831DBE18E800951AE5 /* MGSwipeButton.m */; };
+		989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */; };
 		98B2563E1D5DEE570043335A /* WebKitSettingsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2563D1D5DEE570043335A /* WebKitSettingsReader.swift */; };
 		98B256411D5E130B0043335A /* UISNSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B256401D5E130B0043335A /* UISNSettingsView.swift */; };
 		98B256451D5E13840043335A /* UISNSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B256431D5E13840043335A /* UISNSettingsTableViewCell.swift */; };
@@ -277,6 +280,11 @@
 		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
+		989C41811DBE18E800951AE5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		989C41821DBE18E800951AE5 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
+		989C41831DBE18E800951AE5 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
+		989C41841DBE18E800951AE5 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
+		989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		98B2563D1D5DEE570043335A /* WebKitSettingsReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebKitSettingsReader.swift; path = OSPSettings/SettingsAppliers/WebKitSettingsReader.swift; sourceTree = "<group>"; };
 		98B256401D5E130B0043335A /* UISNSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsView.swift; path = UISNSettingsView/UISNSettingsView.swift; sourceTree = "<group>"; };
 		98B256431D5E13840043335A /* UISNSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsTableViewCell.swift; path = UISNSettingsView/UISNSettingsTableViewCell/UISNSettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -823,6 +831,18 @@
 			name = UIScanningView;
 			sourceTree = "<group>";
 		};
+		989C41801DBE18E800951AE5 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				989C41811DBE18E800951AE5 /* Info.plist */,
+				989C41821DBE18E800951AE5 /* MGSwipeButton.h */,
+				989C41831DBE18E800951AE5 /* MGSwipeButton.m */,
+				989C41841DBE18E800951AE5 /* MGSwipeTableCell.h */,
+				989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */,
+			);
+			path = MGSwipeTableCell;
+			sourceTree = "<group>";
+		};
 		98B2563F1D5E0DDF0043335A /* UISNSettingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -950,6 +970,7 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				989C41801DBE18E800951AE5 /* MGSwipeTableCell */,
 				ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */,
 				982DF0271DB6579200231BBD /* AFNetworking */,
 				986A58EC1DB3952D00B622F5 /* SwarmClient.framework */,
@@ -1195,6 +1216,7 @@
 				9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */,
 				986E3E651DB3CA6B00453DC6 /* UIAddIdentityView.xib in Resources */,
 				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
+				989C41861DBE18E800951AE5 /* Info.plist in Resources */,
 				9871FC7D1D5DC11E007CB684 /* jquery-3.1.0.min.js in Resources */,
 				985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */,
 				982DF0601DB660CD00231BBD /* UIPfbDealsListView.xib in Resources */,
@@ -1239,6 +1261,7 @@
 				982DF0241DB6388800231BBD /* UIPfbDetailsView.swift in Sources */,
 				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
+				989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */,
 				986A58F81DB3A43700B622F5 /* UserInfoRepository.swift in Sources */,
 				982DF0351DB6579200231BBD /* AFHTTPSessionManager.m in Sources */,
 				98668B5D1DB0D0D900FDE63A /* ECSlidingViewController.m in Sources */,
@@ -1299,6 +1322,7 @@
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,
 				9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */,
+				989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */,
 				982750261D0849FA00C73411 /* OPConfigObject.swift in Sources */,
 				98668B611DB0D1F100FDE63A /* UIFlowController.swift in Sources */,
 				9827501A1D0849D400C73411 /* UserIdentityModel.swift in Sources */,

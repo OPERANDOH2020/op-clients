@@ -70,7 +70,7 @@ class UIPfbDealsViewController: UIViewController {
     
     
     private func tryActivate(deal: PfbDeal, fromCell cell: UIPfbDisplayingView?, whenDone: VoidBlock?){
-        self.dealsRepository?.subscribeFor(serviceId: deal.serviceId, withCompletion: { success, error in
+        self.dealsRepository?.subscribeFor(serviceId: deal.serviceId, withCompletion: { updatedDeal, error in
             defer {
                 whenDone?()
             }
@@ -79,12 +79,8 @@ class UIPfbDealsViewController: UIViewController {
                 return
             }
             
-            if !success{
-                OPErrorContainer.displayError(error: OPErrorContainer.unknownError)
-                return
-            }
             
-            deal.subscribed = true
+            deal.copyAllFields(from: updatedDeal)
             cell?.refreshWithOwnModel()
         })
     }

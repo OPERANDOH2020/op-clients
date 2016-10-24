@@ -21,7 +21,7 @@ struct UILoginViewCallbacks
     let whenUserForgetsPassword: (() -> ())?
 }
 
-class UILoginView: RSNibDesignableView {
+class UILoginView: RSNibDesignableView, UITextFieldDelegate {
 
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
@@ -29,10 +29,23 @@ class UILoginView: RSNibDesignableView {
     
     private var callbacks: UILoginViewCallbacks?
     
+    override func commonInit() {
+        super.commonInit()
+        self.emailTF.delegate = self
+        self.passwordTF.delegate = self
+    }
     
     func setupWithCallbacks(callbacks: UILoginViewCallbacks?)
     {
         self.callbacks = callbacks;
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        DispatchQueue.main.async {
+            textField.endEditing(true)
+        }
+        return true 
     }
     
     @IBAction func didPressForgotPassword(sender: AnyObject)
