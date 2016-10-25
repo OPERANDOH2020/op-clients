@@ -29,7 +29,7 @@ var authenticationService = exports.authenticationService = {
 
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, login_details.username, login_details.password, "chromeBrowserExtension", "userLogin", securityFn);
         console.log("Keep session ",login_details.remember_me);
-        swarmHub.on('login.js', "login_success", function (swarm) {
+        swarmHub.on('login.js', "success", function (swarm) {
             loggedIn = swarm.authenticated;
 
             var daysUntilCookieExpire = 1;
@@ -39,8 +39,7 @@ var authenticationService = exports.authenticationService = {
             Cookies.set("sessionId", swarm.meta.sessionId,  { expires: daysUntilCookieExpire });
             Cookies.set("userId", swarm.userId,{ expires: daysUntilCookieExpire });
             self.setUser(swarm.userId,successFn);
-            console.log("login success");
-            swarmHub.off("login.js", "login_success");
+            swarmHub.off("login.js", "success");
         });
     },
 

@@ -252,6 +252,37 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 url: "/billing",
                 templateUrl: "views/account/billing.html"
             });
-    });
+    })
+    .run(["firstRunService","subscriptionsService", "$ocLazyLoad", function(firstRunService, subscriptionsService, $ocLazyLoad){
+
+        firstRunService.onFirstRun(function(){
+
+            subscriptionsService.getFeatureSubscriptions(function (subscriptions) {
+                $ocLazyLoad.load(
+                    ['../ext/common.js',
+                        '../ext/content.js',
+                        'util/hooks.js'
+                    ]).then(function () {
+
+                    subscriptions.forEach(function (subscription) {
+
+                        ext.backgroundPage.sendMessage({
+                            type: "subscriptions.toggle",
+                            url: subscription.url,
+                            title: subscription.title,
+                            homepage: subscription.homepage
+                        });
+                    });
+
+                    getPref("subscriptions_exceptionsurl", function (url) {
+                        removeSubscription(url);
+                        firstRunService.setupComplete();
+                        console.log("Setup Completed...")
+                    });
+                });
+            });
+        });
+    }])
+
 
 

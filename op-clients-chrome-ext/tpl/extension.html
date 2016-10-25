@@ -7,33 +7,16 @@
 
         <td class="privacy_pollution">
             <span>{{extension.privacyPollution}}/10</span>
+            <button class="view_permissions" ng-class="{'hide_view_button': extension.permissions.length<1}" ng-click="view_permissions()"></button>
         </td>
-
-        <td class="extension_type">
-            <span>{{extension.type}}</span>
-        </td>
-
-        <td class="extension_version">
-            <span>{{extension.version}}</span>
-        </td>
-
-
-        <!--<div class="extension_left_ctn">
-            <span>Description:</span>{{extension.description}}
-        </div>-->
 
 
         <td class="extension_actions">
 
             <label class="extension_enabled_container">
                 <input type="checkbox" class="btn-primary" ng-checked="extension.enabled" ng-click="toggleEnabled()"/>
-            <span class="enable-checkbox-text">
-                <span class="enabled-text" ng-if="extension.enabled == true" >Enabled</span>
-                <span class="enable-text" ng-if="extension.enabled == false" >Enable</span>
-            </span>
+                <span class="enabled-text" >Enable</span>
             </label>
-
-            <button class="view_permissions" ng-class="{'hide_view_button': extension.permissions.length<1}" ng-click="view_permissions()"></button>
             <button class="extension_uninstall" ng-if="extension.mayDisable" ng-click="uninstall('user preference')"></button>
         </td>
 

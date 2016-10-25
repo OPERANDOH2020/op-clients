@@ -462,7 +462,7 @@ ul.popup-login-area{
 }
 
 .user_area_login{
-  height:160px;
+  height:192px;
 }
 
 .user_area_register{
@@ -502,6 +502,20 @@ ul.popup-login-area{
 .user_actions button:hover,
 #about_operando_ctn button:hover{
   background: #FFB400;
+}
+
+#forgot-password{
+  padding: 0px;
+  font-size: 15px;
+  color: #946901;
+  width: 66%;
+  margin-left: 1%;
+  float: left;
+}
+
+.forgot-password-container label{
+  width: 33%;
+  float:left;
 }
 
 #wrapperabp{

@@ -13,7 +13,7 @@
 var bus = require("bus-service").bus;
 
 var recommenderInitialized = false;
-var num_suggestions = 17;
+var num_suggestions = 6;
 var conditionalProbabilitiesMatrix ;
 var initialProbabilities ;
 var settingsToOptions = [];

@@ -21,7 +21,7 @@ angular.module('privacyWizard', [])
                     callback)
             },
             completeWizard: function (currentSettings, callback) {
-                messengerService.send("completeWizard",{currentSettings:currentSettings}, callback);
+                messengerService.send("completeWizard",currentSettings, callback);
             }
         }
         }

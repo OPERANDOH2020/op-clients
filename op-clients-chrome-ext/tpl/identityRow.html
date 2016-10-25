@@ -4,8 +4,8 @@
             <input type="radio" class="no_content" ng-click="changeDefaultIdentity()" name="default_sid" ng-checked="identity.isDefault">
         </label>
     </td>
-    <td class="td_text">{{identity.email}}</span></td>
-    <td class="actions">
+    <td colspan="{{identity.isReal ? '2' : '1'}}" class="td_text">{{identity.email}}</span></td>
+    <td class="actions" ng-if="!identity.isReal">
         <button class="trash" ng-click="removeIdentity()" ng-disabled="identity.isDefault==true"></button>
     </td>
 </tr>

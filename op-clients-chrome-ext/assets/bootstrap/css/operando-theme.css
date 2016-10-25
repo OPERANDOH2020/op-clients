@@ -321,8 +321,10 @@ ul.nav.navbar-nav.pull-right li>a>.menu_item_content{
 }
 
 
-#extensions_container .extension_actions{
-    width: 210px;
+#extensions_container table.table td.extension_actions{
+    width: 160px;
+    text-align: center;
+
 }
 
 #extensions_container table.table td{

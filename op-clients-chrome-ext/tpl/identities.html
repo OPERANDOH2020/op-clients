@@ -5,13 +5,7 @@
 
             <tbody>
 
-            <tr>
-                <td class="td_text td_radio">
-                    <label>
-                        <input type="radio" class="no_content" ng-click="changeDefaultIdentity()" name="default_sid" ng-checked="identity.isDefault">
-                    </label>
-                </td>
-                <td class="td_text real_identity" colspan="2"><span><b>{{user.email}}</b></span></td>
+            <tr  identity-row ng-repeat="identity in identities | filter:{isReal:true} " identity="identity">
             </tr>
 
 
@@ -20,7 +14,7 @@
             </tr>
 
 
-            <tr  identity-row ng-repeat="identity in identities" identity="identity">
+            <tr  identity-row ng-repeat="identity in identities | filter:{isReal:false}" identity="identity">
             </tr>
 
             </tbody>

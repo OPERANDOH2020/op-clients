@@ -28,7 +28,7 @@ angular.module('identities', [])
 
 
                     var refreshIdentities = function () {
-                        messengerService.send("listIdentities", {}, function (response) {
+                        messengerService.send("listIdentities", function (response) {
                             $scope.identities = response.data;
                             $scope.$apply();
                         });
