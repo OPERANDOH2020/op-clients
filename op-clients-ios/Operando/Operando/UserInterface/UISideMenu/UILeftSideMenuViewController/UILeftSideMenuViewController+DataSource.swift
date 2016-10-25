@@ -20,19 +20,19 @@ extension UILeftSideMenuViewController {
         
         var result = [UILeftSideMenuVCObject]()
         
-        result.append(UILeftSideMenuVCObject(categoryImageName: "identitiesIcon", categoryName: "Identity Management", action: { [unowned self] in
+        result.append(UILeftSideMenuVCObject(categoryImageName: "identities-green", categoryName: "Identity Management", action: { [unowned self] in
             self.callbacks?.whenChoosingIdentitiesManagement?()
             }))
         
-        result.append(UILeftSideMenuVCObject(categoryImageName: "dealsIcon", categoryName: "Privacy For Benefits", action: { [unowned self] in
+        result.append(UILeftSideMenuVCObject(categoryImageName: "deals-red", categoryName: "Privacy For Benefits", action: { [unowned self] in
             self.callbacks?.whenChoosingPrivacyForBenefits?()
             }))
         
-        result.append(UILeftSideMenuVCObject(categoryImageName: "browsingIcon", categoryName: "Private Browsing", action: { [unowned self] in
+        result.append(UILeftSideMenuVCObject(categoryImageName: "private_browsing-orange", categoryName: "Private Browsing", action: { [unowned self] in
             self.callbacks?.whenChoosingPrivateBrowsing?()
             }))
         
-        result.append(UILeftSideMenuVCObject(categoryImageName: "notificationsIcon", categoryName: "Notifications", action: { [unowned self] in
+        result.append(UILeftSideMenuVCObject(categoryImageName: "notifications-light-green", categoryName: "Notifications", action: { [unowned self] in
             self.callbacks?.whenChoosingNotifications?()
             }))
         

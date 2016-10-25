@@ -27,7 +27,9 @@ class UIPfbDealTableViewCell: UITableViewCell, UIPfbDisplayingView {
     func setupWith(model: PfbDeal, andCallbacks cbs: UIPfbDisplayingViewCallbacks?){
         self.model = model
         self.callbacks = cbs
-        self.websiteURL.text = model.identitifer ?? model.website
+        let url = model.website?.replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: "")
+        
+        self.websiteURL.text = url
         if let url = model.logo, let actualURL  = URL(string: url){
             self.logoImageView.setImageWith(actualURL)
         }

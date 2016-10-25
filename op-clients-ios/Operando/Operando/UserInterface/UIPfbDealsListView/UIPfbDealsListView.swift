@@ -28,6 +28,7 @@ class UIPfbDealsListView: RSNibDesignableView, UITableViewDelegate, UITableViewD
         
         tableView?.delegate = self
         tableView?.dataSource = self
+        tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
         tableView?.rowHeight = 50
     }
     

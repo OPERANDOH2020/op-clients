@@ -28,7 +28,7 @@ class UILeftSideMenuViewController: UIViewController, UITableViewDataSource, UIT
     
     // MARK: - @IBActions
     @IBAction func didTapProfileButton(_ sender: AnyObject) {
-        self.sideMenuViewController?.contentViewController = UINavigationManager.profileNavigationViewController
+//        self.sideMenuViewController?.contentViewController = UINavigationManager.profileNavigationViewController
         self.sideMenuViewController?.hideMenuViewController()
     }
     

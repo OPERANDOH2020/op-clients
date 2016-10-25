@@ -30,7 +30,7 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add identity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTC-7W-4Hl">
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="0.1647058824" green="0.1215686275" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uov-AC-HZP" userLabel="topSeparatorView">
@@ -39,21 +39,27 @@
                                         <constraint firstAttribute="height" constant="1" id="E0O-5u-c9t"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSe-7m-pDA" userLabel="CloseX">
-                                    <state key="normal" title="Close"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSe-7m-pDA" userLabel="CloseX">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="0Zx-Kh-1yH"/>
+                                        <constraint firstAttribute="width" constant="44" id="kew-zq-loa"/>
+                                    </constraints>
+                                    <state key="normal" image="close"/>
                                     <connections>
                                         <action selector="didPressclose:" destination="-1" eventType="touchUpInside" id="d6t-gI-ibr"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wL0-Lk-Ruo">
-                                    <state key="normal" title="Close"/>
+                                    <state key="normal" title="Close">
+                                        <color key="titleColor" red="0.1647058824" green="0.1215686275" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="didPressclose:" destination="-1" eventType="touchUpInside" id="YAE-8l-i0R"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alias:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6L-w6-3XY">
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="0.1647058824" green="0.1215686275" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-dy-BVa" userLabel="aliasTF">
@@ -63,7 +69,7 @@
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjD-a9-Ew3">
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="0.1647058824" green="0.1215686275" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select or search a domain" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l4N-tM-jgV" userLabel="domainTF">
@@ -87,19 +93,23 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vc-A9-LBm">
-                                    <state key="normal" title="Save"/>
+                                    <state key="normal" title="Save">
+                                        <color key="titleColor" red="0.1647058824" green="0.1215686275" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="didPressSave:" destination="-1" eventType="touchUpInside" id="5Sk-TF-dLY"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCL-xx-BdA">
-                                    <state key="normal" title="Refresh"/>
+                                    <state key="normal" title="Refresh">
+                                        <color key="titleColor" red="0.1647058824" green="0.1215686275" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="didPressRefresh:" destination="-1" eventType="touchUpInside" id="e35-Ff-NGs"/>
                                     </connections>
                                 </button>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WOz-5A-3rD">
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                             <integer key="value" value="5"/>
@@ -107,12 +117,13 @@
                                     </userDefinedRuntimeAttributes>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" red="0.99215686274509807" green="0.97647058823529409" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="H6L-w6-3XY" firstAttribute="top" secondItem="DTC-7W-4Hl" secondAttribute="bottom" constant="27" id="0ZM-37-pU7"/>
                                 <constraint firstItem="yCL-xx-BdA" firstAttribute="leading" secondItem="H6L-w6-3XY" secondAttribute="leading" id="12P-ef-qxQ"/>
                                 <constraint firstItem="SjD-a9-Ew3" firstAttribute="leading" secondItem="H6L-w6-3XY" secondAttribute="leading" id="2FF-Zk-L7R"/>
                                 <constraint firstItem="Uov-AC-HZP" firstAttribute="top" secondItem="YSe-7m-pDA" secondAttribute="bottom" constant="5" id="62E-sN-Ver"/>
+                                <constraint firstItem="DTC-7W-4Hl" firstAttribute="centerY" secondItem="YSe-7m-pDA" secondAttribute="centerY" id="6yp-pF-m2k"/>
                                 <constraint firstItem="DTC-7W-4Hl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="8eR-gN-bZ0"/>
                                 <constraint firstItem="Uov-AC-HZP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BA9-Ye-B2k"/>
                                 <constraint firstAttribute="trailing" secondItem="ez7-3H-TyU" secondAttribute="trailing" id="Eii-7K-oBa"/>
@@ -123,7 +134,6 @@
                                 <constraint firstItem="6xh-dy-BVa" firstAttribute="leading" secondItem="H6L-w6-3XY" secondAttribute="leading" id="TYb-hP-PlI"/>
                                 <constraint firstItem="l4N-tM-jgV" firstAttribute="trailing" secondItem="6xh-dy-BVa" secondAttribute="trailing" id="Tj7-EL-P5c"/>
                                 <constraint firstAttribute="trailing" secondItem="YSe-7m-pDA" secondAttribute="trailing" constant="7" id="ToB-57-3XU"/>
-                                <constraint firstItem="DTC-7W-4Hl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="VPQ-96-isu"/>
                                 <constraint firstItem="6xh-dy-BVa" firstAttribute="top" secondItem="H6L-w6-3XY" secondAttribute="bottom" constant="4" id="W1S-kV-iDZ"/>
                                 <constraint firstItem="l4N-tM-jgV" firstAttribute="top" secondItem="SjD-a9-Ew3" secondAttribute="bottom" constant="4" id="W6a-JM-hrE"/>
                                 <constraint firstItem="6xh-dy-BVa" firstAttribute="trailing" secondItem="YSe-7m-pDA" secondAttribute="trailing" id="ZiI-TV-gnL"/>
@@ -152,7 +162,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Bqd-gl-d85" secondAttribute="trailing" id="Jpl-YO-iwq"/>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="width" secondItem="O74-mL-Re0" secondAttribute="width" id="Q55-2d-uAj"/>
@@ -161,6 +171,10 @@
                 <constraint firstItem="Bqd-gl-d85" firstAttribute="leading" secondItem="O74-mL-Re0" secondAttribute="leading" id="fn3-ma-ST8"/>
                 <constraint firstAttribute="bottom" secondItem="Bqd-gl-d85" secondAttribute="bottom" id="qAy-MP-heu"/>
             </constraints>
+            <point key="canvasLocation" x="-220" y="32"/>
         </view>
     </objects>
+    <resources>
+        <image name="close" width="32" height="32"/>
+    </resources>
 </document>

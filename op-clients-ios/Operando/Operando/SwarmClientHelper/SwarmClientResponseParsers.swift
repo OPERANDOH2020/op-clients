@@ -25,7 +25,12 @@ struct Domain
     static let defaultEmpty = Domain(id: "", name: "")
 }
 
-
+struct PfbDealUpdate {
+    let voucher: String?
+    let subscribed: Bool
+    
+    static let emptyUnsubscribed = PfbDealUpdate(voucher: nil, subscribed: false)
+}
 
 class PfbDeal
 {
@@ -36,11 +41,10 @@ class PfbDeal
     private(set) var logo: String?
     private(set) var voucher: String?
     private(set) var website: String?
-    var subscribed: Bool
+    private(set) var subscribed: Bool
     
     
-    init?(dict: [String: Any])
-    {
+    init?(dict: [String: Any]){
         guard let serviceId = dict["serviceId"] as? Int,
               let subscribed = dict["subscribed"] as? Bool else {
             return nil
@@ -57,15 +61,10 @@ class PfbDeal
         
     }
     
-    func copyAllFields(from deal: PfbDeal){
-        self.serviceId = deal.serviceId
-        self.benefit = deal.benefit
-        self.description = deal.description
-        self.logo = deal.logo
-        self.voucher = deal.voucher
-        self.website = deal.website
-        self.subscribed = deal.subscribed
-        self.identitifer = deal.identitifer
+    func updateWith(update: PfbDealUpdate){
+        self.voucher = update.voucher
+        self.subscribed = update.subscribed
+        
     }
     
     static var withAllFieldsEmpty: PfbDeal {
@@ -170,8 +169,13 @@ class SwarmClientResponseParsers
         return deals
     }
     
-    static func parseSubscribedPfbDeal(from dataDict: [String: Any]) -> PfbDeal?{
-        return PfbDeal.withAllFieldsEmpty
+    static func parseVoucherForSubscribedDeal(from dataDict: [String: Any]) -> String? {
+        guard let dealDict = dataDict["deal"] as? [String: Any],
+              let voucher = dealDict["voucher"] as? String else {
+                return nil
+        }
+        
+        return voucher
     }
     
     static func parseUserInfo(from dataDict: [String: Any]) -> UserInfo? {

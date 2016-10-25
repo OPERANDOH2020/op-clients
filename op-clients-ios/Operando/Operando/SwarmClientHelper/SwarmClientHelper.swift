@@ -304,26 +304,27 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.getAllDeals.rawValue, arguments: [])
 
     }
-    func subscribeFor(serviceId: Int, withCompletion completion: ((_ newDeal: PfbDeal, _ error: NSError?) -> Void)?)
+    func subscribeFor(serviceId: Int, withCompletion completion: ((_ update: PfbDealUpdate, _ error: NSError?) -> Void)?)
     {
         workingQueue.async {
             self.whenThereWasAnError = { error in
-                completion?(PfbDeal.withAllFieldsEmpty, error)
+                completion?(PfbDealUpdate.emptyUnsubscribed, error)
             }
             
             
             self.whenReceivingData = { dataArray in
+                print(dataArray)
                 guard let dataDict = dataArray.first as? [String: Any] else {
-                    completion?(PfbDeal.withAllFieldsEmpty, OPErrorContainer.errorInvalidServerResponse)
+                    completion?(PfbDealUpdate.emptyUnsubscribed, OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
-                guard let deal = SwarmClientResponseParsers.parseSubscribedPfbDeal(from: dataDict) else {
+                guard let voucher = SwarmClientResponseParsers.parseVoucherForSubscribedDeal(from: dataDict) else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
-                    completion?(PfbDeal.withAllFieldsEmpty, error)
+                    completion?(PfbDealUpdate.emptyUnsubscribed, error)
                     return
                 }
                 
-                completion?(deal, nil)
+                completion?(PfbDealUpdate(voucher: voucher, subscribed: true), nil)
             }
         }
         
@@ -332,28 +333,36 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     }
     
     
-    func unSubscribeFrom(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
+    func unSubscribeFrom(serviceId: Int, withCompletion completion: ((_ update: PfbDealUpdate, _ error: NSError?) -> Void)?)
     {
         
         workingQueue.async {
             
             self.whenThereWasAnError = { error in
-                completion?(false, error)
+                completion?(PfbDealUpdate.emptyUnsubscribed, error)
             }
             
             
             self.whenReceivingData = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
-                    completion?(false, OPErrorContainer.errorInvalidServerResponse)
+                    completion?(PfbDealUpdate.emptyUnsubscribed, OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
-                guard let successStatus = SwarmClientResponseParsers.parseSubscribeToDealSuccessStatus(from: dataDict) else {
+                guard let successStatus = SwarmClientResponseParsers.parseSubscribeToDealSuccessStatus(from: dataDict)
+                else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
-                    completion?(false, error)
+                    completion?(PfbDealUpdate.emptyUnsubscribed, error)
                     return
                 }
                 
-                completion?(successStatus, nil)
+                // wow swift, thanks a lot for disabling guard-let-where 
+                guard successStatus == true else {
+                    let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
+                    completion?(PfbDealUpdate.emptyUnsubscribed, error)
+                    return
+                }
+                
+                completion?(PfbDealUpdate.emptyUnsubscribed, nil)
             }
             
         }

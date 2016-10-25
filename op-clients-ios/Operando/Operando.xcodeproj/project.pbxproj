@@ -88,6 +88,14 @@
 		98668B611DB0D1F100FDE63A /* UIFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B601DB0D1F100FDE63A /* UIFlowController.swift */; };
 		98668B631DB1018600FDE63A /* OPErrorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B621DB1018600FDE63A /* OPErrorContainer.swift */; };
 		98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B6A1DB1346600FDE63A /* UIIdentitiesListView.swift */; };
+		9866A7B41DBF4B1000907D05 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9866A7B61DBF4B1000907D05 /* Localizable.strings */; };
+		9866A7BB1DBF701400907D05 /* UIAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9866A7BA1DBF701400907D05 /* UIAccountViewController.swift */; };
+		9866A7BE1DBF778100907D05 /* UIChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9866A7BD1DBF778100907D05 /* UIChangePasswordView.swift */; };
+		9866A7C01DBF779100907D05 /* UIChangePasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9866A7BF1DBF779100907D05 /* UIChangePasswordView.xib */; };
+		9866A7C41DBF852500907D05 /* UINotificationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9866A7C31DBF852500907D05 /* UINotificationsListView.swift */; };
+		9866A7C61DBF854000907D05 /* UINotificationsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9866A7C51DBF854000907D05 /* UINotificationsListView.xib */; };
+		9866A7CA1DBF861300907D05 /* UINotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9866A7C81DBF861300907D05 /* UINotificationCell.swift */; };
+		9866A7CB1DBF861300907D05 /* UINotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9866A7C91DBF861300907D05 /* UINotificationCell.xib */; };
 		986A58EE1DB3953200B622F5 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 986A58EC1DB3952D00B622F5 /* SwarmClient.framework */; };
 		986A58EF1DB3953200B622F5 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 986A58EC1DB3952D00B622F5 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		986A58F21DB39C7300B622F5 /* SwarmClientHelperTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58F11DB39C7300B622F5 /* SwarmClientHelperTypes.swift */; };
@@ -267,6 +275,16 @@
 		98668B601DB0D1F100FDE63A /* UIFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIFlowController.swift; path = UserInterface/UIFlowController/UIFlowController.swift; sourceTree = "<group>"; };
 		98668B621DB1018600FDE63A /* OPErrorContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OPErrorContainer.swift; path = Utilities/OPErrorContainer.swift; sourceTree = "<group>"; };
 		98668B6A1DB1346600FDE63A /* UIIdentitiesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIdentitiesListView.swift; path = UserInterface/UIIdentityManagementViewController/UIIdentitiesListView/UIIdentitiesListView.swift; sourceTree = "<group>"; };
+		9866A7B51DBF4B1000907D05 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9866A7B71DBF4B1600907D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9866A7B81DBF4B5B00907D05 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9866A7BA1DBF701400907D05 /* UIAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAccountViewController.swift; path = UserInterface/UIAccountViewController/UIAccountViewController.swift; sourceTree = "<group>"; };
+		9866A7BD1DBF778100907D05 /* UIChangePasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIChangePasswordView.swift; path = UserInterface/UIChangePasswordView/UIChangePasswordView.swift; sourceTree = "<group>"; };
+		9866A7BF1DBF779100907D05 /* UIChangePasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIChangePasswordView.xib; path = UserInterface/UIChangePasswordView/UIChangePasswordView.xib; sourceTree = "<group>"; };
+		9866A7C31DBF852500907D05 /* UINotificationsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINotificationsListView.swift; path = UserInterface/UINotificationsListView/UINotificationsListView.swift; sourceTree = "<group>"; };
+		9866A7C51DBF854000907D05 /* UINotificationsListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UINotificationsListView.xib; path = UserInterface/UINotificationsListView/UINotificationsListView.xib; sourceTree = "<group>"; };
+		9866A7C81DBF861300907D05 /* UINotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINotificationCell.swift; path = UserInterface/UINotificationsListView/UINotificationCell/UINotificationCell.swift; sourceTree = "<group>"; };
+		9866A7C91DBF861300907D05 /* UINotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UINotificationCell.xib; path = UserInterface/UINotificationsListView/UINotificationCell/UINotificationCell.xib; sourceTree = "<group>"; };
 		986A58EC1DB3952D00B622F5 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		986A58F11DB39C7300B622F5 /* SwarmClientHelperTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmClientHelperTypes.swift; sourceTree = "<group>"; };
 		986A58F31DB39E7500B622F5 /* UsersRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersRepository.swift; path = UsersRepository/UsersRepository.swift; sourceTree = "<group>"; };
@@ -763,6 +781,50 @@
 			name = OPErrorContainer;
 			sourceTree = "<group>";
 		};
+		9866A7AF1DBF496300907D05 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7B61DBF4B1000907D05 /* Localizable.strings */,
+			);
+			name = Strings;
+			sourceTree = "<group>";
+		};
+		9866A7B91DBF6FE900907D05 /* UIAccountViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7BA1DBF701400907D05 /* UIAccountViewController.swift */,
+			);
+			name = UIAccountViewController;
+			sourceTree = "<group>";
+		};
+		9866A7BC1DBF774E00907D05 /* UIChangePasswordView */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7BD1DBF778100907D05 /* UIChangePasswordView.swift */,
+				9866A7BF1DBF779100907D05 /* UIChangePasswordView.xib */,
+			);
+			name = UIChangePasswordView;
+			sourceTree = "<group>";
+		};
+		9866A7C21DBF850500907D05 /* UINotificationsListView */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7C71DBF85EC00907D05 /* UINotificationCell */,
+				9866A7C31DBF852500907D05 /* UINotificationsListView.swift */,
+				9866A7C51DBF854000907D05 /* UINotificationsListView.xib */,
+			);
+			name = UINotificationsListView;
+			sourceTree = "<group>";
+		};
+		9866A7C71DBF85EC00907D05 /* UINotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7C81DBF861300907D05 /* UINotificationCell.swift */,
+				9866A7C91DBF861300907D05 /* UINotificationCell.xib */,
+			);
+			name = UINotificationCell;
+			sourceTree = "<group>";
+		};
 		986A58F51DB39E7A00B622F5 /* UsersRepository */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,6 +977,9 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				9866A7C21DBF850500907D05 /* UINotificationsListView */,
+				9866A7BC1DBF774E00907D05 /* UIChangePasswordView */,
+				9866A7B91DBF6FE900907D05 /* UIAccountViewController */,
 				98387BC11DB7631600A76F01 /* Extensions */,
 				ADF3CA661DB89BD000BD2B7A /* UISideMenu */,
 				98387BBC1DB75A5F00A76F01 /* UIDashboardButton */,
@@ -1069,6 +1134,7 @@
 		ADF3CA621DB892DA00BD2B7A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9866A7AF1DBF496300907D05 /* Strings */,
 				ADF3CA631DB892DA00BD2B7A /* Images */,
 			);
 			path = Resources;
@@ -1183,6 +1249,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ro,
 			);
 			mainGroup = 98EAF6621CCF86DC00C77649;
 			productRefGroup = 98EAF66C1CCF86DC00C77649 /* Products */;
@@ -1209,14 +1276,18 @@
 				9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */,
 				982DF0261DB638B900231BBD /* UIPfbDetailsView.xib in Resources */,
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
+				9866A7C61DBF854000907D05 /* UINotificationsListView.xib in Resources */,
 				9848B2D31D67393B00E0FD72 /* facebook_iOS.js in Resources */,
 				9853FF851D647E40007E2502 /* fbExtractData.js in Resources */,
 				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
 				98387BC01DB75ACD00A76F01 /* UIDashboardButton.xib in Resources */,
+				9866A7B41DBF4B1000907D05 /* Localizable.strings in Resources */,
 				9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */,
 				986E3E651DB3CA6B00453DC6 /* UIAddIdentityView.xib in Resources */,
 				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
+				9866A7C01DBF779100907D05 /* UIChangePasswordView.xib in Resources */,
 				989C41861DBE18E800951AE5 /* Info.plist in Resources */,
+				9866A7CB1DBF861300907D05 /* UINotificationCell.xib in Resources */,
 				9871FC7D1D5DC11E007CB684 /* jquery-3.1.0.min.js in Resources */,
 				985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */,
 				982DF0601DB660CD00231BBD /* UIPfbDealsListView.xib in Resources */,
@@ -1269,6 +1340,7 @@
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
 				ADF3CA6F1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift in Sources */,
 				982DF0371DB6579200231BBD /* AFSecurityPolicy.m in Sources */,
+				9866A7BE1DBF778100907D05 /* UIChangePasswordView.swift in Sources */,
 				9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */,
 				98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */,
 				9848B2D11D6738DD00E0FD72 /* FbWebKitSecurityEnforcer.swift in Sources */,
@@ -1303,6 +1375,7 @@
 				986E3E631DB3CA5600453DC6 /* UIAddIdentityView.swift in Sources */,
 				986D4CAC1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift in Sources */,
 				98387BC31DB7633500A76F01 /* UIColor+Utilities.swift in Sources */,
+				9866A7BB1DBF701400907D05 /* UIAccountViewController.swift in Sources */,
 				982DF03A1DB6579200231BBD /* AFURLSessionManager.m in Sources */,
 				982DF05E1DB660B600231BBD /* UIPfbDealsListView.swift in Sources */,
 				982DF0551DB6579B00231BBD /* UIImageView+AFNetworking.m in Sources */,
@@ -1336,6 +1409,8 @@
 				986D4CA91DB23AA80006DA0B /* SwarmClientResponseParsers.swift in Sources */,
 				982DF0381DB6579200231BBD /* AFURLRequestSerialization.m in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
+				9866A7CA1DBF861300907D05 /* UINotificationCell.swift in Sources */,
+				9866A7C41DBF852500907D05 /* UINotificationsListView.swift in Sources */,
 				986A58F41DB39E7500B622F5 /* UsersRepository.swift in Sources */,
 				982DF0501DB6579B00231BBD /* AFAutoPurgingImageCache.m in Sources */,
 				982DF0361DB6579200231BBD /* AFNetworkReachabilityManager.m in Sources */,
@@ -1363,6 +1438,17 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9866A7B61DBF4B1000907D05 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9866A7B51DBF4B1000907D05 /* en */,
+				9866A7B71DBF4B1600907D05 /* Base */,
+				9866A7B81DBF4B5B00907D05 /* ro */,
+			);
+			name = Localizable.strings;
+			path = Strings;
+			sourceTree = "<group>";
+		};
 		98EAF6721CCF86DC00C77649 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1386,6 +1472,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1436,6 +1523,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

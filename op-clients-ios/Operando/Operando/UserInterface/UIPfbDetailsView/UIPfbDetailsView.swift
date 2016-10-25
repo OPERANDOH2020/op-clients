@@ -23,6 +23,9 @@ protocol UIPfbDisplayingView{
     func refreshWithOwnModel()
 }
 
+let kBenefitLocalizableKey = "kBenefitLocalizableKey"
+let kVoucherLocalizableKey = "kVoucherLocalizableKey"
+
 class UIPfbDetailsView: RSNibDesignableView, UIPfbDisplayingView {
 
     private var callbacks: UIPfbDetailsViewCallbacks?
@@ -68,7 +71,7 @@ class UIPfbDetailsView: RSNibDesignableView, UIPfbDisplayingView {
         
         self.subscribedSwitch.isOn = isSubscribed
 
-        if isSubscribed{
+        if !isSubscribed{
             self.benefitOrVoucherStaticLabel.text = "Benefit"
             self.benefitOrVoucherLabel.text = self.model?.benefit
         } else {

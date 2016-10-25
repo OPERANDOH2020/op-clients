@@ -35,7 +35,7 @@ class UIRootViewController: UIViewController
     
     @IBAction func didPressAccountButton(_ sender: UIButton?)
     {
-        
+        self.callbacks?.whenAccountButtonPressed?()
     }
     
     

@@ -17,17 +17,6 @@ class UINotificationsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func didChangeDecisionOnNotifications(sender: UISwitch)
-    {
-        if sender.isOn
-        {
-            OPViewUtils.enbleViews(views: self.notificationViews);
-        }
-        else
-        {
-            OPViewUtils.disableViews(views: self.notificationViews)
-        }
-    }
-    
+       
 
 }

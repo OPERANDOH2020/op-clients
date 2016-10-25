@@ -70,7 +70,7 @@ class UIPfbDealsViewController: UIViewController {
     
     
     private func tryActivate(deal: PfbDeal, fromCell cell: UIPfbDisplayingView?, whenDone: VoidBlock?){
-        self.dealsRepository?.subscribeFor(serviceId: deal.serviceId, withCompletion: { updatedDeal, error in
+        self.dealsRepository?.subscribeFor(serviceId: deal.serviceId, withCompletion: { dealUpdate, error in
             defer {
                 whenDone?()
             }
@@ -80,13 +80,13 @@ class UIPfbDealsViewController: UIViewController {
             }
             
             
-            deal.copyAllFields(from: updatedDeal)
+            deal.updateWith(update: dealUpdate)
             cell?.refreshWithOwnModel()
         })
     }
     
     private func tryDeactivate(deal: PfbDeal, fromCell cell: UIPfbDisplayingView?, whenDone: VoidBlock?){
-        self.dealsRepository?.unSubscribeFrom(serviceId: deal.serviceId, withCompletion: { success, error  in
+        self.dealsRepository?.unSubscribeFrom(serviceId: deal.serviceId, withCompletion: { dealUpdate, error  in
             defer{
                 whenDone?()
             }
@@ -94,13 +94,8 @@ class UIPfbDealsViewController: UIViewController {
                 OPErrorContainer.displayError(error: error)
                 return
             }
-            
-            if !success{
-                OPErrorContainer.displayError(error: OPErrorContainer.unknownError)
-                return
-            }
-            
-            deal.subscribed = false
+
+            deal.updateWith(update: dealUpdate)
             cell?.refreshWithOwnModel()
         })
     }

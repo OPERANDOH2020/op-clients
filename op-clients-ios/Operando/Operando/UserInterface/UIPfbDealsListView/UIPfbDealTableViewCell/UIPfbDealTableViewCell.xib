@@ -45,12 +45,13 @@
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="JVk-cK-x2R" secondAttribute="trailing" constant="5" id="1ry-gs-pCv"/>
                     <constraint firstAttribute="trailing" secondItem="hI3-DI-J7O" secondAttribute="trailing" id="JqN-aW-cGn"/>
+                    <constraint firstItem="JVk-cK-x2R" firstAttribute="leading" secondItem="V1o-L6-BWP" secondAttribute="trailing" constant="5" id="UM6-lC-Xhw"/>
                     <constraint firstItem="JVk-cK-x2R" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VnU-0F-L5z"/>
                     <constraint firstItem="0Vy-X3-LVf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-1" id="WOb-VF-a62"/>
+                    <constraint firstItem="V1o-L6-BWP" firstAttribute="leading" secondItem="0Vy-X3-LVf" secondAttribute="trailing" constant="5" id="a6h-FS-4ri"/>
                     <constraint firstAttribute="bottom" secondItem="hI3-DI-J7O" secondAttribute="bottom" id="eMj-RY-epO"/>
                     <constraint firstItem="V1o-L6-BWP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="l2r-D8-bxl"/>
                     <constraint firstItem="hI3-DI-J7O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="le5-yF-4bY"/>
-                    <constraint firstItem="V1o-L6-BWP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="oy0-6y-BCb"/>
                     <constraint firstItem="0Vy-X3-LVf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uMG-eW-I97"/>
                 </constraints>
             </tableViewCellContentView>

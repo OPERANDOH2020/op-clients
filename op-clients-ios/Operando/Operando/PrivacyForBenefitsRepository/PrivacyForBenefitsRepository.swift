@@ -11,8 +11,8 @@ import Foundation
 protocol PrivacyForBenefitsRepository
 {
     func getCurrentPfbDealsWith(completion: ((_ deals: [PfbDeal], _ error: NSError?) -> Void)?)
-    func subscribeFor(serviceId: Int, withCompletion completion: ((_ newDeal: PfbDeal, _ error: NSError?) -> Void)?)
-    func unSubscribeFrom(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
+    func subscribeFor(serviceId: Int, withCompletion completion: ((_ update: PfbDealUpdate, _ error: NSError?) -> Void)?)
+    func unSubscribeFrom(serviceId: Int, withCompletion completion: ((_ update: PfbDealUpdate, _ error: NSError?) -> Void)?)
     
 }
 
@@ -53,16 +53,16 @@ class DummyPfbRepository: PrivacyForBenefitsRepository
         }
         
     }
-    func subscribeFor(serviceId: Int, withCompletion completion: ((_ newDeal: PfbDeal, _ error: NSError?) -> Void)?){
+    func subscribeFor(serviceId: Int, withCompletion completion: ((_ update: PfbDealUpdate, _ error: NSError?) -> Void)?){
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            completion?(PfbDeal.withAllFieldsEmpty, nil)
+            completion?(PfbDealUpdate(voucher: "555-call-me", subscribed: true), nil)
         }
         
     }
-    func unSubscribeFrom(serviceId: Int, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?) {
+    func unSubscribeFrom(serviceId: Int, withCompletion completion: ((_ update: PfbDealUpdate, _ error: NSError?) -> Void)?) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            completion?(true, nil)
+            completion?(PfbDealUpdate(voucher: nil, subscribed: false), nil)
         }
     }
 }
