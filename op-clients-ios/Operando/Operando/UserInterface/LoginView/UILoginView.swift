@@ -44,21 +44,30 @@ class UILoginView: RSNibDesignableView, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         DispatchQueue.main.async {
             textField.endEditing(true)
+            if textField == self.emailTF {
+                self.passwordTF.becomeFirstResponder()
+            } else {
+                self.didPressSignInButton(nil)
+            }
         }
         return true 
     }
     
-    @IBAction func didPressForgotPassword(sender: AnyObject)
+    @IBAction func didPressForgotPassword(_ sender: AnyObject)
     {
         self.callbacks?.whenUserForgetsPassword?();
     }
     
-    @IBAction func didPressSignInButton(_ sender: AnyObject)
+    @IBAction func didPressSignInButton(_ sender: AnyObject?)
     {
         let loginInfo = LoginInfo(username: self.emailTF.text ?? "", password: self.passwordTF.text ?? "", wishesToBeRemembered: self.rememberMeSwitch.isOn);
         self.callbacks?.whenUserWantsToLogin?(loginInfo);
     }
     
+    
+    //MARK: TextField 
+    
+
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)

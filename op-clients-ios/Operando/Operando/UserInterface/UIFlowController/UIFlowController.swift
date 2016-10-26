@@ -12,6 +12,7 @@ struct Dependencies{
     let identityManagementRepo: IdentitiesManagementRepository
     let privacyForBenefitsRepo: PrivacyForBenefitsRepository
     let userInfoRepo: UserInfoRepository
+    let whenCallingToLogout: VoidBlock?
 }
 
 class UIFlowController
@@ -45,14 +46,24 @@ class UIFlowController
         }
     }
     
-    func displayLoginHierarchyWith(loginCallback: LoginCallback?)
+    func displayLoginHierarchyWith(loginCallback: LoginCallback?, registerCallback: RegistrationCallback?)
     {
+        self.sideMenu?.hideMenuViewController()
+        
         let loginVC = UINavigationManager.loginViewController
-        let callbacks = UISignInViewControllerCallbacks(whenUserWantsToLogin: loginCallback) {
-            // must push register
+        let registrationViewController = UINavigationManager.registerViewController
+        weak var weakLoginVC = loginVC
+        
+        let loginViewControllerCallbacks = UISignInViewControllerCallbacks(whenUserWantsToLogin: loginCallback) {
+            weakLoginVC?.navigationController?.pushViewController(registrationViewController, animated: true)
         }
         
-        loginVC.setupWithCallbacks(callbacks)
+        let registerViewControllerCallbacks = UIRegistrationViewControllerCallbacks(whenUserRegisters: registerCallback) { 
+            weakLoginVC?.navigationController?.popViewController(animated: true)
+        }
+        
+        loginVC.setupWithCallbacks(loginViewControllerCallbacks)
+        registrationViewController.setupWith(callbacks: registerViewControllerCallbacks)
         
         let navigationController = UINavigationController(rootViewController: loginVC)
         navigationController.isNavigationBarHidden = true
@@ -60,6 +71,9 @@ class UIFlowController
         self.rootController.setMainControllerTo(newController: navigationController)
     }
     
+    private func createRegisterViewController() -> UIRegistrationViewController {
+        return UINavigationManager.registerViewController
+    }
     
     func setupHierarchyStartingWithDashboardIn(_ window: UIWindow)
     {
@@ -121,9 +135,12 @@ class UIFlowController
     
     
     
-    
     private func getRightMenuViewController() -> UIAccountViewController {
-        return UINavigationManager.accountViewController
+        
+        let accountController = UINavigationManager.accountViewController
+        accountController.setupWith(model: UIAccountViewControllerModel(repository: self.dependencies.userInfoRepo, whenUserChoosesToLogout: self.dependencies.whenCallingToLogout))
+        
+        return accountController
     }
     
     

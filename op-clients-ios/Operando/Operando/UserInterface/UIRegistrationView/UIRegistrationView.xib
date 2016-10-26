@@ -15,6 +15,7 @@
                 <outlet property="passwordsDontMatchLabel" destination="meS-TU-big" id="tU7-iA-hfb"/>
                 <outlet property="scrollView" destination="KyX-Rg-6a0" id="f5j-mG-R8g"/>
                 <outlet property="signUpBtn" destination="xFe-TW-Wlm" id="D0q-yW-Thh"/>
+                <outlet property="usernameTF" destination="yyZ-Iy-POS" id="tZ6-rt-RYd"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -29,9 +30,9 @@
                         <constraint firstAttribute="width" constant="240" id="XZU-du-Ndf"/>
                     </constraints>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KyX-Rg-6a0">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="KyX-Rg-6a0">
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZWd-yF-d8K" userLabel="internalWidthSentinel">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZWd-yF-d8K" userLabel="internalWidthSentinel">
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="5" id="Ms5-kE-ncz"/>
@@ -82,14 +83,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFe-TW-Wlm" userLabel="signUpButton">
-                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.1647058824" green="0.1215686275" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="104" id="7Hz-Yg-QL2"/>
                                 <constraint firstAttribute="height" constant="44" id="D3b-MT-N2m"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="Sign up">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -127,23 +128,38 @@
                             <color key="textColor" red="0.88573717949999997" green="0.0" blue="0.07443810646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PER-ba-CKk" userLabel="username">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yyZ-Iy-POS" userLabel="usernameTF">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="iOZ-gJ-2AA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="yyZ-Iy-POS" firstAttribute="trailing" secondItem="wG2-2P-sRu" secondAttribute="trailing" id="18Q-6W-OOM"/>
                         <constraint firstItem="SUc-qt-lyG" firstAttribute="top" secondItem="GPO-UJ-BHl" secondAttribute="bottom" id="3v7-aM-WFT"/>
                         <constraint firstItem="wG2-2P-sRu" firstAttribute="top" secondItem="7bZ-Ai-Gah" secondAttribute="bottom" id="4LI-G4-0QG"/>
                         <constraint firstItem="SUc-qt-lyG" firstAttribute="top" secondItem="HTA-LE-f2o" secondAttribute="bottom" constant="33" id="5dI-fh-ZKN"/>
                         <constraint firstItem="ZWd-yF-d8K" firstAttribute="top" secondItem="KyX-Rg-6a0" secondAttribute="top" constant="5" id="7fm-Wb-Oip"/>
                         <constraint firstItem="b4b-IC-fyr" firstAttribute="top" secondItem="tIo-Dw-XTR" secondAttribute="bottom" constant="11" id="CCo-HJ-T2C"/>
+                        <constraint firstItem="yyZ-Iy-POS" firstAttribute="top" secondItem="PER-ba-CKk" secondAttribute="bottom" id="CYu-7i-FwI"/>
                         <constraint firstItem="GPO-UJ-BHl" firstAttribute="leading" secondItem="SUc-qt-lyG" secondAttribute="leading" id="D5h-YU-gv4"/>
                         <constraint firstItem="HTA-LE-f2o" firstAttribute="top" secondItem="b4b-IC-fyr" secondAttribute="bottom" id="Eei-G7-L9O"/>
                         <constraint firstItem="xKy-V5-To3" firstAttribute="leading" secondItem="SUc-qt-lyG" secondAttribute="leading" id="Epa-UO-Kdh"/>
+                        <constraint firstItem="PER-ba-CKk" firstAttribute="leading" secondItem="yyZ-Iy-POS" secondAttribute="leading" id="Eri-l7-P6a"/>
                         <constraint firstItem="xFe-TW-Wlm" firstAttribute="trailing" secondItem="SUc-qt-lyG" secondAttribute="trailing" id="Etk-oS-OyH"/>
-                        <constraint firstItem="GPO-UJ-BHl" firstAttribute="top" secondItem="HTA-LE-f2o" secondAttribute="bottom" constant="12" id="HR6-yg-Zzi"/>
-                        <constraint firstItem="7bZ-Ai-Gah" firstAttribute="top" secondItem="KyX-Rg-6a0" secondAttribute="top" constant="20" id="IAX-GT-tya"/>
+                        <constraint firstItem="GPO-UJ-BHl" firstAttribute="top" secondItem="HTA-LE-f2o" secondAttribute="bottom" constant="15" id="HR6-yg-Zzi"/>
                         <constraint firstAttribute="bottom" secondItem="xFe-TW-Wlm" secondAttribute="bottom" id="MBI-mW-pPQ"/>
                         <constraint firstItem="wG2-2P-sRu" firstAttribute="leading" secondItem="KyX-Rg-6a0" secondAttribute="leading" constant="20" id="NN6-zs-Wtd"/>
                         <constraint firstItem="E8n-Kr-IVz" firstAttribute="leading" secondItem="SUc-qt-lyG" secondAttribute="leading" id="S7b-LL-dyM"/>
+                        <constraint firstItem="7bZ-Ai-Gah" firstAttribute="top" secondItem="yyZ-Iy-POS" secondAttribute="bottom" constant="15" id="Se0-Dg-W31"/>
                         <constraint firstItem="ZWd-yF-d8K" firstAttribute="leading" secondItem="KyX-Rg-6a0" secondAttribute="leading" constant="40" id="Xlo-ik-Ljq"/>
                         <constraint firstAttribute="trailing" secondItem="wG2-2P-sRu" secondAttribute="trailing" constant="20" id="Yt7-lu-SQ9"/>
                         <constraint firstItem="E8n-Kr-IVz" firstAttribute="top" secondItem="meS-TU-big" secondAttribute="bottom" constant="10" id="a7Q-Lf-OWG"/>
@@ -157,10 +173,12 @@
                         <constraint firstItem="xFe-TW-Wlm" firstAttribute="leading" secondItem="SUc-qt-lyG" secondAttribute="leading" id="mA1-XZ-uLY"/>
                         <constraint firstItem="SUc-qt-lyG" firstAttribute="trailing" secondItem="HTA-LE-f2o" secondAttribute="trailing" id="pM3-8A-DKt"/>
                         <constraint firstItem="meS-TU-big" firstAttribute="top" secondItem="SUc-qt-lyG" secondAttribute="bottom" constant="5" id="pjk-05-Cob"/>
+                        <constraint firstItem="yyZ-Iy-POS" firstAttribute="leading" secondItem="wG2-2P-sRu" secondAttribute="leading" id="qLo-i6-6lb"/>
                         <constraint firstItem="MPS-p6-5yD" firstAttribute="centerY" secondItem="KyX-Rg-6a0" secondAttribute="centerY" id="qMq-ZA-afb"/>
                         <constraint firstItem="HTA-LE-f2o" firstAttribute="leading" secondItem="wG2-2P-sRu" secondAttribute="leading" id="t4l-DS-jqr"/>
                         <constraint firstItem="meS-TU-big" firstAttribute="leading" secondItem="SUc-qt-lyG" secondAttribute="leading" id="tAw-xV-iig"/>
                         <constraint firstItem="GPO-UJ-BHl" firstAttribute="leading" secondItem="HTA-LE-f2o" secondAttribute="leading" id="uRf-Ig-0sE"/>
+                        <constraint firstItem="PER-ba-CKk" firstAttribute="top" secondItem="KyX-Rg-6a0" secondAttribute="top" constant="10" id="uWj-DQ-ZVf"/>
                         <constraint firstAttribute="trailing" secondItem="ZWd-yF-d8K" secondAttribute="trailing" constant="275" id="v0L-WH-kuw"/>
                         <constraint firstItem="7bZ-Ai-Gah" firstAttribute="leading" secondItem="wG2-2P-sRu" secondAttribute="leading" id="v4J-tT-X6G"/>
                         <constraint firstItem="HTA-LE-f2o" firstAttribute="trailing" secondItem="wG2-2P-sRu" secondAttribute="trailing" id="vQx-sk-y0O"/>

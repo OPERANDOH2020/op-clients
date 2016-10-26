@@ -10,6 +10,12 @@ import UIKit
 
 let kChangePasswordViewHeight: CGFloat = 300
 
+
+struct UIAccountViewControllerModel{
+    let repository: UserInfoRepository?
+    let whenUserChoosesToLogout: VoidBlock?
+}
+
 class UIAccountViewController: UIViewController {
     @IBOutlet weak var changePasswordViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var changePasswordButton: UIButton!
@@ -17,6 +23,7 @@ class UIAccountViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var changePasswordView: UIChangePasswordView!
     
+    private var model: UIAccountViewControllerModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +36,32 @@ class UIAccountViewController: UIViewController {
         self.hidePasswordViewShowButton()
     }
     
+    func setupWith(model: UIAccountViewControllerModel?){
+        let _ = self.view
+        self.model = model
+        
+        model?.repository?.getCurrentUserInfo(in: { info, error in
+            if let error = error {
+                OPErrorContainer.displayError(error: error)
+                return
+            }
+            
+            self.nameLabel.text = info.name
+            
+        })
+        
+    }
+    
+    //MARK: IBActions
+    
     @IBAction func didPressChangePasswordButton(_ sender: AnyObject) {
         self.displayPasswordViewHideButton()
 
     }
     
+    @IBAction func didPressSignOut(_ sender: AnyObject) {
+        self.model?.whenUserChoosesToLogout?()
+    }
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

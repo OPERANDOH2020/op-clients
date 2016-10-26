@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class OPConfigObject: NSObject
 {
     private let dependencies: Dependencies
@@ -19,10 +21,13 @@ class OPConfigObject: NSObject
     
     override init()
     {
-        self.userRepository = self.swarmClientHelper
-        self.dependencies = Dependencies(identityManagementRepo: self.swarmClientHelper,
-                                         privacyForBenefitsRepo: self.swarmClientHelper,
-                                         userInfoRepo: self.swarmClientHelper)
+        self.userRepository = DummyUsersRepository()//self.swarmClientHelper
+        self.dependencies = Dependencies(identityManagementRepo: DummyIdentitiesRepository(),//self.swarmClientHelper,
+                                         privacyForBenefitsRepo: DummyPfbRepository(),//self.swarmClientHelper,
+                                         userInfoRepo: DummyInfoRepository(),//self.swarmClientHelper,
+                                         whenCallingToLogout: {
+                                            OPConfigObject.sharedInstance.logoutUserAndUpdateUI()
+                                                    })
         self.flowController = UIFlowController(dependencies: self.dependencies)
         
         super.init()
@@ -41,7 +46,6 @@ class OPConfigObject: NSObject
     
     func applicationDidStartInWindow(window: UIWindow)
     {
-        
         self.flowController.setupBaseHierarchyInWindow(window)
         flowController.setSideMenu(enabled: false)
         weak var weakSelf = self
@@ -55,6 +59,8 @@ class OPConfigObject: NSObject
                     OPErrorContainer.displayError(error: error)
                     weakSelf?.flowController.displayLoginHierarchyWith(loginCallback: { loginInfo in
                         weakSelf?.logiWithInfoAndUpdateUI(loginInfo)
+                        }, registerCallback: { registerInfo in
+                            weakSelf?.registerWithInfoAndUpdateUI(registerInfo)
                     })
                     return
                 }
@@ -68,30 +74,77 @@ class OPConfigObject: NSObject
         {
             weakSelf?.flowController.displayLoginHierarchyWith(loginCallback: { loginInfo in
                 weakSelf?.logiWithInfoAndUpdateUI(loginInfo)
+                }, registerCallback: { registerInfo in
+                    weakSelf?.registerWithInfoAndUpdateUI(registerInfo)
             })
         }
     }
     
     
-    func logiWithInfoAndUpdateUI(_ loginInfo: LoginInfo)
-    {
+    private func logiWithInfoAndUpdateUI(_ loginInfo: LoginInfo){
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         weak var weakSelf = self
         self.userRepository.loginWithUsername(username: loginInfo.username, password: loginInfo.password) { (error, data) in
-            
-            if let error = error
-            {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            if let error = error {
                 OPErrorContainer.displayError(error: error);
                 return
             }
             
-            if loginInfo.wishesToBeRemembered
-            {
+            if loginInfo.wishesToBeRemembered {
                 CredentialsStore.saveCredentials(username: loginInfo.username, password: loginInfo.password)
             }
             
-            weakSelf?.currentUserIdentity = data
-            weakSelf?.flowController.displayDashboard()
-            weakSelf?.flowController.setSideMenu(enabled: true)
+            weakSelf?.afterLoggingInWith(identity: data)
+        }
+    }
+    
+    
+    private func registerWithInfoAndUpdateUI(_ info: RegistrationInfo){
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        self.userRepository.registerNewUserWith(username: info.username, email: info.email, password: info.password) { error, identityModel in
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            if let error = error {
+                OPErrorContainer.displayError(error: error);
+                return
+            }
+            
+            self.afterLoggingInWith(identity: identityModel)
+        }
+        
+    }
+    
+    private func afterLoggingInWith(identity: UserIdentityModel){
+        self.currentUserIdentity = identity
+        self.flowController.displayDashboard()
+        self.flowController.setSideMenu(enabled: true)
+    }
+    
+    
+    private func logoutUserAndUpdateUI(){
+        weak var weakSelf = self
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        self.userRepository.logoutUserWith { error in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            if let error = error {
+                OPErrorContainer.displayError(error: error)
+                return
+            }
+            
+            CredentialsStore.deleteCredentials()
+            
+            self.flowController.setSideMenu(enabled: false)
+            self.flowController.displayLoginHierarchyWith(loginCallback: { loginInfo in
+                weakSelf?.logiWithInfoAndUpdateUI(loginInfo)
+                }, registerCallback: { registerInfo in
+                    weakSelf?.registerWithInfoAndUpdateUI(registerInfo)
+                    
+            })
         }
     }
 }

@@ -102,7 +102,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ihm-Lg-TR0" customClass="UIOperandoTitleView" customModule="Operando" customModuleProvider="target">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="Xgi-LF-zhv"/>
+                                            <constraint firstAttribute="height" constant="60" id="Xgi-LF-zhv"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -117,7 +117,7 @@
                                     <constraint firstAttribute="bottom" secondItem="fJq-vj-U0P" secondAttribute="bottom" id="Rfz-7Q-SLZ"/>
                                     <constraint firstItem="fJq-vj-U0P" firstAttribute="top" secondItem="rL3-st-xl2" secondAttribute="bottom" constant="19" id="hKU-fK-AoB"/>
                                     <constraint firstAttribute="trailing" secondItem="Ihm-Lg-TR0" secondAttribute="trailing" id="pkb-FR-LAJ"/>
-                                    <constraint firstItem="Ihm-Lg-TR0" firstAttribute="top" secondItem="dHn-pY-4ah" secondAttribute="top" id="sGj-g5-yed"/>
+                                    <constraint firstItem="Ihm-Lg-TR0" firstAttribute="top" secondItem="dHn-pY-4ah" secondAttribute="top" constant="5" id="sGj-g5-yed"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -182,6 +182,9 @@
                                         <exclude reference="9gC-PV-MKy"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="didPressSignOut:" destination="lxx-Cq-47u" eventType="touchUpInside" id="eg3-Yh-kzW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rafael Mastaleru" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIm-sh-niU">
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>

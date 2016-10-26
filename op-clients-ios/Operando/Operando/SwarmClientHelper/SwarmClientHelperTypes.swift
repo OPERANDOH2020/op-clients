@@ -13,6 +13,7 @@ typealias SwarmClientCallback = ((_ error: NSError?, _ data: Any?) -> Void)
 
 enum SwarmName: String
 {
+    
     case login = "login.js"
     case register = "register.js"
     case identity = "identity.js"
@@ -28,6 +29,7 @@ enum SwarmPhase: String
 enum LoginConstructor: String
 {
     case userLogin = "userLogin"
+    case userLogout = "userLogout"
 }
 
 enum RegisterConstructor: String
@@ -56,5 +58,6 @@ enum UserConstructor: String {
     
     case info = "info"
     case updateUserInfo = "updateUserInfo"
+    case changePassword = "changePassword"
     
 }

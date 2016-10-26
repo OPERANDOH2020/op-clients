@@ -28,6 +28,10 @@ open class SwarmClient: NSObject {
     fileprivate var didConnect: Bool
     fileprivate var emitsArray: [NSDictionary]
     
+    private var onReconnectIfAny: (() -> Void)?
+    private var onDisconnect: (() -> Void)?
+    private var onErrorWithReason: ((_ reason: String) -> Void)?
+    
     open var delegate: SwarmClientProtocol?
     
     // MARK: - Lifecycle
@@ -36,6 +40,16 @@ open class SwarmClient: NSObject {
         tenantId = ""
         didConnect = false
         emitsArray = []
+        super.init()
+        
+        weak var weakSel = self
+        self.onDisconnect = {
+            weakSel?.delegate?.socketDidDisconnect()
+        }
+        
+        self.onErrorWithReason = { reason in
+            weakSel?.delegate?.didFailOperationWith(reason: reason)
+        }
     }
     
     // MARK: - Private Methods
@@ -49,17 +63,21 @@ open class SwarmClient: NSObject {
         }
         
         socketIO.on(SocketIOEventsNames.disconnect.rawValue) { (data, emitterSocket) in
-            self.delegate?.socketDidDisconnect()
+            self.onDisconnect?()
         }
         
         socketIO.on(SocketIOEventsNames.error.rawValue) { (data, emitter) in
             let reason = (data.first as? String) ?? "Unknown socket error"
-            self.delegate?.didFailOperationWith(reason: reason)
+            self.onErrorWithReason?(reason)
+            
             
         }
     }
     
-    fileprivate func handleSocketCreationEvent() {
+    fileprivate func handleSocketCreationEvent()
+    {
+        self.onReconnectIfAny?()
+        
         didConnect = true
         for swarmDictionary in self.emitsArray {
             emitSwarmMessage(swarmDictionary)
@@ -86,7 +104,8 @@ open class SwarmClient: NSObject {
     }
     
     // MARK: - Public Methods
-    open func startSwarm(_ swarmName: String, phase: String, ctor: String, arguments: [AnyObject]) {
+    
+    public func startSwarm(_ swarmName: String, phase: String, ctor: String, arguments: [AnyObject]) {
         let swarmDictionary = Swarm.getSwarmDictionary(tenantId, swarmName: swarmName, phase: phase, ctor: ctor, arguments: arguments)
         if didConnect {
             emitSwarmMessage(swarmDictionary)
@@ -95,4 +114,30 @@ open class SwarmClient: NSObject {
             createSocket()
         }
     }
+    
+    public func disconnectAndReconnectWith(completion: ((_ errorMessage: String?) -> Void)? ) {
+        self.didConnect = false
+        
+        let currentOnDisconnect = self.onDisconnect
+        let currentOnFailWithReason = self.onErrorWithReason
+        
+        weak var weakSelf = self
+        
+        self.onDisconnect = {
+            weakSelf?.socketIO?.connect()
+        }
+
+        self.onErrorWithReason = { reason in
+            completion?(reason)
+        }
+        
+        self.onReconnectIfAny = {
+            completion?(nil)
+            weakSelf?.onDisconnect = currentOnDisconnect
+            weakSelf?.onErrorWithReason = currentOnFailWithReason
+        }
+        
+        self.socketIO?.disconnect()
+    }
+    
 }

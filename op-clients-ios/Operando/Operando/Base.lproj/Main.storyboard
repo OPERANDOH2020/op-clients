@@ -253,6 +253,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Registration" id="wEI-3r-1lV"/>
+                    <connections>
+                        <outlet property="registrationView" destination="mF4-kU-zbA" id="mnQ-gR-RhE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YtN-57-uI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

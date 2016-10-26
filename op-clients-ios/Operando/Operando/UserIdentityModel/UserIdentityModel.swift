@@ -30,4 +30,12 @@ class UserIdentityModel
         self.userId = userId
         self.sessionId = sessionId
     }
+    
+    
+    private init(){
+        self.sessionId = ""
+        self.userId = ""
+    }
+    
+    static let empty = UserIdentityModel()
 }
