@@ -47,14 +47,6 @@ var authenticationService = exports.authenticationService = {
 
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest", "guest", "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest", "guest", "chromeBrowserExtension", "userLogin", function(){
-            console.log("Invalid credentials");
-        }, function(){
-            console.log("Error occurred!");
-        }, function(){
-            console.log("connected URRRRA");
-        });
-
         /**
          * TODO
          * Remove this, add guest login from the first step
@@ -64,10 +56,12 @@ var authenticationService = exports.authenticationService = {
             var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
             registerHandler.onResponse("success", function(swarm){
                 successFunction("success");
+                this.logoutCurrentUser();
             });
 
             registerHandler.onResponse("error", function(swarm){
                 errorFunction(swarm.error);
+                this.logoutCurrentUser();
             });
         },300);
 

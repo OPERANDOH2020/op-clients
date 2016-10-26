@@ -10,7 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-angular.module('op-popup',['operandoCore','popupMenu'])
+angular.module('op-popup',['operandoCore','popupMenu','validation', 'validation.rule'])
     .config( [
         '$compileProvider',
         function( $compileProvider )
@@ -19,4 +19,9 @@ angular.module('op-popup',['operandoCore','popupMenu'])
             $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome|chrome-extension|chrome-extension-resource):/);
 
         }
-    ]);
+    ])
+    .config(['$validationProvider', function ($validationProvider) {
+        $validationProvider.setValidMethod('blur','submit-only');
+        $validationProvider.showSuccessMessage = false;
+        $validationProvider.showErrorMessage = false;
+    }]);

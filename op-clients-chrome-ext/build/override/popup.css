@@ -461,34 +461,30 @@ ul.popup-login-area{
   display: inline-block;
 }
 
-.user_area_login{
+#user_area_login{
   height:192px;
 }
 
-.user_area_register{
+#user_area_register{
   height:205px;
 }
 
-.user_area_login .form-group label,
-.user_area_register .form-group label {
+#user_area_login .form-group label,
+#user_area_register .form-group label {
   width:33%;
 }
-.user_area_login .form-group.form_submit,
-.user_area_register .form-group.form_submit
+#user_area_login .form-group.form_submit,
+#user_area_register .form-group.form_submit
 {
   margin-left:33%;
 }
 
+.form-horizontal .form-group.user_actions,
 .user_actions{
   clear: both;
   margin-left: 40px;
   margin-top: 14px;
 }
-
-#about_operando_ctn{
-
-}
-
 .user_actions button,
 #about_operando_ctn button{
   background: #F5A43C;
@@ -497,6 +493,16 @@ ul.popup-login-area{
   border: none;
   color: #FFF;
   cursor: pointer;
+}
+
+#user_area_forgot_password .user_actions{
+  margin-left:57px;
+}
+#user_area_register .user_actions{
+ margin-left: 90px;
+}
+#user_area_forgot_password #user_email{
+  width:200px;
 }
 
 .user_actions button:hover,
@@ -581,4 +587,14 @@ div#expand_abp.expanded{
   right: 10px;
   top: 10px;
   cursor: pointer;
+}
+
+input[type=email].ng-invalid.ng-dirty {
+  border: 1px solid red;
+  outline:1px solid red;
+}
+
+#login_area .panel-danger>.panel-heading{
+  font-size: 13px;
+  padding-left: 7px;
 }

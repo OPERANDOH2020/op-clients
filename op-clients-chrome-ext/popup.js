@@ -12,7 +12,6 @@
 
 (function () {
 
-
     var handleClick = function () {
         var abpCtn = document.getElementById("wrapperabp");
         var expandIcon = document.getElementById("expand_abp");

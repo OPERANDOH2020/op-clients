@@ -30,6 +30,8 @@
     <script src="operando/popup.js"></script>
     <script src="operando/utils/angular.min.js"></script>
     <script src="operando/utils/angular-cookies.js"></script>
+    <script src="operando/utils/angular-validation/angular-validation.min.js"></script>
+    <script src="operando/utils/angular-validation/angular-validation-rule.min.js"></script>
     <script type="text/javascript" src="operando/apps/OperandoCore.js" charset="utf-8"></script>
     <script type="text/javascript" src="operando/apps/OperandoPopup.js" charset="utf-8"></script>
     <script type="text/javascript" src="operando/swarms.js" charset="utf-8"></script>
@@ -73,6 +75,10 @@
 
                 <div ng-switch-when="loggedin" class="user_logged_in">
                     <div ng-include src="'operando/tpl/panel/loggedin_state.html'"></div>
+                </div>
+
+                <div ng-switch-when="forgot_password" class="forgot_password_in">
+                    <div ng-include src="'operando/tpl/panel/forgot_password_state.html'"></div>
                 </div>
 
                 <div ng-switch-when="register_form">

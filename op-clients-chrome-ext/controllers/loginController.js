@@ -11,17 +11,19 @@
  */
 
 
-angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService', function($scope, messengerService){
+angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService','$validation', function($scope, messengerService, $validationProvider){
 
     var defaultUser = {remember_me:true};
 
-    $scope.user = defaultUser ;
+    $scope.user = angular.copy(defaultUser);
     $scope.isAuthenticated = false;
 
     $scope.info = {
         message: "",
         status: ""
     };
+
+
 
     $scope.loginAreaState = "loggedout";
 
@@ -30,8 +32,10 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
         $scope.loginAreaState = "login_form";
     }
 
-    $scope.cancel = function () {
+    $scope.cancel = function (formName) {
+        $validationProvider.reset(formName);
         $scope.loginAreaState = "loggedout";
+
     }
 
     clearInfoPanel = function(){
@@ -49,7 +53,7 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
     }
 
     securityErrorFunction = function () {
-        $scope.info.message = 'Invalid user or password...';
+        $scope.info.message = 'Invalid email or password...';
         $scope.info.status = "error";
         $scope.$apply();
     }
@@ -76,9 +80,7 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
         clearInfoPanel();
     }
 
-
     $scope.login = function () {
-
         messengerService.send("login", {
             login_details: {
                 username: $scope.user.email,
@@ -97,11 +99,22 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
             else if (response.error)
                 securityErrorFunction();
         });
+    }
 
+    $scope.reset_password = function(){
+        console.log($scope.user);
+        messengerService.send("resetPassword", $scope.user.email, function(){
+
+        });
+    }
+
+    $scope.show_forgot_password = function(){
+        $scope.loginAreaState = "forgot_password";
     }
 
     $scope.show_register = function(){
         $scope.loginAreaState = "register_form";
+        $scope.user = angular.copy(defaultUser);
     }
 
     $scope.register = function(){
@@ -132,11 +145,21 @@ angular.module("op-popup").controller("loginCtrl", ["$scope", 'messengerService'
 
     }
 
+    $scope.$watch('loginAreaState', function(){
+
+        if($scope.info.status =="error"){
+            $scope.info = {
+                message: "",
+                status: ""
+            };
+        }
+    });
+
     $scope.logout = function(){
-        messengerService.send("logout",{},function(){
+        messengerService.send("logout",function(){
             $scope.loginAreaState = "loggedout";
             $scope.isAuthenticated = false;
-            $scope.user = defaultUser;
+            $scope.user = angular.copy(defaultUser);
             $scope.$apply();
         });
     }
