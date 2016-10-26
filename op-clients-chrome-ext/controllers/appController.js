@@ -23,53 +23,15 @@ controller("appCtrl", ["$scope", "messengerService","$window","notificationServi
         });
     }
 
-        messengerService.send("getCurrentUser",{}, function(user){
-            $scope.user = user;
-            $scope.userIsLoggedIn = true;
-            $scope.$apply();
+    messengerService.send("getCurrentUser",{}, function(user){
+        $scope.user = user;
+        $scope.userIsLoggedIn = true;
+        $scope.$apply();
+    });
 
-            checkNotifications($scope.user.userId);
-
-        });
-
-        messengerService.send("notifyWhenLogout", {}, function () {
-            //$scope.userIsLoggedIn = false;
-            //$scope.$apply();
-            $window.location.href = "http://b2c.operando.eu";
-        });
-
-
-
-    function checkNotifications(userId){
-
-        //TODO check notifications from server
-        chrome.storage.local.get("user_notifications", function(notifications){
-            console.log(notifications);
-            if(Object.keys(notifications).length>0){
-
-                if(notifications.user_notifications.indexOf(userId)=== -1){
-                    setTimeout(function(){
-                        notifications.user_notifications.push(userId);
-                        notificationService.notifyUserNow();
-
-                        chrome.storage.local.set(notifications);
-                    },2000);
-
-                }
-            }
-            else{
-                setTimeout(function(){
-                    notificationService.notifyUserNow();
-                    var notifications = {
-                        user_notifications: [userId]
-
-                    }
-                    chrome.storage.local.set(notifications);
-                },2000);
-
-            }
-        })
-    }
+    messengerService.send("notifyWhenLogout", {}, function () {
+        $window.location.href = "http://b2c.operando.eu";
+    });
 
 }]);
 

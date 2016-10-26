@@ -45,6 +45,7 @@ var authenticationService = exports.authenticationService = {
 
     registerUser: function (user, errorFunction, successFunction) {
 
+        var self  = this;
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest", "guest", "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
         /**
@@ -56,12 +57,12 @@ var authenticationService = exports.authenticationService = {
             var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
             registerHandler.onResponse("success", function(swarm){
                 successFunction("success");
-                this.logoutCurrentUser();
+                self.logoutCurrentUser();
             });
 
             registerHandler.onResponse("error", function(swarm){
                 errorFunction(swarm.error);
-                this.logoutCurrentUser();
+                self.logoutCurrentUser();
             });
         },300);
 
@@ -126,7 +127,6 @@ var authenticationService = exports.authenticationService = {
             notLoggedInObservable.notify();
             notLoggedInObservable = swarmHub.createObservable();
             loggedInObservable = swarmHub.createObservable();
-            swarmService.removeConnection();
             Cookies.remove("userId");
             Cookies.remove("sessionId");
             swarmHub.off("login.js", "logoutSucceed");
