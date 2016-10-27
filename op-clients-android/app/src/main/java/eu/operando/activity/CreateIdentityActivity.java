@@ -67,9 +67,9 @@ public class CreateIdentityActivity extends BaseActivity {
             public void onClick(View v) {
                 Domain domain = domains.get(domainsSpinner.getSelectedItemPosition());
                 String domName = domain.getName();
-                String  alias = aliasET.getText().toString();
-                String  email = alias+"@"+domName;
-                createIdentity(email,alias,domain);
+                String alias = aliasET.getText().toString();
+                String email = alias + "@" + domName;
+                createIdentity(email, alias, domain);
             }
         });
     }
@@ -88,7 +88,7 @@ public class CreateIdentityActivity extends BaseActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                domainsSpinner.setAdapter(new DomainAdapter(CreateIdentityActivity.this,0,event.getDomains() ));
+                domainsSpinner.setAdapter(new DomainAdapter(CreateIdentityActivity.this, 0, event.getDomains()));
                 domains = event.getDomains();
             }
         });
@@ -108,7 +108,13 @@ public class CreateIdentityActivity extends BaseActivity {
 
     @Subscribe
     public void onCreateIdentitySuccess(CreateIdentitySuccessEvent event) {
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(CreateIdentityActivity.this, "Success", Toast.LENGTH_SHORT).show();
+
+            }
+        });
         Log.d(TAG, "onCreateIdentity() called with: event = [" + event + "]");
         finish();
     }

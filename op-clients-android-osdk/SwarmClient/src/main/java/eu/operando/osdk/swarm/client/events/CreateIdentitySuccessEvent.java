@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import eu.operando.osdk.swarm.client.models.Identity;
 
 /**
+ *
  * Created by Edy on 10/20/2016.
  */
 public class CreateIdentitySuccessEvent extends SwarmEvent{

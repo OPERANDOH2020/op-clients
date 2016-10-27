@@ -16,6 +16,7 @@ import eu.operando.MainActivity;
 import eu.operando.R;
 import eu.operando.activity.IdentitiesActivity;
 import eu.operando.activity.NotificationsActivity;
+import eu.operando.activity.PFBActivity;
 import eu.operando.activity.SensorsActivity;
 import eu.operando.events.EventScanPage;
 import eu.operando.events.EventSignIn;
@@ -83,6 +84,12 @@ public class DrawerFragment extends Fragment {
             public void onClick(View v) {
 
                 IdentitiesActivity.start(getActivity());
+            }
+        });
+        v.findViewById(R.id.pfb).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PFBActivity.start(getActivity());
             }
         });
     }

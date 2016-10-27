@@ -60,8 +60,7 @@ dependencies {
     compile('org.littleshoot:littleproxy:1.1.0-beta2'){
         exclude group:'io.netty'
     }
-    compile 'de.mindpipe.android:android-logging-log4j:1.0.3'
-    compile 'log4j:log4j:1.2.17'
+    compile group: 'com.joanzapata.android', name: 'base-adapter-helper', version: '1.1.11'
 
     //TableView
     compile 'com.android.support:recyclerview-v7:23.2.1'

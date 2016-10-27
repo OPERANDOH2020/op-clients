@@ -4,66 +4,74 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/lightOrange"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".MainActivity"
     tools:ignore="MergeRootFrame">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/ToolBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:minHeight="?attr/actionBarSize"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <FrameLayout
-            android:id="@+id/main_fragment_container"
-            android:layout_width="match_parent"
-
-            android:layout_height="match_parent"
-            android:layout_above="@+id/butonsLL"
-            />
+        android:background="@android:color/black"
+        android:padding="1dp">
 
         <LinearLayout
-            android:id="@+id/butonsLL"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_height="match_parent"
+            android:background="@color/lightOrange"
             android:orientation="vertical">
 
-            <View
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/ToolBarStyle"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/blackTitle"/>
+                android:layout_height="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize"/>
 
             <RelativeLayout
-                android:id="@+id/aboutRL"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/lightOrange">
+                android:layout_height="match_parent">
 
-                <TextView
-                    style="@style/LoginPageTextView"
-                    android:layout_width="wrap_content"
+                <FrameLayout
+                    android:id="@+id/main_fragment_container"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/butonsLL"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/butonsLL"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center_horizontal"
-                    android:text="@string/aboutOperando"/>
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/blackTitle"/>
+
+                    <RelativeLayout
+                        android:id="@+id/aboutRL"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/lightOrange">
+
+                        <TextView
+                            style="@style/LoginPageTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center_horizontal"
+                            android:text="@string/aboutOperando"/>
+                    </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
-    </RelativeLayout>
-    </LinearLayout>
+    </FrameLayout>
 
     <!-- Nav drawer -->
     <fragment

@@ -35,12 +35,10 @@ import android.view.LayoutInflater;
 import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
 
-import org.apache.log4j.Level;
 
 import java.util.List;
 
 import be.shouldit.proxy.lib.APL;
-import de.mindpipe.android.logging.log4j.LogConfigurator;
 import eu.operando.R;
 import eu.operando.proxy.MainContext;
 import eu.operando.proxy.OperandoStatusEvent;
@@ -80,7 +78,6 @@ public class MainUtil {
             mainContext.setNotificationUtil(new NotificationUtil());
             mainContext.setSharedPreferences(applicationContext.getSharedPreferences(resources.getString(R.string.app_name), Context.MODE_PRIVATE));
             setUpAPL(applicationContext);
-            initializeLogConfigurator();
         }
 
     }
@@ -90,13 +87,6 @@ public class MainUtil {
     }
 
     // Needed for catching netty messages...
-    public static void initializeLogConfigurator() {
-        LogConfigurator logConfigurator = new LogConfigurator();
-        logConfigurator.setUseLogCatAppender(true);
-        logConfigurator.setUseFileAppender(false);
-        logConfigurator.setRootLevel(Level.DEBUG);
-        logConfigurator.configure();
-    }
 
 
     //Auto ISWS na prepei na ta valw sto Context tou Boot Notification Listener

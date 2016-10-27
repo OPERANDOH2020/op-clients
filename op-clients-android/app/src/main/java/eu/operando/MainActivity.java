@@ -6,7 +6,9 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -77,10 +79,13 @@ public class MainActivity extends AbstractLeftMenuActivity {
         loginFragment = new LoginFragment();
         createAccountFragment = new CreateAccountFragment();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+        mDrawerLayout.setScrimColor(Color.TRANSPARENT);
+        mDrawerLayout.setElevation(0f);
         addFragment(R.id.main_fragment_container, firstScreenFragment, FirstScreenFragment.FRAGMENT_TAG);
         aboutRL = (RelativeLayout) findViewById(R.id.aboutRL);
 
+        final View frame = findViewById(R.id.container);
+        final View drawer = findViewById(R.id.fragment_drawer);
         drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.app_name, R.string.app_name) {
 
@@ -96,6 +101,18 @@ public class MainActivity extends AbstractLeftMenuActivity {
             public void onDrawerClosed(View view) {
             }
 
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                float min = 0.5f;
+                float max = 1.0f;
+                float scaleFactor = (max - ((max - min) * slideOffset));
+
+                frame.setScaleX(scaleFactor);
+                frame.setScaleY(scaleFactor);
+                frame.setTranslationX(400 * slideOffset);
+                drawer.setAlpha(slideOffset/1.6f);
+                if(slideOffset == 1)
+                    drawer.setAlpha(1);
+            }
         };
 
 
@@ -209,6 +226,6 @@ public class MainActivity extends AbstractLeftMenuActivity {
 
     private void showDashboardFragment() {
         authenticatedFragment = new AuthenticatedFragment();
-        replaceFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG,null);
+        replaceFragment(R.id.main_fragment_container, authenticatedFragment, AuthenticatedFragment.FRAGMENT_TAG, null);
     }
 }

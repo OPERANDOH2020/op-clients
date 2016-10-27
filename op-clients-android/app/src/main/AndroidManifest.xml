@@ -119,6 +119,7 @@
         <activity android:name=".activity.SensorsActivity" android:label="Sensors"/>
         <activity android:name=".activity.FeaturesActivity" android:label="Sensors"/>
         <activity android:name=".activity.CreateIdentityActivity"/>
+        <activity android:name=".activity.PFBActivity" android:label="Privacy for Benefits"/>
     </application>
 
 </manifest>

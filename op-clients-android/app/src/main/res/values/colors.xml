@@ -17,4 +17,7 @@
     <color name="error_color">#DD2C00</color>
     <color name="warning_color">#FFC107</color>
     <color name="success_color">#2E7D32</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="brightOrange">#fec742</color>
 </resources>

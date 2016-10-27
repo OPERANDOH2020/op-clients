@@ -40,6 +40,7 @@
     <string name="dataleek">Data Leakage Prevention</string>
     <string name="notification">Notifications</string>
     <string name="settings">Settings</string>
+    <string name="pfb">Privacy for Benefits</string>
     <string name="privateBrowsing">Private Browsing</string>
     <string name="identityManager">Identity Management</string>
     <string name="operandoDashboard">OPERANDO dashboard</string>
