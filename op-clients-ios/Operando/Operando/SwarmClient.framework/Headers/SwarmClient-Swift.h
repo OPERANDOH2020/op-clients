@@ -480,6 +480,7 @@ SWIFT_CLASS("_TtC11SwarmClient11SwarmClient")
 @interface SwarmClient : NSObject
 - (nonnull instancetype)initWithConnectionURL:(NSString * _Nonnull)connectionURL OBJC_DESIGNATED_INITIALIZER;
 - (void)startSwarm:(NSString * _Nonnull)swarmName phase:(NSString * _Nonnull)phase ctor:(NSString * _Nonnull)ctor arguments:(NSArray * _Nonnull)arguments;
+- (void)disconnectAndReconnectWithCompletion:(void (^ _Nullable)(NSString * _Nullable))completion;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 

@@ -16,6 +16,8 @@ protocol IdentitiesManagementRepository {
     func add(identity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
     func remove(identity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
     func updateDefaultIdentity(to newIdentity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
+    func getRealIdentityWith(completion: ((_ identity: String, _ error: NSError?) -> Void)?)
+    
 }
 
 
@@ -28,7 +30,7 @@ class DummyIdentitiesRepository: IdentitiesManagementRepository{
         }
         
         DispatchQueue.main.async {
-            completion?(IdentitiesListResponse(identitiesList: identities, indexOfDefaultIdentity: 0), nil)
+            completion?(IdentitiesListResponse(identitiesList: identities, indexOfDefaultIdentity: 14), nil)
         }
         
     }
@@ -67,5 +69,9 @@ class DummyIdentitiesRepository: IdentitiesManagementRepository{
         DispatchQueue.main.async {
             completion?(true, nil)
         }
+    }
+    
+    func getRealIdentityWith(completion: ((String, NSError?) -> Void)?) {
+        completion?("youAre@real.com", nil)
     }
 }

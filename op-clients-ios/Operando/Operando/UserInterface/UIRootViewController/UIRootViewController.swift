@@ -30,12 +30,12 @@ class UIRootViewController: UIViewController
     
     @IBAction func didPressMenuButton(_ sender: UIButton?)
     {
-        
+        self.callbacks?.whenMenuButtonPressed?()
     }
     
     @IBAction func didPressAccountButton(_ sender: UIButton?)
     {
-        
+        self.callbacks?.whenAccountButtonPressed?()
     }
     
     

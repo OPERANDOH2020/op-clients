@@ -16,30 +16,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JGv-XY-Ppu">
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JGv-XY-Ppu">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supplier" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8F-hD-zzr">
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZc-nc-jfh">
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZc-nc-jfh">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="JGv-XY-Ppu" secondAttribute="bottom" id="1pV-01-Ob4"/>
-                <constraint firstItem="p8F-hD-zzr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="7S4-pp-nxd"/>
-                <constraint firstItem="JGv-XY-Ppu" firstAttribute="top" secondItem="p8F-hD-zzr" secondAttribute="bottom" constant="5" id="Cqh-8Z-BDu"/>
                 <constraint firstItem="JGv-XY-Ppu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HPM-RM-Dcm"/>
                 <constraint firstAttribute="trailing" secondItem="eZc-nc-jfh" secondAttribute="trailing" constant="5" id="Iwm-ru-1Ke"/>
-                <constraint firstItem="p8F-hD-zzr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="POa-Ll-BjI"/>
                 <constraint firstAttribute="trailing" secondItem="JGv-XY-Ppu" secondAttribute="trailing" id="Qja-wP-1fc"/>
-                <constraint firstItem="eZc-nc-jfh" firstAttribute="centerY" secondItem="p8F-hD-zzr" secondAttribute="centerY" id="TQc-hj-DJY"/>
+                <constraint firstItem="JGv-XY-Ppu" firstAttribute="top" secondItem="eZc-nc-jfh" secondAttribute="bottom" constant="5" id="bIF-CU-X49"/>
+                <constraint firstItem="eZc-nc-jfh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="oRW-jB-1fJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="-2" y="-22"/>

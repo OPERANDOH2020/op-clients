@@ -69,6 +69,9 @@
 		9853FF821D6475B6007E2502 /* FacebookSecurityEnforcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9853FF811D6475B6007E2502 /* FacebookSecurityEnforcer.swift */; };
 		9853FF851D647E40007E2502 /* fbExtractData.js in Resources */ = {isa = PBXBuildFile; fileRef = 9853FF841D647E40007E2502 /* fbExtractData.js */; };
 		9853FF871D64A5CA007E2502 /* FbWebKitParametersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9853FF861D64A5CA007E2502 /* FbWebKitParametersProvider.swift */; };
+		985BA6AF1DC2208400BC645B /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985BA6AD1DC2207F00BC645B /* SwarmClient.framework */; };
+		985BA6B01DC2208400BC645B /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 985BA6AD1DC2207F00BC645B /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		985BA6B31DC23F0C00BC645B /* NotificationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */; };
 		985CD8431D5C64750021C58C /* jquery214min.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD83F1D5C64750021C58C /* jquery214min.js */; };
 		985CD8441D5C64750021C58C /* osp-settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8401D5C64750021C58C /* osp-settings.js */; };
 		985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8411D5C64750021C58C /* OSP.Settings.js */; };
@@ -88,8 +91,14 @@
 		98668B611DB0D1F100FDE63A /* UIFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B601DB0D1F100FDE63A /* UIFlowController.swift */; };
 		98668B631DB1018600FDE63A /* OPErrorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B621DB1018600FDE63A /* OPErrorContainer.swift */; };
 		98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98668B6A1DB1346600FDE63A /* UIIdentitiesListView.swift */; };
-		986A58EE1DB3953200B622F5 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 986A58EC1DB3952D00B622F5 /* SwarmClient.framework */; };
-		986A58EF1DB3953200B622F5 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 986A58EC1DB3952D00B622F5 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9866A7B41DBF4B1000907D05 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9866A7B61DBF4B1000907D05 /* Localizable.strings */; };
+		9866A7BB1DBF701400907D05 /* UIAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9866A7BA1DBF701400907D05 /* UIAccountViewController.swift */; };
+		9866A7BE1DBF778100907D05 /* UIChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9866A7BD1DBF778100907D05 /* UIChangePasswordView.swift */; };
+		9866A7C01DBF779100907D05 /* UIChangePasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9866A7BF1DBF779100907D05 /* UIChangePasswordView.xib */; };
+		9866A7C41DBF852500907D05 /* UINotificationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9866A7C31DBF852500907D05 /* UINotificationsListView.swift */; };
+		9866A7C61DBF854000907D05 /* UINotificationsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9866A7C51DBF854000907D05 /* UINotificationsListView.xib */; };
+		9866A7CA1DBF861300907D05 /* UINotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9866A7C81DBF861300907D05 /* UINotificationCell.swift */; };
+		9866A7CB1DBF861300907D05 /* UINotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9866A7C91DBF861300907D05 /* UINotificationCell.xib */; };
 		986A58F21DB39C7300B622F5 /* SwarmClientHelperTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58F11DB39C7300B622F5 /* SwarmClientHelperTypes.swift */; };
 		986A58F41DB39E7500B622F5 /* UsersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58F31DB39E7500B622F5 /* UsersRepository.swift */; };
 		986A58F81DB3A43700B622F5 /* UserInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58F71DB3A43700B622F5 /* UserInfoRepository.swift */; };
@@ -102,6 +111,9 @@
 		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
+		989C41861DBE18E800951AE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989C41811DBE18E800951AE5 /* Info.plist */; };
+		989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41831DBE18E800951AE5 /* MGSwipeButton.m */; };
+		989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */; };
 		98B2563E1D5DEE570043335A /* WebKitSettingsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2563D1D5DEE570043335A /* WebKitSettingsReader.swift */; };
 		98B256411D5E130B0043335A /* UISNSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B256401D5E130B0043335A /* UISNSettingsView.swift */; };
 		98B256451D5E13840043335A /* UISNSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B256431D5E13840043335A /* UISNSettingsTableViewCell.swift */; };
@@ -125,6 +137,12 @@
 		98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6AA1CCF976200C77649 /* UIRegistrationView.xib */; };
 		98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6AE1CCF995B00C77649 /* IHKeyboardAvoiding.m */; };
 		98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */; };
+		ADB2AD4E1DB7FC85003E3AC1 /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */; };
+		ADB2AD501DB80474003E3AC1 /* LeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */; };
+		ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */; };
+		ADF3CA691DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3CA681DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift */; };
+		ADF3CA6D1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3CA6C1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift */; };
+		ADF3CA6F1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3CA6E1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,13 +156,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		986A58F01DB3953200B622F5 /* Embed Frameworks */ = {
+		984CBE141DC0F47A0012E39E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				986A58EF1DB3953200B622F5 /* SwarmClient.framework in Embed Frameworks */,
+				985BA6B01DC2208400BC645B /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,6 +250,8 @@
 		9853FF811D6475B6007E2502 /* FacebookSecurityEnforcer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookSecurityEnforcer.swift; path = OSPSettings/SecurityEnforcers/FacebookSecurityEnforcer.swift; sourceTree = "<group>"; };
 		9853FF841D647E40007E2502 /* fbExtractData.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = fbExtractData.js; path = OSPSettings/SecurityEnforcers/fbExtractData.js; sourceTree = "<group>"; };
 		9853FF861D64A5CA007E2502 /* FbWebKitParametersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FbWebKitParametersProvider.swift; path = OSPSettings/SecurityEnforcers/FbWebKitParametersProvider.swift; sourceTree = "<group>"; };
+		985BA6AD1DC2207F00BC645B /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsRepository.swift; path = NotificationsRepository/NotificationsRepository.swift; sourceTree = "<group>"; };
 		985CD83F1D5C64750021C58C /* jquery214min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery214min.js; sourceTree = "<group>"; };
 		985CD8401D5C64750021C58C /* osp-settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "osp-settings.js"; sourceTree = "<group>"; };
 		985CD8411D5C64750021C58C /* OSP.Settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = OSP.Settings.js; sourceTree = "<group>"; };
@@ -258,7 +278,16 @@
 		98668B601DB0D1F100FDE63A /* UIFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIFlowController.swift; path = UserInterface/UIFlowController/UIFlowController.swift; sourceTree = "<group>"; };
 		98668B621DB1018600FDE63A /* OPErrorContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OPErrorContainer.swift; path = Utilities/OPErrorContainer.swift; sourceTree = "<group>"; };
 		98668B6A1DB1346600FDE63A /* UIIdentitiesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIdentitiesListView.swift; path = UserInterface/UIIdentityManagementViewController/UIIdentitiesListView/UIIdentitiesListView.swift; sourceTree = "<group>"; };
-		986A58EC1DB3952D00B622F5 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		9866A7B51DBF4B1000907D05 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9866A7B71DBF4B1600907D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9866A7B81DBF4B5B00907D05 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9866A7BA1DBF701400907D05 /* UIAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAccountViewController.swift; path = UserInterface/UIAccountViewController/UIAccountViewController.swift; sourceTree = "<group>"; };
+		9866A7BD1DBF778100907D05 /* UIChangePasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIChangePasswordView.swift; path = UserInterface/UIChangePasswordView/UIChangePasswordView.swift; sourceTree = "<group>"; };
+		9866A7BF1DBF779100907D05 /* UIChangePasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIChangePasswordView.xib; path = UserInterface/UIChangePasswordView/UIChangePasswordView.xib; sourceTree = "<group>"; };
+		9866A7C31DBF852500907D05 /* UINotificationsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINotificationsListView.swift; path = UserInterface/UINotificationsListView/UINotificationsListView.swift; sourceTree = "<group>"; };
+		9866A7C51DBF854000907D05 /* UINotificationsListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UINotificationsListView.xib; path = UserInterface/UINotificationsListView/UINotificationsListView.xib; sourceTree = "<group>"; };
+		9866A7C81DBF861300907D05 /* UINotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINotificationCell.swift; path = UserInterface/UINotificationsListView/UINotificationCell/UINotificationCell.swift; sourceTree = "<group>"; };
+		9866A7C91DBF861300907D05 /* UINotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UINotificationCell.xib; path = UserInterface/UINotificationsListView/UINotificationCell/UINotificationCell.xib; sourceTree = "<group>"; };
 		986A58F11DB39C7300B622F5 /* SwarmClientHelperTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmClientHelperTypes.swift; sourceTree = "<group>"; };
 		986A58F31DB39E7500B622F5 /* UsersRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersRepository.swift; path = UsersRepository/UsersRepository.swift; sourceTree = "<group>"; };
 		986A58F71DB3A43700B622F5 /* UserInfoRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoRepository.swift; path = UserInfoRepository/UserInfoRepository.swift; sourceTree = "<group>"; };
@@ -271,6 +300,11 @@
 		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
+		989C41811DBE18E800951AE5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		989C41821DBE18E800951AE5 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
+		989C41831DBE18E800951AE5 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
+		989C41841DBE18E800951AE5 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
+		989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		98B2563D1D5DEE570043335A /* WebKitSettingsReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebKitSettingsReader.swift; path = OSPSettings/SettingsAppliers/WebKitSettingsReader.swift; sourceTree = "<group>"; };
 		98B256401D5E130B0043335A /* UISNSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsView.swift; path = UISNSettingsView/UISNSettingsView.swift; sourceTree = "<group>"; };
 		98B256431D5E13840043335A /* UISNSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsTableViewCell.swift; path = UISNSettingsView/UISNSettingsTableViewCell/UISNSettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -300,6 +334,12 @@
 		98EAF6AE1CCF995B00C77649 /* IHKeyboardAvoiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHKeyboardAvoiding.m; sourceTree = "<group>"; };
 		98EAF6B11CCF99C300C77649 /* Operando-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Operando-BridgingHeader.h"; path = "BridgingHeader/Operando-BridgingHeader.h"; sourceTree = "<group>"; };
 		98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRegistrationViewController.swift; path = UserInterface/UIRegistrationViewController/UIRegistrationViewController.swift; sourceTree = "<group>"; };
+		ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
+		ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LeftMenu.storyboard; sourceTree = "<group>"; };
+		ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SideMenu.xcassets; sourceTree = "<group>"; };
+		ADF3CA681DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILeftSideMenuViewController.swift; sourceTree = "<group>"; };
+		ADF3CA6C1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILeftSideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		ADF3CA6E1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILeftSideMenuViewController+DataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,7 +347,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				986A58EE1DB3953200B622F5 /* SwarmClient.framework in Frameworks */,
+				985BA6AF1DC2208400BC645B /* SwarmClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +672,14 @@
 			name = SecurityEnforcers;
 			sourceTree = "<group>";
 		};
+		985BA6B11DC23EEB00BC645B /* NotificationsRepository */ = {
+			isa = PBXGroup;
+			children = (
+				985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */,
+			);
+			name = NotificationsRepository;
+			sourceTree = "<group>";
+		};
 		985CD83D1D5C64600021C58C /* JavaScript */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,6 +791,50 @@
 			name = OPErrorContainer;
 			sourceTree = "<group>";
 		};
+		9866A7AF1DBF496300907D05 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7B61DBF4B1000907D05 /* Localizable.strings */,
+			);
+			name = Strings;
+			sourceTree = "<group>";
+		};
+		9866A7B91DBF6FE900907D05 /* UIAccountViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7BA1DBF701400907D05 /* UIAccountViewController.swift */,
+			);
+			name = UIAccountViewController;
+			sourceTree = "<group>";
+		};
+		9866A7BC1DBF774E00907D05 /* UIChangePasswordView */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7BD1DBF778100907D05 /* UIChangePasswordView.swift */,
+				9866A7BF1DBF779100907D05 /* UIChangePasswordView.xib */,
+			);
+			name = UIChangePasswordView;
+			sourceTree = "<group>";
+		};
+		9866A7C21DBF850500907D05 /* UINotificationsListView */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7C71DBF85EC00907D05 /* UINotificationCell */,
+				9866A7C31DBF852500907D05 /* UINotificationsListView.swift */,
+				9866A7C51DBF854000907D05 /* UINotificationsListView.xib */,
+			);
+			name = UINotificationsListView;
+			sourceTree = "<group>";
+		};
+		9866A7C71DBF85EC00907D05 /* UINotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7C81DBF861300907D05 /* UINotificationCell.swift */,
+				9866A7C91DBF861300907D05 /* UINotificationCell.xib */,
+			);
+			name = UINotificationCell;
+			sourceTree = "<group>";
+		};
 		986A58F51DB39E7A00B622F5 /* UsersRepository */ = {
 			isa = PBXGroup;
 			children = (
@@ -787,6 +879,7 @@
 		9881D2321D0EC845005EE1FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				985BA6B11DC23EEB00BC645B /* NotificationsRepository */,
 				986A58F51DB39E7A00B622F5 /* UsersRepository */,
 				986A58F61DB3A41900B622F5 /* UserInfoRepository */,
 				986D4CAA1DB27F700006DA0B /* PrivacyForBenefitsRepository */,
@@ -809,6 +902,18 @@
 				9882DCFB1D14498400C7A70F /* UIScanningView.xib */,
 			);
 			name = UIScanningView;
+			sourceTree = "<group>";
+		};
+		989C41801DBE18E800951AE5 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				989C41811DBE18E800951AE5 /* Info.plist */,
+				989C41821DBE18E800951AE5 /* MGSwipeButton.h */,
+				989C41831DBE18E800951AE5 /* MGSwipeButton.m */,
+				989C41841DBE18E800951AE5 /* MGSwipeTableCell.h */,
+				989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */,
+			);
+			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
 		98B2563F1D5E0DDF0043335A /* UISNSettingsView */ = {
@@ -860,10 +965,12 @@
 				98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */,
 				98EAF6701CCF86DC00C77649 /* ViewController.swift */,
 				98EAF6721CCF86DC00C77649 /* Main.storyboard */,
+				9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */,
+				ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */,
 				98EAF6751CCF86DC00C77649 /* Assets.xcassets */,
 				98EAF6771CCF86DC00C77649 /* LaunchScreen.storyboard */,
 				98EAF67A1CCF86DC00C77649 /* Info.plist */,
-				9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */,
+				ADF3CA621DB892DA00BD2B7A /* Resources */,
 			);
 			path = Operando;
 			sourceTree = "<group>";
@@ -881,7 +988,11 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				9866A7C21DBF850500907D05 /* UINotificationsListView */,
+				9866A7BC1DBF774E00907D05 /* UIChangePasswordView */,
+				9866A7B91DBF6FE900907D05 /* UIAccountViewController */,
 				98387BC11DB7631600A76F01 /* Extensions */,
+				ADF3CA661DB89BD000BD2B7A /* UISideMenu */,
 				98387BBC1DB75A5F00A76F01 /* UIDashboardButton */,
 				982DF0661DB6793800231BBD /* UIPfbDetailsAlertViewController */,
 				982DF05C1DB6608900231BBD /* UIPfbDealsListView */,
@@ -935,8 +1046,10 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				985BA6AD1DC2207F00BC645B /* SwarmClient.framework */,
+				989C41801DBE18E800951AE5 /* MGSwipeTableCell */,
+				ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */,
 				982DF0271DB6579200231BBD /* AFNetworking */,
-				986A58EC1DB3952D00B622F5 /* SwarmClient.framework */,
 				98668B4B1DB0D0D800FDE63A /* ECSlidingViewController */,
 				98EAF6AC1CCF995B00C77649 /* IHKeyboardAvoiding */,
 				98EAF69A1CCF899500C77649 /* UIView+Utilities */,
@@ -1021,6 +1134,66 @@
 			name = UIRegistrationController;
 			sourceTree = "<group>";
 		};
+		ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */,
+			);
+			path = SSASideMenu;
+			sourceTree = "<group>";
+		};
+		ADF3CA621DB892DA00BD2B7A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9866A7AF1DBF496300907D05 /* Strings */,
+				ADF3CA631DB892DA00BD2B7A /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ADF3CA631DB892DA00BD2B7A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		ADF3CA661DB89BD000BD2B7A /* UISideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA671DB89BD000BD2B7A /* UILeftSideMenuViewController */,
+			);
+			name = UISideMenu;
+			path = UserInterface/UISideMenu;
+			sourceTree = "<group>";
+		};
+		ADF3CA671DB89BD000BD2B7A /* UILeftSideMenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA6A1DB89D2A00BD2B7A /* UILeftSideMenuTableViewCells */,
+				ADF3CA681DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift */,
+				ADF3CA6E1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift */,
+			);
+			path = UILeftSideMenuViewController;
+			sourceTree = "<group>";
+		};
+		ADF3CA6A1DB89D2A00BD2B7A /* UILeftSideMenuTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA6B1DB89D2A00BD2B7A /* UILeftSideMenuTableViewCell */,
+			);
+			path = UILeftSideMenuTableViewCells;
+			sourceTree = "<group>";
+		};
+		ADF3CA6B1DB89D2A00BD2B7A /* UILeftSideMenuTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3CA6C1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift */,
+			);
+			path = UILeftSideMenuTableViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1031,7 +1204,7 @@
 				98EAF6671CCF86DC00C77649 /* Sources */,
 				98EAF6681CCF86DC00C77649 /* Frameworks */,
 				98EAF6691CCF86DC00C77649 /* Resources */,
-				986A58F01DB3953200B622F5 /* Embed Frameworks */,
+				984CBE141DC0F47A0012E39E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1072,6 +1245,7 @@
 				TargetAttributes = {
 					98EAF66A1CCF86DC00C77649 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = JK2EHVVGUU;
 					};
 					98EAF67E1CCF86DC00C77649 = {
 						CreatedOnToolsVersion = 7.3;
@@ -1086,6 +1260,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ro,
 			);
 			mainGroup = 98EAF6621CCF86DC00C77649;
 			productRefGroup = 98EAF66C1CCF86DC00C77649 /* Products */;
@@ -1103,6 +1278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */,
 				985CD8431D5C64750021C58C /* jquery214min.js in Resources */,
 				981697511D5CB84E00B8A23A /* testJQuery.js in Resources */,
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
@@ -1111,13 +1287,18 @@
 				9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */,
 				982DF0261DB638B900231BBD /* UIPfbDetailsView.xib in Resources */,
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
+				9866A7C61DBF854000907D05 /* UINotificationsListView.xib in Resources */,
 				9848B2D31D67393B00E0FD72 /* facebook_iOS.js in Resources */,
 				9853FF851D647E40007E2502 /* fbExtractData.js in Resources */,
 				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
 				98387BC01DB75ACD00A76F01 /* UIDashboardButton.xib in Resources */,
+				9866A7B41DBF4B1000907D05 /* Localizable.strings in Resources */,
 				9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */,
 				986E3E651DB3CA6B00453DC6 /* UIAddIdentityView.xib in Resources */,
 				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
+				9866A7C01DBF779100907D05 /* UIChangePasswordView.xib in Resources */,
+				989C41861DBE18E800951AE5 /* Info.plist in Resources */,
+				9866A7CB1DBF861300907D05 /* UINotificationCell.xib in Resources */,
 				9871FC7D1D5DC11E007CB684 /* jquery-3.1.0.min.js in Resources */,
 				985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */,
 				982DF0601DB660CD00231BBD /* UIPfbDealsListView.xib in Resources */,
@@ -1131,6 +1312,7 @@
 				984C67F61D65A9FB009A8FE7 /* interceptPOST.js in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982DF0641DB6618700231BBD /* UIPfbDealTableViewCell.xib in Resources */,
+				ADB2AD501DB80474003E3AC1 /* LeftMenu.storyboard in Resources */,
 				982750141D08497400C73411 /* UIDashboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1161,12 +1343,15 @@
 				982DF0241DB6388800231BBD /* UIPfbDetailsView.swift in Sources */,
 				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
+				989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */,
 				986A58F81DB3A43700B622F5 /* UserInfoRepository.swift in Sources */,
 				982DF0351DB6579200231BBD /* AFHTTPSessionManager.m in Sources */,
 				98668B5D1DB0D0D900FDE63A /* ECSlidingViewController.m in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
+				ADF3CA6F1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift in Sources */,
 				982DF0371DB6579200231BBD /* AFSecurityPolicy.m in Sources */,
+				9866A7BE1DBF778100907D05 /* UIChangePasswordView.swift in Sources */,
 				9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */,
 				98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */,
 				9848B2D11D6738DD00E0FD72 /* FbWebKitSecurityEnforcer.swift in Sources */,
@@ -1183,6 +1368,7 @@
 				98EAF6911CCF884000C77649 /* OPUtils.swift in Sources */,
 				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
 				9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */,
+				ADF3CA691DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift in Sources */,
 				986A58F21DB39C7300B622F5 /* SwarmClientHelperTypes.swift in Sources */,
 				985CD84F1D5C85440021C58C /* LocalJSSettingsProvider.swift in Sources */,
 				9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */,
@@ -1200,6 +1386,7 @@
 				986E3E631DB3CA5600453DC6 /* UIAddIdentityView.swift in Sources */,
 				986D4CAC1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift in Sources */,
 				98387BC31DB7633500A76F01 /* UIColor+Utilities.swift in Sources */,
+				9866A7BB1DBF701400907D05 /* UIAccountViewController.swift in Sources */,
 				982DF03A1DB6579200231BBD /* AFURLSessionManager.m in Sources */,
 				982DF05E1DB660B600231BBD /* UIPfbDealsListView.swift in Sources */,
 				982DF0551DB6579B00231BBD /* UIImageView+AFNetworking.m in Sources */,
@@ -1208,6 +1395,7 @@
 				982DF0531DB6579B00231BBD /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				98668B5A1DB0D0D900FDE63A /* ECSlidingAnimationController.m in Sources */,
 				9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */,
+				ADB2AD4E1DB7FC85003E3AC1 /* SSASideMenu.swift in Sources */,
 				9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */,
 				982DF0631DB6618700231BBD /* UIPfbDealTableViewCell.swift in Sources */,
 				982DF0521DB6579B00231BBD /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -1218,18 +1406,23 @@
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,
 				9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */,
+				989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */,
 				982750261D0849FA00C73411 /* OPConfigObject.swift in Sources */,
 				98668B611DB0D1F100FDE63A /* UIFlowController.swift in Sources */,
 				9827501A1D0849D400C73411 /* UserIdentityModel.swift in Sources */,
 				982DF0681DB6796500231BBD /* UIPfbDetailsAlertViewController.swift in Sources */,
 				982DF0581DB6579B00231BBD /* UIWebView+AFNetworking.m in Sources */,
 				985CD8541D5C91250021C58C /* WebViewSettingsReader.swift in Sources */,
+				985BA6B31DC23F0C00BC645B /* NotificationsRepository.swift in Sources */,
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
+				ADF3CA6D1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift in Sources */,
 				98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				986D4CA91DB23AA80006DA0B /* SwarmClientResponseParsers.swift in Sources */,
 				982DF0381DB6579200231BBD /* AFURLRequestSerialization.m in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
+				9866A7CA1DBF861300907D05 /* UINotificationCell.swift in Sources */,
+				9866A7C41DBF852500907D05 /* UINotificationsListView.swift in Sources */,
 				986A58F41DB39E7500B622F5 /* UsersRepository.swift in Sources */,
 				982DF0501DB6579B00231BBD /* AFAutoPurgingImageCache.m in Sources */,
 				982DF0361DB6579200231BBD /* AFNetworkReachabilityManager.m in Sources */,
@@ -1257,6 +1450,17 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9866A7B61DBF4B1000907D05 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9866A7B51DBF4B1000907D05 /* en */,
+				9866A7B71DBF4B1600907D05 /* Base */,
+				9866A7B81DBF4B5B00907D05 /* ro */,
+			);
+			name = Localizable.strings;
+			path = Strings;
+			sourceTree = "<group>";
+		};
 		98EAF6721CCF86DC00C77649 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1280,6 +1484,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1330,6 +1535,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1373,6 +1579,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JK2EHVVGUU;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1383,6 +1590,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "54d01d4c-05f2-4121-b64a-933ee590d231";
+				PROVISIONING_PROFILE_SPECIFIER = "TS Development Provisioning Profile";
 			};
 			name = Debug;
 		};
@@ -1390,6 +1599,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JK2EHVVGUU;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1400,6 +1610,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "54d01d4c-05f2-4121-b64a-933ee590d231";
+				PROVISIONING_PROFILE_SPECIFIER = "TS Development Provisioning Profile";
 			};
 			name = Release;
 		};

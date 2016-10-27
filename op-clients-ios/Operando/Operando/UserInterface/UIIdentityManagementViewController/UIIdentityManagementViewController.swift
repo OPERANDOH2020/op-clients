@@ -15,13 +15,22 @@ let kAddNewIdentityLocalizableKey = "kAddNewIdentityLocalizableKey"
 let kNoIncompleteFieldsLocalizableKey = "kNoIncompleteFieldsLocalizableKey"
 let kNoIdentitiesAtTheMomentLocalizableKey = "kNoIdentitiesAtTheMomentLocalizableKey"
 
+let kMaxNumOfIdentities: Int = 20
+
 
 class UIIdentityManagementViewController: UIViewController
 {
-    
     private var identitiesRepository: IdentitiesManagementRepository?
-    @IBOutlet var identitiesListView: UIIdentitiesListView?
-    @IBOutlet var addNewIdentityButton: UIButton?
+    private var currentNumOfIdentities: Int = 0 {
+        didSet{
+            self.updateUIBasedOnNumOfIdentities(self.currentNumOfIdentities)
+        }
+    }
+    
+    @IBOutlet weak var identitiesListView: UIIdentitiesListView?
+    @IBOutlet weak var addNewIdentityButton: UIButton?
+    @IBOutlet weak var realIdentityLabel: UILabel!
+    @IBOutlet weak var numOfIdentitiesLeftLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +54,23 @@ class UIIdentityManagementViewController: UIViewController
     
     //MARK: helper
     
-
+    private func updateUIBasedOnNumOfIdentities(_ num: Int){
+        self.numOfIdentitiesLeftLabel.text = "You can add \(kMaxNumOfIdentities - num) more identities"
+        if num == kMaxNumOfIdentities {
+            self.addNewIdentityButton?.isUserInteractionEnabled = false
+            self.addNewIdentityButton?.alpha = 0.6
+        } else {
+            self.addNewIdentityButton?.isUserInteractionEnabled = true
+            self.addNewIdentityButton?.alpha = 1.0
+        }
+    }
+    
     private func loadCurrentIdentitiesWith(repository: IdentitiesManagementRepository?)
     {
+        repository?.getRealIdentityWith(completion: { realIdentity, _ in
+            self.realIdentityLabel.text = realIdentity
+        })
+        
         repository?.getCurrentIdentitiesListWith(completion: { (identities, error) in
             if let error = error
             {
@@ -55,11 +78,7 @@ class UIIdentityManagementViewController: UIViewController
                 return
             }
             
-            if identities.identitiesList.count == 0 {
-                OPViewUtils.displayAlertWithMessage(message: Bundle.localizedStringFor(key: kNoIdentitiesAtTheMomentLocalizableKey), withTitle: "", addCancelAction: false, withConfirmation: nil)
-                return
-            }
-            
+            self.currentNumOfIdentities = identities.identitiesList.count
             self.identitiesListView?.setupWith(initialList: identities.identitiesList, defaultIdentityIndex: identities.indexOfDefaultIdentity ,andCallbacks: self.callbacksFor(identitiesListView: self.identitiesListView))
         })
     }
@@ -92,6 +111,7 @@ class UIIdentityManagementViewController: UIViewController
                 }
                 
                 self.identitiesListView?.deleteItemAt(index: index)
+                self.currentNumOfIdentities -= 1
             })
         }
     }
@@ -109,7 +129,7 @@ class UIIdentityManagementViewController: UIViewController
                 return
             }
             
-            self.identitiesListView?.displayAsDefaultItemAt(index: index)
+            self.identitiesListView?.displayAsDefault(identity: identity)
             
         })
     }
@@ -118,6 +138,7 @@ class UIIdentityManagementViewController: UIViewController
     private func addNewIdentity(){
         UIAddIdentityAlertViewController.displayAndAddIdentityWith(identitiesRepository: self.identitiesRepository) { identity in
             self.identitiesListView?.appendAndDisplayNew(item: identity)
+            self.currentNumOfIdentities += 1
         }
         
     }

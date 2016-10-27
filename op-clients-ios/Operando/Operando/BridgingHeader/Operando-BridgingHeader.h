@@ -12,5 +12,5 @@
 #include "IHKeyboardAvoiding.h"
 #include "ECSlidingViewController.h"
 #include "UIKit+AFNetworking.h"
-
+#include "MGSwipeTableCell.h"
 #endif /* Operando_BridgingHeader_h */

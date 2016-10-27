@@ -13,7 +13,7 @@ struct UserInfo{
     let name: String
     init?(dict: [String: Any]){
         guard let email = dict["email"] as? String,
-            let name = dict["name"] as? String else {
+            let name = dict["userName"] as? String else {
                 return nil
         }
         
@@ -33,7 +33,18 @@ typealias UserInfoCallback = (_ userInfo: UserInfo, _ error: NSError?) -> Void
 
 protocol UserInfoRepository {
     func getCurrentUserInfo(in completion: UserInfoCallback?)
-    func updateCurrentInfoWith(properties: [String: Any], withCompletion completion: UserInfoCallback?)
+    func changeCurrent(password: String, to newPassword: String, withCompletion completion: ((_ error: NSError?) -> Void)?)
 }
 
 
+class DummyInfoRepository: UserInfoRepository {
+    func getCurrentUserInfo(in completion: UserInfoCallback?) {
+        
+        completion?(UserInfo(dict: ["email": "call@me.later", "name": "Blanos pufos"])!, nil)
+    }
+    
+    func changeCurrent(password: String, to newPassword: String, withCompletion completion: ((NSError?) -> Void)?) {
+        completion?(nil)
+    }
+    
+}

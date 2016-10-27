@@ -40,4 +40,14 @@ class CredentialsStore: NSObject
         
         defaults.synchronize()
     }
+    
+    
+    class func deleteCredentials() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: DefaultsUsernameKey)
+        defaults.removeObject(forKey: DefaultsPasswordKey)
+        defaults.synchronize()
+        
+    }
+    
 }

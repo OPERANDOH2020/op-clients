@@ -8,32 +8,30 @@
 
 import UIKit
 
-class UIRegistrationViewController: UIViewController {
+struct UIRegistrationViewControllerCallbacks{
+    let whenUserRegisters: RegistrationCallback?
+    let whenUserWantsToSignIn: VoidBlock?
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class UIRegistrationViewController: UIViewController
+{
+    @IBOutlet weak var registrationView: UIRegistrationView!
+    private var callbacks: UIRegistrationViewControllerCallbacks?
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func setupWith(callbacks: UIRegistrationViewControllerCallbacks?){
+        let _ = self.view
+        self.callbacks = callbacks
+        
+        self.registrationView.setupWith(callback: callbacks?.whenUserRegisters)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    @IBAction func signInButtonPressed(sender: AnyObject)
+    @IBAction func signInButtonPressed(_ sender: AnyObject)
     {
-        self.navigationController?.popViewController(animated: true);
+        self.callbacks?.whenUserWantsToSignIn?()
     }
-
+    
+    deinit {
+        print("Registration View Controller deinit")
+    }
 }

@@ -17,15 +17,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Vy-X3-LVf">
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="43" id="MxZ-Fl-cSl"/>
                             <constraint firstAttribute="height" constant="37" id="ftl-Az-Rny"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1o-L6-BWP">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1o-L6-BWP">
                         <gestureRecognizers/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.1843137255" green="0.12941176469999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JVk-cK-x2R">
@@ -33,22 +34,34 @@
                             <action selector="switchDidChangeValue:" destination="KGk-i7-Jjw" eventType="valueChanged" id="zoh-ey-mIy"/>
                         </connections>
                     </switch>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hI3-DI-J7O" userLabel="separatorView">
+                        <color key="backgroundColor" red="0.61960784310000006" green="0.4431372549" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="lNt-8j-yl0"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <color key="backgroundColor" red="0.99215686274509807" green="0.74117647058823533" blue="0.20392156862745098" alpha="0.97931034482758617" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="JVk-cK-x2R" secondAttribute="trailing" constant="5" id="1ry-gs-pCv"/>
+                    <constraint firstAttribute="trailing" secondItem="hI3-DI-J7O" secondAttribute="trailing" id="JqN-aW-cGn"/>
+                    <constraint firstItem="JVk-cK-x2R" firstAttribute="leading" secondItem="V1o-L6-BWP" secondAttribute="trailing" constant="5" id="UM6-lC-Xhw"/>
                     <constraint firstItem="JVk-cK-x2R" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VnU-0F-L5z"/>
                     <constraint firstItem="0Vy-X3-LVf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-1" id="WOb-VF-a62"/>
+                    <constraint firstItem="V1o-L6-BWP" firstAttribute="leading" secondItem="0Vy-X3-LVf" secondAttribute="trailing" constant="5" id="a6h-FS-4ri"/>
+                    <constraint firstAttribute="bottom" secondItem="hI3-DI-J7O" secondAttribute="bottom" id="eMj-RY-epO"/>
                     <constraint firstItem="V1o-L6-BWP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="l2r-D8-bxl"/>
-                    <constraint firstItem="V1o-L6-BWP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="oy0-6y-BCb"/>
+                    <constraint firstItem="hI3-DI-J7O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="le5-yF-4bY"/>
                     <constraint firstItem="0Vy-X3-LVf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uMG-eW-I97"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="1000" maxY="0.0"/>
             <connections>
                 <outlet property="logoImageView" destination="0Vy-X3-LVf" id="PDP-zH-fN2"/>
                 <outlet property="subscriebdSwitch" destination="JVk-cK-x2R" id="xNz-Bk-tQi"/>
                 <outlet property="websiteURL" destination="V1o-L6-BWP" id="VQB-TD-Wew"/>
             </connections>
-            <point key="canvasLocation" x="-43" y="95"/>
+            <point key="canvasLocation" x="-104" y="13"/>
         </tableViewCell>
     </objects>
 </document>

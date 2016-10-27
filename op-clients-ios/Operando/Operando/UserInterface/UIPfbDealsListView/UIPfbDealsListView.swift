@@ -27,7 +27,9 @@ class UIPfbDealsListView: RSNibDesignableView, UITableViewDelegate, UITableViewD
         tableView?.register(nib, forCellReuseIdentifier: UIPfbDealTableViewCell.identifierNibName)
         
         tableView?.delegate = self
-        tableView?.dataSource = self 
+        tableView?.dataSource = self
+        tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
+        tableView?.rowHeight = 50
     }
     
     override func commonInit() {
@@ -59,14 +61,15 @@ class UIPfbDealsListView: RSNibDesignableView, UITableViewDelegate, UITableViewD
         return cell
     }
     
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         DispatchQueue.main.async {
             let deal = self.deals[indexPath.row]
             let cell = tableView.cellForRow(at: indexPath) as? UIPfbDealTableViewCell
             self.callbacks?.whenSelectingCellWithDeal?(cell, deal)
         }
-        return false
     }
+    
+
     
 }
