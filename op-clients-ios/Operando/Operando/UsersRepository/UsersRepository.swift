@@ -10,10 +10,11 @@ import Foundation
 
 
 typealias UserOperationCallback = (_ error: NSError?, _ identityModel: UserIdentityModel) -> Void
+typealias CallbackWithError = (_ error: NSError?) -> Void
 
 protocol UsersRepository {
     func loginWithUsername(username: String, password: String, withCompletion completion: UserOperationCallback?)
-    func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: UserOperationCallback?)
+    func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: ((_ error: NSError?) -> Void)?)
     func logoutUserWith(completion: ((_ error: NSError?) -> Void)?)
 
 }
@@ -29,9 +30,9 @@ class DummyUsersRepository: UsersRepository{
         
     }
     
-    func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: UserOperationCallback?){
+    func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: CallbackWithError?){
         
-        completion?(nil, UserIdentityModel(swarmClientLoginReply: ["userId": "1", "sessionId": "1234", "authenticated": true])!)
+        completion?(nil)
         
     }
     

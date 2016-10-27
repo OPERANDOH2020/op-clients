@@ -306,6 +306,9 @@
                     <navigationItem key="navigationItem" title="Notifications" id="2dR-9P-kFQ">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="5Kz-Mj-IOa"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="notificationsListView" destination="VF3-gb-yXg" id="OUM-Wa-Q84"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISu-wM-ANc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

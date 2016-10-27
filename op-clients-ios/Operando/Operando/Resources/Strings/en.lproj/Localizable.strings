@@ -21,3 +21,4 @@
 "kAddNewIdentityLocalizableKey" = "Add a new identity";
 "kNoIncompleteFieldsLocalizableKey" = "Some fields are incomplete. Please try again";
 "kNoIdentitiesAtTheMomentLocalizableKey" = "You have no identities at the moment.";
+"kPleaseConfirmEmailLocalizableKey" = "Thank you for your registration. Please confirm your e-mail and then login with the provided e-mail and password";

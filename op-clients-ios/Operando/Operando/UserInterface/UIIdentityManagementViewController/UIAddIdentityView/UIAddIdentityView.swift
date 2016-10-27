@@ -20,7 +20,7 @@ struct UIAddIdentityViewResult{
             return nil
         }
         
-        return "\(email)@\(domain.id)"
+        return "\(email)@\(domain.name)"
         
     }
 }

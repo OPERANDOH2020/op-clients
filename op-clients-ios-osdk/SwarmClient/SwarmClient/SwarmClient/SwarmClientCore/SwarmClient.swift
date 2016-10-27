@@ -76,12 +76,12 @@ open class SwarmClient: NSObject {
     
     fileprivate func handleSocketCreationEvent()
     {
-        self.onReconnectIfAny?()
-        
         didConnect = true
         for swarmDictionary in self.emitsArray {
             emitSwarmMessage(swarmDictionary)
         }
+        
+        self.onReconnectIfAny?()
     }
     
     fileprivate func createSocket() {
@@ -97,6 +97,7 @@ open class SwarmClient: NSObject {
         socketIO = SocketIOClient(socketURL: url)
         setupListeners(socketIO!)
         socketIO!.connect()
+        print("Swarm client did init a new socket!")
     }
     
     fileprivate func emitSwarmMessage(_ swarmDictionary: NSDictionary) {
@@ -110,6 +111,8 @@ open class SwarmClient: NSObject {
         if didConnect {
             emitSwarmMessage(swarmDictionary)
         } else {
+            
+            print("asked to start swarm \(swarmName) with ctor \(ctor) but didConnect is false")
             emitsArray.append(swarmDictionary)
             createSocket()
         }
@@ -124,7 +127,8 @@ open class SwarmClient: NSObject {
         weak var weakSelf = self
         
         self.onDisconnect = {
-            weakSelf?.socketIO?.connect()
+            print("Swarm client did disconnect. Will re-create socket")
+            weakSelf?.createSocket()
         }
 
         self.onErrorWithReason = { reason in
@@ -132,9 +136,10 @@ open class SwarmClient: NSObject {
         }
         
         self.onReconnectIfAny = {
-            completion?(nil)
             weakSelf?.onDisconnect = currentOnDisconnect
             weakSelf?.onErrorWithReason = currentOnFailWithReason
+            print("Swarm client did reconnect")
+            completion?(nil)
         }
         
         self.socketIO?.disconnect()

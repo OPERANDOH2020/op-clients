@@ -12,6 +12,7 @@ struct Dependencies{
     let identityManagementRepo: IdentitiesManagementRepository
     let privacyForBenefitsRepo: PrivacyForBenefitsRepository
     let userInfoRepo: UserInfoRepository
+    let notificationsRepository: NotificationsRepository
     let whenCallingToLogout: VoidBlock?
 }
 
@@ -122,6 +123,8 @@ class UIFlowController
     
     func displayNotifications() {
         let vc = UINavigationManager.notificationsViewController
+        
+        vc.setup(with: self.dependencies.notificationsRepository)
         self.rootController.setMainControllerTo(newController: vc)
     }
     

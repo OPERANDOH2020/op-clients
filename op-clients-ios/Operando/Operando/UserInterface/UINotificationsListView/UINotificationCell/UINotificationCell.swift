@@ -8,14 +8,14 @@
 
 import UIKit
 
-class UINotificationCell: UITableViewCell {
+class UINotificationCell: MGSwipeTableCell {
 
     static let identifierNibName = "UINotificationCell"
     
     @IBOutlet weak var notificationTextLabel: UILabel!
     
-    func setupWith(notificationText: String){
-        self.notificationTextLabel.text = notificationText
+    func setupWith(notification: OPNotification){
+        self.notificationTextLabel.text = notification.title
     }
     
 }

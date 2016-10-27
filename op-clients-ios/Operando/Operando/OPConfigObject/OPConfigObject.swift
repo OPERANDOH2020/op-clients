@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
 
 class OPConfigObject: NSObject
 {
@@ -21,10 +21,11 @@ class OPConfigObject: NSObject
     
     override init()
     {
-        self.userRepository = DummyUsersRepository()//self.swarmClientHelper
-        self.dependencies = Dependencies(identityManagementRepo: DummyIdentitiesRepository(),//self.swarmClientHelper,
-                                         privacyForBenefitsRepo: DummyPfbRepository(),//self.swarmClientHelper,
-                                         userInfoRepo: DummyInfoRepository(),//self.swarmClientHelper,
+        self.userRepository = self.swarmClientHelper
+        self.dependencies = Dependencies(identityManagementRepo:  self.swarmClientHelper,
+                                         privacyForBenefitsRepo:  self.swarmClientHelper,
+                                         userInfoRepo:            self.swarmClientHelper,
+                                         notificationsRepository: self.swarmClientHelper,
                                          whenCallingToLogout: {
                                             OPConfigObject.sharedInstance.logoutUserAndUpdateUI()
                                                     })
@@ -102,7 +103,7 @@ class OPConfigObject: NSObject
     
     private func registerWithInfoAndUpdateUI(_ info: RegistrationInfo){
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        self.userRepository.registerNewUserWith(username: info.username, email: info.email, password: info.password) { error, identityModel in
+        self.userRepository.registerNewUserWith(username: info.username, email: info.email, password: info.password) { error in
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
@@ -111,7 +112,7 @@ class OPConfigObject: NSObject
                 return
             }
             
-            self.afterLoggingInWith(identity: identityModel)
+            OPViewUtils.displayAlertWithMessage(message: Bundle.localizedStringFor(key: kPleaseConfirmEmailLocalizableKey), withTitle: "", addCancelAction: false, withConfirmation: nil)
         }
         
     }

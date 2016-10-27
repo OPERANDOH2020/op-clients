@@ -10,13 +10,49 @@ import UIKit
 
 class UINotificationsViewController: UIViewController {
 
-    @IBOutlet var notificationViews: [UIView]!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    private var notificationsRepository: NotificationsRepository?
+    
+    @IBOutlet weak var notificationsListView: UINotificationsListView!
+    
+    
+    
+    func setup(with notificationsRepository: NotificationsRepository?){
+        let _ = self.view
+        self.notificationsRepository = notificationsRepository
+        
+        notificationsRepository?.getAllNotifications(in: { notifications, error  in
+            if let error = error {
+                OPErrorContainer.displayError(error: error)
+                return
+            }
+            
+            self.notificationsListView.setupWith(initialListOfNotifications: notifications, callbacks: self.callbacksFor(notificationsView: self.notificationsListView))
+            
+        })
+        
     }
     
-       
+    
+    
+    private func callbacksFor(notificationsView: UINotificationsListView?) -> UINotificationsListViewCallbacks? {
+        
+        weak var weakSelf = self
+        weak var weakNotificationsView = notificationsView
+        
+        return UINotificationsListViewCallbacks(whenDismissingNotificationAtIndex: { notification, index in
+            
+            weakSelf?.notificationsRepository?.dismiss(notification: notification, withCompletion: { error in
+                if let error = error {
+                    OPErrorContainer.displayError(error: error)
+                    return
+                }
+                weakNotificationsView?.deleteNotification(at: index)
+                
+            })
+            
+        })
+        
+    }
 
 }

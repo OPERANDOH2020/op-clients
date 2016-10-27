@@ -13,7 +13,7 @@ struct UserInfo{
     let name: String
     init?(dict: [String: Any]){
         guard let email = dict["email"] as? String,
-            let name = dict["name"] as? String else {
+            let name = dict["userName"] as? String else {
                 return nil
         }
         

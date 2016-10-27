@@ -51,8 +51,6 @@
 		9848B2D31D67393B00E0FD72 /* facebook_iOS.js in Resources */ = {isa = PBXBuildFile; fileRef = 9848B2D21D67393B00E0FD72 /* facebook_iOS.js */; };
 		9848B2D61D6740A500E0FD72 /* NSError+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848B2D51D6740A500E0FD72 /* NSError+Utilities.swift */; };
 		984C67F61D65A9FB009A8FE7 /* interceptPOST.js in Resources */ = {isa = PBXBuildFile; fileRef = 984C67F51D65A9FB009A8FE7 /* interceptPOST.js */; };
-		984CBE121DC0F47A0012E39E /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984CBE101DC0F4750012E39E /* SwarmClient.framework */; };
-		984CBE131DC0F47A0012E39E /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 984CBE101DC0F4750012E39E /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */; };
 		9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */; };
 		9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */; };
@@ -71,6 +69,9 @@
 		9853FF821D6475B6007E2502 /* FacebookSecurityEnforcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9853FF811D6475B6007E2502 /* FacebookSecurityEnforcer.swift */; };
 		9853FF851D647E40007E2502 /* fbExtractData.js in Resources */ = {isa = PBXBuildFile; fileRef = 9853FF841D647E40007E2502 /* fbExtractData.js */; };
 		9853FF871D64A5CA007E2502 /* FbWebKitParametersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9853FF861D64A5CA007E2502 /* FbWebKitParametersProvider.swift */; };
+		985BA6AF1DC2208400BC645B /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985BA6AD1DC2207F00BC645B /* SwarmClient.framework */; };
+		985BA6B01DC2208400BC645B /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 985BA6AD1DC2207F00BC645B /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		985BA6B31DC23F0C00BC645B /* NotificationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */; };
 		985CD8431D5C64750021C58C /* jquery214min.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD83F1D5C64750021C58C /* jquery214min.js */; };
 		985CD8441D5C64750021C58C /* osp-settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8401D5C64750021C58C /* osp-settings.js */; };
 		985CD8451D5C64750021C58C /* OSP.Settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8411D5C64750021C58C /* OSP.Settings.js */; };
@@ -161,7 +162,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				984CBE131DC0F47A0012E39E /* SwarmClient.framework in Embed Frameworks */,
+				985BA6B01DC2208400BC645B /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,7 +232,6 @@
 		9848B2D21D67393B00E0FD72 /* facebook_iOS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = facebook_iOS.js; sourceTree = "<group>"; };
 		9848B2D51D6740A500E0FD72 /* NSError+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSError+Utilities.swift"; path = "Extensions/NSError+Utilities.swift"; sourceTree = "<group>"; };
 		984C67F51D65A9FB009A8FE7 /* interceptPOST.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = interceptPOST.js; path = OSPSettings/SecurityEnforcers/interceptPOST.js; sourceTree = "<group>"; };
-		984CBE101DC0F4750012E39E /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIOperandoTitleView.swift; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.swift; sourceTree = "<group>"; };
 		9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIOperandoTitleView.xib; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.xib; sourceTree = "<group>"; };
 		9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINotificationsViewController.swift; path = UINotificationsViewController/UINotificationsViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +250,8 @@
 		9853FF811D6475B6007E2502 /* FacebookSecurityEnforcer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookSecurityEnforcer.swift; path = OSPSettings/SecurityEnforcers/FacebookSecurityEnforcer.swift; sourceTree = "<group>"; };
 		9853FF841D647E40007E2502 /* fbExtractData.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = fbExtractData.js; path = OSPSettings/SecurityEnforcers/fbExtractData.js; sourceTree = "<group>"; };
 		9853FF861D64A5CA007E2502 /* FbWebKitParametersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FbWebKitParametersProvider.swift; path = OSPSettings/SecurityEnforcers/FbWebKitParametersProvider.swift; sourceTree = "<group>"; };
+		985BA6AD1DC2207F00BC645B /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsRepository.swift; path = NotificationsRepository/NotificationsRepository.swift; sourceTree = "<group>"; };
 		985CD83F1D5C64750021C58C /* jquery214min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery214min.js; sourceTree = "<group>"; };
 		985CD8401D5C64750021C58C /* osp-settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "osp-settings.js"; sourceTree = "<group>"; };
 		985CD8411D5C64750021C58C /* OSP.Settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = OSP.Settings.js; sourceTree = "<group>"; };
@@ -345,7 +347,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				984CBE121DC0F47A0012E39E /* SwarmClient.framework in Frameworks */,
+				985BA6AF1DC2208400BC645B /* SwarmClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +672,14 @@
 			name = SecurityEnforcers;
 			sourceTree = "<group>";
 		};
+		985BA6B11DC23EEB00BC645B /* NotificationsRepository */ = {
+			isa = PBXGroup;
+			children = (
+				985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */,
+			);
+			name = NotificationsRepository;
+			sourceTree = "<group>";
+		};
 		985CD83D1D5C64600021C58C /* JavaScript */ = {
 			isa = PBXGroup;
 			children = (
@@ -869,6 +879,7 @@
 		9881D2321D0EC845005EE1FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				985BA6B11DC23EEB00BC645B /* NotificationsRepository */,
 				986A58F51DB39E7A00B622F5 /* UsersRepository */,
 				986A58F61DB3A41900B622F5 /* UserInfoRepository */,
 				986D4CAA1DB27F700006DA0B /* PrivacyForBenefitsRepository */,
@@ -1035,7 +1046,7 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				984CBE101DC0F4750012E39E /* SwarmClient.framework */,
+				985BA6AD1DC2207F00BC645B /* SwarmClient.framework */,
 				989C41801DBE18E800951AE5 /* MGSwipeTableCell */,
 				ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */,
 				982DF0271DB6579200231BBD /* AFNetworking */,
@@ -1402,6 +1413,7 @@
 				982DF0681DB6796500231BBD /* UIPfbDetailsAlertViewController.swift in Sources */,
 				982DF0581DB6579B00231BBD /* UIWebView+AFNetworking.m in Sources */,
 				985CD8541D5C91250021C58C /* WebViewSettingsReader.swift in Sources */,
+				985BA6B31DC23F0C00BC645B /* NotificationsRepository.swift in Sources */,
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
 				ADF3CA6D1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift in Sources */,
 				98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */,

@@ -18,7 +18,8 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         IdentitiesManagementRepository,
                         PrivacyForBenefitsRepository,
                         UsersRepository,
-                        UserInfoRepository
+                        UserInfoRepository,
+                        NotificationsRepository
 {
     static let ServerURL = "http://192.168.100.86:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
@@ -54,6 +55,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     return
                 }
                 
+                print(dict)
                 guard let identityModel = UserIdentityModel(swarmClientLoginReply: dict) else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) ?? OPErrorContainer.errorInvalidServerResponse
                     completion?(error, .empty)
@@ -86,14 +88,17 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             
             
             self.whenReceivingData = { dataArray in
-                guard let dataDict = dataArray.first as? [String: Int] else {
+                guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
                 
-                if let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict){
-                    completion?(error)
-                    return
+                guard let successStatus = SwarmClientResponseParsers.parseLogoutSucceedSuccessStatus(from: dataDict),
+                          successStatus == true else {
+                          let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.unknownError
+                          completion?(error)
+                          return
+                            
                 }
                 
                 completion?(nil)
@@ -104,44 +109,42 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         self.swarmClient.startSwarm(SwarmName.login.rawValue, phase: SwarmPhase.start.rawValue, ctor: LoginConstructor.userLogout.rawValue, arguments: [])
     }
     
-    func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: UserOperationCallback?){
+    func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: CallbackWithError?){
         
         workingQueue.async {
-            self.whenThereWasAnError = { error in
-                completion?(error, .empty)
-            }
-            self.whenReceivingData = { dataArray in
-                guard let dict = dataArray.first as? [String: Any] else {
-                    completion?(OPErrorContainer.errorInvalidServerResponse, .empty)
+            let registrationInfo = RegistrationInfo(username: username, email: email, password: password)
+            
+            self.guestGuestLoginWith(callbackInCaseOfError: completion) {
+            self.registerUserWith(registrationInfo: registrationInfo, callbackInCaseOfError: completion) {
+            self.logoutUserWith(completion: { error in
+                if let error = error {
+                    completion?(error)
                     return
                 }
                 
-                guard let identityModel = UserIdentityModel(swarmClientLoginReply: dict) else {
-                    let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) ?? OPErrorContainer.errorInvalidServerResponse
-                    completion?(error, .empty)
-                    return
-                }
-                
-                self.whenAskedForRealIdentityWithCompletion = { identityCompletion in
-                    identityCompletion?(identityModel.userId, nil)
-                }
-                
-                completion?(nil, identityModel)
-                
-            }
+                self.swarmClient.disconnectAndReconnectWith(completion: { failReason in
+                    
+                    if let failReason = failReason {
+                        let error = NSError(domain: SwarmClientErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: failReason]);
+                        completion?(error)
+                        return
+                    }
+                    
+                    completion?(nil)
+                    
+              })
+            })
+          }
         }
-        
-        let params: [String: Any] = ["username": username, "email": email, "password": password]
-        self.swarmClient.startSwarm(SwarmName.register.rawValue, phase: SwarmPhase.start.rawValue, ctor: RegisterConstructor.registerNewUser.rawValue, arguments: [params as AnyObject])
-        
+      }
     }
     
-    private func guestGuestLoginWith(callbackInCaseOfError: UserOperationCallback?, whenAllIsOk: VoidBlock?){
+    private func guestGuestLoginWith(callbackInCaseOfError: CallbackWithError?, whenAllIsOk: VoidBlock?){
         
         workingQueue.async {
             self.loginWithUsername(username: "guest", password: "guest") { error, identityModel in
                 if let error = error {
-                    callbackInCaseOfError?(error, .empty)
+                    callbackInCaseOfError?(error)
                     return
                 }
                 
@@ -151,21 +154,23 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         }
     }
     
-    private func registerUserWith(registrationInfo: RegistrationInfo, callbackInCaseOfError: UserOperationCallback?, whenAllIsOk: VoidBlock?){
+    private func registerUserWith(registrationInfo: RegistrationInfo, callbackInCaseOfError: CallbackWithError?, whenAllIsOk: VoidBlock?){
         workingQueue.async {
           
                 self.whenThereWasAnError = { error in
-                    callbackInCaseOfError?(error, .empty)
+                    callbackInCaseOfError?(error)
                 }
                 self.whenReceivingData = { dataArray in
                     guard let dict = dataArray.first as? [String: Any] else {
-                        callbackInCaseOfError?(OPErrorContainer.errorInvalidServerResponse, .empty)
+                        callbackInCaseOfError?(OPErrorContainer.errorInvalidServerResponse)
                         return
                     }
                     
-                    guard let _ = UserIdentityModel(swarmClientLoginReply: dict) else {
+                    print(dict)
+                    
+                    guard SwarmClientResponseParsers.parseRegisterUserSuccessStatus(from: dict) else {
                         let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) ?? OPErrorContainer.errorInvalidServerResponse
-                        callbackInCaseOfError?(error, .empty)
+                        callbackInCaseOfError?(error)
                         return
                     }
                     
@@ -174,26 +179,22 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                 }
             }
             
-            let params: [String: Any] = ["username": registrationInfo.username, "email": registrationInfo.email, "password": registrationInfo.password]
+            let params: [String: Any] = ["username": registrationInfo.username, "email": registrationInfo.email, "password": registrationInfo.password, "repeat_password": registrationInfo.password]
             self.swarmClient.startSwarm(SwarmName.register.rawValue, phase: SwarmPhase.start.rawValue, ctor: RegisterConstructor.registerNewUser.rawValue, arguments: [params as AnyObject])
     
     }
     
-    private func killSocketAndReLoginWith(info: RegistrationInfo, callback: UserOperationCallback?){
+    private func killSocketAndReconnect(with callback: CallbackWithError?){
         
         workingQueue.async {
             self.swarmClient.disconnectAndReconnectWith(completion: { reason in
                 if let reason = reason {
                     let error = NSError(domain: SwarmClientErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: reason])
-                    callback?(error, .empty)
+                    callback?(error)
                     return
                 }
                 
-                self.workingQueue.async {
-                    self.loginWithUsername(username: info.username, password: info.password, withCompletion: callback)
-                }
-                
-                
+                callback?(nil)
             })
         }
     }
@@ -208,6 +209,9 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     completion?(.defaultEmpty, OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
+                
+                print(dataDict)
+                
                 guard let userInfo = SwarmClientResponseParsers.parseUserInfo(from: dataDict) else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.unknownError
                     completion?(.defaultEmpty, error)
@@ -266,6 +270,9 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     completion?(.defaultEmptyResponse, OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
+                
+                print(dataDict)
+                
                 guard let identitiesList = SwarmClientResponseParsers.parseIdentitiesList(from: dataDict) else
                 {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
@@ -512,8 +519,40 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.acceptPfbDeal.rawValue, arguments: [ serviceId as AnyObject ] )
     }
     
-
     
+    
+    //MARK: NotificationsRepository
+    
+    func getAllNotifications(in completion: (([OPNotification], NSError?) -> Void)?) {
+        workingQueue.async {
+            
+            self.whenThereWasAnError = { error in
+                completion?([], error)
+            }
+            
+            self.whenReceivingData = { dataArray in
+                guard let dataDict = dataArray.first as? [String: Any] else {
+                    completion?([], OPErrorContainer.errorInvalidServerResponse)
+                    return
+                }
+                
+                guard let notifications = SwarmClientResponseParsers.parseNonDismissedNotificationsArray(from: dataDict) else {
+                    let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.unknownError
+                    completion?([], error)
+                    return
+                }
+                
+                completion?(notifications, nil)
+            }
+            
+        }
+        
+        self.swarmClient.startSwarm(SwarmName.notification.rawValue, phase: SwarmPhase.start.rawValue, ctor: NotificationConstructor.getNotifications.rawValue, arguments: [])
+    }
+    
+    func dismiss(notification: OPNotification, withCompletion completion: CallbackWithError?) {
+        
+    }
     
     //MARK: SwarmClientProtocol
     

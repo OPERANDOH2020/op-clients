@@ -102,6 +102,9 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nextTextFieldPerCurrentTextFieldHash[textField.hashValue]?.becomeFirstResponder()
+        if textField == self.confirmPasswordTF {
+            textField.resignFirstResponder()
+        }
         return true;
     }
     

@@ -41,7 +41,7 @@ class UIChangePasswordView: RSNibDesignableView, UITextFieldDelegate {
     @IBOutlet weak var cancelButtonBottomSpaceConstraint: NSLayoutConstraint!
     
     private var callbacks: UIChangePasswordViewCallbacks?
-    private var editingTextField: UITextField!
+    private var editingTextField: UITextField?
     
     
     override func commonInit() {
@@ -64,6 +64,11 @@ class UIChangePasswordView: RSNibDesignableView, UITextFieldDelegate {
         self.callbacks = callbacks
     }
     
+    func clearEverything(){
+        self.currentPasswordTF.text = nil
+        self.newPasswordTF.text = nil
+        self.confirmPasswordTF.text = nil 
+    }
     
     //MARK: Textfield Delegate
     
@@ -113,7 +118,9 @@ class UIChangePasswordView: RSNibDesignableView, UITextFieldDelegate {
     //MARK: Keyboard management
     
     func keyboardWillAppear(_ notification: NSNotification){
-        guard let value = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue, self.editingTextField != self.currentPasswordTF else{
+        guard let value = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            let editingTF = self.editingTextField,
+            editingTF != self.currentPasswordTF else{
             return
         }
         
@@ -121,7 +128,7 @@ class UIChangePasswordView: RSNibDesignableView, UITextFieldDelegate {
         self.cancelButtonBottomSpaceConstraint.constant = rect.size.height
         UIView.animate(withDuration: 0.5) {
             self.scrollView.layoutIfNeeded()
-            let offset = CGPoint(x: 0, y: self.editingTextField.frame.origin.y)
+            let offset = CGPoint(x: 0, y: editingTF.frame.origin.y)
             self.scrollView.setContentOffset(offset, animated: false)
         }
 

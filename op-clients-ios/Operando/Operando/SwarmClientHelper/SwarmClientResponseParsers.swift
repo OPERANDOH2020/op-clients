@@ -74,14 +74,40 @@ class PfbDeal
     
 }
 
+struct OPNotification{
+    let id: String
+    let title: String
+    let description: String
+    let dismissed: Bool
+    
+    init?(notificationsSwarmReplyDict: [String: Any]){
+        
+        guard let id = notificationsSwarmReplyDict["notificationId"] as? String,
+              let title = notificationsSwarmReplyDict["title"] as? String,
+              let description = notificationsSwarmReplyDict["description"] as? String,
+              let dismissed = notificationsSwarmReplyDict["dismissed"] as? Bool else {
+                return nil
+        }
+        
+        self.id = id
+        self.title = title
+        self.description = description
+        self.dismissed = dismissed
+    }
+    
+}
 
 
 class SwarmClientResponseParsers
 {
-    
+    static let kSwarmClientResponseParserErrorDomain = "com.operando.swarmClientReponseParser"
     
     static func parseErrorIfAny(from dataDict: [String: Any]) -> NSError?
     {
+        if let errorMessageInEnglish = dataDict["error"] as? String{
+            return NSError(domain: kSwarmClientResponseParserErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessageInEnglish])
+        }
+        
         guard let errorDict = dataDict["error"] as? [String: Any],
               let messageType = errorDict["message"] as? String else
         {
@@ -187,6 +213,33 @@ class SwarmClientResponseParsers
         return userInfo
     }
     
+    static func parseRegisterUserSuccessStatus(from dataDict: [String: Any]) -> Bool {
+        guard let userDict = dataDict["user"] as? [String: Any],
+              let _ = userDict["email"] as? String,
+            let _ = userDict["userId"] as? String else {
+                return false
+        }
+        
+        return true
+    }
+    
+    static func parseNonDismissedNotificationsArray(from dataDict: [String: Any]) -> [OPNotification]? {
+        guard let notificationsArray = dataDict["notifications"] as? [[String: Any]] else {
+            return nil
+        }
+        
+        var notifications: [OPNotification] = []
+        for notificationDict in notificationsArray {
+            if let notification = OPNotification(notificationsSwarmReplyDict: notificationDict),
+                notification.dismissed == false {
+                notifications.append(notification)
+            }
+        }
+        
+        return notifications
+    }
+    
+    
     static func parseAddIdentitySuccessStatus(from dataDict: [String: Any]) -> Bool?
     {
         return parseMetaCurrentPhaseEqualTo(item: "createIdentity_success", in: dataDict)
@@ -205,6 +258,10 @@ class SwarmClientResponseParsers
     static func parseSubscribeToDealSuccessStatus(from dataDict: [String: Any]) -> Bool?
     {
         return parseMetaCurrentPhaseEqualTo(item: "dealAccepted", in: dataDict)
+    }
+    
+    static func parseLogoutSucceedSuccessStatus(from dataDict: [String: Any]) -> Bool? {
+        return parseMetaCurrentPhaseEqualTo(item: "logoutSucceed", in: dataDict)
     }
     
     static private func parseMetaCurrentPhaseEqualTo(item: String, in dataDict: [String: Any]) -> Bool?

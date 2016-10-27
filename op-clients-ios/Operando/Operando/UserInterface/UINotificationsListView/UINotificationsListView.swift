@@ -8,17 +8,19 @@
 
 import UIKit
 
+let kDismissLocalizableKey = "kDismissLocalizableKey"
+
+struct UINotificationsListViewCallbacks {
+    let whenDismissingNotificationAtIndex: ((_ notification: OPNotification, _ index: Int) -> Void)?
+}
+
 class UINotificationsListView: RSNibDesignableView, UITableViewDataSource, UITableViewDelegate {
 
     
-    private static let dummyNotifications: [String] = ["You have subscribed for 9gag.com",
-                                                       "You have succesfully changed your password",
-                                                       "You have created a new identity: xczdfg@op0.eu",
-                                                       "You have unsubscribed from etsy.com",
-                                                       "You have succesfully removed the identity: 3f56gxz@op1.eu",
-                                                       "You have set 085fxpfl@op3.eu as your default identity"]
+
     
-    private var notifications: [String] = UINotificationsListView.dummyNotifications
+    private var notifications: [OPNotification] = []
+    private var callbacks: UINotificationsListViewCallbacks?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -40,6 +42,27 @@ class UINotificationsListView: RSNibDesignableView, UITableViewDataSource, UITab
         
     }
     
+    
+    
+    func setupWith(initialListOfNotifications: [OPNotification], callbacks: UINotificationsListViewCallbacks?){
+        self.notifications = initialListOfNotifications
+        self.callbacks = callbacks
+    }
+    
+    
+    func deleteNotification(at index: Int){
+        guard index >= 0 && index < self.notifications.count else {
+            return
+        }
+        
+        self.notifications.remove(at: index)
+        self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        
+    }
+    
+    
+    //MARK: TableView 
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -51,7 +74,22 @@ class UINotificationsListView: RSNibDesignableView, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UINotificationCell.identifierNibName, for: indexPath) as! UINotificationCell
         
-        cell.setupWith(notificationText: self.notifications[indexPath.row])
+        let notification = self.notifications[indexPath.row]
+        
+        cell.setupWith(notification: notification)
+        
+        weak var weakSelf = self
+        
+        
+        cell.rightButtons = [ MGSwipeButton(title: Bundle.localizedStringFor(key: kDismissLocalizableKey), backgroundColor: UIColor.red, callback: { swipeCell -> Bool in
+            
+            swipeCell?.hideSwipe(animated: true, completion: { _ in
+                weakSelf?.callbacks?.whenDismissingNotificationAtIndex?(notification, indexPath.row)
+            })
+            
+            return true
+        })! ]
+        
         return cell
     }
     
@@ -59,6 +97,7 @@ class UINotificationsListView: RSNibDesignableView, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
     
     
     
