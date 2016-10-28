@@ -135,19 +135,25 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
         weak var weakSelf = self
         let identity = self.identitiesList[indexPath.row]
         
-        let deleteButton = MGSwipeButton(title: Bundle.localizedStringFor(key: kDeleteLocalizableKey), backgroundColor: UIColor.red) { cell -> Bool in
+        let deleteButton = MGSwipeButton(title: Bundle.localizedStringFor(key: kDeleteLocalizableKey), backgroundColor: UIColor.red) { swipeCell -> Bool in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5 , execute: {
-                weakSelf?.callbacks?.whenPressedToDeleteItemAtIndex?(identity, indexPath.row)
+                guard let maybeChangedIndexPath = weakSelf?.tableView?.indexPath(for: swipeCell!) else {
+                    return
+                }
+                weakSelf?.callbacks?.whenPressedToDeleteItemAtIndex?(identity, maybeChangedIndexPath.row)
             })
         
             return true
         }
         
-        let defaultButton = MGSwipeButton(title: Bundle.localizedStringFor(key: kMakeDefaultLocalizableKey), backgroundColor: UIColor.operandoCyan) { cell -> Bool in
+        let defaultButton = MGSwipeButton(title: Bundle.localizedStringFor(key: kMakeDefaultLocalizableKey), backgroundColor: UIColor.operandoCyan) { swipeCell -> Bool in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                weakSelf?.callbacks?.whenActivatedItemAtIndex?(identity, indexPath.row)
+                guard let maybeChangedIndexPath = weakSelf?.tableView?.indexPath(for: swipeCell!) else {
+                    return
+                }
+                weakSelf?.callbacks?.whenActivatedItemAtIndex?(identity, maybeChangedIndexPath.row)
             })
             
             

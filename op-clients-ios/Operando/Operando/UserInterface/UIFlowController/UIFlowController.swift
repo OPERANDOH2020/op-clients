@@ -8,12 +8,15 @@
 
 import UIKit
 
+typealias NotificationActionCallback = (_ action: String, _ notification: OPNotification) -> Void
+
 struct Dependencies{
     let identityManagementRepo: IdentitiesManagementRepository
     let privacyForBenefitsRepo: PrivacyForBenefitsRepository
     let userInfoRepo: UserInfoRepository
     let notificationsRepository: NotificationsRepository
     let whenCallingToLogout: VoidBlock?
+    let whenTakingActionForNotification: NotificationActionCallback?
 }
 
 class UIFlowController
@@ -124,7 +127,7 @@ class UIFlowController
     func displayNotifications() {
         let vc = UINavigationManager.notificationsViewController
         
-        vc.setup(with: self.dependencies.notificationsRepository)
+        vc.setup(with: self.dependencies.notificationsRepository, notificationCallback: self.dependencies.whenTakingActionForNotification)
         self.rootController.setMainControllerTo(newController: vc)
     }
     

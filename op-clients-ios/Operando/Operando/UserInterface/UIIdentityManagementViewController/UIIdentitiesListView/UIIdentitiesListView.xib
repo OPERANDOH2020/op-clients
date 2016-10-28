@@ -16,16 +16,24 @@
             <rect key="frame" x="0.0" y="0.0" width="340" height="484"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWs-E7-zpq" userLabel="noIdentitiesLabel">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ftz-lS-rYn">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="JWs-E7-zpq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="EtC-9f-2BF"/>
                 <constraint firstAttribute="bottom" secondItem="Ftz-lS-rYn" secondAttribute="bottom" id="Mia-bY-W2B"/>
                 <constraint firstItem="Ftz-lS-rYn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eiy-jg-dc6"/>
                 <constraint firstItem="Ftz-lS-rYn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mac-rH-s57"/>
                 <constraint firstAttribute="trailing" secondItem="Ftz-lS-rYn" secondAttribute="trailing" id="nmI-aJ-my0"/>
+                <constraint firstAttribute="trailing" secondItem="JWs-E7-zpq" secondAttribute="trailing" constant="5" id="nx1-Gy-kHk"/>
+                <constraint firstItem="JWs-E7-zpq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sRP-Pa-AqK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="35" y="-292"/>

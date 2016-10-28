@@ -13,6 +13,8 @@ struct UIPfbDealsListViewCallbacks{
     let cellCallbacks: UIPfbDisplayingViewCallbacks?
 }
 
+let kNoDealsAtTheMomentLocalizableKey = "kNoDealsAtTheMomentLocalizableKey"
+
 class UIPfbDealsListView: RSNibDesignableView, UITableViewDelegate, UITableViewDataSource
 {
     
@@ -20,6 +22,8 @@ class UIPfbDealsListView: RSNibDesignableView, UITableViewDelegate, UITableViewD
     private var callbacks: UIPfbDealsListViewCallbacks?
     
     @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var noDealsLabel: UILabel?
+    
     
     private func setupTableView(_ tableView: UITableView?){
         let nib = UINib(nibName: UIPfbDealTableViewCell.identifierNibName, bundle: nil)
@@ -30,6 +34,9 @@ class UIPfbDealsListView: RSNibDesignableView, UITableViewDelegate, UITableViewD
         tableView?.dataSource = self
         tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
         tableView?.rowHeight = 50
+        
+        self.noDealsLabel?.text = Bundle.localizedStringFor(key: kNoDealsAtTheMomentLocalizableKey)
+        self.noDealsLabel?.isHidden = true
     }
     
     override func commonInit() {
@@ -43,6 +50,8 @@ class UIPfbDealsListView: RSNibDesignableView, UITableViewDelegate, UITableViewD
         self.deals = deals
         self.callbacks = callbacks
         self.tableView?.reloadData()
+        
+        self.noDealsLabel?.isHidden = deals.count > 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

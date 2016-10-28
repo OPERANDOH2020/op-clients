@@ -10,6 +10,12 @@ import UIKit
 
 let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
 
+enum NotificationAction: String {
+    case identitiesMangament = "identitiesMangament"
+    case privacyForBenefits = "privacyForBenefits"
+    case privateBrowsing = "privateBrowsing"
+}
+
 class OPConfigObject: NSObject
 {
     private let dependencies: Dependencies
@@ -19,17 +25,28 @@ class OPConfigObject: NSObject
     private let userRepository: UsersRepository
     private let flowController: UIFlowController
     
+    private let actionsPerNotificationType: [String: VoidBlock]
+    
     override init()
     {
         self.userRepository = self.swarmClientHelper
         self.dependencies = Dependencies(identityManagementRepo:  self.swarmClientHelper,
                                          privacyForBenefitsRepo:  self.swarmClientHelper,
                                          userInfoRepo:            self.swarmClientHelper,
-                                         notificationsRepository: self.swarmClientHelper,
-                                         whenCallingToLogout: {
-                                            OPConfigObject.sharedInstance.logoutUserAndUpdateUI()
-                                                    })
+                                         notificationsRepository: DummyNotificationsRepo(),//self.swarmClientHelper,
+                                         whenCallingToLogout: { OPConfigObject.sharedInstance.logoutUserAndUpdateUI() },
+                                         whenTakingActionForNotification: { OPConfigObject.sharedInstance.dismiss(notification: $1, andTakeAction: $0) }
+        )
         self.flowController = UIFlowController(dependencies: self.dependencies)
+        
+        weak var flowCntroler = self.flowController
+        
+        self.actionsPerNotificationType = [NotificationAction.identitiesMangament.rawValue:
+                                              {flowCntroler?.displayIdentitiesManagement()},
+                                           NotificationAction.privateBrowsing.rawValue:
+                                              {flowCntroler?.displayPrivateBrowsing()},
+                                           NotificationAction.privacyForBenefits.rawValue:
+                                              {flowCntroler?.displayPfbDeals()}]
         
         super.init()
     }
@@ -148,4 +165,23 @@ class OPConfigObject: NSObject
             })
         }
     }
+    
+    private func dismiss(notification: OPNotification, andTakeAction action: String){
+        
+        self.dependencies.notificationsRepository.dismiss(notification: notification) { error in
+            if let error = error {
+                OPErrorContainer.displayError(error: error)
+                return
+            }
+            
+            if let action = self.actionsPerNotificationType[action] {
+                action()
+            } else {
+                OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "Will be available soon")
+            }
+            
+        }
+        
+    }
+    
 }

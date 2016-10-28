@@ -75,17 +75,27 @@ class PfbDeal
 }
 
 struct OPNotification{
+    
+    struct Action {
+        let title: String
+        let actionKey: String
+    }
+    
     let id: String
     let title: String
     let description: String
     let dismissed: Bool
+    
+    let actions: [Action]
+    
     
     init?(notificationsSwarmReplyDict: [String: Any]){
         
         guard let id = notificationsSwarmReplyDict["notificationId"] as? String,
               let title = notificationsSwarmReplyDict["title"] as? String,
               let description = notificationsSwarmReplyDict["description"] as? String,
-              let dismissed = notificationsSwarmReplyDict["dismissed"] as? Bool else {
+              let dismissed = notificationsSwarmReplyDict["dismissed"] as? Bool
+            else {
                 return nil
         }
         
@@ -93,8 +103,23 @@ struct OPNotification{
         self.title = title
         self.description = description
         self.dismissed = dismissed
+        let actionsAsDicts = notificationsSwarmReplyDict["actions"] as? [[String: String]] ?? []
+        self.actions = OPNotification.parseActions(from: actionsAsDicts)
     }
     
+    
+    private static func parseActions(from array: [[String: String]]) -> [Action] {
+        
+        var actions: [Action] = []
+        
+        for dict in array {
+            if let title = dict["title"], let actionType = dict["key"] {
+                actions.append(Action(title: title, actionKey: actionType))
+            }
+        }
+        
+        return actions
+    }
 }
 
 
