@@ -13,6 +13,7 @@
 angular.module('privacyWizard', [])
     .factory("PrivacyWizardService", ["messengerService", function (messengerService) {
         return {
+
             getNextQuestionAndSuggestions: function (activeOptions, callback) {
                 messengerService.send("getNextQuestionAndSuggestions",
                     {
@@ -33,27 +34,29 @@ angular.module('privacyWizard', [])
             restrict: 'E',
             replace: true,
             scope: {},
-            controller: ["$scope", "PrivacyWizardService","ospService", function ($scope, PrivacyWizardService,ospService) {
+            controller: ["$scope", "PrivacyWizardService","ospService","watchDogService", function ($scope, PrivacyWizardService, ospService, watchDogService) {
 
-                
                 ospService.getOSPSettings(function(ospSettings){
                     $scope.numOptions = 0;
                     $scope.idToQuestion = {};
+                    $scope.idToOsp = {};
                     $scope.idToAnswer = {};
-                    $scope.answersForQuestion = {}
+                    $scope.answersForQuestion = {};
                     for(var network in ospSettings){
                         for(var setting in ospSettings[network]){
                             if(ospSettings[network][setting].id){
                                 $scope.numOptions++;
                                 var settingObject = ospSettings[network][setting]
                                 $scope.idToQuestion[ospSettings[network][setting].id] = settingObject.read.name;
+                                $scope.idToOsp[ospSettings[network][setting].id] = network;
                                 $scope.answersForQuestion[settingObject.read.name] = []
                                 for(var option in settingObject['read']['availableSettings']){
                                     $scope.idToAnswer[settingObject['read']['availableSettings'][option].index] = {
                                         /*'answer':option,*/
                                         'question':settingObject.read.name,
                                         'index':settingObject['read']['availableSettings'][option].index,
-                                        'option': settingObject['read']['availableSettings'][option]
+                                        'option': settingObject['read']['availableSettings'][option],
+                                        'osp':network
                                     }
 
                                     $scope.answersForQuestion[settingObject.read.name].push(settingObject['read']['availableSettings'][option])
@@ -104,7 +107,7 @@ angular.module('privacyWizard', [])
                             if($scope.current_settings.length === $scope.numOptions){
                                 PrivacyWizardService.completeWizard($scope.current_settings, function(){
                                     $scope.view = "completed";
-                                    $scope.$apply()
+                                    $scope.$apply();
                                 });
                             } else{
                                 $scope.view = "suggestions";
@@ -135,6 +138,32 @@ angular.module('privacyWizard', [])
                         return $scope.current_question.selected;
                     }
                 });
+
+
+                $scope.progresses = {};
+
+                $scope.$watch("view", function(newValue){
+                    if(newValue === "completed"){
+                        watchDogService.secureAccount($scope.current_settings, function(ospName, progress, index){
+
+                                $scope.progresses[ospName] = {
+                                    ospName: ospName,
+                                    current: progress,
+                                    total: index,
+                                    status: progress < index ? "pending" : "completed"
+                                }
+
+                            $scope.$apply();
+
+                        },function(){
+                            $scope.completed = true;
+                            $scope.$apply();
+                        });
+                    }
+
+                });
+
+
 
             }],
             templateUrl: "/operando/tpl/privacy-wizard/privacy_wizard.html"

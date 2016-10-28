@@ -17,21 +17,22 @@ controller("appCtrl", ["$scope", "messengerService","$window","notificationServi
     $scope.userIsLoggedIn = false;
 
     $scope.logout = function () {
-        messengerService.send("logout", {}, function () {
-            $scope.userIsLoggedIn = false;
-            $window.location.href = "http://b2c.operando.eu";
-        });
+        messengerService.send("logout", logoutHandler);
     }
 
-    messengerService.send("getCurrentUser",{}, function(user){
+    messengerService.send("getCurrentUser", function(user){
         $scope.user = user;
         $scope.userIsLoggedIn = true;
         $scope.$apply();
     });
 
-    messengerService.send("notifyWhenLogout", {}, function () {
-        $window.location.href = "http://b2c.operando.eu";
-    });
+    messengerService.send("notifyWhenLogout", logoutHandler);
+
+
+    function logoutHandler(){
+        $scope.userIsLoggedIn = false;
+        $window.location.href = "http://operando.eu";
+    }
 
 }]);
 

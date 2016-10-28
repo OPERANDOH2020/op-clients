@@ -1135,6 +1135,16 @@ border: none;
     padding-top: 0px;
 }
 
+#privacy_wizard_tab h4.icon-linkedin{
+    padding:5px 5px 5px 32px;
+    background: url("/operando/assets/images/icons/linkedin_icon_questionnaire.png") no-repeat left center;
+}
+
+#privacy_wizard_tab h4.icon-facebook{
+    padding:5px 5px 5px 32px;
+    background: url("/operando/assets/images/icons/facebook_icon_questionnaire.png") no-repeat left center;
+}
+
 .wizard_question {
     border-bottom: 1px solid #dcd4c0;
     margin-bottom: 0px;
@@ -1367,11 +1377,62 @@ h3.privacy_wizard_suggestions_heading{
     40% { opacity: 1; }
 }
 
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #ffb400;
+    fill: none;
+    animation: stroke .6s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
+}
+
+.checkmark {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    margin: 10% auto;
+    box-shadow: inset 0px 0px 0px #ffb400;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke .3s cubic-bezier(0.650, 0.000, 0.450, 1.000) .8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #ffb400;
+    }
+}
+
 
 
 .custom-progress-bar{
     position: relative;
-    margin: 10px 20px 30px 20px;
+    margin: 10px 20px 30px 13px;
     height: 8px;
     background: #e0d8c4;
 }
@@ -1927,4 +1988,49 @@ top:0;
     font-size: 16px;
     text-align: justify;
     text-indent: 50px;
+}
+
+.social_networks_action_progress_container{
+
+}
+
+.social_networks_action_progress_container h3,
+.social_networks_action_progress_container h4{
+width:auto;
+float:left;
+    text-transform: capitalize;
+}
+
+.social_networks_action_progress_container:after{
+    clear:both;
+    display: block;
+    content: "";
+}
+
+.action_progress{
+display: inline-block;
+width: 27px;
+float: left;
+height: 27px;
+}
+
+.social_networks_action_progress_container .action_progress{
+    margin: 20px;
+}
+
+.social_networks_action_progress_container h4+.action_progress {
+    margin: 3px 10px 20px 10px;
+}
+
+.action_progress .sk-fading-circle{
+    width: 27px;
+    height: 27px;
+    margin: 0;
+}
+
+.alldone{
+    float: left;
+    margin-top: 6px;
+    color: green;
+    font-size: 17px;
 }

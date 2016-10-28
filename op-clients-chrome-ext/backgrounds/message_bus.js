@@ -107,8 +107,21 @@ var busActions = {
         },  function(success){
             clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
         });
-    }
+    },
 
+
+    resetPassword:function(request, clientPort){
+        clientPort.onDisconnect.addListener(function () {
+            clientPort = null;
+
+        });
+
+        authenticationService.resetPassword(request.message, function(){
+            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
+        }, function(error){
+            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
+        });
+    }
 };
 
 

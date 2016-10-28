@@ -102,7 +102,7 @@ function secureAccount(callback) {
         sequence = sequence.then(function () {
             return postToFacebook(settings, index, total);
         }).then(function (result) {
-            port.postMessage({status:"progress", progress:(index+1)/total});
+            port.postMessage({status:"progress", progress:(index+1)});
         }).catch(function (err) {
             console.log(err)
         });

@@ -168,4 +168,4 @@ angular.module('osp')
             }
         }
 
-    }])
+    }]);

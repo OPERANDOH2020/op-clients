@@ -29,7 +29,31 @@ angular.module("singleClickPrivacy",[])
                                 close(result, 500);
                             };
                             $scope.enforcePrivacy = function(){
-                                increaseFacebookPrivacy();
+
+                                ModalService.showModal({
+
+                                    templateUrl: '/operando/tpl/modals/single_click_enforcement.html',
+                                    controller: ["$scope", "close", "watchDogService", function ($scope, close, watchDogService) {
+                                        $scope.progresses = {};
+                                        watchDogService.maximizeEnforcement(function(ospname, current, total){
+                                            $scope.progresses[ospname] = {
+                                                ospName: ospname,
+                                                current: current,
+                                                total: total,
+                                                status: current < total ? "pending" : "completed"
+                                            }
+                                            $scope.$apply();
+                                        }, function(){
+                                            $scope.completed = true;
+                                        });
+                                    }]
+
+                                }).then(function (modal) {
+                                    modal.element.modal();
+                                });
+
+
+
                             },
                             $scope.takePrivacyQuestionnaire = function(){
                                 $("a[href='#privacy_wizard']").click();

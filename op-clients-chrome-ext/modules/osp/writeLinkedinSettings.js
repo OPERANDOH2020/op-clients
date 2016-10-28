@@ -125,7 +125,14 @@ function postToLinkedIn(settings, item, total) {
                                 request.setRequestHeader("X-Alt-Referer", settings.page);
                             },
                             success: function (result) {
-                                resolve(result);
+                                setTimeout(function(){
+                                    resolve(result);
+                                },100);
+                            },
+                            statusCode:{
+                              500: function(){
+                                  console.log("Sunt in 500");
+                              }
                             },
                             error: function (a, b, c) {
                                 console.log(a, b, c);
@@ -153,7 +160,7 @@ function secureAccount(callback) {
         sequence = sequence.then(function () {
             return postToLinkedIn(settings, index, total);
         }).then(function (result) {
-            port.postMessage({status: "progress", progress: (index + 1) / total});
+            port.postMessage({status: "progress", progress: (index + 1)});
         }).catch(function (err) {
             console.log(err)
         });
@@ -171,7 +178,7 @@ function secureAccount(callback) {
 }
 
 
-function doGET(page, callback) {
+/*function doGET(page, callback) {
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
@@ -179,7 +186,25 @@ function doGET(page, callback) {
             callback(xmlHttp.responseText);
     }
     xmlHttp.open("GET", page, true);
-    xmlHttp.send(null);
+    try{
+        xmlHttp.send(null);
+    }
+    catch (e){
+        console.log(e);
+
+        setTimeout(function(){
+            doGET(page, callback);
+        },1000);
+    }
+
+}
+*/
+function doGET(page, callback){
+    $.ajax({
+        url: page,
+        success: callback,
+        dataType: 'html'
+    });
 }
 
 

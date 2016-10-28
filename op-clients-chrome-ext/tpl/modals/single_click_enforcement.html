@@ -1,0 +1,41 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Privacy enforcement is running</h3>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <h4 style="text-align:center">Please wait while we're setting up your accounts</h4>
+                    <hr/>
+                    <div ng-if="progresses | isEmpty">
+                        <ui-loader ></ui-loader>
+                    </div>
+                    <div ng-repeat="progress in progresses">
+                        <div class="social_networks_action_progress_container">
+                            <h4>{{progress.ospName}}</h4>
+                            <div class="action_progress"><ui-loader status="progress.status"></ui-loader></div>
+                        </div>
+                        <progress-bar current="progress.current" total="progress.total"
+                                      interval="3"></progress-bar>
+                        <hr ng-if="!$last"/>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <span ng-if="completed" class="alldone">All done!</span>
+                <button type="button" ng-click="close('Yes')" class="btn btn-primary-black" data-dismiss="modal">
+                    <span ng-hide="completed">Run in background</span>
+                    <span ng-if="completed">Close</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

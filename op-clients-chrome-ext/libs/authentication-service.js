@@ -65,7 +65,29 @@ var authenticationService = exports.authenticationService = {
                 self.logoutCurrentUser();
             });
         },300);
+    },
 
+    resetPassword:  function(email, successCallback, failCallback){
+        var self  = this;
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest", "guest", "chromeBrowserExtension", "userLogin", failCallback, failCallback);
+
+        setTimeout(function(){
+            var resetPassHandler = swarmHub.startSwarm("emails.js", "resetPassword", email);
+            resetPassHandler.onResponse("emailDeliverySuccessful", function(swarm){
+                successCallback("success");
+                self.logoutCurrentUser();
+            });
+
+            resetPassHandler.onResponse("emailDeliveryUnsuccessful", function(swarm){
+                failCallback(swarm.error);
+                self.logoutCurrentUser();
+            });
+
+            resetPassHandler.onResponse("resetPasswordFailed", function(swarm){
+                failCallback(swarm.error);
+                self.logoutCurrentUser();
+            });
+        },300);
     },
 
     restoreUserSession: function (successCallback, failCallback, errorCallback, reconnectCallback) {
@@ -131,7 +153,9 @@ var authenticationService = exports.authenticationService = {
             Cookies.remove("sessionId");
             swarmHub.off("login.js", "logoutSucceed");
             swarmService.removeConnection();
-            callback();
+            if(callback){
+                callback();
+            }
         });
     }
 }

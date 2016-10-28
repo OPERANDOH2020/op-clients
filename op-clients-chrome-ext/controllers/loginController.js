@@ -101,10 +101,25 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
         });
     }
 
-    $scope.reset_password = function(){
+    $scope.reset_password = function () {
         console.log($scope.user);
-        messengerService.send("resetPassword", $scope.user.email, function(){
+        $scope.info.status = "success";
+        $scope.info.message = 'Resetting your password...';
 
+        messengerService.send("resetPassword", $scope.user.email, function (data) {
+
+            if (data.status === "success") {
+                $scope.info.status = "success";
+                $scope.info.message = 'A new password was sent to your email!';
+                $scope.show_login();
+                $scope.$apply();
+            }
+            else {
+                $scope.info.status = "error";
+                $scope.info.message = "An error occurred. Try again later!";
+                $scope.$apply();
+
+            }
         });
     }
 
@@ -146,7 +161,6 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
     }
 
     $scope.$watch('loginAreaState', function(){
-
         if($scope.info.status =="error"){
             $scope.info = {
                 message: "",

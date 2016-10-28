@@ -34,6 +34,11 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             return $sce.trustAsHtml(htmlCode);
         }
     }])
+    .filter('isEmpty', [function() {
+        return function(object) {
+            return angular.equals({}, object);
+        }
+    }])
     .run(['$rootScope', '$state', '$stateParams',
         function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;
