@@ -9,6 +9,7 @@
 import UIKit
 
 let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
+let kPleaseCheckEmailResetLocalizableKey = "kPleaseCheckEmailResetLocalizableKey"
 
 enum NotificationAction: String {
     case identitiesMangament = "identitiesMangament"
@@ -34,7 +35,7 @@ class OPConfigObject: NSObject
                                          privacyForBenefitsRepo:  self.swarmClientHelper,
                                          userInfoRepo:            self.swarmClientHelper,
                                          notificationsRepository: DummyNotificationsRepo(),//self.swarmClientHelper,
-                                         whenCallingToLogout: { OPConfigObject.sharedInstance.logoutUserAndUpdateUI() },
+                                         accountCallbacks: OPConfigObject.createAccountCallbacksForSharedInstance(),
                                          whenTakingActionForNotification: { OPConfigObject.sharedInstance.dismiss(notification: $1, andTakeAction: $0) }
         )
         self.flowController = UIFlowController(dependencies: self.dependencies)
@@ -75,11 +76,7 @@ class OPConfigObject: NSObject
                 if let error = error
                 {
                     OPErrorContainer.displayError(error: error)
-                    weakSelf?.flowController.displayLoginHierarchyWith(loginCallback: { loginInfo in
-                        weakSelf?.logiWithInfoAndUpdateUI(loginInfo)
-                        }, registerCallback: { registerInfo in
-                            weakSelf?.registerWithInfoAndUpdateUI(registerInfo)
-                    })
+                    weakSelf?.flowController.displayLoginHierarchy()
                     return
                 }
                 
@@ -90,11 +87,8 @@ class OPConfigObject: NSObject
         }
         else
         {
-            weakSelf?.flowController.displayLoginHierarchyWith(loginCallback: { loginInfo in
-                weakSelf?.logiWithInfoAndUpdateUI(loginInfo)
-                }, registerCallback: { registerInfo in
-                    weakSelf?.registerWithInfoAndUpdateUI(registerInfo)
-            })
+            weakSelf?.flowController.displayLoginHierarchy()
+            
         }
     }
     
@@ -157,12 +151,7 @@ class OPConfigObject: NSObject
             CredentialsStore.deleteCredentials()
             
             self.flowController.setSideMenu(enabled: false)
-            self.flowController.displayLoginHierarchyWith(loginCallback: { loginInfo in
-                weakSelf?.logiWithInfoAndUpdateUI(loginInfo)
-                }, registerCallback: { registerInfo in
-                    weakSelf?.registerWithInfoAndUpdateUI(registerInfo)
-                    
-            })
+            self.flowController.displayLoginHierarchy()
         }
     }
     
@@ -181,6 +170,36 @@ class OPConfigObject: NSObject
             }
             
         }
+        
+    }
+    
+    private func resetPasswordAndUpdateUIFor(email: String) {
+        self.userRepository.resetPasswordFor(email: email) { error in
+            if let error = error {
+                OPErrorContainer.displayError(error: error)
+                return
+            }
+            
+            OPViewUtils.showOkAlertWithTitle(title: "", andMessage: Bundle.localizedStringFor(key: Bundle.localizedStringFor(key: kPleaseCheckEmailResetLocalizableKey)))
+        }
+    }
+    
+    
+    
+    static private func createAccountCallbacksForSharedInstance() -> AccountCallbacks {
+        
+        return AccountCallbacks(loginCallback: { info in
+            OPConfigObject.sharedInstance.logiWithInfoAndUpdateUI(info)
+            }, logoutCallback: { 
+                OPConfigObject.sharedInstance.logoutUserAndUpdateUI()
+            },
+               registerCallback: { info in
+                OPConfigObject.sharedInstance.registerWithInfoAndUpdateUI(info)
+            },
+               forgotPasswordCallback: { email in
+                OPConfigObject.sharedInstance.resetPasswordAndUpdateUIFor(email: email)
+        })
+        
         
     }
     

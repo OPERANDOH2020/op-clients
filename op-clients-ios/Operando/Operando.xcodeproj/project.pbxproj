@@ -10,6 +10,7 @@
 		9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */; };
 		9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */; };
 		981697511D5CB84E00B8A23A /* testJQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 981697501D5CB84E00B8A23A /* testJQuery.js */; };
+		982227551DC8EBD40053B993 /* UILocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982227541DC8EBD40053B993 /* UILocalizable.swift */; };
 		9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */; };
 		9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */; };
 		982750131D08497400C73411 /* UIDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982750111D08497400C73411 /* UIDashboardView.swift */; };
@@ -173,6 +174,7 @@
 		9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAddIdentityAlertViewController.swift; path = UserInterface/UIAddIdentityAlertViewController/UIAddIdentityAlertViewController.swift; sourceTree = "<group>"; };
 		9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UtilityControllers.storyboard; sourceTree = "<group>"; };
 		981697501D5CB84E00B8A23A /* testJQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = testJQuery.js; sourceTree = "<group>"; };
+		982227541DC8EBD40053B993 /* UILocalizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILocalizable.swift; path = UserInterface/UILocalizableLabel/UILocalizable.swift; sourceTree = "<group>"; };
 		9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBrowsingNavigationBar.swift; sourceTree = "<group>"; };
 		9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIBrowsingNavigationBar.xib; sourceTree = "<group>"; };
 		982750111D08497400C73411 /* UIDashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDashboardView.swift; sourceTree = "<group>"; };
@@ -367,6 +369,14 @@
 				9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */,
 			);
 			name = UIAddIdentityAlertViewController;
+			sourceTree = "<group>";
+		};
+		982227531DC8EBB90053B993 /* UILocalizable */ = {
+			isa = PBXGroup;
+			children = (
+				982227541DC8EBD40053B993 /* UILocalizable.swift */,
+			);
+			name = UILocalizable;
 			sourceTree = "<group>";
 		};
 		9827500B1D08496C00C73411 /* UIBrowsingNavigationBar */ = {
@@ -988,6 +998,7 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				982227531DC8EBB90053B993 /* UILocalizable */,
 				9866A7C21DBF850500907D05 /* UINotificationsListView */,
 				9866A7BC1DBF774E00907D05 /* UIChangePasswordView */,
 				9866A7B91DBF6FE900907D05 /* UIAccountViewController */,
@@ -1400,6 +1411,7 @@
 				982DF0631DB6618700231BBD /* UIPfbDealTableViewCell.swift in Sources */,
 				982DF0521DB6579B00231BBD /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
+				982227551DC8EBD40053B993 /* UILocalizable.swift in Sources */,
 				985CD8571D5CA8C50021C58C /* UISNSettingsReaderViewController.swift in Sources */,
 				9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */,
 				98668B631DB1018600FDE63A /* OPErrorContainer.swift in Sources */,

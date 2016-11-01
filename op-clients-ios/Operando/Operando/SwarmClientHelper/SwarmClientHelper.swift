@@ -21,7 +21,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         UserInfoRepository,
                         NotificationsRepository
 {
-    static let ServerURL = "http://192.168.100.86:8080";
+    static let ServerURL = "http://212.24.98.215:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
     var whenReceivingData: ((_ data: [Any]) -> Void)?
@@ -107,6 +107,60 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         }
         
         self.swarmClient.startSwarm(SwarmName.login.rawValue, phase: SwarmPhase.start.rawValue, ctor: LoginConstructor.userLogout.rawValue, arguments: [])
+    }
+    
+    func resetPasswordFor(email: String, completion: CallbackWithError?) {
+        workingQueue.async {
+            
+            self.guestGuestLoginWith(callbackInCaseOfError: completion) {
+                self.resetPasswordFor(email: email, callbackInCaseOfError: completion){
+                    self.logoutUserWith(completion: { error in
+                        if let error = error {
+                            completion?(error)
+                            return
+                        }
+                        
+                        self.swarmClient.disconnectAndReconnectWith(completion: { failReason in
+                            
+                            if let failReason = failReason {
+                                let error = NSError(domain: SwarmClientErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: failReason]);
+                                completion?(error)
+                                return
+                            }
+                            
+                            completion?(nil)
+                        })
+                    })
+                }
+            }
+        }
+    }
+    
+    
+    private func resetPasswordFor(email: String, callbackInCaseOfError: CallbackWithError?, whenDone: VoidBlock?){
+        workingQueue.async {
+            self.whenThereWasAnError = { error in
+                callbackInCaseOfError?(error)
+            }
+            
+            self.whenReceivingData = { dataArray in
+                guard let dataDict = dataArray.first as? [String: Any] else {
+                    callbackInCaseOfError?(OPErrorContainer.errorInvalidServerResponse)
+                    return
+                }
+                
+                guard let _ = SwarmClientResponseParsers.parseResetPasswordSuccessStatus(from: dataDict) else {
+                    let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.unknownError
+                    callbackInCaseOfError?(error)
+                    return
+                }
+                
+                whenDone?()
+            }
+        }
+        
+        
+        self.swarmClient.startSwarm(SwarmName.email.rawValue, phase: SwarmPhase.start.rawValue, ctor: EmailConstructor.resetPassword.rawValue, arguments: [email as AnyObject])
     }
     
     func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: CallbackWithError?){

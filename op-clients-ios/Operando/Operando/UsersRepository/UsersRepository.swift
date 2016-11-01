@@ -14,9 +14,9 @@ typealias CallbackWithError = (_ error: NSError?) -> Void
 
 protocol UsersRepository {
     func loginWithUsername(username: String, password: String, withCompletion completion: UserOperationCallback?)
-    func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: ((_ error: NSError?) -> Void)?)
-    func logoutUserWith(completion: ((_ error: NSError?) -> Void)?)
-
+    func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: CallbackWithError?)
+    func logoutUserWith(completion: CallbackWithError?)
+    func resetPasswordFor(email: String, completion: CallbackWithError?)
 }
 
 class DummyUsersRepository: UsersRepository{
@@ -41,4 +41,7 @@ class DummyUsersRepository: UsersRepository{
         completion?(nil)
     }
     
+    func resetPasswordFor(email: String, completion: CallbackWithError?) {
+        completion?(nil)
+    }
 }

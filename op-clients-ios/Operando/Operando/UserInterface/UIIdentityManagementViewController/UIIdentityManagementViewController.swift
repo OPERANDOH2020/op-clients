@@ -32,10 +32,8 @@ class UIIdentityManagementViewController: UIViewController
     @IBOutlet weak var realIdentityLabel: UILabel!
     @IBOutlet weak var numOfIdentitiesLeftLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.addNewIdentityButton?.setTitle(Bundle.localizedStringFor(key: kAddNewIdentityLocalizableKey), for: .normal)
-    }
+    @IBOutlet weak var yourRealIdentityLabel: UILabel!
+
     
     
     func setupWith(identitiesRepository: IdentitiesManagementRepository?)

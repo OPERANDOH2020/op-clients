@@ -24,3 +24,9 @@
 "kPleaseConfirmEmailLocalizableKey" = "Thank you for your registration. Please confirm your e-mail and then login with the provided e-mail and password";
 "kDismissLocalizableKey" = "Dismiss";
 "kNoNotificationsLocalizableKey" = "You have no notifications at the moment";
+"kDashboardLocalizableKey" = "Dashboard";
+"kEmailIsNotValidLocalizableKey" = "The email provided is not a valid one!";
+"kResetPasswordAlertTitleLocalizableKey" = "Reset password";
+"kResetPasswordAlertDescriptionLocalizableKey" = "Please write your email so we can send you further instructions";
+"kResetLocalizableKey" = "Reset";
+"kCancelLocalizableKey" = "Cancel";

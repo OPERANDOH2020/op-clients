@@ -40,7 +40,7 @@ protocol UserInfoRepository {
 class DummyInfoRepository: UserInfoRepository {
     func getCurrentUserInfo(in completion: UserInfoCallback?) {
         
-        completion?(UserInfo(dict: ["email": "call@me.later", "name": "Blanos pufos"])!, nil)
+        completion?(UserInfo(dict: ["email": "call@me.later", "userName": "Blanos pufos"])!, nil)
     }
     
     func changeCurrent(password: String, to newPassword: String, withCompletion completion: ((NSError?) -> Void)?) {
