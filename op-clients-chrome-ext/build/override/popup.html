@@ -61,6 +61,7 @@
 
                 <div ng-if="info.status">
                     <div class="panel panel-{{info.status=='error'?'danger':info.status}}">
+                        <ui-loader ng-if="(requestIsProcessed || requestStatus) && (info.status!='error')"  status="{{requestStatus}}"></ui-loader>
                         <div class="panel-heading">{{info.message}}</div>
                     </div>
                 </div>

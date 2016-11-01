@@ -38,7 +38,7 @@ var authenticationService = exports.authenticationService = {
             }
             Cookies.set("sessionId", swarm.meta.sessionId,  { expires: daysUntilCookieExpire });
             Cookies.set("userId", swarm.userId,{ expires: daysUntilCookieExpire });
-            self.setUser(swarm.userId,successFn);
+            self.setUser(swarm.userId, successFn);
             swarmHub.off("login.js", "success");
         });
     },
@@ -109,7 +109,6 @@ var authenticationService = exports.authenticationService = {
 
     setUser: function (userId, callback) {
         var setUserHandler = swarmHub.startSwarm('UserInfo.js', 'info');
-
 
         swarmHub.on("UserInfo.js","result", function(swarm){
             authenticatedUser = swarm.result;

@@ -33,4 +33,34 @@ angular.module('popupMenu', [])
             }
         }
 
+    }).//uiLoader is also available on loader.js, but this file is merged with other files in directives.js
+    directive("uiLoader", function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {status:"@?"},
+            templateUrl: '/operando/tpl/ui/loader.html',
+            controller: function ($scope) {
+
+                function changeStatus() {
+                    if (angular.isDefined($scope.status)) {
+                        switch ($scope.status) {
+                            case "pending":
+                                break;
+                            case "completed":
+                                break;
+                            default:
+                                $scope.status = "pending";
+                        }
+
+                    } else {
+                        $scope.status = "pending";
+                    }
+                }
+
+                changeStatus();
+
+            }
+
+        }
     });

@@ -24,8 +24,8 @@
             </div>
 
             <div class="form-group form_submit user_actions">
-                <button ng-click = "register()" type="submit">Register</button>
-                <button ng-click = "cancel(RegistrationForm)" type="submit" validation-reset="RegistrationForm">Back</button>
+                <button ng-click = "register()" type="submit" ng-disabled="requestIsProcessed">Register</button>
+                <button ng-click = "cancel()" type="submit" validation-reset="RegistrationForm">Back</button>
             </div>
 
         </form>

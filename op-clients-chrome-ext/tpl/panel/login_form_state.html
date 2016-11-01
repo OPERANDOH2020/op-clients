@@ -25,7 +25,7 @@
 
 
             <div class="form-group form_submit user_actions">
-                    <button ng-click = "login()" type="submit">Sign In</button>
+                    <button ng-click = "login()" type="submit" ng-disabled="requestIsProcessed">Sign In</button>
                     <button ng-click = "cancel()" type="submit">Cancel</button>
             </div>
 
