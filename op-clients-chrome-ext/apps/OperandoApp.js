@@ -12,7 +12,7 @@
 
 angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClickPrivacy', 'privacyWizard',
     'notifications', 'osp', 'angularModalService', 'operandoCore', 'schemaForm', 'abp', 'ui.router',
-    'settingEditor', 'oc.lazyLoad','angular-loading-bar','UIComponent','login','ui.select','ngAnimate'])
+    'settingEditor', 'oc.lazyLoad','angular-loading-bar','UIComponent','login','ui.select','ngAnimate','ngMessages'])
     .config([
         '$compileProvider',
         function ($compileProvider) {   //to accept chrome protocol

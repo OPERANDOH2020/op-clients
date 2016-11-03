@@ -33,6 +33,7 @@
     <script type="text/javascript" src="/operando/options.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/swarms.js"></script>
     <script type="text/javascript" src="/operando/utils/angular-cookies.js"></script>
+    <script type="text/javascript" src="/operando/utils/angular-messages/angular-messages.js"></script>
     <script type="text/javascript" src="/operando/directives.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/apps/OperandoCore.js" charset="utf-8"></script>
     <script type="text/javascript" src="/operando/services/firstrun-service.js" charset="utf-8"></script>
@@ -125,6 +126,43 @@
 
 
 
+                    <li ng-class="{active: $state.includes('admin')||$state.includes('analyst')}"
+                        class="panel menu_icon dashboard_icon has_children" id="social_networks">
+                        <a class="panel-heading" role="tab" id="snHeadingFour" role="button" data-toggle="collapse"
+                           ui-sref="socialNetworks"
+                           data-parent="#accordion" data-target="#snCollapseFour" aria-controls="snCollapseFour">Social Networks</a>
+
+                        <div id="snCollapseFour" class="panel-collapse collapse panel-body" role="tabpanel"
+                             aria-labelledby="snHeadingFour">
+                            <ul class="panel-group nav nav-tabs tabs-left sub-menu" id="sn_content">
+
+                                <li ng-class="{active: $state.includes('admin')}"
+                                    class="panel menu_icon reading_privacy_icon">
+                                    <a class="panel-heading" role="button" data-toggle="collapse"
+                                       ui-sref="admin.privacy_settings({sn:'facebook'})"
+                                       data-parent="#sn_content" data-target="#snCollapseFive">Reading Settings</a>
+
+                                    <div id="snCollapseFive" class="panel-collapse-child collapse" role="tabpanel"
+                                         aria-labelledby="snHeadingFive">
+                                        <ul class="nav nav-tabs tabs-left sub-menu panel-body"
+                                            ng-controller="readSocialNetworkPrivacySettings">
+
+                                            <li ng-repeat="osp in osps"><a
+                                                    class="menu_icon" ng-class="osp.key+'_icon'"
+                                                    ui-sref-active="active"
+                                                    ui-sref="admin.privacy_settings({sn:osp.key})">{{osp.title}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+
+
                     <li ui-sref-active="active" class="no-sub-menu">
                         <a class="menu_icon privacy_deals_icon" ui-sref="deals">Privacy Deals</a>
                     </li>
@@ -143,11 +181,8 @@
                            ui-sref="admin.privacy_settings({sn:'facebook'})"
                            data-parent="#accordion" data-target="#collapseFour" aria-controls="collapseFour">Dashboard</a>
 
-
                         <div id="collapseFour" class="panel-collapse collapse panel-body" role="tabpanel"
                              aria-labelledby="headingFour">
-
-
                             <ul class="panel-group nav nav-tabs tabs-left sub-menu" id="dashboard_content">
 
                                 <li ng-class="{active: $state.includes('admin')}"
@@ -193,7 +228,6 @@
                                 </li>
 
                             </ul>
-
                         </div>
 
                     </li>

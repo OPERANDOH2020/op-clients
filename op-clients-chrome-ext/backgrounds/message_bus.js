@@ -187,7 +187,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
                         });
 
                         args.push(function(err){
-                            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {error:err.message}});
+                            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {error:err.message?err.message:err}});
                         });
 
                         actionFn.apply(actionFn, args);

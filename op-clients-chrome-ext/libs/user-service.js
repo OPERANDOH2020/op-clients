@@ -19,6 +19,17 @@ var userService = exports.userService = {
         updateUserInfoHandler.onResponse("updatedUserInfo", function(response){
             success_callback(response);
         });
+    },
+
+    changePassword:function(changePasswordData, success_callback, error_callback){
+        var changePasswordHandler = swarmHub.startSwarm('UserInfo.js', 'changePassword', changePasswordData.currentPassword, changePasswordData.newPassword);
+        changePasswordHandler.onResponse("passwordSuccessfullyChanged", function(response){
+            success_callback();
+        });
+
+        changePasswordHandler.onResponse("passwordChangeFailure", function(response){
+            error_callback(response.error);
+        });
     }
 }
 

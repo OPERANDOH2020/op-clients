@@ -14,12 +14,16 @@
 angular.module("operando").
 controller("accountCtrl", ["$scope","messengerService","Notification", function($scope, messengerService,Notification){
 
+    $scope.user = {
+        username: "",
+        password: "",
+        confirmPassword: ""
+    };
+
+    var alias = this;
+
     $scope.emailIsEditMode = false;
     $scope.passwordIsEditMode = false;
-    $scope.phoneIsEditMode = true;
-    if($scope.user.phone !== undefined){
-        $scope.phoneIsEditMode = false;
-    }
 
     $scope.changeEmailState = function(){
         $scope.emailIsEditMode = !$scope.emailIsEditMode;
@@ -29,8 +33,32 @@ controller("accountCtrl", ["$scope","messengerService","Notification", function(
         $scope.passwordIsEditMode = !$scope.passwordIsEditMode;
     }
 
-    $scope.savePassword = function () {
-        $scope.passwordIsEditMode = !$scope.passwordIsEditMode;
+    alias.savePassword = function () {
+        messengerService.send("changePassword",{currentPassword:$scope.user.currentPassword,newPassword:$scope.user.newPassword}, function(response){
+            if(response.status == "success"){
+                Notification.success({message: "Password successfully updated!", positionY: 'bottom', positionX: 'center', delay: 5000});
+                $scope.passwordIsEditMode = !$scope.passwordIsEditMode;
+
+                $scope.user = {};
+                alias.changePasswordForm.$setPristine();
+                alias.changePasswordForm.$setUntouched();
+            }
+            else{
+                Notification.error({message: response.error, positionY: 'bottom', positionX: 'center', delay: 5000});
+
+
+                var  checkValidity = function(model,field){
+                    $scope.$watch(model, function(newValue, oldValue){
+                        field.$setValidity("invalidPassword",newValue != oldValue );
+                    });
+                }
+
+                checkValidity("user.currentPassword",alias.changePasswordForm.currentPassword);
+
+            }
+        });
+
+
     }
     $scope.updateEmail = function(){
         messengerService.send("updateUserInfo",{email:$scope.user.email}, function(){
@@ -38,6 +66,41 @@ controller("accountCtrl", ["$scope","messengerService","Notification", function(
         })
     }
 
+}]).directive("compareTo", function(){
+    return {
+        require: "ngModel",
+        scope: {
+            otherModelValue: "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel) {
 
-}]);
+            ngModel.$validators.compareTo = function(modelValue) {
+                return modelValue == scope.otherModelValue;
+            };
+
+            scope.$watch("otherModelValue", function() {
+                ngModel.$validate();
+            });
+        }
+    };
+})
+    .directive("differentFrom", function(){
+        return {
+            require: "ngModel",
+            scope: {
+                otherModelValue: "=differentFrom"
+            },
+            link: function(scope, element, attributes, ngModel) {
+
+                ngModel.$validators.differentFrom = function(modelValue) {
+                    return modelValue != scope.otherModelValue;
+                };
+
+                scope.$watch("otherModelValue", function() {
+                    ngModel.$validate();
+                });
+            }
+        };
+    });;
+
 
