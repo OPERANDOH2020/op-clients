@@ -21,7 +21,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         UserInfoRepository,
                         NotificationsRepository
 {
-    static let ServerURL = "http://212.24.98.215:8080";
+    static let ServerURL = "http://192.168.100.86:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
     var whenReceivingData: ((_ data: [Any]) -> Void)?
@@ -305,8 +305,8 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
         }
         
-        let params: [String: Any] = ["current_password": password, "new_password": newPassword]
-        self.swarmClient.startSwarm(SwarmName.user.rawValue, phase: SwarmPhase.start.rawValue, ctor: UserConstructor.changePassword.rawValue, arguments: [params as AnyObject])
+        
+        self.swarmClient.startSwarm(SwarmName.user.rawValue, phase: SwarmPhase.start.rawValue, ctor: UserConstructor.changePassword.rawValue, arguments: [password as AnyObject, newPassword as AnyObject])
     }
     
     //MARK: IdentitiesManagementRepository

@@ -10,6 +10,7 @@ import UIKit
 
 let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
 let kPleaseCheckEmailResetLocalizableKey = "kPleaseCheckEmailResetLocalizableKey"
+let kPasswordChangedSuccesfullyLocalizableKey = "kPasswordChangedSuccesfullyLocalizableKey"
 
 enum NotificationAction: String {
     case identitiesMangament = "identitiesMangament"
@@ -19,75 +20,68 @@ enum NotificationAction: String {
 
 class OPConfigObject: NSObject
 {
-    private let dependencies: Dependencies
     static let sharedInstance = OPConfigObject()
     private var currentUserIdentity : UserIdentityModel? = nil
     private let swarmClientHelper : SwarmClientHelper = SwarmClientHelper()
-    private let userRepository: UsersRepository
-    private let flowController: UIFlowController
+    private var userRepository: UsersRepository?
+    private var flowController: UIFlowController?
+    private var dependencies: Dependencies?
+    private var actionsPerNotificationType: [String: VoidBlock] = [:]
     
-    private let actionsPerNotificationType: [String: VoidBlock]
-    
-    override init()
-    {
+
+
+    private func initPropertiesOnAppStart() {
+        
         self.userRepository = self.swarmClientHelper
-        self.dependencies = Dependencies(identityManagementRepo:  self.swarmClientHelper,
+        let dependencies = Dependencies(identityManagementRepo:  self.swarmClientHelper,
                                          privacyForBenefitsRepo:  self.swarmClientHelper,
                                          userInfoRepo:            self.swarmClientHelper,
                                          notificationsRepository: DummyNotificationsRepo(),//self.swarmClientHelper,
-                                         accountCallbacks: OPConfigObject.createAccountCallbacksForSharedInstance(),
-                                         whenTakingActionForNotification: { OPConfigObject.sharedInstance.dismiss(notification: $1, andTakeAction: $0) }
+            accountCallbacks: self.createAccountCallbacks(),
+            whenTakingActionForNotification: { OPConfigObject.sharedInstance.dismiss(notification: $1, andTakeAction: $0) }
         )
-        self.flowController = UIFlowController(dependencies: self.dependencies)
+        
+        self.flowController = UIFlowController(dependencies: dependencies)
+        self.dependencies = dependencies
         
         weak var flowCntroler = self.flowController
         
         self.actionsPerNotificationType = [NotificationAction.identitiesMangament.rawValue:
-                                              {flowCntroler?.displayIdentitiesManagement()},
+            {flowCntroler?.displayIdentitiesManagement()},
                                            NotificationAction.privateBrowsing.rawValue:
-                                              {flowCntroler?.displayPrivateBrowsing()},
+                                            {flowCntroler?.displayPrivateBrowsing()},
                                            NotificationAction.privacyForBenefits.rawValue:
-                                              {flowCntroler?.displayPfbDeals()}]
-        
-        super.init()
+                                            {flowCntroler?.displayPfbDeals()}]
     }
     
-    func getCurrentUserIdentityIfAny() -> UserIdentityModel?
-    {
-        return self.currentUserIdentity
-    }
-    
-    func applicationDidStart(inWindow window: UIWindow) {
-        let sideMenu = SSASideMenu(contentViewController: UINavigationManager.rootViewController, leftMenuViewController: UINavigationManager.leftMenuViewController)
-        sideMenu.configure(configuration: SSASideMenu.MenuViewEffect(fade: true, scale: true, scaleBackground: false, parallaxEnabled: true, bouncesHorizontally: false, statusBarStyle: SSASideMenu.SSAStatusBarStyle.Black))
-        window.rootViewController = sideMenu
-    }
     
     func applicationDidStartInWindow(window: UIWindow)
     {
-        self.flowController.setupBaseHierarchyInWindow(window)
-        flowController.setSideMenu(enabled: false)
+        self.initPropertiesOnAppStart()
+        self.flowController?.setupBaseHierarchyInWindow(window)
+        
+        flowController?.setSideMenu(enabled: false)
         weak var weakSelf = self
         if let (username, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
         {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            self.userRepository.loginWithUsername(username: username, password: password, withCompletion: { (error, data) in
+            self.userRepository?.loginWithUsername(username: username, password: password, withCompletion: { (error, data) in
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if let error = error
                 {
                     OPErrorContainer.displayError(error: error)
-                    weakSelf?.flowController.displayLoginHierarchy()
+                    weakSelf?.flowController?.displayLoginHierarchy()
                     return
                 }
                 
                 weakSelf?.currentUserIdentity = data
-                weakSelf?.flowController.setupHierarchyStartingWithDashboardIn(window)
-                weakSelf?.flowController.setSideMenu(enabled: true)
+                weakSelf?.flowController?.setupHierarchyStartingWithDashboardIn(window)
+                weakSelf?.flowController?.setSideMenu(enabled: true)
             })
         }
         else
         {
-            weakSelf?.flowController.displayLoginHierarchy()
+            weakSelf?.flowController?.displayLoginHierarchy()
             
         }
     }
@@ -96,7 +90,7 @@ class OPConfigObject: NSObject
     private func logiWithInfoAndUpdateUI(_ loginInfo: LoginInfo){
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         weak var weakSelf = self
-        self.userRepository.loginWithUsername(username: loginInfo.username, password: loginInfo.password) { (error, data) in
+        self.userRepository?.loginWithUsername(username: loginInfo.username, password: loginInfo.password) { (error, data) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if let error = error {
                 OPErrorContainer.displayError(error: error);
@@ -104,7 +98,9 @@ class OPConfigObject: NSObject
             }
             
             if loginInfo.wishesToBeRemembered {
-                CredentialsStore.saveCredentials(username: loginInfo.username, password: loginInfo.password)
+                if let error = CredentialsStore.saveCredentials(username: loginInfo.username, password: loginInfo.password){
+                    OPErrorContainer.displayError(error: error)
+                }
             }
             
             weakSelf?.afterLoggingInWith(identity: data)
@@ -114,7 +110,7 @@ class OPConfigObject: NSObject
     
     private func registerWithInfoAndUpdateUI(_ info: RegistrationInfo){
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        self.userRepository.registerNewUserWith(username: info.username, email: info.email, password: info.password) { error in
+        self.userRepository?.registerNewUserWith(username: info.username, email: info.email, password: info.password) { error in
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
@@ -130,17 +126,16 @@ class OPConfigObject: NSObject
     
     private func afterLoggingInWith(identity: UserIdentityModel){
         self.currentUserIdentity = identity
-        self.flowController.displayDashboard()
-        self.flowController.setSideMenu(enabled: true)
+        self.flowController?.displayDashboard()
+        self.flowController?.setSideMenu(enabled: true)
     }
     
     
     private func logoutUserAndUpdateUI(){
-        weak var weakSelf = self
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        self.userRepository.logoutUserWith { error in
+        self.userRepository?.logoutUserWith { error in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             if let error = error {
@@ -148,16 +143,19 @@ class OPConfigObject: NSObject
                 return
             }
             
-            CredentialsStore.deleteCredentials()
             
-            self.flowController.setSideMenu(enabled: false)
-            self.flowController.displayLoginHierarchy()
+            if let error = CredentialsStore.deleteCredentials() {
+                OPErrorContainer.displayError(error: error)
+            }
+            
+            self.flowController?.setSideMenu(enabled: false)
+            self.flowController?.displayLoginHierarchy()
         }
     }
     
     private func dismiss(notification: OPNotification, andTakeAction action: String){
         
-        self.dependencies.notificationsRepository.dismiss(notification: notification) { error in
+        self.dependencies?.notificationsRepository.dismiss(notification: notification) { error in
             if let error = error {
                 OPErrorContainer.displayError(error: error)
                 return
@@ -174,7 +172,7 @@ class OPConfigObject: NSObject
     }
     
     private func resetPasswordAndUpdateUIFor(email: String) {
-        self.userRepository.resetPasswordFor(email: email) { error in
+        self.userRepository?.resetPasswordFor(email: email) { error in
             if let error = error {
                 OPErrorContainer.displayError(error: error)
                 return
@@ -184,21 +182,44 @@ class OPConfigObject: NSObject
         }
     }
     
-    
-    
-    static private func createAccountCallbacksForSharedInstance() -> AccountCallbacks {
+    private func createPasswordChangeCallback() -> PasswordChangeCallback {
+        weak var weakSelf = self
         
+        return { oldPassword, newPassword, successCallback in
+            
+            weakSelf?.userRepository?.changeCurrent(password: oldPassword, to: newPassword, withCompletion: { error in
+                if let error = error {
+                    OPErrorContainer.displayError(error: error)
+                    return
+                }
+                
+                OPViewUtils.showOkAlertWithTitle(title: "", andMessage: Bundle.localizedStringFor(key: kPasswordChangedSuccesfullyLocalizableKey))
+                if let error = CredentialsStore.updatePassword(to: newPassword) {
+                    OPErrorContainer.displayError(error: error)
+                    return
+                }
+                successCallback?()
+            })
+            
+        }
+        
+    }
+    
+    private func createAccountCallbacks() -> AccountCallbacks {
+        
+        weak var weakSelf = self
+
         return AccountCallbacks(loginCallback: { info in
-            OPConfigObject.sharedInstance.logiWithInfoAndUpdateUI(info)
+            weakSelf?.logiWithInfoAndUpdateUI(info)
             }, logoutCallback: { 
-                OPConfigObject.sharedInstance.logoutUserAndUpdateUI()
+                weakSelf?.logoutUserAndUpdateUI()
             },
                registerCallback: { info in
-                OPConfigObject.sharedInstance.registerWithInfoAndUpdateUI(info)
+                weakSelf?.registerWithInfoAndUpdateUI(info)
             },
                forgotPasswordCallback: { email in
-                OPConfigObject.sharedInstance.resetPasswordAndUpdateUIFor(email: email)
-        })
+                weakSelf?.resetPasswordAndUpdateUIFor(email: email)
+        }, passwordChangeCallback: weakSelf?.createPasswordChangeCallback())
         
         
     }

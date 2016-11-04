@@ -26,6 +26,7 @@ struct AccountCallbacks {
     let logoutCallback: VoidBlock?
     let registerCallback: RegistrationCallback?
     let forgotPasswordCallback: ForgotPasswordCallback?
+    let passwordChangeCallback: PasswordChangeCallback?
 }
 
 class UIFlowController
@@ -156,7 +157,9 @@ class UIFlowController
     private func getRightMenuViewController() -> UIAccountViewController {
         
         let accountController = UINavigationManager.accountViewController
-        accountController.setupWith(model: UIAccountViewControllerModel(repository: self.dependencies.userInfoRepo, whenUserChoosesToLogout: self.dependencies.accountCallbacks?.logoutCallback))
+        accountController.setupWith(model: UIAccountViewControllerModel(repository: self.dependencies.userInfoRepo,
+                                                                        whenUserChoosesToLogout: self.dependencies.accountCallbacks?.logoutCallback,
+                                                                        whenUserChangesPassword: self.dependencies.accountCallbacks?.passwordChangeCallback))
         
         return accountController
     }

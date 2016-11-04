@@ -33,7 +33,6 @@ typealias UserInfoCallback = (_ userInfo: UserInfo, _ error: NSError?) -> Void
 
 protocol UserInfoRepository {
     func getCurrentUserInfo(in completion: UserInfoCallback?)
-    func changeCurrent(password: String, to newPassword: String, withCompletion completion: ((_ error: NSError?) -> Void)?)
 }
 
 

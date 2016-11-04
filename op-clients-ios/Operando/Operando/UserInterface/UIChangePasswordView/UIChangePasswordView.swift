@@ -18,7 +18,7 @@ struct UIChangePasswordViewCallbacks{
 
 let kPasswordsMustMatchLocalizableKey = "kPasswordsMustMatchLocalizableKey"
 let kPasswordTooShortLocalizableKey = "kPasswordTooShortLocalizableKey"
-
+let kPasswordsAreTheSameLocalizableKey = "kPasswordsAreTheSameLocalizableKey"
 
 let kMinimumPasswordChars = 5
 
@@ -162,7 +162,9 @@ class UIChangePasswordView: RSNibDesignableView, UITextFieldDelegate {
             return Bundle.localizedStringFor(key: kPasswordsMustMatchLocalizableKey)
         }
         
-
+        guard newPassword != currentPassword else {
+            return Bundle.localizedStringFor(key: kPasswordsAreTheSameLocalizableKey)
+        }
         
         return nil
         

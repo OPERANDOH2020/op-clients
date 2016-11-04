@@ -21,6 +21,8 @@ enum OPErrorCodes: Int
     case emptyEmail = 6
     case userIdMissing = 7
     case identityEmailNotUnique = 8
+    case credentialsNotStoredProperly = 9
+    case credentialsCouldNotBeDeletedProperly = 10
 }
 
 
@@ -45,7 +47,9 @@ let localizableKeysPerErrorCode: [Int: String] =
       OPErrorCodes.identityDoesntExist.rawValue: "kIdentityDoesntExistLocalizableKey",
       OPErrorCodes.emptyEmail.rawValue: "kEmptyEmailLocalizableKey",
       OPErrorCodes.userIdMissing.rawValue: "kUserIdIsRequiredLocalizableKey",
-      OPErrorCodes.identityEmailNotUnique.rawValue: "kIdentityEmailShouldBeUnique"
+      OPErrorCodes.identityEmailNotUnique.rawValue: "kIdentityEmailShouldBeUnique",
+      OPErrorCodes.credentialsNotStoredProperly.rawValue: "kCredentialsCouldNotBeStoredLocalizableKey",
+      OPErrorCodes.credentialsCouldNotBeDeletedProperly.rawValue: "kCredentialsCouldNotBeDeletedProperlyLocalizableKey"
     ]
 
 extension Bundle
@@ -66,6 +70,9 @@ class OPErrorContainer
     
     static let errorConnectionLost: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.connectionLost.rawValue, userInfo: nil)
     static let unknownError: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.unknownError.rawValue, userInfo: nil)
+    static let errorCouldNotStoreCredentials: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.credentialsNotStoredProperly.rawValue, userInfo: nil)
+    
+    static let errorCouldNotDeleteCredentials: NSError = NSError(domain: kOperandoDomain, code: OPErrorCodes.credentialsCouldNotBeDeletedProperly.rawValue, userInfo: nil)
     
     static func displayError(error: NSError)
     {

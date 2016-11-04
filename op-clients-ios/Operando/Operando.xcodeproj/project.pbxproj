@@ -70,6 +70,14 @@
 		9853FF821D6475B6007E2502 /* FacebookSecurityEnforcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9853FF811D6475B6007E2502 /* FacebookSecurityEnforcer.swift */; };
 		9853FF851D647E40007E2502 /* fbExtractData.js in Resources */ = {isa = PBXBuildFile; fileRef = 9853FF841D647E40007E2502 /* fbExtractData.js */; };
 		9853FF871D64A5CA007E2502 /* FbWebKitParametersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9853FF861D64A5CA007E2502 /* FbWebKitParametersProvider.swift */; };
+		985A0D461DCCB0E40010C799 /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D3F1DCCB0E40010C799 /* Dictionary_Initializers.swift */; };
+		985A0D471DCCB0E40010C799 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D401DCCB0E40010C799 /* Locksmith.swift */; };
+		985A0D481DCCB0E40010C799 /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D411DCCB0E40010C799 /* LocksmithAccessibleOption.swift */; };
+		985A0D491DCCB0E40010C799 /* LocksmithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D421DCCB0E40010C799 /* LocksmithError.swift */; };
+		985A0D4A1DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D431DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift */; };
+		985A0D4B1DCCB0E40010C799 /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D441DCCB0E40010C799 /* LocksmithInternetProtocol.swift */; };
+		985A0D4C1DCCB0E40010C799 /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D451DCCB0E40010C799 /* LocksmithSecurityClass.swift */; };
+		985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985A0D4E1DCCB0F70010C799 /* Security.framework */; };
 		985BA6AF1DC2208400BC645B /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985BA6AD1DC2207F00BC645B /* SwarmClient.framework */; };
 		985BA6B01DC2208400BC645B /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 985BA6AD1DC2207F00BC645B /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		985BA6B31DC23F0C00BC645B /* NotificationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */; };
@@ -252,6 +260,14 @@
 		9853FF811D6475B6007E2502 /* FacebookSecurityEnforcer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookSecurityEnforcer.swift; path = OSPSettings/SecurityEnforcers/FacebookSecurityEnforcer.swift; sourceTree = "<group>"; };
 		9853FF841D647E40007E2502 /* fbExtractData.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = fbExtractData.js; path = OSPSettings/SecurityEnforcers/fbExtractData.js; sourceTree = "<group>"; };
 		9853FF861D64A5CA007E2502 /* FbWebKitParametersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FbWebKitParametersProvider.swift; path = OSPSettings/SecurityEnforcers/FbWebKitParametersProvider.swift; sourceTree = "<group>"; };
+		985A0D3F1DCCB0E40010C799 /* Dictionary_Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary_Initializers.swift; sourceTree = "<group>"; };
+		985A0D401DCCB0E40010C799 /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
+		985A0D411DCCB0E40010C799 /* LocksmithAccessibleOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithAccessibleOption.swift; sourceTree = "<group>"; };
+		985A0D421DCCB0E40010C799 /* LocksmithError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithError.swift; sourceTree = "<group>"; };
+		985A0D431DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithInternetAuthenticationType.swift; sourceTree = "<group>"; };
+		985A0D441DCCB0E40010C799 /* LocksmithInternetProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithInternetProtocol.swift; sourceTree = "<group>"; };
+		985A0D451DCCB0E40010C799 /* LocksmithSecurityClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithSecurityClass.swift; sourceTree = "<group>"; };
+		985A0D4E1DCCB0F70010C799 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		985BA6AD1DC2207F00BC645B /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsRepository.swift; path = NotificationsRepository/NotificationsRepository.swift; sourceTree = "<group>"; };
 		985CD83F1D5C64750021C58C /* jquery214min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery214min.js; sourceTree = "<group>"; };
@@ -349,6 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */,
 				985BA6AF1DC2208400BC645B /* SwarmClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,6 +699,28 @@
 			name = SecurityEnforcers;
 			sourceTree = "<group>";
 		};
+		985A0D3E1DCCB0E40010C799 /* Locksmith */ = {
+			isa = PBXGroup;
+			children = (
+				985A0D3F1DCCB0E40010C799 /* Dictionary_Initializers.swift */,
+				985A0D401DCCB0E40010C799 /* Locksmith.swift */,
+				985A0D411DCCB0E40010C799 /* LocksmithAccessibleOption.swift */,
+				985A0D421DCCB0E40010C799 /* LocksmithError.swift */,
+				985A0D431DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift */,
+				985A0D441DCCB0E40010C799 /* LocksmithInternetProtocol.swift */,
+				985A0D451DCCB0E40010C799 /* LocksmithSecurityClass.swift */,
+			);
+			path = Locksmith;
+			sourceTree = "<group>";
+		};
+		985A0D4D1DCCB0F70010C799 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				985A0D4E1DCCB0F70010C799 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		985BA6B11DC23EEB00BC645B /* NotificationsRepository */ = {
 			isa = PBXGroup;
 			children = (
@@ -951,6 +990,7 @@
 				98EAF66D1CCF86DC00C77649 /* Operando */,
 				98EAF6821CCF86DC00C77649 /* OperandoTests */,
 				98EAF66C1CCF86DC00C77649 /* Products */,
+				985A0D4D1DCCB0F70010C799 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1057,6 +1097,7 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				985A0D3E1DCCB0E40010C799 /* Locksmith */,
 				985BA6AD1DC2207F00BC645B /* SwarmClient.framework */,
 				989C41801DBE18E800951AE5 /* MGSwipeTableCell */,
 				ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */,
@@ -1354,6 +1395,7 @@
 				982DF0241DB6388800231BBD /* UIPfbDetailsView.swift in Sources */,
 				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
+				985A0D471DCCB0E40010C799 /* Locksmith.swift in Sources */,
 				989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */,
 				986A58F81DB3A43700B622F5 /* UserInfoRepository.swift in Sources */,
 				982DF0351DB6579200231BBD /* AFHTTPSessionManager.m in Sources */,
@@ -1369,6 +1411,7 @@
 				982DF0571DB6579B00231BBD /* UIRefreshControl+AFNetworking.m in Sources */,
 				98EAF69F1CCF899500C77649 /* UIViewController+Extensions.swift in Sources */,
 				9852C6F71CD0F68D00AF2BE5 /* UIIdentityCell.swift in Sources */,
+				985A0D4B1DCCB0E40010C799 /* LocksmithInternetProtocol.swift in Sources */,
 				982DF0391DB6579200231BBD /* AFURLResponseSerialization.m in Sources */,
 				982750171D0849C700C73411 /* UIPrivateBrowsingViewController.swift in Sources */,
 				98B2563E1D5DEE570043335A /* WebKitSettingsReader.swift in Sources */,
@@ -1387,16 +1430,19 @@
 				982DF0561DB6579B00231BBD /* UIProgressView+AFNetworking.m in Sources */,
 				9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */,
 				98668B5B1DB0D0D900FDE63A /* ECSlidingInteractiveTransition.m in Sources */,
+				985A0D491DCCB0E40010C799 /* LocksmithError.swift in Sources */,
 				9853FF871D64A5CA007E2502 /* FbWebKitParametersProvider.swift in Sources */,
 				9848B2D61D6740A500E0FD72 /* NSError+Utilities.swift in Sources */,
 				98EAF6A11CCF8A1800C77649 /* UILoginView.swift in Sources */,
 				9827501D1D0849E200C73411 /* CredentialsStore.swift in Sources */,
 				9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */,
+				985A0D481DCCB0E40010C799 /* LocksmithAccessibleOption.swift in Sources */,
 				98668B5C1DB0D0D900FDE63A /* ECSlidingSegue.m in Sources */,
 				9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */,
 				986E3E631DB3CA5600453DC6 /* UIAddIdentityView.swift in Sources */,
 				986D4CAC1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift in Sources */,
 				98387BC31DB7633500A76F01 /* UIColor+Utilities.swift in Sources */,
+				985A0D4C1DCCB0E40010C799 /* LocksmithSecurityClass.swift in Sources */,
 				9866A7BB1DBF701400907D05 /* UIAccountViewController.swift in Sources */,
 				982DF03A1DB6579200231BBD /* AFURLSessionManager.m in Sources */,
 				982DF05E1DB660B600231BBD /* UIPfbDealsListView.swift in Sources */,
@@ -1418,6 +1464,7 @@
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,
 				9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */,
+				985A0D461DCCB0E40010C799 /* Dictionary_Initializers.swift in Sources */,
 				989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */,
 				982750261D0849FA00C73411 /* OPConfigObject.swift in Sources */,
 				98668B611DB0D1F100FDE63A /* UIFlowController.swift in Sources */,
@@ -1429,6 +1476,7 @@
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
 				ADF3CA6D1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift in Sources */,
 				98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */,
+				985A0D4A1DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				986D4CA91DB23AA80006DA0B /* SwarmClientResponseParsers.swift in Sources */,
 				982DF0381DB6579200231BBD /* AFURLRequestSerialization.m in Sources */,

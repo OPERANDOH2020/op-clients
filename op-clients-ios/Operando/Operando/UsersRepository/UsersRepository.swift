@@ -17,6 +17,8 @@ protocol UsersRepository {
     func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: CallbackWithError?)
     func logoutUserWith(completion: CallbackWithError?)
     func resetPasswordFor(email: String, completion: CallbackWithError?)
+    func changeCurrent(password: String, to newPassword: String, withCompletion completion: ((_ error: NSError?) -> Void)?)
+
 }
 
 class DummyUsersRepository: UsersRepository{
@@ -29,6 +31,12 @@ class DummyUsersRepository: UsersRepository{
         
         
     }
+    
+    
+    func changeCurrent(password: String, to newPassword: String, withCompletion completion: ((_ error: NSError?) -> Void)?) {
+        
+    }
+    
     
     func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: CallbackWithError?){
         

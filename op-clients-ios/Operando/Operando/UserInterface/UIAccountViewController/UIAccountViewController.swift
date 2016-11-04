@@ -10,10 +10,12 @@ import UIKit
 
 let kChangePasswordViewHeight: CGFloat = 300
 
+typealias PasswordChangeCallback = (_ currentPassword: String, _ newPassword: String, _ successCallback: VoidBlock?) -> Void
 
 struct UIAccountViewControllerModel{
     let repository: UserInfoRepository?
     let whenUserChoosesToLogout: VoidBlock?
+    let whenUserChangesPassword: PasswordChangeCallback?
 }
 
 class UIAccountViewController: UIViewController {
@@ -101,20 +103,14 @@ class UIAccountViewController: UIViewController {
         return UIChangePasswordViewCallbacks(whenConfirmedToChange: { oldPassword, newPassword in
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            weakSelf?.model?.repository?.changeCurrent(password: oldPassword, to: newPassword, withCompletion: { error in
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                
-                if let error = error {
-                    OPErrorContainer.displayError(error: error)
-                    return
-                }
-                
+            
+            weakSelf?.model?.whenUserChangesPassword?(oldPassword, newPassword){
                 weakPV?.clearEverything()
                 weakSelf?.hidePasswordViewShowButton()
-            })
+            }
             
             }, whenCanceled: {
-            weakSelf?.hidePasswordViewShowButton()
+                weakSelf?.hidePasswordViewShowButton()
         })
     }
     
