@@ -1257,7 +1257,7 @@ var ospSettingsConfigPreferences = {
                     }
                 },
                 data: {},
-                recommended:"No One"
+                recommended:"No_One"
             }
         },
         control_third_party:{
@@ -1600,7 +1600,7 @@ var ospSettingsConfigPreferences = {
                     }
                 },
                 data: {},
-                recommended:"Only you"
+                recommended:"Only_you"
             }
         },
         how_you_rank:{
@@ -1905,7 +1905,7 @@ var ospSettingsConfigPreferences = {
                     visibilityOptions:"FIRST_DEGREE_CONNECTIONS,SECOND_DEGREE_CONNECTIONS,EVERYONE,$UNKNOWN",
                     handleType:"EMAIL"
                 },
-                recommended:"connections"
+                recommended:"Nobody"
             }
         },
         suggest_you_phone:{
@@ -1958,7 +1958,7 @@ var ospSettingsConfigPreferences = {
                     visibilityOptions:"FIRST_DEGREE_CONNECTIONS,SECOND_DEGREE_CONNECTIONS,EVERYONE,$UNKNOWN",
                     handleType:"PHONE"
                 },
-                recommended:"connections"
+                recommended:"Nobody"
             }
         },
 
@@ -3069,7 +3069,7 @@ var ospSettingsConfigPreferences = {
                     }
                 },
                 data: {},
-                recommended:"Imported contacts"
+                recommended:"Imported_contacts"
             }
         },
         /*messages_from_members:{
