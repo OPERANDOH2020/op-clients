@@ -122,45 +122,16 @@
 
                     <li ui-sref-active="active" class="no-sub-menu">
                         <a class="menu_icon social_networks_icon" ui-sref="socialNetworks">Social Networks</a>
+                        <ul class="panel-group nav nav-tabs tabs-left sub-menu pq_social_network" id="sn_content" ng-if="$state.includes('socialNetworks.privacyQuestionnaire') || $state.includes('preferences')"
+                            ng-controller="readSocialNetworkPrivacySettings">
+                            <li ng-repeat="osp in osps">
+                                <a
+                                        class="menu_icon" ng-class="osp.key+'_icon'"
+                                        ui-sref-active="active"
+                                        ui-sref="preferences.sn({sn:osp.key})">{{osp.title}}</a>
+                            </li>
+                        </ul>
                     </li>
-
-
-
-                    <li ng-class="{active: $state.includes('admin')||$state.includes('analyst')}"
-                        class="panel menu_icon dashboard_icon has_children" id="social_networks">
-                        <a class="panel-heading" role="tab" id="snHeadingFour" role="button" data-toggle="collapse"
-                           ui-sref="socialNetworks"
-                           data-parent="#accordion" data-target="#snCollapseFour" aria-controls="snCollapseFour">Social Networks</a>
-
-                        <div id="snCollapseFour" class="panel-collapse collapse panel-body" role="tabpanel"
-                             aria-labelledby="snHeadingFour">
-                            <ul class="panel-group nav nav-tabs tabs-left sub-menu" id="sn_content">
-
-                                <li ng-class="{active: $state.includes('admin')}"
-                                    class="panel menu_icon reading_privacy_icon">
-                                    <a class="panel-heading" role="button" data-toggle="collapse"
-                                       ui-sref="admin.privacy_settings({sn:'facebook'})"
-                                       data-parent="#sn_content" data-target="#snCollapseFive">Reading Settings</a>
-
-                                    <div id="snCollapseFive" class="panel-collapse-child collapse" role="tabpanel"
-                                         aria-labelledby="snHeadingFive">
-                                        <ul class="nav nav-tabs tabs-left sub-menu panel-body"
-                                            ng-controller="readSocialNetworkPrivacySettings">
-
-                                            <li ng-repeat="osp in osps"><a
-                                                    class="menu_icon" ng-class="osp.key+'_icon'"
-                                                    ui-sref-active="active"
-                                                    ui-sref="admin.privacy_settings({sn:osp.key})">{{osp.title}}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </li>
-                            </ul>
-                        </div>
-
-                    </li>
-
 
 
                     <li ui-sref-active="active" class="no-sub-menu">
@@ -233,7 +204,7 @@
                     </li>
 
                     <li ui-sref-active="active" class="no-sub-menu"><a class="menu_icon abp_icon"
-                                                                       ui-sref="preferences.abp">Ad blocking & anti-tracking</a></li>
+                                                                       ui-sref="abp">Ad blocking & anti-tracking</a></li>
 
                     <!--<li ui-sref-active="active" class="no-sub-menu"><a class="menu_icon mobile_icon"
                                                                        ui-sref="preferences.mobile">Mobile</a></li>-->
@@ -246,7 +217,6 @@
         <div class="content_wrapper">
             <div class="content" ui-view></div>
         </div>
-
 
     </div>
 

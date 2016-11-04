@@ -453,6 +453,10 @@ padding-left: 0px;
     position: relative;
 }
 
+#can-do-more .feature:first-child {
+    border-top: none;
+}
+
 #can-do-more .feature-image, #can-do-more .feature-description
 {
     display: inline-block;
@@ -940,6 +944,12 @@ border-left:2px solid #fe9901;
 .nav>li.has_children:not(.active):hover{
     text-decoration: none;
     background-color: #000;
+}
+
+
+ul.pq_social_network li a.active{
+    background-color: #fdfaef;
+    color:#000;
 }
 
 .nav>li.has_children.active>a.collapsed{
@@ -2036,4 +2046,33 @@ height: 27px;
 
 input.ng-invalid:not(.ng-untouched){
     border:1px solid #FF0000;
+}
+.actions_container.top{
+    border-bottom: 1px solid #C9BEA1;
+    margin-bottom: 10px;
+}
+
+.actions_container.top h2{
+    float:left;
+    margin-top: 5px;
+}
+
+.actions_container.bottom{
+    border-top: 1px solid #C9BEA1;
+    padding-top: 10px;
+}
+
+.actions_container:after{
+    content:"";
+    clear:both;
+    display: block;
+}
+
+.sn_actions{
+    float:right;
+}
+
+#sn_preferences h2 span.sn-title {
+    text-transform: capitalize;
+    font-weight: bold;
 }

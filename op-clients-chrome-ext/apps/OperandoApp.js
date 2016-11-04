@@ -44,7 +44,11 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
         }
-    ])
+    ]).run(["$rootScope", function($rootScope){
+        $rootScope.$on("$stateChangeSuccess", function (event, currentRoute, previousRoute) {
+            window.dispatchEvent(new Event('scrollTop'));
+        });
+    }])
     .config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
 
         $ocLazyLoadProvider.config({
@@ -103,24 +107,43 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                     }]
                 }
             })
-            .state('preferences.facebook', {
-                url: "/facebook",
-                templateUrl: "views/preferences/facebook.html"
+            .state('preferences.sn', {
+                url: "/:sn",
+                params: {
+                    sn: "facebook"
+                },
+                resolve: {
+                    sn:['$stateParams', function ($stateParams) {
+                        return $stateParams.sn;
+                    }],
+                    settings:['ospService', function (ospService) {
+                        return ospService.loadOSPs();
+                    }]
+                },
+                templateUrl:"views/preferences/social_network.html",
+                controller:["$scope","$stateParams","settings", function($scope, $stateParams, settings) {
+                    if (!$stateParams.sn) {
+                        $scope.osp = {
+                            key: 'facebook',
+                            title: 'facebook',
+                            settings: settings['facebook']
+                        }
+
+                    }
+                    else {
+                        $scope.osp = {
+                            key: $stateParams.sn,
+                            title: $stateParams.sn,
+                            settings: settings[$stateParams.sn]
+                        }
+                    }
+
+                    $scope.sn = $stateParams.sn;
+                }]
             })
-            .state('preferences.linkedin', {
-                url: "/linkedin",
-                templateUrl: "views/preferences/linkedin.html"
-            })
-            .state('preferences.twitter', {
-                url: "/twitter",
-                templateUrl: "views/preferences/twitter.html"
-            })
-            .state('preferences.google', {
-                url: "/google",
-                templateUrl: "views/preferences/google.html"
-            })
-            .state('preferences.abp', {
-                url: "/abp",
+
+            .state('abp', {
+                url: "/ad-blocking",
                 templateUrl: "views/preferences/abp.html",
                 resolve: {
                     loadScript: ['$ocLazyLoad', function ($ocLazyLoad) {

@@ -25,12 +25,17 @@ $(document).ready(function () {
              *Scroll Up Button
              */
             (function ($) {
-                $('#return-to-top').click(function () {
+
+                window.addEventListener('scrollTop', function (e) {
                     $("#wrapper").mCustomScrollbar("scrollTo", "top", {
                         scrollEasing: "easeOut"
                     });
+                }, false);
 
+                $('#return-to-top').click(function () {
+                    window.dispatchEvent(new Event('scrollTop'));
                 });
+
             })(jQuery);
 
             /**menu black magic here**/

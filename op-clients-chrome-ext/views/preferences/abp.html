@@ -1,16 +1,25 @@
-<div class="tab-pane" id="ad_blocking_preferences">
-    <section id="can-do-more">
+<div id="preferences_tab" class="content_tab">
+    <div class="col-xs-12">
+        <div class="tab-content">
+            <div id="ad_blocking_preferences">
+                <section id="can-do-more">
 
-        <div id="can-do-more-content" ng-controller="abpController">
-            <ul id="features">
+                    <div id="can-do-more-content" ng-controller="abpController">
+                        <ul id="features">
 
-                <li class="feature" ng-repeat="featureSubscription in featureSubscriptions" id="feature-{{featureSubscription.feature}}">
-                    <abp-leakage-prevention subscription="featureSubscription"></abp-leakage-prevention>
-                </li>
+                            <li class="feature" ng-repeat="featureSubscription in featureSubscriptions" id="feature-{{featureSubscription.feature}}">
+                                <abp-leakage-prevention subscription="featureSubscription"></abp-leakage-prevention>
+                            </li>
 
-            </ul>
+                        </ul>
+                    </div>
+                    <i>If you want to manually edit the ad blocker settings, click <a style="color:#ff9a00" href="/options.html">here</a>.</i>
+                </section>
+
+            </div>
         </div>
-        <i>If you want to manually edit the ad blocker settings, click <a style="color:#ff9a00" href="/options.html">here</a>.</i>
-    </section>
-
+    </div>
 </div>
+
+
+

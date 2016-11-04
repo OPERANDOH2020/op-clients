@@ -13,9 +13,6 @@
 operandoCore
     .factory("watchDogService", ["ospService", "cfpLoadingBar", function (ospService, cfpLoadingBar) {
 
-
-
-
         var FACEBOOK_PRIVACY_URL = "https://www.facebook.com/settings?tab=privacy&section=composer&view";
         var LINKEDIN_PRIVACY_URL = "https://www.linkedin.com/psettings/";
         var port = null;
@@ -66,6 +63,7 @@ operandoCore
                                 if (msg.status == "settings_applied") {
                                     cfpLoadingBar.complete();
                                     jobFinished();
+                                    chrome.tabs.remove(facebookTabId);
                                     //chrome.tabs.update(facebookTabId, {url: "https://www.facebook.com/settings?tab=privacy"});
                                 }
                                 else {
@@ -119,7 +117,7 @@ operandoCore
                                 if (msg.status == "settings_applied") {
                                     cfpLoadingBar.complete();
                                     jobFinished();
-                                    chrome.tabs.update(facebookTabId, {url: "https://www.facebook.com/settings?tab=privacy"});
+                                    chrome.tabs.remove(linkedinTabId);
                                 }
                                 else {
                                     if (msg.status == "progress") {
@@ -276,13 +274,15 @@ operandoCore
                 startApplyingSettings(settingsToBeApplied, callback, completedCallback);
 
             });
-
-
         }
 
         return {
             secureAccount: secureAccount,
-            maximizeEnforcement:maximizeEnforcement
+            maximizeEnforcement:maximizeEnforcement,
+            applySettings:startApplyingSettings,
+            applyFacebookSettings:increaseFacebookPrivacy,
+            applyLinkedInSettings:increaseLinkedInPrivacy,
+
         }
 
     }]);

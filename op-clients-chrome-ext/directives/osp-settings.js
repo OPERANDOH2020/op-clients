@@ -26,7 +26,8 @@ angular.module('osp', ['cfp.loadingBar'])
                     schema.properties[v] = {
                         title: conf["read"].name,
                         type: "string",
-                        enum: conf["read"].availableSettings ? settingEnum : ["Yes", "No"]
+                        enum: conf["read"].availableSettings ? settingEnum : ["Yes", "No"],
+                        recommended:conf["write"].recommended
 
                     };
                 }
