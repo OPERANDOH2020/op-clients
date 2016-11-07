@@ -37,7 +37,7 @@ open class SwarmClient: NSObject {
     // MARK: - Lifecycle
     public init(connectionURL: String) {
         self.connectionURL = connectionURL
-        tenantId = ""
+        tenantId = "ios"
         didConnect = false
         emitsArray = []
         super.init()

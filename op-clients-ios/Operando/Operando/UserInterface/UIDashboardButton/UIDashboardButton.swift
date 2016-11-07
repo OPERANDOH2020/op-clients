@@ -8,10 +8,24 @@
 
 import UIKit
 
-struct UIDashboardButtonModel{
+struct UIDashboardButtonStyle{
     let backgroundColor: UIColor?
     let title: String?
     let image: UIImage?
+    
+    static let identityManagementStyle: UIDashboardButtonStyle = UIDashboardButtonStyle(backgroundColor: .operandoDarkGreen, title: Bundle.localizedStringFor(key: kIdentitiesManagementLocalizableKey), image: UIImage(named: "identitiesIcon"))
+    
+    static let privacyForBenefitsStyle: UIDashboardButtonStyle = UIDashboardButtonStyle(backgroundColor: UIColor.operandoRed, title: Bundle.localizedStringFor(key: kPrivacyForBenefitsLocalizableKey), image: UIImage(named: "dealsIcon"))
+    
+    static let privateBrowsingStyle: UIDashboardButtonStyle = UIDashboardButtonStyle(backgroundColor: UIColor.operandoOrange, title: Bundle.localizedStringFor(key: kPrivateBrowsingLocalizableKey), image: UIImage(named: "browsingIcon"))
+    
+    static let notificationsStyle: UIDashboardButtonStyle = UIDashboardButtonStyle(backgroundColor: UIColor.operandoLightGreen, title: Bundle.localizedStringFor(key: kNotificationsLocalizableKey), image: UIImage(named: "notificationsIcon"))
+    
+}
+
+struct UIDashboardButtonModel {
+    let style: UIDashboardButtonStyle?
+    let notificationsRequestCallbackIfAny: NumOfNotificationsRequestCallback?
     let onTap: VoidBlock?
 }
 
@@ -19,6 +33,7 @@ class UIDashboardButton: RSNibDesignableView {
 
     private var model: UIDashboardButtonModel?
     
+    @IBOutlet weak var numOfNotificationsLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
@@ -31,13 +46,22 @@ class UIDashboardButton: RSNibDesignableView {
     
     
     func setupWith(model: UIDashboardButtonModel?){
+        
         self.model = model
-        self.contentView?.backgroundColor = model?.backgroundColor
-        self.titleLabel.text = model?.title
-        self.imageView.image = model?.image
+        self.numOfNotificationsLabel.isHidden = true
+        self.contentView?.backgroundColor = model?.style?.backgroundColor
+        self.titleLabel.text = model?.style?.title
+        self.imageView.image = model?.style?.image
+        
+        model?.notificationsRequestCallbackIfAny? { count in
+            self.numOfNotificationsLabel.isHidden = false
+            self.numOfNotificationsLabel.text = "\(count)"
+        }
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
+        
+        
     }
     
     

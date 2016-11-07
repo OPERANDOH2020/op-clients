@@ -78,8 +78,6 @@
 		985A0D4B1DCCB0E40010C799 /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D441DCCB0E40010C799 /* LocksmithInternetProtocol.swift */; };
 		985A0D4C1DCCB0E40010C799 /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D451DCCB0E40010C799 /* LocksmithSecurityClass.swift */; };
 		985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985A0D4E1DCCB0F70010C799 /* Security.framework */; };
-		985BA6AF1DC2208400BC645B /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985BA6AD1DC2207F00BC645B /* SwarmClient.framework */; };
-		985BA6B01DC2208400BC645B /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 985BA6AD1DC2207F00BC645B /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		985BA6B31DC23F0C00BC645B /* NotificationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */; };
 		985CD8431D5C64750021C58C /* jquery214min.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD83F1D5C64750021C58C /* jquery214min.js */; };
 		985CD8441D5C64750021C58C /* osp-settings.js in Resources */ = {isa = PBXBuildFile; fileRef = 985CD8401D5C64750021C58C /* osp-settings.js */; };
@@ -120,6 +118,8 @@
 		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
+		988466141DD0C7D100FBF22E /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 988466121DD0C7C800FBF22E /* SwarmClient.framework */; };
+		988466151DD0C7D100FBF22E /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 988466121DD0C7C800FBF22E /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		989C41861DBE18E800951AE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989C41811DBE18E800951AE5 /* Info.plist */; };
 		989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41831DBE18E800951AE5 /* MGSwipeButton.m */; };
 		989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */; };
@@ -165,13 +165,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		984CBE141DC0F47A0012E39E /* Embed Frameworks */ = {
+		988466161DD0C7D100FBF22E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				985BA6B01DC2208400BC645B /* SwarmClient.framework in Embed Frameworks */,
+				988466151DD0C7D100FBF22E /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +268,6 @@
 		985A0D441DCCB0E40010C799 /* LocksmithInternetProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithInternetProtocol.swift; sourceTree = "<group>"; };
 		985A0D451DCCB0E40010C799 /* LocksmithSecurityClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithSecurityClass.swift; sourceTree = "<group>"; };
 		985A0D4E1DCCB0F70010C799 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		985BA6AD1DC2207F00BC645B /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsRepository.swift; path = NotificationsRepository/NotificationsRepository.swift; sourceTree = "<group>"; };
 		985CD83F1D5C64750021C58C /* jquery214min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery214min.js; sourceTree = "<group>"; };
 		985CD8401D5C64750021C58C /* osp-settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "osp-settings.js"; sourceTree = "<group>"; };
@@ -318,6 +317,7 @@
 		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
+		988466121DD0C7C800FBF22E /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		989C41811DBE18E800951AE5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		989C41821DBE18E800951AE5 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		989C41831DBE18E800951AE5 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
@@ -365,8 +365,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				988466141DD0C7D100FBF22E /* SwarmClient.framework in Frameworks */,
 				985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */,
-				985BA6AF1DC2208400BC645B /* SwarmClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,8 +1097,8 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				988466121DD0C7C800FBF22E /* SwarmClient.framework */,
 				985A0D3E1DCCB0E40010C799 /* Locksmith */,
-				985BA6AD1DC2207F00BC645B /* SwarmClient.framework */,
 				989C41801DBE18E800951AE5 /* MGSwipeTableCell */,
 				ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */,
 				982DF0271DB6579200231BBD /* AFNetworking */,
@@ -1256,7 +1256,7 @@
 				98EAF6671CCF86DC00C77649 /* Sources */,
 				98EAF6681CCF86DC00C77649 /* Frameworks */,
 				98EAF6691CCF86DC00C77649 /* Resources */,
-				984CBE141DC0F47A0012E39E /* Embed Frameworks */,
+				988466161DD0C7D100FBF22E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

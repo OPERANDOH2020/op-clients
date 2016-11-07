@@ -10,14 +10,17 @@ import UIKit
 
 typealias NotificationActionCallback = (_ action: String, _ notification: OPNotification) -> Void
 typealias ForgotPasswordCallback = ((_ email: String) -> Void)
+typealias NumberOfNotificationsCompletion = (_ num: Int) -> Void
+typealias NumOfNotificationsRequestCallback = (_ callback: NumberOfNotificationsCompletion?) -> Void
 
 struct Dependencies{
-    let identityManagementRepo: IdentitiesManagementRepository
-    let privacyForBenefitsRepo: PrivacyForBenefitsRepository
-    let userInfoRepo: UserInfoRepository
-    let notificationsRepository: NotificationsRepository
+    let identityManagementRepo: IdentitiesManagementRepository?
+    let privacyForBenefitsRepo: PrivacyForBenefitsRepository?
+    let userInfoRepo: UserInfoRepository?
+    let notificationsRepository: NotificationsRepository?
     let accountCallbacks: AccountCallbacks?
     let whenTakingActionForNotification: NotificationActionCallback?
+    let whenRequestingNumOfNotifications: NumOfNotificationsRequestCallback?
 }
 
 
@@ -113,7 +116,8 @@ class UIFlowController
             },
               whenChoosingNotifications: {
               weakSelf?.displayNotifications()
-        })
+            },
+              numOfNotificationsRequestCallback: self.dependencies.whenRequestingNumOfNotifications)
         
         dashBoardVC.setupWith(callbacks: dashboardCallbacks)
         self.rootController.setMainControllerTo(newController: dashBoardVC)
@@ -189,7 +193,8 @@ class UIFlowController
               whenChoosingNotifications: {
                 weakSelf?.displayNotifications()
                 weakSelf?.sideMenu?.hideMenuViewController()
-        })
+            },
+              numOfNotificationsRequestCallback: self.dependencies.whenRequestingNumOfNotifications)
         
         return UILeftSideMenuViewControllerCallbacks(dashboardCallbacks: dashboardCallbacks, whenChoosingHome: { 
             weakSelf?.displayDashboard()

@@ -24,6 +24,7 @@ class OPConfigObject: NSObject
     private var currentUserIdentity : UserIdentityModel? = nil
     private let swarmClientHelper : SwarmClientHelper = SwarmClientHelper()
     private var userRepository: UsersRepository?
+    private var notificationsRepository: NotificationsRepository?
     private var flowController: UIFlowController?
     private var dependencies: Dependencies?
     private var actionsPerNotificationType: [String: VoidBlock] = [:]
@@ -33,12 +34,25 @@ class OPConfigObject: NSObject
     private func initPropertiesOnAppStart() {
         
         self.userRepository = self.swarmClientHelper
+        self.notificationsRepository = DummyNotificationsRepo()
+        weak var weakSelf = self
+        
         let dependencies = Dependencies(identityManagementRepo:  self.swarmClientHelper,
                                          privacyForBenefitsRepo:  self.swarmClientHelper,
                                          userInfoRepo:            self.swarmClientHelper,
-                                         notificationsRepository: DummyNotificationsRepo(),//self.swarmClientHelper,
-            accountCallbacks: self.createAccountCallbacks(),
-            whenTakingActionForNotification: { OPConfigObject.sharedInstance.dismiss(notification: $1, andTakeAction: $0) }
+                                         notificationsRepository: self.notificationsRepository,
+                                         accountCallbacks: self.createAccountCallbacks(),
+            whenTakingActionForNotification: { weakSelf?.dismiss(notification: $1, andTakeAction: $0) },
+            whenRequestingNumOfNotifications: { callback in
+                weakSelf?.notificationsRepository?.getAllNotifications(in: { notifications, error in
+                    if let error = error {
+                        OPErrorContainer.displayError(error: error)
+                        callback?(-1)
+                        return
+                    }
+                    callback?(notifications.count)
+                })
+            }
         )
         
         self.flowController = UIFlowController(dependencies: dependencies)
@@ -155,7 +169,7 @@ class OPConfigObject: NSObject
     
     private func dismiss(notification: OPNotification, andTakeAction action: String){
         
-        self.dependencies?.notificationsRepository.dismiss(notification: notification) { error in
+        self.dependencies?.notificationsRepository?.dismiss(notification: notification) { error in
             if let error = error {
                 OPErrorContainer.displayError(error: error)
                 return

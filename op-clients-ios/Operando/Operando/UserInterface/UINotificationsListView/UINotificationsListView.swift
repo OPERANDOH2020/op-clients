@@ -90,8 +90,7 @@ class UINotificationsListView: RSNibDesignableView, UITableViewDataSource, UITab
         weak var weakSelf = self
         
         
-        cell.rightButtons = [ MGSwipeButton(title: Bundle.localizedStringFor(key: kDismissLocalizableKey), backgroundColor: UIColor.red, callback: { swipeCell -> Bool in
-            
+        let button = MGSwipeButton(title: "", icon: UIImage(named: "dismiss"), backgroundColor: .operandoRedDismiss, insets: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)) { swipeCell -> Bool in
             swipeCell?.hideSwipe(animated: true, completion: { _ in
                 guard let maybeChangedIndexPath = weakSelf?.tableView?.indexPath(for: swipeCell!) else {
                     return
@@ -100,7 +99,10 @@ class UINotificationsListView: RSNibDesignableView, UITableViewDataSource, UITab
             })
             
             return true
-        })! ]
+
+        }
+
+        cell.rightButtons = [button!]
         
         return cell
     }

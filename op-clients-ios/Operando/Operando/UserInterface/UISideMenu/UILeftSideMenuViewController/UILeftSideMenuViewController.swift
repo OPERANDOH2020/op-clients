@@ -41,6 +41,7 @@ class UILeftSideMenuViewController: UIViewController, UITableViewDataSource, UIT
     private func setupControls() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = 60
     }
     
     // MARK: - Lifecycle
@@ -66,7 +67,10 @@ class UILeftSideMenuViewController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: UILeftSideMenuTableViewCellIdentifier, for: indexPath) as! UILeftSideMenuTableViewCell
         
         guard let dataSource = dataSource else { return cell }
-        cell.setup(withObject: UILeftSideMenuTVCellObject(categoryImageName: dataSource[indexPath.row].categoryImageName, title: dataSource[indexPath.row].categoryName))
+        
+        let numOfNotificationsRequest: NumOfNotificationsRequestCallback? = indexPath.row == dataSource.count - 1 ? self.callbacks?.dashboardCallbacks?.numOfNotificationsRequestCallback : nil
+        
+        cell.setup(withObject: UILeftSideMenuTVCellObject(categoryImageName: dataSource[indexPath.row].categoryImageName, title: dataSource[indexPath.row].categoryName, numOfNotificationsRequestCallbackIfAny: numOfNotificationsRequest))
         
         return cell
     }

@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIDashboardButton" customModule="Operando" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="Kp6-ru-06E" id="dRO-4R-eLl"/>
+                <outlet property="numOfNotificationsLabel" destination="biR-f7-nsm" id="v3y-hn-yKW"/>
                 <outlet property="titleLabel" destination="nCm-j1-Usu" id="UQj-ig-kVc"/>
             </connections>
         </placeholder>
@@ -28,13 +29,20 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biR-f7-nsm" userLabel="numOfNotificationsLabel">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.035294117649999998" green="0.43137254899999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="nCm-j1-Usu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="3NL-zY-8QT"/>
                 <constraint firstItem="nCm-j1-Usu" firstAttribute="top" secondItem="Kp6-ru-06E" secondAttribute="bottom" id="KdK-GX-aW0"/>
+                <constraint firstItem="biR-f7-nsm" firstAttribute="top" secondItem="Kp6-ru-06E" secondAttribute="top" constant="20" id="KkZ-mT-P3a"/>
                 <constraint firstItem="Kp6-ru-06E" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-20" id="THn-Q6-BfF"/>
                 <constraint firstItem="Kp6-ru-06E" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WD5-SV-GjN"/>
+                <constraint firstItem="Kp6-ru-06E" firstAttribute="trailing" secondItem="biR-f7-nsm" secondAttribute="trailing" constant="30" id="n9w-QS-utc"/>
                 <constraint firstAttribute="trailing" secondItem="nCm-j1-Usu" secondAttribute="trailing" constant="5" id="z44-X7-1TN"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
