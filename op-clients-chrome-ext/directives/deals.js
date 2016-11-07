@@ -65,7 +65,6 @@ angular.module('pfbdeals', [])
                              var deal = response.data;
                              $scope.deal.subscribed = true;
                              $scope.deal.voucher = deal.voucher;
-                             Notification.success({message:"You have successfully subscribed to deal", positionY: 'bottom', positionX: 'center', delay: 2000});
                          })
 
                     }
@@ -74,7 +73,6 @@ angular.module('pfbdeals', [])
                         messengerService.send("unsubscribePfbDeal", $scope.deal.serviceId, function(response){
                             var deal = response.data;
                             $scope.deal.subscribed = false;
-                            Notification.success({message:"You have successfully unsubscribed to deal", positionY: 'bottom', positionX: 'center', delay: 2000});
                         })
                     }
                 }],
