@@ -65,6 +65,8 @@ angular.module('pfbdeals', [])
                              var deal = response.data;
                              $scope.deal.subscribed = true;
                              $scope.deal.voucher = deal.voucher;
+                             $scope.$apply();
+
                          })
 
                     }
@@ -73,6 +75,7 @@ angular.module('pfbdeals', [])
                         messengerService.send("unsubscribePfbDeal", $scope.deal.serviceId, function(response){
                             var deal = response.data;
                             $scope.deal.subscribed = false;
+                            $scope.$apply();
                         })
                     }
                 }],

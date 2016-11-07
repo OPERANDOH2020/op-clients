@@ -11,13 +11,27 @@
  */
 
 angular.module('extensions', [])
-    .directive('extensions', function () {
+    .directive('extensions', function ($timeout) {
         return {
             restrict: 'E',
             replace: true,
             scope: {},
-            link: function ($scope) {
+            link: function (element) {
+                $timeout(function(){
+                    $("#extensions_table").DataTable(
+                        {
+                            "paging": false,
+                            "searching": false,
+                            "info":false,
+                            "order": [[ 1, "asc" ]],
+                            "columnDefs": [ {
+                                "targets": 'no-sort',
+                                "orderable": false
+                            }]
+                        }
 
+                    );
+                },10);
             },
             controller: function ($scope) {
 
