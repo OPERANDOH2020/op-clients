@@ -16,7 +16,7 @@ typealias IdentityIndexCallback = ((_ item: String, _ index: Int ) -> Void)
 struct UIIdentitiesListCallbacks
 {
     let whenPressedToDeleteItemAtIndex: IdentityIndexCallback?
-    let whenActivatedItemAtIndex: IdentityIndexCallback?
+    let whenActivatedItem: ((_ item: String) -> Void)?
     
 }
 
@@ -51,26 +51,28 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
         
     }
     
-    func setupWith(initialList: [String], defaultIdentityIndex: Int, andCallbacks callbacks: UIIdentitiesListCallbacks?)
+    func setupWith(initialList: [String], defaultIdentityIndex: Int?, andCallbacks callbacks: UIIdentitiesListCallbacks?)
     {
+        self.callbacks = callbacks
+        
         guard let first = initialList.first else {
             return
         }
         
-        let defaultIdentity = initialList[defaultIdentityIndex]
         self.identitiesList = initialList
         
-        if defaultIdentityIndex != 0 {
-            self.identitiesList.remove(at: defaultIdentityIndex)
-            self.identitiesList.remove(at: 0)
-            
-            self.identitiesList.insert(defaultIdentity, at: 0)
-            self.identitiesList.insert(first, at: defaultIdentityIndex)
+        if let defaultIdentityIndex = defaultIdentityIndex {
+            let defaultIdentity = initialList[defaultIdentityIndex]
+            if defaultIdentityIndex != 0 {
+                self.identitiesList.remove(at: defaultIdentityIndex)
+                self.identitiesList.remove(at: 0)
+                
+                self.identitiesList.insert(defaultIdentity, at: 0)
+                self.identitiesList.insert(first, at: defaultIdentityIndex)
+            }
+            self.currentDefaultIdentity = defaultIdentity
         }
         
-        self.currentDefaultIdentity = defaultIdentity
-        
-        self.callbacks = callbacks
         self.tableView?.reloadData()
     }
     
@@ -128,10 +130,10 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
     func swipeTableCell(_ cell: MGSwipeTableCell!, swipeButtonsFor direction: MGSwipeDirection, swipeSettings: MGSwipeSettings!, expansionSettings: MGSwipeExpansionSettings!) -> [Any]!
     {
         guard direction == MGSwipeDirection.rightToLeft,
-              let indexPath = self.tableView?.indexPath(for: cell),
-              indexPath.row != self.currentDefaultIdentityIndex  else {
+              let indexPath = self.tableView?.indexPath(for: cell) else {
             return []
         }
+        
         weak var weakSelf = self
         let identity = self.identitiesList[indexPath.row]
         
@@ -150,14 +152,15 @@ class UIIdentitiesListView: RSNibDesignableView, UITableViewDataSource, UITableV
         let defaultButton = MGSwipeButton(title: Bundle.localizedStringFor(key: kMakeDefaultLocalizableKey), backgroundColor: UIColor.operandoCyan) { swipeCell -> Bool in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                guard let maybeChangedIndexPath = weakSelf?.tableView?.indexPath(for: swipeCell!) else {
-                    return
-                }
-                weakSelf?.callbacks?.whenActivatedItemAtIndex?(identity, maybeChangedIndexPath.row)
+                weakSelf?.callbacks?.whenActivatedItem?(identity)
             })
             
             
             return true
+        }
+        
+        if identity == self.currentDefaultIdentity {
+            return [deleteButton!]
         }
         
         return [defaultButton!, deleteButton!]

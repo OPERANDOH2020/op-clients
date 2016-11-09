@@ -123,6 +123,8 @@
 		989C41861DBE18E800951AE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989C41811DBE18E800951AE5 /* Info.plist */; };
 		989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41831DBE18E800951AE5 /* MGSwipeButton.m */; };
 		989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */; };
+		989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */; };
+		989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */; };
 		98B2563E1D5DEE570043335A /* WebKitSettingsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2563D1D5DEE570043335A /* WebKitSettingsReader.swift */; };
 		98B256411D5E130B0043335A /* UISNSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B256401D5E130B0043335A /* UISNSettingsView.swift */; };
 		98B256451D5E13840043335A /* UISNSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B256431D5E13840043335A /* UISNSettingsTableViewCell.swift */; };
@@ -323,6 +325,8 @@
 		989C41831DBE18E800951AE5 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
 		989C41841DBE18E800951AE5 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
 		989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
+		989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRealIdentityView.swift; path = UserInterface/UIRealIdentityView/UIRealIdentityView.swift; sourceTree = "<group>"; };
+		989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIRealIdentityView.xib; path = UserInterface/UIRealIdentityView/UIRealIdentityView.xib; sourceTree = "<group>"; };
 		98B2563D1D5DEE570043335A /* WebKitSettingsReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebKitSettingsReader.swift; path = OSPSettings/SettingsAppliers/WebKitSettingsReader.swift; sourceTree = "<group>"; };
 		98B256401D5E130B0043335A /* UISNSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsView.swift; path = UISNSettingsView/UISNSettingsView.swift; sourceTree = "<group>"; };
 		98B256431D5E13840043335A /* UISNSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISNSettingsTableViewCell.swift; path = UISNSettingsView/UISNSettingsTableViewCell/UISNSettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -965,6 +969,15 @@
 			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
+		989C8A7A1DD34634003BF341 /* UIRealIdentityView */ = {
+			isa = PBXGroup;
+			children = (
+				989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */,
+				989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */,
+			);
+			name = UIRealIdentityView;
+			sourceTree = "<group>";
+		};
 		98B2563F1D5E0DDF0043335A /* UISNSettingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1038,6 +1051,7 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				989C8A7A1DD34634003BF341 /* UIRealIdentityView */,
 				982227531DC8EBB90053B993 /* UILocalizable */,
 				9866A7C21DBF850500907D05 /* UINotificationsListView */,
 				9866A7BC1DBF774E00907D05 /* UIChangePasswordView */,
@@ -1361,6 +1375,7 @@
 				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
 				985CD8461D5C64750021C58C /* readSNSettings.js in Resources */,
 				98B256481D5E16590043335A /* UISNSettingsView.xib in Resources */,
+				989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */,
 				984C67F61D65A9FB009A8FE7 /* interceptPOST.js in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982DF0641DB6618700231BBD /* UIPfbDealTableViewCell.xib in Resources */,
@@ -1401,6 +1416,7 @@
 				982DF0351DB6579200231BBD /* AFHTTPSessionManager.m in Sources */,
 				98668B5D1DB0D0D900FDE63A /* ECSlidingViewController.m in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
+				989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
 				ADF3CA6F1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift in Sources */,
 				982DF0371DB6579200231BBD /* AFSecurityPolicy.m in Sources */,

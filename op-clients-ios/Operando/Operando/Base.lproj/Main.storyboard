@@ -371,45 +371,21 @@
                                     <constraint firstAttribute="height" constant="40" id="vUY-0K-514"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eR6-DZ-0Tg" userLabel="realIdentityView">
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="realIdentityIcon" translatesAutoresizingMaskIntoConstraints="NO" id="g3m-ac-ge5">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="39" id="G9J-wY-gBq"/>
-                                            <constraint firstAttribute="width" constant="38" id="aB3-BR-kO6"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x19-i7-lmX" userLabel="realIdentityLabel">
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" red="0.16470588235294117" green="0.12156862745098039" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is your real identity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgR-g9-cZw" userLabel="yourRealIdentityLabel" customClass="UILocalizableLabel" customModule="Operando" customModuleProvider="target">
-                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
-                                        <color key="textColor" red="0.56470588235294117" green="0.37254901960784315" blue="0.011764705882352941" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="localizingKey" value="kThisIsYourRealIdentityLocalizableKey"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eR6-DZ-0Tg" userLabel="realIdentityView" customClass="UIRealIdentityView" customModule="Operando" customModuleProvider="target">
                                 <color key="backgroundColor" red="0.99215686270000003" green="0.74117647060000003" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="g3m-ac-ge5" firstAttribute="leading" secondItem="eR6-DZ-0Tg" secondAttribute="leading" constant="14" id="8Wa-9v-NJ6"/>
                                     <constraint firstAttribute="height" constant="70" id="CLU-en-WT5"/>
-                                    <constraint firstItem="x19-i7-lmX" firstAttribute="top" secondItem="g3m-ac-ge5" secondAttribute="top" id="InS-3O-wbk"/>
-                                    <constraint firstItem="x19-i7-lmX" firstAttribute="leading" secondItem="g3m-ac-ge5" secondAttribute="trailing" constant="14" id="O5Y-cs-7CS"/>
-                                    <constraint firstItem="WgR-g9-cZw" firstAttribute="leading" secondItem="x19-i7-lmX" secondAttribute="leading" id="Qd0-1C-yX4"/>
-                                    <constraint firstItem="WgR-g9-cZw" firstAttribute="trailing" secondItem="x19-i7-lmX" secondAttribute="trailing" id="b9U-3b-Gzy"/>
-                                    <constraint firstAttribute="trailing" secondItem="x19-i7-lmX" secondAttribute="trailing" constant="10" id="nBu-Bd-hZ2"/>
-                                    <constraint firstItem="g3m-ac-ge5" firstAttribute="centerY" secondItem="eR6-DZ-0Tg" secondAttribute="centerY" constant="5" id="rVi-u5-4fd"/>
-                                    <constraint firstItem="WgR-g9-cZw" firstAttribute="top" secondItem="x19-i7-lmX" secondAttribute="bottom" id="wQK-jM-XPG"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGQ-8d-7bb" userLabel="alternativeIdentitiesView">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alternateIdentitiesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bTu-7K-WJt"/>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alternative Identities" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd0-PC-BXC" userLabel="alternativeIdentitiesLabel" customClass="UILocalizableLabel" customModule="Operando" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alternateIdentitiesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bTu-7K-WJt">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="38" id="QW2-8b-Ml0"/>
+                                            <constraint firstAttribute="height" constant="39" id="vPA-fr-e7o"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Alternative Identities" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd0-PC-BXC" userLabel="alternativeIdentitiesLabel" customClass="UILocalizableLabel" customModule="Operando" customModuleProvider="target">
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.1647058824" green="0.1215686275" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -423,17 +399,16 @@
                                     <constraint firstAttribute="trailing" secondItem="Cd0-PC-BXC" secondAttribute="trailing" constant="11" id="6Wx-bA-v71"/>
                                     <constraint firstItem="bTu-7K-WJt" firstAttribute="centerY" secondItem="UGQ-8d-7bb" secondAttribute="centerY" id="AlR-HX-T5M"/>
                                     <constraint firstItem="Cd0-PC-BXC" firstAttribute="centerY" secondItem="bTu-7K-WJt" secondAttribute="centerY" id="Rvo-a9-QTF"/>
+                                    <constraint firstItem="bTu-7K-WJt" firstAttribute="leading" secondItem="UGQ-8d-7bb" secondAttribute="leading" constant="15" id="agZ-mg-Wkc"/>
                                     <constraint firstAttribute="height" constant="55" id="iBt-Hw-sOR"/>
-                                    <constraint firstItem="Cd0-PC-BXC" firstAttribute="leading" secondItem="bTu-7K-WJt" secondAttribute="trailing" constant="13" id="j8e-vd-tZ3"/>
+                                    <constraint firstItem="Cd0-PC-BXC" firstAttribute="leading" secondItem="bTu-7K-WJt" secondAttribute="trailing" constant="15" id="j8e-vd-tZ3"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.8901960784313725" blue="0.7686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="bTu-7K-WJt" firstAttribute="height" secondItem="g3m-ac-ge5" secondAttribute="height" id="70P-ux-50c"/>
                             <constraint firstItem="onK-JH-v4P" firstAttribute="centerX" secondItem="w61-8T-TSx" secondAttribute="centerX" id="7n0-YW-xBh"/>
                             <constraint firstItem="eR6-DZ-0Tg" firstAttribute="leading" secondItem="w61-8T-TSx" secondAttribute="leading" id="Fq5-eV-W85"/>
-                            <constraint firstItem="bTu-7K-WJt" firstAttribute="width" secondItem="g3m-ac-ge5" secondAttribute="width" id="HBT-De-Cmx"/>
                             <constraint firstItem="GMq-Z1-qY2" firstAttribute="leading" secondItem="w61-8T-TSx" secondAttribute="leading" id="M4c-Oo-Zfa"/>
                             <constraint firstItem="7YK-YU-fIk" firstAttribute="top" secondItem="GMq-Z1-qY2" secondAttribute="bottom" id="Mea-FI-GNO"/>
                             <constraint firstAttribute="trailing" secondItem="GMq-Z1-qY2" secondAttribute="trailing" id="Mgc-jH-l9F"/>
@@ -446,7 +421,6 @@
                             <constraint firstItem="eR6-DZ-0Tg" firstAttribute="top" secondItem="43l-X3-vNM" secondAttribute="bottom" constant="-1" id="l4t-tk-uGj"/>
                             <constraint firstAttribute="trailing" secondItem="eR6-DZ-0Tg" secondAttribute="trailing" id="puv-01-OpX"/>
                             <constraint firstAttribute="trailing" secondItem="43l-X3-vNM" secondAttribute="trailing" id="r3q-Z1-qt5"/>
-                            <constraint firstItem="bTu-7K-WJt" firstAttribute="centerX" secondItem="g3m-ac-ge5" secondAttribute="centerX" id="t4o-tv-HIV"/>
                             <constraint firstItem="7YK-YU-fIk" firstAttribute="top" secondItem="onK-JH-v4P" secondAttribute="bottom" constant="6" id="vn4-t9-cf4"/>
                             <constraint firstItem="43l-X3-vNM" firstAttribute="top" secondItem="w61-8T-TSx" secondAttribute="top" id="x2x-wb-FTq"/>
                             <constraint firstItem="UGQ-8d-7bb" firstAttribute="trailing" secondItem="eR6-DZ-0Tg" secondAttribute="trailing" id="yin-t1-Br5"/>
@@ -459,8 +433,7 @@
                         <outlet property="addNewIdentityButton" destination="7YK-YU-fIk" id="tyU-Bm-46N"/>
                         <outlet property="identitiesListView" destination="GMq-Z1-qY2" id="aLD-TI-phE"/>
                         <outlet property="numOfIdentitiesLeftLabel" destination="onK-JH-v4P" id="aGz-hI-mKe"/>
-                        <outlet property="realIdentityLabel" destination="x19-i7-lmX" id="tMI-4k-PK6"/>
-                        <outlet property="yourRealIdentityLabel" destination="WgR-g9-cZw" id="knr-cg-gJy"/>
+                        <outlet property="realIdentityView" destination="eR6-DZ-0Tg" id="s6M-oj-VJp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y6t-hf-Ejn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -567,7 +540,6 @@
     <resources>
         <image name="alternateIdentitiesIcon" width="64" height="64"/>
         <image name="hamburger_Icon" width="26" height="15"/>
-        <image name="realIdentityIcon" width="64" height="64"/>
         <image name="user-brown" width="32" height="32"/>
     </resources>
 </document>

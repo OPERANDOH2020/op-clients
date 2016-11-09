@@ -20,6 +20,7 @@ let kMaxNumOfIdentities: Int = 20
 
 class UIIdentityManagementViewController: UIViewController
 {
+    private var realIdentity: String = ""
     private var identitiesRepository: IdentitiesManagementRepository?
     private var currentNumOfIdentities: Int = 0 {
         didSet{
@@ -29,11 +30,10 @@ class UIIdentityManagementViewController: UIViewController
     
     @IBOutlet weak var identitiesListView: UIIdentitiesListView?
     @IBOutlet weak var addNewIdentityButton: UIButton?
-    @IBOutlet weak var realIdentityLabel: UILabel!
     @IBOutlet weak var numOfIdentitiesLeftLabel: UILabel!
     
-    @IBOutlet weak var yourRealIdentityLabel: UILabel!
 
+    @IBOutlet weak var realIdentityView: UIRealIdentityView!
     
     
     func setupWith(identitiesRepository: IdentitiesManagementRepository?)
@@ -66,7 +66,8 @@ class UIIdentityManagementViewController: UIViewController
     private func loadCurrentIdentitiesWith(repository: IdentitiesManagementRepository?)
     {
         repository?.getRealIdentityWith(completion: { realIdentity, _ in
-            self.realIdentityLabel.text = realIdentity
+            self.realIdentity = realIdentity
+            self.realIdentityView.setupWith(identity: realIdentity)
         })
         
         repository?.getCurrentIdentitiesListWith(completion: { (identities, error) in
@@ -78,6 +79,11 @@ class UIIdentityManagementViewController: UIViewController
             
             self.currentNumOfIdentities = identities.identitiesList.count
             self.identitiesListView?.setupWith(initialList: identities.identitiesList, defaultIdentityIndex: identities.indexOfDefaultIdentity ,andCallbacks: self.callbacksFor(identitiesListView: self.identitiesListView))
+            
+            if identities.indexOfDefaultIdentity == nil {
+                // this means that the default identity is the real identity
+                self.realIdentityView.changeDisplay(to: .defaultIdentity, animated: true)
+            }
         })
     }
     
@@ -88,8 +94,8 @@ class UIIdentityManagementViewController: UIViewController
         
         return UIIdentitiesListCallbacks(whenPressedToDeleteItemAtIndex: { item, index in
             weakSelf?.delete(identity: item, atIndex: index)
-          }, whenActivatedItemAtIndex: { item, index in
-             weakSelf?.setAsDefault(identity: item, atIndex: index)
+          }, whenActivatedItem: { item in
+             weakSelf?.setAsDefault(identity: item)
         })
         
     }
@@ -98,23 +104,30 @@ class UIIdentityManagementViewController: UIViewController
         
         OPViewUtils.displayAlertWithMessage(message: Bundle.localizedStringFor(key: kDoYouWantToDeleteSIDLocalizableKey), withTitle: identity, addCancelAction: true) {
             
-            self.identitiesRepository?.remove(identity: identity, withCompletion: { success, error  in
+            self.identitiesRepository?.remove(identity: identity, withCompletion: { nextDefaultIdentity, error  in
                 if let error = error {
                     OPErrorContainer.displayError(error: error)
                     return
                 }
-                if !success{
+                if nextDefaultIdentity.characters.count == 0 {
                     OPErrorContainer.displayError(error: OPErrorContainer.unknownError)
                     return
                 }
                 
                 self.identitiesListView?.deleteItemAt(index: index)
+                
+                if nextDefaultIdentity == self.realIdentity {
+                    // must animate the new custom view
+                } else {
+                    self.identitiesListView?.displayAsDefault(identity: nextDefaultIdentity)
+                }
+                
                 self.currentNumOfIdentities -= 1
             })
         }
     }
     
-    private func setAsDefault(identity: String, atIndex index: Int)
+    private func setAsDefault(identity: String)
     {
         self.identitiesRepository?.updateDefaultIdentity(to: identity, withCompletion: { success, error  in
             if let error = error {
@@ -127,6 +140,8 @@ class UIIdentityManagementViewController: UIViewController
                 return
             }
             
+            let state: UIRealIdentityViewDisplayState = identity != self.realIdentity ? .nonDefault : .defaultIdentity
+            self.realIdentityView.changeDisplay(to: state, animated: true)
             self.identitiesListView?.displayAsDefault(identity: identity)
             
         })

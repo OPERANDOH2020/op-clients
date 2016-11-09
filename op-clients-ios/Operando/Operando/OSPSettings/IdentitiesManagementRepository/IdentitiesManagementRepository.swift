@@ -14,7 +14,7 @@ protocol IdentitiesManagementRepository {
     func getCurrentListOfDomainsWith(completion: ((_ domainsList: [Domain], _ error: NSError?) -> Void)?)
     func generateNewIdentityWith(completion: ((_ generatedIdentity: String, _ error: NSError?) -> Void)?)
     func add(identity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
-    func remove(identity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
+    func remove(identity: String, withCompletion completion: ((_ nextDefaultIdentity: String, _ error: NSError?) -> Void)?)
     func updateDefaultIdentity(to newIdentity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
     func getRealIdentityWith(completion: ((_ identity: String, _ error: NSError?) -> Void)?)
     
@@ -59,9 +59,9 @@ class DummyIdentitiesRepository: IdentitiesManagementRepository{
         }
         
     }
-    func remove(identity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?){
+    func remove(identity: String, withCompletion completion: ((_ success: String, _ error: NSError?) -> Void)?){
         DispatchQueue.main.async {
-            completion?(true, nil)
+            completion?("", nil)
         }
     }
     

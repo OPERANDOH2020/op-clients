@@ -21,7 +21,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         UserInfoRepository,
                         NotificationsRepository
 {
-    static let ServerURL = "http://192.168.100.86:8080";
+    static let ServerURL = "http://192.168.100.144:9001";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
     var whenReceivingData: ((_ data: [Any]) -> Void)?
@@ -424,25 +424,28 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         self.swarmClient.startSwarm(SwarmName.identity.rawValue, phase: SwarmPhase.start.rawValue, ctor: IdentityConstructor.createIdentity.rawValue, arguments: [["email": identity] as AnyObject ])
     }
     
-    func remove(identity: String, withCompletion completion: ((_ success: Bool, _ error: NSError?) -> Void)?)
+    func remove(identity: String, withCompletion completion: ((_ nextDefaultIdentity: String, _ error: NSError?) -> Void)?)
     {
         workingQueue.async {
             self.whenThereWasAnError = { error in
-                completion?(false, error)
+                completion?("", error)
             }
             
             self.whenReceivingData = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
-                    completion?(false, OPErrorContainer.errorInvalidServerResponse)
-                    return
-                }
-                guard let successStatus = SwarmClientResponseParsers.parseDeleteIdentitySuccessStatus(from: dataDict) else {
-                    let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
-                    completion?(false, error)
+                    completion?("", OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
                 
-                completion?(successStatus, nil)
+                print(dataDict)
+                
+                guard let nextDefaultIdentity = SwarmClientResponseParsers.parseNextDefaultIdentity(from: dataDict) else {
+                    let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
+                    completion?("", error)
+                    return
+                }
+                
+                completion?(nextDefaultIdentity, nil)
             }
         }
         

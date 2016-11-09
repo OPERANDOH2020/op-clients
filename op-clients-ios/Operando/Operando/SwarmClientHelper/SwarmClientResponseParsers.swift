@@ -11,8 +11,7 @@ import Foundation
 
 struct IdentitiesListResponse {
     let identitiesList: [String]
-    let indexOfDefaultIdentity: Int
-    
+    let indexOfDefaultIdentity: Int?
     static let defaultEmptyResponse = IdentitiesListResponse(identitiesList: [], indexOfDefaultIdentity: -1)
 }
 
@@ -149,23 +148,32 @@ class SwarmClientResponseParsers
     
     static func parseIdentitiesList(from dataDict: [String: Any]) -> IdentitiesListResponse?
     {
-        guard let identitiesArray = dataDict["identities"] as? [ [String: Any] ] else
-        {
+        guard var identitiesArray = dataDict["identities"] as? [ [String: Any] ] else {
             return nil
         }
         
-        var indexOfDefaultOne: Int = 0
+        let indexOfRealIdentity = identitiesArray.index { item -> Bool in
+            guard let isReal = item["isReal"] as? Bool,
+                isReal == true else {
+                    return false
+            }
+            return true
+        }
+        
+        if let indexOfRealIdentity = indexOfRealIdentity {
+            identitiesArray.remove(at: indexOfRealIdentity)
+        }
+        
+        var indexOfDefaultOne: Int?
         var identities: [String] = []
         
-        for (index, dict) in identitiesArray.enumerated()
-        {
-            guard let email = dict["email"] as? String, let isDefault = dict["isDefault"] as? Bool else {
+        for (index, dict) in identitiesArray.enumerated(){
+            guard let email = dict["email"] as? String,
+                  let isDefault = dict["isDefault"] as? Bool else {
                 return nil
             }
-            
             if isDefault { indexOfDefaultOne = index}
             identities.append(email)
-            
         }
         
         return IdentitiesListResponse(identitiesList: identities, indexOfDefaultIdentity: indexOfDefaultOne)
@@ -264,6 +272,15 @@ class SwarmClientResponseParsers
         return notifications
     }
     
+    
+    static func parseNextDefaultIdentity(from dataDict: [String: Any]) -> String? {
+        guard let identityDict = dataDict["default_identity"] as? [String: Any],
+              let identity = identityDict["email"] as? String else {
+               return nil
+        }
+        
+        return identity
+    }
     
     static func parseAddIdentitySuccessStatus(from dataDict: [String: Any]) -> Bool?
     {
