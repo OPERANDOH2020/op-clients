@@ -56,9 +56,6 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             serie: true
         });
 
-        // For any unmatched url, redirect to /home
-        $urlRouterProvider.otherwise("/home");
-
         // Now set up the states
         $stateProvider
             .state('home', {
@@ -87,7 +84,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             })
             .state("notifications", {
                 url: "/notifications",
-                templateUrl: "views/home/notifications.html"
+                templateUrl: "views/home/notifications.html",
             })
             .state("home.blog", {
                 url: "/blog",
@@ -280,6 +277,10 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 url: "/billing",
                 templateUrl: "views/account/billing.html"
             });
+
+            // For any unmatched url, redirect to /home
+            //TODO fix this, reminder about notifications
+            //$urlRouterProvider.otherwise("/home");
     })
     .run(["firstRunService","subscriptionsService", "$ocLazyLoad", function(firstRunService, subscriptionsService, $ocLazyLoad){
 

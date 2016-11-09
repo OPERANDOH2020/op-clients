@@ -46,7 +46,6 @@ var busActions = {
         });
 
         logout(function () {
-            console.log("here");
             if(clientPort){
                 clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
             }

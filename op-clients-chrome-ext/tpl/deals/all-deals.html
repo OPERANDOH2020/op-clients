@@ -1,29 +1,23 @@
 <div id="pfbdeals_container">
 
-    <div ng-switch="deals.length">
-        <div ng-switch-when="0">
-            <span> No deals yet</span>
-        </div>
-        <div ng-switch-default>
+    <div>
 
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th colspan="2">Service provider</th>
-                    <th>Deal</th>
-                    <th>Reward</th>
-                    <th width="180px"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr pfbdeal-row ng-repeat="deal in deals" deal="deal">
-                </tr>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th colspan="2">Service provider</th>
+                <th>Deal</th>
+                <th>Reward</th>
+                <th width="180px"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr pfbdeal-row ng-repeat="deal in deals" deal="deal">
+            </tr>
 
-                </tbody>
-            </table>
+            </tbody>
+        </table>
 
-
-        </div>
     </div>
 
 </div>

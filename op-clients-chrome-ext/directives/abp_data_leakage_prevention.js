@@ -38,7 +38,7 @@ angular.module("abp", [])
                 feature: "malware",
                 homepage: "http://malwaredomains.com/",
                 title: "Block malware",
-                feature_title:"Malware Blocking",
+                feature_title:"Block malware",
                 feature_description:"Make your browsing more secure by blocking known malware domains.",
                 url: "https://easylist-downloads.adblockplus.org/malwaredomains_full.txt"
             }

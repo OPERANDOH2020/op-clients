@@ -29,6 +29,9 @@ var privacyWizardService = exports.privacyWizardService = {
         })
 
     },
+    dismissPrivacyNotifications:function(){
+        swarmHub.startSwarm('PrivacyWizardSwarm.js', 'dismissPrivacyNotifications');
+    },
     getNextQuestionAndSuggestions : function(options, callback) {
         var activeOptions = options.activeOptions;
 

@@ -86,16 +86,13 @@ angular.module('notifications')
             restrict: 'E',
             replace: true,
             scope: {},
-            link: function ($scope) {
-
-            },
             controller: function ($scope, notificationService) {
                 $scope.notifications = {};
                 notificationService.getUserNotifications(function(notifications){
                     $scope.notifications.counter = notifications.length;
                 });
 
-                $scope.$on('notifications', function (event, notifications) {
+                $scope.$on('notificationCounterUpdate', function (event, notifications) {
                     console.log(notifications);
                     $scope.notifications.counter = notifications.length;
                 });
@@ -111,19 +108,13 @@ angular.module('notifications').
             restrict: 'E',
             replace: true,
             scope: {},
-            link: function ($scope) {
-
-            },
-            controller: function ($scope, notificationService) {
+            controller: function ($scope, notificationService, $rootScope) {
                 $scope.notifications = [];
 
                 notificationService.getUserNotifications(function(notifications){
                     $scope.notifications = notifications;
+                    $rootScope.$broadcast('notificationCounterUpdate', notifications);
                     $scope.$apply();
-                });
-
-                $scope.$on('notifications', function (event, notifications) {
-                    $scope.notifications.counter = notifications;
                 });
 
             },
@@ -174,11 +165,13 @@ angular.module('notifications').
                     else {
                         nAction = $scope.notification.action;
                     }
+
+                    console.log(nAction);
                     switch (nAction){
-                        case "identity": $state.transitionTo('identityManagement'); break;
-                        case "privacy-questionnaire": $state.transitionTo('socialNetworks.privacyQuestionnaire'); break;
-                        case "privacy-for-benefits": $state.transitionTo('deals'); break;
-                        case "single-click-privacy": $state.transitionTo('socialNetworks'); break;
+                        case "identity": $state.go('identityManagement'); break;
+                        case "privacy-questionnaire": $state.go('socialNetworks.privacyQuestionnaire'); break;
+                        case "privacy-for-benefits": $state.go('deals'); break;
+                        case "single-click-privacy": $state.go('socialNetworks'); break;
                     }
                 }
             },
