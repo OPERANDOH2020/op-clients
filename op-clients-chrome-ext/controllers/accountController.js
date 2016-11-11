@@ -15,7 +15,7 @@ angular.module("operando").
 controller("accountCtrl", ["$scope","messengerService","Notification", function($scope, messengerService,Notification){
 
     $scope.user = {
-        username: "",
+        email: "",
         password: "",
         confirmPassword: ""
     };

@@ -6,6 +6,6 @@
     </td>
     <td colspan="{{identity.isReal ? '2' : '1'}}" class="td_text">{{identity.email}}</span></td>
     <td class="actions" ng-if="!identity.isReal">
-        <button class="trash" ng-click="removeIdentity()" ng-disabled="identity.isDefault==true"></button>
+        <button class="trash" ng-click="removeIdentity()"></button>
     </td>
 </tr>

@@ -15,7 +15,7 @@ angular.module("login",[]).
             $scope.login = function(){
                 messengerService.send("login", {
                     login_details: {
-                        username: $scope.user.email,
+                        email: $scope.user.email,
                         password: $scope.user.password,
                         remember_me: $scope.user.remember_me
                     }

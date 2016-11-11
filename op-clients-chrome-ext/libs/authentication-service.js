@@ -27,7 +27,7 @@ var authenticationService = exports.authenticationService = {
     authenticateUser: function (login_details, securityFn, successFn) {
         var self = this;
 
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, login_details.username, login_details.password, "chromeBrowserExtension", "userLogin", securityFn);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, login_details.email, login_details.password, "chromeBrowserExtension", "userLogin", securityFn);
         console.log("Keep session ",login_details.remember_me);
         swarmHub.on('login.js', "success", function (swarm) {
             loggedIn = swarm.authenticated;
@@ -46,7 +46,7 @@ var authenticationService = exports.authenticationService = {
     registerUser: function (user, errorFunction, successFunction) {
 
         var self  = this;
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest", "guest", "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest@operando.eu", "guest", "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
         /**
          * TODO
@@ -69,7 +69,7 @@ var authenticationService = exports.authenticationService = {
 
     resetPassword:  function(email, successCallback, failCallback){
         var self  = this;
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest", "guest", "chromeBrowserExtension", "userLogin", failCallback, failCallback);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest@operando.eu", "guest", "chromeBrowserExtension", "userLogin", failCallback, failCallback);
 
         setTimeout(function(){
             var resetPassHandler = swarmHub.startSwarm("emails.js", "resetPassword", email);
@@ -98,11 +98,15 @@ var authenticationService = exports.authenticationService = {
         if (!username || !sessionId) {
             failCallback();
         }
+        else{
+
+        }
 
         swarmService.restoreConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, username, sessionId, failCallback, errorCallback, reconnectCallback);
         swarmHub.on('login.js', "restoreSucceed", function (swarm) {
             loggedIn = true;
-            self.setUser(swarm.userId,successCallback);
+            Cookies.set("sessionId", swarm.meta.sessionId);
+                self.setUser(swarm.userId,successCallback);
             swarmHub.off("login.js", "restoreSucceed");
         });
     },

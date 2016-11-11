@@ -40,7 +40,7 @@ var identityService = exports.identityService = {
     removeIdentity: function (identity, success_callback, error_callback) {
         var removeIdentityHandler = swarmHub.startSwarm('identity.js', 'removeIdentity', identity);
         removeIdentityHandler.onResponse("deleteIdentity_success",function(swarm){
-            success_callback(swarm.identity);
+            success_callback(swarm.default_identity);
         });
 
         removeIdentityHandler.onResponse("deleteIdentity_error",function(swarm){

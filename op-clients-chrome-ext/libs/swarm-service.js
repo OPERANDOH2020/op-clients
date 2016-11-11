@@ -40,7 +40,7 @@ var swarmService = exports.swarmService = {
     getConnection: function () {
         return swarmConnection;
     },
-    initConnection: function (host, port, username, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
+    initConnection: function (host, port, email, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
         if (errorFunction) {
             this.onConnectionError(errorFunction)
         }
@@ -54,14 +54,14 @@ var swarmService = exports.swarmService = {
         }
 
         if (!swarmConnection) {
-            swarmConnection = new SwarmClient(host, port, username, password, tenant, ctor, securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
+            swarmConnection = new SwarmClient(host, port, email, password, tenant, ctor, securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
             swarmHub.resetConnection(swarmConnection);
         }
         else {
-            swarmConnection.tryLogin(username, password, tenant, ctor, false, securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
+            swarmConnection.tryLogin(email, password, tenant, ctor, false, securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
         }
     },
-    restoreConnection: function (host, port, username, sessionId, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
+    restoreConnection: function (host, port, email, sessionId, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
 
         if (errorFunction) {
             this.onConnectionError(errorFunction)
@@ -76,7 +76,7 @@ var swarmService = exports.swarmService = {
         }
 
 
-        swarmConnection = new SwarmClient(host, port, username, sessionId, "chromeBrowserExtension", "restoreSession", securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
+        swarmConnection = new SwarmClient(host, port, email, sessionId, "chromeBrowserExtension", "restoreSession", securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
         swarmHub.resetConnection(swarmConnection);
     },
     removeConnection: function () {
