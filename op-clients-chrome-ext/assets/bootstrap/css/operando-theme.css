@@ -726,8 +726,10 @@ color:#FFF;
     background-size: 45%;
 }
 
-#wrapper button.view_permissions.hide_view_button{
-    visibility: hidden;
+#wrapper button.view_permissions.no_permission{
+    background: url("/operando/assets/images/no_permission.png") no-repeat center;
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 #wrapper button.extension_uninstall,
@@ -906,8 +908,16 @@ border-left:2px solid #fe9901;
 }
 
 #pfbdeals_container table.table tr:hover td,
-#identities_container table.table tr:hover td{
+#identities_container table.table tr:not(.thead):hover td{
     background:#fdfaef;
+}
+
+#identities_container p small{
+    font-size: 95%;
+}
+
+#identities_container tr:not(.thead){
+    cursor: pointer;
 }
 
 #identities_container .table>tbody>tr.defaultIdentity>td,
@@ -921,7 +931,7 @@ border-left:2px solid #fe9901;
 #identities_container .table>thead>tr.defaultIdentity>td,
 #identities_container .table>thead>tr.defaultIdentity>th,
 #identities_container .table>thead>tr>td.defaultIdentity,
-#identities_container.table>thead>tr>th.defaultIdentity{
+#identities_container .table>thead>tr>th.defaultIdentity{
     background: #ffebba;
     font-weight: bold;
 }
@@ -1996,7 +2006,6 @@ top:0;
 {
     font-size: 16px;
     text-align: justify;
-    text-indent: 50px;
 }
 
 .social_networks_action_progress_container{
@@ -2076,3 +2085,4 @@ input.ng-invalid:not(.ng-untouched){
     text-transform: capitalize;
     font-weight: bold;
 }
+

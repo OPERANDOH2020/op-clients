@@ -38,7 +38,7 @@ var authenticationService = exports.authenticationService = {
             }
             Cookies.set("sessionId", swarm.meta.sessionId,  { expires: daysUntilCookieExpire });
             Cookies.set("userId", swarm.userId,{ expires: daysUntilCookieExpire });
-            self.setUser(swarm.userId, successFn);
+            self.setUser(successFn);
             swarmHub.off("login.js", "success");
         });
     },
@@ -48,11 +48,6 @@ var authenticationService = exports.authenticationService = {
         var self  = this;
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest@operando.eu", "guest", "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
-        /**
-         * TODO
-         * Remove this, add guest login from the first step
-         *
-         */
         setTimeout(function(){
             var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
             registerHandler.onResponse("success", function(swarm){
@@ -64,7 +59,7 @@ var authenticationService = exports.authenticationService = {
                 errorFunction(swarm.error);
                 self.logoutCurrentUser();
             });
-        },300);
+        },1000);
     },
 
     resetPassword:  function(email, successCallback, failCallback){
@@ -106,19 +101,18 @@ var authenticationService = exports.authenticationService = {
         swarmHub.on('login.js', "restoreSucceed", function (swarm) {
             loggedIn = true;
             Cookies.set("sessionId", swarm.meta.sessionId);
-                self.setUser(swarm.userId,successCallback);
+                self.setUser(successCallback);
             swarmHub.off("login.js", "restoreSucceed");
         });
     },
 
-    setUser: function (userId, callback) {
+    setUser: function (callback) {
         var setUserHandler = swarmHub.startSwarm('UserInfo.js', 'info');
-
-        swarmHub.on("UserInfo.js","result", function(swarm){
+        setUserHandler.onResponse("result", function(swarm){
             authenticatedUser = swarm.result;
             loggedInObservable.notify();
             if(callback){
-                callback();
+                callback(authenticatedUser);
             }
         });
 

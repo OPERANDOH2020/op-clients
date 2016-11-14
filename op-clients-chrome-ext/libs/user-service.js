@@ -13,11 +13,17 @@
 
 var bus = require("bus-service").bus;
 
+var userUpdatedObservable = swarmHub.createObservable();
+var authenticationService = require("authentication-service").authenticationService;
+
 var userService = exports.userService = {
     updateUserInfo: function (user_details, success_callback) {
         var updateUserInfoHandler = swarmHub.startSwarm('UserInfo.js', 'updateUserInfo', user_details);
-        updateUserInfoHandler.onResponse("updatedUserInfo", function(response){
-            success_callback(response);
+        updateUserInfoHandler.onResponse("updatedUserInfo", function(){
+            success_callback();
+            authenticationService.setUser(function(){
+                userUpdatedObservable.notify();
+            });
         });
     },
 
@@ -30,6 +36,12 @@ var userService = exports.userService = {
         changePasswordHandler.onResponse("passwordChangeFailure", function(response){
             error_callback(response.error);
         });
+    },
+
+    userUpdated : function(callback){
+        userUpdatedObservable.observe(function(){
+            callback();
+        }, true);
     }
 }
 

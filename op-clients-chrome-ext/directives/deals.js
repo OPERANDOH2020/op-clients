@@ -66,7 +66,7 @@ angular.module('pfbdeals', [])
                              $scope.deal.subscribed = true;
                              $scope.deal.voucher = deal.voucher;
                              $scope.$apply();
-
+                             Notification.success({message: "Deal activated! See email for details!", positionY: 'bottom', positionX: 'center', delay: 5000});
                          })
 
                     }

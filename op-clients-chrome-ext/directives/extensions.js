@@ -23,7 +23,7 @@ angular.module('extensions', [])
                             "paging": false,
                             "searching": false,
                             "info":false,
-                            "order": [[ 1, "asc" ]],
+                            "order": [[ 0, "asc" ]],
                             "columnDefs": [ {
                                 "targets": 'no-sort',
                                 "orderable": false
@@ -31,7 +31,7 @@ angular.module('extensions', [])
                         }
 
                     );
-                },10);
+                },50);
             },
             controller: function ($scope) {
 

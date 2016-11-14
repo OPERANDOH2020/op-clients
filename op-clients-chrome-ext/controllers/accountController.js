@@ -15,10 +15,14 @@ angular.module("operando").
 controller("accountCtrl", ["$scope","messengerService","Notification", function($scope, messengerService,Notification){
 
     $scope.user = {
-        email: "",
         password: "",
         confirmPassword: ""
     };
+
+    messengerService.send("getCurrentUser", function(user){
+        $scope.email = user.email;
+        $scope.$apply();
+    })
 
     var alias = this;
 
@@ -61,7 +65,8 @@ controller("accountCtrl", ["$scope","messengerService","Notification", function(
 
     }
     $scope.updateEmail = function(){
-        messengerService.send("updateUserInfo",{email:$scope.user.email}, function(){
+        messengerService.send("updateUserInfo",{email:$scope.email}, function(){
+            $scope.emailIsEditMode = false;
             Notification.success({message: "Email successfully updated!", positionY: 'bottom', positionX: 'center', delay: 3000});
         })
     }

@@ -23,7 +23,7 @@ angular.module("abp", [])
                 homepage: "https://easylist.adblockplus.org/",
                 title: "EasyPrivacy",
                 feature_title:"Protect against tracking",
-                feature_description:"Browse privately by disabling tracking - hiding your tracks from ad companies that would track your every move.",
+                feature_description:"Prevent web sites and and advertisers from tracking you.",
                 url: "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
             },
             {
@@ -31,7 +31,7 @@ angular.module("abp", [])
                 homepage: "https://www.fanboy.co.nz/",
                 title: "Fanboy's Social Blocking List",
                 feature_title:"Remove social media buttons",
-                feature_description:"Automatically rid your browsing experience of social media buttons, such as the Facebook Like, which appear on web pages and track your behavior.",
+                feature_description:"Automatically remove buttons such as Facebook Like – these are used to track your behavior.",
                 url: "https://easylist-downloads.adblockplus.org/fanboy-social.txt"
             },
             {

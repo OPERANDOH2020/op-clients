@@ -169,7 +169,6 @@ angular.module('notifications').
                     console.log(nAction);
                     switch (nAction){
                         case "identity": $state.go('identityManagement'); break;
-                        case "privacy-questionnaire": $state.go('socialNetworks.privacyQuestionnaire'); break;
                         case "privacy-for-benefits": $state.go('deals'); break;
                         case "single-click-privacy": $state.go('socialNetworks'); break;
                     }

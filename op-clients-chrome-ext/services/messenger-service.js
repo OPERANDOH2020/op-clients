@@ -19,7 +19,7 @@ operandoCore
         var events = {};
 
         port.onMessage.addListener(function (response) {
-            if (response.type == "SOLVED_REQUEST") {
+            if (response.type === "SOLVED_REQUEST") {
                 if (response.action && callbacks[response.action]) {
                     while (callbacks[response.action].length > 0) {
                         var messageCallback = callbacks[response.action].pop();
@@ -29,7 +29,8 @@ operandoCore
                 }
             }
             else {
-                if (response.type == "BACKGROUND_DEMAND") {
+                if (response.type === "BACKGROUND_DEMAND") {
+                    console.log(response.action);
                     if (response.action && events[response.action]) {
                         events[response.action].forEach(function (callback) {
                             callback(response.message);
@@ -46,6 +47,7 @@ operandoCore
                 events[event] = [];
             }
             events[event].push(callback);
+            port.postMessage({action: event, message:{messageType:"SUBSCRIBER"}});
         }
 
         var send = function (){

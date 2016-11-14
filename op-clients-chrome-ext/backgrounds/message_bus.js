@@ -164,8 +164,6 @@ chrome.runtime.onConnect.addListener(function (_port) {
              **/
             clientPort.onMessage.addListener(function (request) {
 
-
-
                 if(busActions[request.action]){
                         var action = busActions[request.action];
                         action(request, clientPort);
@@ -176,17 +174,22 @@ chrome.runtime.onConnect.addListener(function (_port) {
                         var actionFn = bus.getAction(request.action);
                         var args = [];
 
-                        if(request.message!== undefined && (typeof request.message!=="object" && typeof request.message !== null || Object.keys(request.message).length > 0)){
+                        var messageType = "SOLVED_REQUEST";
+                        if(request.message && request.message.messageType === "SUBSCRIBER"){
+                            messageType = "BACKGROUND_DEMAND";
+                        }
+
+                        else if(request.message!== undefined && (typeof request.message!=="object" && typeof request.message !== null || Object.keys(request.message).length > 0)){
                             args.push(request.message);
                         }
 
                         args.push(function(data){
                             var response = data;
-                            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success", data: response}});
+                            clientPort.postMessage({type: messageType, action: request.action, message: {status:"success", data: response}});
                         });
 
                         args.push(function(err){
-                            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {error:err.message?err.message:err}});
+                            clientPort.postMessage({type: messageType, action: request.action, message: {error:err.message?err.message:err}});
                         });
 
                         actionFn.apply(actionFn, args);

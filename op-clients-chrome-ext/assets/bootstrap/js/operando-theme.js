@@ -9,6 +9,7 @@ $(document).ready(function () {
                 theme: "light-thick",
                 scrollbarPosition: "outside",
                 scrollInertia:300,
+                mouseWheelPixels:50,
                 callbacks: {
                     whileScrolling: function () {
                         if (this.mcs.top < -100) {
@@ -37,33 +38,6 @@ $(document).ready(function () {
                 });
 
             })(jQuery);
-
-            /**menu black magic here**/
-
-            /*$(".no-sub-menu a").on("click", function () {
-                $('.collapse').collapse('hide');
-                $('.opened').removeClass('opened');
-            })
-
-            $('.panel-collapse').on('hide.bs.collapse', function(e){
-
-                if ($(this).is(e.target)) {
-                    $(this).closest(".panel").each(function(){
-                        if($(this).find("li.active").length == 0){
-                            $(this).removeClass('opened');
-                        }
-
-                    })
-                }
-            });
-
-            $('.panel-collapse').on('show.bs.collapse', function(e){
-                if ($(this).is(e.target)) {
-                    $(this).closest(".panel").each(function () {
-                        $(this).addClass('opened');
-                    })
-                }
-            });*/
 
         });
 

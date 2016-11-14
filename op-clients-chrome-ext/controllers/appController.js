@@ -20,18 +20,28 @@ controller("appCtrl", ["$scope", "messengerService","$window","notificationServi
         messengerService.send("logout", logoutHandler);
     }
 
-    messengerService.send("getCurrentUser", function(user){
+    messengerService.send("getCurrentUser",function(user){
         $scope.user = user;
         $scope.userIsLoggedIn = true;
         $scope.$apply();
     });
 
+    messengerService.on("userUpdated", updatedUserHandler);
+
     messengerService.send("notifyWhenLogout", logoutHandler);
 
 
+    function updatedUserHandler(){
+
+        messengerService.send("getCurrentUser",function(user){
+            $scope.user = user;
+            $scope.$apply();
+        });
+    }
+
     function logoutHandler(){
         $scope.userIsLoggedIn = false;
-        $window.location.href = "http://operando.eu";
+        $window.location.href = "http://plusprivacy.com";
     }
 
 }]);

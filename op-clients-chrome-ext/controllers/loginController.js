@@ -64,7 +64,7 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
     }
 
     successFunction = function () {
-        messengerService.send("getCurrentUser",{}, function(user){
+        messengerService.send("getCurrentUser", function(user){
             $scope.loginAreaState = "loggedin";
             $scope.user.email = user.email;
             $scope.isAuthenticated = true;
