@@ -386,11 +386,7 @@ label
   position: relative;
 }
 
-.operando_wrapper > ul > li:hover{
-    background:#e5e3df;
-}
-
-.operando_wrapper > ul > li:hover{
+.operando_wrapper > ul > li:not(#login_area):hover{
     background:#e5e3df;
 }
 
@@ -418,7 +414,6 @@ label
 }
 
 .operando_wrapper ul > li > div.user_logged_in{
-  background: url(../operando/assets/images/icons/user.png) no-repeat left center;
   padding-left: 10px;
 }
 
@@ -445,6 +440,7 @@ label
 
 .user_area{
   height: 70px;
+  background: url(../operando/assets/images/icons/user.png) no-repeat left 5px;
 }
 
 .user_area .keep_user_logged_in{
@@ -474,7 +470,8 @@ ul.popup-login-area{
   width:40%;
 }
 
-#user_area_login hr{
+#user_area_login hr,
+#user_area_register hr{
   border-top: 1px dashed #a5a4a1;
   margin: 10px -15px 10px -15px;
 }
@@ -497,16 +494,6 @@ ul.popup-login-area{
 .user_actions button[disabled],
 .user_actions button[disabled]:hover{
   background: #F5D297;
-}
-
-#user_area_forgot_password .user_actions{
-  margin-left:57px;
-}
-#user_area_register .user_actions{
-
-}
-#user_area_forgot_password #user_email{
-  width:200px;
 }
 
 .user_actions button:hover,

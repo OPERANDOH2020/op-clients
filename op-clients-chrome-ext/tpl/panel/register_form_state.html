@@ -26,9 +26,10 @@
                                ng-model="user.repeat_password" placeholder="Confirm password" class="form-control"/>
                     </div>
 
+                    <hr/>
 
                     <div class="form-group form_submit user_actions">
-
+                        <div class="row">
                             <div class="col-xs-7">
                                 <button ng-click="register()" type="submit" ng-disabled="requestIsProcessed">Sign up
                                 </button>
@@ -37,6 +38,7 @@
                                 <button ng-click="cancel()" type="submit" validation-reset="RegistrationForm">Back
                                 </button>
                             </div>
+                        </div>
 
                     </div>
 
