@@ -1,0 +1,122 @@
+[
+    {
+        "outputFile": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 46,
+                    "endOffset": 97
+                },
+                "from": {
+                    "file": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 102,
+                    "endColumn": 47,
+                    "endOffset": 145
+                },
+                "from": {
+                    "file": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 150,
+                    "endColumn": 45,
+                    "endOffset": 191
+                },
+                "from": {
+                    "file": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 196,
+                    "endColumn": 46,
+                    "endOffset": 238
+                },
+                "from": {
+                    "file": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 243,
+                    "endColumn": 50,
+                    "endOffset": 289
+                },
+                "from": {
+                    "file": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 294,
+                    "endColumn": 49,
+                    "endOffset": 339
+                },
+                "from": {
+                    "file": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 344,
+                    "endColumn": 45,
+                    "endOffset": 385
+                },
+                "from": {
+                    "file": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 344,
+                        "endColumn": 45,
+                        "endOffset": 385
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 390,
+                    "endColumn": 46,
+                    "endOffset": 432
+                },
+                "from": {
+                    "file": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 437,
+                    "endColumn": 47,
+                    "endOffset": 480
+                },
+                "from": {
+                    "file": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\Operando\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml"
+                }
+            }
+        ]
+    }
+]

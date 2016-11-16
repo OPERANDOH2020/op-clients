@@ -142,7 +142,7 @@ public class MainActivity extends AbstractLeftMenuActivity {
 
     public void doOnInit() {
         EventProvider eventProvider = EventProvider.getInstance();
-        swarmClient = SwarmClient.getInstance(SwarmConstants.SWARMS_CONNECTION, "chromeBrowserExtension");
+        swarmClient = SwarmClient.getInstance(SwarmConstants.SWARMS_URL_DEBUG, "chromeBrowserExtension");
         //login
         /*String[] commandArguments = {"rafa", "swarm"};
         swarmClient.startSwarm("login.js", "start", "userLogin", commandArguments);*/

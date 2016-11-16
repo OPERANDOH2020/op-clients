@@ -71,7 +71,7 @@
               android:layout_height="100dp"/>
           <ImageView
           android:layout_width="60dp"
-          android:background="@drawable/logo"
+          android:background="@drawable/logo_bevel"
           android:layout_gravity="center"
           android:layout_height="60dp"/>
       </FrameLayout>

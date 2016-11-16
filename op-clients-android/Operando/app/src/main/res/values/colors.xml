@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#FEC742</color>-->
+    <!--<color name="colorPrimaryDark">#745b1e</color>-->
+    <!--<color name="colorAccent">#003049</color>-->
+    <!--<color name="amaranth_red">#d62828</color>-->
+    <!--<color name="bright_orange">#F77F00</color>-->
+    <!--<color name="dutch_white">#EAE2B7</color>-->
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryDark">#E88B00</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="amaranth_red">#d62828</color>
+    <color name="primary_text">#212121</color>
+    <color name="bright_orange">#F77F00</color>
+    <color name="main_background">#FFDCA0</color>
+</resources>
