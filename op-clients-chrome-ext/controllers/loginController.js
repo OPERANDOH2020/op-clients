@@ -81,6 +81,9 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
 
     $scope.login = function () {
         $scope.requestIsProcessed = true;
+        $scope.requestStatus = "pending";
+        $scope.info.status = "success";
+        $scope.info.message = 'Logging in...';
         messengerService.send("login", {
             login_details: {
                 email: $scope.user.email,
@@ -90,12 +93,12 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
         }, function (response) {
             $scope.requestIsProcessed = false;
             if (response.success) {
-                chrome.runtime.openOptionsPage();
 
+                chrome.runtime.openOptionsPage();
                 setTimeout(function(){
                     window.close();
                 },50);
-                //successFunction();
+
             }
             else if (response.error)
                 securityErrorFunction();
@@ -140,6 +143,7 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
 
         $scope.info.status = "success";
         $scope.info.message = 'Processing...';
+        $scope.requestStatus = "pending";
 
         $scope.requestIsProcessed = true;
 
@@ -182,9 +186,11 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
     });
 
     $scope.logout = function(){
+        $scope.requestStatus = "pending";
         $scope.requestIsProcessed = true;
         messengerService.send("logout",function(){
             $scope.requestIsProcessed = false;
+            $scope.requestStatus = "completed";
             $scope.loginAreaState = "loggedout";
             $scope.isAuthenticated = false;
             $scope.user = angular.copy(defaultUser);

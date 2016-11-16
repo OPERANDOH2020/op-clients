@@ -17,7 +17,7 @@ var userUpdatedObservable = swarmHub.createObservable();
 var authenticationService = require("authentication-service").authenticationService;
 
 var userService = exports.userService = {
-    updateUserInfo: function (user_details, success_callback) {
+    updateUserInfo: function (user_details, success_callback, error_callback) {
         var updateUserInfoHandler = swarmHub.startSwarm('UserInfo.js', 'updateUserInfo', user_details);
         updateUserInfoHandler.onResponse("updatedUserInfo", function(){
             success_callback();
@@ -25,6 +25,9 @@ var userService = exports.userService = {
                 userUpdatedObservable.notify();
             });
         });
+        updateUserInfoHandler.onResponse("userUpdateFailed", function(response){
+            error_callback(response.error);
+        })
     },
 
     changePassword:function(changePasswordData, success_callback, error_callback){

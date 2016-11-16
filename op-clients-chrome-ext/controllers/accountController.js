@@ -62,12 +62,23 @@ controller("accountCtrl", ["$scope","messengerService","Notification", function(
             }
         });
 
-
     }
-    $scope.updateEmail = function(){
-        messengerService.send("updateUserInfo",{email:$scope.email}, function(){
-            $scope.emailIsEditMode = false;
-            Notification.success({message: "Email successfully updated!", positionY: 'bottom', positionX: 'center', delay: 3000});
+    $scope.updateEmail = function () {
+        messengerService.send("updateUserInfo", {email: $scope.email}, function (response) {
+            console.log(response);
+            if (response.status === "success") {
+                $scope.emailIsEditMode = false;
+                Notification.success({
+                    message: "Email successfully updated!",
+                    positionY: 'bottom',
+                    positionX: 'center',
+                    delay: 3000
+                });
+            }
+            else if (response.error) {
+                Notification.error({message: response.error, positionY: 'bottom', positionX: 'center', delay: 3000});
+
+            }
         })
     }
 
@@ -106,6 +117,6 @@ controller("accountCtrl", ["$scope","messengerService","Notification", function(
                 });
             }
         };
-    });;
+    });
 
 

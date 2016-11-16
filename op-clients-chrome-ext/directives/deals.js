@@ -49,7 +49,15 @@ angular.module('pfbdeals', [])
                 replace: true,
                 scope: {deal: "="},
                 controller: ["$scope","messengerService","Notification","$state",function ($scope, messengerService, Notification) {
+                    $scope.showVoucher = false;
 
+                    $scope.showVoucherFn=function(){
+                        $scope.showVoucher = true;
+                    }
+
+                    $scope.hideVoucherFn=function(){
+                        $scope.showVoucher = false;
+                    }
                     $scope.toggleDeal = function(){
                         if($scope.deal.subscribed == false){
                             $scope.acceptDeal();
@@ -82,4 +90,21 @@ angular.module('pfbdeals', [])
                 templateUrl: '/operando/tpl/deals/pfbdealRow.html'
             }
         }
-    );
+    )
+    .directive('voucher', function(){
+        return {
+            require:"^pfbdealRow",
+            restrict:"E",
+            replace:true,
+            scope:{
+                voucherCode:"=",
+                logo:"=",
+                website:"=",
+                benefit:"="
+            },
+            link:function(){
+
+            },
+            templateUrl:'/operando/tpl/deals/voucher.html'
+        }
+    });

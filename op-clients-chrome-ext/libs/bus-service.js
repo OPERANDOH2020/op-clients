@@ -22,7 +22,6 @@ var bus = exports.bus = {
 
         else{
             busActions[key] = callback;
-            console.log(busActions);
         }
     },
 

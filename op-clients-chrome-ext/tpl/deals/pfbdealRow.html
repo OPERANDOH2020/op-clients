@@ -12,8 +12,14 @@
         </div>
     </td>
     <td class="deal_description">{{deal.description}}</td>
-    <td class="pfb_reward" ng-if="deal.subscribed == true">{{deal.voucher}}</td>
-    <td class="voucher_code" ng-if="deal.subscribed == false" ng-bind-html="deal.benefit | trusthtml"></td>
+    <td class="voucher_code">
+        <span ng-bind-html="deal.benefit | trusthtml"></span>
+        <div class="voucher_container" ng-mouseover="showVoucherFn()" ng-mouseleave="hideVoucherFn()" ng-if="deal.subscribed == true">
+        <button class="voucher_btn" type="button"></button>
+        <voucher ng-if="showVoucher" voucher-code="deal.voucher" website="deal.website", logo="deal.logo", benefit="deal.benefit"></voucher>
+        </div>
+
+    </td>
     <td class="actions">
 
         <label><input ng-checked="deal.subscribed==true" ng-click="toggleDeal()"

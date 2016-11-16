@@ -804,7 +804,7 @@ color:#FFF;
     margin-top: 83px;
 }
 
-.col-xs-2 {
+.sidebar_expandable_menu > .col-xs-2 {
     background:#4b4b4b;
     padding-right: 0;
     margin-right: 0;
@@ -883,11 +883,6 @@ border-left:2px solid #fe9901;
     vertical-align: middle;
 }
 
-#pfbdeals_container .pfb_reward{
-    text-align: center;
-    vertical-align: middle;
-}
-
 #pfbdeals_container .deal_description{
     width: 50%;
 }
@@ -905,6 +900,20 @@ border-left:2px solid #fe9901;
     text-align: center;
     vertical-align: middle;
     min-width: 120px;
+    position: relative;
+    padding-right: 65px;
+}
+
+#wrapper button.voucher_btn{
+    background: url("/operando/assets/images/voucher.png") no-repeat left center;
+    height: 32px;
+    width:32px;
+    position: absolute;
+    right: 10px;
+    top:50%;
+    border: none;
+    margin-top: -16px;
+    outline:none;
 }
 
 #pfbdeals_container table.table tr:hover td,
@@ -1047,8 +1056,6 @@ border: none;
     bottom: 5px;
     display: block;
 }
-
-
 
 .alert .alert_container{
     padding: 10px 70px;
@@ -2086,3 +2093,134 @@ input.ng-invalid:not(.ng-untouched){
     font-weight: bold;
 }
 
+/*Voucher*/
+.voucher{
+    width:350px;
+    height: 192px;
+    border-radius: 10px;
+    position: absolute;
+    padding: 20px;
+    border:1px solid #d5d5d5;
+    background: #fbf4e6;
+    z-index: 1000;
+    right: 55px;
+    bottom: calc(50% - 96px);
+    text-align: left;}
+
+.voucher:after, .voucher:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.voucher:after {
+    border-color: rgba(251, 244, 230, 0);
+    border-left-color: #fbf4e6;
+    border-width: 10px;
+    margin-top: -10px;
+}
+.voucher:before {
+    border-color: rgba(213, 213, 213, 0);
+    border-left-color: #d5d5d5;
+    border-width: 11px;
+    margin-top: -11px;
+}
+
+.voucher_icon{
+    height: 48px;
+    background: white;
+    text-align: left;
+    width: 48px;
+    padding: 0px;
+    display: table-cell;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.voucher_logo{
+    border-radius: 50%;
+}
+
+.voucher_website {
+    display: table-cell;
+    vertical-align: middle;
+    height: 48px;
+}
+
+.voucher_benefit{
+    text-align: center;
+}
+
+.voucher_website span,
+.voucher_benefit span{
+    vertical-align: middle;
+    display: table-cell;
+    height: 48px;
+    padding-left: 10px;
+    color:#4B4B4B;
+}
+
+.voucher_website span{
+padding-left: 5px;
+}
+
+.voucher_benefit span{
+    font-weight: bold;
+    float:right;
+    margin-top: 11px;
+}
+
+.voucher_number_container{
+    margin-top: 20px;
+}
+
+.voucher_number{
+    background: url("/operando/assets/images/voucher_background.png") repeat-x #FFF;
+    padding: 8px;
+    border: 1px solid #CCC;
+    text-align: center;
+}
+
+.voucher_number span{
+    font-size: 17px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #4B4B4B;
+}
+
+.voucher span.code_label{
+    margin-bottom: 5px;
+    color: #777;
+    display: block;
+}
+
+#wrapper .voucher button.copy_to_clipboard{
+    height: 42px;
+    background: #FFF;
+    outline:none;
+}
+#wrapper .voucher button.copy_to_clipboard:hover{
+    background: inherit;
+}
+
+.no-gutter[class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+
+.voucher_container {
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    border: none;
+    margin-top: -27px;
+    width: 70px;
+    height: 50px;
+
+}
