@@ -17,7 +17,7 @@ class UINotificationsViewController: UIViewController {
     
     
     
-    func setup(with notificationsRepository: NotificationsRepository?){
+    func setup(with notificationsRepository: NotificationsRepository?, notificationCallback: NotificationActionCallback?){
         let _ = self.view
         self.notificationsRepository = notificationsRepository
         
@@ -27,7 +27,7 @@ class UINotificationsViewController: UIViewController {
                 return
             }
             
-            self.notificationsListView.setupWith(initialListOfNotifications: notifications, callbacks: self.callbacksFor(notificationsView: self.notificationsListView))
+            self.notificationsListView.setupWith(initialListOfNotifications: notifications, callbacks: self.callbacksFor(notificationsView: self.notificationsListView, including: notificationCallback))
             
         })
         
@@ -35,7 +35,7 @@ class UINotificationsViewController: UIViewController {
     
     
     
-    private func callbacksFor(notificationsView: UINotificationsListView?) -> UINotificationsListViewCallbacks? {
+    private func callbacksFor(notificationsView: UINotificationsListView?, including notificationCallback: NotificationActionCallback?) -> UINotificationsListViewCallbacks? {
         
         weak var weakSelf = self
         weak var weakNotificationsView = notificationsView
@@ -51,7 +51,7 @@ class UINotificationsViewController: UIViewController {
                 
             })
             
-        })
+        }, whenActingUponNotification: notificationCallback)
         
     }
 

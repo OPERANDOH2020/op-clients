@@ -8,31 +8,34 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIPfbDealsListView" customModule="Operando" customModuleProvider="target">
             <connections>
+                <outlet property="noDealsLabel" destination="tDM-se-7aA" id="3gO-dL-Pxj"/>
                 <outlet property="tableView" destination="JGv-XY-Ppu" id="QU2-QS-ZO3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JGv-XY-Ppu">
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZc-nc-jfh">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDM-se-7aA" userLabel="noDealsAtTheMomentLabel">
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JGv-XY-Ppu">
+                    <frame key="frameInset" minY="30.5" width="375" height="636.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="JGv-XY-Ppu" secondAttribute="bottom" id="1pV-01-Ob4"/>
+                <constraint firstItem="tDM-se-7aA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="47c-dh-elo"/>
+                <constraint firstAttribute="trailing" secondItem="tDM-se-7aA" secondAttribute="trailing" constant="5" id="4JF-wb-jaF"/>
                 <constraint firstItem="JGv-XY-Ppu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HPM-RM-Dcm"/>
-                <constraint firstAttribute="trailing" secondItem="eZc-nc-jfh" secondAttribute="trailing" constant="5" id="Iwm-ru-1Ke"/>
+                <constraint firstItem="JGv-XY-Ppu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qbw-iP-3CQ"/>
                 <constraint firstAttribute="trailing" secondItem="JGv-XY-Ppu" secondAttribute="trailing" id="Qja-wP-1fc"/>
-                <constraint firstItem="JGv-XY-Ppu" firstAttribute="top" secondItem="eZc-nc-jfh" secondAttribute="bottom" constant="5" id="bIF-CU-X49"/>
-                <constraint firstItem="eZc-nc-jfh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="oRW-jB-1fJ"/>
+                <constraint firstItem="tDM-se-7aA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ocO-zh-4Xu"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="-2" y="-22"/>

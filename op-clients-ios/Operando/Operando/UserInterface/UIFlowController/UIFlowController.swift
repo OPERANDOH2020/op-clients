@@ -8,12 +8,28 @@
 
 import UIKit
 
+typealias NotificationActionCallback = (_ action: String, _ notification: OPNotification) -> Void
+typealias ForgotPasswordCallback = ((_ email: String) -> Void)
+typealias NumberOfNotificationsCompletion = (_ num: Int) -> Void
+typealias NumOfNotificationsRequestCallback = (_ callback: NumberOfNotificationsCompletion?) -> Void
+
 struct Dependencies{
-    let identityManagementRepo: IdentitiesManagementRepository
-    let privacyForBenefitsRepo: PrivacyForBenefitsRepository
-    let userInfoRepo: UserInfoRepository
-    let notificationsRepository: NotificationsRepository
-    let whenCallingToLogout: VoidBlock?
+    let identityManagementRepo: IdentitiesManagementRepository?
+    let privacyForBenefitsRepo: PrivacyForBenefitsRepository?
+    let userInfoRepo: UserInfoRepository?
+    let notificationsRepository: NotificationsRepository?
+    let accountCallbacks: AccountCallbacks?
+    let whenTakingActionForNotification: NotificationActionCallback?
+    let whenRequestingNumOfNotifications: NumOfNotificationsRequestCallback?
+}
+
+
+struct AccountCallbacks {
+    let loginCallback: LoginCallback?
+    let logoutCallback: VoidBlock?
+    let registerCallback: RegistrationCallback?
+    let forgotPasswordCallback: ForgotPasswordCallback?
+    let passwordChangeCallback: PasswordChangeCallback?
 }
 
 class UIFlowController
@@ -47,7 +63,7 @@ class UIFlowController
         }
     }
     
-    func displayLoginHierarchyWith(loginCallback: LoginCallback?, registerCallback: RegistrationCallback?)
+    func displayLoginHierarchy()
     {
         self.sideMenu?.hideMenuViewController()
         
@@ -55,11 +71,14 @@ class UIFlowController
         let registrationViewController = UINavigationManager.registerViewController
         weak var weakLoginVC = loginVC
         
-        let loginViewControllerCallbacks = UISignInViewControllerCallbacks(whenUserWantsToLogin: loginCallback) {
+        let loginViewControllerCallbacks = UISignInViewControllerCallbacks(whenUserWantsToLogin:
+            self.dependencies.accountCallbacks?.loginCallback,
+                                                                           whenUserForgotPassword: self.dependencies.accountCallbacks?.forgotPasswordCallback)
+        {
             weakLoginVC?.navigationController?.pushViewController(registrationViewController, animated: true)
         }
         
-        let registerViewControllerCallbacks = UIRegistrationViewControllerCallbacks(whenUserRegisters: registerCallback) { 
+        let registerViewControllerCallbacks = UIRegistrationViewControllerCallbacks(whenUserRegisters: self.dependencies.accountCallbacks?.registerCallback) {
             weakLoginVC?.navigationController?.popViewController(animated: true)
         }
         
@@ -97,7 +116,8 @@ class UIFlowController
             },
               whenChoosingNotifications: {
               weakSelf?.displayNotifications()
-        })
+            },
+              numOfNotificationsRequestCallback: self.dependencies.whenRequestingNumOfNotifications)
         
         dashBoardVC.setupWith(callbacks: dashboardCallbacks)
         self.rootController.setMainControllerTo(newController: dashBoardVC)
@@ -124,7 +144,7 @@ class UIFlowController
     func displayNotifications() {
         let vc = UINavigationManager.notificationsViewController
         
-        vc.setup(with: self.dependencies.notificationsRepository)
+        vc.setup(with: self.dependencies.notificationsRepository, notificationCallback: self.dependencies.whenTakingActionForNotification)
         self.rootController.setMainControllerTo(newController: vc)
     }
     
@@ -141,7 +161,9 @@ class UIFlowController
     private func getRightMenuViewController() -> UIAccountViewController {
         
         let accountController = UINavigationManager.accountViewController
-        accountController.setupWith(model: UIAccountViewControllerModel(repository: self.dependencies.userInfoRepo, whenUserChoosesToLogout: self.dependencies.whenCallingToLogout))
+        accountController.setupWith(model: UIAccountViewControllerModel(repository: self.dependencies.userInfoRepo,
+                                                                        whenUserChoosesToLogout: self.dependencies.accountCallbacks?.logoutCallback,
+                                                                        whenUserChangesPassword: self.dependencies.accountCallbacks?.passwordChangeCallback))
         
         return accountController
     }
@@ -155,20 +177,28 @@ class UIFlowController
     
 
     
-    private func getLeftSideMenuCallbacks() -> UIDashBoardViewControllerCallbacks {
-        return UIDashBoardViewControllerCallbacks(whenChoosingIdentitiesManagement: { [unowned self] in
-                self.displayIdentitiesManagement()
-                self.sideMenu?.hideMenuViewController()
+    private func getLeftSideMenuCallbacks() -> UILeftSideMenuViewControllerCallbacks?
+    {
+        weak var weakSelf = self
+        let dashboardCallbacks = UIDashBoardViewControllerCallbacks(whenChoosingIdentitiesManagement: {
+                weakSelf?.displayIdentitiesManagement()
+                weakSelf?.sideMenu?.hideMenuViewController()
             },whenChoosingPrivacyForBenefits: {
-                self.displayPfbDeals()
-                self.sideMenu?.hideMenuViewController()
+                weakSelf?.displayPfbDeals()
+                weakSelf?.sideMenu?.hideMenuViewController()
             },whenChoosingPrivateBrowsing: {
-                self.displayPrivateBrowsing()
-                self.sideMenu?.hideMenuViewController()
+                weakSelf?.displayPrivateBrowsing()
+                weakSelf?.sideMenu?.hideMenuViewController()
             },
               whenChoosingNotifications: {
-                self.displayNotifications()
-                self.sideMenu?.hideMenuViewController()
+                weakSelf?.displayNotifications()
+                weakSelf?.sideMenu?.hideMenuViewController()
+            },
+              numOfNotificationsRequestCallback: self.dependencies.whenRequestingNumOfNotifications)
+        
+        return UILeftSideMenuViewControllerCallbacks(dashboardCallbacks: dashboardCallbacks, whenChoosingHome: { 
+            weakSelf?.displayDashboard()
+            weakSelf?.sideMenu?.hideMenuViewController()
         })
     }
 }

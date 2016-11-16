@@ -18,7 +18,7 @@ struct UIChangePasswordViewCallbacks{
 
 let kPasswordsMustMatchLocalizableKey = "kPasswordsMustMatchLocalizableKey"
 let kPasswordTooShortLocalizableKey = "kPasswordTooShortLocalizableKey"
-
+let kPasswordsAreTheSameLocalizableKey = "kPasswordsAreTheSameLocalizableKey"
 
 let kMinimumPasswordChars = 5
 
@@ -125,7 +125,7 @@ class UIChangePasswordView: RSNibDesignableView, UITextFieldDelegate {
         }
         
         let rect = value.cgRectValue
-        self.cancelButtonBottomSpaceConstraint.constant = rect.size.height
+        self.cancelButtonBottomSpaceConstraint.constant = rect.size.height + 55 
         UIView.animate(withDuration: 0.5) {
             self.scrollView.layoutIfNeeded()
             let offset = CGPoint(x: 0, y: editingTF.frame.origin.y)
@@ -135,7 +135,7 @@ class UIChangePasswordView: RSNibDesignableView, UITextFieldDelegate {
     }
     
     func keyboardWillDisappear(_ notification: NSNotification){
-        self.cancelButtonBottomSpaceConstraint.constant = 5;
+        self.cancelButtonBottomSpaceConstraint.constant = 55;
         UIView.animate(withDuration: 0.5, animations: { 
             self.scrollView.layoutIfNeeded()
             }, completion: nil)
@@ -162,7 +162,9 @@ class UIChangePasswordView: RSNibDesignableView, UITextFieldDelegate {
             return Bundle.localizedStringFor(key: kPasswordsMustMatchLocalizableKey)
         }
         
-
+        guard newPassword != currentPassword else {
+            return Bundle.localizedStringFor(key: kPasswordsAreTheSameLocalizableKey)
+        }
         
         return nil
         

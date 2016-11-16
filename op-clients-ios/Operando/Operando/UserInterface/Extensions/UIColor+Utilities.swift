@@ -48,4 +48,8 @@ extension UIColor{
         return UIColor(colorLiteralRed: 19.0/255.0, green: 149.0/255.0, blue: 129.0/255.0, alpha: 1.0)
     }
     
+    static var operandoRedDismiss: UIColor {
+        return UIColor(colorLiteralRed: 198.0/255.0, green: 65.0/255.0, blue: 6.0/255.0, alpha: 1.0)
+    }
+    
 }

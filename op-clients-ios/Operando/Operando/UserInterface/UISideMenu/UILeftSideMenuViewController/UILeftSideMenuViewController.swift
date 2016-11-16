@@ -10,10 +10,15 @@ import UIKit
 
 let UILeftSideMenuViewControllerStoryboardId = "UILeftSideMenuViewControllerStoryboardId"
 
+struct UILeftSideMenuViewControllerCallbacks {
+    let dashboardCallbacks: UIDashBoardViewControllerCallbacks?
+    let whenChoosingHome: VoidBlock?
+}
+
 class UILeftSideMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Properties
-    var callbacks: UIDashBoardViewControllerCallbacks?
+    var callbacks: UILeftSideMenuViewControllerCallbacks?
     var dataSource: [UILeftSideMenuVCObject]? {
         didSet {
             guard let tableView = tableView else { return }
@@ -36,6 +41,7 @@ class UILeftSideMenuViewController: UIViewController, UITableViewDataSource, UIT
     private func setupControls() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = 60
     }
     
     // MARK: - Lifecycle
@@ -61,7 +67,10 @@ class UILeftSideMenuViewController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: UILeftSideMenuTableViewCellIdentifier, for: indexPath) as! UILeftSideMenuTableViewCell
         
         guard let dataSource = dataSource else { return cell }
-        cell.setup(withObject: UILeftSideMenuTVCellObject(categoryImageName: dataSource[indexPath.row].categoryImageName, title: dataSource[indexPath.row].categoryName))
+        
+        let numOfNotificationsRequest: NumOfNotificationsRequestCallback? = indexPath.row == dataSource.count - 1 ? self.callbacks?.dashboardCallbacks?.numOfNotificationsRequestCallback : nil
+        
+        cell.setup(withObject: UILeftSideMenuTVCellObject(categoryImageName: dataSource[indexPath.row].categoryImageName, title: dataSource[indexPath.row].categoryName, numOfNotificationsRequestCallbackIfAny: numOfNotificationsRequest))
         
         return cell
     }
@@ -70,6 +79,6 @@ class UILeftSideMenuViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let dataSource = dataSource else { return }
-        dataSource[indexPath.row].action()
+        dataSource[indexPath.row].action?()
     }
 }

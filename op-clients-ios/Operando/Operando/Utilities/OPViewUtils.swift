@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+let kResetLocalizableKey = "kResetLocalizableKey"
+let kCancelLocalizableKey = "kCancelLocalizableKey"
+let kResetPasswordAlertTitleLocalizableKey = "kResetPasswordAlertTitleLocalizableKey"
+let kResetPasswordAlertDescriptionLocalizableKey = "kResetPasswordAlertDescriptionLocalizableKey"
+
 class OPViewUtils
 {
     class func disableViews(views: [UIView])
@@ -54,6 +59,42 @@ class OPViewUtils
         let hostController = UIApplication.shared.delegate?.window??.rootViewController?.topMostPresentedControllerOrSelf
         hostController?.present(alert, animated: true, completion: nil)
     }
+    
+    
+    class func displayForgotEmailPassword(whenDone: ((_ email: String) -> Void)?) {
+        
+        let alertController = UIAlertController(title: Bundle.localizedStringFor(key: kResetPasswordAlertTitleLocalizableKey), message: Bundle.localizedStringFor(key: kResetPasswordAlertDescriptionLocalizableKey), preferredStyle: .alert)
+        
+        let doneAction = UIAlertAction(title: Bundle.localizedStringFor(key: kResetLocalizableKey), style: .default) { (_) in
+            if let text = alertController.textFields?.first?.text {
+                whenDone?(text)
+            }
+            
+        
+        }
+        
+        doneAction.isEnabled = false
+        let cancelAction = UIAlertAction(title: Bundle.localizedStringFor(key: kCancelLocalizableKey), style: .cancel) { (_) in }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Email"
+            textField.keyboardType = .emailAddress
+            textField.returnKeyType = .done
+            
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
+                doneAction.isEnabled = textField.text != ""
+            }
+        }
+        
+
+        
+        alertController.addAction(doneAction)
+        alertController.addAction(cancelAction)
+        
+        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+        
+    }
+    
 }
 
 extension UIView{

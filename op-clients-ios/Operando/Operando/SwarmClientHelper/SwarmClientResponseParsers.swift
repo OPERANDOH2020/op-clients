@@ -11,8 +11,7 @@ import Foundation
 
 struct IdentitiesListResponse {
     let identitiesList: [String]
-    let indexOfDefaultIdentity: Int
-    
+    let indexOfDefaultIdentity: Int?
     static let defaultEmptyResponse = IdentitiesListResponse(identitiesList: [], indexOfDefaultIdentity: -1)
 }
 
@@ -75,17 +74,27 @@ class PfbDeal
 }
 
 struct OPNotification{
+    
+    struct Action {
+        let title: String
+        let actionKey: String
+    }
+    
     let id: String
     let title: String
     let description: String
     let dismissed: Bool
+    
+    let actions: [Action]
+    
     
     init?(notificationsSwarmReplyDict: [String: Any]){
         
         guard let id = notificationsSwarmReplyDict["notificationId"] as? String,
               let title = notificationsSwarmReplyDict["title"] as? String,
               let description = notificationsSwarmReplyDict["description"] as? String,
-              let dismissed = notificationsSwarmReplyDict["dismissed"] as? Bool else {
+              let dismissed = notificationsSwarmReplyDict["dismissed"] as? Bool
+            else {
                 return nil
         }
         
@@ -93,8 +102,23 @@ struct OPNotification{
         self.title = title
         self.description = description
         self.dismissed = dismissed
+        let actionsAsDicts = notificationsSwarmReplyDict["actions"] as? [[String: String]] ?? []
+        self.actions = OPNotification.parseActions(from: actionsAsDicts)
     }
     
+    
+    private static func parseActions(from array: [[String: String]]) -> [Action] {
+        
+        var actions: [Action] = []
+        
+        for dict in array {
+            if let title = dict["title"], let actionType = dict["key"] {
+                actions.append(Action(title: title, actionKey: actionType))
+            }
+        }
+        
+        return actions
+    }
 }
 
 
@@ -124,23 +148,32 @@ class SwarmClientResponseParsers
     
     static func parseIdentitiesList(from dataDict: [String: Any]) -> IdentitiesListResponse?
     {
-        guard let identitiesArray = dataDict["identities"] as? [ [String: Any] ] else
-        {
+        guard var identitiesArray = dataDict["identities"] as? [ [String: Any] ] else {
             return nil
         }
         
-        var indexOfDefaultOne: Int = 0
+        let indexOfRealIdentity = identitiesArray.index { item -> Bool in
+            guard let isReal = item["isReal"] as? Bool,
+                isReal == true else {
+                    return false
+            }
+            return true
+        }
+        
+        if let indexOfRealIdentity = indexOfRealIdentity {
+            identitiesArray.remove(at: indexOfRealIdentity)
+        }
+        
+        var indexOfDefaultOne: Int?
         var identities: [String] = []
         
-        for (index, dict) in identitiesArray.enumerated()
-        {
-            guard let email = dict["email"] as? String, let isDefault = dict["isDefault"] as? Bool else {
+        for (index, dict) in identitiesArray.enumerated(){
+            guard let email = dict["email"] as? String,
+                  let isDefault = dict["isDefault"] as? Bool else {
                 return nil
             }
-            
             if isDefault { indexOfDefaultOne = index}
             identities.append(email)
-            
         }
         
         return IdentitiesListResponse(identitiesList: identities, indexOfDefaultIdentity: indexOfDefaultOne)
@@ -240,6 +273,15 @@ class SwarmClientResponseParsers
     }
     
     
+    static func parseNextDefaultIdentity(from dataDict: [String: Any]) -> String? {
+        guard let identityDict = dataDict["default_identity"] as? [String: Any],
+              let identity = identityDict["email"] as? String else {
+               return nil
+        }
+        
+        return identity
+    }
+    
     static func parseAddIdentitySuccessStatus(from dataDict: [String: Any]) -> Bool?
     {
         return parseMetaCurrentPhaseEqualTo(item: "createIdentity_success", in: dataDict)
@@ -262,6 +304,10 @@ class SwarmClientResponseParsers
     
     static func parseLogoutSucceedSuccessStatus(from dataDict: [String: Any]) -> Bool? {
         return parseMetaCurrentPhaseEqualTo(item: "logoutSucceed", in: dataDict)
+    }
+    
+    static func parseResetPasswordSuccessStatus(from dataDict: [String: Any]) -> Bool? {
+        return parseMetaCurrentPhaseEqualTo(item: "emailDeliverySuccessful", in: dataDict)
     }
     
     static private func parseMetaCurrentPhaseEqualTo(item: String, in dataDict: [String: Any]) -> Bool?
