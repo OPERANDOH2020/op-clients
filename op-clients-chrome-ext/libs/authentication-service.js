@@ -67,7 +67,7 @@ var authenticationService = exports.authenticationService = {
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest@operando.eu", "guest", "chromeBrowserExtension", "userLogin", failCallback, failCallback);
 
         setTimeout(function(){
-            var resetPassHandler = swarmHub.startSwarm("emails.js", "resetPassword", email);
+            var resetPassHandler = swarmHub.startSwarm("UserInfo.js", "resetPassword", email);
             resetPassHandler.onResponse("emailDeliverySuccessful", function(swarm){
                 successCallback("success");
                 self.logoutCurrentUser();

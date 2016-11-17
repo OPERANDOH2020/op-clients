@@ -12,7 +12,8 @@
 
 angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClickPrivacy',
     'notifications', 'osp', 'angularModalService', 'operandoCore', 'schemaForm', 'abp', 'ui.router',
-    'settingEditor', 'oc.lazyLoad','angular-loading-bar','UIComponent','login','ui.select','ngAnimate','ngMessages'])
+    'settingEditor', 'oc.lazyLoad','angular-loading-bar','UIComponent','login','ui.select',
+    'ngAnimate','ngMessages','datatables','ngResource'])
     .config([
         '$compileProvider',
         function ($compileProvider) {   //to accept chrome protocol
@@ -49,6 +50,9 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             window.dispatchEvent(new Event('scrollTop'));
         });
     }])
+    .run( function(DTDefaultOptions){
+        DTDefaultOptions.setLoadingTemplate('<ui-loader ></ui-loader>');
+    })
     .config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
 
         $ocLazyLoadProvider.config({
