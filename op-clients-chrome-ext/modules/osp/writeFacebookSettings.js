@@ -22,6 +22,7 @@ port.onMessage.addListener(function (msg) {
         privacySettings = msg.settings;
         secureAccount(function(){
             port.postMessage({status:"settings_applied"});
+            port.disconnect();
         });
     }
 });
@@ -172,7 +173,7 @@ function extractHeaders(content, callback) {
         }
     }
 
-    if(match[1]){
+    if(match && match[1]){
         data['__rev'] = match[1];
     }
     //__user
@@ -182,7 +183,7 @@ function extractHeaders(content, callback) {
         }
     }
 
-    if(match[1]){
+    if(match && match[1]){
         data['__user'] = match[1];
     }
 

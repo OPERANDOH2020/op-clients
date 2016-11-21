@@ -45,13 +45,20 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
 
             $scope.socialNetwork = value;
             $scope.isLastOspInList = false;
+            $scope.isFirstOspInList = false;
             ospService.getOSPs(function(osps){
-                if(osps.indexOf($scope.socialNetwork) == osps.length-1){
+                if(osps.indexOf($scope.socialNetwork) === osps.length-1){
                     $scope.isLastOspInList = true;
+                }
+                else if(osps.indexOf($scope.socialNetwork) === 0){
+                    $scope.isFirstOspInList = true;
                 }
 
                 $scope.goToNextOsp = function(){
                     $state.go('preferences.sn',{sn:osps[osps.indexOf($scope.socialNetwork)+1]});
+                }
+                $scope.goToPreviousOsp = function(){
+                    $state.go('preferences.sn',{sn:osps[osps.indexOf($scope.socialNetwork)-1]});
                 }
             });
 
@@ -80,15 +87,12 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
 
                     settings = [];
                     for (var settingKey in $scope.model) {
-                        console.log($scope.model[settingKey]);
                         if (ospWriteSettings[settingKey].write.availableSettings) {
-                            console.log(ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]]);
                             var name = ospWriteSettings[settingKey].write.name;
                             var urlToPost = ospWriteSettings[settingKey].write.url_template;
                             var page = ospWriteSettings[settingKey].write.page;
                             var data = ospWriteSettings[settingKey].write.data ? ospWriteSettings[settingKey].write.data : {};
 
-                            console.log($scope.model[settingKey]);
                             var params = ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].params;
 
 

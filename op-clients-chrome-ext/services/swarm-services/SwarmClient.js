@@ -330,11 +330,11 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
     var filters = {};
 
     this.template_onResponse = function(phaseName, callback){
-        filters[this.meta.requestId + phaseName] = callback;
+        filters[this.meta.swarmId + phaseName] = callback;
     }
 
     function filter_onResult(data){
-        var name = data.meta.requestId + data.meta.currentPhase;
+        var name = data.meta.swarmId + data.meta.currentPhase;
         var callback = filters[name];
         if(callback){
             callback(data);
@@ -362,7 +362,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
 
         var meta =  {
             sessionId: sessionId,
-            processIdentity:createRequestIdentity(),
+            swarmId:createRequestIdentity(),
             swarmingName: swarmName,
             tenantId: tenantId,
             outletId: outletId,

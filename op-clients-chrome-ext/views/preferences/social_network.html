@@ -2,8 +2,9 @@
 
     <div ng-controller="PreferencesController" class="preferences_form" social-network="{{osp.key}}">
         <div class="actions_container top">
-            <h2><span class="sn-title">{{osp.title}}</span> settings</h2>
+            <h2 class="{{osp.key}}_icon sn_icon"><span class="sn-title">{{osp.title}}</span> settings</h2>
             <div class="sn_actions">
+                <button class="btn-primary" ng-if="!isFirstOspInList" ng-click="goToPreviousOsp()">Back</button>
                 <button class="btn-primary" ng-click="submitPreferences()">Update <span>{{osp.title}}</span> settings</button>
                 <button class="btn-primary" ng-if="!isLastOspInList" ng-click="goToNextOsp()">Next</button>
                 <button class="btn-primary" ng-click="done()">Done</button>
@@ -15,6 +16,7 @@
 
         <div class="actions_container bottom">
             <div class="sn_actions">
+                <button class="btn-primary" ng-if="!isFirstOspInList" ng-click="goToPreviousOsp()">Back</button>
                 <button class="btn-primary" ng-click="submitPreferences()">Update <span>{{osp.title}}</span> settings</button>
                 <button class="btn-primary" ng-if="!isLastOspInList" ng-click="goToNextOsp()">Next</button>
                 <button class="btn-primary" ng-click="done()">Done</button>

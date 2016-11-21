@@ -166,11 +166,14 @@ angular.module('notifications').
                         nAction = $scope.notification.action;
                     }
 
-                    console.log(nAction);
                     switch (nAction){
                         case "identity": $state.go('identityManagement'); break;
                         case "privacy-for-benefits": $state.go('deals'); break;
-                        case "single-click-privacy": $state.go('socialNetworks'); break;
+                        case "social-network-privacy":
+                            notificationService.dismissNotification($scope.notification.notificationId, true,function(){
+                                $state.go('socialNetworks');
+                            });
+                            break;
                     }
                 }
             },

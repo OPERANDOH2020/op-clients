@@ -67,7 +67,7 @@
                         </fieldset>
 
                         <div>
-                            <button class="btn btn-secondary" type="submit" ng-disabled="account.changePasswordForm.$invalid">Save</button>
+                            <button class="btn btn-secondary" type="submit" ng-click="loading($event)" ng-disabled="account.changePasswordForm.$invalid" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing request">Save</button>
                         </div>
                     </form>
                 </div>

@@ -127,7 +127,7 @@ function postToLinkedIn(settings, item, total) {
                             success: function (result) {
                                 setTimeout(function(){
                                     resolve(result);
-                                },100);
+                                },0);
                             },
                             statusCode:{
                               500: function(){

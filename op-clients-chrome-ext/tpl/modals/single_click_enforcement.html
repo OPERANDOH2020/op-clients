@@ -26,9 +26,8 @@
                     <span ng-if="completedFeedback">{{completedFeedback}}</span>
                     <span ng-if="!completedFeedback">All settings were updated</span>
                 </span>
-                <button type="button" ng-click="close('Yes')" class="btn btn-primary-black" data-dismiss="modal">
-                    <span ng-hide="completed">Run in background</span>
-                    <span ng-if="completed">Close</span>
+                <button type="button" ng-click="close('Yes')" ng-if="completed" class="btn btn-primary-black" data-dismiss="modal">
+                    <span>Close</span>
                 </button>
 
             </div>

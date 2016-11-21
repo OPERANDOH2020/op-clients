@@ -38,7 +38,11 @@ controller("accountCtrl", ["$scope","messengerService","Notification", function(
     }
 
     alias.savePassword = function () {
+
         messengerService.send("changePassword",{currentPassword:$scope.user.currentPassword,newPassword:$scope.user.newPassword}, function(response){
+
+            $scope.submitPasswordBtn.button('reset');
+
             if(response.status == "success"){
                 Notification.success({message: "Password successfully updated!", positionY: 'bottom', positionX: 'center', delay: 5000});
                 $scope.passwordIsEditMode = !$scope.passwordIsEditMode;
@@ -80,6 +84,11 @@ controller("accountCtrl", ["$scope","messengerService","Notification", function(
 
             }
         })
+    }
+
+    $scope.loading = function($event){
+        $scope.submitPasswordBtn = $($event.currentTarget);
+        $scope.submitPasswordBtn.button('loading');
     }
 
 }]).directive("compareTo", function(){

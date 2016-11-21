@@ -15,19 +15,13 @@ operandoCore
 
         var FACEBOOK_PRIVACY_URL = "https://www.facebook.com/settings?tab=privacy&section=composer&view";
         var LINKEDIN_PRIVACY_URL = "https://www.linkedin.com/psettings/";
-        var port = null;
+        var facebookPort = null;
+        var linkedInPort = null;
         var facebookTabId = null;
         var linkedinTabId = null;
 
-
-
-        function updateProgressBar(){
-
-        }
-
         function increaseFacebookPrivacy(settings, callback, jobFinished) {
             chrome.tabs.create({url: FACEBOOK_PRIVACY_URL, "selected": false}, function (tab) {
-                cfpLoadingBar.start();
                 facebookTabId = tab.id;
                 chrome.runtime.sendMessage({
                     message: "waitForAPost",
@@ -52,36 +46,62 @@ operandoCore
                 });
             });
 
-            (function (settings) {
-                chrome.runtime.onConnect.addListener(function (_port) {
-                    if (_port.name == "applyFacebookSettings") {
-                        port = _port;
-                        port.onMessage.addListener(function (msg) {
-                            if (msg.status == "waitingCommand") {
-                                port.postMessage({command: "applySettings", settings: settings});
-                            } else {
-                                if (msg.status == "settings_applied") {
-                                    cfpLoadingBar.complete();
-                                    jobFinished();
-                                    chrome.tabs.remove(facebookTabId);
-                                    //chrome.tabs.update(facebookTabId, {url: "https://www.facebook.com/settings?tab=privacy"});
-                                }
-                                else {
-                                    if (msg.status == "progress") {
-                                        callback("facebook",msg.progress, settings.length);
-                                        cfpLoadingBar.set(msg.progress);
-                                    }
+            var portListener = function (port, jobFinished, callback, settings) {
+                if (port.name == "applyFacebookSettings") {
+                    port.onMessage.addListener(function (msg) {
+                        if (msg.status == "waitingCommand") {
+                            port.postMessage({command: "applySettings", settings: settings});
+                            //cfpLoadingBar.start();
+
+                        } else {
+                            if (msg.status == "settings_applied") {
+                                //cfpLoadingBar.complete();
+                                jobFinished();
+                                chrome.tabs.remove(facebookTabId);
+                                port.disconnect();
+                                port = null;
+                                //chrome.tabs.update(facebookTabId, {url: "https://www.facebook.com/settings?tab=privacy"});
+                            }
+                            else {
+                                if (msg.status == "progress") {
+                                    console.log(msg.progress);
+                                    callback("facebook", msg.progress, settings.length);
+                                    //cfpLoadingBar.set(msg.progress / settings.length);
                                 }
                             }
-                        });
-                    }
+                        }
+                    });
+                }
+            }
+
+
+            this.fb_jobFinished = jobFinished;
+            this.fb_callback = callback;
+            this.fb_settings = settings;
+
+            var self = this;
+
+            var getCurrentState = function () {
+                return (function (_port) {
+                    facebookPort = _port;
+                    var jobFinished = self.fb_jobFinished;
+                    var callback = self.fb_callback;
+                    var settings = self.fb_settings;
+                    portListener(facebookPort, jobFinished, callback, settings);
+
                 });
-            })(settings);
+            }
+
+
+            if (facebookPort === null) {
+                chrome.runtime.onConnect.addListener(getCurrentState());
+
+            }
         }
 
         function  increaseLinkedInPrivacy(settings, callback, jobFinished) {
+            console.log(this.settings);
             chrome.tabs.create({url: LINKEDIN_PRIVACY_URL, "selected": false}, function (tab) {
-                cfpLoadingBar.start();
                 linkedinTabId = tab.id;
                 chrome.runtime.sendMessage({
                     message: "waitForAPost",
@@ -106,30 +126,51 @@ operandoCore
                 });
             });
 
-            (function (settings) {
-                chrome.runtime.onConnect.addListener(function (_port) {
-                    if (_port.name == "applyLinkedinSettings") {
-                        port = _port;
-                        port.onMessage.addListener(function (msg) {
-                            if (msg.status == "waitingCommand") {
-                                port.postMessage({command: "applySettings", settings: settings});
-                            } else {
-                                if (msg.status == "settings_applied") {
-                                    cfpLoadingBar.complete();
-                                    jobFinished();
-                                    chrome.tabs.remove(linkedinTabId);
-                                }
-                                else {
-                                    if (msg.status == "progress") {
-                                        callback("linkedin",msg.progress, settings.length);
-                                        cfpLoadingBar.set(msg.progress);
-                                    }
+
+
+            var portListener =  function(port, jobFinished, callback, settings){
+                if (port.name == "applyLinkedinSettings") {
+                    port.onMessage.addListener(function (msg) {
+                        if (msg.status == "waitingCommand") {
+                            port.postMessage({command: "applySettings", settings: settings});
+                            //cfpLoadingBar.start();
+                        } else {
+                            if (msg.status == "settings_applied") {
+                                //cfpLoadingBar.complete();
+                                jobFinished();
+                                chrome.tabs.remove(linkedinTabId);
+                            }
+                            else {
+                                if (msg.status == "progress") {
+                                    callback("linkedin",msg.progress, settings.length);
+                                    //cfpLoadingBar.set(msg.progress/settings.length);
                                 }
                             }
-                        });
-                    }
-                })
-            })(settings);
+                        }
+                    });
+                }
+            };
+
+            this.linkedin_jobFinished = jobFinished;
+            this.linkedin_callback = callback;
+            this.linkedin_settings = settings;
+
+            var self = this;
+            var getCurrentState = function () {
+                return (function (_port) {
+                    linkedInPort = _port;
+                    var jobFinished = self.linkedin_jobFinished;
+                    var callback = self.linkedin_callback;
+                    var settings = self.linkedin_settings;
+                    portListener(linkedInPort, jobFinished, callback, settings);
+
+                });
+            }
+
+            if (linkedInPort === null) {
+                chrome.runtime.onConnect.addListener(getCurrentState());
+
+            }
         }
 
 

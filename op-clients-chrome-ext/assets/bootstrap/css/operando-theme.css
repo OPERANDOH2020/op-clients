@@ -235,7 +235,6 @@ div.tab-content{
 #preferences_tab,
 #pfb_tab,
 #social_networks_tab,
-#privacy_wizard_tab,
 #notifications_tab
 {
     display: block;
@@ -604,16 +603,13 @@ footer{
     max-width: 1296px;
     margin: 0 auto;
     height: 100%;
-    padding: 10px;
+    padding: 27px;
 }
 
 #footer-copyright-content p{
     text-align: center;
     color:#FFF;
     font-size: 16px;
-}
-#footer-copyright-content span.footer-operando{
-    color:#FFB400;
 }
 
 .active .isMockup:before{
@@ -1161,51 +1157,6 @@ border: none;
     box-shadow:#F5A43C 1px 0 6px 1px ;
 }
 
-.privacy_wizard{
-    margin-top: 23px;
-    background: #f1ebdf;
-    padding: 30px;
-    color:#654d14;
-    border-radius:4px;
-}
-
-.privacy_wizard h3{
-   text-align:left;
-}
-
-.sugesstions .suggested_question{
-    border-bottom: 1px solid #dcd4c0;
-    border-top: 1px solid #f7f3ea;
-    padding-top: 20px;
-}
-
-.sugesstions .suggested_question:first-child{
-    border-top: none;
-    padding-top: 0px;
-}
-
-#privacy_wizard_tab h4.icon-linkedin{
-    padding:5px 5px 5px 32px;
-    background: url("/operando/assets/images/icons/linkedin_icon_questionnaire.png") no-repeat left center;
-}
-
-#privacy_wizard_tab h4.icon-facebook{
-    padding:5px 5px 5px 32px;
-    background: url("/operando/assets/images/icons/facebook_icon_questionnaire.png") no-repeat left center;
-}
-
-.wizard_question {
-    border-bottom: 1px solid #dcd4c0;
-    margin-bottom: 0px;
-    padding-bottom: 10px;
-}
-
-.privacy_wizard .wizard_actions{
-    border-top: 1px solid #f7f3ea;
-    padding-top: 20px;
-}
-
-
 
 .social_network_settings_panel .setting_row{
     padding: 10px 0px;
@@ -1219,11 +1170,6 @@ border: none;
 .social_network_settings_panel osp-setting:last-child .setting_row{
     border-bottom: none;
 }
-
-.warning-notification{
-
-}
-
 
 #return-to-top {
     position: fixed;
@@ -1316,6 +1262,25 @@ h3.privacy_wizard_suggestions_heading{
     -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
     animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
 }
+
+.big-loader{
+    top: calc(50% - 230px);
+    display: block;
+    position: relative;
+}
+
+.big-loader .sk-fading-circle
+{
+    width: 128px;
+    height: 128px;
+    margin: 160px auto;
+}
+
+.big-loader .sk-fading-circle .sk-circle:before{
+    background-color: #584a28;
+}
+
+
 .sk-fading-circle .sk-circle2 {
     -webkit-transform: rotate(30deg);
     -ms-transform: rotate(30deg);
@@ -1882,7 +1847,7 @@ visibility: visible;
 }
 .loggedin_status_false {
     height: 100%;
-    display: table;
+    display: block;
     width: 100%;
 }
 
@@ -2245,4 +2210,15 @@ padding-left: 5px;
     width: 70px;
     height: 50px;
 
+}
+
+#sn_preferences h2.sn_icon{
+    padding-left: 36px;
+}
+
+#sn_preferences h2.facebook_icon{
+    background: url("/operando/assets/images/facebook32.png") no-repeat left center;
+}
+#sn_preferences h2.linkedin_icon{
+    background: url("/operando/assets/images/linkedin32.png") no-repeat left center;
 }

@@ -59,9 +59,6 @@ angular.module("singleClickPrivacy",[])
 
 
 
-                            },
-                            $scope.takePrivacyQuestionnaire = function(){
-                                $("a[href='#privacy_wizard']").click();
                             }
                         }
                         ]
