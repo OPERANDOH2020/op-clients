@@ -87,44 +87,7 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
 
                     settings = [];
                     for (var settingKey in $scope.model) {
-                        if (ospWriteSettings[settingKey].write.availableSettings) {
-                            var name = ospWriteSettings[settingKey].write.name;
-                            var urlToPost = ospWriteSettings[settingKey].write.url_template;
-                            var page = ospWriteSettings[settingKey].write.page;
-                            var data = ospWriteSettings[settingKey].write.data ? ospWriteSettings[settingKey].write.data : {};
-
-                            var params = ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].params;
-
-
-                            for (key in params) {
-                                var param = params[key];
-
-                                if(param.value){
-                                    urlToPost = urlToPost.replace("{" + param.placeholder + "}", param.value);
-                                }
-
-                            }
-
-                            if (ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].data) {
-                                var specificData = ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].data
-                                for (var attrname in specificData) {
-                                    data[attrname] = specificData[attrname];
-                                }
-                            }
-
-                            settings.push({
-                                name: name,
-                                type:ospWriteSettings[settingKey].write.type,
-                                url: urlToPost,
-                                params:ospWriteSettings[settingKey].write.availableSettings[$scope.model[settingKey]].params,
-                                page: page,
-                                data: data
-                            });
-
-                        }
-                        else {
-                            console.log(settingKey + " setting not found!");
-                        }
+                        settings.push(watchDogService.prepareSettings(ospWriteSettings[settingKey].write, $scope.model[settingKey]));
                     }
 
                     switch ($scope.socialNetwork){

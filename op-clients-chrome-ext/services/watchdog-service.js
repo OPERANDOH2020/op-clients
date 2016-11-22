@@ -92,7 +92,6 @@ operandoCore
                 });
             }
 
-
             if (facebookPort === null) {
                 chrome.runtime.onConnect.addListener(getCurrentState());
 
@@ -100,7 +99,6 @@ operandoCore
         }
 
         function  increaseLinkedInPrivacy(settings, callback, jobFinished) {
-            console.log(this.settings);
             chrome.tabs.create({url: LINKEDIN_PRIVACY_URL, "selected": false}, function (tab) {
                 linkedinTabId = tab.id;
                 chrome.runtime.sendMessage({
@@ -127,7 +125,6 @@ operandoCore
             });
 
 
-
             var portListener =  function(port, jobFinished, callback, settings){
                 if (port.name == "applyLinkedinSettings") {
                     port.onMessage.addListener(function (msg) {
@@ -142,6 +139,7 @@ operandoCore
                             }
                             else {
                                 if (msg.status == "progress") {
+                                    console.log(msg.progress);
                                     callback("linkedin",msg.progress, settings.length);
                                     //cfpLoadingBar.set(msg.progress/settings.length);
                                 }
@@ -247,8 +245,6 @@ operandoCore
 
         }
 
-
-
         function prepareSettings(settingToBeApplied, settingKey) {
 
             var name = settingToBeApplied.name;
@@ -318,6 +314,7 @@ operandoCore
         }
 
         return {
+            prepareSettings:prepareSettings,
             secureAccount: secureAccount,
             maximizeEnforcement:maximizeEnforcement,
             applySettings:startApplyingSettings,

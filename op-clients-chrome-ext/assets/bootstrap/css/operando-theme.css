@@ -1974,6 +1974,7 @@ top:0;
     background:#e0d7bf;
     border:1px solid #c3b99c;
     padding-bottom: 15px;
+    position: relative;
 }
 
 .single_click_privacy_panel .apply_settings_icon{
@@ -1981,6 +1982,12 @@ top:0;
     background-size: 155px;
     height: 190px;
     max-width: 155px;
+}
+
+.single_click_privacy_button_ctn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .single_click_privacy_panel .col-xs-7,

@@ -164,7 +164,7 @@ var ospSettingsConfigPreferences = {
         },*/
         who_can_contact:{
             read:{
-                name: "Choose who can contact you/send you friend requests",
+                name: "Who can contact you/send you friend requests?",
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     everyone:{
@@ -217,7 +217,7 @@ var ospSettingsConfigPreferences = {
         },
         lookup_email:{
             read:{
-                name: "Choose who can look you up using your email address",
+                name: "Who can look you up using your email address?",
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     everyone:{
@@ -286,7 +286,7 @@ var ospSettingsConfigPreferences = {
         },
         lookup_phone:{
             read:{
-                name: "Choose  who can look you up using the phone number you provided",
+                name: "Who can look you up using the phone number you provided?",
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings:{
                     everyone:{
@@ -355,7 +355,7 @@ var ospSettingsConfigPreferences = {
         },
         search_engine:{
             read:{
-                name: "Allow/disallow engines outside Facebook to link to your profile",
+                name: "Allow engines outside Facebook to link to your profile?",
                 url: "https://www.facebook.com/settings?tab=privacy",
                 availableSettings: {
                     yes: {
@@ -371,7 +371,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name:"Who can look me up by search engines",
+                name:"Who can look me up by search engines?",
                 page:"https://www.facebook.com/settings?tab=privacy&section=search&view",
                 url_template:"https://www.facebook.com/ajax/settings_page/search_filters.php?dpr=1",
                 availableSettings: {
@@ -397,7 +397,7 @@ var ospSettingsConfigPreferences = {
         },
         limit_timeline:{
             read:{
-                name: "Limit who can add things to your timeline",
+                name: "Who can add things to your timeline?",
                 url: "https://www.facebook.com/settings?tab=timeline",
                 availableSettings: {
                     only_me: {
@@ -413,7 +413,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name:"Who can add things to my timeline?",
+                name:"Who can add things to your timeline?",
                 page:"https://www.facebook.com/settings?tab=timeline&section=posting&view",
                 url_template:"https://www.facebook.com/ajax/settings/timeline/posting.php?dpr=1",
                 availableSettings:{
@@ -758,7 +758,7 @@ var ospSettingsConfigPreferences = {
         },*/
         control_followers:{
             read:{
-                name: "Control who can be your follower.",
+                name: "Who can be your follower?",
                 url: "https://www.facebook.com/settings?tab=followers",
                 availableSettings: {
                     friends: {
@@ -795,7 +795,7 @@ var ospSettingsConfigPreferences = {
                 },
                 data: {
                     location: 44,
-                    hideable_ids: ["#following_plugin_item", "#following_editor_item"]
+                    hideable_ids: ["#following_plugin_item"]
                 },
                 recommended:"friends"
             }
@@ -828,7 +828,7 @@ var ospSettingsConfigPreferences = {
         },
         allow_apps:{
             read:{
-                name: "Allow or disallow use of apps, plugins, games and websites on Facebook and elsewhere.",
+                name: "Allow use of apps, plugins, games and websites on Facebook and elsewhere?",
                 url: "https://www.facebook.com/settings?tab=applications",
                 availableSettings: {
                     disabled: {
@@ -844,7 +844,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name:"Allow or disallow use of apps, plugins, games and websites on Facebook and elsewhere.",
+                name:"Allow use of apps, plugins, games and websites on Facebook and elsewhere?",
                 page:"https://www.facebook.com/settings?tab=applications",
                 url_template:"https://www.facebook.com/settings/application/platform_opt_out/submit/?action={ACTION}&dpr=1",
                 availableSettings: {
@@ -936,7 +936,7 @@ var ospSettingsConfigPreferences = {
         },
         facebook_companies_ads:{
             read:{
-                name:"Can your Facebook ad preferences be used to show you ads on apps and websites off of the Facebook Companies?",
+                name:"Can your Facebook ad preferences be used to show you ads on apps and websites of Facebook Companies?",
                 url:"https://www.facebook.com/settings?tab=ads&view",
                 availableSettings: {
                     yes: {
@@ -953,7 +953,7 @@ var ospSettingsConfigPreferences = {
 
             },
             write:{
-                name:"Can your Facebook ad preferences be used to show you ads on apps and websites off of the Facebook Companies?",
+                name:"Can your Facebook ad preferences be used to show you ads on apps and websites of Facebook Companies?",
                 page:"https://www.facebook.com/settings?tab=ads&section=fpd&view",
                 url_template:"https://www.facebook.com/ads/preferences/fpd/?dpr=1",
                 availableSettings:{
@@ -1565,7 +1565,7 @@ var ospSettingsConfigPreferences = {
         },*/
         see_connections_list:{
             read:{
-                name: "Select who can see your list of connections.",
+                name: "Who can see the list of your connections?",
                 url: "https://www.linkedin.com/psettings/connections-visibility",
                 availableSettings:{
                     Only_you:{
@@ -1581,7 +1581,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Select who can see your list of connections.",
+                name: "Who can see the list of your connections?",
                 page: "https://www.linkedin.com/psettings/connections-visibility",
                 url_template: "https://www.linkedin.com/psettings/connections-visibility",
                 type:"multipart/form-data",
@@ -1605,7 +1605,7 @@ var ospSettingsConfigPreferences = {
         },
         how_you_rank:{
             read:{
-                name: "Control showing \"How You Rank\"",
+                name: "Show \"How You Rank\" to you and other people?",
                 url: "https://www.linkedin.com/psettings/how-you-rank",
                 availableSettings:{
                     Yes:{
@@ -1621,7 +1621,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control showing \"How You Rank\"",
+                name: "Show \"How You Rank\" to you and other people?",
                 page: "https://www.linkedin.com/psettings/how-you-rank",
                 url_template: "https://www.linkedin.com/psettings/how-you-rank",
                 type:"multipart/form-data",
@@ -1645,7 +1645,7 @@ var ospSettingsConfigPreferences = {
         },
         profile_viewers_feature:{
             read:{
-                name: "Control the feature \"Viewers of this profile also viewed\"",
+                name: "Allow \"Viewers of this profile also viewed\" feature on your profile?",
                 url: "https://www.linkedin.com/psettings/browse-map",
                 availableSettings:{
                     Yes:{
@@ -1661,7 +1661,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control the feature \"Viewers of this profile also viewed\"",
+                name: "Allow \"Viewers of this profile also viewed\" feature on your profile?",
                 page: "https://www.linkedin.com/psettings/browse-map",
                 url_template: "https://www.linkedin.com/psettings/browse-map",
                 type:"multipart/form-data",
@@ -1686,7 +1686,7 @@ var ospSettingsConfigPreferences = {
         },
         share_edits:{
             read:{
-                name: "Sharing profile edits",
+                name: "Let people know when you change your profile, make recommendations, or follow companies?",
                 url: "https://www.linkedin.com/psettings/activity-broadcast",
                 availableSettings:{
                     Yes:{
@@ -1702,7 +1702,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Sharing profile edits",
+                name: "Let people know when you change your profile, make recommendations, or follow companies?",
                 page: "https://www.linkedin.com/psettings/activity-broadcast",
                 url_template: "https://www.linkedin.com/psettings/activity-broadcast",
                 type:"multipart/form-data",
@@ -1726,7 +1726,7 @@ var ospSettingsConfigPreferences = {
         },
         profile_viewing_options:{
             read:{
-                name: "Control what others see when you have viewed their profile",
+                name: "What will people see when you have viewed their profile?",
                 url: "https://www.linkedin.com/psettings/profile-visibility",
                 availableSettings:{
                     Full_profile:{
@@ -1745,7 +1745,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control what others see when you have viewed their profile",
+                name: "What will people see when you have viewed their profile?",
                 page: "https://www.linkedin.com/psettings/profile-visibility",
                 url_template: "https://www.linkedin.com/psettings/profile-visibility",
                 type:"multipart/form-data",
@@ -1775,7 +1775,7 @@ var ospSettingsConfigPreferences = {
         },
         share_you_news:{
             read:{
-                name: "Allow or disallow your connections and followers to know when you are mentioned in the news.",
+                name: "Let your connections and followers know when you are mentioned in the news?",
                 url: "https://www.linkedin.com/psettings/news-mention-broadcast",
                 availableSettings:{
                     Yes:{
@@ -1791,7 +1791,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Allow or disallow your connections and followers to know when you are mentioned in the news.",
+                name: "Let your connections and followers know when you are mentioned in the news?",
                 page: "https://www.linkedin.com/psettings/news-mention-broadcast",
                 url_template: "https://www.linkedin.com/psettings/news-mention-broadcast",
                 type:"multipart/form-data",
@@ -1815,7 +1815,7 @@ var ospSettingsConfigPreferences = {
         },
         control_followers:{
             read:{
-                name: "Control who can follow you and see your public updates.",
+                name: "Who can follow you and see your public updates?",
                 url: "https://www.linkedin.com/psettings/allow-follow",
                 availableSettings:{
                     Your_Connections:{
@@ -1831,7 +1831,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control who can follow you and see your public updates.",
+                name: "Who can follow you and see your public updates?",
                 page: "https://www.linkedin.com/psettings/allow-follow",
                 url_template: "https://www.linkedin.com/psettings/allow-follow",
                 type:"multipart/form-data",
@@ -1857,7 +1857,7 @@ var ospSettingsConfigPreferences = {
         //TODO: Add management capabilities for Unfollowed list. (https://www.linkedin.com/psettings/customize-stream)
         suggest_you_email:{
             read:{
-                name: "Suggesting you on the connection based on your email address",
+                name: "Who can see you as a suggested connection if they have your email address?",
                 url: "https://www.linkedin.com/psettings/visibility/email",
                 availableSettings:{
                     Everyone:{
@@ -1876,7 +1876,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Suggesting you on the connection based on your email address",
+                name: "Who can see you as a suggested connection if they have your email address?",
                 page: "https://www.linkedin.com/psettings/visibility/email",
                 url_template: "https://www.linkedin.com/psettings/visibility/email",
                 type:"multipart/form-data",
@@ -1910,7 +1910,7 @@ var ospSettingsConfigPreferences = {
         },
         suggest_you_phone:{
             read:{
-                name: "Suggesting you as a connection based on your phone number",
+                name: "Who can see you as a suggested connection if they have your phone number?",
                 url: "https://www.linkedin.com/psettings/visibility/phone",
                 availableSettings:{
                     Everyone:{
@@ -1929,7 +1929,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Suggesting you as a connection based on your phone number",
+                name: "Who can see you as a suggested connection if they have your phone number?",
                 page: "https://www.linkedin.com/psettings/visibility/phone",
                 url_template: "https://www.linkedin.com/psettings/visibility/phone",
                 type:"multipart/form-data",
@@ -1964,7 +1964,7 @@ var ospSettingsConfigPreferences = {
 
         meet_the_team:{
             read:{
-                name: "Control if linkedin can show your profile information on your employer's pages",
+                name: "Allow Linkedin to show your profile information on your employer's pages?",
                 url: "https://www.linkedin.com/psettings/meet-the-team",
                 availableSettings:{
                     Yes:{
@@ -1980,7 +1980,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control if linkedin can show your profile information on your employer's pages",
+                name: "Allow Linkedin to show your profile information on your employer's pages?",
                 page: "https://www.linkedin.com/psettings/meet-the-team",
                 url_template: "https://www.linkedin.com/psettings/meet-the-team",
                 type:"multipart/form-data",
@@ -2005,7 +2005,7 @@ var ospSettingsConfigPreferences = {
         //============================================
         share_data_with_third_party_applications:{
             read:{
-                name: "Sharing data with third parties applications",
+                name: "Allow LinkedIn to share your data with third party applications?",
                 url: "https://www.linkedin.com/psettings/data-sharing",
                 availableSettings:{
                     Yes:{
@@ -2021,7 +2021,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Sharing data with third parties applications",
+                name: "Allow LinkedIn to share your data with third party applications?",
                 page: "https://www.linkedin.com/psettings/data-sharing",
                 url_template: "https://www.linkedin.com/psettings/data-sharing",
                 type:"multipart/form-data",
@@ -2045,7 +2045,7 @@ var ospSettingsConfigPreferences = {
         },
         share_data_with_third_party_platforms:{
             read:{
-                name: "Sharing data with third parties platforms",
+                name: "Allow LinkedIn to share your data with third party platforms?",
                 url: "https://www.linkedin.com/psettings/data-sharing",
                 availableSettings:{
                     Yes:{
@@ -2061,7 +2061,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Sharing data with third parties platforms",
+                name: "Allow LinkedIn to share your data with third party platforms?",
                 page: "https://www.linkedin.com/psettings/data-sharing",
                 url_template: "https://www.linkedin.com/psettings/data-sharing",
                 availableSettings:{
@@ -2087,7 +2087,7 @@ var ospSettingsConfigPreferences = {
         },
         cookie_personalised_ads:{
             read:{
-                name: "Use cookies to personalize ads",
+                name: "Allow LinkedIn to use cookies and trackers on third party sites to target you with ads and personalized services?",
                 url: "https://www.linkedin.com/psettings/enhanced-advertising",
                 availableSettings:{
                     Yes:{
@@ -2103,7 +2103,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Use cookies to personalize ads",
+                name: "Allow LinkedIn to use cookies and trackers on third party sites to target you with ads and personalized services?",
                 page: "https://www.linkedin.com/psettings/enhanced-advertising",
                 url_template: "https://www.linkedin.com/psettings/enhanced-advertising",
                 type:"multipart/form-data",
@@ -2146,7 +2146,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Use cookies to personalize ads",
+                name: "Allow LinkedIn to use cookies and trackers on third party sites to target you with ads and personalized services?",
                 page: "https://www.linkedin.com/psettings/enhanced-advertising",
                 //url: "https://www.linkedin.com/psettings/enhanced-advertising",
                 availableSettings:{
@@ -2183,7 +2183,7 @@ var ospSettingsConfigPreferences = {
         },*/
         /*control_others_see:{
          read:{
-         name: "Control what others see when you have viewed their profile",
+         name: "What will people see when you have viewed their profile?",
          url: "https://www.linkedin.com/psettings/account",
          jquery_selector:{
          }
@@ -2230,7 +2230,7 @@ var ospSettingsConfigPreferences = {
         //=============================================================================================================
         control_messages_invitations:{
             read:{
-                name: "Control whether you're willing to receive invitations to join your network.",
+                name: "Receive requests to join your network?",
                 url: "https://www.linkedin.com/psettings/email-controls",
                 availableSettings:{
                     On:{
@@ -2246,7 +2246,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control whether you're willing to receive invitations to join your network.",
+                name: "Receive requests to join your network?",
                 page: "https://www.linkedin.com/psettings/email-controls",
                 url_template: "https://www.linkedin.com/psettings/email-controls/updateSettings?csrfToken={CSRF_TOKEN}",
                 type:"application/json",
@@ -2320,7 +2320,7 @@ var ospSettingsConfigPreferences = {
         },
         control_messages_messages:{
             read:{
-                name: "Control whether you're willing to receive messages from other LinkedIn members.",
+                name: "Receive messages from other LinkedIn members?",
                 url: "https://www.linkedin.com/psettings/email-controls",
                 availableSettings:{
                     On:{
@@ -2336,7 +2336,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control whether you're willing to receive messages from other LinkedIn members.",
+                name: "Receive messages from other LinkedIn members?",
                 page: "https://www.linkedin.com/psettings/email-controls",
                 url_template: "https://www.linkedin.com/psettings/email-controls/updateSettings?csrfToken={CSRF_TOKEN}",
                 type:"application/json",
@@ -2410,8 +2410,7 @@ var ospSettingsConfigPreferences = {
         },
         control_messages_notifications:{
             read:{
-                name: "Control whether you're willing to receive news and activity related to your profile " +
-                "and what you share.",
+                name: "Receive news about activity related to your profile and what you share?",
                 url: "https://www.linkedin.com/psettings/email-controls",
                 availableSettings:{
                     On:{
@@ -2427,8 +2426,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control whether you're willing to receive news and activity related to your profile " +
-                "and what you share.",
+                name: "Receive news about activity related to your profile and what you share?",
                 page: "https://www.linkedin.com/psettings/email-controls",
                 url_template: "https://www.linkedin.com/psettings/email-controls/updateSettings?csrfToken={CSRF_TOKEN}",
                 type:"application/json",
@@ -2526,7 +2524,7 @@ var ospSettingsConfigPreferences = {
         },
         control_messages_network_updates:{
             read:{
-                name: "Control whether you're willing to receive Updates about your connections.",
+                name: "Receive updates about your connections?",
                 url: "https://www.linkedin.com/psettings/email-controls",
                 availableSettings:{
                     On:{
@@ -2542,7 +2540,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control whether you're willing to receive Updates about your connections.",
+                name: "Receive updates about your connections?",
                 page: "https://www.linkedin.com/psettings/email-controls",
                 url_template: "https://www.linkedin.com/psettings/email-controls/updateSettings?csrfToken={CSRF_TOKEN}",
                 type:"application/json",
@@ -2624,7 +2622,7 @@ var ospSettingsConfigPreferences = {
         },
         control_messages_jobs_and_opportunities:{
             read:{
-                name: "Control whether you're willing to receive Updates about Jobs and opportunities.",
+                name: "Receive updates about Jobs and opportunities?",
                 url: "https://www.linkedin.com/psettings/email-controls",
                 availableSettings:{
                     On:{
@@ -2640,7 +2638,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control whether you're willing to receive Updates about Jobs and opportunities.",
+                name: "Receive updates about Jobs and opportunities?",
                 page: "https://www.linkedin.com/psettings/email-controls",
                 url_template: "https://www.linkedin.com/psettings/email-controls/updateSettings?csrfToken={CSRF_TOKEN}",
                 type:"application/json",
@@ -2722,7 +2720,7 @@ var ospSettingsConfigPreferences = {
         },
         control_messages_news:{
             read:{
-                name: "Control whether you're willing to receive News and articles relevant to you.",
+                name: "Receive news and articles relevant to you?",
                 url: "https://www.linkedin.com/psettings/email-controls",
                 availableSettings:{
                     On:{
@@ -2738,7 +2736,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control whether you're willing to receive News and articles relevant to you.",
+                name: "Receive news and articles relevant to you?",
                 page: "https://www.linkedin.com/psettings/email-controls",
                 url_template: "https://www.linkedin.com/psettings/email-controls/updateSettings?csrfToken={CSRF_TOKEN}",
                 type:"application/json",
@@ -2873,8 +2871,7 @@ var ospSettingsConfigPreferences = {
         },*/
         control_messages_from_linkedIn:{
             read:{
-                name: "Control whether you're willing to receive occasional emails with tips and offers " +
-                "to help you get the most out of LinkedIn.",
+                name: "Receive occasional emails with tips and offers to help you get the most out of LinkedIn?",
                 url: "https://www.linkedin.com/psettings/email-controls",
                 availableSettings:{
                     On:{
@@ -2890,8 +2887,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control whether you're willing to receive occasional emails with tips and offers " +
-                "to help you get the most out of LinkedIn.",
+                name: "Receive occasional emails with tips and offers to help you get the most out of LinkedIn?",
                 page: "https://www.linkedin.com/psettings/email-controls",
                 url_template: "https://www.linkedin.com/psettings/email-controls/updateSettings?csrfToken={CSRF_TOKEN}",
                 type:"application/json",
@@ -2949,8 +2945,7 @@ var ospSettingsConfigPreferences = {
         },
         control_messages_from_linkedIn_learning:{
             read:{
-                name: "Control whether you're willing to receive recommendations to help you get the most " +
-                "out of LinkedIn Learning.",
+                name: "Receive recommendations to help you get the most out of LinkedIn Learning?",
                 url: "https://www.linkedin.com/psettings/email-controls",
                 availableSettings:{
                     On:{
@@ -2966,8 +2961,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Control whether you're willing to receive recommendations to help you get the most " +
-                "out of LinkedIn Learning.",
+                name: "Receive recommendations to help you get the most out of LinkedIn Learning?",
                 page: "https://www.linkedin.com/psettings/email-controls",
                 url_template: "https://www.linkedin.com/psettings/email-controls/updateSettings?csrfToken={CSRF_TOKEN}",
                 type:"application/json",
@@ -3086,7 +3080,7 @@ var ospSettingsConfigPreferences = {
          },*/
         enable_group_invitations:{
             read:{
-                name: "Choose whether you want to receive invitations to join groups",
+                name: "Receive invitations to join groups? ",
                 url: "https://www.linkedin.com/psettings/group-invitations",
                 availableSettings:{
                     Yes:{
@@ -3102,7 +3096,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Choose whether you want to receive invitations to join groups",
+                name: "Receive invitations to join groups? ",
                 page: "https://www.linkedin.com/psettings/group-invitations",
                 url_template: "https://www.linkedin.com/psettings/group-invitations",
                 type:"multipart/form-data",
@@ -3126,7 +3120,7 @@ var ospSettingsConfigPreferences = {
         },
         enable_group_notifications:{
             read:{
-                name: "Choose whether we notify your network when you join a group",
+                name: "Allow LinkedIn to notify your network when you join a group?",
                 url: "https://www.linkedin.com/psettings/group-join-notifications",
                 availableSettings:{
                     Yes:{
@@ -3142,7 +3136,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Choose whether we notify your network when you join a group",
+                name: "Allow LinkedIn to notify your network when you join a group?",
                 page: "https://www.linkedin.com/psettings/group-join-notifications",
                 url_template: "https://www.linkedin.com/psettings/group-join-notifications",
                 type:"multipart/form-data",
@@ -3206,7 +3200,7 @@ var ospSettingsConfigPreferences = {
         },
         allow_partner_inmail:{
             read:{
-                name: "Allow or disallow Partner InMail",
+                name: "Allow InMail from LinkedIn partners?",
                 url: "https://www.linkedin.com/psettings/partner-inmail",
                 availableSettings:{
                     Yes:{
@@ -3222,7 +3216,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Allow or disallow Partner InMail",
+                name: "Allow InMail from LinkedIn partners?",
                 page: "https://www.linkedin.com/psettings/partner-inmail",
                 url_template: "https://www.linkedin.com/psettings/partner-inmail",
                 type:"multipart/form-data",
@@ -3252,7 +3246,7 @@ var ospSettingsConfigPreferences = {
         },
         allow_hiring_campaign_partner_inmail:{
             read:{
-                name: "Allow or disallow hiring campaign Partner InMail",
+                name: "Allow hiring campaigns from LinkedIn partners?",
                 url: "https://www.linkedin.com/psettings/partner-inmail",
                 availableSettings:{
                     Yes:{
@@ -3268,7 +3262,7 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                name: "Allow or disallow hiring campaign Partner InMail",
+                name: "Allow hiring campaigns from LinkedIn partners?",
                 page: "https://www.linkedin.com/psettings/partner-inmail",
                 url_template: "https://www.linkedin.com/psettings/partner-inmail",
                 availableSettings:{

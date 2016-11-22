@@ -54,11 +54,6 @@ angular.module("singleClickPrivacy",[])
                                     }).then(function (modal) {
                                         modal.element.modal();
                                     });
-
-
-
-
-
                             }
                         }
                         ]
