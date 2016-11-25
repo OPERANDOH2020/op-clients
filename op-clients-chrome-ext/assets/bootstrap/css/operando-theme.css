@@ -251,6 +251,9 @@ div.tab-content{
     content:"";
 }
 
+#preferences_tab{
+    height: 100%;
+}
 .operando-navbar{
     background: #4b4b4b!important;
     height: 78px;
@@ -268,8 +271,6 @@ div.tab-content{
 .operando-navbar .navbar-brand {
     margin-left: 0px;
 }
-
-
 
 .operando .nav.navbar-nav.pull-right>.active>a,
 .operando .nav.navbar-nav.pull-right>.active>a:focus,
@@ -309,7 +310,6 @@ ul.nav.navbar-nav.pull-right li>a>.menu_item_content{
     line-height: 16px;
 }
 
-
 .operando .nav .open>a,
 .operando .nav .open>a:focus,
 .operando .nav .open>a:hover{
@@ -320,8 +320,8 @@ ul.nav.navbar-nav.pull-right li>a>.menu_item_content{
     padding: 0;
 }
 .image_logo{
-    margin-left: 40px;
-    margin-top: 15px;
+    margin-left: 0px;
+    margin-top: 10px;
 }
 
 #extensions_container .extension{
@@ -2202,6 +2202,16 @@ padding-left: 5px;
     background: inherit;
 }
 
+#wrapper .copy_to_clipboard_identity,
+#wrapper .copy_to_clipboard_identity:hover
+{
+    float:right;
+    border:none;
+    background: none;
+    outline:none;
+    box-shadow: none;
+}
+
 .no-gutter[class*='col-'] {
     padding-right:0;
     padding-left:0;
@@ -2228,4 +2238,8 @@ padding-left: 5px;
 }
 #sn_preferences h2.linkedin_icon{
     background: url("/operando/assets/images/linkedin32.png") no-repeat left center;
+}
+
+#abp-options-content{
+
 }

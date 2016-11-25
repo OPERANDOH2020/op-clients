@@ -73,11 +73,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 resolve: {
                     settings:['ospService', function (ospService) {
                         return ospService.loadOSPs();
-                    }],
-                    /*loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load('/operando/controllers/questionnaireController.js');
-                    }]*/
-
+                    }]
                 }
 
             })
@@ -125,8 +121,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                         twitter: "Twitter",
                         google: "Google"
 
-                    }
-
+                    };
 
                     if (!$stateParams.sn) {
                         $scope.osp = {
@@ -153,20 +148,29 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                 templateUrl: "views/preferences/abp.html",
                 resolve: {
                     loadScript: ['$ocLazyLoad', function ($ocLazyLoad) {
+
                         return $ocLazyLoad.load(
-                            ['../ext/common.js',
-                                '../ext/content.js'
-                            ]);
+                            {
+                                name: "Utilities",
+                                files: ['../ext/common.js',
+                                    '../ext/content.js'
+                                ], serie: true
+                            });
                     }]
                 }
             })
+            .state('abp.options', {
+                url: "/options",
+                templateUrl: "views/preferences/abp-options.html"
+            })
+
             .state('preferences.mobile', {
                 url: "/mobile",
                 templateUrl: "views/preferences/mobile.html"
             })
             .state('deals', {
                 url: "/deals",
-                templateUrl: "views/deals.html",
+                templateUrl: "views/deals.html"
             })
             .state('identityManagement', {
                 url: "/identities",
@@ -260,7 +264,6 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                             title: 'Facebook',
                             settings: settings['facebook']
                         }
-
                     }
                     else {
                         $scope.osp = {

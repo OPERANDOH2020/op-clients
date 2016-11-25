@@ -68,6 +68,15 @@ files = [
   "dest": "adblockpluschrome/skin/popup.css",
   "is_directory":0
 },
+{
+  "src": "build/override/options.html",
+  "dest": "adblockpluschrome/options.html",
+  "is_directory":0
+},{
+    "src": "build/override/options.js",
+    "dest": "adblockpluschrome/options.js",
+    "is_directory":0
+  },
  {
   "src": "build/override/firstRun.html",
   "dest": "adblockpluschrome/adblockplusui/firstRun.html",

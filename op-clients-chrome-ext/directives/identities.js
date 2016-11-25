@@ -123,6 +123,11 @@ angular.module('identities', [])
                 scope: {identity: "="},
                 controller: function ($scope, ModalService, messengerService, Notification) {
 
+
+                    $scope.stopEventPropagation = function($event){
+                        $event.stopPropagation();
+                    }
+
                     $scope.changeDefaultIdentity = function () {
 
                         messengerService.send("updateDefaultSubstituteIdentity", $scope.identity, function () {

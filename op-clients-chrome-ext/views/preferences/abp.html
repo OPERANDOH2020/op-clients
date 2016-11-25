@@ -1,7 +1,7 @@
 <div id="preferences_tab" class="content_tab">
     <div class="col-xs-12">
         <div class="tab-content">
-            <div id="ad_blocking_preferences">
+            <div ui-view id="ad_blocking_preferences">
                 <section id="can-do-more">
 
                     <div id="can-do-more-content" ng-controller="abpController">
@@ -13,13 +13,11 @@
 
                         </ul>
                     </div>
-                    <i>If you want to manually edit the anti-tracking settings, click <a style="color:#ff9a00" href="/options.html">here</a>.</i>
+                    <i>If you want to manually edit the anti-tracking settings, click <a style="color:#ff9a00" ui-sref="abp.options">here</a>.</i>
                 </section>
 
             </div>
         </div>
     </div>
 </div>
-
-
 

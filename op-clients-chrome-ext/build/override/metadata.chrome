@@ -39,6 +39,7 @@ icons/abp-38-whitelisted.png = operando/assets/images/icons/abp-38-whitelisted.p
 icons/abp-38-notification-critical.png = operando/assets/images/icons/abp-38-notification-critical.png
 icons/abp-38-notification-information.png = operando/assets/images/icons/abp-38-notification-information.png
 icons/detailed/abp-48.png = operando/assets/images/icons/detailed/abp-48.png
+icons/detailed/abp-32.png = operando/assets/images/icons/detailed/abp-32.png
 ext/devtools.js = chrome/ext/devtools.js
 devtools.html = chrome/devtools.html
 devtools.js = chrome/devtools.js

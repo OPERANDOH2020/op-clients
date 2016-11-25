@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<!--
+  - This file is part of Adblock Plus <https://adblockplus.org/>,
+  - Copyright (C) 2006-2016 Eyeo GmbH
+  -
+  - Adblock Plus is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU General Public License version 3 as
+  - published by the Free Software Foundation.
+  -
+  - Adblock Plus is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU General Public License
+  - along with Adblock Plus.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" href="jquery-ui/css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+  <script type="text/javascript" src="/operando/assets/bootstrap/js/jquery-1.12.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Dosis:400,500,600,700&subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/operando/assets/css/abp-options.css">
+  <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap.vertical-tabs.min.css">
+  <link rel="stylesheet" type="text/css" href="/operando/utils/angular-loading-bar/loading-bar.min.css">
+  <link rel="stylesheet" type="text/css" href="/operando/utils/jquery-custom-scrollbar/jquery.mCustomScrollbar.css">
+  <link rel="stylesheet" type="text/css" href="/operando/utils/ui-select/select.min.css">
+  <link rel="stylesheet" type="text/css" href="/operando/utils/ui-select/selectize.css">
+  <link rel="stylesheet" type="text/css" href="/operando/utils/angular-datatables/datatables.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/operando/utils/angular-ui-notification/angular-ui-notification.min.css">
+  <link rel="stylesheet" type="text/css" href="/operando/utils/jquery-tipsy/tipsy.css">
+
+  <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+
+<script type="text/javascript" src="lib/polyfills/promise.js"></script>
+<script type="text/javascript" src="lib/polyfills/fetch.js"></script>
+<script type="text/javascript" src="ext/common.js"></script>
+<script type="text/javascript" src="ext/content.js"></script>
+<script type="text/javascript" src="i18n.js" charset="utf-8"></script>
+<script type="text/javascript" src="options.js" charset="utf-8"></script>
+<!--<script type="text/javascript" src="operando/abp-options.js" charset="utf-8"></script>-->
+<script src="operando/assets/bootstrap/js/bootstrap.min.js"></script>
+<title>Ad blocking & anti-tracking options</title>
+
+</head>
+<body>
+
+      <h3>Ad blocking & anti-tracking options</span></h3>
+
+      <div class="abp-options-container">
+        <ul class="nav nav-pills">
+          <li class="active"><a data-toggle="tab" href="#tab-filterlists"><span class="i18n_filter_lists"></span></a></li>
+          <li><a data-toggle="tab" href="#tab-userfilters"><span class="i18n_add_your_own_filters"></span></a></li>
+          <li><a data-toggle="tab" href="#tab-whitelisted"><span class="i18n_whitelisted_domains"></span></a></li>
+          <li><a data-toggle="tab" href="#tab-general"><span class="i18n_general"></span></a></li>
+        </ul>
+
+        <div class="tab-content clearfix">
+          <div id="tab-filterlists" class="tab-pane active">
+            <p>
+              <span class="i18n_enable_only_the"></span>
+            </p>
+            <p>
+              <span class="i18n_out_of_date_lists"></span>
+              <button id="updateFilterLists" class="refreshButton"><span class="i18n_update_now"></span></button><br />
+
+              <!-- Subscription entry template -->
+            <div id="subscriptionTemplate" class="subscription">
+              <button class="subscriptionRemoveButton trash"></button>
+              <label class="subscriptionEnabledContainer">
+                <input class="subscriptionEnabled" type="checkbox" />
+                <span class="i18n_filters_subscription_enabled_label"></span>
+              </label>
+              <a class="subscriptionTitle"></a>
+              <span class="subscriptionUpdate"></span>
+            </div>
+
+            <!-- Placeholder for list of subscriptions -->
+            <div id="filterLists"></div>
+            <br />
+
+            <!-- Placeholder for user's filter list URLs -->
+            <div id="userFilterLists" style="margin-bottom: 8px"></div>
+
+            <p id="addSubscriptionButton">
+              <button id="startSubscriptionSelection" class="addButton"><span class="i18n_filters_addSubscription_label"></span></button>
+            </p>
+            <div id="addSubscriptionContainer">
+              <span class="i18n_subscriptionSelection_subscriptionSelector_label"></span><br />
+
+
+              <div class="form-group">
+                <div class="input-group">
+                  <select id="subscriptionSelector"  class="form-control" ></select>
+                <span class="input-group-btn">
+              <button id="addSubscription" class="addButton"><span class="i18n_filters_addSubscriptionAdd_label"></span></button>
+                  </button>
+                </span>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="row" id="customSubscriptionContainer">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="customSubscriptionTitle"> <span class="i18n_subscriptionSelection_title_label"></span></label>
+                    <input type="text" class="form-control" id="customSubscriptionTitle" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="customSubscriptionLocation"> <span class="i18n_subscriptionSelection_location_label"></span></label>
+                    <input type="text" class="form-control" id="customSubscriptionLocation" />
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!--<div id="customSubscriptionContainer">
+              <p>
+                <span class="i18n_subscriptionSelection_title_label"></span><br />
+                <input type="text" id="customSubscriptionTitle" style="width:500px" />
+              </p>
+              <p>
+                <span class="i18n_subscriptionSelection_location_label"></span><br />
+                <input type="text" id="customSubscriptionLocation" style="width:500px" />
+              </p>
+            </div>-->
+            </p>
+          </div>
+          <div id="tab-userfilters" class="tab-pane">
+            <p id="filter-must-follow-syntax" class="i18n_filter_must_follow_syntax"></p>
+
+            <form id="customFilterForm" action="#">
+
+
+
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" value="" id="newFilter"
+                         placeholder="Enter filter">
+                <span class="input-group-btn">
+                  <button class="addButton btn btn-secondary" type="submit"><span class="i18n_add_filter_button"></span>
+                  </button>
+                </span>
+                </div>
+              </div>
+
+
+              <ul class="list-group" id="userFiltersBoxList">
+              </ul>
+
+              <table style="width: 100%;">
+                <tr>
+                  <td>
+                    <div style="font-size: 90%; text-align: right"><a id="rawFiltersButton" href="#"><span class="i18n_edit_filters_raw"></span></a></div>
+                  </td>
+                </tr>
+                <tr id="rawFilters">
+                  <td>
+                    <div>
+                      <textarea id="rawFiltersText" style="width: 100%; height: 300px"></textarea>
+                      <div><button id="importRawFilters"><span class="i18n_apply_changes"></span></button></div>
+                    </div>
+                  </td>
+                  </tr>
+              </table>
+            </form>
+          </div>
+          <div id="tab-whitelisted" class="tab-pane">
+            <p class="i18n_disabled_for_these_domains"></p>
+
+
+            <form id="whitelistForm" action="#">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" value="" id="newWhitelistDomain"
+                         placeholder="Enter domain name">
+                <span class="input-group-btn">
+                  <button class="addButton btn btn-secondary" type="submit"><span class="i18n_add_domain_button"></span>
+                  </button>
+                </span>
+                </div>
+              </div>
+
+              <ul class="list-group" id="excludedDomainsBoxList">
+              </ul>
+
+            </form>
+
+          </div>
+          <div id="tab-general" class="tab-pane">
+            <p>
+            <div id="shouldShowBlockElementMenuContainer">
+            <label>
+              <input type="checkbox" id="shouldShowBlockElementMenu" />
+              <span for="shouldShowBlockElementMenu" class="i18n_show_block_element_menu"></span>
+            </label>
+            </div>
+            <div id="showDevtoolsPanelContainer">
+              <label>
+              <input type="checkbox" id="show_devtools_panel" />
+                <span for="show_devtools_panel" class="i18n_show_devtools_panel"></span>
+              </label>
+            </div>
+            <div id="shouldShowNotificationsContainer" data-section="notifications">
+              <label>
+              <input type="checkbox" id="shouldShowNotifications" />
+                <span for="shouldShowNotifications" class="i18n_overlay_shownotifications_label"></span>
+              </label>
+            </div>
+            </p>
+
+            <p id="found-a-bug" class="i18n_found_a_bug"></p>
+          </div>
+        </div>
+
+      </div>
+
+
+</body>
+</html>
