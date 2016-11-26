@@ -870,11 +870,22 @@ border-left:2px solid #fe9901;
 
 #main h3{
     color: #584a28;
+    font-size: 25px;
 }
 
 #main p{
-    font-size: 16px;
+    font-size: 20px;
     color: #584a28;
+}
+
+#main .main-parent{
+    display: table;
+    height: calc(100% - 100px);
+}
+
+#main .presentation{
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .sidebar_expandable_menu .panel-body{
@@ -2240,6 +2251,7 @@ padding-left: 5px;
     background: url("/operando/assets/images/linkedin32.png") no-repeat left center;
 }
 
-#abp-options-content{
-
+.anti-tracking-settings{
+ margin-top: 10px;
+ float:right;
 }
