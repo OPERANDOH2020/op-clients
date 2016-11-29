@@ -1068,17 +1068,6 @@ border: none;
     white-space:pre;
 }
 
-.notification_content a{
-    background: #FFB400;
-    padding: 10px;
-    display: inline-block;
-    margin-top: 10px;
-    left:-10px;
-    position: relative;
-    margin-left: 10px;
-}
-
-
 .panel-notifications .alert .dont_show_again{
     position: absolute;
     right: 15px;

@@ -46,7 +46,7 @@ var authenticationService = exports.authenticationService = {
     registerUser: function (user, errorFunction, successFunction) {
 
         var self  = this;
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest@operando.eu", "guest", "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, ExtensionConfig.GUEST_EMAIL, ExtensionConfig.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
         setTimeout(function(){
             var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
@@ -64,7 +64,7 @@ var authenticationService = exports.authenticationService = {
 
     resetPassword:  function(email, successCallback, failCallback){
         var self  = this;
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, "guest@operando.eu", "guest", "chromeBrowserExtension", "userLogin", failCallback, failCallback);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, ExtensionConfig.GUEST_EMAIL, ExtensionConfig.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", failCallback, failCallback);
 
         setTimeout(function(){
             var resetPassHandler = swarmHub.startSwarm("UserInfo.js", "resetPassword", email);
@@ -110,20 +110,17 @@ var authenticationService = exports.authenticationService = {
         var setUserHandler = swarmHub.startSwarm('UserInfo.js', 'info');
         setUserHandler.onResponse("result", function(swarm){
             authenticatedUser = swarm.result;
-            loggedInObservable.notify();
-            if(callback){
-                callback(authenticatedUser);
+            if(authenticatedUser.email !== ExtensionConfig.GUEST_EMAIL){
+                loggedInObservable.notify();
+                if(callback){
+                    callback(authenticatedUser);
+                }
+            }else{
+                //logout guest user
+                self.logoutCurrentUser();
             }
         });
 
-        /*setUserHandler.onResponse("result", function(response){
-
-            authenticatedUser = response.result;
-            loggedInObservable.notify();
-            if(callback){
-                callback();
-            }
-        });*/
     },
 
     getCurrentUser: function (callback) {

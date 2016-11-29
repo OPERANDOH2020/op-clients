@@ -11,6 +11,9 @@
  */
 
 var ExtensionConfig = {
+    GUEST_EMAIL:"guest@operando.eu",
+    GUEST_PASSWORD:"guest",
+
     OPERANDO_SERVER_HOST:"192.168.100.86",
     //OPERANDO_SERVER_HOST:"212.24.98.215",
     OPERANDO_SERVER_PORT:8080

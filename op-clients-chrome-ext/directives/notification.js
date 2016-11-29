@@ -127,26 +127,6 @@ angular.module('notifications').
             restrict: 'E',
             replace: true,
             scope: {notification: "="},
-            link: function ($scope,element) {
-
-               setTimeout(function(){
-                   var actionLinks = element[0].getElementsByClassName('notification_content')[0].getElementsByTagName("a");
-                   console.log(actionLinks);
-
-                   actionLinks = [].slice.call(actionLinks);
-
-                   for (var i = 0; i < actionLinks.length; i++) {
-                       (function(i){
-
-                           actionLinks[i].addEventListener("click", function(e){
-                               e.stopPropagation();
-                               $scope.takeAction(i);
-                           });
-                       })(i);
-
-                   }
-               },10);
-            },
             controller: function ($scope, notificationService, $state ) {
                     $scope.dismissed = false;
                     $scope.doNotShowNexTime = function () {
@@ -155,18 +135,9 @@ angular.module('notifications').
 
                         });
                 }
+                $scope.takeAction = function(action){
 
-                $scope.takeAction = function(index){
-                    var nAction;
-
-                    if (Array.isArray($scope.notification.action)) {
-                        nAction = $scope.notification.action[index];
-                    }
-                    else {
-                        nAction = $scope.notification.action;
-                    }
-
-                    switch (nAction){
+                    switch (action.key){
                         case "identity": $state.go('identityManagement'); break;
                         case "privacy-for-benefits": $state.go('deals'); break;
                         case "social-network-privacy":
