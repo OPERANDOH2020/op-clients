@@ -19,7 +19,6 @@ permissions = tabs
   management
   tabs
   clipboardWrite
-  https://platform.twitter.com/js/*
 options = /operando/operando.html#home
 browserAction = operando/assets/images/icons/operando/abp-19.png operando/assets/images/icons/operando/abp-38.png popup.html
 icons = operando/assets/images/icons/operando/abp-16.png operando/assets/images/icons/operando/abp-32.png operando/assets/images/icons/operando/detailed/abp-48.png

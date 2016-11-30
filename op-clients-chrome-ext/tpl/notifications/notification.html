@@ -3,6 +3,7 @@
     <div class="alert_container">
         <h4>{{notification.title}}</h4>
             <div class="notification_content" ng-bind-html="notification.description"></div>
+            <br/>
             <div class="notification_actions">
                 <button class="btn-primary" ng-repeat="action in notification.actions" ng-click="takeAction(action)">{{action.title}}</button>
             </div>

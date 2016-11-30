@@ -46,7 +46,7 @@ var authenticationService = exports.authenticationService = {
     registerUser: function (user, errorFunction, successFunction) {
 
         var self  = this;
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, ExtensionConfig.GUEST_EMAIL, ExtensionConfig.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, CONSTANTS.GUEST_EMAIL, CONSTANTS.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
         setTimeout(function(){
             var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
@@ -64,7 +64,7 @@ var authenticationService = exports.authenticationService = {
 
     resetPassword:  function(email, successCallback, failCallback){
         var self  = this;
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, ExtensionConfig.GUEST_EMAIL, ExtensionConfig.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", failCallback, failCallback);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, CONSTANTS.GUEST_EMAIL, CONSTANTS.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", failCallback, failCallback);
 
         setTimeout(function(){
             var resetPassHandler = swarmHub.startSwarm("UserInfo.js", "resetPassword", email);

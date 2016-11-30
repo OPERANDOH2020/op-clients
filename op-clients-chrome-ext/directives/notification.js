@@ -15,8 +15,14 @@ angular.module('notifications', ['ui-notification'])
        var notifications = [];
 
         var dismissNotification = function (notificationId, dismissed, callback) {
+            messengerService.send("dismissNotification", {notificationId:notificationId, dismissed:dismissed}, function(data){
 
-            messengerService.send("dismissNotification", {notificationId:notificationId,dismissed:dismissed}, function(data){
+                notifications = notifications.filter(function( notification ) {
+                    console.log(notification);
+                    return notification.notificationId !== notificationId;
+                });
+
+                $rootScope.$broadcast('notificationCounterUpdate', notifications);
                 callback();
             });
         }
@@ -51,20 +57,15 @@ angular.module('notifications', ['ui-notification'])
         }
 
          function loadUserNotifications(callback) {
-            var deferred = $q.defer();
-            if (Object.keys(notifications).length > 0) {
-                deferred.resolve(notifications);
-                callback(notifications);
-            }
-            else {
-                messengerService.send("getNotifications", function(response){
-                    var notifications = response.data;
-                    deferred.resolve(notifications);
-                    callback(notifications);
+             var deferred = $q.defer();
+             messengerService.send("getNotifications", function (response) {
+                 notifications = response.data;
+                 deferred.resolve(notifications);
+                 callback(notifications);
 
-                });
-            }
-            return deferred.promise;
+             });
+
+             return deferred.promise;
         }
 
         var getUserNotifications = function(callback){
@@ -95,6 +96,7 @@ angular.module('notifications')
                 $scope.$on('notificationCounterUpdate', function (event, notifications) {
                     console.log(notifications);
                     $scope.notifications.counter = notifications.length;
+                    $scope.$apply();
                 });
             },
             templateUrl: '/operando/tpl/notifications/notification-counter.html'
@@ -114,7 +116,6 @@ angular.module('notifications').
                 notificationService.getUserNotifications(function(notifications){
                     $scope.notifications = notifications;
                     $rootScope.$broadcast('notificationCounterUpdate', notifications);
-                    $scope.$apply();
                 });
 
             },

@@ -1076,7 +1076,7 @@ border: none;
 }
 
 .alert .alert_container{
-    padding: 10px 70px;
+    padding: 10px 70px 0px;
 }
 .alert.warning-notification .alert_container{
     background: url("/operando/assets/images/danger.png") no-repeat left center;

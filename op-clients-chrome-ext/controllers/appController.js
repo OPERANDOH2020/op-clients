@@ -12,7 +12,7 @@
 
 
 angular.module("operando").
-controller("appCtrl", ["$scope", "messengerService","$window","notificationService", function ($scope, messengerService,$window, notificationService) {
+controller("appCtrl", ["$scope", "messengerService","$window", function ($scope, messengerService,$window) {
 
     $scope.userIsLoggedIn = false;
 
@@ -32,7 +32,6 @@ controller("appCtrl", ["$scope", "messengerService","$window","notificationServi
 
 
     function updatedUserHandler(){
-
         messengerService.send("getCurrentUser",function(user){
             $scope.user = user;
             $scope.$apply();

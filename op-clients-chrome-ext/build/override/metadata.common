@@ -122,6 +122,7 @@ operando/swarms.js = operando/services/swarm-services/socket.io-1.0.6.js
                   operando/services/swarm-services/SwarmDebug.js
                   operando/services/swarm-services/SwarmClient.js
                   operando/services/swarm-services/SwarmHub.js
+                  operando/util/Constants.js
                   operando/util/Config.js
 operando/directives.js = operando/directives/deals.js
                   operando/directives/extensions.js
