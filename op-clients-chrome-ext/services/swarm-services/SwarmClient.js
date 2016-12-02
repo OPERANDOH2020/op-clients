@@ -35,7 +35,6 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
     this.getSessionId = function () {
         return sessionId;
     }
-
     createSocket();
 
     function createSocket() {
@@ -57,8 +56,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
              'retry'
              'reconnect'
              }*/
-
-            socket = io.connect(connectionString);
+            socket = io.connect(connectionString, {'force new connection': true});
             socket.on('connect', socket_onConnect);
             socket.on('data', socket_onStreamData);
             socket.on('message', socket_onStreamData);
@@ -97,6 +95,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         lprint("Destroying a socket");
         loginOk = false;
         if (useSocketIo) {
+            socket.disconnect(true);
             delete socket;
             delete this;
         } else {

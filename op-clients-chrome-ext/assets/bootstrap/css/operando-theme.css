@@ -874,7 +874,7 @@ border-left:2px solid #fe9901;
 }
 
 #main p{
-    font-size: 20px;
+    font-size: 23px;
     color: #584a28;
 }
 
@@ -883,9 +883,17 @@ border-left:2px solid #fe9901;
     height: calc(100% - 100px);
 }
 
+
+#main .image_container{
+    display: block;
+    background: url("/operando/assets/images/home.jpg") no-repeat left center;
+    background-size: 100%;
+    height: 240px;
+    width: 100%;
+}
 #main .presentation{
-    display: table-cell;
-    vertical-align: middle;
+    display: block;
+    margin-top: 40px;
 }
 
 .sidebar_expandable_menu .panel-body{

@@ -37,9 +37,6 @@ function runConnectionErrorCallback() {
 
 var swarmService = exports.swarmService = {
 
-    getConnection: function () {
-        return swarmConnection;
-    },
     initConnection: function (host, port, email, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
         if (errorFunction) {
             this.onConnectionError(errorFunction)
@@ -80,7 +77,11 @@ var swarmService = exports.swarmService = {
         swarmHub.resetConnection(swarmConnection);
     },
     removeConnection: function () {
-        swarmConnection.logout();
+         swarmConnection.logout();
+         swarmConnection = null;
+         connectCallbacks = [];
+         reconnectCallbacks = [];
+         connectionErrorCallback = [];
     },
     onReconnect: function (callback) {
         reconnectCallbacks.push(callback);

@@ -214,9 +214,9 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
     });
 
 
-    messengerService.on("onReconnect",reconnectFunction);
+    /*messengerService.on("onReconnect",reconnectFunction);
     messengerService.on("onConnectionError",errorFunction);
-    messengerService.on("onConnect",reconnectFunction);
+    messengerService.on("onConnect",reconnectFunction);*/
 
 
 }]);

@@ -29,7 +29,7 @@ var authenticationService = exports.authenticationService = {
 
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, login_details.email, login_details.password, "chromeBrowserExtension", "userLogin", securityFn);
         console.log("Keep session ",login_details.remember_me);
-        swarmHub.on('login.js', "success", function (swarm) {
+        swarmHub.on('login.js', "success", function loginSuccessfully(swarm) {
             loggedIn = swarm.authenticated;
 
             var daysUntilCookieExpire = 1;
@@ -39,7 +39,7 @@ var authenticationService = exports.authenticationService = {
             Cookies.set("sessionId", swarm.meta.sessionId,  { expires: daysUntilCookieExpire });
             Cookies.set("userId", swarm.userId,{ expires: daysUntilCookieExpire });
             self.setUser(successFn);
-            swarmHub.off("login.js", "success");
+            swarmHub.off("login.js", "success",loginSuccessfully);
         });
     },
 
@@ -48,41 +48,49 @@ var authenticationService = exports.authenticationService = {
         var self  = this;
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, CONSTANTS.GUEST_EMAIL, CONSTANTS.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
-        setTimeout(function(){
-            var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
-            registerHandler.onResponse("success", function(swarm){
-                successFunction("success");
-                self.logoutCurrentUser();
-            });
+        swarmHub.on("login.js", "success", function guestLoginForUserRegistration(swarm){
+            swarmHub.off("login.js", "success",guestLoginForUserRegistration);
+            if(swarm.authenticated){
+                var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
+                registerHandler.onResponse("success", function(swarm){
+                    successFunction("success");
+                    self.logoutCurrentUser();
+                });
 
-            registerHandler.onResponse("error", function(swarm){
-                errorFunction(swarm.error);
-                self.logoutCurrentUser();
-            });
-        },1000);
+                registerHandler.onResponse("error", function(swarm){
+                    errorFunction(swarm.error);
+                    self.logoutCurrentUser();
+                });
+            }
+        });
     },
 
-    resetPassword:  function(email, successCallback, failCallback){
-        var self  = this;
+    resetPassword: function (email, successCallback, failCallback) {
+        var self = this;
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, CONSTANTS.GUEST_EMAIL, CONSTANTS.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", failCallback, failCallback);
 
-        setTimeout(function(){
-            var resetPassHandler = swarmHub.startSwarm("UserInfo.js", "resetPassword", email);
-            resetPassHandler.onResponse("emailDeliverySuccessful", function(swarm){
-                successCallback("success");
-                self.logoutCurrentUser();
-            });
+        swarmHub.on("login.js", "success", function guestLoginForPasswordRecovery(swarm) {
+            swarmHub.off("login.js", "success", guestLoginForPasswordRecovery);
+            if (swarm.authenticated) {
 
-            resetPassHandler.onResponse("emailDeliveryUnsuccessful", function(swarm){
-                failCallback(swarm.error);
-                self.logoutCurrentUser();
-            });
+                var resetPassHandler = swarmHub.startSwarm("UserInfo.js", "resetPassword", email);
+                resetPassHandler.onResponse("emailDeliverySuccessful", function (swarm) {
+                    successCallback("success");
+                    self.logoutCurrentUser();
+                });
 
-            resetPassHandler.onResponse("resetPasswordFailed", function(swarm){
-                failCallback(swarm.error);
-                self.logoutCurrentUser();
-            });
-        },300);
+                resetPassHandler.onResponse("emailDeliveryUnsuccessful", function (swarm) {
+                    failCallback(swarm.error);
+                    self.logoutCurrentUser();
+                });
+
+                resetPassHandler.onResponse("resetPasswordFailed", function (swarm) {
+                    failCallback(swarm.error);
+                    self.logoutCurrentUser();
+                });
+            }
+        });
+
     },
 
     restoreUserSession: function (successCallback, failCallback, errorCallback, reconnectCallback) {
@@ -98,11 +106,11 @@ var authenticationService = exports.authenticationService = {
         }
 
         swarmService.restoreConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, username, sessionId, failCallback, errorCallback, reconnectCallback);
-        swarmHub.on('login.js', "restoreSucceed", function (swarm) {
+        swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
             loggedIn = true;
             Cookies.set("sessionId", swarm.meta.sessionId);
-                self.setUser(successCallback);
-            swarmHub.off("login.js", "restoreSucceed");
+            self.setUser(successCallback);
+            swarmHub.off("login.js", "restoreSucceed",restoredSuccessfully);
         });
     },
 
@@ -137,7 +145,7 @@ var authenticationService = exports.authenticationService = {
 
     logoutCurrentUser: function (callback) {
         swarmHub.startSwarm("login.js", "logout");
-        swarmHub.on("login.js", "logoutSucceed", function (swarm) {
+        swarmHub.on("login.js", "logoutSucceed", function logoutSucceed(swarm) {
             authenticatedUser = {};
             loggedIn = false;
             notLoggedInObservable.notify();
@@ -145,7 +153,7 @@ var authenticationService = exports.authenticationService = {
             loggedInObservable = swarmHub.createObservable();
             Cookies.remove("userId");
             Cookies.remove("sessionId");
-            swarmHub.off("login.js", "logoutSucceed");
+            swarmHub.off("login.js", "logoutSucceed",logoutSucceed);
             swarmService.removeConnection();
             if(callback){
                 callback();

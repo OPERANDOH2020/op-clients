@@ -104,17 +104,6 @@ webRequest.onBeforeSendHeaders.addListener(function(details) {
     ["blocking", "requestHeaders"]);
 
 
-
-chrome.tabs.onCreated.addListener(function(tab) {
-    console.log("onCreated");
-    //tryPfB(tab.id);
-});
-
-chrome.tabs.onActivated.addListener(function(activeInfo) {
-    console.log("onActivated");
-    //tryPfB(activeInfo.tabId);
-});
-
 chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
     tryPfB(tabId, changeInfo);
 });

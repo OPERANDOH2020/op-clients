@@ -10,6 +10,7 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
+
 (function () {
 
     var handleClick = function () {
