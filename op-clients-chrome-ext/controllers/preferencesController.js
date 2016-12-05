@@ -15,28 +15,67 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
 
     var settings = [];
 
+
     function showModalProgress(socialNetwork, settings, watchDogAction){
+
+        var searchCookieInterval = null;
+
         ModalService.showModal({
 
             templateUrl: '/operando/tpl/modals/single_click_enforcement.html',
-            controller: ["$scope", "close", "watchDogService", function ($scope, close, watchDogService) {
-                $scope.progresses = {};
-                watchDogAction(settings, function(ospname, current, total){
-                    $scope.progresses[ospname] = {
-                        ospName: ospname,
-                        current: current,
-                        total: total,
-                        status: current < total ? "pending" : "completed"
+            controller: ["$scope", "close", "watchDogService", function ($scope) {
+
+                function checkIfIsLoggedIn(socialNetwork, callback){
+                    $scope.socialNetwork = socialNetwork;
+                    var url;
+                    var cookieName;
+
+                    switch (socialNetwork){
+                        case "Facebook": url="https://facebook.com"; cookieName = "c_user"; break;
+                        case "LinkedIn": url="https://www.linkedin.com"; cookieName = "li_at"; break;
                     }
-                    $scope.$apply();
-                }, function(){
-                    $scope.completedFeedback = socialNetwork + " privacy settings were updated!";
-                    $scope.completed = true;
+
+
+                    searchCookieInterval = setInterval(function (){
+                        chrome.cookies.get({url: url, name: cookieName}, function (cookie) {
+                            if (cookie) {
+                                $scope.isLoggedIn = true;
+                                callback();
+                                clearInterval(searchCookieInterval);
+                            }
+                            else{
+                                $scope.isLoggedIn = false;
+                                $scope.$apply();
+                            }
+                        });
+                    },1000);
+                }
+
+                checkIfIsLoggedIn(socialNetwork, function(){
+                    $scope.progresses = {};
+                    watchDogAction(settings, function(ospname, current, total){
+                        $scope.progresses[ospname] = {
+                            ospName: ospname,
+                            current: current,
+                            total: total,
+                            status: current < total ? "pending" : "completed"
+                        }
+                        $scope.$apply();
+                    }, function(){
+                        $scope.completedFeedback = socialNetwork + " privacy settings were updated!";
+                        $scope.completed = true;
+                    });
                 });
             }]
 
         }).then(function (modal) {
-            modal.element.modal();
+            modal.element.modal({
+                backdrop: 'static'
+            });
+            modal.closed.then(function() {
+                alert("asdas");
+                clearInterval(searchCookieInterval);
+            });
         });
     }
 
@@ -93,7 +132,7 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
                     switch ($scope.socialNetwork){
 
                         case "facebook" : showModalProgress("Facebook",settings, watchDogService.applyFacebookSettings);break;
-                        case "linkedin" : showModalProgress("Linkedin",settings, watchDogService.applyLinkedInSettings);break;
+                        case "linkedin" : showModalProgress("LinkedIn",settings, watchDogService.applyLinkedInSettings);break;
 
                     }
 

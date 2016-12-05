@@ -285,26 +285,29 @@ operandoCore
 
         }
 
-        var maximizeEnforcement = function(callback, completedCallback){
+        var maximizeEnforcement = function(availableOSPs, callback, completedCallback){
 
             ospService.getOSPSettings(function (settings) {
 
                 var settingsToBeApplied = {};
 
                 for (ospname in settings) {
+                    if (availableOSPs.indexOf(ospname)>-1) {
 
-                    for (setting in settings[ospname]) {
+                        for (setting in settings[ospname]) {
 
-                        var s = settings[ospname][setting];
+                            var s = settings[ospname][setting];
 
-                         if(s.write.recommended && s.write.availableSettings && s.write.availableSettings[s.write.recommended]){
+                            if (s.write.recommended && s.write.availableSettings && s.write.availableSettings[s.write.recommended]) {
 
-                             if (!settingsToBeApplied[ospname]) {
-                                 settingsToBeApplied[ospname] = [];
-                             }
+                                if (!settingsToBeApplied[ospname]) {
+                                    settingsToBeApplied[ospname] = [];
+                                }
 
-                             settingsToBeApplied[ospname].push(prepareSettings(s.write, s.write.recommended));
-                         }
+                                settingsToBeApplied[ospname].push(prepareSettings(s.write, s.write.recommended));
+                            }
+
+                        }
                     }
                 }
 

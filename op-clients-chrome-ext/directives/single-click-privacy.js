@@ -30,25 +30,75 @@ angular.module("singleClickPrivacy",[])
                             };
                             $scope.enforcePrivacy = function(){
 
-
                                 messengerService.send("dismissPrivacyNotifications");
 
                                 ModalService.showModal({
 
                                         templateUrl: '/operando/tpl/modals/single_click_enforcement.html',
                                         controller: ["$scope", "close", "watchDogService", function ($scope, close, watchDogService) {
-                                            $scope.progresses = {};
-                                            watchDogService.maximizeEnforcement(function(ospname, current, total){
-                                                $scope.progresses[ospname] = {
-                                                    ospName: ospname,
-                                                    current: current,
-                                                    total: total,
-                                                    status: current < total ? "pending" : "completed"
+                                            var readCookieConf = {
+                                                facebook:{
+                                                    url:"https://facebook.com",
+                                                    cookie_name:"c_user"
+                                                },
+                                                linkedin:{
+                                                    url:"https://www.linkedin.com",
+                                                    cookie_name:"li_at"
                                                 }
-                                                $scope.$apply();
-                                            }, function(){
-                                                $scope.completed = true;
-                                            });
+                                            }
+
+                                            var readCookie  = function(ospKey,conf){
+                                                return new Promise(function(resolve, reject){
+                                                    chrome.cookies.get({url: conf.url, name: conf.cookie_name}, function (cookie) {
+                                                        if (cookie) {
+                                                            $scope.osps.push(ospKey);
+                                                            resolve();
+                                                        }
+                                                        else {
+                                                            resolve("Not logged in "+ospKey);
+                                                        }
+                                                    });
+                                                });
+                                            }
+
+                                            var enforce = function () {
+
+                                                $scope.progresses = {};
+                                                $scope.osps = [];
+                                                $scope.noSocialNetworkAvailable = false;
+
+                                                var promise = Promise.resolve();
+                                                for (var ospKey in readCookieConf) {
+                                                    (function (ospKey) {
+                                                        promise = promise.then(function () {
+                                                            return readCookie(ospKey, readCookieConf[ospKey]);
+                                                        })
+                                                    }(ospKey));
+                                                }
+
+                                                promise.then(function () {
+                                                    if ($scope.osps.length > 0) {
+                                                        watchDogService.maximizeEnforcement($scope.osps, function (ospname, current, total) {
+                                                            $scope.progresses[ospname] = {
+                                                                ospName: ospname,
+                                                                current: current,
+                                                                total: total,
+                                                                status: current < total ? "pending" : "completed"
+                                                            }
+                                                            $scope.$apply();
+                                                        }, function () {
+                                                            $scope.completed = true;
+                                                        });
+                                                    }
+                                                    else{
+                                                        $scope.noSocialNetworkAvailable = true;
+                                                        $scope.$apply();
+                                                    }
+                                                });
+                                            }
+                                            enforce();
+                                            $scope.enforce = enforce;
+
                                         }]
 
                                     }).then(function (modal) {

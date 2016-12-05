@@ -1284,6 +1284,28 @@ h3.privacy_wizard_suggestions_heading{
     margin: 160px auto;
 }
 
+.social_network_log_in_container:after{
+    clear:both;
+    display: block;
+    content:"";
+}
+
+.social_network_log_in{
+    float:left;
+}
+
+.sn_not_connected{
+    font-size: 17px;
+    margin-left: 15px;
+    margin-top: 4px;
+    float: left;
+    display: block;
+}
+
+.social_network_log_in .sk-fading-circle{
+    margin: 0 auto;
+}
+
 .big-loader .sk-fading-circle .sk-circle:before{
     background-color: #584a28;
 }

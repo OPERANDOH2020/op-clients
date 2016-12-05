@@ -69,7 +69,6 @@ angular.module('osp')
             return settingValue;
         }
 
-
         function getOSPs(callback) {
             loadOSPSettings(function () {
                 var osps = [];
@@ -84,9 +83,7 @@ angular.module('osp')
             ospSettingsConfig = ospConfigs;
         }
 
-
         getUserSettings = function (callback) {
-
             chrome.storage.local.get('sn_privacy_settings', function (settings) {
                 callback(settings);
             });
