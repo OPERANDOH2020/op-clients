@@ -48,8 +48,8 @@ var authenticationService = exports.authenticationService = {
         var self  = this;
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, CONSTANTS.GUEST_EMAIL, CONSTANTS.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", errorFunction, errorFunction);
 
-        swarmHub.on("login.js", "success", function guestLoginForUserRegistration(swarm){
-            swarmHub.off("login.js", "success",guestLoginForUserRegistration);
+        swarmHub.on("login.js", "success_guest", function guestLoginForUserRegistration(swarm){
+            swarmHub.off("login.js", "success_guest",guestLoginForUserRegistration);
             if(swarm.authenticated){
                 var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
                 registerHandler.onResponse("success", function(swarm){
@@ -69,12 +69,12 @@ var authenticationService = exports.authenticationService = {
         var self = this;
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, CONSTANTS.GUEST_EMAIL, CONSTANTS.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", failCallback, failCallback);
 
-        swarmHub.on("login.js", "success", function guestLoginForPasswordRecovery(swarm) {
-            swarmHub.off("login.js", "success", guestLoginForPasswordRecovery);
+        swarmHub.on("login.js", "success_guest", function guestLoginForPasswordRecovery(swarm) {
+            swarmHub.off("login.js", "success_guest", guestLoginForPasswordRecovery);
             if (swarm.authenticated) {
 
                 var resetPassHandler = swarmHub.startSwarm("UserInfo.js", "resetPassword", email);
-                resetPassHandler.onResponse("emailDeliverySuccessful", function (swarm) {
+                resetPassHandler.onResponse("newPasswordWasSet", function (swarm) {
                     successCallback("success");
                     self.logoutCurrentUser();
                 });

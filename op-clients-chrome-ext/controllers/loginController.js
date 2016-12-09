@@ -91,6 +91,7 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
                 remember_me: $scope.user.remember_me
             }
         }, function (response) {
+            console.log("mata");
             $scope.requestIsProcessed = false;
             if (response.success) {
 
