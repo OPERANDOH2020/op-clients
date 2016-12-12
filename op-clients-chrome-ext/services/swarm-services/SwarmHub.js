@@ -128,6 +128,7 @@ function SwarmHub(swarmConnection){
         swarmConnectionCallbacks = [];
     }
     this.on("login.js", "success", startWaitingCallbacks);
+    this.on("login.js", "success_guest", startWaitingCallbacks);
     this.on("login.js", "restoreSucceed", startWaitingCallbacks);
 
     this.onSwarmConnection = function (callback) {
