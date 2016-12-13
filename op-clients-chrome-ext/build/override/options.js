@@ -126,10 +126,6 @@ function loadOptions()
     $("#addSubscription").click(addSubscriptionClicked);
     $("#acceptableAds").click(toggleAcceptableAds);
     $("#whitelistForm").submit(addWhitelistDomain);
-    $("#customFilterForm").submit(addTypedFilter);
-    $("#rawFiltersButton").click(toggleFiltersInRawFormat);
-    $("#importRawFilters").click(importRawFiltersText);
-
     // Display jQuery UI elements
     $("button").button();
     $(".refreshButton").button("option", "icons", {primary: "ui-icon-refresh"});
@@ -199,8 +195,6 @@ function convertSpecialSubscription(subscription)
             var filter = filters[j].text;
             if (whitelistedDomainRegexp.test(filter))
                 appendToListBox("excludedDomainsBoxList", RegExp.$1);
-            else
-                appendToListBox("userFiltersBoxList", filter);
         }
     });
 }
@@ -228,7 +222,6 @@ function reloadFilters()
     // User-entered filters
     getSubscriptions(false, true, function(subscriptions)
     {
-        clearListBox("userFiltersBoxList");
         clearListBox("excludedDomainsBoxList");
 
         for (var i = 0; i < subscriptions.length; i++)
@@ -414,12 +407,6 @@ function updateSubscriptionInfo(element, subscription)
 
     var title = element.getElementsByClassName("subscriptionTitle")[0];
     title.textContent = subscription.title;
-    title.setAttribute("title", subscription.url);
-    if (subscription.homepage)
-        title.href = subscription.homepage;
-    else
-        title.href = subscription.url;
-
     var enabled = element.getElementsByClassName("subscriptionEnabled")[0];
     enabled.checked = !subscription.disabled;
 
@@ -514,14 +501,10 @@ function onFilterMessage(action, filter)
         case "added":
             if (whitelistedDomainRegexp.test(filter.text))
                 appendToListBox("excludedDomainsBoxList", RegExp.$1);
-            else
-                appendToListBox("userFiltersBoxList", filter.text);
             break;
         case "removed":
             if (whitelistedDomainRegexp.test(filter.text))
                 removeFromListBox("excludedDomainsBoxList", RegExp.$1);
-            else
-                removeFromListBox("userFiltersBoxList", filter.text);
             break;
     }
 }
@@ -586,53 +569,6 @@ function addWhitelistDomain(event)
     addFilter(filterText);
 }
 
-// Adds filter text that user typed to the selection box
-function addTypedFilter(event)
-{
-    event.preventDefault();
-
-    var element = document.getElementById("newFilter");
-    addFilter(element.value, function(errors)
-    {
-        if (errors.length > 0)
-            alert(errors.join("\n"));
-        else
-            element.value = "";
-    });
-}
-
-
-// Shows raw filters box and fills it with the current user filters
-function toggleFiltersInRawFormat(event)
-{
-    event.preventDefault();
-
-    $("#rawFilters").toggle();
-    if ($("#rawFilters").is(":visible"))
-    {
-        var userFiltersBoxList = document.getElementById("userFiltersBoxList");
-        var text = "";
-
-        for (var i = 0; i < userFiltersBoxList.childNodes.length; i++)
-            text += userFiltersBoxList.childNodes[i].getElementsByTagName("span")[0].innerHTML+ "\n";
-
-        document.getElementById("rawFiltersText").value = text;
-    }
-}
-
-// Imports filters in the raw text box
-function importRawFiltersText()
-{
-    var text = document.getElementById("rawFiltersText").value;
-
-    importRawFilters(text, true, function(errors)
-    {
-        if (errors.length > 0)
-            alert(errors.join("\n"));
-        else
-            $("#rawFilters").hide();
-    });
-}
 
 // Called when user explicitly requests filter list updates
 function updateFilterLists()
