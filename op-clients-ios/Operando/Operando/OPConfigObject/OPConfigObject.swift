@@ -76,10 +76,10 @@ class OPConfigObject: NSObject
         
         flowController?.setSideMenu(enabled: false)
         weak var weakSelf = self
-        if let (username, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
+        if let (email, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
         {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            self.userRepository?.loginWithUsername(username: username, password: password, withCompletion: { (error, data) in
+            self.userRepository?.loginWith(email: email, password: password, withCompletion: { (error, data) in
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if let error = error
                 {
@@ -104,7 +104,7 @@ class OPConfigObject: NSObject
     private func logiWithInfoAndUpdateUI(_ loginInfo: LoginInfo){
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         weak var weakSelf = self
-        self.userRepository?.loginWithUsername(username: loginInfo.username, password: loginInfo.password) { (error, data) in
+        self.userRepository?.loginWith(email: loginInfo.email, password: loginInfo.password) { (error, data) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if let error = error {
                 OPErrorContainer.displayError(error: error);
@@ -112,7 +112,7 @@ class OPConfigObject: NSObject
             }
             
             if loginInfo.wishesToBeRemembered {
-                if let error = CredentialsStore.saveCredentials(username: loginInfo.username, password: loginInfo.password){
+                if let error = CredentialsStore.saveCredentials(username: loginInfo.email, password: loginInfo.password){
                     OPErrorContainer.displayError(error: error)
                 }
             }
@@ -124,7 +124,7 @@ class OPConfigObject: NSObject
     
     private func registerWithInfoAndUpdateUI(_ info: RegistrationInfo){
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        self.userRepository?.registerNewUserWith(username: info.username, email: info.email, password: info.password) { error in
+        self.userRepository?.registerNewUserWith(email: info.email, password: info.password) { error in
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             

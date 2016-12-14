@@ -37,22 +37,6 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
     
     
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
-    {
-        let detector = HTMLLoginInputDetector()
-        detector.detectLoginInputsInWebView(webView: webView) { (result) in
-            if let detectionResult = result
-            {
-                print("login input id \(detectionResult.loginInputId), password input id = \(detectionResult.passwordInputId)")
-            }
-            else
-            {
-                print("No input items could be detected");
-            }
-        }
-    }
-    
-    
     private func callBacksForBrowsingBar(browsingBar: UIBrowsingNavigationBar) -> UIBrowsingNavigationBarCallbacks?
     {
         weak var weakSelf = self;
