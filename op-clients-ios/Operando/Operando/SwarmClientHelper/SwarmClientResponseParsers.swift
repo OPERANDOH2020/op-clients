@@ -247,12 +247,10 @@ class SwarmClientResponseParsers
     }
     
     static func parseRegisterUserSuccessStatus(from dataDict: [String: Any]) -> Bool {
-        guard let userDict = dataDict["user"] as? [String: Any],
-              let _ = userDict["email"] as? String,
-            let _ = userDict["userId"] as? String else {
+        guard let _ = dataDict["deliveryResult"] as? [String: Any] else {
                 return false
         }
-        
+
         return true
     }
     

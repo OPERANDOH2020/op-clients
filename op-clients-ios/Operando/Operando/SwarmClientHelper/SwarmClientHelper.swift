@@ -63,7 +63,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                 }
                 
                 self.whenAskedForRealIdentityWithCompletion = { identityCompletion in
-                    identityCompletion?(identityModel.userId, nil)
+                    identityCompletion?(identityModel.email, nil)
                 }
                 
                 completion?(nil, identityModel)
