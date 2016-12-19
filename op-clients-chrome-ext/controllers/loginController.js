@@ -51,8 +51,15 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
         },2000);
     }
 
-    securityErrorFunction = function () {
-        $scope.info.message = 'Invalid email or password...';
+    securityErrorFunction = function (error) {
+
+        if (error === "account_not_activated") {
+            $scope.info.message = 'Account was not activated.';
+        }
+        else {
+            $scope.info.message = 'Invalid email or password...';
+        }
+
         $scope.info.status = "error";
         $scope.$apply();
     }
@@ -91,18 +98,18 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
                 remember_me: $scope.user.remember_me
             }
         }, function (response) {
-            console.log("mata");
             $scope.requestIsProcessed = false;
             if (response.success) {
-
                 chrome.runtime.openOptionsPage();
                 setTimeout(function(){
                     window.close();
                 },50);
-
             }
-            else if (response.error)
-                securityErrorFunction();
+            else{
+
+                securityErrorFunction(response.error);
+            }
+
         });
     }
 
@@ -151,7 +158,7 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
         var successFunction = function(){
             $scope.loginAreaState = "login_form";
             $scope.info.status = "success";
-            $scope.info.message = 'Registration was successful!';
+            $scope.info.message = 'Check your email for activation!';
             $scope.requestStatus = "completed";
             $scope.$apply();
             clearInfoPanel();

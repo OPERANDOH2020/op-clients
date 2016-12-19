@@ -25,11 +25,12 @@ var busActions = {
 
         });
 
-        login(request.message.login_details, function () {
+        login(request.message.login_details, function (swarmPhase, response) {
+
             clientPort.postMessage({
                 type: "SOLVED_REQUEST",
                 action: request.action,
-                message: {error: "securityError"}
+                message: {error: response.error}
             });
         }, function () {
             if(clientPort){
