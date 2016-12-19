@@ -220,13 +220,12 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         return
                     }
                     
-                    print(dict)
                     
-                    guard SwarmClientResponseParsers.parseRegisterUserSuccessStatus(from: dict) else {
-                        let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) ?? OPErrorContainer.errorInvalidServerResponse
+                    if let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) {
                         callbackInCaseOfError?(error)
                         return
                     }
+                    
                     
                     whenAllIsOk?()
                     

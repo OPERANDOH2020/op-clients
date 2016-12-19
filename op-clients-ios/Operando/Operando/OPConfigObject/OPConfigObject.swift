@@ -72,6 +72,8 @@ class OPConfigObject: NSObject
     func applicationDidStartInWindow(window: UIWindow)
     {
         self.initPropertiesOnAppStart()
+        self.eraseCredentialsIfFreshAppReinstall()
+        
         self.flowController?.setupBaseHierarchyInWindow(window)
         
         flowController?.setSideMenu(enabled: false)
@@ -101,11 +103,25 @@ class OPConfigObject: NSObject
     }
     
     
+    private func eraseCredentialsIfFreshAppReinstall() {
+        let key = "DoNotEraseCredentials"
+        if !UserDefaults.standard.bool(forKey: key) {
+            CredentialsStore.deleteCredentials()
+        }
+        
+        UserDefaults.standard.set(true, forKey: key)
+    }
+    
     private func logiWithInfoAndUpdateUI(_ loginInfo: LoginInfo){
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         weak var weakSelf = self
+        
+        ProgressHUD.show("Connecting")
         self.userRepository?.loginWith(email: loginInfo.email, password: loginInfo.password) { (error, data) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            ProgressHUD.dismiss()
+            
             if let error = error {
                 OPErrorContainer.displayError(error: error);
                 return
@@ -124,8 +140,10 @@ class OPConfigObject: NSObject
     
     private func registerWithInfoAndUpdateUI(_ info: RegistrationInfo){
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        ProgressHUD.show("Connecting")
         self.userRepository?.registerNewUserWith(email: info.email, password: info.password) { error in
-            
+            ProgressHUD.dismiss()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             if let error = error {

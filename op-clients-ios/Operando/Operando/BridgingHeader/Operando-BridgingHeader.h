@@ -13,4 +13,5 @@
 #include "ECSlidingViewController.h"
 #include "UIKit+AFNetworking.h"
 #include "MGSwipeTableCell.h"
+#include "ProgressHUD.h"
 #endif /* Operando_BridgingHeader_h */
