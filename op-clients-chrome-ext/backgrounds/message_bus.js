@@ -21,8 +21,11 @@ var busActions = {
     login: function(request, clientPort){
 
         clientPort.onDisconnect.addListener(function () {
+            console.log("\n\n\n");
+            console.log("PORT DECONECTAT");
+            console.log(request.message);
+            console.log("\n\n\n");
             clientPort = null;
-
         });
 
         login(request.message.login_details, function (swarmPhase, response) {
@@ -33,8 +36,13 @@ var busActions = {
                 message: {error: response.error}
             });
         }, function () {
+            console.log("Am trimis success login");
             if(clientPort){
+                console.log("clientPort e valid");
                 clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
+            }
+            else{
+                console.log("clientPort e invalid");
             }
         });
     },

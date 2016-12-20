@@ -100,10 +100,10 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
         }, function (response) {
             $scope.requestIsProcessed = false;
             if (response.success) {
-                chrome.runtime.openOptionsPage();
                 setTimeout(function(){
-                    window.close();
-                },50);
+                    chrome.runtime.openOptionsPage();
+                    //window.close();
+                },500);
             }
             else{
 
