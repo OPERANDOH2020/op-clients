@@ -20,7 +20,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
     var currentAttemptToReconnect = 0;
     var connectionString;
     if(useSocketIo){
-        connectionString ="http://"+host + ":" + port;
+        connectionString ="https://"+host + ":" + port;
     }else{
         connectionString ="ws://"+host + ":" + port;
     }
@@ -56,7 +56,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
              'retry'
              'reconnect'
              }*/
-            socket = io.connect(connectionString, {'force new connection': true});
+            socket = io.connect(connectionString, {'force new connection': true,rejectUnauthorized: false});
             socket.on('connect', socket_onConnect);
             socket.on('data', socket_onStreamData);
             socket.on('message', socket_onStreamData);
