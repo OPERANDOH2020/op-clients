@@ -185,6 +185,7 @@ function enlightenment_setup_theme_minimals() {
 }
 
 function enlightenment_register_core_styles() {
+
 	wp_register_style( 'bootstrap', enlightenment_styles_directory_uri() . '/bootstrap.css', false, null );
 	wp_register_style( 'bootstrap-min', enlightenment_styles_directory_uri() . '/bootstrap.min.css', false, null );
 	wp_register_style( 'colorbox', enlightenment_styles_directory_uri() . '/colorbox.css', false, null );

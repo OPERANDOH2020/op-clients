@@ -2274,3 +2274,29 @@ padding-left: 5px;
  margin-top: 10px;
  float:right;
 }
+
+table.table thead .sorting_asc:before {
+    content: "\25B4";
+    padding-right: 5px;
+    font-size: 180%;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+table.table thead .sorting_desc:before {
+    content: "\25BE";
+    padding-right: 5px;
+    font-size: 180%;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+table.table thead th.sorting_asc,
+table.table thead th.sorting_desc,
+table.table thead th.sorting
+{
+    padding: 15px 0px 15px 25px;
+    position: relative;
+}

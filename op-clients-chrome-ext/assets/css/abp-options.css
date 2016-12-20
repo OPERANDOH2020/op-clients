@@ -137,7 +137,8 @@ input[type="checkbox"] + span {
     padding-left: 25px;
     background: url("/operando/assets/images/check-box.png");
     background-repeat:no-repeat;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: normal;
 
 }
 
@@ -147,4 +148,31 @@ input[type="checkbox"]:checked + span {
     vertical-align: middle;
     height: 24px;
     padding-left: 25px;
+}
+
+#updateFilterLists{
+    border: none;
+    background: none;
+    color: #000;
+    font-size: 15px;
+    padding: 0;
+    text-decoration: underline;
+}
+.subscriptionTitle{
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.subscriptionUpdate,
+.subscriptionEnabledContainer,
+.subscriptionRemoveButton{
+    display: table-cell;
+    padding: 0px 20px;
+}
+.subscriptionTitle{
+    display: table-cell;
+}
+
+.subscription{
+    display: table-row;
 }

@@ -26,7 +26,6 @@ var authenticationService = exports.authenticationService = {
     },
     authenticateUser: function (login_details, securityFn, successFn) {
         var self = this;
-
         swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, login_details.email, login_details.password, "chromeBrowserExtension", "userLogin", securityFn);
         console.log("Keep session ",login_details.remember_me);
         swarmHub.on('login.js', "success", function loginSuccessfully(swarm) {

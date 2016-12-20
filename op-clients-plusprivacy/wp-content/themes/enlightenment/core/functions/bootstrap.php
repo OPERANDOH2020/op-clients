@@ -25,10 +25,11 @@ add_filter( 'enlightenment_theme_stylesheet_deps', 'enlightenment_bootstrap_them
 
 function enlightenment_bootstrap_theme_stylesheet_deps( $deps ) {
 	if( current_theme_supports( 'enlightenment-bootstrap', 'load_styles' ) ) {
-		if( current_theme_supports( 'enlightenment-bootstrap', 'min_files' ) )
-			$deps[] = 'bootstrap-min';
-		else
-			$deps[] = 'bootstrap';
+		if( current_theme_supports( 'enlightenment-bootstrap', 'min_files' ) ) {
+            $deps[] = 'bootstrap-min';
+        } else {
+            $deps[] = 'bootstrap';
+        }
 	}
 	return $deps;
 }
@@ -38,9 +39,13 @@ add_action( 'wp_enqueue_scripts', 'enlightenment_enqueue_bootstrap_script' );
 function enlightenment_enqueue_bootstrap_script() {
 	if( current_theme_supports( 'enlightenment-bootstrap', 'load_scripts' ) )
 		if( current_theme_supports( 'enlightenment-bootstrap', 'min_files' ) )
-			wp_enqueue_script( 'bootstrap-min' );
+        {
+            wp_enqueue_script( 'bootstrap-min' );
+        }
 		else
-			wp_enqueue_script( 'bootstrap' );
+        {
+            wp_enqueue_script( 'bootstrap' );
+        }
 }
 
 add_filter( 'enlightenment_call_js', 'enlightenment_call_bootstrap_script' );
