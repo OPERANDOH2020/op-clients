@@ -270,7 +270,10 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         }
         else {
             if(securityErrorFunction){
-                securityErrorFunction(data.meta.currentPhase, data);
+                //TODO fix this
+                //decizie de avarie
+                //securityErrorFunction(data.meta.currentPhase, data);
+                callSwarmingCallBack(data.meta.swarmingName, data);
             } else {
                 lprint("Login failed !", "Login failed : authorisationToken:[" + data.authorisationToken + "] userId:[" + data.userId + "]");
             }

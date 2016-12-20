@@ -26,9 +26,16 @@ var authenticationService = exports.authenticationService = {
     },
     authenticateUser: function (login_details, securityFn, successFn) {
         var self = this;
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, login_details.email, login_details.password, "chromeBrowserExtension", "userLogin", securityFn);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, login_details.email, login_details.password, "chromeBrowserExtension", "userLogin", function(){});
         console.log("Keep session ",login_details.remember_me);
-        swarmHub.on('login.js', "success", function loginSuccessfully(swarm) {
+
+        var loginSuccessfully = function (swarm) {
+            console.log("LOGAT");
+
+            if(loggedIn === false){
+                self.setUser(successFn);
+            }
+
             loggedIn = swarm.authenticated;
 
             var daysUntilCookieExpire = 1;
@@ -37,9 +44,18 @@ var authenticationService = exports.authenticationService = {
             }
             Cookies.set("sessionId", swarm.meta.sessionId,  { expires: daysUntilCookieExpire });
             Cookies.set("userId", swarm.userId,{ expires: daysUntilCookieExpire });
-            self.setUser(successFn);
             swarmHub.off("login.js", "success",loginSuccessfully);
+        };
+
+        swarmHub.on('login.js', "success", loginSuccessfully);
+
+        swarmHub.on('login.js', "failed", function loginFailed(swarm) {
+            console.log("FAILED HERE");
+            securityFn(swarm.meta.currentPhase, swarm);
+            swarmHub.off("login.js", "success",loginSuccessfully);
+            swarmHub.off("login.js", "failed",loginFailed);
         });
+
     },
 
     registerUser: function (user, errorFunction, successFunction) {
