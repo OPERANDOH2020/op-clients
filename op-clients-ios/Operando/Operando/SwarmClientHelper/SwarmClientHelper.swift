@@ -21,7 +21,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         UserInfoRepository,
                         NotificationsRepository
 {
-    static let ServerURL = "http://212.24.98.215:8080";
+    static let ServerURL = "https://plusprivacy.com:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
     var whenReceivingData: ((_ data: [Any]) -> Void)?
@@ -548,16 +548,19 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             
             
             self.whenReceivingData = { dataArray in
+                print(dataArray)
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(PfbDealUpdate.emptyUnsubscribed, OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
-                guard let successStatus = SwarmClientResponseParsers.parseSubscribeToDealSuccessStatus(from: dataDict)
+                guard let successStatus = SwarmClientResponseParsers.parseDealUnsubscribedSuccessStatus(from: dataDict)
                 else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
                     completion?(PfbDealUpdate.emptyUnsubscribed, error)
                     return
                 }
+                
+                print(dataDict)
                 
                 // wow swift, thanks a lot for disabling guard-let-where 
                 guard successStatus == true else {
@@ -572,7 +575,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         }
         
         
-        self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.acceptPfbDeal.rawValue, arguments: [ serviceId as AnyObject ] )
+        self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.unsubscribeDeal.rawValue, arguments: [ serviceId as AnyObject ] )
     }
     
     

@@ -18,6 +18,7 @@ struct Dependencies{
     let privacyForBenefitsRepo: PrivacyForBenefitsRepository?
     let userInfoRepo: UserInfoRepository?
     let notificationsRepository: NotificationsRepository?
+    let scdDocumentsRepository: SCDRepository?
     let accountCallbacks: AccountCallbacks?
     let whenTakingActionForNotification: NotificationActionCallback?
     let whenRequestingNumOfNotifications: NumOfNotificationsRequestCallback?
@@ -199,6 +200,20 @@ class UIFlowController
         return UILeftSideMenuViewControllerCallbacks(dashboardCallbacks: dashboardCallbacks, whenChoosingHome: { 
             weakSelf?.displayDashboard()
             weakSelf?.sideMenu?.hideMenuViewController()
+        }, whenChoosingMonitor: {
+            weakSelf?.displaySCDDocumentsViewController()
         })
+    }
+    
+    
+    private func displaySCDDocumentsViewController() {
+        guard let repository = self.dependencies.scdDocumentsRepository else {
+            return
+        }
+        
+        let scdDocsVC = UINavigationManager.scdDocumentsViewController
+        scdDocsVC.setup(with: UISCDDocumentsViewControllerModel(repository: repository))
+        self.rootController.setMainControllerTo(newController: scdDocsVC)
+        
     }
 }

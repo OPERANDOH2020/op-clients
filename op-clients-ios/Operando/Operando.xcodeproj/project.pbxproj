@@ -47,15 +47,21 @@
 		98387BC01DB75ACD00A76F01 /* UIDashboardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98387BBF1DB75ACD00A76F01 /* UIDashboardButton.xib */; };
 		98387BC31DB7633500A76F01 /* UIColor+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98387BC21DB7633500A76F01 /* UIColor+Utilities.swift */; };
 		9848B2D61D6740A500E0FD72 /* NSError+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848B2D51D6740A500E0FD72 /* NSError+Utilities.swift */; };
+		98500BB51E092CEE00DF87E8 /* SchemaValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500BB41E092CEE00DF87E8 /* SchemaValidator.swift */; };
+		98500BC01E0935ED00DF87E8 /* KiteJSONValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 98500BBD1E0935ED00DF87E8 /* KiteJSONValidator.m */; };
+		98500BC11E0935ED00DF87E8 /* KiteValidationPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 98500BBF1E0935ED00DF87E8 /* KiteValidationPair.m */; };
+		98500BC31E0985D100DF87E8 /* SCDRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500BC21E0985D100DF87E8 /* SCDRepository.swift */; };
+		98500BC61E09982200DF87E8 /* UISCDDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500BC51E09982200DF87E8 /* UISCDDocumentsViewController.swift */; };
+		98500BC81E09983500DF87E8 /* Cloak.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98500BC71E09983500DF87E8 /* Cloak.storyboard */; };
+		98500BCC1E09994E00DF87E8 /* SCDDocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500BCA1E09994E00DF87E8 /* SCDDocumentCell.swift */; };
+		98500BCD1E09994E00DF87E8 /* SCDDocumentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98500BCB1E09994E00DF87E8 /* SCDDocumentCell.xib */; };
+		98500BCF1E09A25800DF87E8 /* SCDSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 98500BCE1E09A25800DF87E8 /* SCDSchema.json */; };
 		98516FCF1E040C51007428F3 /* OPCloak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98516FCE1E040C51007428F3 /* OPCloak.swift */; };
 		98516FD41E042089007428F3 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 98516FD11E042089007428F3 /* ProgressHUD.bundle */; };
 		98516FD51E042089007428F3 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 98516FD31E042089007428F3 /* ProgressHUD.m */; };
 		9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */; };
 		9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */; };
 		9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */; };
-		9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6EA1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift */; };
-		9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6ED1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift */; };
-		9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9852C6EE1CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib */; };
 		9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6F21CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift */; };
 		9852C6F71CD0F68D00AF2BE5 /* UIIdentityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C6F51CD0F68D00AF2BE5 /* UIIdentityCell.swift */; };
 		9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9852C6F61CD0F68D00AF2BE5 /* UIIdentityCell.xib */; };
@@ -221,6 +227,17 @@
 		98387BBF1DB75ACD00A76F01 /* UIDashboardButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIDashboardButton.xib; path = UserInterface/UIDashboardButton/UIDashboardButton.xib; sourceTree = "<group>"; };
 		98387BC21DB7633500A76F01 /* UIColor+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Utilities.swift"; path = "UserInterface/Extensions/UIColor+Utilities.swift"; sourceTree = "<group>"; };
 		9848B2D51D6740A500E0FD72 /* NSError+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSError+Utilities.swift"; path = "Extensions/NSError+Utilities.swift"; sourceTree = "<group>"; };
+		98500BB41E092CEE00DF87E8 /* SchemaValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchemaValidator.swift; path = OPCloak/SchemaValidator.swift; sourceTree = "<group>"; };
+		98500BBC1E0935ED00DF87E8 /* KiteJSONValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiteJSONValidator.h; sourceTree = "<group>"; };
+		98500BBD1E0935ED00DF87E8 /* KiteJSONValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KiteJSONValidator.m; sourceTree = "<group>"; };
+		98500BBE1E0935ED00DF87E8 /* KiteValidationPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiteValidationPair.h; sourceTree = "<group>"; };
+		98500BBF1E0935ED00DF87E8 /* KiteValidationPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KiteValidationPair.m; sourceTree = "<group>"; };
+		98500BC21E0985D100DF87E8 /* SCDRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCDRepository.swift; path = OPCloak/SCDRepository.swift; sourceTree = "<group>"; };
+		98500BC51E09982200DF87E8 /* UISCDDocumentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISCDDocumentsViewController.swift; path = UserInterface/UISCDDocumentsViewController/UISCDDocumentsViewController.swift; sourceTree = "<group>"; };
+		98500BC71E09983500DF87E8 /* Cloak.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cloak.storyboard; sourceTree = "<group>"; };
+		98500BCA1E09994E00DF87E8 /* SCDDocumentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCDDocumentCell.swift; path = UserInterface/SCDDocumentCell/SCDDocumentCell.swift; sourceTree = "<group>"; };
+		98500BCB1E09994E00DF87E8 /* SCDDocumentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SCDDocumentCell.xib; path = UserInterface/SCDDocumentCell/SCDDocumentCell.xib; sourceTree = "<group>"; };
+		98500BCE1E09A25800DF87E8 /* SCDSchema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SCDSchema.json; path = OPCloak/SCDSchema.json; sourceTree = "<group>"; };
 		98516FCE1E040C51007428F3 /* OPCloak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OPCloak.swift; path = OPCloak/OPCloak.swift; sourceTree = "<group>"; };
 		98516FD11E042089007428F3 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		98516FD21E042089007428F3 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
@@ -228,9 +245,6 @@
 		9852C6E21CD0D81200AF2BE5 /* UIOperandoTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIOperandoTitleView.swift; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.swift; sourceTree = "<group>"; };
 		9852C6E41CD0D82700AF2BE5 /* UIOperandoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIOperandoTitleView.xib; path = UserInterface/UIOperandoTitleView/UIOperandoTitleView.xib; sourceTree = "<group>"; };
 		9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINotificationsViewController.swift; path = UINotificationsViewController/UINotificationsViewController.swift; sourceTree = "<group>"; };
-		9852C6EA1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDataLeakageProtectionViewController.swift; path = UIDataLeakageProtectionViewController/UIDataLeakageProtectionViewController.swift; sourceTree = "<group>"; };
-		9852C6ED1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICertifiedApplicationCell.swift; path = UIDataLeakageProtectionViewController/UICertifiedApplicationCell/UICertifiedApplicationCell.swift; sourceTree = "<group>"; };
-		9852C6EE1CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UICertifiedApplicationCell.xib; path = UIDataLeakageProtectionViewController/UICertifiedApplicationCell/UICertifiedApplicationCell.xib; sourceTree = "<group>"; };
 		9852C6F21CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIdentityManagementViewController.swift; path = UserInterface/UIIdentityManagementViewController/UIIdentityManagementViewController.swift; sourceTree = "<group>"; };
 		9852C6F51CD0F68D00AF2BE5 /* UIIdentityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIIdentityCell.swift; path = UserInterface/UIIdentityCell/UIIdentityCell.swift; sourceTree = "<group>"; };
 		9852C6F61CD0F68D00AF2BE5 /* UIIdentityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIIdentityCell.xib; path = UserInterface/UIIdentityCell/UIIdentityCell.xib; sourceTree = "<group>"; };
@@ -544,13 +558,45 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		98516FCD1E040903007428F3 /* CLOAK */ = {
+		98500BBB1E0935ED00DF87E8 /* KiteJSONValidator */ = {
+			isa = PBXGroup;
+			children = (
+				98500BBC1E0935ED00DF87E8 /* KiteJSONValidator.h */,
+				98500BBD1E0935ED00DF87E8 /* KiteJSONValidator.m */,
+				98500BBE1E0935ED00DF87E8 /* KiteValidationPair.h */,
+				98500BBF1E0935ED00DF87E8 /* KiteValidationPair.m */,
+			);
+			path = KiteJSONValidator;
+			sourceTree = "<group>";
+		};
+		98500BC41E09980300DF87E8 /* UISCDDocumentsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98500BC91E09992C00DF87E8 /* SCDDocumentCell */,
+				98500BC51E09982200DF87E8 /* UISCDDocumentsViewController.swift */,
+			);
+			name = UISCDDocumentsViewController;
+			sourceTree = "<group>";
+		};
+		98500BC91E09992C00DF87E8 /* SCDDocumentCell */ = {
+			isa = PBXGroup;
+			children = (
+				98500BCA1E09994E00DF87E8 /* SCDDocumentCell.swift */,
+				98500BCB1E09994E00DF87E8 /* SCDDocumentCell.xib */,
+			);
+			name = SCDDocumentCell;
+			sourceTree = "<group>";
+		};
+		98516FCD1E040903007428F3 /* OPCloak */ = {
 			isa = PBXGroup;
 			children = (
 				98516FCE1E040C51007428F3 /* OPCloak.swift */,
 				988509B51E0845AA0088272D /* SchemaProvider.swift */,
+				98500BB41E092CEE00DF87E8 /* SchemaValidator.swift */,
+				98500BC21E0985D100DF87E8 /* SCDRepository.swift */,
+				98500BCE1E09A25800DF87E8 /* SCDSchema.json */,
 			);
-			name = CLOAK;
+			name = OPCloak;
 			sourceTree = "<group>";
 		};
 		98516FD01E042089007428F3 /* ProgressHUD */ = {
@@ -578,24 +624,6 @@
 				9852C6E71CD0DE6B00AF2BE5 /* UINotificationsViewController.swift */,
 			);
 			name = UINotificationsViewController;
-			sourceTree = "<group>";
-		};
-		9852C6E91CD0E1B800AF2BE5 /* UIDataLeakageProtectionViewController */ = {
-			isa = PBXGroup;
-			children = (
-				9852C6EC1CD0E1EB00AF2BE5 /* UICertifiedApplicationCell */,
-				9852C6EA1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift */,
-			);
-			name = UIDataLeakageProtectionViewController;
-			sourceTree = "<group>";
-		};
-		9852C6EC1CD0E1EB00AF2BE5 /* UICertifiedApplicationCell */ = {
-			isa = PBXGroup;
-			children = (
-				9852C6ED1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift */,
-				9852C6EE1CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib */,
-			);
-			name = UICertifiedApplicationCell;
 			sourceTree = "<group>";
 		};
 		9852C6F11CD0F22400AF2BE5 /* UIIdentityManagementViewController */ = {
@@ -887,7 +915,7 @@
 		98EAF66D1CCF86DC00C77649 /* Operando */ = {
 			isa = PBXGroup;
 			children = (
-				98516FCD1E040903007428F3 /* CLOAK */,
+				98516FCD1E040903007428F3 /* OPCloak */,
 				9848B2D41D67409100E0FD72 /* Extensions */,
 				98EAF6B01CCF997A00C77649 /* BridgingHeader */,
 				98EAF6931CCF88D400C77649 /* External */,
@@ -901,6 +929,7 @@
 				ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */,
 				98EAF6751CCF86DC00C77649 /* Assets.xcassets */,
 				98EAF6771CCF86DC00C77649 /* LaunchScreen.storyboard */,
+				98500BC71E09983500DF87E8 /* Cloak.storyboard */,
 				98EAF67A1CCF86DC00C77649 /* Info.plist */,
 				ADF3CA621DB892DA00BD2B7A /* Resources */,
 			);
@@ -920,6 +949,7 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				98500BC41E09980300DF87E8 /* UISCDDocumentsViewController */,
 				989C8A7A1DD34634003BF341 /* UIRealIdentityView */,
 				982227531DC8EBB90053B993 /* UILocalizable */,
 				9866A7C21DBF850500907D05 /* UINotificationsListView */,
@@ -944,7 +974,6 @@
 				9852C6FE1CD1141D00AF2BE5 /* UIMenuTableViewController */,
 				9852C6FB1CD10C0800AF2BE5 /* UISensorMonitoringViewController */,
 				9852C6F11CD0F22400AF2BE5 /* UIIdentityManagementViewController */,
-				9852C6E91CD0E1B800AF2BE5 /* UIDataLeakageProtectionViewController */,
 				9852C6E61CD0DE2C00AF2BE5 /* UINotificationsViewController */,
 				9852C6E11CD0D7D600AF2BE5 /* UIOperandoTitleView */,
 				98EAF6B21CCFA81500C77649 /* UIRegistrationController */,
@@ -978,6 +1007,7 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				98500BBB1E0935ED00DF87E8 /* KiteJSONValidator */,
 				98516FD01E042089007428F3 /* ProgressHUD */,
 				98F55FF21DD5EEF90076555C /* SwarmClient.framework */,
 				985A0D3E1DCCB0E40010C799 /* Locksmith */,
@@ -1215,6 +1245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */,
+				98500BCD1E09994E00DF87E8 /* SCDDocumentCell.xib in Resources */,
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
 				98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */,
 				98EAF6761CCF86DC00C77649 /* Assets.xcassets in Resources */,
@@ -1225,16 +1256,17 @@
 				9866A7C61DBF854000907D05 /* UINotificationsListView.xib in Resources */,
 				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
 				98387BC01DB75ACD00A76F01 /* UIDashboardButton.xib in Resources */,
+				98500BCF1E09A25800DF87E8 /* SCDSchema.json in Resources */,
 				9866A7B41DBF4B1000907D05 /* Localizable.strings in Resources */,
 				9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */,
 				986E3E651DB3CA6B00453DC6 /* UIAddIdentityView.xib in Resources */,
-				9852C6F01CD0E23000AF2BE5 /* UICertifiedApplicationCell.xib in Resources */,
 				9866A7C01DBF779100907D05 /* UIChangePasswordView.xib in Resources */,
 				989C41861DBE18E800951AE5 /* Info.plist in Resources */,
 				9866A7CB1DBF861300907D05 /* UINotificationCell.xib in Resources */,
 				982DF0601DB660CD00231BBD /* UIPfbDealsListView.xib in Resources */,
 				98EAF6A31CCF8A3400C77649 /* UILoginView.xib in Resources */,
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
+				98500BC81E09983500DF87E8 /* Cloak.storyboard in Resources */,
 				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
 				989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
@@ -1267,6 +1299,7 @@
 				9852C6FD1CD10C7200AF2BE5 /* UISensorMonitoringViewController.swift in Sources */,
 				98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */,
 				985A0D471DCCB0E40010C799 /* Locksmith.swift in Sources */,
+				98500BB51E092CEE00DF87E8 /* SchemaValidator.swift in Sources */,
 				989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */,
 				9863E8B01DEC28F50095CA30 /* IdentitiesManagementRepository.swift in Sources */,
 				986A58F81DB3A43700B622F5 /* UserInfoRepository.swift in Sources */,
@@ -1285,14 +1318,13 @@
 				9852C6F71CD0F68D00AF2BE5 /* UIIdentityCell.swift in Sources */,
 				985A0D4B1DCCB0E40010C799 /* LocksmithInternetProtocol.swift in Sources */,
 				982DF0391DB6579200231BBD /* AFURLResponseSerialization.m in Sources */,
+				98500BCC1E09994E00DF87E8 /* SCDDocumentCell.swift in Sources */,
 				982750171D0849C700C73411 /* UIPrivateBrowsingViewController.swift in Sources */,
 				98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */,
 				98387BBE1DB75A8400A76F01 /* UIDashboardButton.swift in Sources */,
 				98516FD51E042089007428F3 /* ProgressHUD.m in Sources */,
 				982DF0541DB6579B00231BBD /* UIButton+AFNetworking.m in Sources */,
 				98EAF6911CCF884000C77649 /* OPUtils.swift in Sources */,
-				9852C6EB1CD0E1DD00AF2BE5 /* UIDataLeakageProtectionViewController.swift in Sources */,
-				9852C6EF1CD0E23000AF2BE5 /* UICertifiedApplicationCell.swift in Sources */,
 				ADF3CA691DB89BEB00BD2B7A /* UILeftSideMenuViewController.swift in Sources */,
 				986A58F21DB39C7300B622F5 /* SwarmClientHelperTypes.swift in Sources */,
 				9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */,
@@ -1302,6 +1334,7 @@
 				98668B5B1DB0D0D900FDE63A /* ECSlidingInteractiveTransition.m in Sources */,
 				985A0D491DCCB0E40010C799 /* LocksmithError.swift in Sources */,
 				9848B2D61D6740A500E0FD72 /* NSError+Utilities.swift in Sources */,
+				98500BC31E0985D100DF87E8 /* SCDRepository.swift in Sources */,
 				98EAF6A11CCF8A1800C77649 /* UILoginView.swift in Sources */,
 				9827501D1D0849E200C73411 /* CredentialsStore.swift in Sources */,
 				9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */,
@@ -1311,6 +1344,7 @@
 				986E3E631DB3CA5600453DC6 /* UIAddIdentityView.swift in Sources */,
 				986D4CAC1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift in Sources */,
 				98387BC31DB7633500A76F01 /* UIColor+Utilities.swift in Sources */,
+				98500BC01E0935ED00DF87E8 /* KiteJSONValidator.m in Sources */,
 				988509B61E0845AA0088272D /* SchemaProvider.swift in Sources */,
 				985A0D4C1DCCB0E40010C799 /* LocksmithSecurityClass.swift in Sources */,
 				9866A7BB1DBF701400907D05 /* UIAccountViewController.swift in Sources */,
@@ -1343,6 +1377,7 @@
 				982DF0581DB6579B00231BBD /* UIWebView+AFNetworking.m in Sources */,
 				985BA6B31DC23F0C00BC645B /* NotificationsRepository.swift in Sources */,
 				9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */,
+				98500BC11E0935ED00DF87E8 /* KiteValidationPair.m in Sources */,
 				ADF3CA6D1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift in Sources */,
 				98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				985A0D4A1DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift in Sources */,
@@ -1354,6 +1389,7 @@
 				9866A7C41DBF852500907D05 /* UINotificationsListView.swift in Sources */,
 				986A58F41DB39E7500B622F5 /* UsersRepository.swift in Sources */,
 				982DF0501DB6579B00231BBD /* AFAutoPurgingImageCache.m in Sources */,
+				98500BC61E09982200DF87E8 /* UISCDDocumentsViewController.swift in Sources */,
 				982DF0361DB6579200231BBD /* AFNetworkReachabilityManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

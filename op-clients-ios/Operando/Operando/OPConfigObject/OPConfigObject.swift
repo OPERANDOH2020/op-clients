@@ -28,8 +28,7 @@ class OPConfigObject: NSObject
     private var flowController: UIFlowController?
     private var dependencies: Dependencies?
     private var actionsPerNotificationType: [String: VoidBlock] = [:]
-    
-
+    private var opCloak: OPCloak?
 
     private func initPropertiesOnAppStart() {
         
@@ -37,10 +36,17 @@ class OPConfigObject: NSObject
         self.notificationsRepository = DummyNotificationsRepo()
         weak var weakSelf = self
         
+        
+        let scdRepository = PlistSCDRepository(plistFilePath: "PlistSCDRepository")
+        self.opCloak = OPCloak(schemaProvider: LocalFileSchemaProvider(pathToFile: "SCDSchema.json"),
+                               schemaValidator: SwiftSchemaValidator(),
+                               scdRepository: scdRepository)
+        
         let dependencies = Dependencies(identityManagementRepo:  self.swarmClientHelper,
                                          privacyForBenefitsRepo:  self.swarmClientHelper,
                                          userInfoRepo:            self.swarmClientHelper,
                                          notificationsRepository: self.notificationsRepository,
+                                         scdDocumentsRepository: scdRepository,
                                          accountCallbacks: self.createAccountCallbacks(),
             whenTakingActionForNotification: { weakSelf?.dismiss(notification: $1, andTakeAction: $0) },
             whenRequestingNumOfNotifications: { callback in
@@ -54,6 +60,10 @@ class OPConfigObject: NSObject
                 })
             }
         )
+        
+        
+
+        
         
         self.flowController = UIFlowController(dependencies: dependencies)
         self.dependencies = dependencies
@@ -83,23 +93,29 @@ class OPConfigObject: NSObject
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             self.userRepository?.loginWith(email: email, password: password, withCompletion: { (error, data) in
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                if let error = error
-                {
+                if let error = error {
                     OPErrorContainer.displayError(error: error)
                     weakSelf?.flowController?.displayLoginHierarchy()
                     return
                 }
-                
                 weakSelf?.currentUserIdentity = data
                 weakSelf?.flowController?.setupHierarchyStartingWithDashboardIn(window)
                 weakSelf?.flowController?.setSideMenu(enabled: true)
             })
         }
-        else
-        {
+        else {
             weakSelf?.flowController?.displayLoginHierarchy()
             
         }
+    }
+    
+    func open(url: URL) -> Bool {
+        
+        if self.opCloak?.canProcess(url: url) ?? false {
+            self.opCloak?.processIncoming(url: url)
+        }
+        
+        return false
     }
     
     

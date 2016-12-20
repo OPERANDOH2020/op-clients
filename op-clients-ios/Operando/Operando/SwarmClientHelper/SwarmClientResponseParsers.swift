@@ -295,8 +295,12 @@ class SwarmClientResponseParsers
         return parseMetaCurrentPhaseEqualTo(item: "defaultIdentityUpdated", in: dataDict)
     }
     
-    static func parseSubscribeToDealSuccessStatus(from dataDict: [String: Any]) -> Bool?
-    {
+    
+    static func parseDealUnsubscribedSuccessStatus(from dataDict: [String: Any]) -> Bool? {
+        return parseMetaCurrentPhaseEqualTo(item: "dealUnsubscribed", in: dataDict)
+    }
+    
+    static func parseSubscribeToDealSuccessStatus(from dataDict: [String: Any]) -> Bool?{
         return parseMetaCurrentPhaseEqualTo(item: "dealAccepted", in: dataDict)
     }
     

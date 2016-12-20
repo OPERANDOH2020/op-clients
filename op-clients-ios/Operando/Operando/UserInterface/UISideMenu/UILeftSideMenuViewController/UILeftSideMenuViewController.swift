@@ -13,6 +13,7 @@ let UILeftSideMenuViewControllerStoryboardId = "UILeftSideMenuViewControllerStor
 struct UILeftSideMenuViewControllerCallbacks {
     let dashboardCallbacks: UIDashBoardViewControllerCallbacks?
     let whenChoosingHome: VoidBlock?
+    let whenChoosingMonitor: VoidBlock?
 }
 
 class UILeftSideMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {

@@ -25,8 +25,11 @@ class LocalFileSchemaProvider: SchemaProvider {
     func getSchemaWithCallback(_ callback: SchemaCallback?) {
         guard let fileAsString = try? String(contentsOfFile: self.pathToFile),
             let data = fileAsString.data(using: .utf8),
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) else {
+            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                callback?(nil, .jsonSchemaNotFound)
                 return
         }
+        
+        callback?(jsonObject, nil);
     }
 }
