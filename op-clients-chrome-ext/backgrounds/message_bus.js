@@ -18,116 +18,62 @@ var bus = require("bus-service").bus;
 
 var busActions = {
     //TODO refactor this
-    login: function(request, clientPort){
-
-        clientPort.onDisconnect.addListener(function () {
-            console.log("\n\n\n");
-            console.log("PORT DECONECTAT");
-            console.log(request.message);
-            console.log("\n\n\n");
-            clientPort = null;
-        });
+    login: function(request, handleResponse){
 
         login(request.message.login_details, function (swarmPhase, response) {
 
-            clientPort.postMessage({
+            handleResponse({
                 type: "SOLVED_REQUEST",
                 action: request.action,
                 message: {error: response.error}
             });
+
         }, function () {
-            console.log("Am trimis success login");
-            if(clientPort){
-                console.log("clientPort e valid");
-                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
-            }
-            else{
-                console.log("clientPort e invalid");
-            }
+            handleResponse({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
         });
     },
 
-    logout : function (request, clientPort) {
-
-        clientPort.onDisconnect.addListener(function () {
-            clientPort = null;
-
-        });
+    logout : function (request, handleResponse) {
 
         logout(function () {
-            if(clientPort){
-                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
-            }
+                handleResponse({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
         });
     },
 
-    notifyWhenLogout : function(request, clientPort){
-
-        clientPort.onDisconnect.addListener(function () {
-            clientPort = null;
-
-        });
-
+    notifyWhenLogout : function(request, handleResponse){
         authenticationService.disconnectUser(function(){
-            if(clientPort){
-                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
-            }
+            handleResponse({type: "SOLVED_REQUEST", action: request.action, message: {success: "success"}});
         });
     },
 
-    getCurrentUser: function(request, clientPort){
-
-        clientPort.onDisconnect.addListener(function () {
-            clientPort = null;
-
-        });
+    getCurrentUser: function(request, handleResponse){
 
         getCurrentUser(function (user) {
-            if(clientPort){
-                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: user});
-            }
+            handleResponse({type: "SOLVED_REQUEST", action: request.action, message: user});
         })
     },
 
-
-    restoreUserSession: function(request, clientPort){
-
-        clientPort.onDisconnect.addListener(function () {
-            clientPort = null;
-
-        });
+    restoreUserSession: function(request, handleResponse){
 
         restoreUserSession(function (status) {
-            if(clientPort) {
-                clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: status});
-            }
+            handleResponse({type: "SOLVED_REQUEST", action: request.action, message: status});
         })
     },
-    registerUser: function(request, clientPort){
-
-        clientPort.onDisconnect.addListener(function () {
-            clientPort = null;
-
-        });
+    registerUser: function(request, handleResponse){
 
         authenticationService.registerUser(request.message.user, function(error){
-            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
+            handleResponse({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
         },  function(success){
-            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
+            handleResponse({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
         });
     },
 
 
-    resetPassword:function(request, clientPort){
-        clientPort.onDisconnect.addListener(function () {
-            clientPort = null;
-
-        });
-
+    resetPassword:function(request, handleResponse){
         authenticationService.resetPassword(request.message, function(){
-            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
+            handleResponse({type: "SOLVED_REQUEST", action: request.action, message: {status:"success"}});
         }, function(error){
-            clientPort.postMessage({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
+            handleResponse({type: "SOLVED_REQUEST", action: request.action, message: {status:"error",message:error}});
         });
     }
 };
@@ -135,7 +81,6 @@ var busActions = {
 
 
 chrome.runtime.onConnect.addListener(function (_port) {
-
     (function(clientPort){
 
         if (clientPort.name == "OPERANDO_MESSAGER") {
@@ -145,6 +90,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
              **/
 
             clientPort.onDisconnect.addListener(function () {
+                console.log("PORT WAS DISCONNECTED");
                 clientPort = null;
 
             });
@@ -172,10 +118,22 @@ chrome.runtime.onConnect.addListener(function (_port) {
              * Listen for commands
              **/
             clientPort.onMessage.addListener(function (request) {
-
                 if(busActions[request.action]){
-                        var action = busActions[request.action];
-                        action(request, clientPort);
+                        var handleResponse = function(message){
+                            if(clientPort){
+                                clientPort.postMessage(message);
+                            }
+                            else{
+                                console.log("CLIENTPORT IS NULL. Trying latest port...");
+                                //latestPort.postMessage(message);
+
+                                chrome.runtime.sendMessage(message,function(response){
+                                });
+                            }
+                        }
+
+                    var action = busActions[request.action];
+                        action(request, handleResponse);
                 }
 
                 else {

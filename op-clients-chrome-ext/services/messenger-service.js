@@ -18,7 +18,8 @@ operandoCore
         var callbacks = {};
         var events = {};
 
-        port.onMessage.addListener(function (response) {
+
+        var responseHandler = function (response) {
             if (response.type === "SOLVED_REQUEST") {
                 if (response.action && callbacks[response.action]) {
                     while (callbacks[response.action].length > 0) {
@@ -39,8 +40,7 @@ operandoCore
                 }
             }
 
-        });
-
+        };
 
         var on = function (event, callback) {
             if (!events[event]) {
@@ -67,6 +67,9 @@ operandoCore
             }
             callbacks[action].push(arguments[arguments.length-1]);
         }
+
+        port.onMessage.addListener(responseHandler);
+        chrome.runtime.onMessage.addListener(responseHandler);
 
         return {
             send: send,

@@ -73,7 +73,6 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
                 backdrop: 'static'
             });
             modal.closed.then(function() {
-                alert("asdas");
                 clearInterval(searchCookieInterval);
             });
         });
