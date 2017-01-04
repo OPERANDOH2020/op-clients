@@ -14,6 +14,7 @@ class UINavigationManager
     static let main = UIStoryboard(name: "Main", bundle: nil);
     static let utility = UIStoryboard(name: "UtilityControllers", bundle: nil)
     static let leftMenu = UIStoryboard(name: "LeftMenu", bundle: nil)
+    static let cloak = UIStoryboard(name: "Cloak", bundle: nil)
     
     static var rootViewController : UIRootViewController{
         return main.instantiateViewController(withIdentifier: "UIRootViewController") as! UIRootViewController
@@ -73,5 +74,7 @@ class UINavigationManager
     }
     
     
-    
+    static var scdDocumentsViewController: UISCDDocumentsViewController {
+        return cloak.instantiateViewController(withIdentifier: "UISCDDocumentsViewController") as! UISCDDocumentsViewController
+    }
 }

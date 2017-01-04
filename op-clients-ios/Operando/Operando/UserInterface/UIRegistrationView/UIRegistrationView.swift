@@ -9,7 +9,6 @@
 import UIKit
 
 struct RegistrationInfo {
-    let username: String
     let email: String
     let password: String
 }
@@ -27,7 +26,6 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     
     @IBOutlet weak var passwordsDontMatchLabel: UILabel!
     @IBOutlet weak var invalidEmailLabel: UILabel!
-    @IBOutlet weak var usernameTF: UITextField!
     
     let normalScrollViewInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 25, right: 0)
     private var registrationCallback: RegistrationCallback?
@@ -42,8 +40,7 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
         
         self.emailTF.delegate = self;
         self.confirmPasswordTF.delegate = self;
-        self.usernameTF.delegate = self
-        self.passwordTF.delegate = self 
+        self.passwordTF.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(UIRegistrationView.keyboardWillAppear(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(UIRegistrationView.keyboardWillDisappear(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil);
@@ -52,7 +49,6 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
         self.scrollView.contentInset = normalScrollViewInsets
         
         
-        nextTextFieldPerCurrentTextFieldHash[usernameTF.hashValue] = emailTF
         nextTextFieldPerCurrentTextFieldHash[emailTF.hashValue] = passwordTF
         nextTextFieldPerCurrentTextFieldHash[passwordTF.hashValue] = confirmPasswordTF
         
@@ -112,20 +108,15 @@ class UIRegistrationView: RSNibDesignableView, UITextFieldDelegate
     //MARK: internal utils
     
     private func createRegistrationInfo() -> RegistrationInfo? {
-        guard let username = self.usernameTF.text,
+        guard
               let email = self.emailTF.text,
               let password = self.passwordTF.text else {
               OPViewUtils.showOkAlertWithTitle(title: "", andMessage: Bundle.localizedStringFor(key: kNoIncompleteFieldsLocalizableKey))
                 return nil
         }
         
-        guard username.characters.count > 0 &&
-              email.characters.count > 0 else {
-                OPViewUtils.showOkAlertWithTitle(title: "", andMessage: Bundle.localizedStringFor(key: kNoIncompleteFieldsLocalizableKey))
-                return nil
-        }
         
-        return RegistrationInfo(username: username, email: email, password: password)
+        return RegistrationInfo(email: email, password: password)
     }
     
     private func handleEmailDidEndEditing(){

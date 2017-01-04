@@ -21,7 +21,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         UserInfoRepository,
                         NotificationsRepository
 {
-    static let ServerURL = "http://192.168.100.144:9001";
+    static let ServerURL = "https://plusprivacy.com:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
     var whenReceivingData: ((_ data: [Any]) -> Void)?
@@ -41,7 +41,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     
     //MARK: UsersRepository
     
-    func loginWithUsername(username: String, password: String, withCompletion completion: UserOperationCallback?)
+    func loginWith(email: String, password: String, withCompletion completion: UserOperationCallback?)
     {
         workingQueue.async {
             self.whenThereWasAnError = { error in
@@ -63,7 +63,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                 }
                 
                 self.whenAskedForRealIdentityWithCompletion = { identityCompletion in
-                    identityCompletion?(identityModel.userId, nil)
+                    identityCompletion?(identityModel.email, nil)
                 }
                 
                 completion?(nil, identityModel)
@@ -71,7 +71,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
         }
         
-        swarmClient.startSwarm(SwarmName.login.rawValue, phase: SwarmPhase.start.rawValue, ctor: LoginConstructor.userLogin.rawValue, arguments: [username as AnyObject, password as AnyObject])
+        swarmClient.startSwarm(SwarmName.login.rawValue, phase: SwarmPhase.start.rawValue, ctor: LoginConstructor.userLogin.rawValue, arguments: [email as AnyObject, password as AnyObject])
     }
     
     func getRealIdentityWith(completion: ((String, NSError?) -> Void)?) {
@@ -163,10 +163,10 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         self.swarmClient.startSwarm(SwarmName.email.rawValue, phase: SwarmPhase.start.rawValue, ctor: EmailConstructor.resetPassword.rawValue, arguments: [email as AnyObject])
     }
     
-    func registerNewUserWith(username: String, email: String, password: String, withCompletion completion: CallbackWithError?){
+    func registerNewUserWith(email: String, password: String, withCompletion completion: CallbackWithError?){
         
         workingQueue.async {
-            let registrationInfo = RegistrationInfo(username: username, email: email, password: password)
+            let registrationInfo = RegistrationInfo(email: email, password: password)
             
             self.guestGuestLoginWith(callbackInCaseOfError: completion) {
             self.registerUserWith(registrationInfo: registrationInfo, callbackInCaseOfError: completion) {
@@ -196,7 +196,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     private func guestGuestLoginWith(callbackInCaseOfError: CallbackWithError?, whenAllIsOk: VoidBlock?){
         
         workingQueue.async {
-            self.loginWithUsername(username: "guest", password: "guest") { error, identityModel in
+            self.loginWith(email: "guest@operando.eu", password: "guest") { error, identityModel in
                 if let error = error {
                     callbackInCaseOfError?(error)
                     return
@@ -220,20 +220,19 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         return
                     }
                     
-                    print(dict)
                     
-                    guard SwarmClientResponseParsers.parseRegisterUserSuccessStatus(from: dict) else {
-                        let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) ?? OPErrorContainer.errorInvalidServerResponse
+                    if let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) {
                         callbackInCaseOfError?(error)
                         return
                     }
+                    
                     
                     whenAllIsOk?()
                     
                 }
             }
             
-            let params: [String: Any] = ["username": registrationInfo.username, "email": registrationInfo.email, "password": registrationInfo.password, "repeat_password": registrationInfo.password]
+            let params: [String: Any] = ["email": registrationInfo.email, "password": registrationInfo.password, "repeat_password": registrationInfo.password]
             self.swarmClient.startSwarm(SwarmName.register.rawValue, phase: SwarmPhase.start.rawValue, ctor: RegisterConstructor.registerNewUser.rawValue, arguments: [params as AnyObject])
     
     }
@@ -549,16 +548,19 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             
             
             self.whenReceivingData = { dataArray in
+                print(dataArray)
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(PfbDealUpdate.emptyUnsubscribed, OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
-                guard let successStatus = SwarmClientResponseParsers.parseSubscribeToDealSuccessStatus(from: dataDict)
+                guard let successStatus = SwarmClientResponseParsers.parseDealUnsubscribedSuccessStatus(from: dataDict)
                 else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
                     completion?(PfbDealUpdate.emptyUnsubscribed, error)
                     return
                 }
+                
+                print(dataDict)
                 
                 // wow swift, thanks a lot for disabling guard-let-where 
                 guard successStatus == true else {
@@ -573,7 +575,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         }
         
         
-        self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.acceptPfbDeal.rawValue, arguments: [ serviceId as AnyObject ] )
+        self.swarmClient.startSwarm(SwarmName.pfb.rawValue, phase: SwarmPhase.start.rawValue, ctor: PFBConstructor.unsubscribeDeal.rawValue, arguments: [ serviceId as AnyObject ] )
     }
     
     

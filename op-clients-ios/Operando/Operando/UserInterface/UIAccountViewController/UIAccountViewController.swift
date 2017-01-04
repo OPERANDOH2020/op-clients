@@ -21,7 +21,6 @@ struct UIAccountViewControllerModel{
 class UIAccountViewController: UIViewController {
     @IBOutlet weak var changePasswordViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var changePasswordButton: UIButton!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var changePasswordView: UIChangePasswordView!
     
@@ -48,9 +47,7 @@ class UIAccountViewController: UIViewController {
                 OPErrorContainer.displayError(error: error)
                 return
             }
-            
-            self.nameLabel.text = info.name
-            
+                        
         })
         
     }

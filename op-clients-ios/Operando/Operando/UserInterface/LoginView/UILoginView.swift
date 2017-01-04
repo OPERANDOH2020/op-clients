@@ -10,7 +10,7 @@ import UIKit
 
 struct LoginInfo
 {
-    let username : String
+    let email : String
     let password: String
     let wishesToBeRemembered: Bool
 }
@@ -60,7 +60,7 @@ class UILoginView: RSNibDesignableView, UITextFieldDelegate {
     
     @IBAction func didPressSignInButton(_ sender: AnyObject?)
     {
-        let loginInfo = LoginInfo(username: self.emailTF.text ?? "", password: self.passwordTF.text ?? "", wishesToBeRemembered: self.rememberMeSwitch.isOn);
+        let loginInfo = LoginInfo(email: self.emailTF.text ?? "", password: self.passwordTF.text ?? "", wishesToBeRemembered: self.rememberMeSwitch.isOn);
         self.callbacks?.whenUserWantsToLogin?(loginInfo);
     }
     
