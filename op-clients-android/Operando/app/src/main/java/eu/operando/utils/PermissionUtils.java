@@ -20,6 +20,7 @@ import eu.operando.models.InstalledApp;
 public class PermissionUtils {
     public static final HashMap<String, Integer> permissionRisks;
     public static final int[] colors;
+    public static final int SAFE_THRESHOLD = 8;
 
     static {
         colors = new int[]{
@@ -150,33 +151,39 @@ public class PermissionUtils {
         if (score == null) {
             return colors[3];
         }
-        return colors[score-1];
+        return colors[score - 1];
     }
 
 
-    public static ArrayList<InstalledApp> getApps(Context c, boolean systemAppsAllowed) throws PackageManager.NameNotFoundException {
-        final PackageManager pm = c.getPackageManager();
-        ArrayList<InstalledApp> apps = new ArrayList<>();
-        List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-        for (ApplicationInfo applicationInfo : packages) {
-            PackageInfo info = pm.getPackageInfo(applicationInfo.packageName, PackageManager.GET_PERMISSIONS| PackageManager.GET_CONFIGURATIONS);
-            String packageName = applicationInfo.packageName;
-            if(!systemAppsAllowed) {
-                if (packageName.startsWith("com.android") || packageName.startsWith("android") /*|| packageName.startsWith("com.google")**/)
-                    continue;
-                if ((applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0)
-                    continue;
-                if (packageName.equals(c.getPackageName()))
-                    continue;
+    public static ArrayList<InstalledApp> getApps(Context c, boolean systemAppsAllowed) {
+        try {
+            final PackageManager pm = c.getPackageManager();
+            ArrayList<InstalledApp> apps = new ArrayList<>();
+            List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+            for (ApplicationInfo applicationInfo : packages) {
+                PackageInfo info;
+                info = pm.getPackageInfo(applicationInfo.packageName, PackageManager.GET_PERMISSIONS | PackageManager.GET_CONFIGURATIONS);
+                String packageName = applicationInfo.packageName;
+                if (!systemAppsAllowed) {
+                    if (packageName.startsWith("com.android") || packageName.startsWith("android") /*|| packageName.startsWith("com.google")**/)
+                        continue;
+                    if ((applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0)
+                        continue;
+                    if (packageName.equals(c.getPackageName()))
+                        continue;
+                }
+                String appName = pm.getApplicationLabel(applicationInfo).toString();
+                String[] requestedPermissions = info.requestedPermissions;
+                System.out.println(applicationInfo.packageName);
+                System.out.println(Arrays.toString(requestedPermissions));
+                InstalledApp app = new InstalledApp(appName, packageName, requestedPermissions, info.reqFeatures);
+                PermissionUtils.calculatePollutionScore(app);
+                apps.add(app);
             }
-            String appName = pm.getApplicationLabel(applicationInfo).toString();
-            String[] requestedPermissions = info.requestedPermissions;
-            System.out.println(applicationInfo.packageName);
-            System.out.println(Arrays.toString(requestedPermissions));
-            InstalledApp app = new InstalledApp(appName, packageName, requestedPermissions,info.reqFeatures);
-            PermissionUtils.calculatePollutionScore(app);
-            apps.add(app);
+            return apps;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
         }
-        return apps;
+        return null;
     }
 }

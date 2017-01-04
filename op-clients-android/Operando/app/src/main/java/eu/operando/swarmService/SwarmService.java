@@ -5,8 +5,7 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
+import eu.operando.swarmService.models.IdentityListSwarm;
 import eu.operando.swarmService.models.LoginSwarm;
 import eu.operando.swarmService.models.RegisterSwarm;
 import eu.operando.swarmclient.SwarmClient;
@@ -18,7 +17,7 @@ import eu.operando.swarmclient.models.SwarmCallback;
  */
 
 public class SwarmService {
-    private static final String SWARMS_URL = "http://212.24.98.215:8080";
+    private static final String SWARMS_URL = "https://plusprivacy.com:8080";
     private static final String SWARMS_URL_DEBUG = "http://192.168.100.86:8080";
     private static final String SWARMS_URL_JOS = "http://192.168.100.144:9001";
 
@@ -27,7 +26,7 @@ public class SwarmService {
     private SwarmClient swarmClient;
 
     private SwarmService() {
-        SwarmClient.init(SWARMS_URL_JOS);
+        SwarmClient.init(SWARMS_URL);
         swarmClient = SwarmClient.getInstance();
     }
 
@@ -43,13 +42,17 @@ public class SwarmService {
         swarmClient.startSwarm(new LoginSwarm(username, password), callback);
     }
 
+    public void logout(SwarmCallback<? extends Swarm> callback) {
+        swarmClient.startSwarm(new Swarm("login.js", "userLogout", (Object) null), callback);
+    }
+
     public void signUp(final String name, final String email, final String password, final SwarmCallback<? extends Swarm> callback) {
         //connect to swarms
-        login("guest", "guest", new SwarmCallback<Swarm>("userLogin", Swarm.class) {
+        login("guest@operando.eu", "guest", new SwarmCallback<Swarm>() {
             @Override
             public void call(Swarm result) {
                 //register user
-                swarmClient.startSwarm(new RegisterSwarm(name, email, password), new SwarmCallback<RegisterSwarm>("registerNewUser", RegisterSwarm.class) {
+                swarmClient.startSwarm(new RegisterSwarm(name, email, password), new SwarmCallback<RegisterSwarm>() {
 
                     @Override
                     public void call(RegisterSwarm result) {
@@ -59,8 +62,7 @@ public class SwarmService {
                             e.printStackTrace();
                         }
                         //logout guest
-                        swarmClient.startSwarm(new Swarm("login.js", "userLogout", null), new SwarmCallback<Swarm>("userLogout", Swarm.class) {
-
+                        logout(new SwarmCallback<Swarm>() {
                             @Override
                             public void call(Swarm result) {
                                 swarmClient.restartSocket();
@@ -72,5 +74,8 @@ public class SwarmService {
         });
     }
 
+    public void getIdentitiesList(SwarmCallback<? extends Swarm> callback) {
+        swarmClient.startSwarm(new IdentityListSwarm(),callback);
+    }
 
 }

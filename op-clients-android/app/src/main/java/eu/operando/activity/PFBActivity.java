@@ -46,6 +46,7 @@ public class PFBActivity extends BaseActivity {
     private ArrayList<PFBObject> pfbs;
     private BaseAdapter adapter;
     private ProgressDialog dialog;
+
     public static void start(Context context) {
         Intent starter = new Intent(context, PFBActivity.class);
         context.startActivity(starter);
@@ -77,23 +78,23 @@ public class PFBActivity extends BaseActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onPFBList(PFBListEvent event){
+    public void onPFBList(PFBListEvent event) {
         pfbs = event.getPfbs();
         Log.d("PFBActivity", "onPFBList() called with: event = [" + event + "]");
-        adapter = new QuickAdapter<PFBObject>(this,R.layout.pfb_item,pfbs) {
+        adapter = new QuickAdapter<PFBObject>(this, R.layout.pfb_item, pfbs) {
             @Override
             protected void convert(BaseAdapterHelper helper, final PFBObject item) {
-                helper.setText(R.id.tv,item.getWebsite());
-                helper.setImageUrl(R.id.iv,item.getLogo());
-                helper.setChecked(R.id.cb,item.isSubscribed());
-               final CheckBox cb =  helper.getView(R.id.cb);
+                helper.setText(R.id.tv, item.getWebsite());
+                helper.setImageUrl(R.id.iv, item.getLogo());
+                helper.setChecked(R.id.cb, item.isSubscribed());
+                final CheckBox cb = helper.getView(R.id.cb);
                 cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(isChecked){
-                            swarmClient.startSwarm("pfb.js","start","acceptDeal",new String[]{item.getServiceId()+""});
+                        if (isChecked) {
+                            swarmClient.startSwarm("pfb.js", "start", "acceptDeal", new String[]{item.getServiceId() + ""});
                         } else {
-                            swarmClient.startSwarm("pfb.js","start","unsubscribeDeal",new String[]{item.getServiceId()+""});
+                            swarmClient.startSwarm("pfb.js", "start", "unsubscribeDeal", new String[]{item.getServiceId() + ""});
                         }
                     }
                 });
@@ -112,7 +113,7 @@ public class PFBActivity extends BaseActivity {
     }
 
     private void showDetails(final PFBObject pfbObject) {
-        new AlertDialog(this){
+        new AlertDialog(this) {
             @Override
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -131,21 +132,21 @@ public class PFBActivity extends BaseActivity {
                             }
                         });
                 final TextView voucher_benefit = ((TextView) findViewById(R.id.voucher_benefit));
-                voucher_benefit.setText(pfbObject.isSubscribed()?"Voucher":"Benefit");
+                voucher_benefit.setText(pfbObject.isSubscribed() ? "Voucher" : "Benefit");
                 final TextView voucher_benefit_content = ((TextView) findViewById(R.id.voucher_benefit_content));
-                voucher_benefit_content.setText(pfbObject.isSubscribed()?pfbObject.getVoucher():pfbObject.getBenefit());
+                voucher_benefit_content.setText(pfbObject.isSubscribed() ? pfbObject.getVoucher() : pfbObject.getBenefit());
                 ((TextView) findViewById(R.id.description)).setText(pfbObject.getDescription());
                 CheckBox subscribeCB = ((CheckBox) findViewById(R.id.subscribeCB));
                 subscribeCB.setChecked(pfbObject.isSubscribed());
                 subscribeCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(isChecked){
-                            swarmClient.startSwarm("pfb.js","start","acceptDeal",new String[]{pfbObject.getServiceId()+""});
+                        if (isChecked) {
+                            swarmClient.startSwarm("pfb.js", "start", "acceptDeal", new String[]{pfbObject.getServiceId() + ""});
                             voucher_benefit.setText("Voucher");
                             voucher_benefit_content.setText(pfbObject.getVoucher());
                         } else {
-                            swarmClient.startSwarm("pfb.js","start","unsubscribeDeal",new String[]{pfbObject.getServiceId()+""});
+                            swarmClient.startSwarm("pfb.js", "start", "unsubscribeDeal", new String[]{pfbObject.getServiceId() + ""});
                             voucher_benefit.setText("Benefit");
                             voucher_benefit_content.setText(pfbObject.getBenefit());
                         }
@@ -156,6 +157,6 @@ public class PFBActivity extends BaseActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onDealResult(DealResultEvent event){
+    public void onDealResult(DealResultEvent event) {
     }
 }

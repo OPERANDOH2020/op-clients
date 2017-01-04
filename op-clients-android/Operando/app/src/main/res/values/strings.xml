@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Operando</string>
+    <string name="your_real_identity">Your real identity:</string>
+    <string name="installed_apps">Installed apps:</string>
+    <string name="potentially_unsafe_apps">Potentially unsafe apps:</string>
+    <string name="real_identity">This is your real identity</string>
+    <string name="identities">Identities</string>
+    <string name="alternative_identities">Alternative identities</string>
+    <string name="add_identity">Add identity</string>
+    <string name="domain">Domain:</string>
+    <string name="title_activity_identities">IdentitiesActivity</string>
+    <string name="url">URL</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="no_account_yet_create_one">No account yet? Create one</string>
 </resources>

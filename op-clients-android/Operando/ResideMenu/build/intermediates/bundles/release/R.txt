@@ -8,8 +8,9 @@ int color orange_text 0x7f040006
 int color primary_text 0x7f040007
 int drawable ic_launcher 0x7f020000
 int drawable op_logo 0x7f020001
-int drawable operando_logi 0x7f020002
-int drawable shadow 0x7f020003
+int drawable op_logo2 0x7f020002
+int drawable operando_logi 0x7f020003
+int drawable shadow 0x7f020004
 int id iv_background 0x7f060000
 int id iv_icon 0x7f060007
 int id iv_shadow 0x7f060001

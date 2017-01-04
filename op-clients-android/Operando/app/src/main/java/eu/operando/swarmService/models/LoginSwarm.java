@@ -8,8 +8,8 @@ import eu.operando.swarmclient.models.Swarm;
 
 public class LoginSwarm extends Swarm {
     private boolean authenticated;
+    private String email;
     private String userId;
-
     public LoginSwarm(String username, String password) {
         super("login.js", "userLogin", username,password);
     }
@@ -19,6 +19,6 @@ public class LoginSwarm extends Swarm {
     }
 
     public String getUserId() {
-        return userId;
+        return email;
     }
 }

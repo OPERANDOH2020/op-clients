@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import eu.operando.R;
 import eu.operando.customView.OperandoProgressDialog;
+import eu.operando.storage.Storage;
 import eu.operando.swarmService.SwarmService;
 import eu.operando.swarmService.models.LoginSwarm;
 import eu.operando.swarmclient.models.SwarmCallback;
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initUI();
-//        swarmLogin("a", "aaaa", new ProgressDialog(this));
+
     }
 
     private void initUI() {
@@ -53,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
+        //FIXME
+        swarmLogin("kkkk@mailinator.com","aaaa",new ProgressDialog(this));
     }
 
     private void login() {
@@ -75,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void swarmLogin(String username, final String password, final ProgressDialog dialog) {
 
-        SwarmService.getInstance().login(username, password, new SwarmCallback<LoginSwarm>("userLogin", LoginSwarm.class) {
+        SwarmService.getInstance().login(username, password, new SwarmCallback<LoginSwarm>() {
             @Override
             public void call(final LoginSwarm result) {
                 runOnUiThread(new Runnable() {
@@ -87,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                 dialog.dismiss();
                                 Toast.makeText(LoginActivity.this, result.isAuthenticated() ? "Login success" : "Login failed", Toast.LENGTH_SHORT).show();
                                 if (result.isAuthenticated()) {
+                                    Storage.saveUserID(result.getUserId());
                                     MainActivity.start(LoginActivity.this);
                                     finish();
                                 } else {
@@ -94,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                                     passwordText.setText("");
                                 }
                             }
-                        }, 1000);
+                        }, 1);
                     }
                 });
 

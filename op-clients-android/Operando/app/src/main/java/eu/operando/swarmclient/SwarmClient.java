@@ -8,7 +8,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.HashMap;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import eu.operando.swarmclient.models.Swarm;
 import eu.operando.swarmclient.models.SwarmCallback;
@@ -31,9 +42,38 @@ public class SwarmClient {
     private SwarmClient(String connectionURL) {
         this.connectionURL = connectionURL;
         listeners = new HashMap<>();
+        IO.Options options = new IO.Options();
+        SSLContext context;
         try {
+            if(connectionURL.startsWith("https://")){
+                HostnameVerifier verifier = new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                };
+                context = SSLContext.getInstance("TLS");
+                context.init(null,new TrustManager[] { new X509TrustManager() {
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                        return new java.security.cert.X509Certificate[] {};
+                    }
 
-            ioSocket = IO.socket(connectionURL);
+                    public void checkClientTrusted(X509Certificate[] chain,
+                                                   String authType) throws CertificateException {
+                    }
+
+                    public void checkServerTrusted(X509Certificate[] chain,
+                                                   String authType) throws CertificateException {
+                    }
+                } },null);
+                IO.setDefaultSSLContext(context);
+                IO.setDefaultHostnameVerifier(verifier);
+                options.sslContext = context;
+                options.hostnameVerifier = verifier;
+                options.secure = true;
+            }
+
+            ioSocket = IO.socket(connectionURL,options);
             ioSocket.connect();
 
             Emitter.Listener onNewMessage = new Emitter.Listener() {
@@ -49,7 +89,7 @@ public class SwarmClient {
             };
 
             this.ioSocket.on("message", onNewMessage);
-        } catch (URISyntaxException exception) {
+        } catch (URISyntaxException | NoSuchAlgorithmException | KeyManagementException exception) {
             exception.printStackTrace();
         }
         gson = new Gson();
@@ -67,6 +107,7 @@ public class SwarmClient {
 
     public void startSwarm(Swarm swarm, SwarmCallback callback) {
         if (callback != null){
+            callback.setResultEvent(swarm.getMeta().getCtor());
             listeners.put(callback.getResultEvent(), callback);
         }
         try {

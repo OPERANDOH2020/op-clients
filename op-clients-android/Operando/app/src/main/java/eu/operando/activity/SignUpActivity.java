@@ -10,14 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import eu.operando.R;
 import eu.operando.customView.OperandoProgressDialog;
 import eu.operando.swarmService.SwarmService;
 import eu.operando.swarmService.models.RegisterSwarm;
-import eu.operando.swarmclient.models.Swarm;
 import eu.operando.swarmclient.models.SwarmCallback;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -72,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
         final OperandoProgressDialog dialog = new OperandoProgressDialog(this, "Creating account...");
         dialog.show();
-        SwarmService.getInstance().signUp(name, email, password, new SwarmCallback<RegisterSwarm>("registerNewUser", RegisterSwarm.class) {
+        SwarmService.getInstance().signUp(name, email, password, new SwarmCallback<RegisterSwarm>() {
             @Override
             public void call(final RegisterSwarm result) {
                 Log.d("Register", "call() called with: result = [" + result + "]");

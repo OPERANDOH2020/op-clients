@@ -23,8 +23,9 @@ public final class R {
     public static final class drawable {
         public static int ic_launcher=0x7f020000;
         public static int op_logo=0x7f020001;
-        public static int operando_logi=0x7f020002;
-        public static int shadow=0x7f020003;
+        public static int op_logo2=0x7f020002;
+        public static int operando_logi=0x7f020003;
+        public static int shadow=0x7f020004;
     }
     public static final class id {
         public static int iv_background=0x7f060000;
