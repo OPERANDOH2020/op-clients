@@ -228,8 +228,9 @@ legend {
 }
 
 input[type="text"],
-input[type="password"] {
-	height: 34px;
+input[type="password"],
+input[type="email"]{
+	height: 40px;
 	padding: 6px 12px;
 	font-size: 14px;
 	line-height: 1.42857143;
@@ -257,7 +258,8 @@ input[type="password"]:focus {
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
-button {
+button,
+a.button{
 	display: inline-block;
 	margin-bottom: 0;
 	font-weight: 400;
@@ -278,6 +280,18 @@ button {
 	    -ms-user-select: none;
 	     -o-user-select: none;
 	user-select: none;
+}
+
+a.button{
+	font-size: 18px;
+	padding: 10px 22px;
+	border: none;
+	border-radius: 6px;
+}
+
+.user-buttons a{
+	float:left;
+	margin:  0px 20px;
 }
 
 input[type="submit"]:hover,

@@ -12,8 +12,6 @@ function getParameterByName(name, url) {
 
 
 
-
-
 privacyPlusApp.controller("confirmUserController", function ($scope, $location, connectionService) {
 
     $scope.loadingData = true;
@@ -21,7 +19,7 @@ privacyPlusApp.controller("confirmUserController", function ($scope, $location, 
 
     if(confirmationCode){
         connectionService.activateUser(confirmationCode, function (message) {
-                $scope.verifyUserStatus = "Account was verified!";
+                $scope.verifyUserStatus = "Email verification successful.";
                 $scope.status="success";
                 $scope.loadingData = false;
                 $scope.$apply();

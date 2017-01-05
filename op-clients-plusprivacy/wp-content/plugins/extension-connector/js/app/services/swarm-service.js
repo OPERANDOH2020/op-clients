@@ -36,8 +36,6 @@ privacyPlusApp.service("swarmService",function() {
         });
     }
 
-
-
         initConnection = function (host, port, email, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
             if (errorFunction) {
                 onConnectionError(errorFunction);
@@ -98,4 +96,4 @@ privacyPlusApp.service("swarmService",function() {
         initConnection: initConnection,
         removeConnection:removeConnection
     }
-})
+});
