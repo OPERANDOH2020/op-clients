@@ -31,3 +31,5 @@
 "kResetPasswordAlertDescriptionLocalizableKey" = "Please write your email so we can send you further instructions";
 "kResetLocalizableKey" = "Reset";
 "kCancelLocalizableKey" = "Cancel";
+"kPleaseCheckEmailResetLocalizableKey" = "Please check your e-mail for further instructions on how to reset your password";
+"kPasswordChangedSuccesfullyLocalizableKey" = "The password has been changed succesfully";

@@ -33,7 +33,7 @@
                         "enum": ["loc", "mic", "cam", "gyro", "acc", "prox", "touchID", "bar", "force"]
                     },
                     "privacyLevel": {
-                        "description": "An integer describing the privacy level (which indicates how the data collected from this 					senser is being used. Corresponding to PL{i}",
+                        "description": "An integer describing the privacy level (which indicates how the data collected from this senser is being used. Corresponding to PL{i}",
                         "type": "integer",
                         "minimum": 1,
                         "maximum": 6

@@ -56,7 +56,10 @@ class UIAddIdentityAlertViewController: UIViewController {
                     return
                 }
                 
+                ProgressHUD.show(kConnecting)
                 identitiesRepository?.add(identity: finalIdentity, withCompletion: { success, error  in
+                    ProgressHUD.dismiss()
+                    
                     if let error = error {
                         OPErrorContainer.displayError(error: error)
                         return
@@ -74,8 +77,10 @@ class UIAddIdentityAlertViewController: UIViewController {
                 
                 
             }) {
-                
+                ProgressHUD.show(kConnecting)
                 identitiesRepository?.generateNewIdentityWith(completion: { identity, error in
+                    ProgressHUD.dismiss()
+                    
                     if let error = error {
                         OPErrorContainer.displayError(error: error)
                         return

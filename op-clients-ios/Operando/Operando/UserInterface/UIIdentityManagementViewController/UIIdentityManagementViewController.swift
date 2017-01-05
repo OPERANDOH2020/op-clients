@@ -70,9 +70,10 @@ class UIIdentityManagementViewController: UIViewController
             self.realIdentityView.setupWith(identity: realIdentity)
         })
         
+        ProgressHUD.show(kConnecting, interaction: true);
         repository?.getCurrentIdentitiesListWith(completion: { (identities, error) in
-            if let error = error
-            {
+            ProgressHUD.dismiss()
+            if let error = error {
                 OPErrorContainer.displayError(error: error)
                 return
             }
@@ -103,8 +104,10 @@ class UIIdentityManagementViewController: UIViewController
     private func delete(identity: String, atIndex index: Int){
         
         OPViewUtils.displayAlertWithMessage(message: Bundle.localizedStringFor(key: kDoYouWantToDeleteSIDLocalizableKey), withTitle: identity, addCancelAction: true) {
-            
+        
+            ProgressHUD.show(kConnecting)
             self.identitiesRepository?.remove(identity: identity, withCompletion: { nextDefaultIdentity, error  in
+                ProgressHUD.dismiss()
                 if let error = error {
                     OPErrorContainer.displayError(error: error)
                     return
@@ -129,7 +132,9 @@ class UIIdentityManagementViewController: UIViewController
     
     private func setAsDefault(identity: String)
     {
+        ProgressHUD.show(kConnecting)
         self.identitiesRepository?.updateDefaultIdentity(to: identity, withCompletion: { success, error  in
+            ProgressHUD.dismiss()
             if let error = error {
                 OPErrorContainer.displayError(error: error);
                 return

@@ -49,7 +49,7 @@ class CredentialsStore: NSObject
         do
         {
             try Locksmith.saveData(data: data, forUserAccount: VLgftobwHe())
-        } catch _ {
+        } catch let error {
             return OPErrorContainer.errorCouldNotStoreCredentials
         }
         
@@ -76,7 +76,7 @@ class CredentialsStore: NSObject
         
         do {
             try Locksmith.updateData(data: updatedData, forUserAccount: VLgftobwHe())
-        } catch _ {
+        } catch let error {
             return OPErrorContainer.errorCouldNotStoreCredentials
         }
         
@@ -89,7 +89,10 @@ class CredentialsStore: NSObject
         
         do {
             try Locksmith.deleteDataForUserAccount(userAccount: VLgftobwHe())
-        } catch _ {
+        } catch let error {
+            if let lserror = error as? LocksmithError, lserror == .notFound {
+                return nil
+            }
             return OPErrorContainer.errorCouldNotDeleteCredentials
         }
         

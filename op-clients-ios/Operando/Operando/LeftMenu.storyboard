@@ -88,7 +88,7 @@
                                                     <constraint firstAttribute="width" constant="25" id="k2g-2N-UYg"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Operando" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9e-00-Yn7">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlusPrivacy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9e-00-Yn7">
                                                 <rect key="frame" x="8" y="25" width="359" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="qo1-8y-kE2"/>

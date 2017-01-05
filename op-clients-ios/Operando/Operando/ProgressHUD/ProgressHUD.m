@@ -150,6 +150,7 @@
     //---------------------------------------------------------------------------------------------------------------------------------------------
     if (hud.superview == nil)
     {
+        UIWindow *window = [[[UIApplication sharedApplication] delegate ] window];
         background = [[UIView alloc] initWithFrame:window.frame];
         background.backgroundColor = HUD_WINDOW_COLOR;
         [window addSubview:background];

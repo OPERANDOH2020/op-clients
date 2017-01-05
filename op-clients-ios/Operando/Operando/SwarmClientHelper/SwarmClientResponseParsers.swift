@@ -104,6 +104,12 @@ struct OPNotification{
         self.dismissed = dismissed
         let actionsAsDicts = notificationsSwarmReplyDict["actions"] as? [[String: String]] ?? []
         self.actions = OPNotification.parseActions(from: actionsAsDicts)
+        
+        if self.actions.first(where: { action -> Bool in
+            return action.actionKey == "social-network-privacy"
+        }) != nil {
+            return nil // social network privacy functionality is not implemented in this app as of 5-Jan-2017 
+        }
     }
     
     
@@ -133,13 +139,11 @@ class SwarmClientResponseParsers
         }
         
         guard let errorDict = dataDict["error"] as? [String: Any],
-              let messageType = errorDict["message"] as? String else
-        {
+              let messageType = errorDict["message"] as? String else {
             return nil
         }
         
-        if let errorCode = localizableCodesPerErrorMessage[messageType]
-        {
+        if let errorCode = localizableCodesPerErrorMessage[messageType] {
             return NSError(domain: OPErrorContainer.kOperandoDomain, code: errorCode, userInfo: nil)
         }
         
@@ -309,7 +313,11 @@ class SwarmClientResponseParsers
     }
     
     static func parseResetPasswordSuccessStatus(from dataDict: [String: Any]) -> Bool? {
-        return parseMetaCurrentPhaseEqualTo(item: "emailDeliverySuccessful", in: dataDict)
+        return parseMetaCurrentPhaseEqualTo(item: "newPasswordWasSet", in: dataDict)
+    }
+    
+    static func parseNotificationDismissedSuccessStatus(from dataDict: [String: Any]) -> Bool? {
+        return parseMetaCurrentPhaseEqualTo(item: "notificationDismissed", in: dataDict)
     }
     
     static private func parseMetaCurrentPhaseEqualTo(item: String, in dataDict: [String: Any]) -> Bool?

@@ -33,7 +33,7 @@ struct AccountCallbacks {
     let passwordChangeCallback: PasswordChangeCallback?
 }
 
-class UIFlowController
+class UIFlowController: SSASideMenuDelegate
 {
     let dependencies: Dependencies
     let rootController: UIRootViewController
@@ -154,6 +154,7 @@ class UIFlowController
         sideMenu.configure(configuration: SSASideMenu.MenuViewEffect(fade: true, scale: true, scaleBackground: false, parallaxEnabled: true, bouncesHorizontally: false, statusBarStyle: SSASideMenu.SSAStatusBarStyle.Black))
         window.rootViewController = sideMenu
         self.sideMenu = sideMenu
+        sideMenu.delegate = self
     }
     
     
@@ -216,4 +217,13 @@ class UIFlowController
         self.rootController.setMainControllerTo(newController: scdDocsVC)
         
     }
+    
+    func sideMenuWillShowMenuViewController(sideMenu: SSASideMenu, menuViewController: UIViewController) {
+        if let leftMenuVC = menuViewController as? UILeftSideMenuViewController {
+            leftMenuVC.prepareToAppear()
+        }
+    }
 }
+
+
+

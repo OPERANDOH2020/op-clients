@@ -24,10 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return false
         return OPConfigObject.sharedInstance.open(url: url)
     }
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        return false
         return OPConfigObject.sharedInstance.open(url: url)
     }
 }
