@@ -132,28 +132,6 @@ function loadOptions()
     $(".addButton").button("option", "icons", {primary: "ui-icon-plus"});
     $(".removeButton").button("option", "icons", {primary: "ui-icon-minus"});
 
-    // Popuplate option checkboxes
-    initCheckbox("shouldShowBlockElementMenu");
-    initCheckbox("show_devtools_panel");
-    initCheckbox("shouldShowNotifications", {
-        key: "notifications_ignoredcategories",
-        get: function(ignoredcategories)
-        {
-            return ignoredcategories.indexOf("*") == -1;
-        }
-    });
-
-    getInfo("features", function(features)
-    {
-        if (!features.devToolsPanel)
-            document.getElementById("showDevtoolsPanelContainer").hidden = true;
-    });
-    getPref("notifications_showui", function(notifications_showui)
-    {
-        if (!notifications_showui)
-            document.getElementById("shouldShowNotificationsContainer").hidden = true;
-    });
-
     // Register listeners in the background message responder
     ext.backgroundPage.sendMessage({
         type: "app.listen",
@@ -168,8 +146,7 @@ function loadOptions()
         {
             type: "prefs.listen",
             filter: ["notifications_ignoredcategories", "notifications_showui",
-                "safari_contentblocker", "show_devtools_panel",
-                "shouldShowBlockElementMenu"]
+                "safari_contentblocker"]
         });
     ext.backgroundPage.sendMessage(
         {
@@ -472,25 +449,6 @@ function onSubscriptionMessage(action, subscription)
             break;
     }
 }
-
-function onPrefMessage(key, value)
-{
-    switch (key)
-    {
-        case "notifications_showui":
-            document.getElementById("shouldShowNotificationsContainer").hidden = !value;
-            return;
-        case "notifications_ignoredcategories":
-            key = "shouldShowNotifications";
-            value = value.indexOf("*") == -1;
-            break;
-    }
-
-    var checkbox = document.getElementById(key);
-    if (checkbox)
-        checkbox.checked = value;
-}
-
 function onFilterMessage(action, filter)
 {
     switch (action)
@@ -668,9 +626,6 @@ ext.onMessage.addListener(function(message)
             break;
         case "filters.respond":
             onFilterMessage(message.action, message.args[0]);
-            break;
-        case "prefs.respond":
-            onPrefMessage(message.action, message.args[0]);
             break;
         case "subscriptions.respond":
             onSubscriptionMessage(message.action, message.args[0]);

@@ -90,7 +90,6 @@ chrome.runtime.onConnect.addListener(function (_port) {
              **/
 
             clientPort.onDisconnect.addListener(function () {
-                console.log("PORT WAS DISCONNECTED");
                 clientPort = null;
 
             });
@@ -125,8 +124,6 @@ chrome.runtime.onConnect.addListener(function (_port) {
                             }
                             else{
                                 console.log("CLIENTPORT IS NULL. Trying latest port...");
-                                //latestPort.postMessage(message);
-
                                 chrome.runtime.sendMessage(message,function(response){
                                 });
                             }
@@ -167,6 +164,30 @@ chrome.runtime.onConnect.addListener(function (_port) {
                 }
             });
         }
+        else if(clientPort.name == "PLUSPRIVACY_WEBSITE"){
+            clientPort.onMessage.addListener(function (request) {
+
+                if(bus.hasAction(request.action)){
+                    var action = bus.getAction(request.action);
+                    var args = [];
+
+                    if(request.message){
+                        args.push(request.message);
+                    }
+
+                    args.push(function(data){
+                        var response = data;
+                        clientPort.postMessage({action: request.action, message: {status:"success", data: response}});
+                    });
+
+                    args.push(function(err){
+                        clientPort.postMessage({action: request.action, message: {error:err.message?err.message:err}});
+                    });
+                    action.apply(action, args);
+                }
+
+            });
+        }
 
     }(_port));
 
@@ -194,11 +215,13 @@ function restoreUserSession(callback) {
 
     if (authenticationService.isLoggedIn() == true) {
         status.success = "success";
-        callback(status);
+        if(callback){
+            callback(status);
+        }
     }
 }
 
-
+//TODO rewrite this
 authenticationService.restoreUserSession(function () {
     status.success = "success";
 

@@ -20,7 +20,6 @@ var notificationService = exports.notificationService = {
         getNotificationHandler.onResponse("gotNotifications", function(swarm){
             callback(swarm.notifications);
         });
-
     },
 
     dismissNotification:function(notificationData, callback){

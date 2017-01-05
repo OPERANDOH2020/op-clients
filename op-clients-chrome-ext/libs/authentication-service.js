@@ -30,7 +30,6 @@ var authenticationService = exports.authenticationService = {
         console.log("Keep session ",login_details.remember_me);
 
         var loginSuccessfully = function (swarm) {
-            console.log("LOGAT");
 
             if(loggedIn === false){
                 self.setUser(successFn);
@@ -50,7 +49,6 @@ var authenticationService = exports.authenticationService = {
         swarmHub.on('login.js', "success", loginSuccessfully);
 
         swarmHub.on('login.js', "failed", function loginFailed(swarm) {
-            console.log("FAILED HERE");
             securityFn(swarm.meta.currentPhase, swarm);
             swarmHub.off("login.js", "success",loginSuccessfully);
             swarmHub.off("login.js", "failed",loginFailed);

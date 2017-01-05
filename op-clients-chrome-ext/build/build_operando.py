@@ -43,6 +43,11 @@ files = [
 	"is_directory":1
 },
 {
+	"src":"build/override/adblockpluschrome/_locales",
+	"dest":"adblockpluschrome/_locales",
+	"is_directory":1
+},
+{
   "src": "build/override/manifest.json.tmpl",
   "dest": "adblockpluschrome/buildtools/manifest.json.tmpl",
   "is_directory":0
@@ -115,12 +120,11 @@ configFiles = [
     }
 ]
 
-
 for file in files:
 	if file['is_directory'] == 1:
 	    if os.path.exists(os.path.join(BASE_DIR,file['dest'])):
                 shutil.rmtree(os.path.join(BASE_DIR,file['dest']))
-	    copytree(file['src'], os.path.join(BASE_DIR,file['dest']),ignore=ignore_patterns('.gitignore', '.git','.idea'))
+	    copytree(os.path.join(extensionFolder,file['src']), os.path.join(BASE_DIR,file['dest']),ignore=ignore_patterns('.gitignore', '.git','.idea'))
 	else:
 		shutil.copy2(os.path.join(extensionFolder,file['src']), os.path.join(BASE_DIR,file['dest']))
 

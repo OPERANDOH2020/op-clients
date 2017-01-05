@@ -105,6 +105,13 @@ webRequest.onBeforeSendHeaders.addListener(function(details) {
 
 
 chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
+
+    if (tab.url) {
+        if (changeInfo.status === "complete" && tab.url.indexOf(ExtensionConfig.WEBSITE_HOST) != -1) {
+            insertJavascriptFile(tabId, "operando/modules/communication/message-relay.js");
+        }
+    }
+
     tryPfB(tabId, changeInfo);
 });
 
