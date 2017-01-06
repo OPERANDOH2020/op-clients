@@ -68,6 +68,18 @@ var busActions = {
         });
     },
 
+    sendActivationCode: function (request, handleResponse) {
+        authenticationService.resendActivationCode(request.message, function () {
+            handleResponse({type: "SOLVED_REQUEST", action: request.action, message: {status: "success"}});
+
+        }, function (error) {
+            handleResponse({
+                type: "SOLVED_REQUEST",
+                action: request.action,
+                message: {status: "error", message: error}
+            });
+        });
+    },
 
     resetPassword:function(request, handleResponse){
         authenticationService.resetPassword(request.message, function(){

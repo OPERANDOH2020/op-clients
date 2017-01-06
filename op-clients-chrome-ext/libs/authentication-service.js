@@ -106,6 +106,27 @@ var authenticationService = exports.authenticationService = {
 
     },
 
+    resendActivationCode:function(email, successCallback, failCallback){
+        var self  = this;
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, CONSTANTS.GUEST_EMAIL, CONSTANTS.GUEST_PASSWORD, "chromeBrowserExtension", "userLogin", failCallback, failCallback);
+
+        swarmHub.on("login.js", "success_guest", function guestLoginForUserRegistration(swarm){
+            swarmHub.off("login.js", "success_guest",guestLoginForUserRegistration);
+            if(swarm.authenticated){
+                var resendActivationCodeHandler = swarmHub.startSwarm("register.js", "sendActivationCode", email);
+                resendActivationCodeHandler.onResponse("success", function(swarm){
+                    successCallback();
+                    self.logoutCurrentUser();
+                });
+
+                resendActivationCodeHandler.onResponse("failed", function(swarm){
+                    failCallback(swarm.error);
+                    self.logoutCurrentUser();
+                });
+            }
+        });
+    },
+
     restoreUserSession: function (successCallback, failCallback, errorCallback, reconnectCallback) {
         var username = Cookies.get("userId");
         var sessionId = Cookies.get("sessionId");

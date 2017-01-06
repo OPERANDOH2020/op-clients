@@ -55,6 +55,7 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
 
         if (error === "account_not_activated") {
             $scope.info.message = 'Account was not activated.';
+            $scope.showResendActivationCode = true;
         }
         else {
             $scope.info.message = 'Invalid email or password...';
@@ -84,6 +85,32 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
         $scope.info.message = 'Connected...';
         $scope.$apply();
         clearInfoPanel();
+    }
+
+    $scope.resendActivationCode = function () {
+        $scope.showResendActivationCode = false;
+        $scope.requestIsProcessed = true;
+        $scope.requestStatus = "pending";
+        $scope.info.status = "success";
+        $scope.info.message = 'Sending activation email...';
+
+        messengerService.send("sendActivationCode", $scope.user.email, function (response) {
+
+            $scope.requestIsProcessed = false;
+
+            if(response.status === "success"){
+                $scope.info.status = "success";
+                $scope.info.message = 'Check your email!';
+                $scope.requestStatus = "completed";
+                $scope.$apply();
+            }
+            else {
+                $scope.info.status = "error";
+                $scope.info.message = response.message;
+                $scope.requestStatus = "completed";
+                $scope.$apply();
+            }
+        });
     }
 
     $scope.login = function () {

@@ -412,13 +412,18 @@ ul.popup-login-area{
   margin: 10px 0px 10px 0px;
 }
 .user_actions button,
-#about_operando_ctn button{
+#about_operando_ctn button,
+#resend_activation_link{
   background: #F5A43C;
   padding: 7px 25px;
   border: none;
   color: #FFF;
   cursor: pointer;
   width:100%;
+}
+#resend_activation_link
+{margin-bottom: 15px;
+  margin-top: -5px;
 }
 
 .user_actions button[disabled],
