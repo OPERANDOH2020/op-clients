@@ -233,6 +233,7 @@ div.tab-content{
 #home_tab,
 #reading_settings_tab,
 #preferences_tab,
+#abp_preferences_tab,
 #pfb_tab,
 #social_networks_tab,
 #notifications_tab
@@ -244,11 +245,16 @@ div.tab-content{
 #home_tab:after,
 #reading_settings_tab:after,
 #preferences_tab:after,
+#abp_preferences_tab:after,
 #pfb_tab:after{
 
     clear: both;
     display: block;
     content:"";
+}
+
+#abp_preferences_tab{
+    height:100%;
 }
 
 .operando-navbar{
