@@ -29,6 +29,7 @@ class PlistSCDRepository: SCDRepository {
         self.plistFilePath = plistFilePath
         self.scdDocuments = []
         self.scdJSONS = []
+        self.loadPlistObjects()
     }
     
     private func loadPlistObjects() {
@@ -56,15 +57,25 @@ class PlistSCDRepository: SCDRepository {
 
     internal func registerSCDJson(_ json: [String : Any], withCompletion completion: ErrorCallback?) {
         guard let scdDocument = SCDDocument(scd: json) else {
+            completion?(NSError.errorMissingValuesFromSCDJSON)
             return
         }
         self.scdJSONS.append(json)
         self.scdDocuments.append(scdDocument)
+        self.synchronize()
         completion?(nil)
     }
 
     
     private func synchronize() {
-        (self.scdJSONS as NSArray).write(toFile: self.plistFilePath, atomically: true)
+        let array = NSMutableArray()
+        for jsonDict in self.scdJSONS {
+            array.add(jsonDict as NSDictionary)
+        }
+        guard array.write(toFile: self.plistFilePath, atomically: true) else {
+            print("could not wrtie to file")
+            return
+        }
+        
     }
 }

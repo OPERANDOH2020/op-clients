@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let kURLSchema = "operando://"
+let kURLSchema = "operando"
 
 enum CertifiedAppRequestType: String {
     case TypeRegisterWithSCD = "TypeRegisterWithSCD"
@@ -117,6 +117,8 @@ class OPCloak {
               let jsonData = jsonContentURLEncoded.removingPercentEncoding?.data(using: .utf8),
               let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments),
               let json = jsonObject as? [String: Any] else {
+            
+                OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "there was an error")
             return
         }
         
@@ -133,10 +135,23 @@ class OPCloak {
     
     
     private func processRegisterJSONContent(scdDocument: [String: Any]){
-        guard let scd = SCDDocument(scd: scdDocument) else {
+        guard let _ = SCDDocument(scd: scdDocument) else {
             return
         }
-        self.scdRepository.registerSCDJson(scdDocument, withCompletion: nil)
+        self.validate(scdDocument: scdDocument){ error in 
+            if let error = error {
+                OPErrorContainer.displayError(error: error)
+                return
+            }
+            
+            self.scdRepository.registerSCDJson(scdDocument) {
+                if let error = $0 {
+                    OPErrorContainer.displayError(error: error)
+                    return
+                }
+            }
+            OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "Done");
+        }
     }
     
     private func processNotifyJSONContent(json: [String: Any]){
@@ -144,23 +159,22 @@ class OPCloak {
     }
     
     
-    private func validate(scdDocument: [String: Any], completion: VoidBlock?){
+    private func validate(scdDocument: [String: Any], completion: CallbackWithError?){
         self.schemaProvider.getSchemaWithCallback { (schema, error) in
+            if let error = error {
+                completion?(error)
+            }
             guard let schema = schema else {
                 return
             }
             
-            self.schemaValidator.validate(json: scdDocument, withSchema: schema) { error in
-                if error == nil {
-                    completion?()
-                }
-            }
+            self.schemaValidator.validate(json: scdDocument, withSchema: schema, completion: completion)
         }
     }
     
     
     private func buildRequestDict(from url: URL) -> [String: String] {
-        let nameValuePairs = url.path.components(separatedBy: "&")
+        let nameValuePairs = url.host?.components(separatedBy: "&") ?? []
         var requestDict: [String: String] = [:]
         for pair in nameValuePairs {
             let components = pair.components(separatedBy: "=")

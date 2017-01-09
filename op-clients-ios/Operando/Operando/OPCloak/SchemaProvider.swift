@@ -23,13 +23,22 @@ class LocalFileSchemaProvider: SchemaProvider {
     }
     
     func getSchemaWithCallback(_ callback: SchemaCallback?) {
+        var jsonError: NSError?
+        var jsonSchemaDict: [String: Any]?
+        
         guard let fileAsString = try? String(contentsOfFile: self.pathToFile),
-            let data = fileAsString.data(using: .utf8),
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+            let data = fileAsString.data(using: .utf8) else {
                 callback?(nil, .jsonSchemaNotFound)
                 return
         }
         
-        callback?(jsonObject, nil);
+        do {
+            jsonSchemaDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch let error {
+                jsonError = error as NSError
+            }
+
+        
+        callback?(jsonSchemaDict, jsonError);
     }
 }

@@ -48,13 +48,12 @@ class UILeftSideMenuViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupControls()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    
+    func prepareToAppear() {
+     // SASideMenu completely screws up viewDidAppear, viewWillAppear
         dataSource = getMenuDataSource()
     }
     

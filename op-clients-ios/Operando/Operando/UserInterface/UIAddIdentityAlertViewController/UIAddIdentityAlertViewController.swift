@@ -11,7 +11,10 @@ import UIKit
 
 
 class UIAddIdentityAlertViewController: UIViewController {
+    
+    static let vc = UINavigationManager.addIdentityController
 
+    
     @IBOutlet weak var addIdentityView: UIAddIdentityView!
     
     var whenViewDidAppear: VoidBlock?
@@ -25,7 +28,7 @@ class UIAddIdentityAlertViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addIdentityView.isHidden = false        
-        self.addIdentityView.attachPopUpAnimationWithDuration(0.1)
+//        self.addIdentityView.attachPopUpAnimationWithDuration(0.1)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,11 +45,8 @@ class UIAddIdentityAlertViewController: UIViewController {
     
     static func displayAndAddIdentityWith(identitiesRepository: IdentitiesManagementRepository?, whenDone: ((_ identity: String) -> Void)?)
     {
-        let vc = UINavigationManager.addIdentityController
-        let _ = vc.view
         
         weak var weakVC = vc
-        
         let callbacks = UIAddIdentityViewCallbacks(whenPressedClose: {
                 weakVC?.dismiss(animated: false, completion: nil)
             },
@@ -56,7 +56,10 @@ class UIAddIdentityAlertViewController: UIViewController {
                     return
                 }
                 
+                ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
                 identitiesRepository?.add(identity: finalIdentity, withCompletion: { success, error  in
+                    ProgressHUD.dismiss()
+                    
                     if let error = error {
                         OPErrorContainer.displayError(error: error)
                         return
@@ -74,8 +77,10 @@ class UIAddIdentityAlertViewController: UIViewController {
                 
                 
             }) {
-                
+                ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
                 identitiesRepository?.generateNewIdentityWith(completion: { identity, error in
+                    ProgressHUD.dismiss()
+                    
                     if let error = error {
                         OPErrorContainer.displayError(error: error)
                         return
@@ -91,6 +96,7 @@ class UIAddIdentityAlertViewController: UIViewController {
                 return
             }
             
+            let _ = vc.view
             vc.addIdentityView.setupWith(domains: domains, andCallbacks: callbacks)
             UIApplication.shared.keyWindow?.rootViewController?.topMostPresentedControllerOrSelf.present(vc, animated: false, completion: nil)
             

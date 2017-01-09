@@ -11,10 +11,11 @@ import UIKit
 let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
 let kPleaseCheckEmailResetLocalizableKey = "kPleaseCheckEmailResetLocalizableKey"
 let kPasswordChangedSuccesfullyLocalizableKey = "kPasswordChangedSuccesfullyLocalizableKey"
+let kConnecting = "Connecting"
 
 enum NotificationAction: String {
-    case identitiesMangament = "identitiesMangament"
-    case privacyForBenefits = "privacyForBenefits"
+    case identitiesMangament = "identity"
+    case privacyForBenefits = "privacy-for-benefits"
     case privateBrowsing = "privateBrowsing"
 }
 
@@ -33,12 +34,13 @@ class OPConfigObject: NSObject
     private func initPropertiesOnAppStart() {
         
         self.userRepository = self.swarmClientHelper
-        self.notificationsRepository = DummyNotificationsRepo()
+        self.notificationsRepository = self.swarmClientHelper
         weak var weakSelf = self
         
-        
-        let scdRepository = PlistSCDRepository(plistFilePath: "PlistSCDRepository")
-        self.opCloak = OPCloak(schemaProvider: LocalFileSchemaProvider(pathToFile: "SCDSchema.json"),
+        let plistRepositoryPath = OPConfigObject.pathForFile(named: "SCDRepository")
+        let localSchemaPath = Bundle.main.path(forResource: "SCDSchema", ofType: "json") ?? ""
+        let scdRepository = PlistSCDRepository(plistFilePath: plistRepositoryPath)
+        self.opCloak = OPCloak(schemaProvider: LocalFileSchemaProvider(pathToFile: localSchemaPath),
                                schemaValidator: SwiftSchemaValidator(),
                                scdRepository: scdRepository)
         
@@ -53,7 +55,7 @@ class OPConfigObject: NSObject
                 weakSelf?.notificationsRepository?.getAllNotifications(in: { notifications, error in
                     if let error = error {
                         OPErrorContainer.displayError(error: error)
-                        callback?(-1)
+                        callback?(0)
                         return
                     }
                     callback?(notifications.count)
@@ -91,7 +93,10 @@ class OPConfigObject: NSObject
         if let (email, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
         {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            ProgressHUD.show(kConnecting)
             self.userRepository?.loginWith(email: email, password: password, withCompletion: { (error, data) in
+                ProgressHUD.dismiss()
+                
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if let error = error {
                     OPErrorContainer.displayError(error: error)
@@ -110,11 +115,9 @@ class OPConfigObject: NSObject
     }
     
     func open(url: URL) -> Bool {
-        
         if self.opCloak?.canProcess(url: url) ?? false {
             self.opCloak?.processIncoming(url: url)
         }
-        
         return false
     }
     
@@ -157,7 +160,7 @@ class OPConfigObject: NSObject
     private func registerWithInfoAndUpdateUI(_ info: RegistrationInfo){
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        ProgressHUD.show("Connecting")
+        ProgressHUD.show(kConnecting)
         self.userRepository?.registerNewUserWith(email: info.email, password: info.password) { error in
             ProgressHUD.dismiss()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -220,7 +223,10 @@ class OPConfigObject: NSObject
     }
     
     private func resetPasswordAndUpdateUIFor(email: String) {
+        ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
         self.userRepository?.resetPasswordFor(email: email) { error in
+            ProgressHUD.dismiss()
+            
             if let error = error {
                 OPErrorContainer.displayError(error: error)
                 return
@@ -235,7 +241,9 @@ class OPConfigObject: NSObject
         
         return { oldPassword, newPassword, successCallback in
             
+            ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
             weakSelf?.userRepository?.changeCurrent(password: oldPassword, to: newPassword, withCompletion: { error in
+                ProgressHUD.dismiss()
                 if let error = error {
                     OPErrorContainer.displayError(error: error)
                     return
@@ -272,4 +280,15 @@ class OPConfigObject: NSObject
         
     }
     
+
+    
+    private static func pathForFile(named: String) -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true);
+        if let documentsDirectory = paths.first{
+            var plistPathNSString = documentsDirectory as NSString
+            plistPathNSString = plistPathNSString.appendingPathComponent(named) as NSString;
+            return plistPathNSString as String;
+        }
+        return named
+    }
 }

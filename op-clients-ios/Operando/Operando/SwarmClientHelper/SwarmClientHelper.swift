@@ -14,6 +14,12 @@
 import Foundation
 import SwarmClient
 
+typealias ServerResponseHandler = (_ data: [Any]) -> Void
+
+func print(_ items: Any ...){
+    
+}
+
 class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         IdentitiesManagementRepository,
                         PrivacyForBenefitsRepository,
@@ -24,11 +30,12 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     static let ServerURL = "https://plusprivacy.com:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
-    var whenReceivingData: ((_ data: [Any]) -> Void)?
     var whenThereWasAnError: ((_ error: NSError?) -> Void)?
-    
     var whenThereWasAnErrorInCreatingTheSocket: ((_ error: NSError?) -> Void)?
     var whenSockedDidDisconnect: VoidBlock?
+    
+    private var handlersPerSwarmingName: [SwarmName: ServerResponseHandler] = [:]
+    private var errorCallbacks: [CallbackWithError] = []
     
     private var whenAskedForRealIdentityWithCompletion: ((((String, NSError?) -> Void)?) -> Void)?
     
@@ -49,7 +56,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
             
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.login] = { dataArray in
                 guard let dict = dataArray.first as? [String: Any] else {
                     completion?(OPErrorContainer.errorInvalidServerResponse, .empty)
                     return
@@ -87,7 +94,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
             
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.login] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -143,7 +150,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                 callbackInCaseOfError?(error)
             }
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.user] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     callbackInCaseOfError?(OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -160,11 +167,11 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
         }
         
         
-        self.swarmClient.startSwarm(SwarmName.email.rawValue, phase: SwarmPhase.start.rawValue, ctor: EmailConstructor.resetPassword.rawValue, arguments: [email as AnyObject])
+        self.swarmClient.startSwarm(SwarmName.user.rawValue, phase: SwarmPhase.start.rawValue, ctor: EmailConstructor.resetPassword.rawValue, arguments: [email as AnyObject])
     }
     
     func registerNewUserWith(email: String, password: String, withCompletion completion: CallbackWithError?){
-        
+        print("did call register new user ")
         workingQueue.async {
             let registrationInfo = RegistrationInfo(email: email, password: password)
             
@@ -209,17 +216,20 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     }
     
     private func registerUserWith(registrationInfo: RegistrationInfo, callbackInCaseOfError: CallbackWithError?, whenAllIsOk: VoidBlock?){
+        print("did call register user whenAllIsOk");
         workingQueue.async {
           
                 self.whenThereWasAnError = { error in
                     callbackInCaseOfError?(error)
                 }
-                self.whenReceivingData = { dataArray in
+            
+                self.handlersPerSwarmingName[.register] = { dataArray in
                     guard let dict = dataArray.first as? [String: Any] else {
                         callbackInCaseOfError?(OPErrorContainer.errorInvalidServerResponse)
                         return
                     }
                     
+                    print(dict)
                     
                     if let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) {
                         callbackInCaseOfError?(error)
@@ -257,7 +267,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     func getCurrentUserInfo(in completion: UserInfoCallback?)
     {
         workingQueue.async {
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.user] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(.defaultEmpty, OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -285,7 +295,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     func changeCurrent(password: String, to newPassword: String, withCompletion completion: ((NSError?) -> Void)?) {
         workingQueue.async {
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.email] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -318,7 +328,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
             
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.identity] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(.defaultEmptyResponse, OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -349,7 +359,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
             
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.identity] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?([], OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -376,7 +386,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
             
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.identity] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?("", OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -405,7 +415,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
             
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.identity] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(false, OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -430,7 +440,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                 completion?("", error)
             }
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.identity] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?("", OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -459,7 +469,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
             
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.identity] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(false, OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -489,7 +499,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                 completion?([], error)
             }
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.pfb] = { dataArray in
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?([], OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -516,7 +526,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
             
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.pfb] = { dataArray in
                 print(dataArray)
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(PfbDealUpdate.emptyUnsubscribed, OPErrorContainer.errorInvalidServerResponse)
@@ -547,7 +557,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             }
             
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.pfb] = { dataArray in
                 print(dataArray)
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(PfbDealUpdate.emptyUnsubscribed, OPErrorContainer.errorInvalidServerResponse)
@@ -562,7 +572,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                 
                 print(dataDict)
                 
-                // wow swift, thanks a lot for disabling guard-let-where 
                 guard successStatus == true else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
                     completion?(PfbDealUpdate.emptyUnsubscribed, error)
@@ -589,7 +598,10 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                 completion?([], error)
             }
             
-            self.whenReceivingData = { dataArray in
+            self.handlersPerSwarmingName[.notification] = { dataArray in
+                
+                print(dataArray)
+                
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?([], OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -610,7 +622,31 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     }
     
     func dismiss(notification: OPNotification, withCompletion completion: CallbackWithError?) {
+        workingQueue.async {
+            self.whenThereWasAnError = completion
+            
+            self.handlersPerSwarmingName[.notification] = { dataArray in
+                print(dataArray)
+                
+                guard let dataDict = dataArray.first as? [String: Any] else {
+                    completion?(OPErrorContainer.errorInvalidServerResponse)
+                    return
+                }
+                
+                guard let successStatus = SwarmClientResponseParsers.parseNotificationDismissedSuccessStatus(from: dataDict),
+                          successStatus == true
+                    else {
+                        let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
+                        completion?(error)
+                        return
+                }
+                
+                completion?(nil)
+            }
+            
+        }
         
+        self.swarmClient.startSwarm(SwarmName.notification.rawValue, phase: SwarmPhase.start.rawValue, ctor: NotificationConstructor.dismissNotification.rawValue, arguments: [notification.id as AnyObject, true as AnyObject])
     }
     
     //MARK: SwarmClientProtocol
@@ -625,7 +661,13 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     }
     
     func didReceiveData(_ data: [Any]){
-        self.whenReceivingData?(data)
+        print(data.first)
+        guard let swarmName = SwarmClientHelper.swarmingNameIfAny(from: data) else {
+            return
+        }
+        
+        self.handlersPerSwarmingName[swarmName]?(data)
+        
         self.removeCallbacksForSwarmCalls()
     }
     
@@ -637,8 +679,19 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     
     //internal 
     
+    private static func swarmingNameIfAny(from data: [Any]) -> SwarmName? {
+        guard let first = data.first as? [String: Any],
+        let metaDict = first["meta"] as? [String: Any],
+        let swarmingName = metaDict["swarmingName"] as? String,
+        let swarmNameResult = SwarmName(rawValue: swarmingName) else {
+            return nil
+        }
+        
+        return swarmNameResult
+    }
+    
     private func removeCallbacksForSwarmCalls(){
-        self.whenReceivingData = nil
+        self.handlersPerSwarmingName[.login] = nil
         self.whenThereWasAnError = nil
     }
 }

@@ -35,6 +35,12 @@ class UIDashboardViewController: UIViewController
         super.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.view.window != nil {
+            self.notificationsButton?.updateNotificationsCountLabel()
+        }
+    }
     
     func setupWith(callbacks: UIDashBoardViewControllerCallbacks?)
     {

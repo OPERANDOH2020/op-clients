@@ -81,6 +81,12 @@ class UIAddIdentityView: RSNibDesignableView, UITableViewDelegate, UITableViewDa
         self.domains = domains
         self.callbacks = callbacks
         self.domainsTableView.isHidden = true
+        
+        if self.aliasTF != nil && self.domainTF != nil {
+            self.aliasTF.text = ""
+            self.domainTF.text = ""
+        }
+        
     }
     
     func changeAlias(to newAlias: String){

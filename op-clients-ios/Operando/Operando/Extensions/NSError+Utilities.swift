@@ -17,6 +17,7 @@ enum ErrorCode: Int {
     case POSTFail = -6
     case jsonSchemaNotFound = -7
     case jsonNotValidAccordingToSchema = -8
+    case errorMissingValuesFromSCDJSON = -9
 }
 
 let operandoDomain = "com.operando.operando"
@@ -56,4 +57,7 @@ extension NSError
         return NSError(domain: operandoDomain, code: ErrorCode.jsonNotValidAccordingToSchema.rawValue, userInfo: nil)
     }
     
+    static var errorMissingValuesFromSCDJSON: NSError {
+        return NSError(domain: operandoDomain, code: ErrorCode.errorMissingValuesFromSCDJSON.rawValue, userInfo: nil);
+    }
 }

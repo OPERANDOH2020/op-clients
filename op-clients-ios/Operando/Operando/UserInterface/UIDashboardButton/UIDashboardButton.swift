@@ -53,10 +53,7 @@ class UIDashboardButton: RSNibDesignableView {
         self.titleLabel.text = model?.style?.title
         self.imageView.image = model?.style?.image
         
-        model?.notificationsRequestCallbackIfAny? { count in
-            self.numOfNotificationsLabel.isHidden = false
-            self.numOfNotificationsLabel.text = "\(count)"
-        }
+
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
@@ -64,6 +61,13 @@ class UIDashboardButton: RSNibDesignableView {
         
     }
     
+    
+    func updateNotificationsCountLabel() {
+        model?.notificationsRequestCallbackIfAny? { count in
+            self.numOfNotificationsLabel.isHidden = false
+            self.numOfNotificationsLabel.text = "\(count)"
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)

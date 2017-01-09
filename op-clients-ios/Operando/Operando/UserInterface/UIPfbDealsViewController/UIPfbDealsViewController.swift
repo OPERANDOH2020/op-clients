@@ -24,14 +24,14 @@ class UIPfbDealsViewController: UIViewController {
     }
     
     private func loadCurrentDeals(){
+        ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
         self.dealsRepository?.getCurrentPfbDealsWith(completion: { deals, error in
+            ProgressHUD.dismiss()
             if let error = error {
                 OPErrorContainer.displayError(error: error)
                 return
             }
-            
             self.pfbDealsListView.setupWith(deals: deals, andCalllbacks: self.callbacksForDealsListView())
-            
         })
     }
     
@@ -70,9 +70,11 @@ class UIPfbDealsViewController: UIViewController {
     
     
     private func tryActivate(deal: PfbDeal, fromCell cell: UIPfbDisplayingView?, whenDone: VoidBlock?){
+        ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
         self.dealsRepository?.subscribeFor(serviceId: deal.serviceId, withCompletion: { dealUpdate, error in
             defer {
                 whenDone?()
+                ProgressHUD.dismiss()
             }
             if let error = error {
                 OPErrorContainer.displayError(error: error)
@@ -86,9 +88,11 @@ class UIPfbDealsViewController: UIViewController {
     }
     
     private func tryDeactivate(deal: PfbDeal, fromCell cell: UIPfbDisplayingView?, whenDone: VoidBlock?){
+        ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
         self.dealsRepository?.unSubscribeFrom(serviceId: deal.serviceId, withCompletion: { dealUpdate, error  in
             defer{
                 whenDone?()
+                ProgressHUD.dismiss()
             }
             if let error = error {
                 OPErrorContainer.displayError(error: error)

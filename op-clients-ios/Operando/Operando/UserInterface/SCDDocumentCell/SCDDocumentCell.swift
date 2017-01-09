@@ -14,12 +14,10 @@ class SCDDocumentCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bundleLabel: UILabel!
-    @IBOutlet weak var urlListLable: UILabel!
     
     func setup(with scdDocument: SCDDocument){
         self.titleLabel.text = scdDocument.appTitle
         self.bundleLabel.text = scdDocument.bundleId
-        self.urlListLable.text = "The app accesses \(scdDocument.accessedLinks.count) urls"
     }
     
     
