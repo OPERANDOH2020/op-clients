@@ -31,17 +31,15 @@ class UIIdentityManagementViewController: UIViewController
     @IBOutlet weak var identitiesListView: UIIdentitiesListView?
     @IBOutlet weak var addNewIdentityButton: UIButton?
     @IBOutlet weak var numOfIdentitiesLeftLabel: UILabel!
-    
-
     @IBOutlet weak var realIdentityView: UIRealIdentityView!
     
     
-    func setupWith(identitiesRepository: IdentitiesManagementRepository?)
-    {
+    func setupWith(identitiesRepository: IdentitiesManagementRepository?) {
         let _  = self.view
         self.identitiesRepository = identitiesRepository
         self.loadCurrentIdentitiesWith(repository: identitiesRepository)
     }
+    
     
     //MARK: IBActions
     
@@ -70,7 +68,7 @@ class UIIdentityManagementViewController: UIViewController
             self.realIdentityView.setupWith(identity: realIdentity)
         })
         
-        ProgressHUD.show(kConnecting, interaction: true);
+        ProgressHUD.show(kConnecting, autoDismissAfter: 3.0);
         repository?.getCurrentIdentitiesListWith(completion: { (identities, error) in
             ProgressHUD.dismiss()
             if let error = error {
@@ -105,7 +103,7 @@ class UIIdentityManagementViewController: UIViewController
         
         OPViewUtils.displayAlertWithMessage(message: Bundle.localizedStringFor(key: kDoYouWantToDeleteSIDLocalizableKey), withTitle: identity, addCancelAction: true) {
         
-            ProgressHUD.show(kConnecting)
+            ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
             self.identitiesRepository?.remove(identity: identity, withCompletion: { nextDefaultIdentity, error  in
                 ProgressHUD.dismiss()
                 if let error = error {
@@ -132,7 +130,7 @@ class UIIdentityManagementViewController: UIViewController
     
     private func setAsDefault(identity: String)
     {
-        ProgressHUD.show(kConnecting)
+        ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
         self.identitiesRepository?.updateDefaultIdentity(to: identity, withCompletion: { success, error  in
             ProgressHUD.dismiss()
             if let error = error {

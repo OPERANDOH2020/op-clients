@@ -62,7 +62,7 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 94;
+        return 74;
     }
     
 }

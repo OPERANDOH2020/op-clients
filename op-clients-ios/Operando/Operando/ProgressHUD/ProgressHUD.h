@@ -34,6 +34,7 @@
 
 + (void)show:(NSString *)status;
 + (void)show:(NSString *)status Interaction:(BOOL)Interaction;
++ (void)show:(NSString *)status autoDismissAfter:(NSTimeInterval)time;
 
 + (void)showSuccess:(NSString *)status;
 + (void)showSuccess:(NSString *)status Interaction:(BOOL)Interaction;

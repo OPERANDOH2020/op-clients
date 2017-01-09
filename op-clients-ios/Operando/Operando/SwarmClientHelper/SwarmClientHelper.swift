@@ -16,6 +16,10 @@ import SwarmClient
 
 typealias ServerResponseHandler = (_ data: [Any]) -> Void
 
+func print(_ items: Any ...){
+    
+}
+
 class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         IdentitiesManagementRepository,
                         PrivacyForBenefitsRepository,

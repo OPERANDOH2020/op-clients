@@ -223,7 +223,7 @@ class OPConfigObject: NSObject
     }
     
     private func resetPasswordAndUpdateUIFor(email: String) {
-        ProgressHUD.show(kConnecting)
+        ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
         self.userRepository?.resetPasswordFor(email: email) { error in
             ProgressHUD.dismiss()
             
@@ -241,7 +241,7 @@ class OPConfigObject: NSObject
         
         return { oldPassword, newPassword, successCallback in
             
-            ProgressHUD.show(kConnecting)
+            ProgressHUD.show(kConnecting, autoDismissAfter: 5.0)
             weakSelf?.userRepository?.changeCurrent(password: oldPassword, to: newPassword, withCompletion: { error in
                 ProgressHUD.dismiss()
                 if let error = error {
