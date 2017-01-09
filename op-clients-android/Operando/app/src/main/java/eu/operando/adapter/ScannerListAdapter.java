@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import eu.operando.R;
+import eu.operando.activity.PermissionsActivity;
 import eu.operando.models.InstalledApp;
 import eu.operando.utils.PermissionUtils;
 
@@ -46,14 +47,14 @@ public class ScannerListAdapter extends ArrayAdapter<InstalledApp> {
             ((ImageView) convertView.findViewById(R.id.app_icon)).setImageDrawable(d);
         }
         convertView.setBackgroundColor(PermissionUtils.getColor(item));
-//        convertView.findViewById(R.id.eye_btn).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getContext(), PermissionsActivity.class);
-//                i.putExtra("perms", item.getPermissions());
-//                getContext().startActivity(i);
-//            }
-//        });
+        convertView.findViewById(R.id.eye_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), PermissionsActivity.class);
+                i.putExtra("perms", item.getPermissions());
+                getContext().startActivity(i);
+            }
+        });
         convertView.findViewById(R.id.trash_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

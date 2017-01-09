@@ -17,8 +17,10 @@ import java.util.List;
 import eu.operando.R;
 import eu.operando.models.InstalledApp;
 import eu.operando.storage.Storage;
+import eu.operando.swarmService.SwarmService;
 import eu.operando.swarmService.models.GetNotificationsSwarm;
 import eu.operando.swarmclient.SwarmClient;
+import eu.operando.swarmclient.models.Swarm;
 import eu.operando.swarmclient.models.SwarmCallback;
 import eu.operando.utils.PermissionUtils;
 
@@ -80,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
     private void setInfo() {
         ((TextView) findViewById(R.id.real_identity)).setText(Storage.readUserID());
         showUnsafeApps();
+        initNotifications();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initNotifications();
     }
 
@@ -162,6 +170,12 @@ public class MainActivity extends AppCompatActivity {
                 resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
             }
         });
+
+        ResideMenuItem logoutItem = new ResideMenuItem(this, 0, "Log Out");
+        logoutItem.setTag(titles.length);
+        logoutItem.setOnClickListener(menuClickListener);
+        resideMenu.addMenuItem(logoutItem, ResideMenu.DIRECTION_RIGHT);
+
     }
 
     private void onDrawerItemClicked(int index) {
@@ -185,7 +199,17 @@ public class MainActivity extends AppCompatActivity {
             case 5: //Notifications
                 NotificationsActivity.start(this);
                 break;
+            case 6: //LogOut
+                logOut();
+                break;
         }
+    }
+
+    private void logOut() {
+        Toast.makeText(this, "Log Out", Toast.LENGTH_SHORT).show();
+        SwarmService.getInstance().logout(null);
+        LoginActivity.start(MainActivity.this);
+        finish();
     }
 
     @Override

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Operando</string>
+    <string name="app_name">PlusPrivacy</string>
     <string name="your_real_identity">Your real identity:</string>
     <string name="installed_apps">Installed apps:</string>
     <string name="potentially_unsafe_apps">Potentially unsafe apps:</string>

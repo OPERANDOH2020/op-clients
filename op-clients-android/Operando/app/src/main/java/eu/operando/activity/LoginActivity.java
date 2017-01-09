@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         //FIXME
-        swarmLogin("kkkk@mailinator.com","aaaa",new ProgressDialog(this));
+//        swarmLogin("kkkk@mailinator.com","aaaa",new ProgressDialog(this));
     }
 
     private void login() {

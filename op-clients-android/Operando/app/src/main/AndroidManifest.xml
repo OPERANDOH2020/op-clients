@@ -19,21 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SignUpActivity">
-        </activity>
-        <activity android:name=".activity.MainActivity">
-        </activity>
-        <activity android:name=".activity.ScannerActivity">
-        </activity>
-        <activity
-            android:name=".activity.IdentitiesActivity"
-            android:label="@string/title_activity_identities">
-        </activity>
+        <activity android:name=".activity.SignUpActivity"/>
+        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.ScannerActivity"/>
+        <activity android:name=".activity.IdentitiesActivity"/>
         <activity android:name=".activity.CreateIdentityActivity"/>
         <activity android:name=".activity.BrowserActivity"/>
         <activity android:name=".activity.PFBActivity"/>
-        <activity android:name=".activity.NotificationsActivity">
-        </activity>
+        <activity android:name=".activity.NotificationsActivity"/>
+        <activity android:name=".activity.PermissionsActivity"/>
     </application>
 
 </manifest>

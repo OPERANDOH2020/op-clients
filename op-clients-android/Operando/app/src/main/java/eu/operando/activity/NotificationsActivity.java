@@ -68,7 +68,7 @@ public class NotificationsActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(View v) {
                                                 String action = result.getNotifications().get(position).getActions().get(0).getKey();
-                                                onNotificationTapped(action,result.getNotifications().get(position).getNotificationId());
+                                                onNotificationTapped(action, result.getNotifications().get(position).getNotificationId());
                                                 result.getNotifications().remove(position);
                                                 notifyDataSetChanged();
                                             }
@@ -83,13 +83,19 @@ public class NotificationsActivity extends AppCompatActivity {
 
     }
 
-    private void onNotificationTapped(String action,String  id) {
-        switch (action.toLowerCase()){
+    private void onNotificationTapped(String action, String id) {
+        switch (action.toLowerCase()) {
             case "identity":
                 IdentitiesActivity.start(this);
-                Object[] args = {id,true};
-                SwarmClient.getInstance().startSwarm(new Swarm("notification.js","dismissNotification",args),null);
                 break;
+            case "privacy-for-benefits":
+                PFBActivity.start(this);
+                break;
+
         }
+
+        Object[] args = {id, true};
+        SwarmClient.getInstance().startSwarm(new Swarm("notification.js", "dismissNotification", args), null);
+
     }
 }

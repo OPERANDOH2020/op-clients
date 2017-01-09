@@ -94,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (result.getStatus() != null && result.getStatus().equals("error")) {
                             Toast.makeText(SignUpActivity.this, result.getError(), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(SignUpActivity.this, "Register success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "Registration success. Please check your e-mail to activate the account", Toast.LENGTH_SHORT).show();
                             onBackPressed();
                         }
                     }
