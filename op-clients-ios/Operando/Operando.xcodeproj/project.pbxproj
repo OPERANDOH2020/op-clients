@@ -123,6 +123,10 @@
 		989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */; };
 		989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */; };
 		989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */; };
+		98A454C11E23EB8D002BDFC9 /* SCDDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A454C01E23EB8D002BDFC9 /* SCDDetailsView.swift */; };
+		98A454C31E23EBC8002BDFC9 /* SCDDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98A454C21E23EBC8002BDFC9 /* SCDDetailsView.xib */; };
+		98A454C61E23F133002BDFC9 /* SCDSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A454C51E23F133002BDFC9 /* SCDSectionHeader.swift */; };
+		98A454C81E23F141002BDFC9 /* SCDSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98A454C71E23F141002BDFC9 /* SCDSectionHeader.xib */; };
 		98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */; };
 		98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6701CCF86DC00C77649 /* ViewController.swift */; };
 		98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6721CCF86DC00C77649 /* Main.storyboard */; };
@@ -328,6 +332,10 @@
 		989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRealIdentityView.swift; path = UserInterface/UIRealIdentityView/UIRealIdentityView.swift; sourceTree = "<group>"; };
 		989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIRealIdentityView.xib; path = UserInterface/UIRealIdentityView/UIRealIdentityView.xib; sourceTree = "<group>"; };
+		98A454C01E23EB8D002BDFC9 /* SCDDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCDDetailsView.swift; path = CloakUI/SCDDetailsView/SCDDetailsView.swift; sourceTree = "<group>"; };
+		98A454C21E23EBC8002BDFC9 /* SCDDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SCDDetailsView.xib; path = CloakUI/SCDDetailsView/SCDDetailsView.xib; sourceTree = "<group>"; };
+		98A454C51E23F133002BDFC9 /* SCDSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCDSectionHeader.swift; path = CloakUI/SCDDetailsView/SCDSectionHeader/SCDSectionHeader.swift; sourceTree = "<group>"; };
+		98A454C71E23F141002BDFC9 /* SCDSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SCDSectionHeader.xib; path = CloakUI/SCDDetailsView/SCDSectionHeader/SCDSectionHeader.xib; sourceTree = "<group>"; };
 		98EAF66B1CCF86DC00C77649 /* Operando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Operando.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98EAF6701CCF86DC00C77649 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -894,6 +902,7 @@
 		9893E4041E239DA200663ABC /* CloakUI */ = {
 			isa = PBXGroup;
 			children = (
+				98A454BF1E23EB42002BDFC9 /* SCDDetailsView */,
 				9893E4051E239ECB00663ABC /* FontAwesome */,
 				98500BC41E09980300DF87E8 /* UISCDDocumentsViewController */,
 			);
@@ -936,6 +945,25 @@
 				989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */,
 			);
 			name = UIRealIdentityView;
+			sourceTree = "<group>";
+		};
+		98A454BF1E23EB42002BDFC9 /* SCDDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				98A454C41E23F111002BDFC9 /* SCDSectionHeader */,
+				98A454C01E23EB8D002BDFC9 /* SCDDetailsView.swift */,
+				98A454C21E23EBC8002BDFC9 /* SCDDetailsView.xib */,
+			);
+			name = SCDDetailsView;
+			sourceTree = "<group>";
+		};
+		98A454C41E23F111002BDFC9 /* SCDSectionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				98A454C51E23F133002BDFC9 /* SCDSectionHeader.swift */,
+				98A454C71E23F141002BDFC9 /* SCDSectionHeader.xib */,
+			);
+			name = SCDSectionHeader;
 			sourceTree = "<group>";
 		};
 		98EAF6621CCF86DC00C77649 = {
@@ -1301,6 +1329,7 @@
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
 				9866A7C61DBF854000907D05 /* UINotificationsListView.xib in Resources */,
 				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
+				98A454C81E23F141002BDFC9 /* SCDSectionHeader.xib in Resources */,
 				98387BC01DB75ACD00A76F01 /* UIDashboardButton.xib in Resources */,
 				98500BCF1E09A25800DF87E8 /* SCDSchema.json in Resources */,
 				9866A7B41DBF4B1000907D05 /* Localizable.strings in Resources */,
@@ -1319,6 +1348,7 @@
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982DF0641DB6618700231BBD /* UIPfbDealTableViewCell.xib in Resources */,
 				ADB2AD501DB80474003E3AC1 /* LeftMenu.storyboard in Resources */,
+				98A454C31E23EBC8002BDFC9 /* SCDDetailsView.xib in Resources */,
 				982750141D08497400C73411 /* UIDashboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1422,6 +1452,7 @@
 				982750201D0849EB00C73411 /* SwarmClientHelper.swift in Sources */,
 				982DF0511DB6579B00231BBD /* AFImageDownloader.m in Sources */,
 				982DF0531DB6579B00231BBD /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				98A454C61E23F133002BDFC9 /* SCDSectionHeader.swift in Sources */,
 				98668B5A1DB0D0D900FDE63A /* ECSlidingAnimationController.m in Sources */,
 				9827502D1D084A4B00C73411 /* WKWebViewUtilities.swift in Sources */,
 				ADB2AD4E1DB7FC85003E3AC1 /* SSASideMenu.swift in Sources */,
@@ -1451,6 +1482,7 @@
 				985A0D4A1DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				986D4CA91DB23AA80006DA0B /* SwarmClientResponseParsers.swift in Sources */,
+				98A454C11E23EB8D002BDFC9 /* SCDDetailsView.swift in Sources */,
 				982DF0381DB6579200231BBD /* AFURLRequestSerialization.m in Sources */,
 				98EAF6A91CCF974500C77649 /* UIRegistrationView.swift in Sources */,
 				9866A7CA1DBF861300907D05 /* UINotificationCell.swift in Sources */,

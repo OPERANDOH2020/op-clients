@@ -19,19 +19,33 @@ enum CertifiedAppRequestType: String {
 let kURLParameterRequestType = "RequestType"
 let kURLParameterJSONContent = "JSONContent"
 
+enum SensorType: String {
+    case Location = "loc"
+    case Microphone = "mic"
+    case Camera = "cam"
+    case Gyroscope = "gyro"
+    case Accelerometer = "acc"
+    case Proximity = "prox"
+    case TouchID = "touchID"
+    case Barometer = "bar"
+    case Force = "force"
+}
 
 struct AccessedSensor {
-    let sensorType: String
+    let sensorType: SensorType
     let privacyLevel: Int
+    private static let maxPrivacyLevel = 6
     
     init?(dict: [String: Any]) {
         guard let type = dict["sensorType"] as? String,
-            let level = dict["privacyLevel"] as? Int else {
+              let sensorType = SensorType(rawValue: type),
+              let level = dict["privacyLevel"] as? Int,
+              level >= 1 && level <= AccessedSensor.maxPrivacyLevel else {
                 return nil
         }
         
         self.privacyLevel = level
-        self.sensorType = type
+        self.sensorType = sensorType
     }
     
     
@@ -44,7 +58,6 @@ struct AccessedSensor {
             }
             result.append(item)
         }
-        
         
         return result
     }
