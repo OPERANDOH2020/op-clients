@@ -116,6 +116,12 @@ chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
 });
 
 
+chrome.tabs.query({url:ExtensionConfig.WEBSITE_HOST+"*"}, function(tabs){
+    tabs.forEach(function(tab){
+        insertJavascriptFile(tab.id, "operando/modules/communication/message-relay.js");
+    });
+});
+
 function tryPfB(tabId, changeInfo) {
 
     if ( changeInfo.status == "complete") {

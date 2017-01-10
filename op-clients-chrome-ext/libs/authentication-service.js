@@ -135,10 +135,6 @@ var authenticationService = exports.authenticationService = {
         if (!username || !sessionId) {
             failCallback();
         }
-        else{
-
-        }
-
         swarmService.restoreConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, username, sessionId, failCallback, errorCallback, reconnectCallback);
         swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
             loggedIn = true;

@@ -13,10 +13,6 @@ var websiteService = exports.websiteService = {
         Cookies.set("userId", data.userId, { expires: daysUntilCookieExpire });
 
         authenticationService.restoreUserSession(function () {
-            chrome.runtime.openOptionsPage();
-            if(success_cbk){
-                success_cbk();
-            }
 
         }, function () {
             //status.fail = "fail";
@@ -32,10 +28,29 @@ var websiteService = exports.websiteService = {
 
         });
 
+        authenticationService.getCurrentUser(function(){
+            chrome.runtime.openOptionsPage();
+            if(success_cbk){
+                success_cbk();
+            }
+        });
     },
 
     getCurrentUserLoggedInInExtension:function(callback){
         callback(authenticationService.getUser());
+    },
+
+    goToDashboard:function(){
+        chrome.runtime.openOptionsPage();
+    },
+
+    logout:function(message,callback){
+        authenticationService.disconnectUser(callback);
+    },
+
+    loggedIn: function(message, callback){
+        authenticationService.getCurrentUser(callback);
     }
+
 }
 bus.registerService(websiteService);

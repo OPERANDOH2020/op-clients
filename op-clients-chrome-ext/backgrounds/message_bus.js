@@ -161,11 +161,23 @@ chrome.runtime.onConnect.addListener(function (_port) {
 
                         args.push(function(data){
                             var response = data;
-                            clientPort.postMessage({type: messageType, action: request.action, message: {status:"success", data: response}});
+                            if (clientPort) {
+                                clientPort.postMessage({
+                                    type: messageType,
+                                    action: request.action,
+                                    message: {status: "success", data: response}
+                                });
+                            }
                         });
 
-                        args.push(function(err){
-                            clientPort.postMessage({type: messageType, action: request.action, message: {error:err.message?err.message:err}});
+                        args.push(function (err) {
+                            if (clientPort) {
+                                clientPort.postMessage({
+                                    type: messageType,
+                                    action: request.action,
+                                    message: {error: err.message ? err.message : err}
+                                });
+                            }
                         });
 
                         actionFn.apply(actionFn, args);
@@ -189,14 +201,28 @@ chrome.runtime.onConnect.addListener(function (_port) {
 
                     args.push(function(data){
                         var response = data;
-                        clientPort.postMessage({action: request.action, message: {status:"success", data: response}});
+                        if (clientPort) {
+                            clientPort.postMessage({
+                                action: request.action,
+                                message: {status: "success", data: response}
+                            });
+                        }
                     });
 
                     args.push(function(err){
-                        clientPort.postMessage({action: request.action, message: {error:err.message?err.message:err}});
+                        if (clientPort) {
+                            clientPort.postMessage({
+                                action: request.action,
+                                message: {error: err.message ? err.message : err}
+                            });
+                        }
                     });
                     action.apply(action, args);
                 }
+
+                clientPort.onDisconnect.addListener(function(){
+                    clientPort = null;
+                })
 
             });
         }
@@ -247,7 +273,3 @@ authenticationService.restoreUserSession(function () {
     status.reconnect = "reconnect";
 
 });
-
-/*
-
-*/

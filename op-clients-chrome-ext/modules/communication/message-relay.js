@@ -12,7 +12,8 @@ port.onMessage.addListener(function (data) {
     document.dispatchEvent(event);
 });
 
-window.addEventListener("message", function(event) {
+
+var messageEventHandler = function(event){
     // We only accept messages from ourselves
     if (event.source != window)
         return;
@@ -20,8 +21,19 @@ window.addEventListener("message", function(event) {
     if (event.data.type && (event.data.type == "FROM_WEBSITE")) {
         port.postMessage(event.data);
     }
-}, false);
+}
 
+window.addEventListener("message", messageEventHandler, false);
+
+port.onDisconnect.addListener(function(){
+    var event = new CustomEvent("relayIsDown",	{
+        bubbles: true,
+        cancelable: true
+    });
+    document.dispatchEvent(event);
+
+    window.removeEventListener("message", messageEventHandler)
+});
 
 
 (function(){
