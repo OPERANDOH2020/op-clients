@@ -52,4 +52,8 @@ extension UIColor{
         return UIColor(colorLiteralRed: 198.0/255.0, green: 65.0/255.0, blue: 6.0/255.0, alpha: 1.0)
     }
     
+    
+    static func colorWith(_ red: Int, _ green: Int, _ blue: Int, _ alpha: Float = 1.0) -> UIColor {
+        return UIColor(colorLiteralRed: Float(red)/255.0, green: Float(green)/255.0, blue: Float(blue)/255.0, alpha: alpha);
+    }
 }

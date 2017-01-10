@@ -213,10 +213,27 @@ class UIFlowController: SSASideMenuDelegate
         }
         
         let scdDocsVC = UINavigationManager.scdDocumentsViewController
-        scdDocsVC.setup(with: UISCDDocumentsViewControllerModel(repository: repository))
-        self.rootController.setMainControllerTo(newController: scdDocsVC)
+        let navigationController = UINavigationController(rootViewController: scdDocsVC)
+        navigationController.isNavigationBarHidden = true
+        
+        weak var weakSelf = self
+        weak var weakNav = navigationController
+        
+        scdDocsVC.setup(with: UISCDDocumentsViewControllerModel(repository: repository), callbacks: UISCDDocumentsViewControllerCallbacks(whenUserSelectsSCD:
+        { document in
+            weakSelf?.displaySCDDetailsViewControllerWith(scd: document, inNavigationController: weakNav)
+        }))
+        self.rootController.setMainControllerTo(newController: navigationController)
         
     }
+    
+    
+    private func displaySCDDetailsViewControllerWith(scd: SCDDocument, inNavigationController: UINavigationController?) {
+        let vc = UINavigationManager.scdDetailsViewController
+        vc.setupWith(scd: scd)
+        inNavigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     func sideMenuWillShowMenuViewController(sideMenu: SSASideMenu, menuViewController: UIViewController) {
         if let leftMenuVC = menuViewController as? UILeftSideMenuViewController {

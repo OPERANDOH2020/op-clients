@@ -17,6 +17,7 @@ class SCDSectionHeader: RSNibDesignableView {
     @IBOutlet weak var sectionTitleLabel: UILabel!
     @IBOutlet weak var expandContractButton: UIButton!
     
+    static let identifierNibName = "SCDSectionHeader"
     private var callbacks: SCDSectionHeaderCallbacks?
     
     func setupWith(title: String, callbacks: SCDSectionHeaderCallbacks?){
@@ -26,11 +27,15 @@ class SCDSectionHeader: RSNibDesignableView {
     
     
     @IBAction func didPressButton(_ sender: Any) {
-        self.expandContractButton.isSelected = !self.expandContractButton.isSelected
-        if self.expandContractButton.isSelected {
-            self.callbacks?.callToExpand?()
+        
+        let shouldExpand = !self.expandContractButton.isSelected
+
+        if shouldExpand {
+           self.callbacks?.callToExpand?()
+           self.expandContractButton.isSelected = true
         } else {
             self.callbacks?.callToContract?()
+            self.expandContractButton.isSelected = false
         }
     }
     

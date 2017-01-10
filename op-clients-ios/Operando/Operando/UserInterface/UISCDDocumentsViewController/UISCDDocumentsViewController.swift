@@ -12,11 +12,17 @@ struct UISCDDocumentsViewControllerModel {
     let repository: SCDRepository
 }
 
+struct UISCDDocumentsViewControllerCallbacks {
+    let whenUserSelectsSCD: ((_ scd: SCDDocument) -> Void)?
+}
+
 class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView?
     
     private var model: UISCDDocumentsViewControllerModel?
+    private var callbacks: UISCDDocumentsViewControllerCallbacks?
+    
     private var documentsFromRepository: [SCDDocument] = []
     
     override func viewDidLoad() {
@@ -25,7 +31,8 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     
-    func setup(with model: UISCDDocumentsViewControllerModel){
+    func setup(with model: UISCDDocumentsViewControllerModel, callbacks: UISCDDocumentsViewControllerCallbacks){
+        self.callbacks = callbacks
         self.model = model
         let _ = self.view
     }
@@ -53,6 +60,15 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.documentsFromRepository.count
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        
+        DispatchQueue.main.async {
+            self.callbacks?.whenUserSelectsSCD?(self.documentsFromRepository[indexPath.row])
+        }
+        
+        return false
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

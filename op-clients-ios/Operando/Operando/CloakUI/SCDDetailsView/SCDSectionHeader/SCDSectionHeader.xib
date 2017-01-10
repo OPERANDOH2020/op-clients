@@ -23,21 +23,23 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybu-TZ-Zwu" userLabel="sectionTitleLabel">
                     <rect key="frame" x="13" y="5" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLr-XV-qrT" userLabel="expandContractButton">
-                    <rect key="frame" x="317" y="0.0" width="61" height="34"/>
-                    <state key="normal" title="Expand">
-                        <color key="titleColor" red="0.30964698340000002" green="0.66337451339999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="338" y="0.0" width="40" height="34"/>
+                    <state key="normal" title="View">
+                        <color key="titleColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <state key="selected" title="Contract"/>
+                    <state key="selected" title="Hide">
+                        <color key="titleColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="didPressButton:" destination="-1" eventType="touchUpInside" id="8JJ-sY-5eB"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.1843137255" green="0.12941176469999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="OLr-XV-qrT" secondAttribute="trailing" constant="10" id="Vht-2P-ueo"/>
                 <constraint firstItem="Ybu-TZ-Zwu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bno-ze-CeG"/>
@@ -46,7 +48,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-233" y="-214"/>
+            <point key="canvasLocation" x="-350" y="-223"/>
         </view>
     </objects>
 </document>

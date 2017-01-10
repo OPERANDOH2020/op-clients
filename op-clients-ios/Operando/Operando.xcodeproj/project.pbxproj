@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */; };
 		9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */; };
+		981FFD0A1E24D21F00A7F3C7 /* SCDUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981FFD081E24D21F00A7F3C7 /* SCDUrlCell.swift */; };
+		981FFD0B1E24D21F00A7F3C7 /* SCDUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981FFD091E24D21F00A7F3C7 /* SCDUrlCell.xib */; };
+		981FFD0F1E24D39F00A7F3C7 /* SCDSensorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981FFD0D1E24D39F00A7F3C7 /* SCDSensorCell.swift */; };
+		981FFD101E24D39F00A7F3C7 /* SCDSensorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981FFD0E1E24D39F00A7F3C7 /* SCDSensorCell.xib */; };
+		981FFD131E25023D00A7F3C7 /* SCDDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981FFD121E25023D00A7F3C7 /* SCDDetailsViewController.swift */; };
+		981FFD161E25307A00A7F3C7 /* EULATextBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981FFD151E25307A00A7F3C7 /* EULATextBuilder.swift */; };
 		982227551DC8EBD40053B993 /* UILocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982227541DC8EBD40053B993 /* UILocalizable.swift */; };
 		9827500E1D08496C00C73411 /* UIBrowsingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */; };
 		9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */; };
@@ -182,6 +188,12 @@
 /* Begin PBXFileReference section */
 		9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAddIdentityAlertViewController.swift; path = UserInterface/UIAddIdentityAlertViewController/UIAddIdentityAlertViewController.swift; sourceTree = "<group>"; };
 		9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UtilityControllers.storyboard; sourceTree = "<group>"; };
+		981FFD081E24D21F00A7F3C7 /* SCDUrlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCDUrlCell.swift; path = CloakUI/SCDDetailsView/SCDUrlCell/SCDUrlCell.swift; sourceTree = "<group>"; };
+		981FFD091E24D21F00A7F3C7 /* SCDUrlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SCDUrlCell.xib; path = CloakUI/SCDDetailsView/SCDUrlCell/SCDUrlCell.xib; sourceTree = "<group>"; };
+		981FFD0D1E24D39F00A7F3C7 /* SCDSensorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCDSensorCell.swift; path = CloakUI/SCDDetailsView/SCDSensorCell/SCDSensorCell.swift; sourceTree = "<group>"; };
+		981FFD0E1E24D39F00A7F3C7 /* SCDSensorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SCDSensorCell.xib; path = CloakUI/SCDDetailsView/SCDSensorCell/SCDSensorCell.xib; sourceTree = "<group>"; };
+		981FFD121E25023D00A7F3C7 /* SCDDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCDDetailsViewController.swift; path = CloakUI/SCDDetailsViewController/SCDDetailsViewController.swift; sourceTree = "<group>"; };
+		981FFD151E25307A00A7F3C7 /* EULATextBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EULATextBuilder.swift; path = CloakUI/EULATextBuilder/EULATextBuilder.swift; sourceTree = "<group>"; };
 		982227541DC8EBD40053B993 /* UILocalizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILocalizable.swift; path = UserInterface/UILocalizableLabel/UILocalizable.swift; sourceTree = "<group>"; };
 		9827500C1D08496C00C73411 /* UIBrowsingNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBrowsingNavigationBar.swift; sourceTree = "<group>"; };
 		9827500D1D08496C00C73411 /* UIBrowsingNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIBrowsingNavigationBar.xib; sourceTree = "<group>"; };
@@ -395,6 +407,40 @@
 				9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */,
 			);
 			name = UIAddIdentityAlertViewController;
+			sourceTree = "<group>";
+		};
+		981FFD071E24D1C600A7F3C7 /* SCDUrlCell */ = {
+			isa = PBXGroup;
+			children = (
+				981FFD081E24D21F00A7F3C7 /* SCDUrlCell.swift */,
+				981FFD091E24D21F00A7F3C7 /* SCDUrlCell.xib */,
+			);
+			name = SCDUrlCell;
+			sourceTree = "<group>";
+		};
+		981FFD0C1E24D37600A7F3C7 /* SCDSensorCell */ = {
+			isa = PBXGroup;
+			children = (
+				981FFD0D1E24D39F00A7F3C7 /* SCDSensorCell.swift */,
+				981FFD0E1E24D39F00A7F3C7 /* SCDSensorCell.xib */,
+			);
+			name = SCDSensorCell;
+			sourceTree = "<group>";
+		};
+		981FFD111E25020D00A7F3C7 /* SCDDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				981FFD121E25023D00A7F3C7 /* SCDDetailsViewController.swift */,
+			);
+			name = SCDDetailsViewController;
+			sourceTree = "<group>";
+		};
+		981FFD141E25305200A7F3C7 /* EULATextBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				981FFD151E25307A00A7F3C7 /* EULATextBuilder.swift */,
+			);
+			name = EULATextBuilder;
 			sourceTree = "<group>";
 		};
 		982227531DC8EBB90053B993 /* UILocalizable */ = {
@@ -902,6 +948,8 @@
 		9893E4041E239DA200663ABC /* CloakUI */ = {
 			isa = PBXGroup;
 			children = (
+				981FFD141E25305200A7F3C7 /* EULATextBuilder */,
+				981FFD111E25020D00A7F3C7 /* SCDDetailsViewController */,
 				98A454BF1E23EB42002BDFC9 /* SCDDetailsView */,
 				9893E4051E239ECB00663ABC /* FontAwesome */,
 				98500BC41E09980300DF87E8 /* UISCDDocumentsViewController */,
@@ -950,6 +998,8 @@
 		98A454BF1E23EB42002BDFC9 /* SCDDetailsView */ = {
 			isa = PBXGroup;
 			children = (
+				981FFD0C1E24D37600A7F3C7 /* SCDSensorCell */,
+				981FFD071E24D1C600A7F3C7 /* SCDUrlCell */,
 				98A454C41E23F111002BDFC9 /* SCDSectionHeader */,
 				98A454C01E23EB8D002BDFC9 /* SCDDetailsView.swift */,
 				98A454C21E23EBC8002BDFC9 /* SCDDetailsView.xib */,
@@ -1344,7 +1394,9 @@
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
 				98500BC81E09983500DF87E8 /* Cloak.storyboard in Resources */,
 				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
+				981FFD101E24D39F00A7F3C7 /* SCDSensorCell.xib in Resources */,
 				989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */,
+				981FFD0B1E24D21F00A7F3C7 /* SCDUrlCell.xib in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982DF0641DB6618700231BBD /* UIPfbDealTableViewCell.xib in Resources */,
 				ADB2AD501DB80474003E3AC1 /* LeftMenu.storyboard in Resources */,
@@ -1429,6 +1481,7 @@
 				982DF0561DB6579B00231BBD /* UIProgressView+AFNetworking.m in Sources */,
 				9852C6E81CD0DE6B00AF2BE5 /* UINotificationsViewController.swift in Sources */,
 				98668B5B1DB0D0D900FDE63A /* ECSlidingInteractiveTransition.m in Sources */,
+				981FFD0A1E24D21F00A7F3C7 /* SCDUrlCell.swift in Sources */,
 				985A0D491DCCB0E40010C799 /* LocksmithError.swift in Sources */,
 				9848B2D61D6740A500E0FD72 /* NSError+Utilities.swift in Sources */,
 				98500BC31E0985D100DF87E8 /* SCDRepository.swift in Sources */,
@@ -1460,10 +1513,12 @@
 				982DF0631DB6618700231BBD /* UIPfbDealTableViewCell.swift in Sources */,
 				982DF0521DB6579B00231BBD /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
+				981FFD131E25023D00A7F3C7 /* SCDDetailsViewController.swift in Sources */,
 				982227551DC8EBD40053B993 /* UILocalizable.swift in Sources */,
 				9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */,
 				98668B631DB1018600FDE63A /* OPErrorContainer.swift in Sources */,
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
+				981FFD161E25307A00A7F3C7 /* EULATextBuilder.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,
 				9852C6FA1CD0FEA000AF2BE5 /* OPViewUtils.swift in Sources */,
 				985A0D461DCCB0E40010C799 /* Dictionary_Initializers.swift in Sources */,
@@ -1480,6 +1535,7 @@
 				ADF3CA6D1DB89D3D00BD2B7A /* UILeftSideMenuTableViewCell.swift in Sources */,
 				98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				985A0D4A1DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift in Sources */,
+				981FFD0F1E24D39F00A7F3C7 /* SCDSensorCell.swift in Sources */,
 				98EAF69E1CCF899500C77649 /* UIView+Utilities.swift in Sources */,
 				986D4CA91DB23AA80006DA0B /* SwarmClientResponseParsers.swift in Sources */,
 				98A454C11E23EB8D002BDFC9 /* SCDDetailsView.swift in Sources */,
