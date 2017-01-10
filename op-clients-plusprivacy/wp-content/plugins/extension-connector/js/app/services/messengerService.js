@@ -5,7 +5,6 @@ privacyPlusApp.service("messengerService",function(){
     var relayIsReady = false;
     var waitingMessages = [];
 
-
     function relayMessage(message){
 
         if(relayIsReady){
@@ -25,7 +24,6 @@ privacyPlusApp.service("messengerService",function(){
     }
 
     var send = function (){
-
         var action = arguments[0];
         if(arguments.length == 2){
             if(typeof arguments[1] === "function"){
@@ -43,22 +41,38 @@ privacyPlusApp.service("messengerService",function(){
         callbacks[action].push(arguments[arguments.length-1]);
     }
 
-
     window.addEventListener("messageFromExtension", function(event){
 
-        while (callbacks[event.detail.action].length > 0) {
-            var messageCallback = callbacks[event.detail.action].pop();
-            messageCallback(event.detail.message);
+        if (callbacks[event.detail.action]) {
+            while (callbacks[event.detail.action].length > 0) {
+                var messageCallback = callbacks[event.detail.action].pop();
+                messageCallback(event.detail.message);
+            }
+        }
+        else if (events[event.detail.action]) {
+            for (var i = 0; i < events[event.detail.action].length; i++) {
+                var eventCallback = events[event.detail.action][i];
+                eventCallback(event.detail.message);
+            }
         }
     });
 
-
     window.addEventListener("relayIsReady", function(event){
         relayIsReady = true;
-        while(waitingMessages.length>0){
-            var message = waitingMessages.pop();
-            relayMessage(message);
-        }
+
+        waitingMessages = waitingMessages.filter(function(waitingMessage, index, array){
+            console.log(waitingMessage);
+            relayMessage(waitingMessage);
+            return (waitingMessage.message && waitingMessage.message.messageType ==="SUBSCRIBER")
+        });
+
+    });
+
+
+
+    window.addEventListener("relayIsDown", function(event){
+        relayIsReady = false;
+        //alert("Connection is lost!");
     });
 
 

@@ -1,4 +1,4 @@
-privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService) {
+privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService, $window) {
 
     $scope.authenticationError = false;
     $scope.requestProcessed = false;
@@ -7,7 +7,6 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
         password: ""
     };
 
-
     connectionService.getCurrentUser(function(data){
         if(data.data && Object.keys(data.data).length>0){
             $scope.userIsLoggedIn = true;
@@ -15,11 +14,12 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
         }
         else{
             $scope.userIsLoggedIn = false;
+            messengerService.on("loggedIn", function () {
+                $window.location.reload();
+            });
         }
-
         $scope.$apply();
     });
-
 
     $scope.submitLoginForm = function () {
         $scope.requestProcessed = true;
@@ -49,6 +49,10 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
             })
     }
 
+    $scope.goToDashboard = function(){
+        messengerService.send("goToDashboard");
+    }
+
 
     setTimeout(function(){
         var relayResponded = messengerService.extensionIsActive();
@@ -56,5 +60,11 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
             $scope.extension_not_active = true;
             $scope.$apply();
         }
-    }, 300);
+    }, 500);
+
+
+    messengerService.on("logout", function () {
+        $window.location.reload();
+    });
+
 });

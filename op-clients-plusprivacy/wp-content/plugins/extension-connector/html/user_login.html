@@ -39,6 +39,7 @@
 
     <div ng-cloak class="user_logged_in" ng-if="userIsLoggedIn == true">
         <h3> You are logged in as <b>{{currentUser}}</b>!</h3>
+        <button class="btn-lg btn-success" ng-click="goToDashboard()">Go to Dashboard</button>
     </div>
 
     <div class="alert alert-danger" role="alert" ng-if="extension_not_active" ng-cloak>
