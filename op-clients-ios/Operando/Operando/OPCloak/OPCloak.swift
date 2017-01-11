@@ -31,21 +31,62 @@ enum SensorType: String {
     case Force = "force"
 }
 
+
+struct ThirdParty {
+    let name: String
+    let url: String
+    
+    init?(dict: [String: Any]) {
+        guard let name = dict["name"] as? String,
+            let url = dict["url"] as? String  else {
+                return nil
+        }
+        
+        self.name = name
+        self.url = url
+    }
+    
+}
+
+struct PrivacyDescription {
+    static let maxPrivacyLevel = 6
+    let privacyLevel: Int
+    let thirdParty: ThirdParty?
+    
+    init?(dict: [String: Any]) {
+        guard let privacyLevel = dict["privacyLevel"] as? Int,
+            privacyLevel >= 1 && privacyLevel <= PrivacyDescription.maxPrivacyLevel else {
+                return nil
+        }
+        
+        self.privacyLevel = privacyLevel
+        if let thirdPartyDict = dict["thirdParty"] as? [String: Any],
+            let thirdParty = ThirdParty(dict: thirdPartyDict) {
+            self.thirdParty = thirdParty
+        } else {
+            self.thirdParty = nil
+        }
+    }
+}
+
 struct AccessedSensor {
     let sensorType: SensorType
-    let privacyLevel: Int
-    private static let maxPrivacyLevel = 6
+    let privacyDescription: PrivacyDescription
+    let accessFrequency: String
     
     init?(dict: [String: Any]) {
         guard let type = dict["sensorType"] as? String,
               let sensorType = SensorType(rawValue: type),
-              let level = dict["privacyLevel"] as? Int,
-              level >= 1 && level <= AccessedSensor.maxPrivacyLevel else {
+              let pdDict = dict["privacyDescription"] as? [String: Any],
+              let privacyDescription = PrivacyDescription(dict: pdDict),
+              let accessFrequency = dict["accessFrequency"] as? String
+               else {
                 return nil
         }
         
-        self.privacyLevel = level
+        self.accessFrequency = accessFrequency
         self.sensorType = sensorType
+        self.privacyDescription = privacyDescription
     }
     
     
@@ -66,6 +107,8 @@ struct AccessedSensor {
 struct SCDDocument {
     let appTitle: String
     let bundleId: String
+    let appIconURL: String?
+    
     let accessedLinks: [String]
     let accessedSensors: [AccessedSensor]
     
@@ -82,6 +125,7 @@ struct SCDDocument {
         self.bundleId = bundleId
         self.accessedSensors = accessedSensors
         self.accessedLinks = accessedLinks
+        self.appIconURL = scd["appIconURL"] as? String
     }
     
     
@@ -131,7 +175,7 @@ class OPCloak {
               let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments),
               let json = jsonObject as? [String: Any] else {
             
-                OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "there was an error")
+                OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "The document received is not a valid JSON")
             return
         }
         
@@ -148,9 +192,6 @@ class OPCloak {
     
     
     private func processRegisterJSONContent(scdDocument: [String: Any]){
-        guard let _ = SCDDocument(scd: scdDocument) else {
-            return
-        }
         self.validate(scdDocument: scdDocument){ error in 
             if let error = error {
                 OPErrorContainer.displayError(error: error)
@@ -162,8 +203,9 @@ class OPCloak {
                     OPErrorContainer.displayError(error: error)
                     return
                 }
+                 OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "Done");
             }
-            OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "Done");
+           
         }
     }
     

@@ -109,7 +109,7 @@ class SCDDetailsView: RSNibDesignableView, UITableViewDelegate, UITableViewDataS
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return self.sectionSources.count
     }
     
     
@@ -132,12 +132,6 @@ class SCDDetailsView: RSNibDesignableView, UITableViewDelegate, UITableViewDataS
         
         header.setupWith(title: self.sectionSources[section].sectionTitle, callbacks: SCDSectionHeaderCallbacks(
         callToExpand: {
-            
-//            weakHeader?.isUserInteractionEnabled = false
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
-//                weakHeader?.isUserInteractionEnabled = true
-//            })
-            
             weakSelf?.sectionRowsAreVisibleAt[section] = true
             weakSelf?.tableView.insertRows(at: buildIndexPathsForSection(section), with: .automatic)
             
