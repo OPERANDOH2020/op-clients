@@ -14,10 +14,15 @@ class SCDDocumentCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bundleLabel: UILabel!
+    @IBOutlet weak var eulaLabel: UILabel!
     
     func setup(with scdDocument: SCDDocument){
         self.titleLabel.text = scdDocument.appTitle
         self.bundleLabel.text = scdDocument.bundleId
+        self.eulaLabel.attributedText = EULATextBuilder.generateEULAFrom(scd: scdDocument)
+        
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
     }
     
     

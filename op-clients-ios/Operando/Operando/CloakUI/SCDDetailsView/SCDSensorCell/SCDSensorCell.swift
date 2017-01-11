@@ -8,21 +8,15 @@
 
 import UIKit
 
+
+
 class SCDSensorCell: UITableViewCell {
     static let identifierNibName = "SCDSensorCell"
     
     @IBOutlet weak var sensorNameLabel: UILabel!
     @IBOutlet weak var privacyLevelLabel: UILabel!
     
-    private static let namesPerSensorType: [SensorType: String] = [ SensorType.Camera : "Camera",
-                                                                    SensorType.Accelerometer : "Accelerometer",
-                                                                    SensorType.Location : "Location",
-                                                                    SensorType.Gyroscope: "Gyroscope",
-                                                                    SensorType.Barometer: "Barometer",
-                                                                    SensorType.Force: "Force touch",
-                                                                    SensorType.Proximity: "Proximity",
-                                                                    SensorType.TouchID: "TouchID",
-                                                                    SensorType.Microphone: "Microphone"];
+
     
     private static let colorsPerPrivacyLevel: [UIColor] = [.colorWith(51, 102, 255, 0.7),
                                                            .colorWith(255, 255, 0, 0.7),
@@ -34,7 +28,7 @@ class SCDSensorCell: UITableViewCell {
     
     func setupWith(sensor: AccessedSensor) {
         let privacyLevel = sensor.privacyDescription.privacyLevel
-        self.sensorNameLabel.text = SCDSensorCell.namesPerSensorType[sensor.sensorType]
+        self.sensorNameLabel.text = SensorType.namesPerSensorType[sensor.sensorType]
         self.privacyLevelLabel.text = "PL\(privacyLevel)"
         if privacyLevel >= 1 && privacyLevel <= SCDSensorCell.colorsPerPrivacyLevel.count {
             self.contentView.backgroundColor = SCDSensorCell.colorsPerPrivacyLevel[privacyLevel - 1]

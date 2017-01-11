@@ -15,10 +15,21 @@ class EULATextBuilder: NSObject {
                                                                 5: "ThirdParty-Shared", 6: "Unspecified-Usages"]
     
     
-    private static let privacyLevelDescriptions: [Int: String] = [:]
+    private static let privacyLevelDescriptions: [Int: String] = [1: "The data collected under this privacy level is used locally only.",
+                                                                  2: "Under this privacy level, bulks of data are sent to the vendor of the app, in an anonymised method (i.e. via https) and they may link the data to your account/ id if any.",
+                                                                  3: "Bulks of data are sent securely (i.e via https) to the vendor of the app, in a manner that guarantees the data does not link back to your account/id if any.",
+                                                                  4: "De discutat cu Sinica",
+                                                                  5: "The data is shared with a list of of specfied third parties",
+                                                                  6: "The vendor of the app does not disclose the manner in which this data is used."]
     
     static func generateEULAFrom(scd: SCDDocument) -> NSAttributedString {
         let ms = NSMutableAttributedString()
+        
+        ms.append(EULATextBuilder.buildIntro(for: scd))
+        ms.append(NSAttributedString(string: "\n"))
+        ms.append(EULATextBuilder.buildDownloadDataPart(for: scd))
+        ms.append(NSAttributedString(string: "\n"))
+        ms.append(EULATextBuilder.buildSensorsPart(for: scd));
         
         
         return ms;
@@ -56,11 +67,19 @@ class EULATextBuilder: NSObject {
         
         var story: String = ""
         
-        var sensors = scd.accessedSensors.sorted(by: { s1, s2 in
-            return s1.privacyDescription.privacyLevel > s2.privacyDescription.privacyLevel
-        })
+        let aggregatedSensors = EULATextBuilder.agreggateBasedOnPrivacyLevel(sensors: scd.accessedSensors)
         
-        
+        for i in (1...PrivacyDescription.maxPrivacyLevel).reversed() {
+            if let sensorsAtI = aggregatedSensors[i] {
+                var sensorsNames: String = ""
+                sensorsAtI.forEach {sensorsNames.append(", \(SensorType.namesPerSensorType[$0.sensorType])")}
+                story.append("The following sensor");
+                if sensorsAtI.count > 1 { story.append("s are")} else {story.append(" is")}
+                story.append(" located under the privacy level PL\(i).")
+                story.append(EULATextBuilder.privacyLevelDescriptions[i] ?? "")
+                story.append("\n");
+            }
+        }
         
         return NSAttributedString(string: story)
     }

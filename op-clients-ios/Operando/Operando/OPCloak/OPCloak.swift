@@ -29,7 +29,16 @@ enum SensorType: String {
     case TouchID = "touchID"
     case Barometer = "bar"
     case Force = "force"
-}
+    
+    static let namesPerSensorType: [SensorType: String] = [ SensorType.Camera : "Camera",
+                                                                    SensorType.Accelerometer : "Accelerometer",
+                                                                    SensorType.Location : "Location",
+                                                                    SensorType.Gyroscope: "Gyroscope",
+                                                                    SensorType.Barometer: "Barometer",
+                                                                    SensorType.Force: "Force touch",
+                                                                    SensorType.Proximity: "Proximity",
+                                                                    SensorType.TouchID: "TouchID",
+                                                                    SensorType.Microphone: "Microphone"];}
 
 
 struct ThirdParty {
