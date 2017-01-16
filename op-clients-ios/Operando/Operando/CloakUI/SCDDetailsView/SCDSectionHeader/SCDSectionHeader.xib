@@ -27,11 +27,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLr-XV-qrT" userLabel="expandContractButton">
-                    <rect key="frame" x="338" y="0.0" width="40" height="34"/>
-                    <state key="normal" title="View">
-                        <color key="titleColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <state key="selected" title="Hide">
+                    <rect key="frame" x="334" y="-5" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="5vK-D6-G23"/>
+                        <constraint firstAttribute="width" constant="44" id="wsX-MM-N2B"/>
+                    </constraints>
+                    <state key="normal" image="arrow_down"/>
+                    <state key="selected" title="Hide" image="arrow_up">
                         <color key="titleColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -51,4 +53,8 @@
             <point key="canvasLocation" x="-350" y="-223"/>
         </view>
     </objects>
+    <resources>
+        <image name="arrow_down" width="64" height="64"/>
+        <image name="arrow_up" width="64" height="64"/>
+    </resources>
 </document>

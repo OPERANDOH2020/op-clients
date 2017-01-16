@@ -22,13 +22,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxd-S6-khG" userLabel="bundleLabel">
-                    <rect key="frame" x="14" y="48" width="42" height="21"/>
+                    <rect key="frame" x="80" y="48" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cB6-D6-NmJ" userLabel="titleLabel">
-                    <rect key="frame" x="14" y="20" width="347" height="24"/>
+                    <rect key="frame" x="80" y="20" width="281" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="Bte-HO-caa"/>
                     </constraints>
@@ -41,10 +41,10 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.99215686270000003" green="0.74117647060000003" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="cB6-D6-NmJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="7kR-TQ-b5e"/>
-                <constraint firstItem="cB6-D6-NmJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="CHY-sx-Cvy"/>
+                <constraint firstItem="cB6-D6-NmJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="CHY-sx-Cvy"/>
                 <constraint firstItem="1bf-b3-3IL" firstAttribute="top" secondItem="cxd-S6-khG" secondAttribute="bottom" constant="20" id="EHt-Yw-4e0"/>
                 <constraint firstItem="cxd-S6-khG" firstAttribute="top" secondItem="cB6-D6-NmJ" secondAttribute="bottom" constant="4" id="MQv-Up-4yb"/>
                 <constraint firstAttribute="bottom" secondItem="1bf-b3-3IL" secondAttribute="bottom" id="Nuc-hS-zMX"/>

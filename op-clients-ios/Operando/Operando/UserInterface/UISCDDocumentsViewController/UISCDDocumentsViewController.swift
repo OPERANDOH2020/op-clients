@@ -22,8 +22,8 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
     
     private var model: UISCDDocumentsViewControllerModel?
     private var callbacks: UISCDDocumentsViewControllerCallbacks?
-    
     private var documentsFromRepository: [SCDDocument] = []
+    private var cellAtIndexNeedsFullSize: [Bool] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +42,7 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
         self.model?.repository.retrieveAllDocuments({ documents, error  in
             if let documents = documents {
                 self.documentsFromRepository = documents
+                self.cellAtIndexNeedsFullSize = Array<Bool>(repeating: false, count: self.documentsFromRepository.count)
                 self.tableView?.reloadData()
             }
         })
@@ -62,23 +63,33 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
         return self.documentsFromRepository.count
     }
     
+    
+    
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        
-        DispatchQueue.main.async {
-            self.callbacks?.whenUserSelectsSCD?(self.documentsFromRepository[indexPath.row])
-        }
-        
         return false
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        weak var weakSelf = self
+        
+        let document = self.documentsFromRepository[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: SCDDocumentCell.identifierNibName, for: indexPath) as! SCDDocumentCell
-        cell.setup(with: self.documentsFromRepository[indexPath.row])
+        cell.setup(with: self.documentsFromRepository[indexPath.row],
+                   inFullSize: self.cellAtIndexNeedsFullSize[indexPath.row],
+                   callbacks: SCDDocumentCellCallbacks(
+            whenUserSelectsAdvanced: {weakSelf?.callbacks?.whenUserSelectsSCD?(document)},
+            whenRequiresResize: { needsFullSize in
+                weakSelf?.cellAtIndexNeedsFullSize[indexPath.row] = needsFullSize
+                weakSelf?.tableView?.beginUpdates()
+                weakSelf?.tableView?.endUpdates()
+        }))
+            
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension;
+        return self.cellAtIndexNeedsFullSize[indexPath.row] ? UITableViewAutomaticDimension : 90.0;
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

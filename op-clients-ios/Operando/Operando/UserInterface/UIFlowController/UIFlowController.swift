@@ -230,7 +230,12 @@ class UIFlowController: SSASideMenuDelegate
     
     private func displaySCDDetailsViewControllerWith(scd: SCDDocument, inNavigationController: UINavigationController?) {
         let vc = UINavigationManager.scdDetailsViewController
-        vc.setupWith(scd: scd)
+        weak var weakVC = vc;
+        
+        vc.setupWith(scd: scd) {
+            weakVC?.navigationController?.popViewController(animated: true)
+        }
+        
         inNavigationController?.pushViewController(vc, animated: true)
     }
     

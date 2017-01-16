@@ -19,6 +19,12 @@ enum CertifiedAppRequestType: String {
 let kURLParameterRequestType = "RequestType"
 let kURLParameterJSONContent = "JSONContent"
 
+enum AccessFrequency: String {
+    case SingularSample = "singularSample"
+    case Continuous = "continuously"
+    case ContinuousIntervals = "continuousIntervals"
+}
+
 enum SensorType: String {
     case Location = "loc"
     case Microphone = "mic"
@@ -60,7 +66,7 @@ struct ThirdParty {
 struct PrivacyDescription {
     static let maxPrivacyLevel = 6
     let privacyLevel: Int
-    let thirdParty: ThirdParty?
+    let thirdParties: [ThirdParty]
     
     init?(dict: [String: Any]) {
         guard let privacyLevel = dict["privacyLevel"] as? Int,
@@ -68,13 +74,15 @@ struct PrivacyDescription {
                 return nil
         }
         
+        var parties: [ThirdParty] = []
+        
         self.privacyLevel = privacyLevel
-        if let thirdPartyDict = dict["thirdParty"] as? [String: Any],
-            let thirdParty = ThirdParty(dict: thirdPartyDict) {
-            self.thirdParty = thirdParty
-        } else {
-            self.thirdParty = nil
+        if let thirdPartiesDictArray = dict["thirdParties"] as? [[String: Any]] {
+            thirdPartiesDictArray.forEach { if let tp = ThirdParty(dict: $0) { parties.append(tp)} }
         }
+        
+        
+        self.thirdParties = parties
     }
 }
 

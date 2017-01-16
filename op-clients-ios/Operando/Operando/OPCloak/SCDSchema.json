@@ -46,21 +46,26 @@
                                 "minimum": 1,
                                 "maximum": 6
                             },
-                            "thirdParty": {
-                                "description": "An object describing the third party to which data from this sensor is sent to.",
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "description": "The third party identifier",
-                                        "type": "string"
+                            "thirdParties": {
+                                "type": "array",
+                                "items": {
+                                    "description": "An object describing the third party to which data from this sensor is sent to.",
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "description": "The third party identifier",
+                                            "type": "string"
+                                        },
+                                        "url": {
+                                            "description": "The url endpoint at which data from this sensor is sent",
+                                            "type": "string"
+                                        }
                                     },
-                                    "url": {
-                                        "description": "The url at which data from this sensor is sent",
-                                        "type": "string"
-                                    }
-                                },
-                                
-                                "required": ["name", "url"]
+                                    
+                                    "required": ["name", "url"]
+                                    
+                                    
+                                }
                             }
                         },
                         "oneOf": [
@@ -76,7 +81,7 @@
                                   "properties": {
                                   "privacyLevel":  { "enum": [5] }
                                   },
-                                  "required": ["privacyLevel", "thirdParty"]
+                                  "required": ["privacyLevel", "thirdParties"]
                                   }
                                   ]
                         
@@ -84,7 +89,7 @@
                     
                     "accessFrequency": {
                         "description": "A string specifying how often the data from this sensor if fetched/queried.", 
-                        "enum": ["continuously", "continuousIntervals", "oneTimeSample"]
+                        "enum": ["continuously", "continuousIntervals", "singularSample"]
                     }
                     
                 },

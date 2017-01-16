@@ -63,6 +63,7 @@ class SCDDetailsView: RSNibDesignableView, UITableViewDelegate, UITableViewDataS
    
     private var sectionSources: [SectionSource] = []
     private var sectionRowsAreVisibleAt: [Bool] = [false, false]
+    private var headerViewsPerSection: [Int: SCDSectionHeader] = [:]
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bundleLabel: UILabel!
@@ -114,6 +115,11 @@ class SCDDetailsView: RSNibDesignableView, UITableViewDelegate, UITableViewDataS
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.headerViewsPerSection[section] ?? self.createSectionHeaderFor(section: section)
+    }
+    
+    
+    private func createSectionHeaderFor(section: Int) -> SCDSectionHeader {
         let header =  SCDSectionHeader(frame: .zero)
         
         weak var weakSelf = self
@@ -127,20 +133,20 @@ class SCDDetailsView: RSNibDesignableView, UITableViewDelegate, UITableViewDataS
             
             return indexPaths
         }
-        
-        weak var weakHeader = header
-        
+                
         header.setupWith(title: self.sectionSources[section].sectionTitle, callbacks: SCDSectionHeaderCallbacks(
-        callToExpand: {
-            weakSelf?.sectionRowsAreVisibleAt[section] = true
-            weakSelf?.tableView.insertRows(at: buildIndexPathsForSection(section), with: .automatic)
-            
+            callToExpand: {
+                weakSelf?.sectionRowsAreVisibleAt[section] = true
+                weakSelf?.tableView.insertRows(at: buildIndexPathsForSection(section), with: .automatic)
+                
         }, callToContract: {
             weakSelf?.sectionRowsAreVisibleAt[section] = false
             weakSelf?.tableView.deleteRows(at: buildIndexPathsForSection(section), with: .automatic)
         }))
         
+        self.headerViewsPerSection[section] = header
         return header
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

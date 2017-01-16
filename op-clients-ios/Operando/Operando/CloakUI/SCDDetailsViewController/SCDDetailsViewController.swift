@@ -8,15 +8,22 @@
 
 import UIKit
 
+
+
 class SCDDetailsViewController: UIViewController {
 
     @IBOutlet weak var scdDetailsView: SCDDetailsView!
 
+    private var backCallback: VoidBlock?
     
-    
-    func setupWith(scd: SCDDocument) {
+    func setupWith(scd: SCDDocument, backCallback: VoidBlock?) {
         let _ = self.view
         self.scdDetailsView.setupWith(scd: scd)
+        self.backCallback = backCallback
+    }
+    
+    @IBAction func didPressBackButton(_ sender: Any) {
+        self.backCallback?()
     }
 
 }
