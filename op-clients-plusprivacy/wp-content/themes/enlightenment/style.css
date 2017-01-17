@@ -2994,3 +2994,17 @@ h2.contact{
 	0%, 39%, 100% { opacity: 0; }
 	40% { opacity: 1; }
 }
+
+a.donwload-app,
+a.donwload-app:hover{
+	padding:0px;
+	border:0px;
+}
+a.donwload-app img{
+	box-shadow: none;
+	opacity: 0.85;
+}
+a.donwload-app:hover img{
+	background: none;
+	opacity: 1;
+}
