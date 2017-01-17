@@ -27,9 +27,13 @@ class EULATextBuilder: NSObject {
     
     
     
-    private static let accessFrequenciesDescriptions: [AccessFrequency: String] = [ .Continuous : "The data is collected continuously throughout the lifetime of the app, and the user has no control of this. Generally this applies to location-aware apps.",
-        .ContinuousIntervals: ""]
+    private static let accessFrequenciesDescriptions: [AccessFrequency: String] = [ .Continuous : "The data is collected continuously throughout the lifetime of the app.",
+        .ContinuousIntervals: "The data is collected continuously in time intervals, triggered by certain events (e.g when the you presss Record/Stop or enter in a geofencing area)",
+        .SingularSample: "Only one sample of data is collected at certain times."]
     
+    
+    private static let userControlsDescription: [Bool: String] = [true: "As a user, you have control if data is collected from this sensor and/or when.",
+                                                                  false: "You do not have control when or how data is collected from this sensor."]
     
     static func generateEULAFrom(scd: SCDDocument) -> NSAttributedString {
         let ms = NSMutableAttributedString()
@@ -39,7 +43,9 @@ class EULATextBuilder: NSObject {
         ms.append(EULATextBuilder.buildDownloadDataPart(for: scd))
         ms.append(NSAttributedString(string: "\n\n"))
         ms.append(EULATextBuilder.buildSensorsPart(for: scd));
-        
+        ms.append(EULATextBuilder.buildAccessFrequencyPart(from: scd))
+        ms.append(NSAttributedString(string: "\n\n"))
+        ms.append(EULATextBuilder.buildUserControlPart(from: scd))
         
         return ms;
     }
@@ -137,11 +143,27 @@ class EULATextBuilder: NSObject {
     
     
     private static func buildAccessFrequencyPart(from document: SCDDocument) -> NSAttributedString {
-        let ms = NSMutableAttributedString()
+        var story = ""
         
         var sensorsPerAccessFrequency = EULATextBuilder.aggregateBasedOnAccessFrequensy(sensors: document.accessedSensors)
         
-        return ms
+        for af in [AccessFrequency.Continuous, AccessFrequency.ContinuousIntervals, AccessFrequency.SingularSample] {
+            if let afArray = sensorsPerAccessFrequency[af], afArray.count > 0 {
+                story.append("\n\nThe following sensor")
+                if afArray.count > 1 {story.append("s, ")} else {story.append(", ")}
+                for sensor in afArray {
+                    story.append(SensorType.namesPerSensorType[sensor.sensorType] ?? "")
+                    story.append(", ");
+                }
+                
+                if afArray.count > 1 {story.append("have ")} else {story.append("has ")}
+                story.append("an access frequency of type \"\(af.rawValue)\". ")
+                story.append(EULATextBuilder.accessFrequenciesDescriptions[af] ?? "");
+            }
+        }
+        
+
+        return NSAttributedString(string: story)
     }
     
     private static func aggregateBasedOnAccessFrequensy(sensors: [AccessedSensor]) -> [AccessFrequency: [AccessedSensor]] {
@@ -155,6 +177,52 @@ class EULATextBuilder: NSObject {
                 return
             }
             result[af]?.append(sensor)
+        }
+        
+        return result
+    }
+    
+    
+    private static func buildUserControlPart(from document: SCDDocument) -> NSAttributedString {
+        var perUserControl = EULATextBuilder.aggregateBasedOnUserControl(sensors: document.accessedSensors)
+        var story = ""
+        let noControlSensors = perUserControl[false] ?? []
+        
+        if noControlSensors.count > 0 {
+            story.append("You do not have control when data is queried or how often, ")
+            if noControlSensors.count > 1 {
+                story.append("for the following: ")
+                for (index, sensor) in noControlSensors.enumerated() {
+                    story.append(SensorType.namesPerSensorType[sensor.sensorType] ?? "")
+                    if index < noControlSensors.count - 1 {
+                        story.append(",")
+                    }
+                    story.append(" ")
+                }
+                story.append(".")
+            } else {
+                guard let first = noControlSensors.first else {
+                    return NSAttributedString(string: story)
+                }
+                story.append("for the \(SensorType.namesPerSensorType[first.sensorType] ?? "") sensor.")
+            }
+        }
+        
+        
+        
+        return NSAttributedString(string: story)
+    }
+    
+    
+    
+    private static func aggregateBasedOnUserControl(sensors: [AccessedSensor]) -> [Bool: [AccessedSensor]] {
+        var result: [Bool: [AccessedSensor]] = [:]
+        
+        result[true] = []
+        result[false] = []
+        
+        sensors.forEach {
+            result[$0.userControl]?.append($0)
         }
         
         return result

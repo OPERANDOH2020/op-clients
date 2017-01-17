@@ -120,6 +120,8 @@
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
 		988509B61E0845AA0088272D /* SchemaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988509B51E0845AA0088272D /* SchemaProvider.swift */; };
+		988F6E451E2E6C3000A38785 /* SensorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988F6E441E2E6C3000A38785 /* SensorDetailsView.swift */; };
+		988F6E471E2E6C4100A38785 /* SensorDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 988F6E461E2E6C4100A38785 /* SensorDetailsView.xib */; };
 		9893E40E1E239ECB00663ABC /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9893E4071E239ECB00663ABC /* FAImageView.m */; };
 		9893E40F1E239ECB00663ABC /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9893E4081E239ECB00663ABC /* FontAwesome.ttf */; };
 		9893E4101E239ECB00663ABC /* String+FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9893E4091E239ECB00663ABC /* String+FontAwesome.swift */; };
@@ -331,6 +333,8 @@
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
 		988509B51E0845AA0088272D /* SchemaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchemaProvider.swift; path = OPCloak/SchemaProvider.swift; sourceTree = "<group>"; };
+		988F6E441E2E6C3000A38785 /* SensorDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorDetailsView.swift; path = CloakUI/SensorDetailsView/SensorDetailsView.swift; sourceTree = "<group>"; };
+		988F6E461E2E6C4100A38785 /* SensorDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SensorDetailsView.xib; path = CloakUI/SensorDetailsView/SensorDetailsView.xib; sourceTree = "<group>"; };
 		9893E4061E239ECB00663ABC /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
 		9893E4071E239ECB00663ABC /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
 		9893E4081E239ECB00663ABC /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
@@ -959,9 +963,19 @@
 			name = UIScanningView;
 			sourceTree = "<group>";
 		};
+		988F6E431E2E6BFC00A38785 /* SensorDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				988F6E441E2E6C3000A38785 /* SensorDetailsView.swift */,
+				988F6E461E2E6C4100A38785 /* SensorDetailsView.xib */,
+			);
+			name = SensorDetailsView;
+			sourceTree = "<group>";
+		};
 		9893E4041E239DA200663ABC /* CloakUI */ = {
 			isa = PBXGroup;
 			children = (
+				988F6E431E2E6BFC00A38785 /* SensorDetailsView */,
 				981FFD141E25305200A7F3C7 /* EULATextBuilder */,
 				981FFD111E25020D00A7F3C7 /* SCDDetailsViewController */,
 				98A454BF1E23EB42002BDFC9 /* SCDDetailsView */,
@@ -1382,6 +1396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */,
+				988F6E471E2E6C4100A38785 /* SensorDetailsView.xib in Resources */,
 				9893E40F1E239ECB00663ABC /* FontAwesome.ttf in Resources */,
 				98500BCD1E09994E00DF87E8 /* SCDDocumentCell.xib in Resources */,
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
@@ -1473,6 +1488,7 @@
 				ADF3CA6F1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift in Sources */,
 				982DF0371DB6579200231BBD /* AFSecurityPolicy.m in Sources */,
 				9866A7BE1DBF778100907D05 /* UIChangePasswordView.swift in Sources */,
+				988F6E451E2E6C3000A38785 /* SensorDetailsView.swift in Sources */,
 				9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */,
 				98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */,
 				982DF0571DB6579B00231BBD /* UIRefreshControl+AFNetworking.m in Sources */,

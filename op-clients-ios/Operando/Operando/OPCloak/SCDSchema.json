@@ -90,10 +90,15 @@
                     "accessFrequency": {
                         "description": "A string specifying how often the data from this sensor if fetched/queried.", 
                         "enum": ["continuously", "continuousIntervals", "singularSample"]
+                    },
+                    
+                    "userControl": {
+                        "type" : "boolean",
+                        "description": "A boolean which indicates whether the user can control if or when the the data is being collected"
                     }
                     
                 },
-                "required": ["sensorType", "privacyDescription", "accessFrequency"]
+                "required": ["sensorType", "privacyDescription", "accessFrequency", "userControl"]
             }
         }
     },

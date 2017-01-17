@@ -17,7 +17,6 @@ protocol SchemaValidator {
 
 class SwiftSchemaValidator: SchemaValidator {
     
-    let kiteValidator = KiteJSONValidator()
     func validate(json: [String : Any], withSchema schema: [String : Any], completion: ((NSError?) -> Void)?) {
         
         let schema = Schema(schema)

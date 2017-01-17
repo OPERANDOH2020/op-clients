@@ -74,13 +74,13 @@ struct PrivacyDescription {
                 return nil
         }
         
+        
         var parties: [ThirdParty] = []
         
         self.privacyLevel = privacyLevel
         if let thirdPartiesDictArray = dict["thirdParties"] as? [[String: Any]] {
             thirdPartiesDictArray.forEach { if let tp = ThirdParty(dict: $0) { parties.append(tp)} }
         }
-        
         
         self.thirdParties = parties
     }
@@ -90,13 +90,15 @@ struct AccessedSensor {
     let sensorType: SensorType
     let privacyDescription: PrivacyDescription
     let accessFrequency: String
+    let userControl: Bool
     
     init?(dict: [String: Any]) {
         guard let type = dict["sensorType"] as? String,
               let sensorType = SensorType(rawValue: type),
               let pdDict = dict["privacyDescription"] as? [String: Any],
               let privacyDescription = PrivacyDescription(dict: pdDict),
-              let accessFrequency = dict["accessFrequency"] as? String
+              let accessFrequency = dict["accessFrequency"] as? String,
+              let userControl = dict["userControl"] as? Bool
                else {
                 return nil
         }
@@ -104,6 +106,7 @@ struct AccessedSensor {
         self.accessFrequency = accessFrequency
         self.sensorType = sensorType
         self.privacyDescription = privacyDescription
+        self.userControl = userControl
     }
     
     
