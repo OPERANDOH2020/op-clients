@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PlusPrivacyCommonTypes
 
 typealias SCDDocumentCallback = (_ scd: SCDDocument?, _ error: NSError?) -> Void
 typealias ErrorCallback = (_ error: NSError?) -> Void

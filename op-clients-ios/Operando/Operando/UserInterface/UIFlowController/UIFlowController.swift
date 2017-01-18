@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PlusPrivacyCommonTypes
 
 typealias NotificationActionCallback = (_ action: String, _ notification: OPNotification) -> Void
 typealias ForgotPasswordCallback = ((_ email: String) -> Void)

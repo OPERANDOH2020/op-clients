@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PlusPrivacyCommonTypes
 
 struct UISCDDocumentsViewControllerModel {
     let repository: SCDRepository

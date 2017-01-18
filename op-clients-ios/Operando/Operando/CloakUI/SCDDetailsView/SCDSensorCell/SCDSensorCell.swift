@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import PlusPrivacyCommonTypes
 
 
 class SCDSensorCell: UITableViewCell {

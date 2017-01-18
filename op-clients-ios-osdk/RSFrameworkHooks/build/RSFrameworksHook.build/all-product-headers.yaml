@@ -1,0 +1,38 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/Release-iphonesimulator/RSFrameworksHook.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "OPMonitor.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitor.h"
+        },
+        {
+          'type': 'file',
+          'name': "RSFrameworksHook-Swift.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/Release-iphonesimulator/RSFrameworksHook.framework/Headers/RSFrameworksHook-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "RSFrameworksHook.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/RSFrameworksHook.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/Release-iphonesimulator/RSFrameworksHook.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphonesimulator/RSFrameworksHook.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

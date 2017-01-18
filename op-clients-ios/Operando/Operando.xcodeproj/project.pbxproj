@@ -133,6 +133,8 @@
 		989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */; };
 		989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */; };
 		989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */; };
+		989E47A91E2FC63A005ECE53 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989E47A71E2FC5DD005ECE53 /* PlusPrivacyCommonTypes.framework */; };
+		989E47AA1E2FC63A005ECE53 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 989E47A71E2FC5DD005ECE53 /* PlusPrivacyCommonTypes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98A454C11E23EB8D002BDFC9 /* SCDDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A454C01E23EB8D002BDFC9 /* SCDDetailsView.swift */; };
 		98A454C31E23EBC8002BDFC9 /* SCDDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98A454C21E23EBC8002BDFC9 /* SCDDetailsView.xib */; };
 		98A454C61E23F133002BDFC9 /* SCDSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A454C51E23F133002BDFC9 /* SCDSectionHeader.swift */; };
@@ -182,6 +184,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				989E47AA1E2FC63A005ECE53 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */,
 				98F55FF51DD5EEFF0076555C /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -352,6 +355,7 @@
 		989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRealIdentityView.swift; path = UserInterface/UIRealIdentityView/UIRealIdentityView.swift; sourceTree = "<group>"; };
 		989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIRealIdentityView.xib; path = UserInterface/UIRealIdentityView/UIRealIdentityView.xib; sourceTree = "<group>"; };
+		989E47A71E2FC5DD005ECE53 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		98A454C01E23EB8D002BDFC9 /* SCDDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCDDetailsView.swift; path = CloakUI/SCDDetailsView/SCDDetailsView.swift; sourceTree = "<group>"; };
 		98A454C21E23EBC8002BDFC9 /* SCDDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SCDDetailsView.xib; path = CloakUI/SCDDetailsView/SCDDetailsView.xib; sourceTree = "<group>"; };
 		98A454C51E23F133002BDFC9 /* SCDSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SCDSectionHeader.swift; path = CloakUI/SCDDetailsView/SCDSectionHeader/SCDSectionHeader.swift; sourceTree = "<group>"; };
@@ -394,6 +398,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				989E47A91E2FC63A005ECE53 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 				98F55FF41DD5EEFF0076555C /* SwarmClient.framework in Frameworks */,
 				985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */,
 			);
@@ -680,6 +685,7 @@
 		98516FCD1E040903007428F3 /* OPCloak */ = {
 			isa = PBXGroup;
 			children = (
+				989E47A71E2FC5DD005ECE53 /* PlusPrivacyCommonTypes.framework */,
 				9840B24A1E2664F300C4FC86 /* SwiftJSONSchema */,
 				98516FCE1E040C51007428F3 /* OPCloak.swift */,
 				988509B51E0845AA0088272D /* SchemaProvider.swift */,

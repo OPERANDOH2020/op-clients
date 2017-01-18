@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import PlusPrivacyCommonTypes
 
 
 class SCDDetailsViewController: UIViewController {

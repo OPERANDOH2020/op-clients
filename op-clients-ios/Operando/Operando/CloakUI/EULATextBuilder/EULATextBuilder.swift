@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PlusPrivacyCommonTypes
 
 class EULATextBuilder: NSObject {
 
@@ -26,10 +27,6 @@ class EULATextBuilder: NSObject {
     
     
     
-    
-    private static let accessFrequenciesDescriptions: [AccessFrequency: String] = [ .Continuous : "The data is collected continuously throughout the lifetime of the app.",
-        .ContinuousIntervals: "The data is collected continuously in time intervals, triggered by certain events (e.g when the you presss Record/Stop or enter in a geofencing area)",
-        .SingularSample: "Only one sample of data is collected at certain times."]
     
     
     private static let userControlsDescription: [Bool: String] = [true: "As a user, you have control if data is collected from this sensor and/or when.",
@@ -147,7 +144,7 @@ class EULATextBuilder: NSObject {
         
         var sensorsPerAccessFrequency = EULATextBuilder.aggregateBasedOnAccessFrequensy(sensors: document.accessedSensors)
         
-        for af in [AccessFrequency.Continuous, AccessFrequency.ContinuousIntervals, AccessFrequency.SingularSample] {
+        for af in [AccessFrequencyType.Continuous, AccessFrequencyType.ContinuousIntervals, AccessFrequencyType.SingularSample] {
             if let afArray = sensorsPerAccessFrequency[af], afArray.count > 0 {
                 story.append("\n\nThe following sensor")
                 if afArray.count > 1 {story.append("s, ")} else {story.append(", ")}
@@ -157,8 +154,8 @@ class EULATextBuilder: NSObject {
                 }
                 
                 if afArray.count > 1 {story.append("have ")} else {story.append("has ")}
-                story.append("an access frequency of type \"\(af.rawValue)\". ")
-                story.append(EULATextBuilder.accessFrequenciesDescriptions[af] ?? "");
+                story.append("an access frequency of type \"\(af)\". ")
+                story.append(AccessFrequencyType.accessFrequenciesDescriptions[af] ?? "");
             }
         }
         
@@ -166,17 +163,17 @@ class EULATextBuilder: NSObject {
         return NSAttributedString(string: story)
     }
     
-    private static func aggregateBasedOnAccessFrequensy(sensors: [AccessedSensor]) -> [AccessFrequency: [AccessedSensor]] {
-        var result: [AccessFrequency: [AccessedSensor]] = [:]
-        for af in [AccessFrequency.Continuous, AccessFrequency.ContinuousIntervals, AccessFrequency.SingularSample] {
+    private static func aggregateBasedOnAccessFrequensy(sensors: [AccessedSensor]) -> [String: [AccessedSensor]] {
+        var result: [String: [AccessedSensor]] = [:]
+        for af in [AccessFrequencyType.Continuous, AccessFrequencyType.ContinuousIntervals, AccessFrequencyType.SingularSample] {
             result[af] = []
         }
         
         sensors.forEach { sensor in
-            guard let af = AccessFrequency(rawValue: sensor.accessFrequency) else {
+            guard AccessFrequencyType.isValid(rawValue: sensor.accessFrequency) else {
                 return
             }
-            result[af]?.append(sensor)
+            result[sensor.accessFrequency]?.append(sensor)
         }
         
         return result
