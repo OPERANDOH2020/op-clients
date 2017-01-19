@@ -8,6 +8,7 @@
 
 import UIKit
 import PlusPrivacyCommonTypes
+import PlusPrivacyCommonUI
 
 typealias NotificationActionCallback = (_ action: String, _ notification: OPNotification) -> Void
 typealias ForgotPasswordCallback = ((_ email: String) -> Void)
@@ -19,7 +20,7 @@ struct Dependencies{
     let privacyForBenefitsRepo: PrivacyForBenefitsRepository?
     let userInfoRepo: UserInfoRepository?
     let notificationsRepository: NotificationsRepository?
-    let scdDocumentsRepository: SCDRepository?
+    let scdDocumentsRepository: PlusPrivacyCommonUI.SCDRepository?
     let accountCallbacks: AccountCallbacks?
     let whenTakingActionForNotification: NotificationActionCallback?
     let whenRequestingNumOfNotifications: NumOfNotificationsRequestCallback?
@@ -209,35 +210,13 @@ class UIFlowController: SSASideMenuDelegate
     
     
     private func displaySCDDocumentsViewController() {
-        guard let repository = self.dependencies.scdDocumentsRepository else {
+        guard let repository = self.dependencies.scdDocumentsRepository,
+              let controller = CommonUIBUilder.buildFlow(for: repository, whenExiting: nil) else {
             return
         }
         
-        let scdDocsVC = UINavigationManager.scdDocumentsViewController
-        let navigationController = UINavigationController(rootViewController: scdDocsVC)
-        navigationController.isNavigationBarHidden = true
+        self.rootController.setMainControllerTo(newController: controller)
         
-        weak var weakSelf = self
-        weak var weakNav = navigationController
-        
-        scdDocsVC.setup(with: UISCDDocumentsViewControllerModel(repository: repository), callbacks: UISCDDocumentsViewControllerCallbacks(whenUserSelectsSCD:
-        { document in
-            weakSelf?.displaySCDDetailsViewControllerWith(scd: document, inNavigationController: weakNav)
-        }))
-        self.rootController.setMainControllerTo(newController: navigationController)
-        
-    }
-    
-    
-    private func displaySCDDetailsViewControllerWith(scd: SCDDocument, inNavigationController: UINavigationController?) {
-        let vc = UINavigationManager.scdDetailsViewController
-        weak var weakVC = vc;
-        
-        vc.setupWith(scd: scd) {
-            weakVC?.navigationController?.popViewController(animated: true)
-        }
-        
-        inNavigationController?.pushViewController(vc, animated: true)
     }
     
     

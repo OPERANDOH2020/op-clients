@@ -21,10 +21,50 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		985635EB1E30B0F90033788A /* EULATextBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635D91E30B0F90033788A /* EULATextBuilder.swift */; };
+		985635EC1E30B0F90033788A /* SCDDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635DB1E30B0F90033788A /* SCDDetailsView.swift */; };
+		985635ED1E30B0F90033788A /* SCDDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635DC1E30B0F90033788A /* SCDDetailsView.xib */; };
+		985635EE1E30B0F90033788A /* SCDSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635DE1E30B0F90033788A /* SCDSectionHeader.swift */; };
+		985635EF1E30B0F90033788A /* SCDSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635DF1E30B0F90033788A /* SCDSectionHeader.xib */; };
+		985635F01E30B0F90033788A /* SCDSensorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635E11E30B0F90033788A /* SCDSensorCell.swift */; };
+		985635F11E30B0F90033788A /* SCDSensorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635E21E30B0F90033788A /* SCDSensorCell.xib */; };
+		985635F21E30B0F90033788A /* SCDUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635E41E30B0F90033788A /* SCDUrlCell.swift */; };
+		985635F31E30B0F90033788A /* SCDUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635E51E30B0F90033788A /* SCDUrlCell.xib */; };
+		985635F41E30B0F90033788A /* SCDDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635E71E30B0F90033788A /* SCDDetailsViewController.swift */; };
+		985635F51E30B0F90033788A /* SensorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635E91E30B0F90033788A /* SensorDetailsView.swift */; };
+		985635F61E30B0F90033788A /* SensorDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635EA1E30B0F90033788A /* SensorDetailsView.xib */; };
+		985635F81E30B0FF0033788A /* Cloak.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985635F71E30B0FF0033788A /* Cloak.storyboard */; };
+		985635FA1E30B2130033788A /* PPNibDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635F91E30B2130033788A /* PPNibDesignableView.swift */; };
+		985635FC1E30B2A90033788A /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985635FB1E30B2A90033788A /* PlusPrivacyCommonTypes.framework */; };
+		985635FE1E30B98C0033788A /* CommonUIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635FD1E30B98C0033788A /* CommonUIBuilder.swift */; };
+		985636011E30BD000033788A /* UISCDDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985636001E30BD000033788A /* UISCDDocumentsViewController.swift */; };
+		985636051E30BEA50033788A /* SCDDocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985636031E30BEA50033788A /* SCDDocumentCell.swift */; };
+		985636061E30BEA50033788A /* SCDDocumentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985636041E30BEA50033788A /* SCDDocumentCell.xib */; };
+		985636101E30CEA70033788A /* PPCommonAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9856360F1E30CEA70033788A /* PPCommonAssets.xcassets */; };
 		98584F411D3F9E18009FB89F /* PlusPrivacyCommonUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PlusPrivacyCommonUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		985635D91E30B0F90033788A /* EULATextBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EULATextBuilder.swift; sourceTree = "<group>"; };
+		985635DB1E30B0F90033788A /* SCDDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDDetailsView.swift; sourceTree = "<group>"; };
+		985635DC1E30B0F90033788A /* SCDDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCDDetailsView.xib; sourceTree = "<group>"; };
+		985635DE1E30B0F90033788A /* SCDSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDSectionHeader.swift; sourceTree = "<group>"; };
+		985635DF1E30B0F90033788A /* SCDSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCDSectionHeader.xib; sourceTree = "<group>"; };
+		985635E11E30B0F90033788A /* SCDSensorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDSensorCell.swift; sourceTree = "<group>"; };
+		985635E21E30B0F90033788A /* SCDSensorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCDSensorCell.xib; sourceTree = "<group>"; };
+		985635E41E30B0F90033788A /* SCDUrlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDUrlCell.swift; sourceTree = "<group>"; };
+		985635E51E30B0F90033788A /* SCDUrlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCDUrlCell.xib; sourceTree = "<group>"; };
+		985635E71E30B0F90033788A /* SCDDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDDetailsViewController.swift; sourceTree = "<group>"; };
+		985635E91E30B0F90033788A /* SensorDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorDetailsView.swift; sourceTree = "<group>"; };
+		985635EA1E30B0F90033788A /* SensorDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SensorDetailsView.xib; sourceTree = "<group>"; };
+		985635F71E30B0FF0033788A /* Cloak.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cloak.storyboard; sourceTree = "<group>"; };
+		985635F91E30B2130033788A /* PPNibDesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPNibDesignableView.swift; sourceTree = "<group>"; };
+		985635FB1E30B2A90033788A /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
+		985635FD1E30B98C0033788A /* CommonUIBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUIBuilder.swift; sourceTree = "<group>"; };
+		985636001E30BD000033788A /* UISCDDocumentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISCDDocumentsViewController.swift; sourceTree = "<group>"; };
+		985636031E30BEA50033788A /* SCDDocumentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDDocumentCell.swift; sourceTree = "<group>"; };
+		985636041E30BEA50033788A /* SCDDocumentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCDDocumentCell.xib; sourceTree = "<group>"; };
+		9856360F1E30CEA70033788A /* PPCommonAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PPCommonAssets.xcassets; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlusPrivacyCommonUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PlusPrivacyCommonUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlusPrivacyCommonUI.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -35,15 +75,111 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985635FC1E30B2A90033788A /* PlusPrivacyCommonTypes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		985635D71E30B0F90033788A /* CloakUI */ = {
+			isa = PBXGroup;
+			children = (
+				985636021E30BEA50033788A /* SCDDocumentCell */,
+				985635FF1E30BD000033788A /* UISCDDocumentsViewController */,
+				985635D81E30B0F90033788A /* EULATextBuilder */,
+				985635DA1E30B0F90033788A /* SCDDetailsView */,
+				985635E61E30B0F90033788A /* SCDDetailsViewController */,
+				985635E81E30B0F90033788A /* SensorDetailsView */,
+			);
+			path = CloakUI;
+			sourceTree = "<group>";
+		};
+		985635D81E30B0F90033788A /* EULATextBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				985635D91E30B0F90033788A /* EULATextBuilder.swift */,
+			);
+			path = EULATextBuilder;
+			sourceTree = "<group>";
+		};
+		985635DA1E30B0F90033788A /* SCDDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				985635DB1E30B0F90033788A /* SCDDetailsView.swift */,
+				985635DC1E30B0F90033788A /* SCDDetailsView.xib */,
+				985635DD1E30B0F90033788A /* SCDSectionHeader */,
+				985635E01E30B0F90033788A /* SCDSensorCell */,
+				985635E31E30B0F90033788A /* SCDUrlCell */,
+			);
+			path = SCDDetailsView;
+			sourceTree = "<group>";
+		};
+		985635DD1E30B0F90033788A /* SCDSectionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				985635DE1E30B0F90033788A /* SCDSectionHeader.swift */,
+				985635DF1E30B0F90033788A /* SCDSectionHeader.xib */,
+			);
+			path = SCDSectionHeader;
+			sourceTree = "<group>";
+		};
+		985635E01E30B0F90033788A /* SCDSensorCell */ = {
+			isa = PBXGroup;
+			children = (
+				985635E11E30B0F90033788A /* SCDSensorCell.swift */,
+				985635E21E30B0F90033788A /* SCDSensorCell.xib */,
+			);
+			path = SCDSensorCell;
+			sourceTree = "<group>";
+		};
+		985635E31E30B0F90033788A /* SCDUrlCell */ = {
+			isa = PBXGroup;
+			children = (
+				985635E41E30B0F90033788A /* SCDUrlCell.swift */,
+				985635E51E30B0F90033788A /* SCDUrlCell.xib */,
+			);
+			path = SCDUrlCell;
+			sourceTree = "<group>";
+		};
+		985635E61E30B0F90033788A /* SCDDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				985635E71E30B0F90033788A /* SCDDetailsViewController.swift */,
+			);
+			path = SCDDetailsViewController;
+			sourceTree = "<group>";
+		};
+		985635E81E30B0F90033788A /* SensorDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				985635E91E30B0F90033788A /* SensorDetailsView.swift */,
+				985635EA1E30B0F90033788A /* SensorDetailsView.xib */,
+			);
+			path = SensorDetailsView;
+			sourceTree = "<group>";
+		};
+		985635FF1E30BD000033788A /* UISCDDocumentsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				985636001E30BD000033788A /* UISCDDocumentsViewController.swift */,
+			);
+			path = UISCDDocumentsViewController;
+			sourceTree = "<group>";
+		};
+		985636021E30BEA50033788A /* SCDDocumentCell */ = {
+			isa = PBXGroup;
+			children = (
+				985636031E30BEA50033788A /* SCDDocumentCell.swift */,
+				985636041E30BEA50033788A /* SCDDocumentCell.xib */,
+			);
+			path = SCDDocumentCell;
+			sourceTree = "<group>";
+		};
 		98584F331D3F9E18009FB89F = {
 			isa = PBXGroup;
 			children = (
+				985635FB1E30B2A90033788A /* PlusPrivacyCommonTypes.framework */,
 				98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */,
 				98584F3E1D3F9E18009FB89F /* Products */,
 			);
@@ -60,8 +196,13 @@
 		98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */ = {
 			isa = PBXGroup;
 			children = (
+				985635FD1E30B98C0033788A /* CommonUIBuilder.swift */,
+				985635F91E30B2130033788A /* PPNibDesignableView.swift */,
+				985635F71E30B0FF0033788A /* Cloak.storyboard */,
+				985635D71E30B0F90033788A /* CloakUI */,
 				98584F401D3F9E18009FB89F /* PlusPrivacyCommonUI.h */,
 				98584F421D3F9E18009FB89F /* Info.plist */,
+				9856360F1E30CEA70033788A /* PPCommonAssets.xcassets */,
 			);
 			path = GenericFrameworkProject;
 			sourceTree = "<group>";
@@ -138,6 +279,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985635F31E30B0F90033788A /* SCDUrlCell.xib in Resources */,
+				985636061E30BEA50033788A /* SCDDocumentCell.xib in Resources */,
+				985635F11E30B0F90033788A /* SCDSensorCell.xib in Resources */,
+				985635F61E30B0F90033788A /* SensorDetailsView.xib in Resources */,
+				985635ED1E30B0F90033788A /* SCDDetailsView.xib in Resources */,
+				985635EF1E30B0F90033788A /* SCDSectionHeader.xib in Resources */,
+				985635F81E30B0FF0033788A /* Cloak.storyboard in Resources */,
+				985636101E30CEA70033788A /* PPCommonAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +313,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985635F41E30B0F90033788A /* SCDDetailsViewController.swift in Sources */,
+				985636051E30BEA50033788A /* SCDDocumentCell.swift in Sources */,
+				985635F21E30B0F90033788A /* SCDUrlCell.swift in Sources */,
+				985635EE1E30B0F90033788A /* SCDSectionHeader.swift in Sources */,
+				985635FA1E30B2130033788A /* PPNibDesignableView.swift in Sources */,
+				985635EC1E30B0F90033788A /* SCDDetailsView.swift in Sources */,
+				985635FE1E30B98C0033788A /* CommonUIBuilder.swift in Sources */,
+				985635F01E30B0F90033788A /* SCDSensorCell.swift in Sources */,
+				985635F51E30B0F90033788A /* SensorDetailsView.swift in Sources */,
+				985636011E30BD000033788A /* UISCDDocumentsViewController.swift in Sources */,
+				985635EB1E30B0F90033788A /* EULATextBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +373,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -254,6 +415,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -268,10 +430,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.GenericFrameworkProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.PlusPrivacyCommonUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -284,10 +451,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.GenericFrameworkProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.PlusPrivacyCommonUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

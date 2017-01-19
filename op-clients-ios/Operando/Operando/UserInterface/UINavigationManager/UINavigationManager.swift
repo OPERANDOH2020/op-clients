@@ -74,12 +74,5 @@ class UINavigationManager
     }
     
     
-    static var scdDocumentsViewController: UISCDDocumentsViewController {
-        return cloak.instantiateViewController(withIdentifier: "UISCDDocumentsViewController") as! UISCDDocumentsViewController
-    }
-    
-    static var scdDetailsViewController: SCDDetailsViewController {
-        return cloak.instantiateViewController(withIdentifier: "SCDDetailsViewController") as! SCDDetailsViewController
-    }
     
 }

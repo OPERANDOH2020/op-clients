@@ -8,6 +8,7 @@
 
 import Foundation
 import PlusPrivacyCommonTypes
+import PlusPrivacyCommonUI
 
 typealias SCDDocumentCallback = (_ scd: SCDDocument?, _ error: NSError?) -> Void
 typealias ErrorCallback = (_ error: NSError?) -> Void
@@ -15,12 +16,11 @@ typealias ErrorCallback = (_ error: NSError?) -> Void
 protocol SCDRepository {
     func registerSCDJson(_ json: [String: Any], withCompletion completion: ErrorCallback?)
     func retrieveSCDDocument(basedOnBundleId id: String, withCompletion completion: SCDDocumentCallback?)
-    func retrieveAllDocuments(_ completion: ((_ documents: [SCDDocument]?, _ error: NSError?) -> Void)?)
 }
 
 
 
-class PlistSCDRepository: SCDRepository {
+class PlistSCDRepository: SCDRepository, PlusPrivacyCommonUI.SCDRepository {
     
     private let plistFilePath: String
     private var scdDocuments: [SCDDocument]
@@ -44,7 +44,7 @@ class PlistSCDRepository: SCDRepository {
         self.scdJSONS = plistDictsArray
     }
     
-    internal func retrieveAllDocuments(_ completion: (([SCDDocument]?, NSError?) -> Void)?) {
+    internal func retrieveAllDocuments(with completion: (([SCDDocument]?, NSError?) -> Void)?) {
         completion?(self.scdDocuments, nil)
     }
 

@@ -11,9 +11,26 @@
 #import "CLLocationHook.h"
 #import "NSURLSessionHook.h"
 
+@interface OPMonitor()
+@property (strong, nonatomic) SCDDocument *document;
+@end
+
 @implementation OPMonitor
 
-+(void)beginMonitoringWithAppDocument:(SCDDocument *)document {
++(instancetype)sharedInstance{
+    static OPMonitor *shared = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shared = [[OPMonitor alloc] init];
+    });
+    
+    return  shared;
+}
+
+-(void)beginMonitoringWithAppDocument:(SCDDocument *)document {
+    
+    self.document = document;
+    
     [NSURLSessionHook hookWithCallback:^(NSURLRequest *request) {
         NSLog(@"Made the following request %@", request);
     }];

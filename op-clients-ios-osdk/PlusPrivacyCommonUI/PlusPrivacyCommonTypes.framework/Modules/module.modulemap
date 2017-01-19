@@ -1,0 +1,10 @@
+framework module PlusPrivacyCommonTypes {
+  umbrella header "PlusPrivacyCommonTypes.h"
+
+  export *
+  module * { export * }
+}
+
+module PlusPrivacyCommonTypes.Swift {
+    header "PlusPrivacyCommonTypes-Swift.h"
+}

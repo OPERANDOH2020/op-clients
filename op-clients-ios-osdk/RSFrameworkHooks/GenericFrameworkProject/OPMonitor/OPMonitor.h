@@ -11,6 +11,8 @@
 
 @interface OPMonitor : NSObject
 
-+(void)beginMonitoringWithAppDocument:(SCDDocument*)document;
++(instancetype __nonnull)sharedInstance;
+
+-(void)beginMonitoringWithAppDocument:(SCDDocument* __nonnull)document;
 
 @end
