@@ -9,6 +9,7 @@
 import UIKit
 import PlusPrivacyCommonTypes
 
+@objc
 public protocol SCDRepository {
     func retrieveAllDocuments(with callback: ((_ documents: [SCDDocument]?, _ error: NSError?) -> Void)?)
 }
@@ -17,8 +18,10 @@ struct UISCDDocumentsViewControllerModel {
     let repository: SCDRepository
 }
 
+
 struct UISCDDocumentsViewControllerCallbacks {
     let whenUserSelectsSCD: ((_ scd: SCDDocument) -> Void)?
+    let whenUserSelectsToExit: VoidBlock?
 }
 
 class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -61,6 +64,9 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
         tableView?.reloadData()
     }
     
+    @IBAction func didPressToExit(_ sender: Any) {
+        self.callbacks?.whenUserSelectsToExit?()
+    }
     
     //MARK: TableView related
     

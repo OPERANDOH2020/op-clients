@@ -4,17 +4,33 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Headers/LocationInputSupervisor.h</key>
+		<data>
+		MBwu4MHZdbfwCKYWzHiKL4qfen8=
+		</data>
 		<key>Headers/OPMonitor.h</key>
 		<data>
-		JHQEkX60Hdjc8tQBCj4mUqFlbTQ=
+		vF9t8vKzJwI+My6QYapBEMLReiE=
+		</data>
+		<key>Headers/OPMonitorInputSourceEvent.h</key>
+		<data>
+		IaqvGPvxU3B/nOP0L56cjuVc+ZQ=
+		</data>
+		<key>Headers/OPMonitorViolationReport.h</key>
+		<data>
+		zSnFTkS8yBmup3ZTT5Qgr+gcElk=
 		</data>
 		<key>Headers/RSFrameworksHook.h</key>
 		<data>
 		4Rnx0dNOONulI3NFIwf3LeETyiQ=
 		</data>
+		<key>Headers/SupervisorProtocols.h</key>
+		<data>
+		EHpy9z7nnsYj7dK0W22QNTqDqug=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		3aOqPXp+ftK5Trro5ONn5dtgwn8=
+		qE0LunMmQ2ZDBhIBZJRRmTZRT0s=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -23,15 +39,48 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Headers/LocationInputSupervisor.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MBwu4MHZdbfwCKYWzHiKL4qfen8=
+			</data>
+			<key>hash2</key>
+			<data>
+			yWTbhReULgXd1BJb0WPKHEqpJVT3nCg0sCQTuqIri+I=
+			</data>
+		</dict>
 		<key>Headers/OPMonitor.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JHQEkX60Hdjc8tQBCj4mUqFlbTQ=
+			vF9t8vKzJwI+My6QYapBEMLReiE=
 			</data>
 			<key>hash2</key>
 			<data>
-			Ap+fDKxLuBRmYQNpbKTBziLQrXdclhfu1ezgNoM9XsY=
+			1IHueloGlBVH0lCA1EC6di9HSH1S7LggOzAqwoJYy8o=
+			</data>
+		</dict>
+		<key>Headers/OPMonitorInputSourceEvent.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			IaqvGPvxU3B/nOP0L56cjuVc+ZQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			JCvnoQADQe5gPqjojN51SqDRHANkXqBUORO3oaQsR+Y=
+			</data>
+		</dict>
+		<key>Headers/OPMonitorViolationReport.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			zSnFTkS8yBmup3ZTT5Qgr+gcElk=
+			</data>
+			<key>hash2</key>
+			<data>
+			wl813JF0PwXjwoI96oCvgtP3oiKkyegVuGS4jNJAP68=
 			</data>
 		</dict>
 		<key>Headers/RSFrameworksHook.h</key>
@@ -43,6 +92,17 @@
 			<key>hash2</key>
 			<data>
 			yQDGGpVWX6LMpQraUb2PBQhieXSEhHWnHerbvHpHe8k=
+			</data>
+		</dict>
+		<key>Headers/SupervisorProtocols.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			EHpy9z7nnsYj7dK0W22QNTqDqug=
+			</data>
+			<key>hash2</key>
+			<data>
+			rhLu5s+Cy/0LnCU54qjQABJQpM1H86IPWrgie5ccuEg=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -74,6 +134,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^version.plist$</key>
 		<true/>
@@ -119,6 +184,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^Info\.plist$</key>
 		<dict>

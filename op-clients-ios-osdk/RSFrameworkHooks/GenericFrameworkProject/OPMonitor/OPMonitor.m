@@ -7,12 +7,13 @@
 //
 
 #import "OPMonitor.h"
+#import "LocationInputSupervisor.h"
+#import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
 
-#import "CLLocationHook.h"
-#import "NSURLSessionHook.h"
+@interface OPMonitor() <InputSupervisorDelegate>
 
-@interface OPMonitor()
 @property (strong, nonatomic) SCDDocument *document;
+@property (strong, nonatomic) UIButton *handle;
 @end
 
 @implementation OPMonitor
@@ -27,21 +28,38 @@
     return  shared;
 }
 
--(void)beginMonitoringWithAppDocument:(SCDDocument *)document {
-    
-    self.document = document;
-    
-    [NSURLSessionHook hookWithCallback:^(NSURLRequest *request) {
-        NSLog(@"Made the following request %@", request);
-    }];
-    
-    [CLLocationHook hookWithCallback:^(NSDictionary *info) {
-        NSLog(@"Location status %@", info);
-    }];
+-(void)beginMonitoringWithAppDocument:(NSDictionary *)document {
+    self.document = [[SCDDocument alloc] initWithScd:document];
 }
 
-+(void)beginMonitoring {
 
+-(UIView *)getHandle {
+    if (self.handle == nil) {
+        self.handle = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+        [self.handle setTitle:@"PP" forState:UIControlStateNormal];
+        
+        [self.handle addTarget:self action:@selector(didPressHandle:) forControlEvents:UIControlEventAllTouchEvents];
+    }
+    
+    return  self.handle;
+}
+
+
+
+
+-(void)didPressHandle:(id)sender {
+    OneDocumentRepository *repo = [[OneDocumentRepository alloc] init];
+    
+    UIViewController *vc = [CommonUIBUilder buildFlowFor:[OneDocumentRepository alloc]] whenExiting:<#^(void)whenExiting#>
+}
+
+
+#pragma mark - 
+-(void)newViolationReported:(OPMonitorViolationReport *)report {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlusPrivacy" message:report.violationDetails delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    });
 }
 
 @end

@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
+#import <UIKit/UIKit.h>
 
 @interface OPMonitor : NSObject
-
 +(instancetype __nonnull)sharedInstance;
 
--(void)beginMonitoringWithAppDocument:(SCDDocument* __nonnull)document;
+-(void)beginMonitoringWithAppDocument:(NSDictionary* __nonnull)document;
+-(UIView*)getHandle;
+
 
 @end

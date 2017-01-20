@@ -26,9 +26,15 @@
 		9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */; };
 		9863E9021DEC70E60095CA30 /* NSURLSessionHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E9001DEC70E60095CA30 /* NSURLSessionHook.h */; };
 		9863E9031DEC70E60095CA30 /* NSURLSessionHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E9011DEC70E60095CA30 /* NSURLSessionHook.m */; };
+		987F83721E322AA90058633C /* OPMonitorViolationReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83701E322AA90058633C /* OPMonitorViolationReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83711E322AA90058633C /* OPMonitorViolationReport.m */; };
+		987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */; };
+		987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F837C1E3241930058633C /* LocationInputSupervisor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		987F837F1E3241930058633C /* LocationInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F837D1E3241930058633C /* LocationInputSupervisor.m */; };
+		987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83801E3242BC0058633C /* SupervisorProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		987F83871E327AE30058633C /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987F83861E327AE30058633C /* PlusPrivacyCommonUI.framework */; };
 		989E47AC1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989E47AB1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework */; };
-		98D603DF1E2F694D00E59A42 /* CLLocationHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603DD1E2F694D00E59A42 /* CLLocationHook.h */; };
-		98D603E01E2F694D00E59A42 /* CLLocationHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603DE1E2F694D00E59A42 /* CLLocationHook.m */; };
 		98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603E21E2F800B00E59A42 /* OPMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603E31E2F800B00E59A42 /* OPMonitor.m */; };
 /* End PBXBuildFile section */
@@ -41,9 +47,16 @@
 		9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		9863E9001DEC70E60095CA30 /* NSURLSessionHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSURLSessionHook.h; path = NSURLSessionHook/NSURLSessionHook.h; sourceTree = "<group>"; };
 		9863E9011DEC70E60095CA30 /* NSURLSessionHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSURLSessionHook.m; path = NSURLSessionHook/NSURLSessionHook.m; sourceTree = "<group>"; };
+		987F836F1E3212140058633C /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Common.h; path = Common/Common.h; sourceTree = "<group>"; };
+		987F83701E322AA90058633C /* OPMonitorViolationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorViolationReport.h; path = OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h; sourceTree = "<group>"; };
+		987F83711E322AA90058633C /* OPMonitorViolationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorViolationReport.m; path = OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.m; sourceTree = "<group>"; };
+		987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorInputSourceEvent.h; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.h; sourceTree = "<group>"; };
+		987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorInputSourceEvent.m; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.m; sourceTree = "<group>"; };
+		987F837C1E3241930058633C /* LocationInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationInputSupervisor.h; path = InputSupervisors/LocationInputSupervisor/LocationInputSupervisor.h; sourceTree = "<group>"; };
+		987F837D1E3241930058633C /* LocationInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationInputSupervisor.m; path = InputSupervisors/LocationInputSupervisor/LocationInputSupervisor.m; sourceTree = "<group>"; };
+		987F83801E3242BC0058633C /* SupervisorProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupervisorProtocols.h; path = Common/SupervisorProtocols.h; sourceTree = "<group>"; };
+		987F83861E327AE30058633C /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		989E47AB1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
-		98D603DD1E2F694D00E59A42 /* CLLocationHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLLocationHook.h; path = CLLocationHook/CLLocationHook.h; sourceTree = "<group>"; };
-		98D603DE1E2F694D00E59A42 /* CLLocationHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLLocationHook.m; path = CLLocationHook/CLLocationHook.m; sourceTree = "<group>"; };
 		98D603E21E2F800B00E59A42 /* OPMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitor.h; path = OPMonitor/OPMonitor.h; sourceTree = "<group>"; };
 		98D603E31E2F800B00E59A42 /* OPMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitor.m; path = OPMonitor/OPMonitor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				987F83871E327AE30058633C /* PlusPrivacyCommonUI.framework in Frameworks */,
 				989E47AC1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,9 +93,10 @@
 		98584F3F1D3F9E18009FB89F /* RSFrameworksHook */ = {
 			isa = PBXGroup;
 			children = (
+				987F83861E327AE30058633C /* PlusPrivacyCommonUI.framework */,
 				989E47AB1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework */,
+				987F836E1E3211F90058633C /* Common */,
 				98D603E11E2F7FEC00E59A42 /* OPMonitor */,
-				98D603DB1E2F663C00E59A42 /* CLLocationHook */,
 				9863E8FF1DEC70CC0095CA30 /* NSURLSessionHook */,
 				9863E8FA1DEC6F0D0095CA30 /* JRSwizzle */,
 				98584F401D3F9E18009FB89F /* RSFrameworksHook.h */,
@@ -109,13 +124,51 @@
 			name = NSURLSessionHook;
 			sourceTree = "<group>";
 		};
-		98D603DB1E2F663C00E59A42 /* CLLocationHook */ = {
+		987F836E1E3211F90058633C /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				98D603DD1E2F694D00E59A42 /* CLLocationHook.h */,
-				98D603DE1E2F694D00E59A42 /* CLLocationHook.m */,
+				987F837A1E3241250058633C /* InputSupervisors */,
+				987F83791E32410E0058633C /* OPMonitorViolationReport */,
+				987F83741E32357C0058633C /* OPMonitorInputSourceReport */,
+				987F836F1E3212140058633C /* Common.h */,
 			);
-			name = CLLocationHook;
+			name = Common;
+			sourceTree = "<group>";
+		};
+		987F83741E32357C0058633C /* OPMonitorInputSourceReport */ = {
+			isa = PBXGroup;
+			children = (
+				987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */,
+				987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */,
+			);
+			name = OPMonitorInputSourceReport;
+			sourceTree = "<group>";
+		};
+		987F83791E32410E0058633C /* OPMonitorViolationReport */ = {
+			isa = PBXGroup;
+			children = (
+				987F83701E322AA90058633C /* OPMonitorViolationReport.h */,
+				987F83711E322AA90058633C /* OPMonitorViolationReport.m */,
+			);
+			name = OPMonitorViolationReport;
+			sourceTree = "<group>";
+		};
+		987F837A1E3241250058633C /* InputSupervisors */ = {
+			isa = PBXGroup;
+			children = (
+				987F837B1E3241300058633C /* LocationInputSupervisor */,
+				987F83801E3242BC0058633C /* SupervisorProtocols.h */,
+			);
+			name = InputSupervisors;
+			sourceTree = "<group>";
+		};
+		987F837B1E3241300058633C /* LocationInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				987F837C1E3241930058633C /* LocationInputSupervisor.h */,
+				987F837D1E3241930058633C /* LocationInputSupervisor.m */,
+			);
+			name = LocationInputSupervisor;
 			sourceTree = "<group>";
 		};
 		98D603E11E2F7FEC00E59A42 /* OPMonitor */ = {
@@ -134,10 +187,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */,
+				987F83721E322AA90058633C /* OPMonitorViolationReport.h in Headers */,
+				987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */,
+				987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */,
 				98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */,
 				98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */,
 				9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */,
-				98D603DF1E2F694D00E59A42 /* CLLocationHook.h in Headers */,
 				9863E9021DEC70E60095CA30 /* NSURLSessionHook.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,8 +286,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9863E9031DEC70E60095CA30 /* NSURLSessionHook.m in Sources */,
+				987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */,
+				987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */,
 				98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */,
-				98D603E01E2F694D00E59A42 /* CLLocationHook.m in Sources */,
+				987F837F1E3241930058633C /* LocationInputSupervisor.m in Sources */,
 				9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +401,7 @@
 				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.GenericFrameworkProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -363,6 +422,7 @@
 				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.GenericFrameworkProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";

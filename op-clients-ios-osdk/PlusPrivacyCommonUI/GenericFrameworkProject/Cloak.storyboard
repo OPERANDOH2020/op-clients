@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--Documents View Controller-->
         <scene sceneID="rva-IL-E2I">
             <objects>
-                <viewController storyboardIdentifier="UISCDDocumentsViewController" id="0mt-cO-MEV" customClass="UISCDDocumentsViewController" customModule="Operando" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UISCDDocumentsViewController" id="0mt-cO-MEV" customClass="UISCDDocumentsViewController" customModule="PlusPrivacyCommonUI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iCd-9z-fTx"/>
                         <viewControllerLayoutGuide type="bottom" id="n5b-uQ-gn4"/>
@@ -22,24 +22,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lba-mm-HXc">
-                                <rect key="frame" x="0.0" y="40" width="375" height="627"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOp-Rg-T5l" userLabel="scdTopView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnw-ib-nSf">
-                                        <rect key="frame" x="158.5" y="5" width="58" height="30"/>
+                                        <rect key="frame" x="159" y="7" width="58" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkS-qb-v6f" userLabel="exitButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="pym-Xg-xkW"/>
+                                        </constraints>
+                                        <state key="normal" image="arrow_up"/>
+                                        <connections>
+                                            <action selector="didPressToExit:" destination="0mt-cO-MEV" eventType="touchUpInside" id="dqS-OE-4nh"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1843137255" green="0.12941176469999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="FDO-S3-CBQ"/>
+                                    <constraint firstItem="zkS-qb-v6f" firstAttribute="leading" secondItem="JOp-Rg-T5l" secondAttribute="leading" id="1AO-ep-dDp"/>
+                                    <constraint firstAttribute="bottom" secondItem="zkS-qb-v6f" secondAttribute="bottom" id="BI9-do-fbq"/>
+                                    <constraint firstAttribute="height" constant="44" id="FDO-S3-CBQ"/>
                                     <constraint firstItem="jnw-ib-nSf" firstAttribute="centerY" secondItem="JOp-Rg-T5l" secondAttribute="centerY" id="JNA-xv-mpo"/>
                                     <constraint firstItem="jnw-ib-nSf" firstAttribute="centerX" secondItem="JOp-Rg-T5l" secondAttribute="centerX" id="JqG-4o-lj3"/>
+                                    <constraint firstItem="zkS-qb-v6f" firstAttribute="top" secondItem="JOp-Rg-T5l" secondAttribute="top" id="vs5-En-9Yu"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -65,7 +78,7 @@
         <!--Details View Controller-->
         <scene sceneID="JRQ-1J-pvN">
             <objects>
-                <viewController storyboardIdentifier="SCDDetailsViewController" id="fdI-g5-E0f" customClass="SCDDetailsViewController" customModule="Operando" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SCDDetailsViewController" id="fdI-g5-E0f" customClass="SCDDetailsViewController" customModule="PlusPrivacyCommonUI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Qc-Gl-i32"/>
                         <viewControllerLayoutGuide type="bottom" id="H3v-0X-S00"/>
@@ -74,7 +87,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jcz-9T-ei2" customClass="SCDDetailsView" customModule="Operando" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jcz-9T-ei2" customClass="SCDDetailsView" customModule="PlusPrivacyCommonUI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -111,5 +124,6 @@
     </scenes>
     <resources>
         <image name="arrow_left" width="64" height="64"/>
+        <image name="arrow_up" width="64" height="64"/>
     </resources>
 </document>

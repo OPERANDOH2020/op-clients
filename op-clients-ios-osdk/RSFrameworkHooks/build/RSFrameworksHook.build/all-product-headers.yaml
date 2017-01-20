@@ -8,8 +8,23 @@
       'contents': [
         {
           'type': 'file',
+          'name': "LocationInputSupervisor.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/InputSupervisors/LocationInputSupervisor/LocationInputSupervisor.h"
+        },
+        {
+          'type': 'file',
           'name': "OPMonitor.h",
           'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitor.h"
+        },
+        {
+          'type': 'file',
+          'name': "OPMonitorInputSourceEvent.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.h"
+        },
+        {
+          'type': 'file',
+          'name': "OPMonitorViolationReport.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h"
         },
         {
           'type': 'file',
@@ -20,6 +35,11 @@
           'type': 'file',
           'name': "RSFrameworksHook.h",
           'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/RSFrameworksHook.h"
+        },
+        {
+          'type': 'file',
+          'name': "SupervisorProtocols.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/SupervisorProtocols.h"
         }
       ]
     },

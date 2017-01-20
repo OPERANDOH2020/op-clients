@@ -10,20 +10,22 @@ import Foundation
 import UIKit
 import PlusPrivacyCommonTypes
 
-public class CommonUIBUilder {
-    
-    private class OneDocumentRepository: SCDRepository {
-        private let scd: SCDDocument
-        init(document: SCDDocument) {
-            self.scd = document
-        }
-        
-        func retrieveAllDocuments(with callback: (([SCDDocument]?, NSError?) -> Void)?) {
-            callback?([self.scd], nil)
-        }
-        
+@objc
+public class OneDocumentRepository: NSObject, SCDRepository {
+    private let scd: SCDDocument
+    init(document: SCDDocument) {
+        self.scd = document
     }
     
+    public func retrieveAllDocuments(with callback: (([SCDDocument]?, NSError?) -> Void)?) {
+        callback?([self.scd], nil)
+    }
+    
+}
+
+@objc
+public class CommonUIBUilder: NSObject {
+    @objc
     public static func buildFlow(for repository: SCDRepository, whenExiting: VoidBlock?) -> UIViewController? {
         
         let bundle = Bundle(for: self)
@@ -42,14 +44,12 @@ public class CommonUIBUilder {
                  callbacks: UISCDDocumentsViewControllerCallbacks(whenUserSelectsSCD: { doc in
                     guard let detailsVC = storyboard.instantiateViewController(withIdentifier: "SCDDetailsViewController") as? SCDDetailsViewController else {return}
                     
-                    
                     detailsVC.setupWith(scd: doc) {
                         weakNavgController?.popViewController(animated: true)
                     }
-                    
                     weakNavgController?.pushViewController(detailsVC, animated: true)
                     
-                 }))
+                 }, whenUserSelectsToExit: whenExiting))
         
         
         
