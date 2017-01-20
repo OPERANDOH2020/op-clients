@@ -13,11 +13,11 @@
 var webRequest = chrome.webRequest;
 var HEADERS_TO_STRIP_LOWERCASE = [
     'content-security-policy',
-    'x-frame-options',
+    'x-frame-options'
 ];
 
-
-var activeTabs = [];
+var DependencyManager = require("DependencyManager").DependencyManager;
+//var TabsManager = require("TabsManager").TabsManager;
 
 webRequest.onHeadersReceived.addListener(
     function (details) {
@@ -102,58 +102,4 @@ webRequest.onBeforeSendHeaders.addListener(function(details) {
     },
     {urls: ["<all_urls>"]},
     ["blocking", "requestHeaders"]);
-
-
-chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
-
-    if (tab.url) {
-        if (changeInfo.status === "complete" && tab.url.indexOf(ExtensionConfig.WEBSITE_HOST) != -1) {
-            insertJavascriptFile(tabId, "operando/modules/communication/message-relay.js");
-        }
-    }
-
-    tryPfB(tabId, changeInfo);
-});
-
-
-chrome.tabs.query({url:ExtensionConfig.WEBSITE_HOST+"*"}, function(tabs){
-    tabs.forEach(function(tab){
-        insertJavascriptFile(tab.id, "operando/modules/communication/message-relay.js");
-    });
-});
-
-function tryPfB(tabId, changeInfo) {
-
-    if ( changeInfo.status == "complete") {
-        //activeTabs.push(tabId);
-
-        chrome.tabs.get(tabId, function (tab) {
-            swarmHub.startSwarm("pfb.js", "getWebsiteDeal", tab.url, tab.id);
-        });
-    }
-}
-
-swarmHub.on("pfb.js", "success", function (swarm) {
-    chrome.tabs.get(swarm.tabId, function (tab) {
-        if (tab) {
-            var deal = swarm.deal;
-            var tabId = tab.id;
-            insertJavascriptFile(tabId, "operando/utils/jquery.min.js");
-            insertJavascriptFile(tabId, "operando/utils/jquery.visible.min.js");
-            insertJavascriptFile(tabId, "operando/utils/webui-popover/jquery.webui-popover.js");
-            chrome.tabs.insertCSS(tabId, {file:"operando/utils/webui-popover/jquery.webui-popover.css"});
-            insertJavascriptFile(tabId, "operando/modules/pfb/operando_content.js", function(){
-                chrome.tabs.sendMessage(tabId, {pfbDeal:deal},{}, function(response){
-
-                    if(response!== undefined){
-                        swarmHub.startSwarm("pfb.js", "acceptDeal", deal.serviceId);
-                    }
-
-                });
-            });
-        }
-    });
-});
-
-
 

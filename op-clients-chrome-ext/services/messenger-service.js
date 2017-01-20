@@ -51,21 +51,31 @@ operandoCore
         }
 
         var send = function (){
-
             var action = arguments[0];
-            if(arguments.length == 2){
-                if(typeof arguments[1] === "function"){
+
+            switch (arguments.length) {
+                case 1:
                     port.postMessage({action: action});
-                }
-            }
-            else{
-                port.postMessage({action: action, message: arguments[1]});
+                    break;
+                case 2:
+                    if (typeof arguments[1] === "function") {
+                        port.postMessage({action: action});
+                    } else {
+                        port.postMessage({action: action, message: arguments[1]});
+                    }
+                    break;
+                case 3:
+                    port.postMessage({action: action, message: arguments[1]});
+                    break;
             }
 
             if (!callbacks[action]) {
                 callbacks[action] = [];
             }
-            callbacks[action].push(arguments[arguments.length-1]);
+
+            if(typeof arguments[arguments.length-1] === "function"){
+                callbacks[action].push(arguments[arguments.length-1]);
+            }
         }
 
         port.onMessage.addListener(responseHandler);

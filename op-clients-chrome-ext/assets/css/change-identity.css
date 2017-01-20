@@ -1,0 +1,24 @@
+.pp_identity_popup{
+    min-width: 350px;
+    height: 100px;
+    padding: 10px;
+}
+button.pp_button{
+    background: #FFB400!important;
+    margin: 10px!important;
+    border-radius: 0px!important;
+    font-size: 16px!important;
+    border:none!important;
+    color:#FFF!important;
+    padding: 8px 16px!important;
+}
+
+select.pp_select{
+    color: #000!important;
+    height: 35px!important;
+    box-sizing: content-box!important;
+    padding: 1px!important;
+    font-size: 13px!important;
+    border: none!important;
+    box-shadow: none!important;
+}

@@ -13,7 +13,7 @@
 
 var authenticationService = require("authentication-service").authenticationService;
 var swarmService = require("swarm-service").swarmService;
-
+var portObserversPool = require("observers-pool").portObserversPool;
 var bus = require("bus-service").bus;
 
 var busActions = {
@@ -94,8 +94,8 @@ var busActions = {
 
 chrome.runtime.onConnect.addListener(function (_port) {
     (function(clientPort){
-
-        if (clientPort.name == "OPERANDO_MESSAGER") {
+        portObserversPool.registerPortObserver(clientPort);
+        if (clientPort.name === "OPERANDO_MESSAGER" || clientPort.name === "INPUT_TRACKER" ) {
 
             /**
              * Listen for swarm connection events
@@ -188,7 +188,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
                 }
             });
         }
-        else if(clientPort.name == "PLUSPRIVACY_WEBSITE"){
+        else if(clientPort.name === "PLUSPRIVACY_WEBSITE"){
             clientPort.onMessage.addListener(function (request) {
 
                 if(bus.hasAction(request.action)){
@@ -199,8 +199,8 @@ chrome.runtime.onConnect.addListener(function (_port) {
                         args.push(request.message);
                     }
 
-                    args.push(function(data){
-                        var response = data;
+                    portObserversPool.addPortRequestSubscriber(clientPort, request.action, function(status, response){
+
                         if (clientPort) {
                             clientPort.postMessage({
                                 action: request.action,
@@ -209,19 +209,22 @@ chrome.runtime.onConnect.addListener(function (_port) {
                         }
                     });
 
-                    args.push(function(err){
-                        if (clientPort) {
-                            clientPort.postMessage({
-                                action: request.action,
-                                message: {error: err.message ? err.message : err}
-                            });
-                        }
-                    });
                     action.apply(action, args);
                 }
 
                 clientPort.onDisconnect.addListener(function(){
+                    portObserversPool.unregisterPortObserver(clientPort);
                     clientPort = null;
+                })
+
+            });
+        }
+        else if(clientPort.name === "EVENT-DISPATCHER"){
+            clientPort.onMessage.addListener(function(request){
+                portObserversPool.addPortRequestSubscriber(clientPort, request.action, function(){
+                    clientPort.postMessage({
+                        action: request.action
+                    })
                 })
 
             });

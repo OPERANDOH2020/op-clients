@@ -11,7 +11,7 @@
  */
 
 operandoCore
-    .factory("watchDogService", ["ospService", "cfpLoadingBar", function (ospService, cfpLoadingBar) {
+    .factory("watchDogService", ["ospService", "messengerService", function (ospService, messengerService) {
 
         var FACEBOOK_PRIVACY_URL = "https://www.facebook.com/settings?tab=privacy&section=composer&view";
         var LINKEDIN_PRIVACY_URL = "https://www.linkedin.com/psettings/";
@@ -35,13 +35,9 @@ operandoCore
                         "__rev": null
                     }
                 }, function (response) {
-                    console.log(response);
-
-                    chrome.tabs.executeScript(facebookTabId, {
-                        code: "window.FACEBOOK_PARAMS = " + JSON.stringify(response.template)
-                    }, function () {
-                        insertCSS(facebookTabId, "operando/assets/css/feedback.css");
-                        injectScript(facebookTabId, "operando/modules/osp/writeFacebookSettings.js", ["FeedbackProgress", "jQuery"]);
+                    messengerService.send("insertFacebookIncreasePrivacyScript", {
+                        code: "window.FACEBOOK_PARAMS = " + JSON.stringify(response.template),
+                        tabId: facebookTabId
                     });
                 });
             });
@@ -51,22 +47,18 @@ operandoCore
                     port.onMessage.addListener(function (msg) {
                         if (msg.status == "waitingCommand") {
                             port.postMessage({command: "applySettings", settings: settings});
-                            //cfpLoadingBar.start();
 
                         } else {
                             if (msg.status == "settings_applied") {
-                                //cfpLoadingBar.complete();
                                 jobFinished();
                                 chrome.tabs.remove(facebookTabId);
                                 port.disconnect();
                                 port = null;
-                                //chrome.tabs.update(facebookTabId, {url: "https://www.facebook.com/settings?tab=privacy"});
                             }
                             else {
                                 if (msg.status == "progress") {
                                     console.log(msg.progress);
                                     callback("facebook", msg.progress, settings.length);
-                                    //cfpLoadingBar.set(msg.progress / settings.length);
                                 }
                             }
                         }
@@ -113,35 +105,26 @@ operandoCore
                         "__rev": null
                     }
                 }, function (response) {
-                    console.log(response);
 
-                    chrome.tabs.executeScript(linkedinTabId, {
-                        code: "window.FACEBOOK_PARAMS = " + JSON.stringify(response.template)
-                    }, function () {
-                        insertCSS(linkedinTabId, "operando/assets/css/feedback.css");
-                        injectScript(linkedinTabId, "operando/modules/osp/writeLinkedinSettings.js", ["FeedbackProgress", "jQuery"]);
-                    });
+                    messengerService.send("insertLinkedinIncreasePrivacyScript", {tabId:linkedinTabId});
+
                 });
             });
-
 
             var portListener =  function(port, jobFinished, callback, settings){
                 if (port.name == "applyLinkedinSettings") {
                     port.onMessage.addListener(function (msg) {
                         if (msg.status == "waitingCommand") {
                             port.postMessage({command: "applySettings", settings: settings});
-                            //cfpLoadingBar.start();
                         } else {
                             if (msg.status == "settings_applied") {
-                                //cfpLoadingBar.complete();
                                 jobFinished();
                                 chrome.tabs.remove(linkedinTabId);
                             }
                             else {
                                 if (msg.status == "progress") {
-                                    console.log(msg.progress);
                                     callback("linkedin",msg.progress, settings.length);
-                                    //cfpLoadingBar.set(msg.progress/settings.length);
+
                                 }
                             }
                         }

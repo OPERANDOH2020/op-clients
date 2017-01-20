@@ -25,3 +25,24 @@ function insertJavascriptFile(id, file, callback){
         }
     });
 }
+
+function insertCSS(id, file){
+    chrome.tabs.insertCSS(id, {
+        file: file
+    });
+}
+
+function injectScript(id, file, dependencies, callback) {
+    if (dependencies.length > 0) {
+        dependencies.reverse();
+        var currentDep = dependencies.pop();
+        DependencyManager.resolveDependency(currentDep, function (depFile) {
+            insertJavascriptFile(id, depFile, function () {
+                injectScript(id, file, dependencies, callback);
+            });
+        });
+    }
+    else {
+        insertJavascriptFile(id, file, callback);
+    }
+}

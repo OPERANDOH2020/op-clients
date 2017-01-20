@@ -1,9 +1,10 @@
 var bus = require("bus-service").bus;
 var authenticationService = require("authentication-service").authenticationService;
+var portObserversPool = require("observers-pool").portObserversPool;
 
 var websiteService = exports.websiteService = {
 
-    authenticateUserInExtension: function (data, success_cbk, fail_cbk) {
+    authenticateUserInExtension: function (data) {
         var daysUntilCookieExpire = 1;
 
         if(data.remember && data.remember === true){
@@ -13,12 +14,9 @@ var websiteService = exports.websiteService = {
         Cookies.set("userId", data.userId, { expires: daysUntilCookieExpire });
 
         authenticationService.restoreUserSession(function () {
-
+            chrome.runtime.openOptionsPage();
         }, function () {
             //status.fail = "fail";
-            if(fail_cbk){
-                fail_cbk();
-            }
 
         }, function () {
             //status.error = "error";
@@ -27,29 +25,29 @@ var websiteService = exports.websiteService = {
             //status.reconnect = "reconnect";
 
         });
-
-        authenticationService.getCurrentUser(function(){
-            chrome.runtime.openOptionsPage();
-            if(success_cbk){
-                success_cbk();
-            }
-        });
     },
 
-    getCurrentUserLoggedInInExtension:function(callback){
-        callback(authenticationService.getUser());
+    getCurrentUserLoggedInInExtension:function(){
+        portObserversPool.trigger("getCurrentUserLoggedInInExtension", authenticationService.getUser());
     },
 
     goToDashboard:function(){
         chrome.runtime.openOptionsPage();
     },
 
-    logout:function(message,callback){
-        authenticationService.disconnectUser(callback);
+    logout:function(){
+        authenticationService.disconnectUser(   function(message){
+            portObserversPool.trigger("logout",message);
+        });
     },
 
-    loggedIn: function(message, callback){
-        authenticationService.getCurrentUser(callback);
+    loggedIn: function(){
+        authenticationService.getCurrentUser(
+            function(message){
+                portObserversPool.trigger("loggedIn",message);
+            }
+
+        );
     }
 
 }
