@@ -16,7 +16,7 @@ function sendMessage(message) {
 }
 
 var tooltipTemplate = "<div class='pp_identity_popup'>"
-    + "<div>Whould you like to use a substitute identity?</div>"
+    + "<div class='pp-popup-header'>Whould you like to use a substitute identity?</div><br/>"
     + "<select class='pp_select' id='pp_identities'>"
     + "</select>"
     + "<button id='accept_identity_substitution' class='pp_button'>Yes</button>"
@@ -30,7 +30,6 @@ function validateEmail(email) {
         return re.test(email);
     }
     else {
-        console.log(email, myRealIdentity.email);
         return email === myRealIdentity.email;
     }
 }
@@ -49,10 +48,9 @@ Preferences.getPreferences("websitePreferences", {
     url: window.location.hostname,
     accept: false
 }, function (preferences) {
-    console.log(preferences);
-    //if (Object.keys(preferences).length === 0) {
-        var inputsPool = new InputsPool("input[type=text], input[type=email]", checkElement);
-    //}
+    if (Object.keys(preferences).length === 0) {
+        var inputsPool = new ElementsPool("input[type=text], input[type=email]", checkElement);
+    }
 });
 
 
@@ -66,7 +64,6 @@ var checkElement = function (element) {
 
         var checkIfEmailIsValid = function () {
             if (validateEmail(element.val())) {
-
                  element
                     .tooltipster({
                         contentAsHTML: true,
@@ -75,6 +72,7 @@ var checkElement = function (element) {
                         trigger: "custom",
                         interactive: true,
                         animationDuration:200,
+                        zIndex:2147483647,
                         functionInit: function (instance, helper) {
 
                             var content = instance.content();
@@ -95,6 +93,10 @@ var checkElement = function (element) {
                                 console.log(element.tooltipster("status"));
                                 element.tooltipster('open');
                             });
+
+                            $(content).on("click", function(event){
+                                event.stopPropagation();
+                            })
 
                             instance.content(content);
 

@@ -28,7 +28,7 @@ DOMElement.prototype = {
 }
 
 
-var InputsPool = function (selector, task) {
+var ElementsPool = function (selector, task) {
     var self = this;
     this.selector = selector;
     this.inputElements = [];
@@ -53,7 +53,7 @@ var InputsPool = function (selector, task) {
     handleVisibilityChange();
 }
 
-InputsPool.prototype = {
+ElementsPool.prototype = {
     addInputElement: function (el) {
         var self = this;
         var htmlElementAlreadyExists = false;

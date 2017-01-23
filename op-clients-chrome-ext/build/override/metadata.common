@@ -39,6 +39,7 @@ testScripts = ../ext/common.js
 permissions = http://*/* https://*/*
 
 webAccessible = operando/assets/images/icons/operando_24.png
+  operando/assets/images/icons/abp-19.png
 
 [contentScripts]
 document_start = ext/common.js ext/content.js cssProperties.js include.preload.js

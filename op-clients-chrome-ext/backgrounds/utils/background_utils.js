@@ -12,8 +12,10 @@
 
 
 function insertJavascriptFile(id, file, callback){
+    console.log(file);
     chrome.tabs.executeScript(id, {
-        file: file
+        file: file,
+        allFrames:true
     }, function () {
         if (chrome.runtime.lastError) {
             console.error(chrome.runtime.lastError.message);
@@ -28,7 +30,8 @@ function insertJavascriptFile(id, file, callback){
 
 function insertCSS(id, file){
     chrome.tabs.insertCSS(id, {
-        file: file
+        file: file,
+        allFrames:true
     });
 }
 

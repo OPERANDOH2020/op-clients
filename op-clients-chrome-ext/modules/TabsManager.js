@@ -46,19 +46,13 @@ var TabsManager = function(){
         }
     });
 
-    chrome.tabs.onActivated.addListener(function(objectInfo){
-
-
-
-    });
-
     chrome.tabs.onCreated.addListener(function(tab){
         this.browserTabs.push(tab);
     })
 };
 
 function suggestSubstituteIdentities(tabId){
-    injectScript(tabId, "operando/modules/identity/input-track.js", ["jQuery","Tooltipster","UserPrefs","EventDispatcher","DOMElementProvider"], function(){
+    injectScript(tabId, "operando/modules/identity/input-track.js", ["jQuery","Tooltipster","UserPrefs","DOMElementProvider"], function(){
         insertCSS(tabId,"operando/assets/css/change-identity.css");
         insertCSS(tabId,"operando/utils/tooltipster/tooltipster.bundle.min.css");
         insertCSS(tabId,"operando/utils/tooltipster/tooltipster-plus-privacy.css");
