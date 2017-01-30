@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SupervisorProtocols.h"
+#import "Common.h"
 
 typedef void (^URLRequestHookCallback)(NSURLRequest*);
 
-@interface NSURLSessionHook : NSObject
-+(void)hookWithCallback:(URLRequestHookCallback)callback;
+@interface NSURLSessionSupervisor: NSObject <InputSourceSupervisor>
+
 @end

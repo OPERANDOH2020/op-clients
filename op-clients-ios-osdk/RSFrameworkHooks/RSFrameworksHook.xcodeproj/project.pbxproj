@@ -21,11 +21,14 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		9807875C1E3F53280099B642 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9807875B1E3F53280099B642 /* PlusPrivacyCommonUI.framework */; };
+		982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */; };
+		982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */; };
 		98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* RSFrameworksHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E8FB1DEC6F0D0095CA30 /* JRSwizzle.h */; };
 		9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */; };
-		9863E9021DEC70E60095CA30 /* NSURLSessionHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E9001DEC70E60095CA30 /* NSURLSessionHook.h */; };
-		9863E9031DEC70E60095CA30 /* NSURLSessionHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E9011DEC70E60095CA30 /* NSURLSessionHook.m */; };
+		9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */; };
+		9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */; };
 		987F83721E322AA90058633C /* OPMonitorViolationReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83701E322AA90058633C /* OPMonitorViolationReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83711E322AA90058633C /* OPMonitorViolationReport.m */; };
 		987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,20 +36,22 @@
 		987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F837C1E3241930058633C /* LocationInputSupervisor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		987F837F1E3241930058633C /* LocationInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F837D1E3241930058633C /* LocationInputSupervisor.m */; };
 		987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83801E3242BC0058633C /* SupervisorProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		987F83871E327AE30058633C /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987F83861E327AE30058633C /* PlusPrivacyCommonUI.framework */; };
 		989E47AC1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989E47AB1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework */; };
 		98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603E21E2F800B00E59A42 /* OPMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603E31E2F800B00E59A42 /* OPMonitor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9807875B1E3F53280099B642 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
+		982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProximityInputSupervisor.h; path = ProximityInputSupervisor/ProximityInputSupervisor.h; sourceTree = "<group>"; };
+		982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProximityInputSupervisor.m; path = ProximityInputSupervisor/ProximityInputSupervisor.m; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSFrameworksHook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* RSFrameworksHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSFrameworksHook.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9863E8FB1DEC6F0D0095CA30 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
-		9863E9001DEC70E60095CA30 /* NSURLSessionHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSURLSessionHook.h; path = NSURLSessionHook/NSURLSessionHook.h; sourceTree = "<group>"; };
-		9863E9011DEC70E60095CA30 /* NSURLSessionHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSURLSessionHook.m; path = NSURLSessionHook/NSURLSessionHook.m; sourceTree = "<group>"; };
+		9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSURLSessionSupervisor.h; path = NSURLSessionHook/NSURLSessionSupervisor.h; sourceTree = "<group>"; };
+		9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSURLSessionSupervisor.m; path = NSURLSessionHook/NSURLSessionSupervisor.m; sourceTree = "<group>"; };
 		987F836F1E3212140058633C /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Common.h; path = Common/Common.h; sourceTree = "<group>"; };
 		987F83701E322AA90058633C /* OPMonitorViolationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorViolationReport.h; path = OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h; sourceTree = "<group>"; };
 		987F83711E322AA90058633C /* OPMonitorViolationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorViolationReport.m; path = OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.m; sourceTree = "<group>"; };
@@ -55,7 +60,6 @@
 		987F837C1E3241930058633C /* LocationInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationInputSupervisor.h; path = InputSupervisors/LocationInputSupervisor/LocationInputSupervisor.h; sourceTree = "<group>"; };
 		987F837D1E3241930058633C /* LocationInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationInputSupervisor.m; path = InputSupervisors/LocationInputSupervisor/LocationInputSupervisor.m; sourceTree = "<group>"; };
 		987F83801E3242BC0058633C /* SupervisorProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupervisorProtocols.h; path = Common/SupervisorProtocols.h; sourceTree = "<group>"; };
-		987F83861E327AE30058633C /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		989E47AB1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		98D603E21E2F800B00E59A42 /* OPMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitor.h; path = OPMonitor/OPMonitor.h; sourceTree = "<group>"; };
 		98D603E31E2F800B00E59A42 /* OPMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitor.m; path = OPMonitor/OPMonitor.m; sourceTree = "<group>"; };
@@ -66,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				987F83871E327AE30058633C /* PlusPrivacyCommonUI.framework in Frameworks */,
+				9807875C1E3F53280099B642 /* PlusPrivacyCommonUI.framework in Frameworks */,
 				989E47AC1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +78,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		980787761E3F614C0099B642 /* NetworkSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */,
+				9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */,
+			);
+			name = NetworkSupervisor;
+			sourceTree = "<group>";
+		};
+		982175C81E3FA07F00495627 /* ProximityInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */,
+				982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */,
+			);
+			name = ProximityInputSupervisor;
+			sourceTree = "<group>";
+		};
 		98584F331D3F9E18009FB89F = {
 			isa = PBXGroup;
 			children = (
@@ -93,7 +115,7 @@
 		98584F3F1D3F9E18009FB89F /* RSFrameworksHook */ = {
 			isa = PBXGroup;
 			children = (
-				987F83861E327AE30058633C /* PlusPrivacyCommonUI.framework */,
+				9807875B1E3F53280099B642 /* PlusPrivacyCommonUI.framework */,
 				989E47AB1E2FCBE2005ECE53 /* PlusPrivacyCommonTypes.framework */,
 				987F836E1E3211F90058633C /* Common */,
 				98D603E11E2F7FEC00E59A42 /* OPMonitor */,
@@ -118,8 +140,6 @@
 		9863E8FF1DEC70CC0095CA30 /* NSURLSessionHook */ = {
 			isa = PBXGroup;
 			children = (
-				9863E9001DEC70E60095CA30 /* NSURLSessionHook.h */,
-				9863E9011DEC70E60095CA30 /* NSURLSessionHook.m */,
 			);
 			name = NSURLSessionHook;
 			sourceTree = "<group>";
@@ -156,6 +176,8 @@
 		987F837A1E3241250058633C /* InputSupervisors */ = {
 			isa = PBXGroup;
 			children = (
+				982175C81E3FA07F00495627 /* ProximityInputSupervisor */,
+				980787761E3F614C0099B642 /* NetworkSupervisor */,
 				987F837B1E3241300058633C /* LocationInputSupervisor */,
 				987F83801E3242BC0058633C /* SupervisorProtocols.h */,
 			);
@@ -192,9 +214,10 @@
 				987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */,
 				987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */,
 				98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */,
+				982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */,
 				98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */,
 				9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */,
-				9863E9021DEC70E60095CA30 /* NSURLSessionHook.h in Headers */,
+				9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,12 +308,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9863E9031DEC70E60095CA30 /* NSURLSessionHook.m in Sources */,
+				9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */,
 				987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */,
 				987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */,
 				98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */,
 				987F837F1E3241930058633C /* LocationInputSupervisor.m in Sources */,
 				9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */,
+				982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +427,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.GenericFrameworkProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.FrameworkHooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -424,7 +448,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.GenericFrameworkProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.FrameworkHooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

@@ -8,12 +8,17 @@
 
 #import "OPMonitor.h"
 #import "LocationInputSupervisor.h"
+#import "NSURLSessionSupervisor.h"
+#import "ProximityInputSupervisor.h"
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
 
 @interface OPMonitor() <InputSupervisorDelegate>
 
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
+
+@property (strong, nonnull) NSArray<InputSourceSupervisor> *supervisorsArray;
+
 @end
 
 @implementation OPMonitor
@@ -30,6 +35,7 @@
 
 -(void)beginMonitoringWithAppDocument:(NSDictionary *)document {
     self.document = [[SCDDocument alloc] initWithScd:document];
+    self.supervisorsArray = [self buildSupervisors];
 }
 
 
@@ -37,29 +43,54 @@
     if (self.handle == nil) {
         self.handle = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         [self.handle setTitle:@"PP" forState:UIControlStateNormal];
-        
-        [self.handle addTarget:self action:@selector(didPressHandle:) forControlEvents:UIControlEventAllTouchEvents];
+        self.handle.backgroundColor = [UIColor redColor];
+        [self.handle addTarget:self action:@selector(didPressHandle:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return  self.handle;
 }
 
-
-
-
 -(void)didPressHandle:(id)sender {
-    OneDocumentRepository *repo = [[OneDocumentRepository alloc] init];
     
-    UIViewController *vc = [CommonUIBUilder buildFlowFor:[OneDocumentRepository alloc]] whenExiting:<#^(void)whenExiting#>
+    OneDocumentRepository *repo = [[OneDocumentRepository alloc] initWithDocument:self.document];
+    
+    __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
+    
+    
+    __block UIViewController *vc = nil;
+    vc = [CommonUIBUilder buildFlowFor:repo whenExiting:^{
+        [rootViewController ppRemoveChildContentController:vc];
+    }];
+    
+    [rootViewController ppAddChildContentController:vc];
 }
 
 
 #pragma mark - 
 -(void)newViolationReported:(OPMonitorViolationReport *)report {
+    __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
+
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlusPrivacy" message:report.violationDetails delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
+        [UINotificationViewController presentBadNotificationMessage:report.violationDetails inController:rootViewController atDistanceFromTop:22];
     });
+}
+
+#pragma mark -
+
+-(NSArray<id<InputSourceSupervisor>>*)buildSupervisors {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    NSArray *supervisorClasses = @[[LocationInputSupervisor class],
+                                   [NSURLSessionSupervisor class],
+                                   [ProximityInputSupervisor class]];
+    
+    for (Class class in supervisorClasses) {
+        id supervisor = [[class alloc] init];
+        [supervisor reportToDelegate:self analyzingSCD:self.document];
+        [result addObject:supervisor];
+    }
+    
+    return  result;
 }
 
 @end

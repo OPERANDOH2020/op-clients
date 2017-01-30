@@ -13,14 +13,13 @@ import PlusPrivacyCommonTypes
 @objc
 public class OneDocumentRepository: NSObject, SCDRepository {
     private let scd: SCDDocument
-    init(document: SCDDocument) {
+    public init(document: SCDDocument) {
         self.scd = document
     }
     
     public func retrieveAllDocuments(with callback: (([SCDDocument]?, NSError?) -> Void)?) {
         callback?([self.scd], nil)
     }
-    
 }
 
 @objc
@@ -50,9 +49,6 @@ public class CommonUIBUilder: NSObject {
                     weakNavgController?.pushViewController(detailsVC, animated: true)
                     
                  }, whenUserSelectsToExit: whenExiting))
-        
-        
-        
         return navgController
     }
     

@@ -142,6 +142,7 @@ SWIFT_PROTOCOL("_TtP19PlusPrivacyCommonUI13SCDRepository_")
 
 SWIFT_CLASS("_TtC19PlusPrivacyCommonUI21OneDocumentRepository")
 @interface OneDocumentRepository : NSObject <SCDRepository>
+- (nonnull instancetype)initWithDocument:(SCDDocument * _Nonnull)document OBJC_DESIGNATED_INITIALIZER;
 - (void)retrieveAllDocumentsWith:(void (^ _Nullable)(NSArray<SCDDocument *> * _Nullable, NSError * _Nullable))callback;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
@@ -160,6 +161,24 @@ SWIFT_CLASS("_TtC19PlusPrivacyCommonUI19PPNibDesignableView")
 
 @interface UIColor (SWIFT_EXTENSION(PlusPrivacyCommonUI))
 + (UIColor * _Nonnull)colorWith:(float)red :(float)green :(float)blue :(float)alpha;
+@end
+
+@class NSBundle;
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI28UINotificationViewController")
+@interface UINotificationViewController : UIViewController
+- (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)animated;
++ (void)presentNotificationMessage:(NSString * _Nonnull)message inController:(UIViewController * _Nonnull)hostController atDistanceFromTop:(CGFloat)topDistance;
++ (void)presentBadNotificationMessage:(NSString * _Nonnull)message inController:(UIViewController * _Nonnull)hostController atDistanceFromTop:(CGFloat)topDistance;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface UIViewController (SWIFT_EXTENSION(PlusPrivacyCommonUI))
+- (void)ppAddChildContentController:(UIViewController * _Nonnull)controller;
+- (void)ppRemoveChildContentController:(UIViewController * _Nonnull)controller;
 @end
 
 #pragma clang diagnostic pop

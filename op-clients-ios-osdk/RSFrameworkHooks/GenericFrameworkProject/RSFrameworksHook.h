@@ -17,5 +17,5 @@ FOUNDATION_EXPORT const unsigned char RSFrameworksHookVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <GenericFrameworkProject/PublicHeader.h>
 
 #import "SupervisorProtocols.h"
-#import "LocationInputSensor.h"
+#import "OPMonitor.h"
 #import "OPMonitorViolationReport.h"

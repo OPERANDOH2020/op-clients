@@ -8,29 +8,43 @@
 
 import UIKit
 
+
+public extension UIViewController {
+    
+    public func ppAddChildContentController(_ controller: UIViewController) {
+        self.addChildViewController(controller)
+        controller.view.frame = self.view.bounds;
+        self.view.addSubview(controller.view)
+        controller.didMove(toParentViewController: self)
+    }
+    
+    public func ppRemoveChildContentController(_ controller: UIViewController){
+        controller.willMove(toParentViewController: nil);
+        controller.view.removeFromSuperview();
+        controller.removeFromParentViewController();
+    }
+    
+}
+
 @IBDesignable
 public class PPNibDesignableView: UIView
 {
     
     private  var _contentView : UIView?;
-    public var contentView : UIView?
-    {
-        get
-        {
+    public var contentView : UIView? {
+        get {
             return _contentView;
         }
     }
     
     
-    public func commonInit()
-    {
+    public func commonInit() {
         let myClass : AnyClass = self.classForCoder;
         var nibName : NSString = NSStringFromClass(myClass) as NSString;
         
         let bundle : Bundle = Bundle(for: myClass);
         
-        if let targetName = bundle.infoDictionary?["CFBundleName"] as? String
-        {
+        if let targetName = bundle.infoDictionary?["CFBundleName"] as? String {
             nibName = nibName.replacingOccurrences(of: targetName + ".", with: "") as NSString;
         }
         
@@ -38,11 +52,9 @@ public class PPNibDesignableView: UIView
         
         _contentView = nib.instantiate(withOwner: self, options: nil).first as? UIView;
         
-        if _contentView != nil
-        {
+        if _contentView != nil {
             PPNibDesignableView.constrainView(view: _contentView!, inHostView: self);
         }
-        
     }
     
     static func constrainView(view: UIView, inHostView host:UIView) {

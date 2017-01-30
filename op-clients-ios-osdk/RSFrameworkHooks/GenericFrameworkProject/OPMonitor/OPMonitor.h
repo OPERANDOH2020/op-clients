@@ -14,7 +14,7 @@
 +(instancetype __nonnull)sharedInstance;
 
 -(void)beginMonitoringWithAppDocument:(NSDictionary* __nonnull)document;
--(UIView*)getHandle;
 
+-(UIView*)getHandle;
 
 @end
