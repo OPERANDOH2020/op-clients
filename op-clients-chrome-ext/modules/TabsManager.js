@@ -45,10 +45,6 @@ var TabsManager = function(){
             }
         }
     });
-
-    chrome.tabs.onCreated.addListener(function(tab){
-        this.browserTabs.push(tab);
-    })
 };
 
 function suggestSubstituteIdentities(tabId){

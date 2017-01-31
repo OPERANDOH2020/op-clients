@@ -11,7 +11,7 @@
  */
 
 
-angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService','$validation', function($scope, messengerService, $validationProvider){
+angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService','i18nService', function($scope, messengerService, i18nService){
 
     var defaultUser = {remember_me:true};
 
@@ -53,12 +53,11 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
 
     securityErrorFunction = function (error) {
 
-        if (error === "account_not_activated") {
-            $scope.info.message = 'Account was not activated.';
+        $scope.info.message = i18nService._(error);
+
+        if (error === "accountNotActivated") {
+            $scope.info.message = i18nService._(error);
             $scope.showResendActivationCode = true;
-        }
-        else {
-            $scope.info.message = 'Invalid email or password...';
         }
 
         $scope.info.status = "error";
@@ -193,7 +192,7 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
         }
 
         var errorFunction = function(errorMessage){
-            $scope.info.message = errorMessage;
+            $scope.info.message = i18nService._(errorMessage);
             $scope.info.status = "error";
             $scope.$apply();
         }
@@ -208,8 +207,7 @@ angular.module("op-popup").controller("loginCtrl", ['$scope', 'messengerService'
                 errorFunction(response.message);
             }
         });
-
-    }
+    };
 
     $scope.$watch('loginAreaState', function(){
         if($scope.info.status == "error"){

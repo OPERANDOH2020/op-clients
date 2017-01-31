@@ -11,7 +11,8 @@
  */
 
 var ExtensionConfig = {
-    OPERANDO_SERVER_HOST:"192.168.100.86",
+    SERVER_HOST_PROTOCOL:"http",
+    OPERANDO_SERVER_HOST:"localhost",
     //OPERANDO_SERVER_HOST:"212.24.98.215",
     OPERANDO_SERVER_PORT:8080,
     WEBSITE_HOST:"localhost"

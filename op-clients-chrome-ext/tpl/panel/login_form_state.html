@@ -10,27 +10,26 @@
             <div style="margin-bottom: 25px" class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                 <input type="email" id="user_email" validator="email" required autofocus ng-model="user.email"
-                       placeholder="Email" class="form-control"/>
+                       placeholder="{{'email'|i18n}}" class="form-control"/>
             </div>
 
 
             <div style="margin-bottom: 25px" class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                 <input type="password" id="user_pass" validator="minlength=8" ng-model="user.password"
-                       placeholder="Password" class="form-control"/>
+                       placeholder="{{'password'|i18n}}" class="form-control"/>
             </div>
-
 
             <div class="input-group">
                 <div class="row">
                     <div class="col-xs-6">
                         <label>
-                            <input type="checkbox" ng-model="user.remember_me"/> <span>Keep me logged in</span>
+                            <input type="checkbox" ng-model="user.remember_me"/> <span>{{"keepMeLoggedIn"|i18n}}</span>
                         </label>
                     </div>
 
                     <div class="col-xs-6">
-                        <a id="forgot-password" href="#" ng-click="show_forgot_password()">Forgot Password</a>
+                        <a id="forgot-password" href="#" ng-click="show_forgot_password()">{{"forgotPassword"|i18n}}</a>
                     </div>
 
                 </div>
@@ -41,10 +40,10 @@
             <div class="form_submit user_actions">
                 <div class="row">
                     <div class="col-xs-7">
-                        <button ng-click="login()" type="submit" ng-disabled="requestIsProcessed">Sign In</button>
+                        <button ng-click="login()" type="submit" ng-disabled="requestIsProcessed">{{"signIn"|i18n}}</button>
                     </div>
                     <div class="col-xs-5">
-                        <button ng-click="cancel()" type="submit">Cancel</button>
+                        <button ng-click="cancel()" type="submit">{{"cancel"|i18n}}</button>
                     </div>
                 </div>
             </div>

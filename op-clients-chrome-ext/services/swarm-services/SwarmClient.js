@@ -19,12 +19,19 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
     var nrAttemptReconnect = 2;
     var currentAttemptToReconnect = 0;
     var connectionString;
-    if(useSocketIo){
-        connectionString ="https://"+host + ":" + port;
-    }else{
-        connectionString ="ws://"+host + ":" + port;
-    }
+    var protocol = null;
 
+    if (useSocketIo) {
+        if (host === "localhost" || host === "127.0.0.1") {
+            protocol = "http";
+        }
+        else {
+            protocol = "https";
+        }
+    } else {
+        protocol = "ws";
+    }
+    connectionString = protocol+"://"+host + ":" + port;
     var requestHandleCount = {};
 
 

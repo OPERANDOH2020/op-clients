@@ -12,7 +12,6 @@
 
 
 (function () {
-
     var handleClick = function () {
         var abpCtn = document.getElementById("wrapperabp");
         var expandIcon = document.getElementById("expand_abp");
@@ -21,36 +20,29 @@
             abpCtn.classList.toggle('visible');
             expandIcon.classList.toggle('expanded');
         });
-
     }
 
     function init() {
         handleClick();
         //close icon
-        document.getElementById("close_popup").addEventListener("click", function(){
+        document.getElementById("close_popup").addEventListener("click", function () {
             window.close();
         });
 
-        var backgroundPage = ext.backgroundPage.getWindow();
-        var require = backgroundPage.require;
-        var Prefs = require("prefs").Prefs;
-
-        function updateOperandoStats(element, i18nkey, stats) {
+        function updateI18n(element, i18nkey, stats) {
             i18n.setElementText(element, i18nkey, stats);
         }
 
-
-        var unsecuredFollowedLinksElement = document.getElementById("blocked-links");
-        var unsecuredFollowedLinks = Prefs.unsecured_links_followed;
-
-        var unsecuredAcceptedSubmitsElement = document.getElementById("blocked-submits");
-        var unsecuredAcceptedSubmits = Prefs.unsecured_submits;
-
-        updateOperandoStats(unsecuredFollowedLinksElement, "blocked_links", [unsecuredFollowedLinks]);
-        updateOperandoStats(unsecuredAcceptedSubmitsElement, "blocked_submits", [unsecuredAcceptedSubmits]);
-
+        var operandoABP = document.getElementById("operando_abp");
+        jQuery(operandoABP).find("span[class^='i18n_']").each(function (index, item) {
+            var classList = Array.from(item.classList);
+            var i18nClass = classList.find(function (item) {
+                return item.substr(0, 5) === "i18n_";
+            });
+            updateI18n(item, i18nClass.substr(5));
+        })
     }
 
-    window.addEventListener("DOMContentLoaded", init, false);
+    window.addEventListener("PopupDOMContentLoaded", init, false);
 
 })();

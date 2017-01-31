@@ -11,8 +11,8 @@
  */
 
 angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClickPrivacy',
-    'notifications', 'osp', 'angularModalService', 'operandoCore', 'schemaForm', 'abp', 'ui.router',
-    'settingEditor', 'oc.lazyLoad','angular-loading-bar','UIComponent','login','ui.select',
+    'notifications', 'osp', 'angularModalService', 'operandoCore', 'schemaForm', 'abp',
+    'settingEditor','angular-loading-bar','UIComponent','login','ui.select',
     'ngAnimate','ngMessages','datatables','ngResource'])
     .config([
         '$compileProvider',

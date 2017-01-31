@@ -10,4 +10,4 @@
  * Initially developed in the context of OPERANDO EU project www.operando.eu
  */
 
-var operandoCore = angular.module("operandoCore",['ngCookies']);
+var operandoCore = angular.module("operandoCore",['ngCookies','ui.router','oc.lazyLoad']);

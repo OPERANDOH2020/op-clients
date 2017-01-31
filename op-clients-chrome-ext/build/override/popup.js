@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Adblock Plus.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 var backgroundPage = ext.backgroundPage.getWindow();
 var require = backgroundPage.require;
 
@@ -136,4 +135,4 @@ function toggleCollapse(event)
     collapser.parentNode.classList.toggle("collapsed");
 }
 
-document.addEventListener("DOMContentLoaded", onLoad, false);
+window.addEventListener("PopupDOMContentLoaded", onLoad, false);

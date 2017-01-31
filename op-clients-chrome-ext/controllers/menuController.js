@@ -12,6 +12,13 @@
 
 
 angular.module("op-popup").
-controller("menuCtrl", ["$scope", function ($scope) {
+controller("menuCtrl", ["$scope","$window","$timeout", function ($scope, $window,$timeout) {
+
+    $scope.initPopup = function(){
+        $timeout(function(){
+            $window.dispatchEvent(new Event("PopupDOMContentLoaded"));
+        });
+
+    }
 
 }]);
