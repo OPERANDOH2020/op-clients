@@ -10,6 +10,8 @@
 #import "LocationInputSupervisor.h"
 #import "NSURLSessionSupervisor.h"
 #import "ProximityInputSupervisor.h"
+#import "PedometerInputSupervisor.h"
+
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
 
 @interface OPMonitor() <InputSupervisorDelegate>
@@ -82,7 +84,8 @@
     
     NSArray *supervisorClasses = @[[LocationInputSupervisor class],
                                    [NSURLSessionSupervisor class],
-                                   [ProximityInputSupervisor class]];
+                                   [ProximityInputSupervisor class],
+                                   [PedometerInputSupervisor class]];
     
     for (Class class in supervisorClasses) {
         id supervisor = [[class alloc] init];

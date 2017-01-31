@@ -194,6 +194,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 + (NSString * _Nonnull)Barometer;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Force;)
 + (NSString * _Nonnull)Force;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Pedometer;)
++ (NSString * _Nonnull)Pedometer;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Magnetometer;)
++ (NSString * _Nonnull)Magnetometer;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull namesPerSensorType;)
 + (NSDictionary<NSString *, NSString *> * _Nonnull)namesPerSensorType;
 + (BOOL)isValidSensorTypeWithSensorType:(NSString * _Nonnull)sensorType;

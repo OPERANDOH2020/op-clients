@@ -7,8 +7,10 @@
 //
 
 #import "LocationInputSupervisor.h"
+#import "CommonUtils.h"
 #import <CoreLocation/CoreLocation.h>
 #import <JRSwizzle.h>
+
 
 typedef void (^LocationCallbackWithInfo)(NSDictionary*);
 LocationCallbackWithInfo _rsHookGlobalLocationCallback;
@@ -83,7 +85,7 @@ typedef enum : NSUInteger {
 -(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
     self.delegate = delegate;
     self.document = document;
-    self.locationSensor = [LocationInputSupervisor extractLocationSensorFrom:document];
+    self.locationSensor = [CommonUtils extractSensorOfType:SensorType.Location from:document.accessedSensors];
     
     __weak LocationInputSupervisor *weakSelf = self;
     _rsHookGlobalLocationCallback = ^(NSDictionary *dict){
@@ -106,15 +108,7 @@ typedef enum : NSUInteger {
 }
 
 
-+(AccessedSensor*)extractLocationSensorFrom:(SCDDocument*)document{
-    for (AccessedSensor *sensor in document.accessedSensors) {
-        if ([sensor.sensorType isEqualToString:SensorType.Location]) {
-            return sensor;
-        }
-    }
-    
-    return  nil;
-}
+
 
 
 -(OPMonitorViolationReport*)detectUsesLocationWhenNotEvenSpecified:(LocationStatus)status {

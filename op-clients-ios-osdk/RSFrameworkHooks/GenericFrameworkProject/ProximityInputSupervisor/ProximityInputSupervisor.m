@@ -7,6 +7,8 @@
 //
 
 #import "ProximityInputSupervisor.h"
+#import "CommonUtils.h"
+
 #import <UIKit/UIKit.h>
 #import "JRSwizzle.h"
 #import "Common.h"
@@ -52,6 +54,7 @@ ProximityCallback _globalProximityCallback;
     
     self.delegate = delegate;
     self.document = document;
+    self.proximitySensor = [CommonUtils extractSensorOfType:SensorType.Proximity from:document.accessedSensors];
     
     __weak typeof(self) weakSelf = self;
     _globalProximityCallback = ^void(NSDictionary* dict){
@@ -68,16 +71,5 @@ ProximityCallback _globalProximityCallback;
     [self.delegate newViolationReported:[[OPMonitorViolationReport alloc] initWithDetails:@"The app uses the proxmity sensor even though it is not specified in the self compliance document!" violationType:TypeUnregisteredSensorAccessed]];
 }
 
-+(AccessedSensor*)findProximitySensorInDocument:(SCDDocument*)document{
-    
-    
-    for (AccessedSensor *sensor in document.accessedSensors) {
-        if ([sensor.sensorType isEqualToString:SensorType.Proximity]) {
-            return sensor;
-        }
-    }
-    
-    return nil;
-}
 
 @end

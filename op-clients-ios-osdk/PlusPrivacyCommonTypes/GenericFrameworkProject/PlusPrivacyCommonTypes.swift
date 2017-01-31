@@ -34,6 +34,8 @@ public class SensorType: NSObject {
     public static let TouchID = "touchID"
     public static let Barometer = "bar"
     public static let Force = "force"
+    public static let Pedometer = "pedo"
+    public static let Magnetometer = "magneto"
     
     public static let namesPerSensorType: [String: String] = [ SensorType.Camera : "Camera",
                                                                SensorType.Accelerometer : "Accelerometer",
