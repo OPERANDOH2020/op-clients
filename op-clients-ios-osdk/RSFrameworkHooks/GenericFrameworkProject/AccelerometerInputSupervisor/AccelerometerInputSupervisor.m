@@ -12,7 +12,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "JRSwizzle.h"
 
-typedef void(^AccelerometerCallback)(NSDictionary*);
+typedef void(^AccelerometerCallback)();
 AccelerometerCallback _globalAccelerometerCallback;
 
 @interface CMMotionManager(rsHook_Accelerometer)
@@ -59,7 +59,7 @@ AccelerometerCallback _globalAccelerometerCallback;
 }
 
 
--(void)processAccelerometerStatus:(NSDictionary*)statusDict {
+-(void)processAccelerometerStatus{
     OPMonitorViolationReport *report = nil;
     if ((report = [self checkUnspecifiedAccess])) {
         [self.delegate newViolationReported:report];

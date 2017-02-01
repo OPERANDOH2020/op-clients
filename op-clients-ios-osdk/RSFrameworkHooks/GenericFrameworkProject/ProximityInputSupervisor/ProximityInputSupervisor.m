@@ -13,7 +13,7 @@
 #import "JRSwizzle.h"
 #import "Common.h"
 
-typedef void(^ProximityCallback)(NSDictionary*);
+typedef void(^ProximityCallback)();
 
 ProximityCallback _globalProximityCallback;
 

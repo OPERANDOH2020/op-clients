@@ -11,7 +11,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "JRSwizzle.h"
 
-typedef void(^PedometerCallback)(NSDictionary*);
+typedef void(^PedometerCallback)();
 PedometerCallback _globalPedometerCallback;
 
 
@@ -56,12 +56,12 @@ PedometerCallback _globalPedometerCallback;
     self.pedoSensor = [CommonUtils extractSensorOfType:SensorType.Pedometer from:document.accessedSensors];
     
     __weak typeof(self) weakSelf = self;
-    _globalPedometerCallback = ^void(NSDictionary* status) {
-        [weakSelf processPedometerStatus:status];
+    _globalPedometerCallback = ^void() {
+        [weakSelf processPedometerStatus];
     };
 }
 
--(void)processPedometerStatus:(NSDictionary*)statusDict {
+-(void)processPedometerStatus {
     
     OPMonitorViolationReport *report = nil;
     if ((report = [self checkUnspecifiedAccess])) {

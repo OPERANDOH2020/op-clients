@@ -9,6 +9,7 @@
 #ifndef Common_h
 #define Common_h
 
-#define SAFECALL(x,y) if(x){x(y);}
+#define SAFECALL(x, ...) if(x){x(__VA_ARGS__);}
+
 
 #endif /* Common_h */

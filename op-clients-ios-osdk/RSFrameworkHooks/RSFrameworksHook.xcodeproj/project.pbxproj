@@ -49,6 +49,14 @@
 		988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */; };
 		98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603E21E2F800B00E59A42 /* OPMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603E31E2F800B00E59A42 /* OPMonitor.m */; };
+		98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */; };
+		98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */; };
+		98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */; };
+		98ECE4781E421AFD0042A262 /* CameraInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE4761E421AFD0042A262 /* CameraInputSupervisor.m */; };
+		98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE47A1E422E720042A262 /* MicrophoneInputSupervisor.h */; };
+		98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */; };
+		98ECE4811E424AC80042A262 /* ContactsInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */; };
+		98ECE4821E424AC80042A262 /* ContactsInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +91,14 @@
 		988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarometerInputSupervisor.m; path = BarometerInputSupervisor/BarometerInputSupervisor.m; sourceTree = "<group>"; };
 		98D603E21E2F800B00E59A42 /* OPMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitor.h; path = OPMonitor/OPMonitor.h; sourceTree = "<group>"; };
 		98D603E31E2F800B00E59A42 /* OPMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitor.m; path = OPMonitor/OPMonitor.m; sourceTree = "<group>"; };
+		98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchIdSupervisor.h; path = TouchIdSupervisor/TouchIdSupervisor.h; sourceTree = "<group>"; };
+		98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchIdSupervisor.m; path = TouchIdSupervisor/TouchIdSupervisor.m; sourceTree = "<group>"; };
+		98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraInputSupervisor.h; path = CameraInputSupervisor/CameraInputSupervisor.h; sourceTree = "<group>"; };
+		98ECE4761E421AFD0042A262 /* CameraInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraInputSupervisor.m; path = CameraInputSupervisor/CameraInputSupervisor.m; sourceTree = "<group>"; };
+		98ECE47A1E422E720042A262 /* MicrophoneInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MicrophoneInputSupervisor.h; path = MicrophoneInputSupervisor/MicrophoneInputSupervisor.h; sourceTree = "<group>"; };
+		98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MicrophoneInputSupervisor.m; path = MicrophoneInputSupervisor/MicrophoneInputSupervisor.m; sourceTree = "<group>"; };
+		98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsInputSupervisor.h; path = ContactsInputSupervisor/ContactsInputSupervisor.h; sourceTree = "<group>"; };
+		98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsInputSupervisor.m; path = ContactsInputSupervisor/ContactsInputSupervisor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +213,10 @@
 		987F837A1E3241250058633C /* InputSupervisors */ = {
 			isa = PBXGroup;
 			children = (
+				98ECE47E1E424A9E0042A262 /* ContactsInputSupervisor */,
+				98ECE4791E422E550042A262 /* MicrophoneInputSupervisor */,
+				98ECE4741E421AD20042A262 /* CameraInputSupervisor */,
+				98ECE46A1E41F7D80042A262 /* TouchIdInputSupervisor */,
 				988A151C1E40E2C800AABD43 /* BarometerInputSupervisor */,
 				988A15171E40DF1B00AABD43 /* AccelerometerInputSupervisor */,
 				988A15121E40D18B00AABD43 /* MagnetometerInputSupervisor */,
@@ -280,6 +300,42 @@
 			name = OPMonitor;
 			sourceTree = "<group>";
 		};
+		98ECE46A1E41F7D80042A262 /* TouchIdInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */,
+				98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */,
+			);
+			name = TouchIdInputSupervisor;
+			sourceTree = "<group>";
+		};
+		98ECE4741E421AD20042A262 /* CameraInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */,
+				98ECE4761E421AFD0042A262 /* CameraInputSupervisor.m */,
+			);
+			name = CameraInputSupervisor;
+			sourceTree = "<group>";
+		};
+		98ECE4791E422E550042A262 /* MicrophoneInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				98ECE47A1E422E720042A262 /* MicrophoneInputSupervisor.h */,
+				98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */,
+			);
+			name = MicrophoneInputSupervisor;
+			sourceTree = "<group>";
+		};
+		98ECE47E1E424A9E0042A262 /* ContactsInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */,
+				98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */,
+			);
+			name = ContactsInputSupervisor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -287,13 +343,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98ECE4811E424AC80042A262 /* ContactsInputSupervisor.h in Headers */,
 				987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */,
 				988A151F1E40E2DD00AABD43 /* BarometerInputSupervisor.h in Headers */,
 				988A15151E40D1B400AABD43 /* MagnetometerInputSupervisor.h in Headers */,
 				987F83721E322AA90058633C /* OPMonitorViolationReport.h in Headers */,
 				987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */,
 				987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */,
+				98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */,
 				98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */,
+				98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */,
+				98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */,
 				988A151A1E40DF3300AABD43 /* AccelerometerInputSupervisor.h in Headers */,
 				982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */,
 				98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */,
@@ -396,9 +456,13 @@
 				987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */,
 				988A15161E40D1B400AABD43 /* MagnetometerInputSupervisor.m in Sources */,
 				988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */,
+				98ECE4821E424AC80042A262 /* ContactsInputSupervisor.m in Sources */,
 				987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */,
 				98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */,
+				98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */,
 				988A15071E40AA7F00AABD43 /* CommonUtils.m in Sources */,
+				98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */,
+				98ECE4781E421AFD0042A262 /* CameraInputSupervisor.m in Sources */,
 				988A15021E40A4F600AABD43 /* PedometerInputSupervisor.m in Sources */,
 				987F837F1E3241930058633C /* LocationInputSupervisor.m in Sources */,
 				9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */,

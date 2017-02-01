@@ -15,7 +15,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-typedef void(^MagnetometerCallback)(NSDictionary*);
+typedef void(^MagnetometerCallback)();
 MagnetometerCallback _globalMagnetometerCallback;
 
 
@@ -59,15 +59,15 @@ MagnetometerCallback _globalMagnetometerCallback;
     
     __weak typeof(self) weakSelf = self;
     
-    _globalMagnetometerCallback = ^void(NSDictionary* status){
-        [weakSelf processMagnetometerStatus:status];
+    _globalMagnetometerCallback = ^void(){
+        [weakSelf processMagnetometerStatus];
     };
 }
 
 
 
 
--(void)processMagnetometerStatus:(NSDictionary*)dict {
+-(void)processMagnetometerStatus {
     OPMonitorViolationReport *report = nil;
     if ((report = [self checkUnspecifiedAccess])) {
         [self.delegate newViolationReported:report];
