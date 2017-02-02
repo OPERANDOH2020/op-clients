@@ -116,6 +116,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import ObjectiveC;
+@import Foundation;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -137,45 +138,32 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<N
 
 @class PrivacyDescription;
 
-SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes14AccessedSensor")
-@interface AccessedSensor : NSObject
-@property (nonatomic, readonly, copy) NSString * _Nonnull sensorType;
+SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes13AccessedInput")
+@interface AccessedInput : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull inputType;
 @property (nonatomic, readonly, strong) PrivacyDescription * _Nonnull privacyDescription;
 @property (nonatomic, readonly, copy) NSString * _Nonnull accessFrequency;
 @property (nonatomic, readonly) BOOL userControl;
 - (nullable instancetype)initWithDict:(NSDictionary<NSString *, id> * _Nonnull)dict OBJC_DESIGNATED_INITIALIZER;
-+ (NSArray<AccessedSensor *> * _Nullable)buildFromJsonArray:(NSArray<NSDictionary<NSString *, id> *> * _Nonnull)array;
++ (NSArray<AccessedInput *> * _Nullable)buildFromJsonArray:(NSArray<NSDictionary<NSString *, id> *> * _Nonnull)array;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
-@class ThirdParty;
+@class SCDDocument;
+@class NSError;
 
-SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes18PrivacyDescription")
-@interface PrivacyDescription : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger maxPrivacyLevel;)
-+ (NSInteger)maxPrivacyLevel;
-@property (nonatomic, readonly) NSInteger privacyLevel;
-@property (nonatomic, readonly, copy) NSArray<ThirdParty *> * _Nonnull thirdParties;
-- (nullable instancetype)initWithDict:(NSDictionary<NSString *, id> * _Nonnull)dict OBJC_DESIGNATED_INITIALIZER;
+SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes17CommonTypeBuilder")
+@interface CommonTypeBuilder : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CommonTypeBuilder * _Nonnull sharedInstance;)
++ (CommonTypeBuilder * _Nonnull)sharedInstance;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
+- (void)buildSCDDocumentWith:(NSDictionary<NSString *, id> * _Nonnull)json in:(void (^ _Nullable)(SCDDocument * _Nullable, NSError * _Nullable))completion;
+- (void)buildFromJSONWithArray:(NSArray<NSDictionary<NSString *, id> *> * _Nonnull)array completion:(void (^ _Nullable)(NSArray<SCDDocument *> * _Nullable, NSError * _Nullable))completion;
 @end
 
 
-SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes11SCDDocument")
-@interface SCDDocument : NSObject
-@property (nonatomic, readonly, copy) NSString * _Nonnull appTitle;
-@property (nonatomic, readonly, copy) NSString * _Nonnull bundleId;
-@property (nonatomic, readonly, copy) NSString * _Nullable appIconURL;
-@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull accessedLinks;
-@property (nonatomic, readonly, copy) NSArray<AccessedSensor *> * _Nonnull accessedSensors;
-- (nullable instancetype)initWithScd:(NSDictionary<NSString *, id> * _Nonnull)scd OBJC_DESIGNATED_INITIALIZER;
-+ (NSArray<SCDDocument *> * _Nullable)buildFromJSONWithArray:(NSArray<NSDictionary<NSString *, id> *> * _Nonnull)array;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-@end
-
-
-SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes10SensorType")
-@interface SensorType : NSObject
+SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes9InputType")
+@interface InputType : NSObject
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Location;)
 + (NSString * _Nonnull)Location;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Microphone;)
@@ -198,10 +186,61 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 + (NSString * _Nonnull)Pedometer;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Magnetometer;)
 + (NSString * _Nonnull)Magnetometer;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull namesPerSensorType;)
-+ (NSDictionary<NSString *, NSString *> * _Nonnull)namesPerSensorType;
-+ (BOOL)isValidSensorTypeWithSensorType:(NSString * _Nonnull)sensorType;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Contacts;)
++ (NSString * _Nonnull)Contacts;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull namesPerInputType;)
++ (NSDictionary<NSString *, NSString *> * _Nonnull)namesPerInputType;
++ (BOOL)isValidInputTypeWithSensorType:(NSString * _Nonnull)sensorType;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface NSError (SWIFT_EXTENSION(PlusPrivacyCommonTypes))
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull LocalSchemaProviderDomain;)
++ (NSString * _Nonnull)LocalSchemaProviderDomain;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) NSError * _Nonnull jsonSchemaNotFound;)
++ (NSError * _Nonnull)jsonSchemaNotFound;
+@end
+
+
+@interface NSError (SWIFT_EXTENSION(PlusPrivacyCommonTypes))
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull SchemaValidatorDomain;)
++ (NSString * _Nonnull)SchemaValidatorDomain;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) NSError * _Nonnull jsonNotValidAccordingToSchema;)
++ (NSError * _Nonnull)jsonNotValidAccordingToSchema;
+@end
+
+
+@interface NSError (SWIFT_EXTENSION(PlusPrivacyCommonTypes))
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull CommonTypeBuilderDomain;)
++ (NSString * _Nonnull)CommonTypeBuilderDomain;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) NSError * _Nonnull schemaUnavailable;)
++ (NSError * _Nonnull)schemaUnavailable;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) NSError * _Nonnull unknownCommonTypeError;)
++ (NSError * _Nonnull)unknownCommonTypeError;
+@end
+
+@class ThirdParty;
+
+SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes18PrivacyDescription")
+@interface PrivacyDescription : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger maxPrivacyLevel;)
++ (NSInteger)maxPrivacyLevel;
+@property (nonatomic, readonly) NSInteger privacyLevel;
+@property (nonatomic, readonly, copy) NSArray<ThirdParty *> * _Nonnull thirdParties;
+- (nullable instancetype)initWithDict:(NSDictionary<NSString *, id> * _Nonnull)dict OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes11SCDDocument")
+@interface SCDDocument : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull appTitle;
+@property (nonatomic, readonly, copy) NSString * _Nonnull bundleId;
+@property (nonatomic, readonly, copy) NSString * _Nullable appIconURL;
+@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull accessedLinks;
+@property (nonatomic, readonly, copy) NSArray<AccessedInput *> * _Nonnull accessedInputs;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
 

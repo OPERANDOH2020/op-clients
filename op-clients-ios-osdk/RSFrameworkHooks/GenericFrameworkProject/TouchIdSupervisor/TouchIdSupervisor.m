@@ -47,7 +47,7 @@ TouchIdCallback _globalTouchIdCallback;
 
 @property (strong, nonatomic) SCDDocument *document;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-@property (strong, nonatomic) AccessedSensor *accessedSensor;
+@property (strong, nonatomic) AccessedInput *accessedSensor;
 
 @end
 
@@ -59,7 +59,7 @@ TouchIdCallback _globalTouchIdCallback;
     
     self.document = document;
     self.delegate = delegate;
-    self.accessedSensor = [CommonUtils extractSensorOfType:SensorType.TouchID from:document.accessedSensors];
+    self.accessedSensor = [CommonUtils extractInputOfType: InputType.TouchID from:document.accessedInputs];
     
     __weak typeof(self) weakSelf = self;
     _globalTouchIdCallback = ^void() {

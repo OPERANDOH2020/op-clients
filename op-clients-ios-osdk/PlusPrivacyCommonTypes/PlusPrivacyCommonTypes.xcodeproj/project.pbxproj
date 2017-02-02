@@ -23,6 +23,12 @@
 /* Begin PBXBuildFile section */
 		98584F411D3F9E18009FB89F /* PlusPrivacyCommonTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PlusPrivacyCommonTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		989E47901E2FB7A8005ECE53 /* PlusPrivacyCommonTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989E478F1E2FB7A8005ECE53 /* PlusPrivacyCommonTypes.swift */; };
+		98C615911E4336D700144BA8 /* JSONSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C6158F1E4336D700144BA8 /* JSONSchema.swift */; };
+		98C615921E4336D700144BA8 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C615901E4336D700144BA8 /* Validators.swift */; };
+		98C615941E43371700144BA8 /* SchemaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C615931E43371700144BA8 /* SchemaProvider.swift */; };
+		98C615961E433F8600144BA8 /* SchemaValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C615951E433F8600144BA8 /* SchemaValidator.swift */; };
+		98C615981E4347FF00144BA8 /* CommonTypeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C615971E4347FF00144BA8 /* CommonTypeBuilder.swift */; };
+		98C6159A1E4361BA00144BA8 /* SCDSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 98C615991E4361BA00144BA8 /* SCDSchema.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +36,12 @@
 		98584F401D3F9E18009FB89F /* PlusPrivacyCommonTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlusPrivacyCommonTypes.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		989E478F1E2FB7A8005ECE53 /* PlusPrivacyCommonTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlusPrivacyCommonTypes.swift; sourceTree = "<group>"; };
+		98C6158F1E4336D700144BA8 /* JSONSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSchema.swift; sourceTree = "<group>"; };
+		98C615901E4336D700144BA8 /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		98C615931E43371700144BA8 /* SchemaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchemaProvider.swift; path = SwiftJSONSchema/SchemaProvider.swift; sourceTree = "<group>"; };
+		98C615951E433F8600144BA8 /* SchemaValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchemaValidator.swift; path = SwiftJSONSchema/SchemaValidator.swift; sourceTree = "<group>"; };
+		98C615971E4347FF00144BA8 /* CommonTypeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTypeBuilder.swift; sourceTree = "<group>"; };
+		98C615991E4361BA00144BA8 /* SCDSchema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCDSchema.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,11 +74,25 @@
 		98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */ = {
 			isa = PBXGroup;
 			children = (
+				98C6158E1E4336D700144BA8 /* SwiftJSONSchema */,
 				989E478F1E2FB7A8005ECE53 /* PlusPrivacyCommonTypes.swift */,
+				98C615951E433F8600144BA8 /* SchemaValidator.swift */,
+				98C615931E43371700144BA8 /* SchemaProvider.swift */,
+				98C615971E4347FF00144BA8 /* CommonTypeBuilder.swift */,
 				98584F401D3F9E18009FB89F /* PlusPrivacyCommonTypes.h */,
+				98C615991E4361BA00144BA8 /* SCDSchema.json */,
 				98584F421D3F9E18009FB89F /* Info.plist */,
 			);
 			path = GenericFrameworkProject;
+			sourceTree = "<group>";
+		};
+		98C6158E1E4336D700144BA8 /* SwiftJSONSchema */ = {
+			isa = PBXGroup;
+			children = (
+				98C6158F1E4336D700144BA8 /* JSONSchema.swift */,
+				98C615901E4336D700144BA8 /* Validators.swift */,
+			);
+			path = SwiftJSONSchema;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C6159A1E4361BA00144BA8 /* SCDSchema.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +195,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C615981E4347FF00144BA8 /* CommonTypeBuilder.swift in Sources */,
+				98C615911E4336D700144BA8 /* JSONSchema.swift in Sources */,
+				98C615961E433F8600144BA8 /* SchemaValidator.swift in Sources */,
 				989E47901E2FB7A8005ECE53 /* PlusPrivacyCommonTypes.swift in Sources */,
+				98C615921E4336D700144BA8 /* Validators.swift in Sources */,
+				98C615941E43371700144BA8 /* SchemaProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

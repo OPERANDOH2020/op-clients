@@ -45,7 +45,7 @@ ProximityCallback _globalProximityCallback;
 @interface ProximityInputSupervisor()
 @property (strong, nonatomic) SCDDocument *document;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-@property (strong, nonatomic) AccessedSensor *proximitySensor;
+@property (strong, nonatomic) AccessedInput *proximitySensor;
 @end
 
 @implementation ProximityInputSupervisor
@@ -54,7 +54,7 @@ ProximityCallback _globalProximityCallback;
     
     self.delegate = delegate;
     self.document = document;
-    self.proximitySensor = [CommonUtils extractSensorOfType:SensorType.Proximity from:document.accessedSensors];
+    self.proximitySensor = [CommonUtils extractInputOfType: InputType.Proximity from:document.accessedInputs];
     
     __weak typeof(self) weakSelf = self;
     _globalProximityCallback = ^void(NSDictionary* dict){

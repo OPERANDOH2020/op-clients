@@ -24,7 +24,7 @@ public class AccessFrequencyType: NSObject {
 
 
 @objc
-public class SensorType: NSObject {
+public class InputType: NSObject {
     public static let Location = "loc"
     public static let Microphone = "mic"
     public static let Camera = "cam"
@@ -36,20 +36,24 @@ public class SensorType: NSObject {
     public static let Force = "force"
     public static let Pedometer = "pedo"
     public static let Magnetometer = "magneto"
+    public static let Contacts = "contacts"
     
-    public static let namesPerSensorType: [String: String] = [ SensorType.Camera : "Camera",
-                                                               SensorType.Accelerometer : "Accelerometer",
-                                                               SensorType.Location : "Location",
-                                                               SensorType.Gyroscope: "Gyroscope",
-                                                               SensorType.Barometer: "Barometer",
-                                                               SensorType.Force: "Force touch",
-                                                               SensorType.Proximity: "Proximity",
-                                                               SensorType.TouchID: "TouchID",
-                                                               SensorType.Microphone: "Microphone"];
+    public static let namesPerInputType: [String: String] = [ InputType.Camera : "Camera",
+                                                               InputType.Accelerometer : "Accelerometer",
+                                                               InputType.Location : "Location",
+                                                               InputType.Gyroscope: "Gyroscope",
+                                                               InputType.Barometer: "Barometer",
+                                                               InputType.Force: "Force touch",
+                                                               InputType.Proximity: "Proximity",
+                                                               InputType.TouchID: "TouchID",
+                                                               InputType.Microphone: "Microphone",
+                                                               InputType.Pedometer: "Pedometer",
+                                                               InputType.Magnetometer: "Magnetometer",
+                                                               InputType.Contacts: "Contacts"];
     
     
-    public static func isValidSensorType(sensorType: String) -> Bool {
-        return self.namesPerSensorType.keys.contains(sensorType)
+    public static func isValidInputType(sensorType: String) -> Bool {
+        return self.namesPerInputType.keys.contains(sensorType)
     }
 }
 
@@ -95,15 +99,15 @@ public class PrivacyDescription: NSObject {
 }
 
 @objc
-public class AccessedSensor: NSObject {
-    public let sensorType: String
+public class AccessedInput: NSObject {
+    public let inputType: String
     public let privacyDescription: PrivacyDescription
     public let accessFrequency: String
     public let userControl: Bool
     
     public init?(dict: [String: Any]) {
-        guard let sensorType = dict["sensorType"] as? String,
-            SensorType.isValidSensorType(sensorType: sensorType),
+        guard let inputType = dict["inputType"] as? String,
+            InputType.isValidInputType(sensorType: inputType),
             let pdDict = dict["privacyDescription"] as? [String: Any],
             let privacyDescription = PrivacyDescription(dict: pdDict),
             let accessFrequency = dict["accessFrequency"] as? String,
@@ -113,17 +117,17 @@ public class AccessedSensor: NSObject {
         }
         
         self.accessFrequency = accessFrequency
-        self.sensorType = sensorType
+        self.inputType = inputType
         self.privacyDescription = privacyDescription
         self.userControl = userControl
     }
     
     
-    public static func buildFromJsonArray(_ array: [[String: Any]]) -> [AccessedSensor]? {
-        var result: [AccessedSensor] = []
+    public static func buildFromJsonArray(_ array: [[String: Any]]) -> [AccessedInput]? {
+        var result: [AccessedInput] = []
         
         for dict in array {
-            guard let item = AccessedSensor(dict: dict) else {
+            guard let item = AccessedInput(dict: dict) else {
                 return nil
             }
             result.append(item)
@@ -141,36 +145,22 @@ public class SCDDocument: NSObject {
     public let appIconURL: String?
     
     public let accessedLinks: [String]
-    public let accessedSensors: [AccessedSensor]
+    public let accessedInputs: [AccessedInput]
     
-    public init?(scd: [String: Any]) {
+    internal init?(scd: [String: Any]) {
         guard let title = scd["title"] as? String,
             let bundleId = scd["bundleId"] as? String,
             let accessedLinks = scd["accessedLinks"] as? [String],
-            let accessedSensorsDictArray = scd["accessedSensors"] as? [[String: Any]],
-            let accessedSensors = AccessedSensor.buildFromJsonArray(accessedSensorsDictArray) else {
+            let accessedSensorsDictArray = scd["accessedInputs"] as? [[String: Any]],
+            let accessedSensors = AccessedInput.buildFromJsonArray(accessedSensorsDictArray) else {
                 return nil
         }
         
         self.appTitle = title
         self.bundleId = bundleId
-        self.accessedSensors = accessedSensors
+        self.accessedInputs = accessedSensors
         self.accessedLinks = accessedLinks
         self.appIconURL = scd["appIconURL"] as? String
     }
     
-    
-    public static func buildFromJSON(array: [[String: Any]]) -> [SCDDocument]? {
-        var items: [SCDDocument] = []
-        
-        for dict in array {
-            guard let item = SCDDocument(scd: dict) else {
-                return nil
-            }
-            
-            items.append(item)
-        }
-        
-        return items
-    }
 }

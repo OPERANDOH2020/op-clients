@@ -29,7 +29,7 @@
 
 @interface ContactsInputSupervisor()
 @property (strong, nonatomic) SCDDocument *document;
-@property (strong, nonatomic) AccessedSensor *contactsSource;
+@property (strong, nonatomic) AccessedInput *contactsSource;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 @end
 

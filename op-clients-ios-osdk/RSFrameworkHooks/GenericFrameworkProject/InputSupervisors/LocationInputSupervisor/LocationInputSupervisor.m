@@ -76,7 +76,7 @@ typedef enum : NSUInteger {
 @interface LocationInputSupervisor()
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 @property (strong, nonatomic) SCDDocument *document;
-@property (strong, nonatomic) AccessedSensor *locationSensor;
+@property (strong, nonatomic) AccessedInput *locationSensor;
 @end
 
 
@@ -85,7 +85,7 @@ typedef enum : NSUInteger {
 -(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
     self.delegate = delegate;
     self.document = document;
-    self.locationSensor = [CommonUtils extractSensorOfType:SensorType.Location from:document.accessedSensors];
+    self.locationSensor = [CommonUtils extractInputOfType: InputType.Location from:document.accessedInputs];
     
     __weak LocationInputSupervisor *weakSelf = self;
     _rsHookGlobalLocationCallback = ^(NSDictionary *dict){

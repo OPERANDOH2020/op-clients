@@ -41,7 +41,7 @@ AccelerometerCallback _globalAccelerometerCallback;
 
 @interface AccelerometerInputSupervisor()
 @property (strong, nonatomic) SCDDocument *document;
-@property (strong, nonatomic) AccessedSensor *accSensor;
+@property (strong, nonatomic) AccessedInput *accSensor;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 
 @end
@@ -54,7 +54,7 @@ AccelerometerCallback _globalAccelerometerCallback;
     
     self.delegate = delegate;
     self.document = document;
-    self.accSensor = [CommonUtils extractSensorOfType:SensorType.Accelerometer from:document.accessedSensors];
+    self.accSensor = [CommonUtils extractInputOfType: InputType.Accelerometer from:document.accessedInputs];
     
 }
 

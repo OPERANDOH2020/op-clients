@@ -42,7 +42,7 @@ PedometerCallback _globalPedometerCallback;
 
 @property (strong, nonatomic) SCDDocument *document;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-@property (weak, nonatomic) AccessedSensor *pedoSensor;
+@property (weak, nonatomic) AccessedInput *pedoSensor;
 
 @end
 
@@ -53,7 +53,7 @@ PedometerCallback _globalPedometerCallback;
     
     self.delegate = delegate;
     self.document = document;
-    self.pedoSensor = [CommonUtils extractSensorOfType:SensorType.Pedometer from:document.accessedSensors];
+    self.pedoSensor = [CommonUtils extractInputOfType: InputType.Pedometer from:document.accessedInputs];
     
     __weak typeof(self) weakSelf = self;
     _globalPedometerCallback = ^void() {

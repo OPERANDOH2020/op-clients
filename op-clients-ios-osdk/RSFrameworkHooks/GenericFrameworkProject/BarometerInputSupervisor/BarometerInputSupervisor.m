@@ -35,7 +35,7 @@ AltimeterCallback _globalAltimeterCallback;
 @interface BarometerInputSupervisor()
 
 @property (strong, nonatomic) SCDDocument *document;
-@property (strong, nonatomic) AccessedSensor *sensor;
+@property (strong, nonatomic) AccessedInput *sensor;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 
 @end
@@ -45,7 +45,7 @@ AltimeterCallback _globalAltimeterCallback;
 -(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document{
     self.document = document;
     self.delegate = delegate;
-    self.sensor = [CommonUtils extractSensorOfType:SensorType.Barometer from:document.accessedSensors];
+    self.sensor = [CommonUtils extractInputOfType:InputType.Barometer from:document.accessedInputs];
     
     __weak typeof(self) weakSelf = self;
     _globalAltimeterCallback = ^void(){
@@ -70,12 +70,3 @@ AltimeterCallback _globalAltimeterCallback;
 }
 
 @end
-
-
-
-
-
-
-
-
-

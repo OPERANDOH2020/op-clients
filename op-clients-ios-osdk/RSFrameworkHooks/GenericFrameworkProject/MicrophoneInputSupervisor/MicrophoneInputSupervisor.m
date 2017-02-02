@@ -41,7 +41,7 @@ MicrophoneInputCallback _globalMicrophoneCallback;
 @interface MicrophoneInputSupervisor()
 
 @property (strong, nonatomic) SCDDocument *document;
-@property (strong, nonatomic) AccessedSensor *micSensor;
+@property (strong, nonatomic) AccessedInput *micSensor;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 
 @end
@@ -52,7 +52,7 @@ MicrophoneInputCallback _globalMicrophoneCallback;
     
     self.document = document;
     self.delegate = delegate;
-    self.micSensor = [CommonUtils extractSensorOfType:SensorType.Microphone from:document.accessedSensors];
+    self.micSensor = [CommonUtils extractInputOfType:InputType.Microphone from:document.accessedInputs];
     
     __weak typeof(self) weakSelf = self;
     _globalMicrophoneCallback = ^void(){

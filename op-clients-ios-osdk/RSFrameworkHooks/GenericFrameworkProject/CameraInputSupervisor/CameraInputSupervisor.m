@@ -77,7 +77,7 @@ CameraInputCallback _globalCameraInputCallback;
 @interface CameraInputSupervisor()
 
 @property (strong, nonatomic) SCDDocument *document;
-@property (strong, nonatomic) AccessedSensor *cameraSensor;
+@property (strong, nonatomic) AccessedInput *cameraSensor;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 
 @end
@@ -88,7 +88,7 @@ CameraInputCallback _globalCameraInputCallback;
     
     self.document = document;
     self.delegate = delegate;
-    self.cameraSensor = [CommonUtils extractSensorOfType:SensorType.Camera from:document.accessedSensors];
+    self.cameraSensor = [CommonUtils extractInputOfType: InputType.Camera from:document.accessedInputs];
     
     __weak typeof(self) weakSelf = self;
     _globalCameraInputCallback = ^void() {

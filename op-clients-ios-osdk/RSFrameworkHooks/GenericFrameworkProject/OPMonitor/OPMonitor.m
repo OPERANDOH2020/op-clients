@@ -36,8 +36,18 @@
 }
 
 -(void)beginMonitoringWithAppDocument:(NSDictionary *)document {
-    self.document = [[SCDDocument alloc] initWithScd:document];
-    self.supervisorsArray = [self buildSupervisors];
+    
+    [[CommonTypeBuilder sharedInstance] buildSCDDocumentWith:document in: ^void(SCDDocument * _Nullable document, NSError * _Nullable error) {
+        
+        if (error) {
+            NSString *errorMessage = @"Could not create the app SCD document!";
+            
+        }
+        
+        
+    }];
+    
+
 }
 
 
@@ -70,14 +80,18 @@
 
 #pragma mark - 
 -(void)newViolationReported:(OPMonitorViolationReport *)report {
-    __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [UINotificationViewController presentBadNotificationMessage:report.violationDetails inController:rootViewController atDistanceFromTop:22];
-    });
+    [OPMonitor displayNotification:report.violationDetails];
 }
 
 #pragma mark -
+
++(void)displayNotification:(NSString*)notification {
+    __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UINotificationViewController presentBadNotificationMessage:notification inController:rootViewController atDistanceFromTop:22];
+    });
+}
 
 -(NSArray<id<InputSourceSupervisor>>*)buildSupervisors {
     NSMutableArray *result = [[NSMutableArray alloc] init];

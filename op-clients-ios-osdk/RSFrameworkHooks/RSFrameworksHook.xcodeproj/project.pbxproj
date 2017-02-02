@@ -40,7 +40,6 @@
 		988A15021E40A4F600AABD43 /* PedometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A15001E40A4F600AABD43 /* PedometerInputSupervisor.m */; };
 		988A15061E40AA7F00AABD43 /* CommonUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A15041E40AA7F00AABD43 /* CommonUtils.h */; };
 		988A15071E40AA7F00AABD43 /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A15051E40AA7F00AABD43 /* CommonUtils.m */; };
-		988A15111E40D0CD00AABD43 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 988A15101E40D0CD00AABD43 /* PlusPrivacyCommonTypes.framework */; };
 		988A15151E40D1B400AABD43 /* MagnetometerInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A15131E40D1B400AABD43 /* MagnetometerInputSupervisor.h */; };
 		988A15161E40D1B400AABD43 /* MagnetometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A15141E40D1B400AABD43 /* MagnetometerInputSupervisor.m */; };
 		988A151A1E40DF3300AABD43 /* AccelerometerInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A15181E40DF3300AABD43 /* AccelerometerInputSupervisor.h */; };
@@ -49,6 +48,7 @@
 		988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */; };
 		98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603E21E2F800B00E59A42 /* OPMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603E31E2F800B00E59A42 /* OPMonitor.m */; };
+		98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */; };
 		98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */; };
 		98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */; };
 		98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */; };
@@ -82,7 +82,6 @@
 		988A15001E40A4F600AABD43 /* PedometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PedometerInputSupervisor.m; path = PedometerInputSupervisor/PedometerInputSupervisor.m; sourceTree = "<group>"; };
 		988A15041E40AA7F00AABD43 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonUtils.h; path = CommonUtils/CommonUtils.h; sourceTree = "<group>"; };
 		988A15051E40AA7F00AABD43 /* CommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonUtils.m; path = CommonUtils/CommonUtils.m; sourceTree = "<group>"; };
-		988A15101E40D0CD00AABD43 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		988A15131E40D1B400AABD43 /* MagnetometerInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MagnetometerInputSupervisor.h; path = MagnetometerInputSupervisor/MagnetometerInputSupervisor.h; sourceTree = "<group>"; };
 		988A15141E40D1B400AABD43 /* MagnetometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MagnetometerInputSupervisor.m; path = MagnetometerInputSupervisor/MagnetometerInputSupervisor.m; sourceTree = "<group>"; };
 		988A15181E40DF3300AABD43 /* AccelerometerInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccelerometerInputSupervisor.h; path = AccelerometerInputSupervisor/AccelerometerInputSupervisor.h; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarometerInputSupervisor.m; path = BarometerInputSupervisor/BarometerInputSupervisor.m; sourceTree = "<group>"; };
 		98D603E21E2F800B00E59A42 /* OPMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitor.h; path = OPMonitor/OPMonitor.h; sourceTree = "<group>"; };
 		98D603E31E2F800B00E59A42 /* OPMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitor.m; path = OPMonitor/OPMonitor.m; sourceTree = "<group>"; };
+		98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchIdSupervisor.h; path = TouchIdSupervisor/TouchIdSupervisor.h; sourceTree = "<group>"; };
 		98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchIdSupervisor.m; path = TouchIdSupervisor/TouchIdSupervisor.m; sourceTree = "<group>"; };
 		98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraInputSupervisor.h; path = CameraInputSupervisor/CameraInputSupervisor.h; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				988A15111E40D0CD00AABD43 /* PlusPrivacyCommonTypes.framework in Frameworks */,
+				98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */,
 				9807875C1E3F53280099B642 /* PlusPrivacyCommonUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,7 +151,7 @@
 		98584F3F1D3F9E18009FB89F /* RSFrameworksHook */ = {
 			isa = PBXGroup;
 			children = (
-				988A15101E40D0CD00AABD43 /* PlusPrivacyCommonTypes.framework */,
+				98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */,
 				9807875B1E3F53280099B642 /* PlusPrivacyCommonUI.framework */,
 				987F836E1E3211F90058633C /* Common */,
 				98D603E11E2F7FEC00E59A42 /* OPMonitor */,

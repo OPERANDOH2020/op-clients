@@ -42,7 +42,7 @@ MagnetometerCallback _globalMagnetometerCallback;
 @interface MagnetometerInputSupervisor()
 @property (strong, nonatomic) SCDDocument *document;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-@property (strong, nonatomic) AccessedSensor *magnetoSensor;
+@property (strong, nonatomic) AccessedInput *magnetoSensor;
 @end
 
 
@@ -55,7 +55,7 @@ MagnetometerCallback _globalMagnetometerCallback;
     
     self.document = document;
     self.delegate = delegate;
-    self.magnetoSensor = [CommonUtils extractSensorOfType:SensorType.Magnetometer from:document.accessedSensors];
+    self.magnetoSensor = [CommonUtils extractInputOfType: InputType.Magnetometer from:document.accessedInputs];
     
     __weak typeof(self) weakSelf = self;
     
