@@ -13,7 +13,6 @@
             </div>
 
 
-
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <button class="btn btn-lg btn-primary btn-block"  id="login-btn" name="Submit" value="Login" type="Submit" >Login</button>
@@ -24,14 +23,12 @@
             </div>
 
 
-
             <div ng-show="authenticationError == true" ng-cloak>
             <div class="alert alert-danger" role="alert" id="login_error">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 {{errorResponse}}
             </div>
             </div>
-
             <ui-loader ng-cloak ng-if="requestProcessed"></ui-loader>
 
         </form>

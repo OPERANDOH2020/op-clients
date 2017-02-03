@@ -1,0 +1,45 @@
+<div class="container" ng-app="plusprivacy">
+    <div ng-controller="ospRequestsController">
+
+
+        <div ng-cloak class="user_logged_in" ng-if="userIsLoggedIn === false">
+            <h3> You don't have enough privileges to access this content</b>!</h3>
+        </div>
+
+
+        <div ng-cloak class="user_logged_in" ng-if="ospRequests">
+
+
+            <table class="table table-bordered" id="osp_requests_table" datatable="ng" dt-column-defs="dtColumnDefs"  dt-options="dtOptions" dt-instance="dtInstance"  >
+                <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Website</th>
+                    <th>Phone</th>
+                    <th>Description</th>
+                    <th>Verified</th>
+                </tr>
+                </thead>
+
+
+                <tbody>
+                <tr ng-repeat="ospRequest in ospRequests">
+
+                    <td>{{ospRequest.email}}</td>
+                    <td>{{ospRequest.name}}</td>
+                    <td>{{ospRequest.website}}</td>
+                    <td>{{ospRequest.phone}}</td>
+                    <td>{{ospRequest.deals_description}}</td>
+                    <td>{{ospRequest.verified}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+
+    </div>
+</div>

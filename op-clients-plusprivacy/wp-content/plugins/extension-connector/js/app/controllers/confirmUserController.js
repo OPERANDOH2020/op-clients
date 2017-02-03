@@ -11,7 +11,6 @@ function getParameterByName(name, url) {
 }
 
 
-
 privacyPlusApp.controller("confirmUserController", function ($scope, $location, connectionService) {
 
     $scope.loadingData = true;

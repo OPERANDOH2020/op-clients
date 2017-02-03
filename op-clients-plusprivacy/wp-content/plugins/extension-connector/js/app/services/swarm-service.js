@@ -94,6 +94,8 @@ privacyPlusApp.service("swarmService",function() {
 
     return {
         initConnection: initConnection,
-        removeConnection:removeConnection
+        removeConnection:removeConnection,
+        restoreConnection:restoreConnection
+
     }
 });

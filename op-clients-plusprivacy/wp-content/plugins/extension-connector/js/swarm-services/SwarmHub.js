@@ -105,14 +105,13 @@ function SwarmHub(swarmConnection){
         }
     }
 
-
     var swarmSystemAuthenticated = false;
     var swarmConnectionCallbacks = [];
 
     function startWaitingCallbacks(){
 
-        self.startSwarm =  swarmConnection.startSwarm.bind(swarmConnection);
 
+        self.startSwarm =  swarmConnection.startSwarm.bind(swarmConnection);
         pendingCommands.forEach(function(args){
             var cmd = self.startSwarm.apply(self, args);
             for(var phaseName in cmd.pending){

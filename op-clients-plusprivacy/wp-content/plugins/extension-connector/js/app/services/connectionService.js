@@ -1,4 +1,5 @@
-var SERVER_HOST = "plusprivacy.com";
+//var SERVER_HOST = "plusprivacy.com";
+var SERVER_HOST = "localhost";
 var SERVER_PORT = "8080";
 var GUEST_EMAIL = "guest@operando.eu";
 var GUEST_PASSWORD = "guest";
@@ -16,7 +17,7 @@ return {
         swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
             swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
             if (swarm.authenticated) {
-                var  verifyAccountHandler = swarmHub.startSwarm("register.js", "verifyValidationCode", activationCode);
+               var  verifyAccountHandler = swarmHub.startSwarm("register.js", "verifyValidationCode", activationCode);
                verifyAccountHandler.onResponse("success", function (swarm) {
 
                     swarmService.removeConnection();
@@ -37,25 +38,29 @@ return {
             "plusprivacy-website", "userLogin", function(error) {
             });
 
-
         var userLoginSuccess = function (swarm) {
             swarmHub.off("login.js", "success", userLoginSuccess);
             if (swarm.authenticated) {
-                messengerService.send("authenticateUserInExtension", {userId: swarm.userId, sessionId: swarm.meta.sessionId, remember: user.remember}, function(status){
-                    successCallback({status:"success"});
-                });
 
+                Cookies.set("sessionId", swarm.meta.sessionId,  { expires: 1 });
+                Cookies.set("userId", swarm.userId,{ expires: 1 });
+
+                messengerService.send("authenticateUserInExtension", {
+                    userId: swarm.userId,
+                    sessionId: swarm.meta.sessionId,
+                    remember: user.remember
+                }, function (status) {
+                    successCallback({status: "success"});
+                });
             }
-        }
+        };
 
         var loginFailed = function (swarm) {
             console.log(swarm.error);
             failCallback(swarm.error);
             swarmHub.off("login.js", "success",userLoginSuccess);
             swarmHub.off("login.js", "failed",loginFailed);
-        }
-
-
+        };
 
         swarmHub.on("login.js", "success", userLoginSuccess);
         swarmHub.on('login.js', "failed", loginFailed);
@@ -90,9 +95,71 @@ return {
                 });
             }
         });
+    },
 
+    registerNewOSPOrganisation: function (user, successCallback, failCallback) {
+        swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
+            "plusprivacy-website", "userLogin", function(){
+                console.log("reconnect cbk");
+            }, function(){
+                console.log("connect cbk");
+            });
+
+        swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
+            swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
+            if (swarm.authenticated) {
+
+                var registerOSPHandler = swarmHub.startSwarm("login.js", "registerNewOSPOrganisation", user);
+                registerOSPHandler.onResponse("success", function (swarm) {
+                    successCallback("success");
+                    swarmService.removeConnection();
+                });
+
+                registerOSPHandler.onResponse("error", function (swarm) {
+                    failCallback(swarm.error);
+                    swarmService.removeConnection();
+                });
+            }
+        });
+    },
+
+    restoreUserSession:function(successCallback, failCallback){
+        var username = Cookies.get("userId");
+        var sessionId = Cookies.get("sessionId");
+        var self = this;
+
+        if (!username || !sessionId) {
+            failCallback();
+        }
+        else{
+            swarmService.restoreConnection(SERVER_HOST, SERVER_PORT, username, sessionId, failCallback, failCallback, function(){
+                console.log("reconnect cbk");
+            });
+            swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
+                Cookies.set("sessionId", swarm.meta.sessionId);
+                successCallback();
+                swarmHub.off("login.js", "restoreSucceed",restoredSuccessfully);
+            });
+
+            swarmHub.on('login.js', "restoreFailed", function restoredSuccessfully(swarm) {
+                failCallback();
+                swarmHub.off("login.js", "restoreSucceed",restoredSuccessfully);
+            });
+        }
+    },
+
+    getOspRequests: function(successCallback, failCallback){
+
+        var getRequestsHandler = swarmHub.startSwarm("osp.js", "getRequests");
+        getRequestsHandler.onResponse("success", function(swarm){
+            successCallback(swarm.ospRequests);
+        });
+
+        getRequestsHandler.onResponse("failed", function(swarm){
+            failCallback(swarm.error);
+        });
     }
-    
+
 }
 
 });
