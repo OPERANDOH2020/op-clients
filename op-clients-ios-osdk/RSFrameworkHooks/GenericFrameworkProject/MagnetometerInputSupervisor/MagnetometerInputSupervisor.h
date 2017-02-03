@@ -10,5 +10,5 @@
 #import "SupervisorProtocols.h"
 
 @interface MagnetometerInputSupervisor : NSObject <InputSourceSupervisor>
-
+-(void)processMagnetometerStatus;
 @end

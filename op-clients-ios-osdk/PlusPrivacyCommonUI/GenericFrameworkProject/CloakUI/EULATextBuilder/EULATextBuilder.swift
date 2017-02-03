@@ -72,19 +72,19 @@ class EULATextBuilder: NSObject {
     
     
     private static func buildSensorsPart(for scd: SCDDocument) -> NSAttributedString {
-        guard scd.accessedSensors.count > 0 else {
+        guard scd.accessedInputs.count > 0 else {
             return NSAttributedString(string: "")
         }
         
         
         var story: String = ""
         
-        let aggregatedSensors = EULATextBuilder.agreggateBasedOnPrivacyLevel(sensors: scd.accessedSensors)
+        let aggregatedSensors = EULATextBuilder.agreggateBasedOnPrivacyLevel(sensors: scd.accessedInputs)
         
         for i in (1...PrivacyDescription.maxPrivacyLevel).reversed() {
             if let sensorsAtI = aggregatedSensors[i], sensorsAtI.count > 0 {
                 var sensorsNames: String = ""
-                sensorsAtI.forEach {sensorsNames.append("\(SensorType.namesPerSensorType[$0.sensorType] ?? ""), ")}
+                sensorsAtI.forEach {sensorsNames.append("\(InputType.namesPerInputType[$0.inputType] ?? ""), ")}
                 story.append("The following sensor");
                 if sensorsAtI.count > 1 { story.append("s, ")} else {story.append(", ")}
                 story.append(sensorsNames)
@@ -96,7 +96,7 @@ class EULATextBuilder: NSObject {
                 if i == 5 {
                     story.append("\nThese are listed as follows:\n\n")
                     sensorsAtI.forEach {
-                        story.append("For \(SensorType.namesPerSensorType[$0.sensorType] ?? "")\n\n")
+                        story.append("For \(InputType.namesPerInputType[$0.inputType] ?? "")\n\n")
                         story.append(EULATextBuilder.buildLevel5ThirdPartiesText(from: $0))
                     }
                 }
@@ -111,7 +111,7 @@ class EULATextBuilder: NSObject {
     
     
     
-    private static func buildLevel5ThirdPartiesText(from sensor: AccessedSensor) -> String {
+    private static func buildLevel5ThirdPartiesText(from sensor: AccessedInput) -> String {
         guard sensor.privacyDescription.thirdParties.count > 0 else {
             return "-There are no third parties specified for this sensor-"
         }
@@ -125,8 +125,8 @@ class EULATextBuilder: NSObject {
         return story
     }
     
-    private static func agreggateBasedOnPrivacyLevel(sensors: [AccessedSensor]) -> [Int: [AccessedSensor]] {
-        var result: [Int: [AccessedSensor]] = [:]
+    private static func agreggateBasedOnPrivacyLevel(sensors: [AccessedInput]) -> [Int: [AccessedInput]] {
+        var result: [Int: [AccessedInput]] = [:]
         for i in 1...PrivacyDescription.maxPrivacyLevel {
             result[i] = []
         }
@@ -142,14 +142,14 @@ class EULATextBuilder: NSObject {
     private static func buildAccessFrequencyPart(from document: SCDDocument) -> NSAttributedString {
         var story = ""
         
-        var sensorsPerAccessFrequency = EULATextBuilder.aggregateBasedOnAccessFrequensy(sensors: document.accessedSensors)
+        var sensorsPerAccessFrequency = EULATextBuilder.aggregateBasedOnAccessFrequensy(sensors: document.accessedInputs)
         
         for af in [AccessFrequencyType.Continuous, AccessFrequencyType.ContinuousIntervals, AccessFrequencyType.SingularSample] {
             if let afArray = sensorsPerAccessFrequency[af], afArray.count > 0 {
                 story.append("\n\nThe following sensor")
                 if afArray.count > 1 {story.append("s, ")} else {story.append(", ")}
                 for sensor in afArray {
-                    story.append(SensorType.namesPerSensorType[sensor.sensorType] ?? "")
+                    story.append(InputType.namesPerInputType[sensor.inputType] ?? "")
                     story.append(", ");
                 }
                 
@@ -163,8 +163,8 @@ class EULATextBuilder: NSObject {
         return NSAttributedString(string: story)
     }
     
-    private static func aggregateBasedOnAccessFrequensy(sensors: [AccessedSensor]) -> [String: [AccessedSensor]] {
-        var result: [String: [AccessedSensor]] = [:]
+    private static func aggregateBasedOnAccessFrequensy(sensors: [AccessedInput]) -> [String: [AccessedInput]] {
+        var result: [String: [AccessedInput]] = [:]
         for af in [AccessFrequencyType.Continuous, AccessFrequencyType.ContinuousIntervals, AccessFrequencyType.SingularSample] {
             result[af] = []
         }
@@ -181,7 +181,7 @@ class EULATextBuilder: NSObject {
     
     
     private static func buildUserControlPart(from document: SCDDocument) -> NSAttributedString {
-        var perUserControl = EULATextBuilder.aggregateBasedOnUserControl(sensors: document.accessedSensors)
+        var perUserControl = EULATextBuilder.aggregateBasedOnUserControl(sensors: document.accessedInputs)
         var story = ""
         let noControlSensors = perUserControl[false] ?? []
         
@@ -190,7 +190,7 @@ class EULATextBuilder: NSObject {
             if noControlSensors.count > 1 {
                 story.append("for the following: ")
                 for (index, sensor) in noControlSensors.enumerated() {
-                    story.append(SensorType.namesPerSensorType[sensor.sensorType] ?? "")
+                    story.append(InputType.namesPerInputType[sensor.inputType] ?? "")
                     if index < noControlSensors.count - 1 {
                         story.append(",")
                     }
@@ -201,7 +201,7 @@ class EULATextBuilder: NSObject {
                 guard let first = noControlSensors.first else {
                     return NSAttributedString(string: story)
                 }
-                story.append("for the \(SensorType.namesPerSensorType[first.sensorType] ?? "") sensor.")
+                story.append("for the \(InputType.namesPerInputType[first.inputType] ?? "") sensor.")
             }
         }
         
@@ -212,8 +212,8 @@ class EULATextBuilder: NSObject {
     
     
     
-    private static func aggregateBasedOnUserControl(sensors: [AccessedSensor]) -> [Bool: [AccessedSensor]] {
-        var result: [Bool: [AccessedSensor]] = [:]
+    private static func aggregateBasedOnUserControl(sensors: [AccessedInput]) -> [Bool: [AccessedInput]] {
+        var result: [Bool: [AccessedInput]] = [:]
         
         result[true] = []
         result[false] = []

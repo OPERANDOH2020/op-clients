@@ -15,65 +15,6 @@
 
 
 
-typedef void(^CameraInputCallback)();
-CameraInputCallback _globalCameraInputCallback;
-
-
-@interface AVCaptureDevice(rsHook_Camera)
-
-@end
-
-@implementation AVCaptureDevice(rsHook_Camera)
-
-+(void)load {
-    if (NSClassFromString(@"AVCaptureDevice")) {
-        [self jr_swizzleClassMethod:@selector(defaultDeviceWithMediaType:) withClassMethod:@selector(rsHook_Camera_defaultDeviceWithMediaType:) error:nil];
-    }
-}
-
-+(AVCaptureDevice *)rsHook_Camera_defaultDeviceWithMediaType:(NSString *)mediaType {
-    
-    if ([mediaType isEqualToString:AVMediaTypeVideo]) {
-        SAFECALL(_globalCameraInputCallback)
-    }
-    
-    return [self rsHook_Camera_defaultDeviceWithMediaType:mediaType];
-}
-
-@end
-
-@interface UIViewController(rsHook_UIImagePickerController)
-
-@end
-
-@implementation UIViewController(rsHook_UIImagePickerController)
-
-
-+(void)load {
-    
-    [self jr_swizzleMethod:@selector(presentViewController:animated:completion:) withMethod:@selector(rsHookUIImagePickerController_presentViewController:animated:completion:) error:nil];
-    
-}
-
-
--(void)rsHookUIImagePickerController_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion{
-    
-    Class pickerClass = [UIImagePickerController class];
-    
-    if ([viewControllerToPresent isKindOfClass:pickerClass]) {
-        UIImagePickerController *pickerVC = (UIImagePickerController*)
-                                            viewControllerToPresent;
-        
-        if (pickerVC.sourceType == UIImagePickerControllerSourceTypeCamera) {
-            SAFECALL(_globalCameraInputCallback)
-        }
-    }
-    
-    [self rsHookUIImagePickerController_presentViewController:viewControllerToPresent animated:flag completion:completion];
-}
-
-@end
-
 @interface CameraInputSupervisor()
 
 @property (strong, nonatomic) SCDDocument *document;
@@ -90,10 +31,6 @@ CameraInputCallback _globalCameraInputCallback;
     self.delegate = delegate;
     self.cameraSensor = [CommonUtils extractInputOfType: InputType.Camera from:document.accessedInputs];
     
-    __weak typeof(self) weakSelf = self;
-    _globalCameraInputCallback = ^void() {
-        [weakSelf processCameraAccess];
-    };
 }
 
 -(void)processCameraAccess {

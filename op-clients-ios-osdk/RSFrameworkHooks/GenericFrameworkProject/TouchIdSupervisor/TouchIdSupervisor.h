@@ -10,5 +10,5 @@
 #import "SupervisorProtocols.h"
 
 @interface TouchIdSupervisor : NSObject <InputSourceSupervisor>
-
+-(void)processTouchIDUsage;
 @end

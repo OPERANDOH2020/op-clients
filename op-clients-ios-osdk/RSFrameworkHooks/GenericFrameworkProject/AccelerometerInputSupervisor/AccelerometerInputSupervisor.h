@@ -10,5 +10,5 @@
 #import "SupervisorProtocols.h"
 
 @interface AccelerometerInputSupervisor : NSObject <InputSourceSupervisor>
-
+-(void)processAccelerometerStatus;
 @end

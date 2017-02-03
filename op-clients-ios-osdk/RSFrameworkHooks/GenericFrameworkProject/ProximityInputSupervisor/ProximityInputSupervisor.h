@@ -10,5 +10,5 @@
 #import "SupervisorProtocols.h"
 
 @interface ProximityInputSupervisor : NSObject <InputSourceSupervisor>
-
+-(void)processProximitySensorAccess;
 @end

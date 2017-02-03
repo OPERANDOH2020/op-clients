@@ -11,6 +11,14 @@
 #import "NSURLSessionSupervisor.h"
 #import "ProximityInputSupervisor.h"
 #import "PedometerInputSupervisor.h"
+#import "ContactsInputSupervisor.h"
+#import "MicrophoneInputSupervisor.h"
+#import "CameraInputSupervisor.h"
+#import "TouchIdSupervisor.h"
+#import "MagnetometerInputSupervisor.h"
+#import "AccelerometerInputSupervisor.h"
+#import "BarometerInputSupervisor.h"
+#import "InputSupervisorsManager.h"
 
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
 
@@ -19,7 +27,7 @@
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
 
-@property (strong, nonnull) NSArray<InputSourceSupervisor> *supervisorsArray;
+@property (strong, nonnull) NSArray<id<InputSourceSupervisor>> *supervisorsArray;
 
 @end
 
@@ -41,10 +49,13 @@
         
         if (error) {
             NSString *errorMessage = @"Could not create the app SCD document!";
+            [OPMonitor displayNotification:errorMessage];
+            return;
             
         }
         
-        
+        self.supervisorsArray = [self buildSupervisors];
+        [InputSupervisorsManager buildSharedInstanceWithSupervisors:self.supervisorsArray];
     }];
     
 
@@ -99,7 +110,15 @@
     NSArray *supervisorClasses = @[[LocationInputSupervisor class],
                                    [NSURLSessionSupervisor class],
                                    [ProximityInputSupervisor class],
-                                   [PedometerInputSupervisor class]];
+                                   [PedometerInputSupervisor class],
+                                   [MagnetometerInputSupervisor class],
+                                   [AccelerometerInputSupervisor class],
+                                   [BarometerInputSupervisor class],
+                                   [TouchIdSupervisor class],
+                                   [CameraInputSupervisor class],
+                                   [MicrophoneInputSupervisor class],
+                                   [ContactsInputSupervisor class]
+                                   ];
     
     for (Class class in supervisorClasses) {
         id supervisor = [[class alloc] init];

@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		9807875A1E3F44E40099B642 /* UINotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980787591E3F44E40099B642 /* UINotificationViewController.swift */; };
+		98182AC91E44E53F00895F19 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98182AC81E44E53F00895F19 /* PlusPrivacyCommonTypes.framework */; };
 		985635EB1E30B0F90033788A /* EULATextBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635D91E30B0F90033788A /* EULATextBuilder.swift */; };
 		985635EC1E30B0F90033788A /* SCDDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635DB1E30B0F90033788A /* SCDDetailsView.swift */; };
 		985635ED1E30B0F90033788A /* SCDDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635DC1E30B0F90033788A /* SCDDetailsView.xib */; };
@@ -36,7 +37,6 @@
 		985635F61E30B0F90033788A /* SensorDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635EA1E30B0F90033788A /* SensorDetailsView.xib */; };
 		985635F81E30B0FF0033788A /* Cloak.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985635F71E30B0FF0033788A /* Cloak.storyboard */; };
 		985635FA1E30B2130033788A /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635F91E30B2130033788A /* ViewUtilities.swift */; };
-		985635FC1E30B2A90033788A /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985635FB1E30B2A90033788A /* PlusPrivacyCommonTypes.framework */; };
 		985635FE1E30B98C0033788A /* CommonUIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635FD1E30B98C0033788A /* CommonUIBuilder.swift */; };
 		985636011E30BD000033788A /* UISCDDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985636001E30BD000033788A /* UISCDDocumentsViewController.swift */; };
 		985636051E30BEA50033788A /* SCDDocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985636031E30BEA50033788A /* SCDDocumentCell.swift */; };
@@ -47,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		980787591E3F44E40099B642 /* UINotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINotificationViewController.swift; sourceTree = "<group>"; };
+		98182AC81E44E53F00895F19 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		985635D91E30B0F90033788A /* EULATextBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EULATextBuilder.swift; sourceTree = "<group>"; };
 		985635DB1E30B0F90033788A /* SCDDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDDetailsView.swift; sourceTree = "<group>"; };
 		985635DC1E30B0F90033788A /* SCDDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCDDetailsView.xib; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		985635EA1E30B0F90033788A /* SensorDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SensorDetailsView.xib; sourceTree = "<group>"; };
 		985635F71E30B0FF0033788A /* Cloak.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cloak.storyboard; sourceTree = "<group>"; };
 		985635F91E30B2130033788A /* ViewUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
-		985635FB1E30B2A90033788A /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		985635FD1E30B98C0033788A /* CommonUIBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUIBuilder.swift; sourceTree = "<group>"; };
 		985636001E30BD000033788A /* UISCDDocumentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISCDDocumentsViewController.swift; sourceTree = "<group>"; };
 		985636031E30BEA50033788A /* SCDDocumentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDDocumentCell.swift; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				985635FC1E30B2A90033788A /* PlusPrivacyCommonTypes.framework in Frameworks */,
+				98182AC91E44E53F00895F19 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +182,6 @@
 		98584F331D3F9E18009FB89F = {
 			isa = PBXGroup;
 			children = (
-				985635FB1E30B2A90033788A /* PlusPrivacyCommonTypes.framework */,
 				98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */,
 				98584F3E1D3F9E18009FB89F /* Products */,
 			);
@@ -199,6 +198,7 @@
 		98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */ = {
 			isa = PBXGroup;
 			children = (
+				98182AC81E44E53F00895F19 /* PlusPrivacyCommonTypes.framework */,
 				985635FD1E30B98C0033788A /* CommonUIBuilder.swift */,
 				985635F91E30B2130033788A /* ViewUtilities.swift */,
 				985635F71E30B0FF0033788A /* Cloak.storyboard */,
@@ -437,6 +437,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GenericFrameworkProject",
 				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -458,6 +459,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GenericFrameworkProject",
 				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

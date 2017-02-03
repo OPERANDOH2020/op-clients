@@ -11,4 +11,6 @@
 
 @interface MicrophoneInputSupervisor : NSObject <InputSourceSupervisor>
 
+-(void)processMicrophoneUsage;
+
 @end

@@ -31,9 +31,9 @@ class SCDSensorCell: UITableViewCell {
                                                            .colorWith(255, 0, 0, 0.7)];
     
     
-    func setupWith(sensor: AccessedSensor) {
+    func setupWith(sensor: AccessedInput) {
         let privacyLevel = sensor.privacyDescription.privacyLevel
-        self.sensorNameLabel.text = SensorType.namesPerSensorType[sensor.sensorType]
+        self.sensorNameLabel.text = InputType.namesPerInputType[sensor.inputType]
         self.privacyLevelLabel.text = "PL\(privacyLevel)"
         if privacyLevel >= 1 && privacyLevel <= SCDSensorCell.colorsPerPrivacyLevel.count {
             self.contentView.backgroundColor = SCDSensorCell.colorsPerPrivacyLevel[privacyLevel - 1]

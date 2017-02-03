@@ -50,12 +50,12 @@ fileprivate class SensorListSectionSource: NSObject, SectionSource {
     }
     
     fileprivate func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.scd.accessedSensors.count
+        return self.scd.accessedInputs.count
     }
     
     fileprivate func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SCDSensorCell.identifierNibName) as! SCDSensorCell
-        cell.setupWith(sensor: self.scd.accessedSensors[indexPath.row]);
+        cell.setupWith(sensor: self.scd.accessedInputs[indexPath.row]);
         return cell
     }
 }
@@ -87,7 +87,7 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
         if scd.accessedLinks.count > 0 {
             self.sectionSources.append(UrlListSectionSource(scd: scd))
         }
-        if scd.accessedSensors.count > 0 {
+        if scd.accessedInputs.count > 0 {
             self.sectionSources.append(SensorListSectionSource(scd: scd))
         }
         

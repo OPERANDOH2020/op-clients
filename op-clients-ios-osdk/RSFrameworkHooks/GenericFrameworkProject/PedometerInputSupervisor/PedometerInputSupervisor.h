@@ -11,5 +11,5 @@
 #import "SupervisorProtocols.h"
 
 @interface PedometerInputSupervisor : NSObject <InputSourceSupervisor>
-
+-(void)processPedometerStatus;
 @end

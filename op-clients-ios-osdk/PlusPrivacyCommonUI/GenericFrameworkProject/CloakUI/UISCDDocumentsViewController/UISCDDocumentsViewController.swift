@@ -81,21 +81,14 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        weak var weakSelf = self
         
         let document = self.documentsFromRepository[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: SCDDocumentCell.identifierNibName, for: indexPath) as! SCDDocumentCell
-        cell.setup(with: self.documentsFromRepository[indexPath.row],
+        cell.setup(with: document,
                    inFullSize: self.cellAtIndexNeedsFullSize[indexPath.row],
-                   callbacks: SCDDocumentCellCallbacks(
-            whenUserSelectsAdvanced: {weakSelf?.callbacks?.whenUserSelectsSCD?(document)},
-            whenRequiresResize: { needsFullSize in
-                weakSelf?.cellAtIndexNeedsFullSize[indexPath.row] = needsFullSize
-                weakSelf?.tableView?.beginUpdates()
-                weakSelf?.tableView?.endUpdates()
-        }))
-            
+                   callbacks: nil)
+        
         return cell
     }
     

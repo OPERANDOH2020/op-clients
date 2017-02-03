@@ -11,31 +11,6 @@
 #import <CoreMotion/CoreMotion.h>
 #import "JRSwizzle.h"
 
-typedef void(^PedometerCallback)();
-PedometerCallback _globalPedometerCallback;
-
-
-@interface CMPedometer(rsHook)
-
-@end
-
-
-@implementation CMPedometer(rsHook)
-
-+(void)load {
-    
-    if (NSClassFromString(@"CMPedometer")) {
-        [self jr_swizzleMethod:@selector(startPedometerUpdatesFromDate:withHandler:) withMethod:@selector(rsHook_startPedometerUpdatesFromDate:withHandler:) error:nil];
-    }
-    
-}
-
--(void)rsHook_startPedometerUpdatesFromDate:(NSDate *)start withHandler:(CMPedometerHandler)handler {
-    SAFECALL(_globalPedometerCallback, nil);
-    [self rsHook_startPedometerUpdatesFromDate:start withHandler:handler];
-}
-
-@end
 
 
 @interface PedometerInputSupervisor()
@@ -54,11 +29,6 @@ PedometerCallback _globalPedometerCallback;
     self.delegate = delegate;
     self.document = document;
     self.pedoSensor = [CommonUtils extractInputOfType: InputType.Pedometer from:document.accessedInputs];
-    
-    __weak typeof(self) weakSelf = self;
-    _globalPedometerCallback = ^void() {
-        [weakSelf processPedometerStatus];
-    };
 }
 
 -(void)processPedometerStatus {

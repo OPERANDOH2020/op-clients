@@ -12,26 +12,6 @@
 #import <CoreMotion/CoreMotion.h>
 
 
-typedef void(^AltimeterCallback)();
-AltimeterCallback _globalAltimeterCallback;
-
-
-@interface CMAltimeter(rsHook_Altimeter)
-
-@end
-
-@implementation CMAltimeter(rsHook_Altimeter)
-
-
--(void)rsHook_startRelativeAltitudeUpdatesToQueue:(NSOperationQueue *)queue withHandler:(CMAltitudeHandler)handler {
-    
-    SAFECALL(_globalAltimeterCallback);
-    [self rsHook_startRelativeAltitudeUpdatesToQueue:queue withHandler:handler];
-    
-}
-
-@end
-
 @interface BarometerInputSupervisor()
 
 @property (strong, nonatomic) SCDDocument *document;
@@ -47,10 +27,6 @@ AltimeterCallback _globalAltimeterCallback;
     self.delegate = delegate;
     self.sensor = [CommonUtils extractInputOfType:InputType.Barometer from:document.accessedInputs];
     
-    __weak typeof(self) weakSelf = self;
-    _globalAltimeterCallback = ^void(){
-        [weakSelf processAltimeterStatus];
-    };
 }
 
 -(void)processAltimeterStatus {

@@ -12,31 +12,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "JRSwizzle.h"
 
-typedef void(^MicrophoneInputCallback)();
-MicrophoneInputCallback _globalMicrophoneCallback;
-
-
-@interface AVCaptureDevice(rsHook_Microphone)
-
-@end
-
-@implementation AVCaptureDevice(rsHook_Microphone)
-
-+(void)load {
-    if (NSClassFromString(@"AVCaptureDevice")) {
-        [self jr_swizzleClassMethod:@selector(defaultDeviceWithMediaType:) withClassMethod:@selector(rsHook_Microphone_defaultDeviceWithMediaType:) error:nil];
-    }
-}
-
-+(AVCaptureDevice*)rsHook_Microphone_defaultDeviceWithMediaType:(NSString *)mediaType{
-    
-    if (mediaType == AVCaptureDeviceTypeBuiltInMicrophone) {
-        SAFECALL(_globalMicrophoneCallback)
-    }
-    return [self rsHook_Microphone_defaultDeviceWithMediaType:mediaType];
-}
-
-@end
 
 @interface MicrophoneInputSupervisor()
 
@@ -54,10 +29,6 @@ MicrophoneInputCallback _globalMicrophoneCallback;
     self.delegate = delegate;
     self.micSensor = [CommonUtils extractInputOfType:InputType.Microphone from:document.accessedInputs];
     
-    __weak typeof(self) weakSelf = self;
-    _globalMicrophoneCallback = ^void(){
-        [weakSelf processMicrophoneUsage];
-    };
 }
 
 

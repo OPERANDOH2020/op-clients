@@ -10,8 +10,9 @@
 #import "SupervisorProtocols.h"
 #import "Common.h"
 
-typedef void (^URLRequestHookCallback)(NSURLRequest*);
 
 @interface NSURLSessionSupervisor: NSObject <InputSourceSupervisor>
+
+-(void)processRequest:(NSURLRequest*)request;
 
 @end

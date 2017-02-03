@@ -13,34 +13,7 @@
 #import "JRSwizzle.h"
 #import "Common.h"
 
-typedef void(^ProximityCallback)();
 
-ProximityCallback _globalProximityCallback;
-
-@interface UIDevice(rsHook)
-
-@end
-
-@implementation UIDevice(rsHook)
-
-+(void)load{
-    
-    [self jr_swizzleMethod:@selector(setProximitySensingEnabled:) withMethod:@selector(rsHook_setProximitySensingEnabled:) error:nil];
-    
-    [self jr_swizzleMethod:@selector(setProximityMonitoringEnabled:) withMethod:@selector(rsHook_setProximityMonitoringEnabled:) error:nil];
-}
-
--(void)rsHook_setProximityMonitoringEnabled:(BOOL)enabled {
-    SAFECALL(_globalProximityCallback, nil)
-    [self rsHook_setProximityMonitoringEnabled:enabled];
-}
-
--(void)rsHook_setProximitySensingEnabled:(BOOL)enabled {
-    SAFECALL(_globalProximityCallback, nil)
-    [self rsHook_setProximitySensingEnabled:enabled];
-}
-
-@end
 
 @interface ProximityInputSupervisor()
 @property (strong, nonatomic) SCDDocument *document;
@@ -56,14 +29,9 @@ ProximityCallback _globalProximityCallback;
     self.document = document;
     self.proximitySensor = [CommonUtils extractInputOfType: InputType.Proximity from:document.accessedInputs];
     
-    __weak typeof(self) weakSelf = self;
-    _globalProximityCallback = ^void(NSDictionary* dict){
-        [weakSelf processMonitoringSensorEnabled:NO];
-        // must continue implementation later
-    };
 }
 
--(void)processMonitoringSensorEnabled:(BOOL)enabled {
+-(void)processProximitySensorAccess {
     if (self.proximitySensor) {
         return;
     }

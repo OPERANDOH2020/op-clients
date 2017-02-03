@@ -12,28 +12,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "JRSwizzle.h"
 
-typedef void(^AccelerometerCallback)();
-AccelerometerCallback _globalAccelerometerCallback;
 
-@interface CMMotionManager(rsHook_Accelerometer)
-
-@end
-
-
-@implementation CMMotionManager(rsHook_Accelerometer)
-
-+(void)load{
-    if (NSClassFromString(@"CMMotionManager")) {
-        [self jr_swizzleMethod:@selector(startAccelerometerUpdates) withMethod:@selector(rsHook_startAccelerometerUpdates) error:nil];
-    }
-}
-
--(void)rsHook_startAccelerometerUpdates{
-    SAFECALL(_globalAccelerometerCallback, nil)
-    [self rsHook_startAccelerometerUpdates];
-}
-
-@end
 
 
 

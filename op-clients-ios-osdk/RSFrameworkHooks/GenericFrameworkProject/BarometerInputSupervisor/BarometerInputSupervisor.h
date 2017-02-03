@@ -10,5 +10,5 @@
 #import "SupervisorProtocols.h"
 
 @interface BarometerInputSupervisor : NSObject <InputSourceSupervisor>
-
+-(void)processAltimeterStatus;
 @end

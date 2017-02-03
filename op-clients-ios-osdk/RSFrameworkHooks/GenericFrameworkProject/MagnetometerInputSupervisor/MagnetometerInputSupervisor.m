@@ -15,27 +15,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-typedef void(^MagnetometerCallback)();
-MagnetometerCallback _globalMagnetometerCallback;
 
-
-
-@interface CMMotionManager(rsHook_Magnetometer)
-
-@end
-
-@implementation CMMotionManager(rsHook_Magnetometer)
-+(void)load {
-    if (NSClassFromString(@"CMMotionManager")) {
-        [self jr_swizzleMethod:@selector(startMagnetometerUpdates) withMethod:@selector(rsHook_startMagnetometerUpdates) error:nil];
-    }
-}
--(void)rsHook_startMagnetometerUpdates{
-    SAFECALL(_globalMagnetometerCallback, nil)
-    [self rsHook_startMagnetometerUpdates];
-}
-
-@end
 
 
 
@@ -56,12 +36,6 @@ MagnetometerCallback _globalMagnetometerCallback;
     self.document = document;
     self.delegate = delegate;
     self.magnetoSensor = [CommonUtils extractInputOfType: InputType.Magnetometer from:document.accessedInputs];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    _globalMagnetometerCallback = ^void(){
-        [weakSelf processMagnetometerStatus];
-    };
 }
 
 
