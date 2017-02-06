@@ -24,6 +24,7 @@
 
 -(NSURLSessionDataTask *)rsHook__dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completionHandler {
     
+    [[NSURLSession sessionInputSupervisor] processRequest:request];
     return [self rsHook__dataTaskWithRequest:request completionHandler:completionHandler];
 }
 

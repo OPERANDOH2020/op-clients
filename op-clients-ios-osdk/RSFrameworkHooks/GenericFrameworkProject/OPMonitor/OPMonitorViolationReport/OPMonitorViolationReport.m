@@ -11,6 +11,8 @@
 @interface OPMonitorViolationReport()
 @property (strong, nonatomic, readwrite) NSString *violationDetails;
 @property (assign, nonatomic, readwrite) OPMonitorViolationType violationType;
+@property (strong, nonatomic, readwrite) NSDate *dateReported;
+
 @end
 
 @implementation OPMonitorViolationReport
@@ -19,9 +21,20 @@
     if (self = [super init]) {
         self.violationDetails = details;
         self.violationType = type;
+        self.dateReported = [NSDate date];
     }
     
     return self;
 }
 
+-(instancetype)initWithDetails:(NSString*)details violationType:(OPMonitorViolationType)type date:(NSDate*)dateReported {
+    
+    if (self = [super init]) {
+        self.violationType = type;
+        self.violationDetails = details;
+        self.dateReported = dateReported;
+    }
+    
+    return self;
+}
 @end

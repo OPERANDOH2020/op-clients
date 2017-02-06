@@ -169,7 +169,6 @@ SWIFT_CLASS("_TtC19PlusPrivacyCommonUI28UINotificationViewController")
 @interface UINotificationViewController : UIViewController
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
-+ (void)presentNotificationMessage:(NSString * _Nonnull)message inController:(UIViewController * _Nonnull)hostController atDistanceFromTop:(CGFloat)topDistance;
 + (void)presentBadNotificationMessage:(NSString * _Nonnull)message inController:(UIViewController * _Nonnull)hostController atDistanceFromTop:(CGFloat)topDistance;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;

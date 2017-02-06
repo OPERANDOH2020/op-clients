@@ -34,13 +34,13 @@
 -(void)processPedometerStatus {
     
     OPMonitorViolationReport *report = nil;
-    if ((report = [self checkUnspecifiedAccess])) {
+    if ((report = [self detectUnregisteredAccess])) {
         [self.delegate newViolationReported:report];
     }
 }
 
 
--(OPMonitorViolationReport*)checkUnspecifiedAccess {
+-(OPMonitorViolationReport*)detectUnregisteredAccess {
     if (self.pedoSensor) {
         return nil;
     }

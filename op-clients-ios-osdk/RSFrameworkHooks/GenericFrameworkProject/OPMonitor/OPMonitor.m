@@ -45,15 +45,15 @@
 
 -(void)beginMonitoringWithAppDocument:(NSDictionary *)document {
     
-    [[CommonTypeBuilder sharedInstance] buildSCDDocumentWith:document in: ^void(SCDDocument * _Nullable document, NSError * _Nullable error) {
+    [[CommonTypeBuilder sharedInstance] buildSCDDocumentWith:document in: ^void(SCDDocument * _Nullable scdDocument, NSError * _Nullable error) {
         
-        if (error) {
+        if (error || !scdDocument) {
             NSString *errorMessage = @"Could not create the app SCD document!";
             [OPMonitor displayNotification:errorMessage];
             return;
             
         }
-        
+        self.document = scdDocument;
         self.supervisorsArray = [self buildSupervisors];
         [InputSupervisorsManager buildSharedInstanceWithSupervisors:self.supervisorsArray];
     }];

@@ -8,24 +8,7 @@
 
 #import "ContactsInputSupervisor.h"
 #import <Contacts/Contacts.h>
-
-
-@interface CNContactStore(rsHook)
-
-@end
-
-
-@implementation CNContactStore(rsHook)
-
-
--(void)rsHook_requestAccessForEntityType:(CNEntityType)entityType completionHandler:(void (^)(BOOL, NSError * _Nullable))completionHandler
-{
-    
-    [self rsHook_requestAccessForEntityType:entityType completionHandler:completionHandler];
-}
-
-@end
-
+#import "CommonUtils.h"
 
 @interface ContactsInputSupervisor()
 @property (strong, nonatomic) SCDDocument *document;
@@ -39,9 +22,24 @@
 -(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
     self.delegate = delegate;
     self.document = document;
+    self.contactsSource = [CommonUtils extractInputOfType:InputType.Contacts from:document.accessedInputs];
+}
+
+
+-(void)processContactsAccess {
+    OPMonitorViolationReport *report = nil;
+    if ((report = [self detectUnregisteredAccess])) {
+        [self.delegate newViolationReported:report];
+    }
+}
+
+
+-(OPMonitorViolationReport*)detectUnregisteredAccess {
+    if (self.contactsSource) {
+        return  nil;
+    }
     
-    //MUST RENAME IN THE SELF-COMPLIANCE SCHEMA
-    // AND COMMON TYPES TO "InputSource" from "AccessedSensor"
+    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app is accessing the contacts without having specified in the self-compliance document!" violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

@@ -30,16 +30,17 @@ class SCDDocumentCell: UITableViewCell {
     @IBOutlet weak var bundleLabel: UILabel!
     @IBOutlet weak var eulaLabel: UILabel!
     
-    func setup(with scdDocument: SCDDocument, inFullSize: Bool, callbacks: SCDDocumentCellCallbacks?){
+    func setup(with scdDocument: SCDDocument?, inFullSize: Bool, callbacks: SCDDocumentCellCallbacks?){
         
+        print("Received in cell \(scdDocument)")
         self.callbacks = callbacks
-        self.titleLabel.text = scdDocument.appTitle
-        self.bundleLabel.text = scdDocument.bundleId
+        self.titleLabel.text = scdDocument?.appTitle
+        self.bundleLabel.text = scdDocument?.bundleId
         self.scdDocument = scdDocument
         
-        if inFullSize {
+        if inFullSize, let document = scdDocument {
             self.disclosureButton.isSelected = true
-            self.eulaLabel.attributedText = EULATextBuilder.generateEULAFrom(scd: scdDocument)
+            self.eulaLabel.attributedText = EULATextBuilder.generateEULAFrom(scd: document)
         } else {
             self.disclosureButton.isSelected = false
         }

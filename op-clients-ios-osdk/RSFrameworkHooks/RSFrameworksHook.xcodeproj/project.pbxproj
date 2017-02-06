@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		9807875C1E3F53280099B642 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9807875B1E3F53280099B642 /* PlusPrivacyCommonUI.framework */; };
 		98182AB21E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB01E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m */; };
 		98182AB31E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB11E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m */; };
 		98182AB51E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB41E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m */; };
@@ -32,6 +31,11 @@
 		98182ABF1E44C58200895F19 /* CMPedometer+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182ABE1E44C58200895F19 /* CMPedometer+rsHook.m */; };
 		98182AC11E44CDFC00895F19 /* UIDevice+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AC01E44CDFC00895F19 /* UIDevice+rsHook.m */; };
 		98182AC31E44D18E00895F19 /* NSURLSession+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AC21E44D18E00895F19 /* NSURLSession+rsHook.m */; };
+		981EAC681E48AF40000F59E3 /* CNContactStore+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC671E48AF40000F59E3 /* CNContactStore+rsHook.m */; };
+		981EAC6A1E48B463000F59E3 /* CLLocationManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC691E48B463000F59E3 /* CLLocationManager+rsHook.m */; };
+		981EAC701E48C7C6000F59E3 /* PlistReportsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */; };
+		981EAC711E48C7C6000F59E3 /* PlistReportsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */; };
+		98203D4B1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98203D4A1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework */; };
 		982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */; };
 		982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */; };
 		98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* RSFrameworksHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -72,7 +76,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9807875B1E3F53280099B642 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		98182AB01E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookCamera.m"; sourceTree = "<group>"; };
 		98182AB11E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookingMicrophone.m"; sourceTree = "<group>"; };
 		98182AB41E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVIewController+rsHookUIImagePickerController.m"; sourceTree = "<group>"; };
@@ -83,6 +86,12 @@
 		98182ABE1E44C58200895F19 /* CMPedometer+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMPedometer+rsHook.m"; sourceTree = "<group>"; };
 		98182AC01E44CDFC00895F19 /* UIDevice+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+rsHook.m"; sourceTree = "<group>"; };
 		98182AC21E44D18E00895F19 /* NSURLSession+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+rsHook.m"; sourceTree = "<group>"; };
+		981EAC671E48AF40000F59E3 /* CNContactStore+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContactStore+rsHook.m"; sourceTree = "<group>"; };
+		981EAC691E48B463000F59E3 /* CLLocationManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+rsHook.m"; sourceTree = "<group>"; };
+		981EAC6D1E48C660000F59E3 /* ReportsStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReportsStorageProtocol.h; path = ReportsStorageAndUI/ReportsStorageProtocol.h; sourceTree = "<group>"; };
+		981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlistReportsStorage.h; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.h; sourceTree = "<group>"; };
+		981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlistReportsStorage.m; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.m; sourceTree = "<group>"; };
+		98203D4A1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProximityInputSupervisor.h; path = ProximityInputSupervisor/ProximityInputSupervisor.h; sourceTree = "<group>"; };
 		982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProximityInputSupervisor.m; path = ProximityInputSupervisor/ProximityInputSupervisor.m; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSFrameworksHook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,8 +139,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98203D4B1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework in Frameworks */,
 				98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */,
-				9807875C1E3F53280099B642 /* PlusPrivacyCommonUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,8 +169,28 @@
 				98182ABE1E44C58200895F19 /* CMPedometer+rsHook.m */,
 				98182AC01E44CDFC00895F19 /* UIDevice+rsHook.m */,
 				98182AC21E44D18E00895F19 /* NSURLSession+rsHook.m */,
+				981EAC671E48AF40000F59E3 /* CNContactStore+rsHook.m */,
+				981EAC691E48B463000F59E3 /* CLLocationManager+rsHook.m */,
 			);
 			path = HookingCategories;
+			sourceTree = "<group>";
+		};
+		981EAC6B1E48C62C000F59E3 /* ReportsStorageAndUI */ = {
+			isa = PBXGroup;
+			children = (
+				981EAC6C1E48C63F000F59E3 /* Repositories */,
+				981EAC6D1E48C660000F59E3 /* ReportsStorageProtocol.h */,
+			);
+			name = ReportsStorageAndUI;
+			sourceTree = "<group>";
+		};
+		981EAC6C1E48C63F000F59E3 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */,
+				981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */,
+			);
+			name = Repositories;
 			sourceTree = "<group>";
 		};
 		982175C81E3FA07F00495627 /* ProximityInputSupervisor */ = {
@@ -192,9 +221,9 @@
 		98584F3F1D3F9E18009FB89F /* RSFrameworksHook */ = {
 			isa = PBXGroup;
 			children = (
+				98203D4A1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework */,
 				98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */,
-				9807875B1E3F53280099B642 /* PlusPrivacyCommonUI.framework */,
-				987F836E1E3211F90058633C /* Common */,
+				987F836E1E3211F90058633C /* Supervising */,
 				98D603E11E2F7FEC00E59A42 /* OPMonitor */,
 				9863E8FF1DEC70CC0095CA30 /* NSURLSessionHook */,
 				9863E8FA1DEC6F0D0095CA30 /* JRSwizzle */,
@@ -221,16 +250,17 @@
 			name = NSURLSessionHook;
 			sourceTree = "<group>";
 		};
-		987F836E1E3211F90058633C /* Common */ = {
+		987F836E1E3211F90058633C /* Supervising */ = {
 			isa = PBXGroup;
 			children = (
+				981EAC6B1E48C62C000F59E3 /* ReportsStorageAndUI */,
 				98182AAF1E44B76700895F19 /* HookingCategories */,
 				987F837A1E3241250058633C /* InputSupervisors */,
 				987F83791E32410E0058633C /* OPMonitorViolationReport */,
 				987F83741E32357C0058633C /* OPMonitorInputSourceReport */,
 				987F836F1E3212140058633C /* Common.h */,
 			);
-			name = Common;
+			name = Supervising;
 			sourceTree = "<group>";
 		};
 		987F83741E32357C0058633C /* OPMonitorInputSourceReport */ = {
@@ -398,6 +428,7 @@
 				98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */,
 				98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */,
 				98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */,
+				981EAC701E48C7C6000F59E3 /* PlistReportsStorage.h in Headers */,
 				98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */,
 				988A151A1E40DF3300AABD43 /* AccelerometerInputSupervisor.h in Headers */,
 				982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */,
@@ -497,10 +528,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */,
+				981EAC6A1E48B463000F59E3 /* CLLocationManager+rsHook.m in Sources */,
 				98182AB31E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m in Sources */,
 				9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */,
 				988A151B1E40DF3300AABD43 /* AccelerometerInputSupervisor.m in Sources */,
 				98182AB51E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
+				981EAC681E48AF40000F59E3 /* CNContactStore+rsHook.m in Sources */,
 				98182AC11E44CDFC00895F19 /* UIDevice+rsHook.m in Sources */,
 				98182ABB1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m in Sources */,
 				987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */,
@@ -510,6 +543,7 @@
 				98ECE4821E424AC80042A262 /* ContactsInputSupervisor.m in Sources */,
 				987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */,
 				98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */,
+				981EAC711E48C7C6000F59E3 /* PlistReportsStorage.m in Sources */,
 				98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */,
 				988A15071E40AA7F00AABD43 /* CommonUtils.m in Sources */,
 				98182ABF1E44C58200895F19 /* CMPedometer+rsHook.m in Sources */,

@@ -31,13 +31,20 @@
     
 }
 
+
 -(void)processProximitySensorAccess {
-    if (self.proximitySensor) {
-        return;
+    OPMonitorViolationReport *report = nil;
+    if ((report = [self detectUnregisteredAccess])) {
+        [self.delegate newViolationReported:report];
     }
-    
-    [self.delegate newViolationReported:[[OPMonitorViolationReport alloc] initWithDetails:@"The app uses the proxmity sensor even though it is not specified in the self compliance document!" violationType:TypeUnregisteredSensorAccessed]];
 }
 
+-(OPMonitorViolationReport*)detectUnregisteredAccess {
+    if (self.proximitySensor) {
+        return nil;
+    }
+    
+    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app uses the proxmity sensor even though it is not specified in the self compliance document!" violationType:TypeUnregisteredSensorAccessed];
+}
 
 @end

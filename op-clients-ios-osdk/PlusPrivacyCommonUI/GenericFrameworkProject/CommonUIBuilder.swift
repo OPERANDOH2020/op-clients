@@ -12,7 +12,7 @@ import PlusPrivacyCommonTypes
 
 @objc
 public class OneDocumentRepository: NSObject, SCDRepository {
-    private let scd: SCDDocument
+    var scd: SCDDocument
     public init(document: SCDDocument) {
         self.scd = document
     }

@@ -31,13 +31,13 @@
 
 -(void)processAltimeterStatus {
     OPMonitorViolationReport *report = nil;
-    if ((report = [self checkUnregisteredAccess])) {
+    if ((report = [self detectUnregisteredAccess])) {
         [self.delegate newViolationReported:report];
     }
 }
 
 
--(OPMonitorViolationReport*)checkUnregisteredAccess {
+-(OPMonitorViolationReport*)detectUnregisteredAccess {
     if (self.sensor) {
         return nil;
     }
