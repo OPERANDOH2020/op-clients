@@ -18,8 +18,10 @@
 -(void)getAllReportsIn:( void(^ _Nullable )(NSArray<OPMonitorViolationReport*>* __nullable, NSError* __nullable))completion;
 
 -(void)clearAllReportsWithCompletion:(void(^)(NSError*))completion;
--(void)deleteReportAtIndex:(NSInteger)index withCompletion:(void (^)(NSError *))completion;
+-(void)deleteReport:(OPMonitorViolationReport*)report withCompletion:(void (^)(NSError *))completion;
 
 @end
+
+
 
 #endif /* ReportsStorageProtocol_h */

@@ -1,9 +1,14 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/InputSupervisorsManager.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/UIPPOptionsViewController.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/CLLocationManager+rsHook.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/AVCaptureDevice+rsHookingMicrophone.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/NSURLSessionSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/AccelerometerInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/UIVIewController+rsHookUIImagePickerController.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/CNContactStore+rsHook.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/UIEncapsulatorViewController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/UIDevice+rsHook.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/PPFlowBuilder.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/CMMotionManager+rsHookAccelerometer.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/OPMonitorInputSourceEvent.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/AVCaptureDevice+rsHookCamera.o
@@ -12,11 +17,13 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/ContactsInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/OPMonitorViolationReport.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/OPMonitor.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/PlistReportsStorage.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/MicrophoneInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/CommonUtils.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/CMPedometer+rsHook.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/TouchIdSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/CMAltimeter+rsHook.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/UIViolationReportsViewController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/CMMotionManager+rsHookMagnetometer.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/CameraInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/LAContext+rsHook.o
@@ -25,4 +32,5 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/JRSwizzle.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/ProximityInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/NSURLSession+rsHook.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/ViolationReportCell.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7/RSFrameworksHook_vers.o

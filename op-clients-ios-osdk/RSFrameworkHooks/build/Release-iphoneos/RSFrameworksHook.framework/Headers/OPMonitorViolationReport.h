@@ -20,7 +20,10 @@ typedef NS_ENUM(NSUInteger, OPMonitorViolationType) {
 
 @property (strong, nonatomic, readonly) NSString *violationDetails;
 @property (assign, nonatomic, readonly) OPMonitorViolationType violationType;
+@property (strong, nonatomic, readonly) NSDate *dateReported;
 
 -(instancetype)initWithDetails:(NSString*)details violationType:(OPMonitorViolationType)type;
+
+-(instancetype)initWithDetails:(NSString*)details violationType:(OPMonitorViolationType)type date:(NSDate*)dateReported;
 
 @end

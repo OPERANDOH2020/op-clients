@@ -42,8 +42,7 @@
 
 @end
 
-static const NSString *kPlistReportStorageDomain = @"com.plistReportStorage";
-static const NSString *kIndexOutOfRangeDescription = @"Index is out of range";
+
 
 @interface PlistReportsStorage()
 
@@ -53,6 +52,9 @@ static const NSString *kIndexOutOfRangeDescription = @"Index is out of range";
 
 @implementation PlistReportsStorage
 
+static const NSString *kPlistReportStorageDomain = @"com.plistReportStorage";
+static const NSString *kIndexOutOfRangeDescription = @"Index is out of range";
+static const NSString *kObjectNotInRepository = @"Object is not in repository";
 
 - (instancetype)init
 {
@@ -79,14 +81,16 @@ static const NSString *kIndexOutOfRangeDescription = @"Index is out of range";
 }
 
 
--(void)deleteReportAtIndex:(NSInteger)index withCompletion:(void (^)(NSError *))completion {
-    if (index < 0 || index > self.reportsArray.count - 1) {
-        NSError *error = [NSError errorWithDomain:kPlistReportStorageDomain code:1 userInfo:@{NSLocalizedDescriptionKey: kIndexOutOfRangeDescription}];
-        SAFECALL(completion, error)
+-(void)deleteReport:(OPMonitorViolationReport *)report withCompletion:(void (^)(NSError *))completion {
+    
+    NSError *error = nil;
+    if (! [self.reportsArray containsObject:report]) {
+        error = [NSError errorWithDomain:kPlistReportStorageDomain code:TypeObjectNotInRepository userInfo:@{NSLocalizedDescriptionKey: kObjectNotInRepository}];
+    } else {
+        [self.reportsArray removeObject:report];
     }
     
-    [self.reportsArray removeObjectAtIndex:index];
-    SAFECALL(completion, nil)
+    SAFECALL(completion, error)
 }
 
 -(void)getAllReportsIn:(void (^)(NSArray<OPMonitorViolationReport *> * _Nullable, NSError * _Nullable))completion {

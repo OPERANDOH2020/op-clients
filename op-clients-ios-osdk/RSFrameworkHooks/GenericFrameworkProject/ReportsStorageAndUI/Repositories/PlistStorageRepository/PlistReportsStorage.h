@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "ReportsStorageProtocol.h"
 
+
+typedef enum : NSUInteger {
+    TypeObjectNotInRepository,
+} PlistReportsStorageErrorType;
+
 @interface PlistReportsStorage : NSObject <OPViolationReportRepository>
 
 @end

@@ -20,6 +20,9 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/AccelerometerInputSupervisor/AccelerometerInputSupervisor.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/BarometerInputSupervisor/BarometerInputSupervisor.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/InputSupervisorsManager/InputSupervisorsManager.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/ReportsStorageProtocol.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/PPFlowBuilder/PPFlowBuilder.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonUI.framework/Modules/module.modulemap \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonUI.framework/Headers/PlusPrivacyCommonUI-Swift.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonUI.framework/Headers/PlusPrivacyCommonUI.h

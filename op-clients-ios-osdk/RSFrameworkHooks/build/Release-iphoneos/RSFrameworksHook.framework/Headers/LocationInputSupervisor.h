@@ -10,6 +10,18 @@
 #import "SupervisorProtocols.h"
 #import "Common.h"
 
+static const NSString *kStatusKey = @"status";
+
+typedef enum : NSUInteger {
+    Undefined,
+    StartUpdatingLocation,
+    RequestAlwaysAuthorization,
+    RequestWhenInUseAuthorization
+} LocationStatus;
+
+
 @interface LocationInputSupervisor : NSObject <InputSourceSupervisor>
+
+-(void)processLocationStatus:(NSDictionary*)statusDict;
 
 @end

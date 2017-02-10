@@ -19,14 +19,18 @@
 #import "AccelerometerInputSupervisor.h"
 #import "BarometerInputSupervisor.h"
 #import "InputSupervisorsManager.h"
+#import "PlistReportsStorage.h"
+
+#import "PPFlowBuilder.h"
 
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
+
 
 @interface OPMonitor() <InputSupervisorDelegate>
 
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
-
+@property (strong, nonatomic) id<OPViolationReportRepository> reportsRepository;
 @property (strong, nonnull) NSArray<id<InputSourceSupervisor>> *supervisorsArray;
 
 @end
@@ -43,6 +47,8 @@
     return  shared;
 }
 
+
+
 -(void)beginMonitoringWithAppDocument:(NSDictionary *)document {
     
     [[CommonTypeBuilder sharedInstance] buildSCDDocumentWith:document in: ^void(SCDDocument * _Nullable scdDocument, NSError * _Nullable error) {
@@ -53,6 +59,7 @@
             return;
             
         }
+        self.reportsRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
         self.supervisorsArray = [self buildSupervisors];
         [InputSupervisorsManager buildSharedInstanceWithSupervisors:self.supervisorsArray];
@@ -78,20 +85,27 @@
     OneDocumentRepository *repo = [[OneDocumentRepository alloc] initWithDocument:self.document];
     
     __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
+
+    __block UIViewController *flowRoot = nil;
     
+    PPFlowBuilderModel *flowModel = [[PPFlowBuilderModel alloc] init];
+    flowModel.violationReportsRepository = self.reportsRepository;
+    flowModel.scdRepository = repo;
+    flowModel.onExitCallback = ^{
+        [rootViewController ppRemoveChildContentController:flowRoot];
+    };
     
-    __block UIViewController *vc = nil;
-    vc = [CommonUIBUilder buildFlowFor:repo whenExiting:^{
-        [rootViewController ppRemoveChildContentController:vc];
-    }];
+    PPFlowBuilder *flowBuilder = [[PPFlowBuilder alloc] init];
+    flowRoot = [flowBuilder buildFlowWithModel:flowModel];
     
-    [rootViewController ppAddChildContentController:vc];
+    [rootViewController ppAddChildContentController:flowRoot];
 }
 
 
 #pragma mark - 
 -(void)newViolationReported:(OPMonitorViolationReport *)report {
     [OPMonitor displayNotification:report.violationDetails];
+    [self.reportsRepository addReport:report];
 }
 
 #pragma mark -
