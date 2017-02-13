@@ -1,3 +1,38 @@
-<div>
-    Offers
+<div ng-app="plusprivacy">
+    <div ng-controller="ospOffersController">
+
+        <div ng-cloak class="user_logged_in" ng-if="userIsLoggedIn === false">
+            <h3> You don't have enough privileges to access this content</b>!</h3>
+        </div>
+
+        <div ng-cloak class="user_logged_in" ng-if="offers">
+            <table class="table table-bordered" id="osp_offers_table" datatable="ng" dt-column-defs="dtColumnDefs"
+                   dt-options="dtOptions" dt-instance="dtInstance">
+                <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Membership</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+
+
+                <tbody>
+                <tr ng-repeat="offer in offers">
+                    <td>{{offer.logo}}</td>
+                    <td>{{offer.name}}</td>
+                    <td>{{offer.description}}</td>
+                    <td>{{offer.start_time|timestampToDateFormat}}</td>
+                    <td>{{offer.end_time|timestampToDateFormat}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div>
 </div>

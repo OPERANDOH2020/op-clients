@@ -1,4 +1,4 @@
-<div class="container" ng-app="plusprivacy">
+<div ng-app="plusprivacy">
     <div ng-controller="ospRequestsController">
 
 
@@ -17,8 +17,9 @@
                     <th>Name</th>
                     <th>Website</th>
                     <th>Phone</th>
+                    <th>Requested</th>
                     <th>Description</th>
-                    <th>Verified</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
 
@@ -30,8 +31,11 @@
                     <td>{{ospRequest.name}}</td>
                     <td>{{ospRequest.website}}</td>
                     <td>{{ospRequest.phone}}</td>
+                    <td>{{ospRequest.request_time|timeAgo}} ago</td>
                     <td>{{ospRequest.deals_description}}</td>
-                    <td>{{ospRequest.verified}}</td>
+                    <td><button ng-click="deleteOSPRequest(ospRequest.userId)">Delete request</button>
+                        <button ng-click="acceptOSPRequest(ospRequest.userId)">Approve OSP</button>
+                    </td>
                 </tr>
                 </tbody>
             </table>

@@ -158,8 +158,61 @@ return {
         getRequestsHandler.onResponse("failed", function(swarm){
             failCallback(swarm.error);
         });
-    }
+    },
 
+    deleteOSPRequest:function(userId, successCallback, failCallback){
+        var getDeleteRequestHandler = swarmHub.startSwarm("osp.js", "removeOSPRequest", userId);
+        getDeleteRequestHandler.onResponse("success", function(swarm){
+            successCallback();
+        });
+
+        getDeleteRequestHandler.onResponse("failed", function(swarm){
+            failCallback(swarm.error);
+        });
+    },
+
+    acceptOSPRequest:function(userId, successCallback, failCallback){
+        var acceptRequestHandler = swarmHub.startSwarm("osp.js","acceptOSPRequest",userId);
+        acceptRequestHandler.onResponse("success", function(swarm){
+            successCallback();
+        });
+
+        acceptRequestHandler.onResponse("failed", function(swarm){
+            failCallback(swarm.error);
+        });
+    },
+
+    listOSPs:function(successCallback, failCallback){
+        var listOSPsHandler = swarmHub.startSwarm("osp.js","listOSPs");
+        listOSPsHandler.onResponse("success", function(swarm){
+            successCallback(swarm.ospList);
+        });
+
+        listOSPsHandler.onResponse("failed", function(swarm){
+            failCallback(swarm.error);
+        });
+    },
+    addOspOffer:function(offerDetails, successCallbacl, failCallback){
+        var addOspOfferHandler = swarmHub.startSwarm("osp.js","addOspOffer",offerDetails);
+        addOspOfferHandler.onResponse("success", function(swarm){
+            successCallback(swarm.offer);
+        });
+
+        addOspOfferHandler.onResponse("failed", function(swarm){
+            failCallback(swarm.error);
+        });
+    },
+
+    listOSPOffers:function(successCallback, failCallback){
+        var listOspOffersHandler = swarmHub.startSwarm("osp.js","listOSPOffers");
+        listOspOffersHandler.onResponse("success", function(swarm){
+            successCallback(swarm.offers);
+        });
+
+        listOspOffersHandler.onResponse("failed", function(swarm){
+            failCallback(swarm.error);
+        });
+    }
 }
 
 });

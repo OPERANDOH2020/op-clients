@@ -16,6 +16,7 @@ add_shortcode('osp-dashboard-offers', 'osp_dashboard_offers');
 add_shortcode('osp-dashboard-deals', 'osp_dashboard_deals');
 add_shortcode('osp-dashboard-account', 'osp_dashboard_account');
 add_shortcode('osp-requests', 'osp_requests');
+add_shortcode('osp-list', 'osp_list');
 
 
 add_action('wp_enqueue_scripts', 'load_swarm_resources');
@@ -27,21 +28,32 @@ add_action('wp_enqueue_scripts', 'ospOffersController');
 add_action('wp_enqueue_scripts', 'ospDealsController');
 add_action('wp_enqueue_scripts', 'ospAccountController');
 add_action('wp_enqueue_scripts', 'ospRequestsController');
+add_action('wp_enqueue_scripts', 'ospListController');
 
 function load_swarm_resources()
 {
     wp_enqueue_script('js-cookie', plugins_url('/js/utils/js.cookie.js', __FILE__));
+    wp_enqueue_script('globals', plugins_url('/js/utils/globals.js', __FILE__));
+    wp_enqueue_script('bootstrap-min', plugins_url('/js/utils/bootstrap/bootstrap.min.js', __FILE__));
     wp_enqueue_script('socket-io', plugins_url('/js/swarm-services/socket.io-1.0.6.js', __FILE__));
     wp_enqueue_script('swarm-debug', plugins_url('/js/swarm-services/SwarmDebug.js', __FILE__));
     wp_enqueue_script('swarm-client', plugins_url('/js/swarm-services/SwarmClient.js', __FILE__));
     wp_enqueue_script('swarm-hub', plugins_url('/js/swarm-services/SwarmHub.js', __FILE__));
     wp_enqueue_script('angular', plugins_url('/js/angular/angular.min.js', __FILE__));
+    wp_enqueue_script('modal-service', plugins_url('/js/utils/angular-modal/angular-modal-service.js', __FILE__));
+    wp_enqueue_script('notification-service', plugins_url('/js/utils/angular-ui-notification/angular-ui-notification.min.js', __FILE__));
+    wp_enqueue_style('notification-service-style', plugins_url('/js/utils/angular-ui-notification/angular-ui-notification.min.css', __FILE__));
     wp_enqueue_script('angular-app', plugins_url('/js/app/app.js', __FILE__));
     wp_enqueue_script('angular-service-connection', plugins_url('/js/app/services/connectionService.js', __FILE__));
     wp_enqueue_script('angular-messenger-service', plugins_url('/js/app/services/messengerService.js', __FILE__));
     wp_enqueue_script('angular-swarm-service', plugins_url('/js/app/services/swarm-service.js', __FILE__));
     wp_enqueue_script('loader', plugins_url('/js/app/directives/loader.js', __FILE__));
+    wp_enqueue_style('bootstrap', plugins_url('/css/bootstrap/bootstrap.css', __FILE__));
+    wp_enqueue_style('bootstrap-theme', plugins_url('/css/bootstrap/bootstrap-theme.min.css', __FILE__));
+    wp_enqueue_style('bootstrap-vertical-tabs', plugins_url('/css/bootstrap/bootstrap.vertical-tabs.min.css', __FILE__));
+    wp_enqueue_style('plusprivacy-bootstrap', plugins_url('/css/bootstrap/plusprivacy-theme.css', __FILE__));
     wp_enqueue_style('app-style', plugins_url('/css/app.css', __FILE__));
+
 }
 
 function confirm_user_account()
@@ -90,6 +102,11 @@ function osp_requests()
     echo file_get_contents(plugins_url('/html/admin/osp_requests.html', __FILE__));
 }
 
+function osp_list(){
+    echo file_get_contents(plugins_url('/html/admin/osp_list.html', __FILE__));
+}
+
+
 
 /************************************************
  *************** Insert JS app files *************
@@ -116,7 +133,10 @@ function ospSignupController()
 }
 
 function ospOffersController()
-{
+{   insertScriptIfShortcode("angular-datatables.min.js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
+    insertScriptIfShortcode("angular-datatables.bootstrap.min", 'osp-dashboard-offers', plugins_url('/js/utils/angular-datatables/angular-datatables.bootstrap.min.js', __FILE__));
+    insertScriptIfShortcode("jquery.dataTables.min", 'osp-dashboard-offers', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
+    insertStyleIfShortcode("datatables.bootstrap", 'osp-dashboard-offers', plugins_url('/js/utils/angular-datatables/datatables.bootstrap.min.css', __FILE__));
     insertScriptIfShortcode("ospOffersController", 'osp-dashboard-offers', plugins_url('/js/app/controllers/osp/ospOffersController.js', __FILE__));
 }
 
@@ -137,6 +157,14 @@ function ospRequestsController()
     insertScriptIfShortcode("jquery.dataTables.min", 'osp-requests', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
     insertStyleIfShortcode("datatables.bootstrap", 'osp-requests', plugins_url('/js/utils/angular-datatables/datatables.bootstrap.min.css', __FILE__));
     insertScriptIfShortcode("ospRequestsController", 'osp-requests', plugins_url('/js/app/controllers/admin/ospRequestsController.js', __FILE__));
+}
+
+function ospListController(){
+    insertScriptIfShortcode("angular-datatables.min.js", 'osp-list', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
+    insertScriptIfShortcode("angular-datatables.bootstrap.min", 'osp-list', plugins_url('/js/utils/angular-datatables/angular-datatables.bootstrap.min.js', __FILE__));
+    insertScriptIfShortcode("jquery.dataTables.min", 'osp-list', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
+    insertStyleIfShortcode("datatables.bootstrap", 'osp-list', plugins_url('/js/utils/angular-datatables/datatables.bootstrap.min.css', __FILE__));
+    insertScriptIfShortcode("ospListController", 'osp-list', plugins_url('/js/app/controllers/admin/ospListController.js', __FILE__));
 }
 
 function insertScriptIfShortcode($script_name, $shortcode, $script)

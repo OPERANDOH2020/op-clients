@@ -1,7 +1,10 @@
 privacyPlusApp.requires.push('datatables');
-privacyPlusApp.controller("ospOffersController", function($scope, connectionService, messengerService,DTColumnDefBuilder){
+
+privacyPlusApp.controller("ospListController", ["$scope", "connectionService", "messengerService","DTColumnDefBuilder", function($scope, connectionService, messengerService,DTColumnDefBuilder){
+
 
     $scope.dtInstance={};
+
     $scope.dtOptions = {
         "paging": false,
         "searching": false,
@@ -18,11 +21,13 @@ privacyPlusApp.controller("ospOffersController", function($scope, connectionServ
         DTColumnDefBuilder.newColumnDef(1),
         DTColumnDefBuilder.newColumnDef(2).notSortable(),
         DTColumnDefBuilder.newColumnDef(3).notSortable(),
-        DTColumnDefBuilder.newColumnDef(4).notSortable()
+        DTColumnDefBuilder.newColumnDef(4).notSortable(),
+        DTColumnDefBuilder.newColumnDef(5).notSortable()
     ];
+
     var restoredSessionSuccessfully = function(){
-        connectionService.listOSPOffers(function(offers){
-            $scope.offers = offers;
+        connectionService.listOSPs(function(ospList){
+            $scope.ospList = ospList;
             $scope.$apply();
         }, function(error){
             $scope.error = error;
@@ -35,4 +40,4 @@ privacyPlusApp.controller("ospOffersController", function($scope, connectionServ
     };
 
     connectionService.restoreUserSession(restoredSessionSuccessfully, restoredSessionFailed);
-});
+}]);
