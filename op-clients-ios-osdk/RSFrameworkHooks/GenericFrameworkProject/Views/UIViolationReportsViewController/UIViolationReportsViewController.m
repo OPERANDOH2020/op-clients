@@ -72,6 +72,7 @@
     return  NO;
 }
 
+
 #pragma mark -
 
 
@@ -80,6 +81,12 @@
     UINib *nib = [UINib nibWithNibName:[ViolationReportCell identifierNibName] bundle:[NSBundle bundleForClass:[self class]]];
     
     [tableView registerNib:nib forCellReuseIdentifier:[ViolationReportCell identifierNibName]];
+    
+    tableView.estimatedRowHeight = 80;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    tableView.delegate = self;
+    tableView.dataSource = self;
 }
 
 - (IBAction)backButtonPressed:(id)sender {

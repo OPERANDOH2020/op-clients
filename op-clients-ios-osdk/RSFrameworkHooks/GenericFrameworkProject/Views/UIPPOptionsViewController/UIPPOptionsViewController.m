@@ -18,12 +18,6 @@
 
 @implementation UIPPOptionsViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-
 -(void)setupWithCallbacks:(UIPPOptionsViewControllerCallbacks *)callbacks {
     self.callbacks = callbacks;
 }
@@ -41,6 +35,9 @@
 
 - (IBAction)didPressClose:(id)sender {
     SAFECALL(self.callbacks.whenExiting)
+}
+- (IBAction)didPressViewSCD:(id)sender {
+    SAFECALL(self.callbacks.whenChoosingViewSCD)
 }
 
 @end

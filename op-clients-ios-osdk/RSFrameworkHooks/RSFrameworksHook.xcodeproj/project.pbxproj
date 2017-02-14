@@ -74,6 +74,8 @@
 		988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */; };
 		98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */; };
 		98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */; };
+		98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B234681E53376B0015C2E9 /* UISCDViewController.h */; };
+		98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B234691E53376B0015C2E9 /* UISCDViewController.m */; };
 		98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603E21E2F800B00E59A42 /* OPMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603E31E2F800B00E59A42 /* OPMonitor.m */; };
 		98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */; };
@@ -145,6 +147,8 @@
 		988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarometerInputSupervisor.m; path = BarometerInputSupervisor/BarometerInputSupervisor.m; sourceTree = "<group>"; };
 		98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputSupervisorsManager.h; path = InputSupervisorsManager/InputSupervisorsManager.h; sourceTree = "<group>"; };
 		98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputSupervisorsManager.m; path = InputSupervisorsManager/InputSupervisorsManager.m; sourceTree = "<group>"; };
+		98B234681E53376B0015C2E9 /* UISCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISCDViewController.h; path = Views/UISCDViewController/UISCDViewController.h; sourceTree = "<group>"; };
+		98B234691E53376B0015C2E9 /* UISCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISCDViewController.m; path = Views/UISCDViewController/UISCDViewController.m; sourceTree = "<group>"; };
 		98D603E21E2F800B00E59A42 /* OPMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitor.h; path = OPMonitor/OPMonitor.h; sourceTree = "<group>"; };
 		98D603E31E2F800B00E59A42 /* OPMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitor.m; path = OPMonitor/OPMonitor.m; sourceTree = "<group>"; };
 		98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
@@ -347,6 +351,7 @@
 		98804EF31E4DE258009E6748 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				98B234671E5337370015C2E9 /* UISCDViewController */,
 				98804F101E4E26BC009E6748 /* UIEncapsulatorViewController */,
 				98804F071E4E0E53009E6748 /* UIPPOptionsViewController */,
 				98804F021E4DFD1F009E6748 /* PPFlowBuilder */,
@@ -457,6 +462,15 @@
 			name = InputSupervisorsFactory;
 			sourceTree = "<group>";
 		};
+		98B234671E5337370015C2E9 /* UISCDViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98B234681E53376B0015C2E9 /* UISCDViewController.h */,
+				98B234691E53376B0015C2E9 /* UISCDViewController.m */,
+			);
+			name = UISCDViewController;
+			sourceTree = "<group>";
+		};
 		98D603E11E2F7FEC00E59A42 /* OPMonitor */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +545,7 @@
 				98804F0A1E4E0E7C009E6748 /* UIPPOptionsViewController.h in Headers */,
 				98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */,
 				9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */,
+				98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */,
 				988A15061E40AA7F00AABD43 /* CommonUtils.h in Headers */,
 				9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */,
 				988A15011E40A4F600AABD43 /* PedometerInputSupervisor.h in Headers */,
@@ -661,6 +676,7 @@
 				982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */,
 				98182AC31E44D18E00895F19 /* NSURLSession+rsHook.m in Sources */,
 				98804EFB1E4DEB57009E6748 /* ViolationReportCell.m in Sources */,
+				98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,7 @@
 #import "BarometerInputSupervisor.h"
 #import "InputSupervisorsManager.h"
 #import "PlistReportsStorage.h"
+#import "JRSwizzle.h"
 
 #import "PPFlowBuilder.h"
 
@@ -28,6 +29,7 @@
 
 @interface OPMonitor() <InputSupervisorDelegate>
 
+@property (strong, nonatomic) NSDictionary *scdJson;
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
 @property (strong, nonatomic) id<OPViolationReportRepository> reportsRepository;
@@ -36,6 +38,21 @@
 @end
 
 @implementation OPMonitor
+
+
+static void __attribute__((constructor)) initialize(void){
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"AppSCD" ofType:@"json"];
+    NSString *fileText = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    NSData *data = [fileText dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    
+    if (json) {
+        [[OPMonitor sharedInstance] beginMonitoringWithAppDocument:json];
+    }
+    
+}
 
 +(instancetype)sharedInstance{
     static OPMonitor *shared = nil;
@@ -59,6 +76,8 @@
             return;
             
         }
+        
+        self.scdJson = document;
         self.reportsRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
         self.supervisorsArray = [self buildSupervisors];
@@ -71,7 +90,7 @@
 
 -(UIView *)getHandle {
     if (self.handle == nil) {
-        self.handle = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+        self.handle = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 44, 44)];
         [self.handle setTitle:@"PP" forState:UIControlStateNormal];
         self.handle.backgroundColor = [UIColor redColor];
         [self.handle addTarget:self action:@selector(didPressHandle:) forControlEvents:UIControlEventTouchUpInside];
@@ -91,6 +110,7 @@
     PPFlowBuilderModel *flowModel = [[PPFlowBuilderModel alloc] init];
     flowModel.violationReportsRepository = self.reportsRepository;
     flowModel.scdRepository = repo;
+    flowModel.scdJSON = self.scdJson;
     flowModel.onExitCallback = ^{
         [rootViewController ppRemoveChildContentController:flowRoot];
     };
@@ -144,3 +164,40 @@
 }
 
 @end
+
+
+
+#pragma mark - 
+
+@interface UIWindow(rsHookHandle)
+@end
+
+
+
+@implementation UIWindow(rsHookHandle)
+
++(void)load {
+    [self jr_swizzleMethod:@selector(addSubview:) withMethod:@selector(rsHook_addSubview:) error:nil];
+}
+
+
+-(void)rsHook_addSubview:(UIView*)view {
+    
+    static UIView *handle = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        handle = [[OPMonitor sharedInstance] getHandle];
+    });
+    
+    [self rsHook_addSubview:view];
+    
+    if ([self.subviews containsObject:handle]) {
+        [self bringSubviewToFront:handle];
+    } else {
+        [self rsHook_addSubview:handle];
+    }
+    
+}
+
+@end
+

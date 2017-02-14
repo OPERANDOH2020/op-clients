@@ -60,8 +60,7 @@ static const NSString *kObjectNotInRepository = @"Object is not in repository";
 {
     self = [super init];
     if (self) {
-        self.reportsArray = [PlistReportsStorage buildFromPlist];
-        
+        self.reportsArray = [PlistReportsStorage buildFromPlist];        
     }
     return self;
 }
@@ -103,6 +102,12 @@ static const NSString *kObjectNotInRepository = @"Object is not in repository";
 
 -(void)synchronize {
     NSMutableArray<NSDictionary*> *dictsArray = [[NSMutableArray alloc] init];
+    
+    for (OPMonitorViolationReport *report in self.reportsArray) {
+        NSDictionary *dict = [report plistRepository_toPlistDictionary];
+        [dictsArray addObject:dict];
+    }
+    
     [dictsArray writeToFile:[PlistReportsStorage plistPath] atomically:YES];
 }
 
@@ -112,6 +117,7 @@ static const NSString *kObjectNotInRepository = @"Object is not in repository";
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
     NSArray *dicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPath]];
+    
     
     for (NSDictionary *dict in dicts) {
         OPMonitorViolationReport *report = [OPMonitorViolationReport plistRepository_fromPlistDictionary:dict];
@@ -126,11 +132,12 @@ static const NSString *kObjectNotInRepository = @"Object is not in repository";
 
 +(NSString*)plistPath {
     
-    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, NO);
+    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     if (paths.firstObject) {
         return [paths.firstObject stringByAppendingPathComponent:@"MonitorViolationReportPlist.plist"];
     }
+    
     
     return @"";
 }

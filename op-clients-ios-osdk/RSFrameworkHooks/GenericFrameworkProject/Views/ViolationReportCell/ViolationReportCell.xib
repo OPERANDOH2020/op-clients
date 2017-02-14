@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkv-yA-W6A" userLabel="messageLabel">
@@ -26,9 +26,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMn-iT-IrH" userLabel="dateLabel">
-                        <rect key="frame" x="14" y="35" width="292" height="21"/>
+                        <rect key="frame" x="14" y="35" width="292" height="27"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="qIg-ip-7he"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJE-Km-T9J">
@@ -50,6 +54,7 @@
                     <constraint firstItem="fJE-Km-T9J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dzx-Ts-MFT"/>
                     <constraint firstAttribute="trailing" secondItem="fJE-Km-T9J" secondAttribute="trailing" id="wau-RU-gJM"/>
                     <constraint firstItem="sMn-iT-IrH" firstAttribute="top" secondItem="pkv-yA-W6A" secondAttribute="bottom" constant="3" id="xF7-Fb-8dG"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="sMn-iT-IrH" secondAttribute="bottom" constant="9.5" id="zk6-6d-3zQ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

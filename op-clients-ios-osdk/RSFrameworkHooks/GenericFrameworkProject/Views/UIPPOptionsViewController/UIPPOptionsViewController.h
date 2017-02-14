@@ -14,6 +14,8 @@
 @property (strong, nonatomic) void (^whenChoosingReportsInfo)();
 @property (strong, nonatomic) void (^whenExiting)();
 
+@property (strong, nonatomic) void (^whenChoosingViewSCD)();
+
 @end
 
 @interface UIPPOptionsViewController : UIViewController

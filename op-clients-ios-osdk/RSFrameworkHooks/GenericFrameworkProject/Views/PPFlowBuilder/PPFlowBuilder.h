@@ -14,6 +14,7 @@
 
 @interface PPFlowBuilderModel : NSObject
 
+@property (strong, nonatomic) NSDictionary *scdJSON;
 @property (strong, nonatomic) id<SCDRepository> scdRepository;
 @property (strong, nonatomic) id<OPViolationReportRepository> violationReportsRepository;
 @property (strong, nonatomic) void (^onExitCallback)();

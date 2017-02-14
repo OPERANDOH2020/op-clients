@@ -11,6 +11,7 @@
 #import "UIViolationReportsViewController.h"
 #import "UIPPOptionsViewController.h"
 #import "UIEncapsulatorViewController.h"
+#import "UISCDViewController.h"
 
 @implementation PPFlowBuilderModel
 
@@ -35,6 +36,12 @@
     
     UIViolationReportsViewController *reportsVC = [storyboard instantiateViewControllerWithIdentifier:@"UIViolationReportsViewController"];
     
+    UISCDViewController *scdVC = [storyboard instantiateViewControllerWithIdentifier:@"UISCDViewController"];
+    
+    [scdVC setupWithSCD:model.scdJSON onClose:^{
+        [weakNavgController popViewControllerAnimated:true];
+    }];
+    
     [reportsVC setupWithRepository:model.violationReportsRepository onExit:^{
         [weakNavgController popViewControllerAnimated:true];
     }];
@@ -55,6 +62,10 @@
     
     callbacks.whenChoosingReportsInfo = ^{
         [weakNavgController pushViewController:reportsVC animated:true];
+    };
+    
+    callbacks.whenChoosingViewSCD = ^{
+        [weakNavgController pushViewController:scdVC animated:true];
     };
     
     callbacks.whenExiting = model.onExitCallback;

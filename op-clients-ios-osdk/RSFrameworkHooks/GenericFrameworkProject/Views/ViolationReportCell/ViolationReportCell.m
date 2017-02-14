@@ -21,14 +21,8 @@
 }
 
 -(void)setupWithReport:(OPMonitorViolationReport *)report {
-    static NSDateFormatter *dateFormatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dateFormatter = [[NSDateFormatter alloc] init];
-    });
-    
     self.messageLabel.text = report.violationDetails;
-    self.dateLabel.text = [dateFormatter stringFromDate:report.dateReported];
+    self.dateLabel.text = report.dateReported.description;
     
 }
 
