@@ -33,7 +33,8 @@
                     <td>{{ospRequest.phone}}</td>
                     <td>{{ospRequest.request_time|timeAgo}} ago</td>
                     <td>{{ospRequest.deals_description}}</td>
-                    <td><button ng-click="deleteOSPRequest(ospRequest.userId)">Delete request</button>
+                    <td>
+                        <button ng-click="deleteOSPRequest(ospRequest.userId)">Delete request</button>
                         <button ng-click="acceptOSPRequest(ospRequest.userId)">Approve OSP</button>
                     </td>
                 </tr>

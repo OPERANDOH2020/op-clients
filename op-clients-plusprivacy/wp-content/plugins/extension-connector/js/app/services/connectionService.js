@@ -192,13 +192,23 @@ return {
             failCallback(swarm.error);
         });
     },
-    addOspOffer:function(offerDetails, successCallbacl, failCallback){
+    addOspOffer:function(offerDetails, successCallback, failCallback){
         var addOspOfferHandler = swarmHub.startSwarm("osp.js","addOspOffer",offerDetails);
         addOspOfferHandler.onResponse("success", function(swarm){
             successCallback(swarm.offer);
         });
 
         addOspOfferHandler.onResponse("failed", function(swarm){
+            failCallback(swarm.error);
+        });
+    },
+    deleteOspOffer:function(offerId, successCallback, failCallback){
+        var deleteOspOfferHandler = swarmHub.startSwarm("osp.js","deleteOspOffer",offerId);
+        deleteOspOfferHandler.onResponse("success", function(swarm){
+            successCallback();
+        });
+
+        deleteOspOfferHandler.onResponse("failed", function(swarm){
             failCallback(swarm.error);
         });
     },

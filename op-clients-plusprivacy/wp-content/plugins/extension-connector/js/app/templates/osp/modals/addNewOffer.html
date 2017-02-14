@@ -1,0 +1,31 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Add new OSP Offer</h3>
+            </div>
+            <div class="modal-body">
+
+                <form method="post" name="signup_form" class="form-add-offer">
+
+
+                    <input type="text" class="form-control" name="name" placeholder="Offer name" required="" autofocus="" ng-model="offer.name"/>
+                    <input type="file" class="form-control" name="logo" placeholder="Offer logo" required="" ng-model="offer.logo" onchange="AddOspOfferController.prototype.changeInput(this)"/>
+                    <input type="text" class="form-control" name="description" placeholder="Offer description" required="" ng-model="offer.description"/>
+                    <input type="date" class="form-control" name="start_date" placeholder="Offer start date" required="" ng-model="offer.start_date"/>
+                    <input type="date" class="form-control" name="end_date" placeholder="Offer end date" required="" ng-model="offer.end_date"/>
+
+                </form>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="addOspOffer()" class="btn btn-primary" data-dismiss="modal">Add Offer</button>
+                <button type="button" ng-click="close('Yes')" class="btn btn-primary-black" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>

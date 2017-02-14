@@ -29,3 +29,18 @@ function timeSince(date) {
     }
     return Math.floor(seconds) + " seconds";
 }
+
+function convertImageToBase64(file, callback){
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function(readerEvt) {
+            var binaryString = readerEvt.target.result;
+            var base64String = btoa(binaryString);
+            callback(base64String);
+        };
+
+        reader.readAsBinaryString(file);
+    }
+
+}

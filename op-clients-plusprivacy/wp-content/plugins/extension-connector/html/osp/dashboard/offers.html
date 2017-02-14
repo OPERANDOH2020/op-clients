@@ -10,28 +10,33 @@
                    dt-options="dtOptions" dt-instance="dtInstance">
                 <thead>
                 <tr>
-                    <th>Email</th>
+                    <th>Logo</th>
                     <th>Name</th>
-                    <th>Phone</th>
-                    <th>Membership</th>
                     <th>Description</th>
+                    <th>Start time</th>
+                    <th>End time</th>
+                    <th>Impact</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
-
-
                 <tbody>
                 <tr ng-repeat="offer in offers">
-                    <td>{{offer.logo}}</td>
+                    <td><img width="16px" ng-cloak data-ng-src="data:image/png;base64,{{offer.logo}}"></td>
                     <td>{{offer.name}}</td>
                     <td>{{offer.description}}</td>
                     <td>{{offer.start_time|timestampToDateFormat}}</td>
                     <td>{{offer.end_time|timestampToDateFormat}}</td>
+                    <td>{{offer.impact_score}}</td>
+                    <td>
+                        <button ng-click="deleteOspOffer(offer.offerId)">Delete offer</button>
+                        <button ng-click="modifyOffer(offer.offerId)">Modify</button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
-
-
         </div>
+
+        <button class="btn-default" ng-click="addNewOfferModal()">Add new offer</button>
 
 
     </div>
