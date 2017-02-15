@@ -1,0 +1,10 @@
+framework module PlusPrivacyCommonUI {
+  umbrella header "PlusPrivacyCommonUI.h"
+
+  export *
+  module * { export * }
+}
+
+module PlusPrivacyCommonUI.Swift {
+    header "PlusPrivacyCommonUI-Swift.h"
+}

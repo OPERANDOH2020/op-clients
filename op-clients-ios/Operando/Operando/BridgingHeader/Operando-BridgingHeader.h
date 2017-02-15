@@ -15,5 +15,4 @@
 #include "MGSwipeTableCell.h"
 #include "ProgressHUD.h"
 #include "KiteJSONValidator.h"
-#include "NSString+FontAwesome.h"
 #endif /* Operando_BridgingHeader_h */

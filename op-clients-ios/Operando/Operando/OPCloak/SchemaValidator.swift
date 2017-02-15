@@ -17,16 +17,27 @@ protocol SchemaValidator {
 
 class SwiftSchemaValidator: SchemaValidator {
     
-    let kiteValidator = KiteJSONValidator()
     func validate(json: [String : Any], withSchema schema: [String : Any], completion: ((NSError?) -> Void)?) {
         
-        if self.kiteValidator.validateJSONInstance(json, withSchema: schema) {
+        let schema = Schema(schema)
+        
+        let result = schema.validate(json)
+        
+        switch result {
+        case .Valid:
             completion?(nil)
-            return
+        case let .invalid(errorList):
+            var totalErrors = "";
+            for  error in errorList {
+                totalErrors.append(error)
+                totalErrors.append("\n")
+            }
+            
+            let error = NSError(domain: operandoDomain, code: ErrorCode.jsonNotValidAccordingToSchema.rawValue, userInfo: [NSLocalizedDescriptionKey: totalErrors])
+            completion?(error)
+            
         }
-        
-        completion?(.jsonNotValidAccordingToSchema)
-        
+
     }
     
 }

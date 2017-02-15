@@ -1,0 +1,866 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		98584F481D3F9E43009FB89F /* AggregateUniversal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 98584F491D3F9E43009FB89F /* Build configuration list for PBXAggregateTarget "AggregateUniversal" */;
+			buildPhases = (
+				98584F4C1D3F9E4B009FB89F /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = AggregateUniversal;
+			productName = AggregateUniversal;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		98182AB21E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB01E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m */; };
+		98182AB31E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB11E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m */; };
+		98182AB51E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB41E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m */; };
+		98182AB71E44BC4100895F19 /* LAContext+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB61E44BC4100895F19 /* LAContext+rsHook.m */; };
+		98182AB91E44BCE700895F19 /* CMAltimeter+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB81E44BCE700895F19 /* CMAltimeter+rsHook.m */; };
+		98182ABB1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182ABA1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m */; };
+		98182ABD1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182ABC1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m */; };
+		98182ABF1E44C58200895F19 /* CMPedometer+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182ABE1E44C58200895F19 /* CMPedometer+rsHook.m */; };
+		98182AC11E44CDFC00895F19 /* UIDevice+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AC01E44CDFC00895F19 /* UIDevice+rsHook.m */; };
+		98182AC31E44D18E00895F19 /* NSURLSession+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AC21E44D18E00895F19 /* NSURLSession+rsHook.m */; };
+		981EAC681E48AF40000F59E3 /* CNContactStore+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC671E48AF40000F59E3 /* CNContactStore+rsHook.m */; };
+		981EAC6A1E48B463000F59E3 /* CLLocationManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC691E48B463000F59E3 /* CLLocationManager+rsHook.m */; };
+		981EAC701E48C7C6000F59E3 /* PlistReportsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */; };
+		981EAC711E48C7C6000F59E3 /* PlistReportsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */; };
+		98203D4B1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98203D4A1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework */; };
+		982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */; };
+		982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */; };
+		98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* RSFrameworksHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E8FB1DEC6F0D0095CA30 /* JRSwizzle.h */; };
+		9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */; };
+		9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */; };
+		9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */; };
+		987F83721E322AA90058633C /* OPMonitorViolationReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83701E322AA90058633C /* OPMonitorViolationReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83711E322AA90058633C /* OPMonitorViolationReport.m */; };
+		987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */; };
+		987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F837C1E3241930058633C /* LocationInputSupervisor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		987F837F1E3241930058633C /* LocationInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F837D1E3241930058633C /* LocationInputSupervisor.m */; };
+		987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83801E3242BC0058633C /* SupervisorProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98804EF51E4DE277009E6748 /* PPViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98804EF41E4DE277009E6748 /* PPViews.storyboard */; };
+		98804EFA1E4DEB57009E6748 /* ViolationReportCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 98804EF71E4DEB57009E6748 /* ViolationReportCell.h */; };
+		98804EFB1E4DEB57009E6748 /* ViolationReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98804EF81E4DEB57009E6748 /* ViolationReportCell.m */; };
+		98804EFC1E4DEB57009E6748 /* ViolationReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98804EF91E4DEB57009E6748 /* ViolationReportCell.xib */; };
+		98804F001E4DF1D8009E6748 /* UIViolationReportsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98804EFE1E4DF1D8009E6748 /* UIViolationReportsViewController.h */; };
+		98804F011E4DF1D8009E6748 /* UIViolationReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98804EFF1E4DF1D8009E6748 /* UIViolationReportsViewController.m */; };
+		98804F051E4DFD47009E6748 /* PPFlowBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 98804F031E4DFD47009E6748 /* PPFlowBuilder.h */; };
+		98804F061E4DFD47009E6748 /* PPFlowBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 98804F041E4DFD47009E6748 /* PPFlowBuilder.m */; };
+		98804F0A1E4E0E7C009E6748 /* UIPPOptionsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98804F081E4E0E7C009E6748 /* UIPPOptionsViewController.h */; };
+		98804F0B1E4E0E7C009E6748 /* UIPPOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98804F091E4E0E7C009E6748 /* UIPPOptionsViewController.m */; };
+		98804F131E4E26DB009E6748 /* UIEncapsulatorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98804F111E4E26DB009E6748 /* UIEncapsulatorViewController.h */; };
+		98804F141E4E26DB009E6748 /* UIEncapsulatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98804F121E4E26DB009E6748 /* UIEncapsulatorViewController.m */; };
+		988A15011E40A4F600AABD43 /* PedometerInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A14FF1E40A4F600AABD43 /* PedometerInputSupervisor.h */; };
+		988A15021E40A4F600AABD43 /* PedometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A15001E40A4F600AABD43 /* PedometerInputSupervisor.m */; };
+		988A15061E40AA7F00AABD43 /* CommonUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A15041E40AA7F00AABD43 /* CommonUtils.h */; };
+		988A15071E40AA7F00AABD43 /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A15051E40AA7F00AABD43 /* CommonUtils.m */; };
+		988A15151E40D1B400AABD43 /* MagnetometerInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A15131E40D1B400AABD43 /* MagnetometerInputSupervisor.h */; };
+		988A15161E40D1B400AABD43 /* MagnetometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A15141E40D1B400AABD43 /* MagnetometerInputSupervisor.m */; };
+		988A151A1E40DF3300AABD43 /* AccelerometerInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A15181E40DF3300AABD43 /* AccelerometerInputSupervisor.h */; };
+		988A151B1E40DF3300AABD43 /* AccelerometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A15191E40DF3300AABD43 /* AccelerometerInputSupervisor.m */; };
+		988A151F1E40E2DD00AABD43 /* BarometerInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A151D1E40E2DD00AABD43 /* BarometerInputSupervisor.h */; };
+		988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */; };
+		98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */; };
+		98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */; };
+		98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B234681E53376B0015C2E9 /* UISCDViewController.h */; };
+		98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B234691E53376B0015C2E9 /* UISCDViewController.m */; };
+		98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603E21E2F800B00E59A42 /* OPMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603E31E2F800B00E59A42 /* OPMonitor.m */; };
+		98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */; };
+		98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */; };
+		98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */; };
+		98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */; };
+		98ECE4781E421AFD0042A262 /* CameraInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE4761E421AFD0042A262 /* CameraInputSupervisor.m */; };
+		98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE47A1E422E720042A262 /* MicrophoneInputSupervisor.h */; };
+		98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */; };
+		98ECE4811E424AC80042A262 /* ContactsInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */; };
+		98ECE4821E424AC80042A262 /* ContactsInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		98182AB01E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookCamera.m"; sourceTree = "<group>"; };
+		98182AB11E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookingMicrophone.m"; sourceTree = "<group>"; };
+		98182AB41E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVIewController+rsHookUIImagePickerController.m"; sourceTree = "<group>"; };
+		98182AB61E44BC4100895F19 /* LAContext+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LAContext+rsHook.m"; sourceTree = "<group>"; };
+		98182AB81E44BCE700895F19 /* CMAltimeter+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMAltimeter+rsHook.m"; sourceTree = "<group>"; };
+		98182ABA1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+rsHookAccelerometer.m"; sourceTree = "<group>"; };
+		98182ABC1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+rsHookMagnetometer.m"; sourceTree = "<group>"; };
+		98182ABE1E44C58200895F19 /* CMPedometer+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMPedometer+rsHook.m"; sourceTree = "<group>"; };
+		98182AC01E44CDFC00895F19 /* UIDevice+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+rsHook.m"; sourceTree = "<group>"; };
+		98182AC21E44D18E00895F19 /* NSURLSession+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+rsHook.m"; sourceTree = "<group>"; };
+		981EAC671E48AF40000F59E3 /* CNContactStore+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContactStore+rsHook.m"; sourceTree = "<group>"; };
+		981EAC691E48B463000F59E3 /* CLLocationManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+rsHook.m"; sourceTree = "<group>"; };
+		981EAC6D1E48C660000F59E3 /* ReportsStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReportsStorageProtocol.h; path = ReportsStorageAndUI/ReportsStorageProtocol.h; sourceTree = "<group>"; };
+		981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlistReportsStorage.h; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.h; sourceTree = "<group>"; };
+		981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlistReportsStorage.m; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.m; sourceTree = "<group>"; };
+		98203D4A1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
+		982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProximityInputSupervisor.h; path = ProximityInputSupervisor/ProximityInputSupervisor.h; sourceTree = "<group>"; };
+		982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProximityInputSupervisor.m; path = ProximityInputSupervisor/ProximityInputSupervisor.m; sourceTree = "<group>"; };
+		98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSFrameworksHook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98584F401D3F9E18009FB89F /* RSFrameworksHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSFrameworksHook.h; sourceTree = "<group>"; };
+		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9863E8FB1DEC6F0D0095CA30 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSURLSessionSupervisor.h; path = NSURLSessionHook/NSURLSessionSupervisor.h; sourceTree = "<group>"; };
+		9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSURLSessionSupervisor.m; path = NSURLSessionHook/NSURLSessionSupervisor.m; sourceTree = "<group>"; };
+		987F836F1E3212140058633C /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Common.h; path = Common/Common.h; sourceTree = "<group>"; };
+		987F83701E322AA90058633C /* OPMonitorViolationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorViolationReport.h; path = OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h; sourceTree = "<group>"; };
+		987F83711E322AA90058633C /* OPMonitorViolationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorViolationReport.m; path = OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.m; sourceTree = "<group>"; };
+		987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorInputSourceEvent.h; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.h; sourceTree = "<group>"; };
+		987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorInputSourceEvent.m; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.m; sourceTree = "<group>"; };
+		987F837C1E3241930058633C /* LocationInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationInputSupervisor.h; path = InputSupervisors/LocationInputSupervisor/LocationInputSupervisor.h; sourceTree = "<group>"; };
+		987F837D1E3241930058633C /* LocationInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationInputSupervisor.m; path = InputSupervisors/LocationInputSupervisor/LocationInputSupervisor.m; sourceTree = "<group>"; };
+		987F83801E3242BC0058633C /* SupervisorProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupervisorProtocols.h; path = Common/SupervisorProtocols.h; sourceTree = "<group>"; };
+		98804EF41E4DE277009E6748 /* PPViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PPViews.storyboard; sourceTree = "<group>"; };
+		98804EF71E4DEB57009E6748 /* ViolationReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViolationReportCell.h; path = Views/ViolationReportCell/ViolationReportCell.h; sourceTree = "<group>"; };
+		98804EF81E4DEB57009E6748 /* ViolationReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViolationReportCell.m; path = Views/ViolationReportCell/ViolationReportCell.m; sourceTree = "<group>"; };
+		98804EF91E4DEB57009E6748 /* ViolationReportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViolationReportCell.xib; path = Views/ViolationReportCell/ViolationReportCell.xib; sourceTree = "<group>"; };
+		98804EFE1E4DF1D8009E6748 /* UIViolationReportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViolationReportsViewController.h; path = Views/UIViolationReportsViewController/UIViolationReportsViewController.h; sourceTree = "<group>"; };
+		98804EFF1E4DF1D8009E6748 /* UIViolationReportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViolationReportsViewController.m; path = Views/UIViolationReportsViewController/UIViolationReportsViewController.m; sourceTree = "<group>"; };
+		98804F031E4DFD47009E6748 /* PPFlowBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPFlowBuilder.h; path = Views/PPFlowBuilder/PPFlowBuilder.h; sourceTree = "<group>"; };
+		98804F041E4DFD47009E6748 /* PPFlowBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPFlowBuilder.m; path = Views/PPFlowBuilder/PPFlowBuilder.m; sourceTree = "<group>"; };
+		98804F081E4E0E7C009E6748 /* UIPPOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIPPOptionsViewController.h; path = Views/UIPPOptionsViewController/UIPPOptionsViewController.h; sourceTree = "<group>"; };
+		98804F091E4E0E7C009E6748 /* UIPPOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIPPOptionsViewController.m; path = Views/UIPPOptionsViewController/UIPPOptionsViewController.m; sourceTree = "<group>"; };
+		98804F111E4E26DB009E6748 /* UIEncapsulatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIEncapsulatorViewController.h; path = Views/UIEncapsulatorViewController/UIEncapsulatorViewController.h; sourceTree = "<group>"; };
+		98804F121E4E26DB009E6748 /* UIEncapsulatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIEncapsulatorViewController.m; path = Views/UIEncapsulatorViewController/UIEncapsulatorViewController.m; sourceTree = "<group>"; };
+		988A14FF1E40A4F600AABD43 /* PedometerInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PedometerInputSupervisor.h; path = PedometerInputSupervisor/PedometerInputSupervisor.h; sourceTree = "<group>"; };
+		988A15001E40A4F600AABD43 /* PedometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PedometerInputSupervisor.m; path = PedometerInputSupervisor/PedometerInputSupervisor.m; sourceTree = "<group>"; };
+		988A15041E40AA7F00AABD43 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonUtils.h; path = CommonUtils/CommonUtils.h; sourceTree = "<group>"; };
+		988A15051E40AA7F00AABD43 /* CommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonUtils.m; path = CommonUtils/CommonUtils.m; sourceTree = "<group>"; };
+		988A15131E40D1B400AABD43 /* MagnetometerInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MagnetometerInputSupervisor.h; path = MagnetometerInputSupervisor/MagnetometerInputSupervisor.h; sourceTree = "<group>"; };
+		988A15141E40D1B400AABD43 /* MagnetometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MagnetometerInputSupervisor.m; path = MagnetometerInputSupervisor/MagnetometerInputSupervisor.m; sourceTree = "<group>"; };
+		988A15181E40DF3300AABD43 /* AccelerometerInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccelerometerInputSupervisor.h; path = AccelerometerInputSupervisor/AccelerometerInputSupervisor.h; sourceTree = "<group>"; };
+		988A15191E40DF3300AABD43 /* AccelerometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccelerometerInputSupervisor.m; path = AccelerometerInputSupervisor/AccelerometerInputSupervisor.m; sourceTree = "<group>"; };
+		988A151D1E40E2DD00AABD43 /* BarometerInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarometerInputSupervisor.h; path = BarometerInputSupervisor/BarometerInputSupervisor.h; sourceTree = "<group>"; };
+		988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarometerInputSupervisor.m; path = BarometerInputSupervisor/BarometerInputSupervisor.m; sourceTree = "<group>"; };
+		98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputSupervisorsManager.h; path = InputSupervisorsManager/InputSupervisorsManager.h; sourceTree = "<group>"; };
+		98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputSupervisorsManager.m; path = InputSupervisorsManager/InputSupervisorsManager.m; sourceTree = "<group>"; };
+		98B234681E53376B0015C2E9 /* UISCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISCDViewController.h; path = Views/UISCDViewController/UISCDViewController.h; sourceTree = "<group>"; };
+		98B234691E53376B0015C2E9 /* UISCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISCDViewController.m; path = Views/UISCDViewController/UISCDViewController.m; sourceTree = "<group>"; };
+		98D603E21E2F800B00E59A42 /* OPMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitor.h; path = OPMonitor/OPMonitor.h; sourceTree = "<group>"; };
+		98D603E31E2F800B00E59A42 /* OPMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitor.m; path = OPMonitor/OPMonitor.m; sourceTree = "<group>"; };
+		98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
+		98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchIdSupervisor.h; path = TouchIdSupervisor/TouchIdSupervisor.h; sourceTree = "<group>"; };
+		98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchIdSupervisor.m; path = TouchIdSupervisor/TouchIdSupervisor.m; sourceTree = "<group>"; };
+		98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraInputSupervisor.h; path = CameraInputSupervisor/CameraInputSupervisor.h; sourceTree = "<group>"; };
+		98ECE4761E421AFD0042A262 /* CameraInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraInputSupervisor.m; path = CameraInputSupervisor/CameraInputSupervisor.m; sourceTree = "<group>"; };
+		98ECE47A1E422E720042A262 /* MicrophoneInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MicrophoneInputSupervisor.h; path = MicrophoneInputSupervisor/MicrophoneInputSupervisor.h; sourceTree = "<group>"; };
+		98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MicrophoneInputSupervisor.m; path = MicrophoneInputSupervisor/MicrophoneInputSupervisor.m; sourceTree = "<group>"; };
+		98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsInputSupervisor.h; path = ContactsInputSupervisor/ContactsInputSupervisor.h; sourceTree = "<group>"; };
+		98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsInputSupervisor.m; path = ContactsInputSupervisor/ContactsInputSupervisor.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		98584F391D3F9E18009FB89F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98203D4B1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework in Frameworks */,
+				98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		980787761E3F614C0099B642 /* NetworkSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */,
+				9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */,
+			);
+			name = NetworkSupervisor;
+			sourceTree = "<group>";
+		};
+		98182AAF1E44B76700895F19 /* HookingCategories */ = {
+			isa = PBXGroup;
+			children = (
+				98182AB01E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m */,
+				98182AB11E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m */,
+				98182AB41E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m */,
+				98182AB61E44BC4100895F19 /* LAContext+rsHook.m */,
+				98182AB81E44BCE700895F19 /* CMAltimeter+rsHook.m */,
+				98182ABA1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m */,
+				98182ABC1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m */,
+				98182ABE1E44C58200895F19 /* CMPedometer+rsHook.m */,
+				98182AC01E44CDFC00895F19 /* UIDevice+rsHook.m */,
+				98182AC21E44D18E00895F19 /* NSURLSession+rsHook.m */,
+				981EAC671E48AF40000F59E3 /* CNContactStore+rsHook.m */,
+				981EAC691E48B463000F59E3 /* CLLocationManager+rsHook.m */,
+			);
+			path = HookingCategories;
+			sourceTree = "<group>";
+		};
+		981EAC6B1E48C62C000F59E3 /* ReportsStorageAndUI */ = {
+			isa = PBXGroup;
+			children = (
+				98804EF11E4DDB73009E6748 /* Factories */,
+				981EAC6C1E48C63F000F59E3 /* Repositories */,
+				981EAC6D1E48C660000F59E3 /* ReportsStorageProtocol.h */,
+			);
+			name = ReportsStorageAndUI;
+			sourceTree = "<group>";
+		};
+		981EAC6C1E48C63F000F59E3 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */,
+				981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */,
+			);
+			name = Repositories;
+			sourceTree = "<group>";
+		};
+		982175C81E3FA07F00495627 /* ProximityInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */,
+				982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */,
+			);
+			name = ProximityInputSupervisor;
+			sourceTree = "<group>";
+		};
+		98584F331D3F9E18009FB89F = {
+			isa = PBXGroup;
+			children = (
+				98584F3F1D3F9E18009FB89F /* RSFrameworksHook */,
+				98584F3E1D3F9E18009FB89F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		98584F3E1D3F9E18009FB89F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		98584F3F1D3F9E18009FB89F /* RSFrameworksHook */ = {
+			isa = PBXGroup;
+			children = (
+				98203D4A1E48ACB0005B8068 /* PlusPrivacyCommonUI.framework */,
+				98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */,
+				987F836E1E3211F90058633C /* Supervising */,
+				98804EF31E4DE258009E6748 /* View */,
+				98D603E11E2F7FEC00E59A42 /* OPMonitor */,
+				9863E8FF1DEC70CC0095CA30 /* NSURLSessionHook */,
+				9863E8FA1DEC6F0D0095CA30 /* JRSwizzle */,
+				98584F401D3F9E18009FB89F /* RSFrameworksHook.h */,
+				98584F421D3F9E18009FB89F /* Info.plist */,
+			);
+			name = RSFrameworksHook;
+			path = GenericFrameworkProject;
+			sourceTree = "<group>";
+		};
+		9863E8FA1DEC6F0D0095CA30 /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				9863E8FB1DEC6F0D0095CA30 /* JRSwizzle.h */,
+				9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */,
+			);
+			path = JRSwizzle;
+			sourceTree = "<group>";
+		};
+		9863E8FF1DEC70CC0095CA30 /* NSURLSessionHook */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NSURLSessionHook;
+			sourceTree = "<group>";
+		};
+		987F836E1E3211F90058633C /* Supervising */ = {
+			isa = PBXGroup;
+			children = (
+				981EAC6B1E48C62C000F59E3 /* ReportsStorageAndUI */,
+				98182AAF1E44B76700895F19 /* HookingCategories */,
+				987F837A1E3241250058633C /* InputSupervisors */,
+				987F83791E32410E0058633C /* OPMonitorViolationReport */,
+				987F83741E32357C0058633C /* OPMonitorInputSourceReport */,
+				987F836F1E3212140058633C /* Common.h */,
+			);
+			name = Supervising;
+			sourceTree = "<group>";
+		};
+		987F83741E32357C0058633C /* OPMonitorInputSourceReport */ = {
+			isa = PBXGroup;
+			children = (
+				987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */,
+				987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */,
+			);
+			name = OPMonitorInputSourceReport;
+			sourceTree = "<group>";
+		};
+		987F83791E32410E0058633C /* OPMonitorViolationReport */ = {
+			isa = PBXGroup;
+			children = (
+				987F83701E322AA90058633C /* OPMonitorViolationReport.h */,
+				987F83711E322AA90058633C /* OPMonitorViolationReport.m */,
+			);
+			name = OPMonitorViolationReport;
+			sourceTree = "<group>";
+		};
+		987F837A1E3241250058633C /* InputSupervisors */ = {
+			isa = PBXGroup;
+			children = (
+				98997C5F1E449D83002D82F1 /* InputSupervisorsFactory */,
+				98ECE47E1E424A9E0042A262 /* ContactsInputSupervisor */,
+				98ECE4791E422E550042A262 /* MicrophoneInputSupervisor */,
+				98ECE4741E421AD20042A262 /* CameraInputSupervisor */,
+				98ECE46A1E41F7D80042A262 /* TouchIdInputSupervisor */,
+				988A151C1E40E2C800AABD43 /* BarometerInputSupervisor */,
+				988A15171E40DF1B00AABD43 /* AccelerometerInputSupervisor */,
+				988A15121E40D18B00AABD43 /* MagnetometerInputSupervisor */,
+				988A15031E40AA6A00AABD43 /* CommonUtils */,
+				988A14FE1E40A48500AABD43 /* PedometerInputSupervisor */,
+				982175C81E3FA07F00495627 /* ProximityInputSupervisor */,
+				980787761E3F614C0099B642 /* NetworkSupervisor */,
+				987F837B1E3241300058633C /* LocationInputSupervisor */,
+				987F83801E3242BC0058633C /* SupervisorProtocols.h */,
+			);
+			name = InputSupervisors;
+			sourceTree = "<group>";
+		};
+		987F837B1E3241300058633C /* LocationInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				987F837C1E3241930058633C /* LocationInputSupervisor.h */,
+				987F837D1E3241930058633C /* LocationInputSupervisor.m */,
+			);
+			name = LocationInputSupervisor;
+			sourceTree = "<group>";
+		};
+		98804EF11E4DDB73009E6748 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Factories;
+			sourceTree = "<group>";
+		};
+		98804EF31E4DE258009E6748 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				98B234671E5337370015C2E9 /* UISCDViewController */,
+				98804F101E4E26BC009E6748 /* UIEncapsulatorViewController */,
+				98804F071E4E0E53009E6748 /* UIPPOptionsViewController */,
+				98804F021E4DFD1F009E6748 /* PPFlowBuilder */,
+				98804EFD1E4DF194009E6748 /* UIViolationReportsViewController */,
+				98804EF61E4DEB06009E6748 /* ViolationReportCell */,
+				98804EF41E4DE277009E6748 /* PPViews.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		98804EF61E4DEB06009E6748 /* ViolationReportCell */ = {
+			isa = PBXGroup;
+			children = (
+				98804EF71E4DEB57009E6748 /* ViolationReportCell.h */,
+				98804EF81E4DEB57009E6748 /* ViolationReportCell.m */,
+				98804EF91E4DEB57009E6748 /* ViolationReportCell.xib */,
+			);
+			name = ViolationReportCell;
+			sourceTree = "<group>";
+		};
+		98804EFD1E4DF194009E6748 /* UIViolationReportsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98804EFE1E4DF1D8009E6748 /* UIViolationReportsViewController.h */,
+				98804EFF1E4DF1D8009E6748 /* UIViolationReportsViewController.m */,
+			);
+			name = UIViolationReportsViewController;
+			sourceTree = "<group>";
+		};
+		98804F021E4DFD1F009E6748 /* PPFlowBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				98804F031E4DFD47009E6748 /* PPFlowBuilder.h */,
+				98804F041E4DFD47009E6748 /* PPFlowBuilder.m */,
+			);
+			name = PPFlowBuilder;
+			sourceTree = "<group>";
+		};
+		98804F071E4E0E53009E6748 /* UIPPOptionsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98804F081E4E0E7C009E6748 /* UIPPOptionsViewController.h */,
+				98804F091E4E0E7C009E6748 /* UIPPOptionsViewController.m */,
+			);
+			name = UIPPOptionsViewController;
+			sourceTree = "<group>";
+		};
+		98804F101E4E26BC009E6748 /* UIEncapsulatorViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98804F111E4E26DB009E6748 /* UIEncapsulatorViewController.h */,
+				98804F121E4E26DB009E6748 /* UIEncapsulatorViewController.m */,
+			);
+			name = UIEncapsulatorViewController;
+			sourceTree = "<group>";
+		};
+		988A14FE1E40A48500AABD43 /* PedometerInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				988A14FF1E40A4F600AABD43 /* PedometerInputSupervisor.h */,
+				988A15001E40A4F600AABD43 /* PedometerInputSupervisor.m */,
+			);
+			name = PedometerInputSupervisor;
+			sourceTree = "<group>";
+		};
+		988A15031E40AA6A00AABD43 /* CommonUtils */ = {
+			isa = PBXGroup;
+			children = (
+				988A15041E40AA7F00AABD43 /* CommonUtils.h */,
+				988A15051E40AA7F00AABD43 /* CommonUtils.m */,
+			);
+			name = CommonUtils;
+			sourceTree = "<group>";
+		};
+		988A15121E40D18B00AABD43 /* MagnetometerInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				988A15131E40D1B400AABD43 /* MagnetometerInputSupervisor.h */,
+				988A15141E40D1B400AABD43 /* MagnetometerInputSupervisor.m */,
+			);
+			name = MagnetometerInputSupervisor;
+			sourceTree = "<group>";
+		};
+		988A15171E40DF1B00AABD43 /* AccelerometerInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				988A15181E40DF3300AABD43 /* AccelerometerInputSupervisor.h */,
+				988A15191E40DF3300AABD43 /* AccelerometerInputSupervisor.m */,
+			);
+			name = AccelerometerInputSupervisor;
+			sourceTree = "<group>";
+		};
+		988A151C1E40E2C800AABD43 /* BarometerInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				988A151D1E40E2DD00AABD43 /* BarometerInputSupervisor.h */,
+				988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */,
+			);
+			name = BarometerInputSupervisor;
+			sourceTree = "<group>";
+		};
+		98997C5F1E449D83002D82F1 /* InputSupervisorsFactory */ = {
+			isa = PBXGroup;
+			children = (
+				98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */,
+				98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */,
+			);
+			name = InputSupervisorsFactory;
+			sourceTree = "<group>";
+		};
+		98B234671E5337370015C2E9 /* UISCDViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98B234681E53376B0015C2E9 /* UISCDViewController.h */,
+				98B234691E53376B0015C2E9 /* UISCDViewController.m */,
+			);
+			name = UISCDViewController;
+			sourceTree = "<group>";
+		};
+		98D603E11E2F7FEC00E59A42 /* OPMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				98D603E21E2F800B00E59A42 /* OPMonitor.h */,
+				98D603E31E2F800B00E59A42 /* OPMonitor.m */,
+			);
+			name = OPMonitor;
+			sourceTree = "<group>";
+		};
+		98ECE46A1E41F7D80042A262 /* TouchIdInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */,
+				98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */,
+			);
+			name = TouchIdInputSupervisor;
+			sourceTree = "<group>";
+		};
+		98ECE4741E421AD20042A262 /* CameraInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */,
+				98ECE4761E421AFD0042A262 /* CameraInputSupervisor.m */,
+			);
+			name = CameraInputSupervisor;
+			sourceTree = "<group>";
+		};
+		98ECE4791E422E550042A262 /* MicrophoneInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				98ECE47A1E422E720042A262 /* MicrophoneInputSupervisor.h */,
+				98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */,
+			);
+			name = MicrophoneInputSupervisor;
+			sourceTree = "<group>";
+		};
+		98ECE47E1E424A9E0042A262 /* ContactsInputSupervisor */ = {
+			isa = PBXGroup;
+			children = (
+				98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */,
+				98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */,
+			);
+			name = ContactsInputSupervisor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		98584F3A1D3F9E18009FB89F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98ECE4811E424AC80042A262 /* ContactsInputSupervisor.h in Headers */,
+				987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */,
+				988A151F1E40E2DD00AABD43 /* BarometerInputSupervisor.h in Headers */,
+				988A15151E40D1B400AABD43 /* MagnetometerInputSupervisor.h in Headers */,
+				987F83721E322AA90058633C /* OPMonitorViolationReport.h in Headers */,
+				987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */,
+				987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */,
+				98804F001E4DF1D8009E6748 /* UIViolationReportsViewController.h in Headers */,
+				98804EFA1E4DEB57009E6748 /* ViolationReportCell.h in Headers */,
+				98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */,
+				98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */,
+				98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */,
+				98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */,
+				98804F131E4E26DB009E6748 /* UIEncapsulatorViewController.h in Headers */,
+				981EAC701E48C7C6000F59E3 /* PlistReportsStorage.h in Headers */,
+				98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */,
+				98804F051E4DFD47009E6748 /* PPFlowBuilder.h in Headers */,
+				988A151A1E40DF3300AABD43 /* AccelerometerInputSupervisor.h in Headers */,
+				982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */,
+				98804F0A1E4E0E7C009E6748 /* UIPPOptionsViewController.h in Headers */,
+				98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */,
+				9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */,
+				98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */,
+				988A15061E40AA7F00AABD43 /* CommonUtils.h in Headers */,
+				9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */,
+				988A15011E40A4F600AABD43 /* PedometerInputSupervisor.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		98584F3C1D3F9E18009FB89F /* RSFrameworksHook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98584F451D3F9E18009FB89F /* Build configuration list for PBXNativeTarget "RSFrameworksHook" */;
+			buildPhases = (
+				98584F381D3F9E18009FB89F /* Sources */,
+				98584F391D3F9E18009FB89F /* Frameworks */,
+				98584F3A1D3F9E18009FB89F /* Headers */,
+				98584F3B1D3F9E18009FB89F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RSFrameworksHook;
+			productName = GenericFrameworkProject;
+			productReference = 98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98584F341D3F9E18009FB89F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = RomSoft;
+				TargetAttributes = {
+					98584F3C1D3F9E18009FB89F = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					98584F481D3F9E43009FB89F = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 98584F371D3F9E18009FB89F /* Build configuration list for PBXProject "RSFrameworksHook" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 98584F331D3F9E18009FB89F;
+			productRefGroup = 98584F3E1D3F9E18009FB89F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				98584F3C1D3F9E18009FB89F /* RSFrameworksHook */,
+				98584F481D3F9E43009FB89F /* AggregateUniversal */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		98584F3B1D3F9E18009FB89F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98804EF51E4DE277009E6748 /* PPViews.storyboard in Resources */,
+				98804EFC1E4DEB57009E6748 /* ViolationReportCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		98584F4C1D3F9E4B009FB89F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Merge Script\n\n# 1\n# Set bash script to exit immediately if any commands fail.\nset -e\n\n# 2\n# Setup some constants for use later on.\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\n# 3\n# If remnants from a previous build exist, delete them.\nif [ -d \"${SRCROOT}/build\" ]; then\nrm -rf \"${SRCROOT}/build\"\nfi\n\n# 4\n# Build the framework for device and for simulator (using\n# all needed architectures).\nxcodebuild -target \"${FRAMEWORK_NAME}\" -configuration Release -arch arm64 -arch armv7 -arch armv7s only_active_arch=no defines_module=yes -sdk \"iphoneos\"\nxcodebuild -target \"${FRAMEWORK_NAME}\" -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes -sdk \"iphonesimulator\"\n\n# 5\n# Remove .framework file if exists on Desktop from previous run.\nif [ -d \"${HOME}/Desktop/${FRAMEWORK_NAME}.framework\" ]; then\nrm -rf \"${HOME}/Desktop/${FRAMEWORK_NAME}.framework\"\nfi\n\n# 6\n# Copy the device version of framework to Desktop.\ncp -r \"${SRCROOT}/build/Release-iphoneos/${FRAMEWORK_NAME}.framework\" \"${HOME}/Desktop/${FRAMEWORK_NAME}.framework\"\n\n# 7\n# Replace the framework executable within the framework with\n# a new version created by merging the device and simulator\n# frameworks' executables with lipo.\nlipo -create -output \"${HOME}/Desktop/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${SRCROOT}/build/Release-iphoneos/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${SRCROOT}/build/Release-iphonesimulator/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n\n# 8\n# Copy the Swift module mappings for the simulator into the\n# framework.  The device mappings already exist from step 6.\ncp -r \"${SRCROOT}/build/Release-iphonesimulator/${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule/\" \"${HOME}/Desktop/${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule\"\n\n# 9\n# Delete the most recent build.\nif [ -d \"${SRCROOT}/build\" ]; then\nrm -rf \"${SRCROOT}/build\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		98584F381D3F9E18009FB89F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */,
+				98804F0B1E4E0E7C009E6748 /* UIPPOptionsViewController.m in Sources */,
+				981EAC6A1E48B463000F59E3 /* CLLocationManager+rsHook.m in Sources */,
+				98182AB31E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m in Sources */,
+				9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */,
+				988A151B1E40DF3300AABD43 /* AccelerometerInputSupervisor.m in Sources */,
+				98182AB51E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
+				981EAC681E48AF40000F59E3 /* CNContactStore+rsHook.m in Sources */,
+				98804F141E4E26DB009E6748 /* UIEncapsulatorViewController.m in Sources */,
+				98182AC11E44CDFC00895F19 /* UIDevice+rsHook.m in Sources */,
+				98804F061E4DFD47009E6748 /* PPFlowBuilder.m in Sources */,
+				98182ABB1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m in Sources */,
+				987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */,
+				98182AB21E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m in Sources */,
+				988A15161E40D1B400AABD43 /* MagnetometerInputSupervisor.m in Sources */,
+				988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */,
+				98ECE4821E424AC80042A262 /* ContactsInputSupervisor.m in Sources */,
+				987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */,
+				98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */,
+				981EAC711E48C7C6000F59E3 /* PlistReportsStorage.m in Sources */,
+				98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */,
+				988A15071E40AA7F00AABD43 /* CommonUtils.m in Sources */,
+				98182ABF1E44C58200895F19 /* CMPedometer+rsHook.m in Sources */,
+				98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */,
+				98182AB91E44BCE700895F19 /* CMAltimeter+rsHook.m in Sources */,
+				98804F011E4DF1D8009E6748 /* UIViolationReportsViewController.m in Sources */,
+				98182ABD1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m in Sources */,
+				98ECE4781E421AFD0042A262 /* CameraInputSupervisor.m in Sources */,
+				98182AB71E44BC4100895F19 /* LAContext+rsHook.m in Sources */,
+				988A15021E40A4F600AABD43 /* PedometerInputSupervisor.m in Sources */,
+				987F837F1E3241930058633C /* LocationInputSupervisor.m in Sources */,
+				9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */,
+				982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */,
+				98182AC31E44D18E00895F19 /* NSURLSession+rsHook.m in Sources */,
+				98804EFB1E4DEB57009E6748 /* ViolationReportCell.m in Sources */,
+				98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		98584F431D3F9E18009FB89F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		98584F441D3F9E18009FB89F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		98584F461D3F9E18009FB89F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GenericFrameworkProject",
+				);
+				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.FrameworkHooks;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		98584F471D3F9E18009FB89F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GenericFrameworkProject",
+				);
+				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.FrameworkHooks;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		98584F4A1D3F9E43009FB89F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		98584F4B1D3F9E43009FB89F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		98584F371D3F9E18009FB89F /* Build configuration list for PBXProject "RSFrameworksHook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98584F431D3F9E18009FB89F /* Debug */,
+				98584F441D3F9E18009FB89F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98584F451D3F9E18009FB89F /* Build configuration list for PBXNativeTarget "RSFrameworksHook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98584F461D3F9E18009FB89F /* Debug */,
+				98584F471D3F9E18009FB89F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98584F491D3F9E43009FB89F /* Build configuration list for PBXAggregateTarget "AggregateUniversal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98584F4A1D3F9E43009FB89F /* Debug */,
+				98584F4B1D3F9E43009FB89F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 98584F341D3F9E18009FB89F /* Project object */;
+}

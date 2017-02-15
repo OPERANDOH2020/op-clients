@@ -20,73 +20,6 @@ let kURLParameterRequestType = "RequestType"
 let kURLParameterJSONContent = "JSONContent"
 
 
-struct AccessedSensor {
-    let sensorType: String
-    let privacyLevel: Int
-    
-    init?(dict: [String: Any]) {
-        guard let type = dict["sensorType"] as? String,
-            let level = dict["privacyLevel"] as? Int else {
-                return nil
-        }
-        
-        self.privacyLevel = level
-        self.sensorType = type
-    }
-    
-    
-    static func buildFromJsonArray(_ array: [[String: Any]]) -> [AccessedSensor]? {
-        var result: [AccessedSensor] = []
-        
-        for dict in array {
-            guard let item = AccessedSensor(dict: dict) else {
-                return nil
-            }
-            result.append(item)
-        }
-        
-        
-        return result
-    }
-}
-
-struct SCDDocument {
-    let appTitle: String
-    let bundleId: String
-    let accessedLinks: [String]
-    let accessedSensors: [AccessedSensor]
-    
-    init?(scd: [String: Any]) {
-        guard let title = scd["title"] as? String,
-              let bundleId = scd["bundleId"] as? String,
-              let accessedLinks = scd["accessedLinks"] as? [String],
-              let accessedSensorsDictArray = scd["accessedSensors"] as? [[String: Any]],
-              let accessedSensors = AccessedSensor.buildFromJsonArray(accessedSensorsDictArray) else {
-                return nil
-        }
-        
-        self.appTitle = title
-        self.bundleId = bundleId
-        self.accessedSensors = accessedSensors
-        self.accessedLinks = accessedLinks
-    }
-    
-    
-    static func buildFromJSON(array: [[String: Any]]) -> [SCDDocument]? {
-        var items: [SCDDocument] = []
-        
-        for dict in array {
-            guard let item = SCDDocument(scd: dict) else {
-                return nil
-            }
-            
-            items.append(item)
-        }
-        
-        return items
-    }
-}
-
 class OPCloak {
     
     private let schemaProvider: SchemaProvider
@@ -118,7 +51,7 @@ class OPCloak {
               let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments),
               let json = jsonObject as? [String: Any] else {
             
-                OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "there was an error")
+                OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "The document received is not a valid JSON")
             return
         }
         
@@ -135,9 +68,6 @@ class OPCloak {
     
     
     private func processRegisterJSONContent(scdDocument: [String: Any]){
-        guard let _ = SCDDocument(scd: scdDocument) else {
-            return
-        }
         self.validate(scdDocument: scdDocument){ error in 
             if let error = error {
                 OPErrorContainer.displayError(error: error)
@@ -149,8 +79,9 @@ class OPCloak {
                     OPErrorContainer.displayError(error: error)
                     return
                 }
+                 OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "Done");
             }
-            OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "Done");
+           
         }
     }
     

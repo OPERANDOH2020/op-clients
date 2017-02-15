@@ -49,7 +49,7 @@ let localizableKeysPerErrorCode: [Int: String] =
       OPErrorCodes.userIdMissing.rawValue: "kUserIdIsRequiredLocalizableKey",
       OPErrorCodes.identityEmailNotUnique.rawValue: "kIdentityEmailShouldBeUnique",
       OPErrorCodes.credentialsNotStoredProperly.rawValue: "kCredentialsCouldNotBeStoredLocalizableKey",
-      OPErrorCodes.credentialsCouldNotBeDeletedProperly.rawValue: "kCredentialsCouldNotBeDeletedProperlyLocalizableKey"
+      OPErrorCodes.credentialsCouldNotBeDeletedProperly.rawValue: "kCredentialsCouldNotBeDeletedProperlyLocalizableKey",
     ]
 
 extension Bundle

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PlusPrivacyCommonUI
 
 let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
 let kPleaseCheckEmailResetLocalizableKey = "kPleaseCheckEmailResetLocalizableKey"
