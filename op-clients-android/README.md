@@ -8,7 +8,7 @@ This app is no longer maintained and will be removed soon.
 
 PlusPrivacy
 ----------------------
-### Requirements - this tools came with latest Android Studio version
+### Requirements - this tools are included in Android Studio
 - [Gradle 2.2.2]
 - [Android SDK 24]
 - [Build Tools 23.0.3]
