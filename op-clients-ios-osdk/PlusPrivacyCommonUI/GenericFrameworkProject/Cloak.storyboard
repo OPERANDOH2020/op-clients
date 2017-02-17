@@ -17,7 +17,7 @@
         <!--Documents View Controller-->
         <scene sceneID="rva-IL-E2I">
             <objects>
-                <viewController storyboardIdentifier="UISCDDocumentsViewController" id="0mt-cO-MEV" customClass="UISCDDocumentsViewController" customModule="PlusPrivacyCommonUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UISCDDocumentsViewController" id="0mt-cO-MEV" customClass="UISCDDocumentsViewController" customModule="PlusPrivacyCommonUI" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iCd-9z-fTx"/>
                         <viewControllerLayoutGuide type="bottom" id="n5b-uQ-gn4"/>
@@ -34,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnw-ib-nSf">
-                                        <rect key="frame" x="159" y="7" width="58" height="30"/>
+                                        <rect key="frame" x="158.5" y="7" width="58" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
         <!--Details View Controller-->
         <scene sceneID="JRQ-1J-pvN">
             <objects>
-                <viewController storyboardIdentifier="SCDDetailsViewController" id="fdI-g5-E0f" customClass="SCDDetailsViewController" customModule="PlusPrivacyCommonUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SCDDetailsViewController" id="fdI-g5-E0f" customClass="SCDDetailsViewController" customModule="PlusPrivacyCommonUI" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Qc-Gl-i32"/>
                         <viewControllerLayoutGuide type="bottom" id="H3v-0X-S00"/>
@@ -92,7 +92,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jcz-9T-ei2" customClass="SCDDetailsView" customModule="PlusPrivacyCommonUI" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jcz-9T-ei2" customClass="SCDDetailsView" customModule="PlusPrivacyCommonUI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -129,7 +129,7 @@
         <!--Notification View Controller-->
         <scene sceneID="RGf-hX-THQ">
             <objects>
-                <viewController storyboardIdentifier="UINotificationViewController" id="Hzz-E0-LQk" customClass="UINotificationViewController" customModule="PlusPrivacyCommonUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UINotificationViewController" id="Hzz-E0-LQk" customClass="UINotificationViewController" customModule="PlusPrivacyCommonUI" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3AR-Hv-8Ys"/>
                         <viewControllerLayoutGuide type="bottom" id="meP-va-ozl"/>

@@ -37,6 +37,7 @@ public class InputType: NSObject {
     public static let Pedometer = "pedo"
     public static let Magnetometer = "magneto"
     public static let Contacts = "contacts"
+    public static let Battery = "bat"
     
     public static let namesPerInputType: [String: String] = [ InputType.Camera : "Camera",
                                                                InputType.Accelerometer : "Accelerometer",
@@ -49,7 +50,8 @@ public class InputType: NSObject {
                                                                InputType.Microphone: "Microphone",
                                                                InputType.Pedometer: "Pedometer",
                                                                InputType.Magnetometer: "Magnetometer",
-                                                               InputType.Contacts: "Contacts"];
+                                                               InputType.Contacts: "Contacts",
+                                                               InputType.Battery: "Battery"];
     
     
     public static func isValidInputType(sensorType: String) -> Bool {

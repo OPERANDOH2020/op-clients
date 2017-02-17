@@ -12,20 +12,21 @@
 #import "UIPPOptionsViewController.h"
 #import "UIEncapsulatorViewController.h"
 #import "UISCDViewController.h"
+#import "NSBundle+RSFrameworkHooks.h"
 
 @implementation PPFlowBuilderModel
-
 @end
 
 @interface PPFlowBuilder ()
-
 @end
 
 @implementation PPFlowBuilder
 
 -(UIViewController *)buildFlowWithModel:(PPFlowBuilderModel *)model {
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PPViews" bundle:[NSBundle bundleForClass:[self class]]];
+    NSBundle *bundle = [NSBundle frameworkHooksBundle];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PPViews" bundle:bundle];
     
     UINavigationController *navigationController = [[UINavigationController alloc] init];
     navigationController.navigationBarHidden = true;

@@ -13,4 +13,5 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIViolationReportsViewController/UIViolationReportsViewController.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIPPOptionsViewController/UIPPOptionsViewController.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIEncapsulatorViewController/UIEncapsulatorViewController.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UISCDViewController/UISCDViewController.h
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UISCDViewController/UISCDViewController.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/NSBundle+RSFrameworkHooks/NSBundle+RSFrameworkHooks.h

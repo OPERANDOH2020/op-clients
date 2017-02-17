@@ -9,6 +9,7 @@
 #import "UIViolationReportsViewController.h"
 #import "ViolationReportCell.h"
 #import "Common.h"
+#import "NSBundle+RSFrameworkHooks.h"
 
 @interface UIViolationReportsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -78,7 +79,10 @@
 
 
 -(void)setupTableView:(UITableView*)tableView {
-    UINib *nib = [UINib nibWithNibName:[ViolationReportCell identifierNibName] bundle:[NSBundle bundleForClass:[self class]]];
+    
+    NSBundle *bundle = [NSBundle frameworkHooksBundle];
+    UINib *nib = [UINib nibWithNibName:[ViolationReportCell identifierNibName] bundle:
+                  bundle];
     
     [tableView registerNib:nib forCellReuseIdentifier:[ViolationReportCell identifierNibName]];
     

@@ -97,7 +97,7 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
     
     
     private func setup(tableView: UITableView?){
-        let bundle = Bundle(for: SCDDetailsView.self)
+        let bundle: Bundle? = Bundle.commonUIBundle
         let urlCellNib = UINib(nibName: SCDUrlCell.identifierNibName, bundle: bundle)
         let sensorCellNib = UINib(nibName: SCDSensorCell.identifierNibName, bundle: bundle)
         

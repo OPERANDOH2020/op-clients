@@ -40,6 +40,15 @@
 @implementation OPMonitor
 
 
+static void displayMessage(NSString* message){
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        
+        [alertView show];
+    });
+}
+
 static void __attribute__((constructor)) initialize(void){
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"AppSCD" ofType:@"json"];
@@ -49,7 +58,14 @@ static void __attribute__((constructor)) initialize(void){
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     
     if (json) {
+        
+        displayMessage([NSString stringWithFormat:@"JSON doc is %@", json]);
+        
         [[OPMonitor sharedInstance] beginMonitoringWithAppDocument:json];
+    } else {
+        
+        NSString *message = [NSString stringWithFormat:@"Could not find json document at path %@ or fileText is wrong: %@", fileText, path];
+        displayMessage(message);
     }
     
 }
@@ -71,7 +87,8 @@ static void __attribute__((constructor)) initialize(void){
     [[CommonTypeBuilder sharedInstance] buildSCDDocumentWith:document in: ^void(SCDDocument * _Nullable scdDocument, NSError * _Nullable error) {
         
         if (error || !scdDocument) {
-            NSString *errorMessage = @"Could not create the app SCD document!";
+            NSString *errorMessage = [error description];
+            displayMessage(errorMessage);
             [OPMonitor displayNotification:errorMessage];
             return;
             
