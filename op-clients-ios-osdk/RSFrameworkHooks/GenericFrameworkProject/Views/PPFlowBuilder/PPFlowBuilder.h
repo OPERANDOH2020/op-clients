@@ -10,10 +10,11 @@
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
 #import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
 #import "ReportsStorageProtocol.h"
-
+#import "OPMonitorSettings.h"
 
 @interface PPFlowBuilderModel : NSObject
 
+@property (strong, nonatomic) OPMonitorSettings *monitoringSettings;
 @property (strong, nonatomic) NSDictionary *scdJSON;
 @property (strong, nonatomic) id<SCDRepository> scdRepository;
 @property (strong, nonatomic) id<OPViolationReportRepository> violationReportsRepository;

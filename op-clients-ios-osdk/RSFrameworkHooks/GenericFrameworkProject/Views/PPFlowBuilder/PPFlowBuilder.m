@@ -71,7 +71,7 @@
     
     callbacks.whenExiting = model.onExitCallback;
     
-    [optionsVC setupWithCallbacks:callbacks];
+    [optionsVC setupWithCallbacks:callbacks andMonitorSettings:model.monitoringSettings];
     
     navigationController.viewControllers = @[optionsVC];
     

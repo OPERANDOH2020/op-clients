@@ -62,6 +62,35 @@
                                     <action selector="didPressViewSCD:" destination="Pao-kc-G45" eventType="touchUpInside" id="O8C-Cf-RxP"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WMK-em-GVY">
+                                <rect key="frame" x="85.5" y="238" width="204.5" height="37"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4r-Vk-fvm">
+                                        <rect key="frame" x="10" y="10" width="125" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uTD-Eo-Rgh">
+                                        <rect key="frame" x="145.5" y="3" width="51" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="49" id="pr1-Xr-Puc"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="didChangeSwitchValue:" destination="Pao-kc-G45" eventType="valueChanged" id="gGI-JR-UMW"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uTD-Eo-Rgh" secondAttribute="trailing" constant="10" id="8xr-AU-lTE"/>
+                                    <constraint firstItem="Q4r-Vk-fvm" firstAttribute="centerY" secondItem="WMK-em-GVY" secondAttribute="centerY" id="Dvd-w6-OkM"/>
+                                    <constraint firstItem="uTD-Eo-Rgh" firstAttribute="centerY" secondItem="Q4r-Vk-fvm" secondAttribute="centerY" id="HVB-dd-WO1"/>
+                                    <constraint firstItem="Q4r-Vk-fvm" firstAttribute="leading" secondItem="WMK-em-GVY" secondAttribute="leading" constant="10" id="HYy-2Y-wgp"/>
+                                    <constraint firstItem="uTD-Eo-Rgh" firstAttribute="leading" secondItem="Q4r-Vk-fvm" secondAttribute="trailing" constant="10.5" id="X6q-l9-NYS"/>
+                                    <constraint firstAttribute="height" constant="37" id="dTl-Gc-VEa"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.70630381350000004" blue="0.1701340881" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -71,12 +100,17 @@
                             <constraint firstItem="pP2-ow-EiE" firstAttribute="top" secondItem="qKi-AM-f3I" secondAttribute="bottom" constant="10" id="TW1-QY-1Lv"/>
                             <constraint firstItem="7cg-8e-xG1" firstAttribute="centerX" secondItem="DXZ-61-R4Y" secondAttribute="centerX" id="UVL-8z-HtQ"/>
                             <constraint firstItem="Ylr-Cz-zEz" firstAttribute="centerX" secondItem="DXZ-61-R4Y" secondAttribute="centerX" id="WGg-nq-BIf"/>
+                            <constraint firstItem="7cg-8e-xG1" firstAttribute="top" secondItem="WMK-em-GVY" secondAttribute="bottom" id="Ytb-lF-5pP"/>
                             <constraint firstAttribute="trailing" secondItem="pP2-ow-EiE" secondAttribute="trailing" constant="6" id="hRn-uy-SGP"/>
                             <constraint firstItem="DXZ-61-R4Y" firstAttribute="centerY" secondItem="ap2-wk-DQv" secondAttribute="centerY" id="hf9-0O-elZ"/>
                             <constraint firstItem="JWE-Wk-lxc" firstAttribute="centerX" secondItem="DXZ-61-R4Y" secondAttribute="centerX" id="jUu-F8-2gW"/>
                             <constraint firstItem="Ylr-Cz-zEz" firstAttribute="top" secondItem="DXZ-61-R4Y" secondAttribute="bottom" constant="14.5" id="uky-39-fHT"/>
+                            <constraint firstItem="WMK-em-GVY" firstAttribute="centerX" secondItem="7cg-8e-xG1" secondAttribute="centerX" id="vUe-m5-Qac"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="notificationsSwitch" destination="uTD-Eo-Rgh" id="GMv-hE-Vqt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBc-ob-Ct6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

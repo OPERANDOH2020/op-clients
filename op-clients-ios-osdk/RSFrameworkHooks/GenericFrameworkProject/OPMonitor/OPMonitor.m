@@ -29,6 +29,7 @@
 
 @interface OPMonitor() <InputSupervisorDelegate>
 
+@property (strong, nonatomic) OPMonitorSettings *monitorSettings;
 @property (strong, nonatomic) NSDictionary *scdJson;
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
@@ -94,6 +95,7 @@ static void __attribute__((constructor)) initialize(void){
             
         }
         
+        self.monitorSettings = [[OPMonitorSettings alloc] initFromDefaults];
         self.scdJson = document;
         self.reportsRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
@@ -125,6 +127,7 @@ static void __attribute__((constructor)) initialize(void){
     __block UIViewController *flowRoot = nil;
     
     PPFlowBuilderModel *flowModel = [[PPFlowBuilderModel alloc] init];
+    flowModel.monitoringSettings = self.monitorSettings;
     flowModel.violationReportsRepository = self.reportsRepository;
     flowModel.scdRepository = repo;
     flowModel.scdJSON = self.scdJson;
@@ -141,7 +144,10 @@ static void __attribute__((constructor)) initialize(void){
 
 #pragma mark - 
 -(void)newViolationReported:(OPMonitorViolationReport *)report {
-    [OPMonitor displayNotification:report.violationDetails];
+    if (self.monitorSettings.allowNotifications) {
+        [OPMonitor displayNotification:report.violationDetails];
+    }
+    
     [self.reportsRepository addReport:report];
 }
 

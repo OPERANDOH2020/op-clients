@@ -115,6 +115,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # define SWIFT_UNAVAILABLE __attribute__((unavailable))
 #endif
 #if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
 @import ObjectiveC;
 @import UIKit;
 @import CoreGraphics;
@@ -122,6 +123,10 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+
+@interface NSBundle (SWIFT_EXTENSION(PlusPrivacyCommonUI))
+@end
+
 @protocol SCDRepository;
 @class UIViewController;
 
@@ -158,12 +163,26 @@ SWIFT_CLASS("_TtC19PlusPrivacyCommonUI19PPNibDesignableView")
 @end
 
 
+@class SCDSectionHeaderCallbacks;
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI16SCDSectionHeader")
+@interface SCDSectionHeader : PPNibDesignableView
+- (void)setupWithTitle:(NSString * _Nonnull)title callbacks:(SCDSectionHeaderCallbacks * _Nullable)callbacks;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI25SCDSectionHeaderCallbacks")
+@interface SCDSectionHeaderCallbacks : NSObject
+- (nonnull instancetype)initWithCallToExpand:(void (^ _Nullable)(void))callToExpand callToContract:(void (^ _Nullable)(void))callToContract OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
 
 @interface UIColor (SWIFT_EXTENSION(PlusPrivacyCommonUI))
 + (UIColor * _Nonnull)colorWith:(float)red :(float)green :(float)blue :(float)alpha;
 @end
 
-@class NSBundle;
 
 SWIFT_CLASS("_TtC19PlusPrivacyCommonUI28UINotificationViewController")
 @interface UINotificationViewController : UIViewController

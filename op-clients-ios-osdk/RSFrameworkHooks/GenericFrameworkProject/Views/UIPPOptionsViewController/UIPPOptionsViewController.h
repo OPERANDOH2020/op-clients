@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPMonitorSettings.h"
 
 @interface UIPPOptionsViewControllerCallbacks: NSObject
 
@@ -20,6 +21,6 @@
 
 @interface UIPPOptionsViewController : UIViewController
 
--(void)setupWithCallbacks:(UIPPOptionsViewControllerCallbacks*)callbacks;
+-(void)setupWithCallbacks:(UIPPOptionsViewControllerCallbacks*)callbacks andMonitorSettings:(OPMonitorSettings*)monitorSettings;
 
 @end
