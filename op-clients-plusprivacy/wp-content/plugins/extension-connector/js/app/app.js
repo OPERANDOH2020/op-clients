@@ -27,6 +27,13 @@ privacyPlusApp.filter('timestampToDateFormat', [function() {
     }
 }]);
 
+privacyPlusApp.filter('isEmpty', [function() {
+    return function(object) {
+        return angular.equals({}, object);
+    }
+}]);
+
 privacyPlusApp.run(function () {
 
 });
+

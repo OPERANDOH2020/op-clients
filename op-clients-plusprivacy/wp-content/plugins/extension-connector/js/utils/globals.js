@@ -3,6 +3,7 @@
  * @param date
  * @returns {string}
  */
+
 function timeSince(date) {
     var seconds = Math.floor((new Date() - date) / 1000);
 
@@ -30,17 +31,32 @@ function timeSince(date) {
     return Math.floor(seconds) + " seconds";
 }
 
-function convertImageToBase64(file, callback){
+function convertImageToBase64(file, successCallback, errorCallback) {
+    var _URL = window.URL || window.webkitURL;
+
     if (file) {
-        var reader = new FileReader();
+        if (file.size > 131072) {//128 kb
+            errorCallback("imageSizeLimitExceeded");
+        }
+        else {
+            var image = new Image();
+            image.onload = function () {
+                if (this.width === this.height && this.width <= 256) {
+                    var reader = new FileReader();
+                    reader.onload = function (readerEvt) {
+                        var binaryString = readerEvt.target.result;
+                        var base64String = btoa(binaryString);
+                        successCallback(base64String);
+                    };
 
-        reader.onload = function(readerEvt) {
-            var binaryString = readerEvt.target.result;
-            var base64String = btoa(binaryString);
-            callback(base64String);
-        };
+                    reader.readAsBinaryString(file);
+                }
+                else{
+                    errorCallback("invalidImageMeasures");
+                }
+            };
 
-        reader.readAsBinaryString(file);
+            image.src = _URL.createObjectURL(file);
+        }
     }
-
 }

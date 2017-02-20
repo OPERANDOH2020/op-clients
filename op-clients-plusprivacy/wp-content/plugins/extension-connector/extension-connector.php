@@ -102,10 +102,10 @@ function osp_requests()
     echo file_get_contents(plugins_url('/html/admin/osp_requests.html', __FILE__));
 }
 
-function osp_list(){
+function osp_list()
+{
     echo file_get_contents(plugins_url('/html/admin/osp_list.html', __FILE__));
 }
-
 
 
 /************************************************
@@ -133,10 +133,21 @@ function ospSignupController()
 }
 
 function ospOffersController()
-{   insertScriptIfShortcode("angular-datatables.min.js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
+{   insertScriptIfShortcode("angular-material-js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-material/angular-material.min.js', __FILE__));
+    insertStyleIfShortcode("angular-material-style", 'osp-dashboard-offers', plugins_url('/js/utils/angular-material/angular-material.css', __FILE__));
+    insertScriptIfShortcode("moment.js", 'osp-dashboard-offers', plugins_url('/js/utils/momentjs/moment.js', __FILE__));
+    insertScriptIfShortcode("angular-animate.js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-animate/angular-animate.js', __FILE__));
+    insertScriptIfShortcode("angular-aria.js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-aria/angular-aria.min.js', __FILE__));
+    insertScriptIfShortcode("angular-messages.js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-messages/angular-messages.min.js', __FILE__));
+    insertScriptIfShortcode("mdPickers.js", 'osp-dashboard-offers', plugins_url('/js/utils/mdPickers/mdPickers.min.js', __FILE__));
+    insertStyleIfShortcode("mdPickers.css", 'osp-dashboard-offers', plugins_url('/js/utils/mdPickers/mdPickers.min.css', __FILE__));
+
+    insertScriptIfShortcode("angular-datatables.min.js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
     insertScriptIfShortcode("angular-datatables.bootstrap.min", 'osp-dashboard-offers', plugins_url('/js/utils/angular-datatables/angular-datatables.bootstrap.min.js', __FILE__));
     insertScriptIfShortcode("jquery.dataTables.min", 'osp-dashboard-offers', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
     insertStyleIfShortcode("datatables.bootstrap", 'osp-dashboard-offers', plugins_url('/js/utils/angular-datatables/datatables.bootstrap.min.css', __FILE__));
+
+    insertScriptIfShortcode("datePicker-directive", 'osp-dashboard-offers', plugins_url('/js/app/directives/datePicker.js', __FILE__));
     insertScriptIfShortcode("ospOffersController", 'osp-dashboard-offers', plugins_url('/js/app/controllers/osp/ospOffersController.js', __FILE__));
 }
 
@@ -159,7 +170,8 @@ function ospRequestsController()
     insertScriptIfShortcode("ospRequestsController", 'osp-requests', plugins_url('/js/app/controllers/admin/ospRequestsController.js', __FILE__));
 }
 
-function ospListController(){
+function ospListController()
+{
     insertScriptIfShortcode("angular-datatables.min.js", 'osp-list', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
     insertScriptIfShortcode("angular-datatables.bootstrap.min", 'osp-list', plugins_url('/js/utils/angular-datatables/angular-datatables.bootstrap.min.js', __FILE__));
     insertScriptIfShortcode("jquery.dataTables.min", 'osp-list', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));

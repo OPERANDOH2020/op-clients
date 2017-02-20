@@ -1,5 +1,5 @@
 <div ng-app="plusprivacy">
-    <div ng-controller="ospOffersController">
+    <div ng-controller="ospOffersController as ctrl">
 
         <div ng-cloak class="user_logged_in" ng-if="userIsLoggedIn === false">
             <h3> You don't have enough privileges to access this content</b>!</h3>
@@ -24,8 +24,8 @@
                     <td><img width="16px" ng-cloak data-ng-src="data:image/png;base64,{{offer.logo}}"></td>
                     <td>{{offer.name}}</td>
                     <td>{{offer.description}}</td>
-                    <td>{{offer.start_time|timestampToDateFormat}}</td>
-                    <td>{{offer.end_time|timestampToDateFormat}}</td>
+                    <td>{{offer.start_date|timestampToDateFormat}}</td>
+                    <td>{{offer.end_date|timestampToDateFormat}}</td>
                     <td>{{offer.impact_score}}</td>
                     <td>
                         <button ng-click="deleteOspOffer(offer.offerId)">Delete offer</button>
@@ -37,7 +37,5 @@
         </div>
 
         <button class="btn-default" ng-click="addNewOfferModal()">Add new offer</button>
-
-
     </div>
 </div>
