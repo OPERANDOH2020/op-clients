@@ -12,5 +12,6 @@
 
 @property (assign, nonatomic) BOOL allowNotifications;
 
+
 -(instancetype)initFromDefaults;
 @end

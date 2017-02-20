@@ -21,6 +21,7 @@
 #import "InputSupervisorsManager.h"
 #import "PlistReportsStorage.h"
 #import "JRSwizzle.h"
+#import "LocationInputSwizzler.h"
 
 #import "PPFlowBuilder.h"
 
@@ -59,12 +60,8 @@ static void __attribute__((constructor)) initialize(void){
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     
     if (json) {
-        
-        displayMessage([NSString stringWithFormat:@"JSON doc is %@", json]);
-        
         [[OPMonitor sharedInstance] beginMonitoringWithAppDocument:json];
     } else {
-        
         NSString *message = [NSString stringWithFormat:@"Could not find json document at path %@ or fileText is wrong: %@", fileText, path];
         displayMessage(message);
     }
@@ -100,6 +97,8 @@ static void __attribute__((constructor)) initialize(void){
         self.reportsRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
         self.supervisorsArray = [self buildSupervisors];
+        [self setupInputSwizzlers];
+        
         [InputSupervisorsManager buildSharedInstanceWithSupervisors:self.supervisorsArray];
     }];
     
@@ -107,7 +106,7 @@ static void __attribute__((constructor)) initialize(void){
 }
 
 
--(UIView *)getHandle {
+-(UIButton *)getHandle {
     if (self.handle == nil) {
         self.handle = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 44, 44)];
         [self.handle setTitle:@"PP" forState:UIControlStateNormal];
@@ -126,11 +125,19 @@ static void __attribute__((constructor)) initialize(void){
 
     __block UIViewController *flowRoot = nil;
     
+    LocationSettingsModel *locSettingsModel = [[LocationSettingsModel alloc] init];
+    locSettingsModel.currentSettings = [LocationInputSwizzler sharedInstance].currentSettings;
+    locSettingsModel.saveCallback = ^void(LocationInputSwizzlerSettings *settings) {
+        [[LocationInputSwizzler sharedInstance] applySettings:settings];
+    };
+    
     PPFlowBuilderModel *flowModel = [[PPFlowBuilderModel alloc] init];
     flowModel.monitoringSettings = self.monitorSettings;
     flowModel.violationReportsRepository = self.reportsRepository;
     flowModel.scdRepository = repo;
     flowModel.scdJSON = self.scdJson;
+    flowModel.locationSettingsModel = locSettingsModel;
+    
     flowModel.onExitCallback = ^{
         [rootViewController ppRemoveChildContentController:flowRoot];
     };
@@ -186,41 +193,9 @@ static void __attribute__((constructor)) initialize(void){
     return  result;
 }
 
-@end
-
-
-
-#pragma mark - 
-
-@interface UIWindow(rsHookHandle)
-@end
-
-
-
-@implementation UIWindow(rsHookHandle)
-
-+(void)load {
-    [self jr_swizzleMethod:@selector(addSubview:) withMethod:@selector(rsHook_addSubview:) error:nil];
-}
-
-
--(void)rsHook_addSubview:(UIView*)view {
-    
-    static UIView *handle = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        handle = [[OPMonitor sharedInstance] getHandle];
-    });
-    
-    [self rsHook_addSubview:view];
-    
-    if ([self.subviews containsObject:handle]) {
-        [self bringSubviewToFront:handle];
-    } else {
-        [self rsHook_addSubview:handle];
-    }
-    
+-(void)setupInputSwizzlers {
+    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults];
+    [[LocationInputSwizzler sharedInstance] applySettings:defaultLocationSettings];
 }
 
 @end
-

@@ -76,6 +76,16 @@
 		988A151F1E40E2DD00AABD43 /* BarometerInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A151D1E40E2DD00AABD43 /* BarometerInputSupervisor.h */; };
 		988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */; };
 		989459941E589C31006A5F49 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989459931E589C31006A5F49 /* PlusPrivacyCommonUI.framework */; };
+		9895FB2E1E5AED3D00B1F56D /* LocationInputSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB2C1E5AED3D00B1F56D /* LocationInputSwizzler.h */; };
+		9895FB2F1E5AED3D00B1F56D /* LocationInputSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB2D1E5AED3D00B1F56D /* LocationInputSwizzler.m */; };
+		9895FB331E5B1A2A00B1F56D /* UILocationSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB311E5B1A2A00B1F56D /* UILocationSettingsViewController.h */; };
+		9895FB341E5B1A2A00B1F56D /* UILocationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB321E5B1A2A00B1F56D /* UILocationSettingsViewController.m */; };
+		9895FB391E5B337A00B1F56D /* LocationInputSwizzlerSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB371E5B337A00B1F56D /* LocationInputSwizzlerSettings.h */; };
+		9895FB3A1E5B337A00B1F56D /* LocationInputSwizzlerSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */; };
+		9895FB491E5B3CB200B1F56D /* UIWindow+RSHookHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB471E5B3CB200B1F56D /* UIWindow+RSHookHandle.h */; };
+		9895FB4A1E5B3CB200B1F56D /* UIWindow+RSHookHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */; };
+		9895FB5D1E5B463D00B1F56D /* SPUserResizableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB5B1E5B463D00B1F56D /* SPUserResizableView.h */; };
+		9895FB5E1E5B463D00B1F56D /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB5C1E5B463D00B1F56D /* SPUserResizableView.m */; };
 		98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */; };
 		98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */; };
 		98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B234681E53376B0015C2E9 /* UISCDViewController.h */; };
@@ -155,6 +165,16 @@
 		988A151D1E40E2DD00AABD43 /* BarometerInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarometerInputSupervisor.h; path = BarometerInputSupervisor/BarometerInputSupervisor.h; sourceTree = "<group>"; };
 		988A151E1E40E2DD00AABD43 /* BarometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarometerInputSupervisor.m; path = BarometerInputSupervisor/BarometerInputSupervisor.m; sourceTree = "<group>"; };
 		989459931E589C31006A5F49 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
+		9895FB2C1E5AED3D00B1F56D /* LocationInputSwizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationInputSwizzler.h; path = InputSwizzling/LocationInputSwizzler/LocationInputSwizzler.h; sourceTree = "<group>"; };
+		9895FB2D1E5AED3D00B1F56D /* LocationInputSwizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationInputSwizzler.m; path = InputSwizzling/LocationInputSwizzler/LocationInputSwizzler.m; sourceTree = "<group>"; };
+		9895FB311E5B1A2A00B1F56D /* UILocationSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILocationSettingsViewController.h; path = Views/UILocationSettingsViewController/UILocationSettingsViewController.h; sourceTree = "<group>"; };
+		9895FB321E5B1A2A00B1F56D /* UILocationSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILocationSettingsViewController.m; path = Views/UILocationSettingsViewController/UILocationSettingsViewController.m; sourceTree = "<group>"; };
+		9895FB371E5B337A00B1F56D /* LocationInputSwizzlerSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationInputSwizzlerSettings.h; path = Models/LocationInputSwizzlerSettings/LocationInputSwizzlerSettings.h; sourceTree = "<group>"; };
+		9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationInputSwizzlerSettings.m; path = Models/LocationInputSwizzlerSettings/LocationInputSwizzlerSettings.m; sourceTree = "<group>"; };
+		9895FB471E5B3CB200B1F56D /* UIWindow+RSHookHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWindow+RSHookHandle.h"; path = "Views/UIWindow+RSHookHandle/UIWindow+RSHookHandle.h"; sourceTree = "<group>"; };
+		9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+RSHookHandle.m"; path = "Views/UIWindow+RSHookHandle/UIWindow+RSHookHandle.m"; sourceTree = "<group>"; };
+		9895FB5B1E5B463D00B1F56D /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
+		9895FB5C1E5B463D00B1F56D /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
 		98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputSupervisorsManager.h; path = InputSupervisorsManager/InputSupervisorsManager.h; sourceTree = "<group>"; };
 		98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputSupervisorsManager.m; path = InputSupervisorsManager/InputSupervisorsManager.m; sourceTree = "<group>"; };
 		98B234681E53376B0015C2E9 /* UISCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISCDViewController.h; path = Views/UISCDViewController/UISCDViewController.h; sourceTree = "<group>"; };
@@ -287,9 +307,9 @@
 		98584F3F1D3F9E18009FB89F /* RSFrameworksHook */ = {
 			isa = PBXGroup;
 			children = (
-				989459931E589C31006A5F49 /* PlusPrivacyCommonUI.framework */,
-				98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */,
-				981A4A681E58ABCC002C4876 /* OPMonitorSettings */,
+				9895FB361E5B332A00B1F56D /* Frameworks+Libraries */,
+				9895FB351E5B331F00B1F56D /* Models */,
+				9895FB2A1E5AEC9500B1F56D /* InputSwizzling */,
 				987F836E1E3211F90058633C /* Supervising */,
 				98804EF31E4DE258009E6748 /* View */,
 				98D603E11E2F7FEC00E59A42 /* OPMonitor */,
@@ -397,6 +417,7 @@
 		98804EF31E4DE258009E6748 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9895FB301E5B1A0600B1F56D /* UILocationSettingsViewController */,
 				98331C7F1E56F09D005D3A84 /* NSBundle+RSFrameworkHooks */,
 				98B234671E5337370015C2E9 /* UISCDViewController */,
 				98804F101E4E26BC009E6748 /* UIEncapsulatorViewController */,
@@ -500,6 +521,69 @@
 			name = BarometerInputSupervisor;
 			sourceTree = "<group>";
 		};
+		9895FB2A1E5AEC9500B1F56D /* InputSwizzling */ = {
+			isa = PBXGroup;
+			children = (
+				9895FB2B1E5AED1200B1F56D /* LocationInputSwizzler */,
+			);
+			name = InputSwizzling;
+			sourceTree = "<group>";
+		};
+		9895FB2B1E5AED1200B1F56D /* LocationInputSwizzler */ = {
+			isa = PBXGroup;
+			children = (
+				9895FB2C1E5AED3D00B1F56D /* LocationInputSwizzler.h */,
+				9895FB2D1E5AED3D00B1F56D /* LocationInputSwizzler.m */,
+			);
+			name = LocationInputSwizzler;
+			sourceTree = "<group>";
+		};
+		9895FB301E5B1A0600B1F56D /* UILocationSettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9895FB311E5B1A2A00B1F56D /* UILocationSettingsViewController.h */,
+				9895FB321E5B1A2A00B1F56D /* UILocationSettingsViewController.m */,
+			);
+			name = UILocationSettingsViewController;
+			sourceTree = "<group>";
+		};
+		9895FB351E5B331F00B1F56D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9895FB371E5B337A00B1F56D /* LocationInputSwizzlerSettings.h */,
+				9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9895FB361E5B332A00B1F56D /* Frameworks+Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				9895FB5A1E5B463D00B1F56D /* SPUserResizableView */,
+				989459931E589C31006A5F49 /* PlusPrivacyCommonUI.framework */,
+				98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */,
+			);
+			name = "Frameworks+Libraries";
+			sourceTree = "<group>";
+		};
+		9895FB461E5B3C8E00B1F56D /* UIWindow+RSHookHandle */ = {
+			isa = PBXGroup;
+			children = (
+				9895FB471E5B3CB200B1F56D /* UIWindow+RSHookHandle.h */,
+				9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */,
+			);
+			name = "UIWindow+RSHookHandle";
+			sourceTree = "<group>";
+		};
+		9895FB5A1E5B463D00B1F56D /* SPUserResizableView */ = {
+			isa = PBXGroup;
+			children = (
+				9895FB5B1E5B463D00B1F56D /* SPUserResizableView.h */,
+				9895FB5C1E5B463D00B1F56D /* SPUserResizableView.m */,
+			);
+			path = SPUserResizableView;
+			sourceTree = "<group>";
+		};
 		98997C5F1E449D83002D82F1 /* InputSupervisorsFactory */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +605,8 @@
 		98D603E11E2F7FEC00E59A42 /* OPMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				9895FB461E5B3C8E00B1F56D /* UIWindow+RSHookHandle */,
+				981A4A681E58ABCC002C4876 /* OPMonitorSettings */,
 				98D603E21E2F800B00E59A42 /* OPMonitor.h */,
 				98D603E31E2F800B00E59A42 /* OPMonitor.m */,
 			);
@@ -577,6 +663,8 @@
 				988A15151E40D1B400AABD43 /* MagnetometerInputSupervisor.h in Headers */,
 				987F83721E322AA90058633C /* OPMonitorViolationReport.h in Headers */,
 				987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */,
+				9895FB331E5B1A2A00B1F56D /* UILocationSettingsViewController.h in Headers */,
+				9895FB2E1E5AED3D00B1F56D /* LocationInputSwizzler.h in Headers */,
 				987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */,
 				98804F001E4DF1D8009E6748 /* UIViolationReportsViewController.h in Headers */,
 				98804EFA1E4DEB57009E6748 /* ViolationReportCell.h in Headers */,
@@ -585,8 +673,11 @@
 				98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */,
 				98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */,
 				98804F131E4E26DB009E6748 /* UIEncapsulatorViewController.h in Headers */,
+				9895FB391E5B337A00B1F56D /* LocationInputSwizzlerSettings.h in Headers */,
 				981EAC701E48C7C6000F59E3 /* PlistReportsStorage.h in Headers */,
 				98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */,
+				9895FB5D1E5B463D00B1F56D /* SPUserResizableView.h in Headers */,
+				9895FB491E5B3CB200B1F56D /* UIWindow+RSHookHandle.h in Headers */,
 				98804F051E4DFD47009E6748 /* PPFlowBuilder.h in Headers */,
 				988A151A1E40DF3300AABD43 /* AccelerometerInputSupervisor.h in Headers */,
 				982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */,
@@ -720,16 +811,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */,
+				9895FB3A1E5B337A00B1F56D /* LocationInputSwizzlerSettings.m in Sources */,
+				9895FB5E1E5B463D00B1F56D /* SPUserResizableView.m in Sources */,
 				98804F0B1E4E0E7C009E6748 /* UIPPOptionsViewController.m in Sources */,
 				981EAC6A1E48B463000F59E3 /* CLLocationManager+rsHook.m in Sources */,
 				98182AB31E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m in Sources */,
 				9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */,
+				9895FB2F1E5AED3D00B1F56D /* LocationInputSwizzler.m in Sources */,
 				988A151B1E40DF3300AABD43 /* AccelerometerInputSupervisor.m in Sources */,
 				98182AB51E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
 				981EAC681E48AF40000F59E3 /* CNContactStore+rsHook.m in Sources */,
 				981A4A6C1E58ABFE002C4876 /* OPMonitorSettings.m in Sources */,
 				98804F141E4E26DB009E6748 /* UIEncapsulatorViewController.m in Sources */,
 				98182AC11E44CDFC00895F19 /* UIDevice+rsHook.m in Sources */,
+				9895FB341E5B1A2A00B1F56D /* UILocationSettingsViewController.m in Sources */,
 				98804F061E4DFD47009E6748 /* PPFlowBuilder.m in Sources */,
 				98182ABB1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m in Sources */,
 				987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */,
@@ -751,6 +846,7 @@
 				98182AB71E44BC4100895F19 /* LAContext+rsHook.m in Sources */,
 				988A15021E40A4F600AABD43 /* PedometerInputSupervisor.m in Sources */,
 				987F837F1E3241930058633C /* LocationInputSupervisor.m in Sources */,
+				9895FB4A1E5B3CB200B1F56D /* UIWindow+RSHookHandle.m in Sources */,
 				98331C831E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m in Sources */,
 				9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */,
 				982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */,

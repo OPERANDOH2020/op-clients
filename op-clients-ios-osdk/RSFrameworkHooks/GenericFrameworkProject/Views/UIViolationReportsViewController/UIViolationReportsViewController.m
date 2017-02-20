@@ -142,6 +142,9 @@
     for(int i=0; i<reports.count; i++) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:index]];
     }
+    
+    self.reportsArrayPerType[self.currentReportTypes[index]] = nil;
+    
     if (indexPaths.count) {
         [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     }

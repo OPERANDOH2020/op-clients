@@ -11,15 +11,17 @@
 
 @interface UIPPOptionsViewControllerCallbacks: NSObject
 
-@property (strong, nonatomic) void (^whenChoosingSCDInfo)();
-@property (strong, nonatomic) void (^whenChoosingReportsInfo)();
 @property (strong, nonatomic) void (^whenExiting)();
 
+@property (strong, nonatomic) void (^whenChoosingSCDInfo)();
 @property (strong, nonatomic) void (^whenChoosingViewSCD)();
+@property (strong, nonatomic) void (^whenChoosingReportsInfo)();
+
+@property (strong, nonatomic) void (^whenChoosingOverrideLocation)();
 
 @end
 
-@interface UIPPOptionsViewController : UIViewController
+@interface UIPPOptionsViewController : UITableViewController
 
 -(void)setupWithCallbacks:(UIPPOptionsViewControllerCallbacks*)callbacks andMonitorSettings:(OPMonitorSettings*)monitorSettings;
 

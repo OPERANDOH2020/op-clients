@@ -14,6 +14,8 @@
 #import "UISCDViewController.h"
 #import "NSBundle+RSFrameworkHooks.h"
 
+
+
 @implementation PPFlowBuilderModel
 @end
 
@@ -35,38 +37,43 @@
     
     UIPPOptionsViewController *optionsVC = [storyboard instantiateViewControllerWithIdentifier:@"UIPPOptionsViewController"];
     
-    UIViolationReportsViewController *reportsVC = [storyboard instantiateViewControllerWithIdentifier:@"UIViolationReportsViewController"];
-    
-    UISCDViewController *scdVC = [storyboard instantiateViewControllerWithIdentifier:@"UISCDViewController"];
-    
-    [scdVC setupWithSCD:model.scdJSON onClose:^{
-        [weakNavgController popViewControllerAnimated:true];
-    }];
-    
-    [reportsVC setupWithRepository:model.violationReportsRepository onExit:^{
-        [weakNavgController popViewControllerAnimated:true];
-    }];
-    
-    UIViewController *commonUIVC = [CommonUIBUilder buildFlowFor:model.scdRepository whenExiting:^{
-        [weakNavgController popViewControllerAnimated:true];
-    }];
-    
-    
-    UIViewController *commonUIIncapsulator = [[UIEncapsulatorViewController alloc] init];
-    [commonUIIncapsulator ppAddChildContentController:commonUIVC];
-    
     UIPPOptionsViewControllerCallbacks *callbacks = [[UIPPOptionsViewControllerCallbacks alloc] init];
     
     callbacks.whenChoosingSCDInfo = ^{
+        UIViewController *commonUIVC = [CommonUIBUilder buildFlowFor:model.scdRepository whenExiting:^{
+            [weakNavgController popViewControllerAnimated:true];
+        }];
+    
+        UIViewController *commonUIIncapsulator = [[UIEncapsulatorViewController alloc] init];
+        [commonUIIncapsulator ppAddChildContentController:commonUIVC];
+        
         [weakNavgController pushViewController:commonUIIncapsulator animated:true];
     };
     
     callbacks.whenChoosingReportsInfo = ^{
+        UIViolationReportsViewController *reportsVC = [storyboard instantiateViewControllerWithIdentifier:@"UIViolationReportsViewController"];
+        [reportsVC setupWithRepository:model.violationReportsRepository onExit:^{
+            [weakNavgController popViewControllerAnimated:true];
+        }];
         [weakNavgController pushViewController:reportsVC animated:true];
     };
     
     callbacks.whenChoosingViewSCD = ^{
+        UISCDViewController *scdVC = [storyboard instantiateViewControllerWithIdentifier:@"UISCDViewController"];
+        
+        [scdVC setupWithSCD:model.scdJSON onClose:^{
+            [weakNavgController popViewControllerAnimated:true];
+        }];
+        
         [weakNavgController pushViewController:scdVC animated:true];
+    };
+    
+    callbacks.whenChoosingOverrideLocation = ^{
+        UILocationSettingsViewController *locSettingsVC = [storyboard instantiateViewControllerWithIdentifier:@"UILocationSettingsViewController"];
+        [locSettingsVC setupWithModel:model.locationSettingsModel onExit:^{
+            [weakNavgController popViewControllerAnimated:YES];
+        }];
+        [weakNavgController pushViewController:locSettingsVC animated:YES];
     };
     
     callbacks.whenExiting = model.onExitCallback;
