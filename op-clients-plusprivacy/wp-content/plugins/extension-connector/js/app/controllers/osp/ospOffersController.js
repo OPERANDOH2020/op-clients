@@ -206,3 +206,12 @@ function OspOffersController ($scope, $rootScope, connectionService, DTColumnDef
 };
 
 privacyPlusApp.controller("ospOffersController", OspOffersController);
+
+angular.element(document).ready(function() {
+
+  var $inj = angular.injector(['sharedService']);
+  var MenuLocatorService = $inj.get('SharedService');
+  MenuLocatorService.setLocation("ospOffers");
+  angular.bootstrap(document.getElementById('osp-offers'), ['plusprivacy']);
+
+});

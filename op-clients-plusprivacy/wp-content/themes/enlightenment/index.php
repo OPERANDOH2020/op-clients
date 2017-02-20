@@ -1,4 +1,5 @@
-<?php get_header();?>
+<?php
+get_header();?>
 
 	<div id="content" class="site-content">
 		<?php get_sidebar( 'main' ); ?>

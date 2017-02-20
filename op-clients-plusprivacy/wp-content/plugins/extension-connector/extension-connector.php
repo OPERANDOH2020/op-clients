@@ -8,6 +8,13 @@
  * License: MIT
  */
 
+add_action("plusprivacy_head", insertPlusPrivacyHeader);
+
+function insertPlusPrivacyHeader(){
+    echo file_get_contents(plugins_url('/html/header/navbar.html', __FILE__));
+    wp_enqueue_style('app-navigation', plugins_url('/css/navigation.css', __FILE__));
+}
+
 add_shortcode('confirm-account', 'confirm_user_account');
 add_shortcode('account-login', 'account_login');
 add_shortcode('account-register', 'register_account');
@@ -43,6 +50,11 @@ function load_swarm_resources()
     wp_enqueue_script('modal-service', plugins_url('/js/utils/angular-modal/angular-modal-service.js', __FILE__));
     wp_enqueue_script('notification-service', plugins_url('/js/utils/angular-ui-notification/angular-ui-notification.min.js', __FILE__));
     wp_enqueue_style('notification-service-style', plugins_url('/js/utils/angular-ui-notification/angular-ui-notification.min.css', __FILE__));
+    wp_enqueue_script('shared-service', plugins_url('/js/app/modules/sharedService.js', __FILE__));
+    wp_enqueue_script('menu-angular-app', plugins_url('/js/app/menuApp.js', __FILE__));
+    //wp_enqueue_script('menu-locator-service', plugins_url('/js/app/services/menuLocatorService.js', __FILE__));
+    wp_enqueue_script('menu-controller', plugins_url('/js/app/controllers/menuController.js', __FILE__));
+
     wp_enqueue_script('angular-app', plugins_url('/js/app/app.js', __FILE__));
     wp_enqueue_script('angular-service-connection', plugins_url('/js/app/services/connectionService.js', __FILE__));
     wp_enqueue_script('angular-messenger-service', plugins_url('/js/app/services/messengerService.js', __FILE__));

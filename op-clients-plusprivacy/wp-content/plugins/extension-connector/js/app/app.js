@@ -1,4 +1,4 @@
-var privacyPlusApp = window.privacyPlusApp = angular.module("plusprivacy", ['angularModalService', 'ui-notification']);
+var privacyPlusApp = window.privacyPlusApp = angular.module("plusprivacy", ['angularModalService', 'ui-notification','sharedService']);
 privacyPlusApp.config(function (NotificationProvider) {
     NotificationProvider.setOptions({
         delay: 10000,

@@ -13,8 +13,10 @@
 	<div id="page" class="site">
 		<?php enlightenment_before_header(); ?>
 		<header id="masthead" <?php enlightenment_header_class(); ?> <?php enlightenment_header_extra_atts(); ?>>
+
 			<div class="container">
 				<?php enlightenment_header(); ?>
+				<?php do_action("plusprivacy_head");?>
 			</div>
 		</header>
 		<?php enlightenment_after_header(); ?>
