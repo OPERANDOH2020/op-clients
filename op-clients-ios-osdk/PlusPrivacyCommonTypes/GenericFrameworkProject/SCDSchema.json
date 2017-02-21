@@ -36,7 +36,7 @@
                         "description": "A string describing the sensor type.",
                         "type": "string",
                         "enum": ["loc", "mic", "cam", "gyro", "acc", "prox", "touchID", "bar", "force", "pedo", "magneto",
-                                 "contacts"]
+                                 "contacts", "bat"]
                     },
                     
                     "privacyDescription": {

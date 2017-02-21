@@ -97,7 +97,7 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
     
     
     private func setup(tableView: UITableView?){
-        let bundle = Bundle(for: SCDDetailsView.self)
+        let bundle: Bundle? = Bundle.commonUIBundle
         let urlCellNib = UINib(nibName: SCDUrlCell.identifierNibName, bundle: bundle)
         let sensorCellNib = UINib(nibName: SCDSensorCell.identifierNibName, bundle: bundle)
         
@@ -127,7 +127,7 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
         weak var weakSelf = self
         
         let buildIndexPathsForSection: (_ section: Int) -> [IndexPath] = { sectionIndex in
-            let numOfRows = weakSelf!.sectionSources[sectionIndex].tableView(weakSelf!.tableView, numberOfRowsInSection: -1)
+            let numOfRows = weakSelf!.sectionSources[sectionIndex].tableView(weakSelf!.tableView, numberOfRowsInSection: 0)
             var indexPaths: [IndexPath] = []
             for i in 0..<numOfRows {
                 indexPaths.append(IndexPath(row: i, section: section))
@@ -137,7 +137,7 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
         }
                 
         header.setupWith(title: self.sectionSources[section].sectionTitle, callbacks: SCDSectionHeaderCallbacks(
-            callToExpand: {
+            callToExpand: { 
                 weakSelf?.sectionRowsAreVisibleAt[section] = true
                 weakSelf?.tableView.insertRows(at: buildIndexPathsForSection(section), with: .automatic)
                 

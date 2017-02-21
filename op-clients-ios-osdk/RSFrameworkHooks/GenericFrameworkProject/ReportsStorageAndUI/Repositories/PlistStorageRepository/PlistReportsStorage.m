@@ -97,6 +97,35 @@ static const NSString *kObjectNotInRepository = @"Object is not in repository";
     SAFECALL(completion, self.reportsArray, nil)
 }
 
+
+-(void)getAllReportsOfType:(OPMonitorViolationType)type in:(ReportsCallback)completion {
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    for (OPMonitorViolationReport *report in self.reportsArray) {
+        if (report.violationType == type) {
+            [result addObject:report];
+        }
+    }
+    
+    SAFECALL(completion, result, nil)
+}
+
+
+-(void)getTypesOfReportsIn:(void (^)(NSArray<NSNumber *> * _Nullable, NSError * _Nullable))completion{
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (OPMonitorViolationReport *report in self.reportsArray) {
+        NSNumber *type = @(report.violationType);
+        if (! [result containsObject:type]) {
+            [result addObject:type];
+        }
+    }
+    
+    SAFECALL(completion, result, nil)
+    
+}
+
 #pragma mark - private methods
 
 

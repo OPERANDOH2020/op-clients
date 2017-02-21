@@ -21,6 +21,7 @@
 #import "InputSupervisorsManager.h"
 #import "PlistReportsStorage.h"
 #import "JRSwizzle.h"
+#import "LocationInputSwizzler.h"
 
 #import "PPFlowBuilder.h"
 
@@ -29,6 +30,7 @@
 
 @interface OPMonitor() <InputSupervisorDelegate>
 
+@property (strong, nonatomic) OPMonitorSettings *monitorSettings;
 @property (strong, nonatomic) NSDictionary *scdJson;
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
@@ -40,6 +42,15 @@
 @implementation OPMonitor
 
 
+static void displayMessage(NSString* message){
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        
+        [alertView show];
+    });
+}
+
 static void __attribute__((constructor)) initialize(void){
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"AppSCD" ofType:@"json"];
@@ -50,6 +61,9 @@ static void __attribute__((constructor)) initialize(void){
     
     if (json) {
         [[OPMonitor sharedInstance] beginMonitoringWithAppDocument:json];
+    } else {
+        NSString *message = [NSString stringWithFormat:@"Could not find json document at path %@ or fileText is wrong: %@", fileText, path];
+        displayMessage(message);
     }
     
 }
@@ -71,16 +85,20 @@ static void __attribute__((constructor)) initialize(void){
     [[CommonTypeBuilder sharedInstance] buildSCDDocumentWith:document in: ^void(SCDDocument * _Nullable scdDocument, NSError * _Nullable error) {
         
         if (error || !scdDocument) {
-            NSString *errorMessage = @"Could not create the app SCD document!";
+            NSString *errorMessage = [error description];
+            displayMessage(errorMessage);
             [OPMonitor displayNotification:errorMessage];
             return;
             
         }
         
+        self.monitorSettings = [[OPMonitorSettings alloc] initFromDefaults];
         self.scdJson = document;
         self.reportsRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
         self.supervisorsArray = [self buildSupervisors];
+        [self setupInputSwizzlers];
+        
         [InputSupervisorsManager buildSharedInstanceWithSupervisors:self.supervisorsArray];
     }];
     
@@ -88,7 +106,7 @@ static void __attribute__((constructor)) initialize(void){
 }
 
 
--(UIView *)getHandle {
+-(UIButton *)getHandle {
     if (self.handle == nil) {
         self.handle = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 44, 44)];
         [self.handle setTitle:@"PP" forState:UIControlStateNormal];
@@ -107,10 +125,19 @@ static void __attribute__((constructor)) initialize(void){
 
     __block UIViewController *flowRoot = nil;
     
+    LocationSettingsModel *locSettingsModel = [[LocationSettingsModel alloc] init];
+    locSettingsModel.currentSettings = [LocationInputSwizzler sharedInstance].currentSettings;
+    locSettingsModel.saveCallback = ^void(LocationInputSwizzlerSettings *settings) {
+        [[LocationInputSwizzler sharedInstance] applySettings:settings];
+    };
+    
     PPFlowBuilderModel *flowModel = [[PPFlowBuilderModel alloc] init];
+    flowModel.monitoringSettings = self.monitorSettings;
     flowModel.violationReportsRepository = self.reportsRepository;
     flowModel.scdRepository = repo;
     flowModel.scdJSON = self.scdJson;
+    flowModel.locationSettingsModel = locSettingsModel;
+    
     flowModel.onExitCallback = ^{
         [rootViewController ppRemoveChildContentController:flowRoot];
     };
@@ -124,7 +151,10 @@ static void __attribute__((constructor)) initialize(void){
 
 #pragma mark - 
 -(void)newViolationReported:(OPMonitorViolationReport *)report {
-    [OPMonitor displayNotification:report.violationDetails];
+    if (self.monitorSettings.allowNotifications) {
+        [OPMonitor displayNotification:report.violationDetails];
+    }
+    
     [self.reportsRepository addReport:report];
 }
 
@@ -163,41 +193,9 @@ static void __attribute__((constructor)) initialize(void){
     return  result;
 }
 
-@end
-
-
-
-#pragma mark - 
-
-@interface UIWindow(rsHookHandle)
-@end
-
-
-
-@implementation UIWindow(rsHookHandle)
-
-+(void)load {
-    [self jr_swizzleMethod:@selector(addSubview:) withMethod:@selector(rsHook_addSubview:) error:nil];
-}
-
-
--(void)rsHook_addSubview:(UIView*)view {
-    
-    static UIView *handle = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        handle = [[OPMonitor sharedInstance] getHandle];
-    });
-    
-    [self rsHook_addSubview:view];
-    
-    if ([self.subviews containsObject:handle]) {
-        [self bringSubviewToFront:handle];
-    } else {
-        [self rsHook_addSubview:handle];
-    }
-    
+-(void)setupInputSwizzlers {
+    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults];
+    [[LocationInputSwizzler sharedInstance] applySettings:defaultLocationSettings];
 }
 
 @end
-

@@ -57,7 +57,7 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func setup(tableView: UITableView?){
-        let nib = UINib(nibName: SCDDocumentCell.identifierNibName, bundle: Bundle(for: UISCDDocumentsViewController.self))
+        let nib = UINib(nibName: SCDDocumentCell.identifierNibName, bundle: Bundle.commonUIBundle)
         tableView?.register(nib, forCellReuseIdentifier: SCDDocumentCell.identifierNibName)
         tableView?.dataSource = self
         tableView?.delegate = self

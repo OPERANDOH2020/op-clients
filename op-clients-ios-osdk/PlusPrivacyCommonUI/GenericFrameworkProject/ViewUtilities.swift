@@ -26,6 +26,18 @@ public extension UIViewController {
     
 }
 
+
+extension Bundle {
+    static var commonUIBundle: Bundle? {
+        guard let path = Bundle.main.path(forResource: "PPCommonUIBundle", ofType: "bundle"),
+            let bundle = Bundle(path: path) else {
+                return nil
+        }
+        
+        return bundle
+    }
+}
+
 @IBDesignable
 public class PPNibDesignableView: UIView
 {
@@ -41,13 +53,10 @@ public class PPNibDesignableView: UIView
     public func commonInit() {
         let myClass : AnyClass = self.classForCoder;
         var nibName : NSString = NSStringFromClass(myClass) as NSString;
-        
-        let bundle : Bundle = Bundle(for: myClass);
-        
-        if let targetName = bundle.infoDictionary?["CFBundleName"] as? String {
-            nibName = nibName.replacingOccurrences(of: targetName + ".", with: "") as NSString;
-        }
-        
+        nibName = nibName.replacingOccurrences(of: "PlusPrivacyCommonUI" + ".", with: "") as NSString;
+
+        let bundle = Bundle.commonUIBundle
+                
         let nib = UINib(nibName: nibName as String, bundle: bundle);
         
         _contentView = nib.instantiate(withOwner: self, options: nil).first as? UIView;

@@ -55,7 +55,7 @@ public class UINotificationViewController: UIViewController {
     
     {
         
-        let storyboard = UIStoryboard(name: "Cloak", bundle: Bundle(for: self))
+        let storyboard = UIStoryboard(name: "Cloak", bundle: Bundle.commonUIBundle)
         let vc = storyboard.instantiateViewController(withIdentifier: UINotificationViewControllerIdentifier) as! UINotificationViewController
         vc.whenViewWillAppear =
         {[unowned vc]()-> Void in

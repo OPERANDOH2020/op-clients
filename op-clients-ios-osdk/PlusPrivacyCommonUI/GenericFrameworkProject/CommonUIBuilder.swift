@@ -27,8 +27,9 @@ public class CommonUIBUilder: NSObject {
     @objc
     public static func buildFlow(for repository: SCDRepository, whenExiting: VoidBlock?) -> UIViewController? {
         
-        let bundle = Bundle(for: self)
-        let storyboard = UIStoryboard(name: "Cloak", bundle: bundle)
+        
+        
+        let storyboard = UIStoryboard(name: "Cloak", bundle: Bundle.commonUIBundle)
         
         guard let vc = storyboard.instantiateViewController(withIdentifier: "UISCDDocumentsViewController") as?
             UISCDDocumentsViewController else {

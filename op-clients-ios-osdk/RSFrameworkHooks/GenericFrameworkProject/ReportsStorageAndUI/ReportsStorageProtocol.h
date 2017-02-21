@@ -11,14 +11,18 @@
 
 #import "OPMonitorViolationReport.h"
 
+typedef void (^ReportsCallback)(NSArray<OPMonitorViolationReport*>* __nullable, NSError* __nullable);
 
 @protocol OPViolationReportRepository <NSObject>
 
 -(void)addReport:(OPMonitorViolationReport* __nonnull)report;
--(void)getAllReportsIn:( void(^ _Nullable )(NSArray<OPMonitorViolationReport*>* __nullable, NSError* __nullable))completion;
+-(void)getAllReportsIn:(ReportsCallback _Nullable)completion;
 
--(void)clearAllReportsWithCompletion:(void(^)(NSError*))completion;
--(void)deleteReport:(OPMonitorViolationReport*)report withCompletion:(void (^)(NSError *))completion;
+-(void)clearAllReportsWithCompletion:(void(^ _Nullable)(NSError* _Nullable))completion;
+-(void)deleteReport:(OPMonitorViolationReport* __nonnull)report withCompletion:(void (^ _Nullable)(NSError * _Nullable))completion;
+
+-(void)getAllReportsOfType:(OPMonitorViolationType)type in:(ReportsCallback _Nullable)completion;
+-(void)getTypesOfReportsIn:(void (^ _Nullable)(NSArray<NSNumber*> * _Nullable, NSError * _Nullable))completion;
 
 @end
 

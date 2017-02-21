@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		98331CB91E571247005D3A84 /* SCDSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 98C615991E4361BA00144BA8 /* SCDSchema.json */; };
 		98584F411D3F9E18009FB89F /* PlusPrivacyCommonTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PlusPrivacyCommonTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		989E47901E2FB7A8005ECE53 /* PlusPrivacyCommonTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989E478F1E2FB7A8005ECE53 /* PlusPrivacyCommonTypes.swift */; };
 		98C615911E4336D700144BA8 /* JSONSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C6158F1E4336D700144BA8 /* JSONSchema.swift */; };
@@ -28,10 +29,11 @@
 		98C615941E43371700144BA8 /* SchemaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C615931E43371700144BA8 /* SchemaProvider.swift */; };
 		98C615961E433F8600144BA8 /* SchemaValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C615951E433F8600144BA8 /* SchemaValidator.swift */; };
 		98C615981E4347FF00144BA8 /* CommonTypeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C615971E4347FF00144BA8 /* CommonTypeBuilder.swift */; };
-		98C6159A1E4361BA00144BA8 /* SCDSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 98C615991E4361BA00144BA8 /* SCDSchema.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		98331CB31E571232005D3A84 /* PPCommonTypesBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPCommonTypesBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		98331CB51E571232005D3A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlusPrivacyCommonTypes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PlusPrivacyCommonTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlusPrivacyCommonTypes.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +47,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		98331CB01E571232005D3A84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98584F391D3F9E18009FB89F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,10 +64,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		98331CB41E571232005D3A84 /* PPCommonTypesBundle */ = {
+			isa = PBXGroup;
+			children = (
+				98331CB51E571232005D3A84 /* Info.plist */,
+			);
+			path = PPCommonTypesBundle;
+			sourceTree = "<group>";
+		};
 		98584F331D3F9E18009FB89F = {
 			isa = PBXGroup;
 			children = (
 				98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */,
+				98331CB41E571232005D3A84 /* PPCommonTypesBundle */,
 				98584F3E1D3F9E18009FB89F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				98584F3D1D3F9E18009FB89F /* PlusPrivacyCommonTypes.framework */,
+				98331CB31E571232005D3A84 /* PPCommonTypesBundle.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +128,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		98331CB21E571232005D3A84 /* PPCommonTypesBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98331CB81E571232005D3A84 /* Build configuration list for PBXNativeTarget "PPCommonTypesBundle" */;
+			buildPhases = (
+				98331CAF1E571232005D3A84 /* Sources */,
+				98331CB01E571232005D3A84 /* Frameworks */,
+				98331CB11E571232005D3A84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PPCommonTypesBundle;
+			productName = PPCommonTypesBundle;
+			productReference = 98331CB31E571232005D3A84 /* PPCommonTypesBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		98584F3C1D3F9E18009FB89F /* PlusPrivacyCommonTypes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98584F451D3F9E18009FB89F /* Build configuration list for PBXNativeTarget "PlusPrivacyCommonTypes" */;
@@ -136,6 +172,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = RomSoft;
 				TargetAttributes = {
+					98331CB21E571232005D3A84 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					98584F3C1D3F9E18009FB89F = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0820;
@@ -159,16 +199,24 @@
 			targets = (
 				98584F3C1D3F9E18009FB89F /* PlusPrivacyCommonTypes */,
 				98584F481D3F9E43009FB89F /* AggregateUniversal */,
+				98331CB21E571232005D3A84 /* PPCommonTypesBundle */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		98331CB11E571232005D3A84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98331CB91E571247005D3A84 /* SCDSchema.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98584F3B1D3F9E18009FB89F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98C6159A1E4361BA00144BA8 /* SCDSchema.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +239,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		98331CAF1E571232005D3A84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98584F381D3F9E18009FB89F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +262,46 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		98331CB61E571232005D3A84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = PPCommonTypesBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusPrivacy.PPCommonTypesBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		98331CB71E571232005D3A84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = PPCommonTypesBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusPrivacy.PPCommonTypesBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		98584F431D3F9E18009FB89F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -354,6 +449,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		98331CB81E571232005D3A84 /* Build configuration list for PBXNativeTarget "PPCommonTypesBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98331CB61E571232005D3A84 /* Debug */,
+				98331CB71E571232005D3A84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		98584F371D3F9E18009FB89F /* Build configuration list for PBXProject "PlusPrivacyCommonTypes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

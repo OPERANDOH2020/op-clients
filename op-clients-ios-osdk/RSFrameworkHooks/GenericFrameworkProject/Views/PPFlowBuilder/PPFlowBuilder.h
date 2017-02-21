@@ -10,15 +10,18 @@
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
 #import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
 #import "ReportsStorageProtocol.h"
-
+#import "OPMonitorSettings.h"
+#import "UILocationSettingsViewController.h"
 
 @interface PPFlowBuilderModel : NSObject
 
+@property (strong, nonatomic) OPMonitorSettings *monitoringSettings;
 @property (strong, nonatomic) NSDictionary *scdJSON;
 @property (strong, nonatomic) id<SCDRepository> scdRepository;
 @property (strong, nonatomic) id<OPViolationReportRepository> violationReportsRepository;
 @property (strong, nonatomic) void (^onExitCallback)();
 
+@property (strong, nonatomic) LocationSettingsModel *locationSettingsModel;
 
 @end
 

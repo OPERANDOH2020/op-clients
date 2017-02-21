@@ -8,11 +8,22 @@
 
 import UIKit
 
+
+extension Bundle {
+    static var commonTypesBundle: Bundle? {
+        guard let path = Bundle.main.path(forResource: "PPCommonTypesBundle", ofType: "bundle"), let bundle = Bundle(path: path) else {
+            return nil
+        }
+        
+        return bundle
+    }
+}
+
 public extension NSError {
     public static let CommonTypeBuilderDomain = "com.commonTypeBuilder"
     
     public static var schemaUnavailable: NSError {
-        return NSError(domain: CommonTypeBuilderDomain, code: 1, userInfo: nil)
+        return NSError(domain: CommonTypeBuilderDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Could not find schema file"])
     }
     
     public static var unknownCommonTypeError: NSError {
@@ -29,8 +40,8 @@ public class CommonTypeBuilder: NSObject {
     public static let sharedInstance = CommonTypeBuilder()
     
     private override init() {
-        let bundle = Bundle(for: CommonTypeBuilder.self)
-        guard let path = bundle.path(forResource: "SCDSchema", ofType: "json") else {
+        let bundle = Bundle.commonTypesBundle
+        guard let path = bundle?.path(forResource: "SCDSchema", ofType: "json") else {
             self.schemaProvider = nil;
             super.init()
             return

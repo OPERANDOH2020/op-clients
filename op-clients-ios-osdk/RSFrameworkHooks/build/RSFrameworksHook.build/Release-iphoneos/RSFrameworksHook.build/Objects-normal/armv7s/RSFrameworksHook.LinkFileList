@@ -1,13 +1,18 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/InputSupervisorsManager.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/LocationInputSwizzlerSettings.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/SPUserResizableView.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/UIPPOptionsViewController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/CLLocationManager+rsHook.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/AVCaptureDevice+rsHookingMicrophone.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/NSURLSessionSupervisor.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/LocationInputSwizzler.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/AccelerometerInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/UIVIewController+rsHookUIImagePickerController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/CNContactStore+rsHook.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/OPMonitorSettings.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/UIEncapsulatorViewController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/UIDevice+rsHook.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/UILocationSettingsViewController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/PPFlowBuilder.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/CMMotionManager+rsHookAccelerometer.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/OPMonitorInputSourceEvent.o
@@ -29,6 +34,8 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/LAContext+rsHook.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/PedometerInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/LocationInputSupervisor.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/UIWindow+RSHookHandle.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/NSBundle+RSFrameworkHooks.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/JRSwizzle.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/ProximityInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/Objects-normal/armv7s/NSURLSession+rsHook.o

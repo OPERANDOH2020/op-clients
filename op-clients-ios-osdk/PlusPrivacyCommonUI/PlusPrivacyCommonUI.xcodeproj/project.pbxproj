@@ -23,31 +23,33 @@
 /* Begin PBXBuildFile section */
 		9807875A1E3F44E40099B642 /* UINotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980787591E3F44E40099B642 /* UINotificationViewController.swift */; };
 		98182AC91E44E53F00895F19 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98182AC81E44E53F00895F19 /* PlusPrivacyCommonTypes.framework */; };
+		98331C901E56F848005D3A84 /* Cloak.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985635F71E30B0FF0033788A /* Cloak.storyboard */; };
+		98331C911E56F848005D3A84 /* SCDDocumentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985636041E30BEA50033788A /* SCDDocumentCell.xib */; };
+		98331C921E56F848005D3A84 /* SCDDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635DC1E30B0F90033788A /* SCDDetailsView.xib */; };
+		98331C931E56F848005D3A84 /* SCDSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635DF1E30B0F90033788A /* SCDSectionHeader.xib */; };
+		98331C941E56F848005D3A84 /* SCDSensorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635E21E30B0F90033788A /* SCDSensorCell.xib */; };
+		98331C951E56F848005D3A84 /* SCDUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635E51E30B0F90033788A /* SCDUrlCell.xib */; };
+		98331C961E56F848005D3A84 /* SensorDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635EA1E30B0F90033788A /* SensorDetailsView.xib */; };
+		98331C971E56F848005D3A84 /* PPCommonAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9856360F1E30CEA70033788A /* PPCommonAssets.xcassets */; };
 		985635EB1E30B0F90033788A /* EULATextBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635D91E30B0F90033788A /* EULATextBuilder.swift */; };
 		985635EC1E30B0F90033788A /* SCDDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635DB1E30B0F90033788A /* SCDDetailsView.swift */; };
-		985635ED1E30B0F90033788A /* SCDDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635DC1E30B0F90033788A /* SCDDetailsView.xib */; };
 		985635EE1E30B0F90033788A /* SCDSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635DE1E30B0F90033788A /* SCDSectionHeader.swift */; };
-		985635EF1E30B0F90033788A /* SCDSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635DF1E30B0F90033788A /* SCDSectionHeader.xib */; };
 		985635F01E30B0F90033788A /* SCDSensorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635E11E30B0F90033788A /* SCDSensorCell.swift */; };
-		985635F11E30B0F90033788A /* SCDSensorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635E21E30B0F90033788A /* SCDSensorCell.xib */; };
 		985635F21E30B0F90033788A /* SCDUrlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635E41E30B0F90033788A /* SCDUrlCell.swift */; };
-		985635F31E30B0F90033788A /* SCDUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635E51E30B0F90033788A /* SCDUrlCell.xib */; };
 		985635F41E30B0F90033788A /* SCDDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635E71E30B0F90033788A /* SCDDetailsViewController.swift */; };
 		985635F51E30B0F90033788A /* SensorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635E91E30B0F90033788A /* SensorDetailsView.swift */; };
-		985635F61E30B0F90033788A /* SensorDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635EA1E30B0F90033788A /* SensorDetailsView.xib */; };
-		985635F81E30B0FF0033788A /* Cloak.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985635F71E30B0FF0033788A /* Cloak.storyboard */; };
 		985635FA1E30B2130033788A /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635F91E30B2130033788A /* ViewUtilities.swift */; };
 		985635FE1E30B98C0033788A /* CommonUIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635FD1E30B98C0033788A /* CommonUIBuilder.swift */; };
 		985636011E30BD000033788A /* UISCDDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985636001E30BD000033788A /* UISCDDocumentsViewController.swift */; };
 		985636051E30BEA50033788A /* SCDDocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985636031E30BEA50033788A /* SCDDocumentCell.swift */; };
-		985636061E30BEA50033788A /* SCDDocumentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985636041E30BEA50033788A /* SCDDocumentCell.xib */; };
-		985636101E30CEA70033788A /* PPCommonAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9856360F1E30CEA70033788A /* PPCommonAssets.xcassets */; };
 		98584F411D3F9E18009FB89F /* PlusPrivacyCommonUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PlusPrivacyCommonUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		980787591E3F44E40099B642 /* UINotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINotificationViewController.swift; sourceTree = "<group>"; };
 		98182AC81E44E53F00895F19 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
+		98331C8A1E56F725005D3A84 /* PPCommonUIBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPCommonUIBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		98331C8C1E56F725005D3A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		985635D91E30B0F90033788A /* EULATextBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EULATextBuilder.swift; sourceTree = "<group>"; };
 		985635DB1E30B0F90033788A /* SCDDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDDetailsView.swift; sourceTree = "<group>"; };
 		985635DC1E30B0F90033788A /* SCDDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCDDetailsView.xib; sourceTree = "<group>"; };
@@ -73,6 +75,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		98331C871E56F725005D3A84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98584F391D3F9E18009FB89F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -84,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		98331C8B1E56F725005D3A84 /* PPCommonUIBundle */ = {
+			isa = PBXGroup;
+			children = (
+				98331C8C1E56F725005D3A84 /* Info.plist */,
+			);
+			path = PPCommonUIBundle;
+			sourceTree = "<group>";
+		};
 		985635D71E30B0F90033788A /* CloakUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */,
+				98331C8B1E56F725005D3A84 /* PPCommonUIBundle */,
 				98584F3E1D3F9E18009FB89F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -191,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				98584F3D1D3F9E18009FB89F /* PlusPrivacyCommonUI.framework */,
+				98331C8A1E56F725005D3A84 /* PPCommonUIBundle.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,6 +243,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		98331C891E56F725005D3A84 /* PPCommonUIBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98331C8F1E56F725005D3A84 /* Build configuration list for PBXNativeTarget "PPCommonUIBundle" */;
+			buildPhases = (
+				98331C861E56F725005D3A84 /* Sources */,
+				98331C871E56F725005D3A84 /* Frameworks */,
+				98331C881E56F725005D3A84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PPCommonUIBundle;
+			productName = PPCommonUIBundle;
+			productReference = 98331C8A1E56F725005D3A84 /* PPCommonUIBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		98584F3C1D3F9E18009FB89F /* PlusPrivacyCommonUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98584F451D3F9E18009FB89F /* Build configuration list for PBXNativeTarget "PlusPrivacyCommonUI" */;
@@ -251,6 +287,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = RomSoft;
 				TargetAttributes = {
+					98331C891E56F725005D3A84 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					98584F3C1D3F9E18009FB89F = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -273,23 +313,31 @@
 			targets = (
 				98584F3C1D3F9E18009FB89F /* PlusPrivacyCommonUI */,
 				98584F481D3F9E43009FB89F /* AggregateUniversal */,
+				98331C891E56F725005D3A84 /* PPCommonUIBundle */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		98331C881E56F725005D3A84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98331C901E56F848005D3A84 /* Cloak.storyboard in Resources */,
+				98331C911E56F848005D3A84 /* SCDDocumentCell.xib in Resources */,
+				98331C921E56F848005D3A84 /* SCDDetailsView.xib in Resources */,
+				98331C931E56F848005D3A84 /* SCDSectionHeader.xib in Resources */,
+				98331C941E56F848005D3A84 /* SCDSensorCell.xib in Resources */,
+				98331C951E56F848005D3A84 /* SCDUrlCell.xib in Resources */,
+				98331C961E56F848005D3A84 /* SensorDetailsView.xib in Resources */,
+				98331C971E56F848005D3A84 /* PPCommonAssets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98584F3B1D3F9E18009FB89F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				985635F31E30B0F90033788A /* SCDUrlCell.xib in Resources */,
-				985636061E30BEA50033788A /* SCDDocumentCell.xib in Resources */,
-				985635F11E30B0F90033788A /* SCDSensorCell.xib in Resources */,
-				985635F61E30B0F90033788A /* SensorDetailsView.xib in Resources */,
-				985635ED1E30B0F90033788A /* SCDDetailsView.xib in Resources */,
-				985635EF1E30B0F90033788A /* SCDSectionHeader.xib in Resources */,
-				985635F81E30B0FF0033788A /* Cloak.storyboard in Resources */,
-				985636101E30CEA70033788A /* PPCommonAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +360,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		98331C861E56F725005D3A84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98584F381D3F9E18009FB89F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -334,6 +389,46 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		98331C8D1E56F725005D3A84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = PPCommonUIBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusPrivacy.PPCommonUIBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		98331C8E1E56F725005D3A84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = PPCommonUIBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusPrivacy.PPCommonUIBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		98584F431D3F9E18009FB89F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -488,6 +583,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		98331C8F1E56F725005D3A84 /* Build configuration list for PBXNativeTarget "PPCommonUIBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98331C8D1E56F725005D3A84 /* Debug */,
+				98331C8E1E56F725005D3A84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		98584F371D3F9E18009FB89F /* Build configuration list for PBXProject "PlusPrivacyCommonUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
