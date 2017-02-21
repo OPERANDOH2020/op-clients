@@ -1,6 +1,7 @@
 package eu.operando.storage;
 
 import android.support.annotation.Nullable;
+import android.util.Pair;
 
 import java.util.List;
 
@@ -34,6 +35,33 @@ public class Storage {
 
     public static List<InstalledApp> readAppList() {
         return Paper.book().read(K.APP_LIST);
+    }
+
+    public static void saveCredentials(String user, String pass) {
+        Paper.book().write(K.USER, user);
+        Paper.book().write(K.PASS, pass);
+    }
+
+    public static Pair<String, String> readCredentials() {
+        return new Pair<>((String) Paper.book().read(K.USER), (String) Paper.book().read(K.PASS));
+    }
+
+    public static void clearData(){
+        Paper.book().destroy();
+    }
+
+    public static void saveRegisterCredentials(String user, String pass) {
+        Paper.book().write(K.REGISTER_USER, user);
+        Paper.book().write(K.REGISTER_PASS, pass);
+    }
+
+    public static Pair<String, String> readRegisterCredentials() {
+        return new Pair<>((String) Paper.book().read(K.REGISTER_USER), (String) Paper.book().read(K.REGISTER_PASS));
+    }
+
+    public static void clearRegisterCredentials(){
+        Paper.book().delete(K.REGISTER_USER);
+        Paper.book().delete(K.REGISTER_PASS);
     }
 }
 

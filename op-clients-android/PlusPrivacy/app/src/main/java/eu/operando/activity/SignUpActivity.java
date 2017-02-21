@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import eu.operando.R;
 import eu.operando.customView.OperandoProgressDialog;
+import eu.operando.storage.Storage;
 import eu.operando.swarmService.SwarmService;
 import eu.operando.swarmService.models.RegisterSwarm;
 import eu.operando.swarmclient.models.SwarmCallback;
@@ -63,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void signUp(String name, String email, String password) {
+    private void signUp(String name, final String email, final String password) {
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(SignUpActivity.this, "Please complete all fields.", Toast.LENGTH_SHORT).show();
             return;
@@ -74,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void call(final RegisterSwarm result) {
                 Log.d("Register", "call() called with: result = [" + result + "]");
-                onSignUpSuccess(result, dialog);
+                onSignUpSuccess(email,password,result, dialog);
             }
 
 
@@ -82,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void onSignUpSuccess(final RegisterSwarm result, final ProgressDialog dialog) {
+    private void onSignUpSuccess(final String email, final String password, final RegisterSwarm result, final ProgressDialog dialog) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -94,6 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (result.getStatus() != null && result.getStatus().equals("error")) {
                             Toast.makeText(SignUpActivity.this, result.getError(), Toast.LENGTH_SHORT).show();
                         } else {
+                            Storage.saveRegisterCredentials(email,password);
                             Toast.makeText(SignUpActivity.this, "Registration success. Please check your e-mail to activate the account", Toast.LENGTH_SHORT).show();
                             onBackPressed();
                         }

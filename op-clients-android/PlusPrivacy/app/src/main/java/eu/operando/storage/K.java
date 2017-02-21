@@ -5,6 +5,10 @@ package eu.operando.storage;
  */
 
 final class K {
-    static final String USER_ID = "userid";
-    static final String APP_LIST = "appList";
+    static final String USER_ID = "user_id";
+    static final String APP_LIST = "app_list";
+    static final String USER = "u_name";
+    static final String PASS = "u_pass";
+    static final String REGISTER_USER = "r_name";
+    static final String REGISTER_PASS = "r_pass";
 }
