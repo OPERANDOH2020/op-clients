@@ -8,13 +8,30 @@
 
 import UIKit
 
+
+@objc
+public class SCDSectionHeaderModel: NSObject {
+    
+    public let name: String
+    public var expanded: Bool
+    
+    public init(name: String, expanded: Bool) {
+        self.name = name
+        self.expanded = expanded;
+    }
+}
+
+
+public typealias SectionHeaderCallWithConfirmation = (( (_ confirmation: Bool) -> Void ) -> Void)
+
 @objc
 public class SCDSectionHeaderCallbacks: NSObject {
     
-    let callToExpand: ((Void) -> Void)?
-    let callToContract: ((Void) -> Void)?
+    public let callToExpand: SectionHeaderCallWithConfirmation?
+    public let callToContract: SectionHeaderCallWithConfirmation?
     
-    public init(callToExpand: ((Void) -> Void)?, callToContract: ((Void) -> Void)?){
+    public init(callToExpand: SectionHeaderCallWithConfirmation?,
+                callToContract: SectionHeaderCallWithConfirmation?) {
         self.callToExpand = callToExpand
         self.callToContract = callToContract
         super.init()
@@ -29,23 +46,41 @@ public class SCDSectionHeader: PPNibDesignableView {
     
     static let identifierNibName = "SCDSectionHeader"
     private var callbacks: SCDSectionHeaderCallbacks?
+    private var model: SCDSectionHeaderModel?
     
-    public func setupWith(title: String, callbacks: SCDSectionHeaderCallbacks?){
+    public func setupWith(model: SCDSectionHeaderModel?, callbacks: SCDSectionHeaderCallbacks?){
         self.callbacks = callbacks
-        self.sectionTitleLabel.text = title
+        self.model = model
+        self.sectionTitleLabel.text = model?.name
+        self.expandContractButton.isSelected = model?.expanded ?? false
     }
     
     
     @IBAction func didPressButton(_ sender: Any) {
         
         let shouldExpand = !self.expandContractButton.isSelected
-
+        weak var weakSelf = self
+        
         if shouldExpand {
-           self.callbacks?.callToExpand?()
-           self.expandContractButton.isSelected = true
+            
+            self.callbacks?.callToExpand? { confirmExpand in
+                guard confirmExpand else {
+                    return
+                }
+                weakSelf?.expandContractButton.isSelected = true
+                weakSelf?.model?.expanded = true
+            }
+            
         } else {
-            self.callbacks?.callToContract?()
-            self.expandContractButton.isSelected = false
+            self.callbacks?.callToContract? { confirmContract in
+                guard confirmContract else {
+                    return
+                }
+                
+                weakSelf?.expandContractButton.isSelected = false
+                weakSelf?.model?.expanded = false
+                
+            }
         }
     }
 }

@@ -119,6 +119,12 @@ static void __attribute__((constructor)) initialize(void){
 
 -(void)didPressHandle:(id)sender {
     
+    static BOOL isFlowDisplayed = NO;
+    
+    if (isFlowDisplayed) {
+        return;
+    }
+    
     OneDocumentRepository *repo = [[OneDocumentRepository alloc] initWithDocument:self.document];
     
     __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
@@ -129,6 +135,7 @@ static void __attribute__((constructor)) initialize(void){
     locSettingsModel.currentSettings = [LocationInputSwizzler sharedInstance].currentSettings;
     locSettingsModel.saveCallback = ^void(LocationInputSwizzlerSettings *settings) {
         [[LocationInputSwizzler sharedInstance] applySettings:settings];
+        [settings synchronizeToUserDefaults];
     };
     
     PPFlowBuilderModel *flowModel = [[PPFlowBuilderModel alloc] init];
@@ -140,11 +147,13 @@ static void __attribute__((constructor)) initialize(void){
     
     flowModel.onExitCallback = ^{
         [rootViewController ppRemoveChildContentController:flowRoot];
+        isFlowDisplayed = NO;
     };
     
     PPFlowBuilder *flowBuilder = [[PPFlowBuilder alloc] init];
     flowRoot = [flowBuilder buildFlowWithModel:flowModel];
     
+    isFlowDisplayed = YES;
     [rootViewController ppAddChildContentController:flowRoot];
 }
 

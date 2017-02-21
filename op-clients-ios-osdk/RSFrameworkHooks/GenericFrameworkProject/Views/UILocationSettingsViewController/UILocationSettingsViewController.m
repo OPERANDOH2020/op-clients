@@ -54,9 +54,10 @@
 -(void)setupWithModel:(LocationSettingsModel*)model onExit:(void(^ _Nullable)())exitCallback {
     [self view];
     self.model = model;
-    
+    self.onExitCallback = exitCallback;
     self.latitudeTF.text = [NSString stringWithFormat:@"%.4f", model.currentSettings.locationLatitude];
     self.longitudeTF.text = [NSString stringWithFormat:@"%.4f", model.currentSettings.locationLongitude];
+    self.enabledSwitch.on = self.model.currentSettings.enabled;
 }
 
 - (IBAction)didPressBack:(id)sender {
@@ -65,6 +66,7 @@
 
 - (IBAction)didPressSave:(id)sender {
     [self validateAndSave];
+    [self.view endEditing:YES];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {

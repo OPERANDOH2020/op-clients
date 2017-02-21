@@ -47,7 +47,7 @@ static NSString *kOverrideLocationEnabledKey = @"kOverrideLocationEnabledKey";
 
 -(void)synchronizeToUserDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@(self.locationLatitude) forKey:kOverrideLongitudeKey];
+    [defaults setObject:@(self.locationLatitude) forKey:kOverrideLatitudeKey];
     [defaults setObject:@(self.locationLongitude) forKey:kOverrideLongitudeKey];
     [defaults setObject:@(self.enabled) forKey:kOverrideLocationEnabledKey];
     [defaults synchronize];

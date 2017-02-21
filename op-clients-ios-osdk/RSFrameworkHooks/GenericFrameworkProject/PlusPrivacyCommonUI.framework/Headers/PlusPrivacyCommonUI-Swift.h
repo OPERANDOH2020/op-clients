@@ -163,18 +163,30 @@ SWIFT_CLASS("_TtC19PlusPrivacyCommonUI19PPNibDesignableView")
 @end
 
 
+@class SCDSectionHeaderModel;
 @class SCDSectionHeaderCallbacks;
 
 SWIFT_CLASS("_TtC19PlusPrivacyCommonUI16SCDSectionHeader")
 @interface SCDSectionHeader : PPNibDesignableView
-- (void)setupWithTitle:(NSString * _Nonnull)title callbacks:(SCDSectionHeaderCallbacks * _Nullable)callbacks;
+- (void)setupWithModel:(SCDSectionHeaderModel * _Nullable)model callbacks:(SCDSectionHeaderCallbacks * _Nullable)callbacks;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
 SWIFT_CLASS("_TtC19PlusPrivacyCommonUI25SCDSectionHeaderCallbacks")
 @interface SCDSectionHeaderCallbacks : NSObject
-- (nonnull instancetype)initWithCallToExpand:(void (^ _Nullable)(void))callToExpand callToContract:(void (^ _Nullable)(void))callToContract OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly, copy) void (^ _Nullable callToExpand)(SWIFT_NOESCAPE void (^ _Nonnull)(BOOL));
+@property (nonatomic, readonly, copy) void (^ _Nullable callToContract)(SWIFT_NOESCAPE void (^ _Nonnull)(BOOL));
+- (nonnull instancetype)initWithCallToExpand:(void (^ _Nullable)(SWIFT_NOESCAPE void (^ _Nonnull)(BOOL)))callToExpand callToContract:(void (^ _Nullable)(SWIFT_NOESCAPE void (^ _Nonnull)(BOOL)))callToContract OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI21SCDSectionHeaderModel")
+@interface SCDSectionHeaderModel : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+@property (nonatomic) BOOL expanded;
+- (nonnull instancetype)initWithName:(NSString * _Nonnull)name expanded:(BOOL)expanded OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 

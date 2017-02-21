@@ -120,6 +120,10 @@
 }
 
 -(void)ppLocSwizzling_setDelegate:(id<CLLocationManagerDelegate>)delegate {
+    if ([delegate isKindOfClass:[LocationInputSwizzler class]]) {
+        [self ppLocSwizzling_setDelegate:delegate];
+        return;
+    }
     [[LocationInputSwizzler sharedInstance] didAskToSetDelegate:delegate onInstance:self];
 }
 

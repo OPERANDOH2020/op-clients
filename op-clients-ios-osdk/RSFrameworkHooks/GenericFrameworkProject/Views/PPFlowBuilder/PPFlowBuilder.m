@@ -80,6 +80,7 @@
     
     [optionsVC setupWithCallbacks:callbacks andMonitorSettings:model.monitoringSettings];
     
+    navigationController.automaticallyAdjustsScrollViewInsets = NO;
     navigationController.viewControllers = @[optionsVC];
     
     return navigationController;

@@ -15,6 +15,6 @@
 
 -(void)beginMonitoringWithAppDocument:(NSDictionary* __nonnull)document;
 
--(UIView*)getHandle;
+-(UIButton* _Nullable)getHandle;
 
 @end

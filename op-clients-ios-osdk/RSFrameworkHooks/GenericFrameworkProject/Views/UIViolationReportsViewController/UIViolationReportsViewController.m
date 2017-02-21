@@ -15,14 +15,12 @@
 
 @interface UIViolationReportsViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) NSDictionary *nameForType;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber*,NSArray<OPMonitorViolationReport*> *>* reportsArrayPerType;
+
 @property (strong, nonatomic) id<OPViolationReportRepository> repository;
-
+@property (strong, nonatomic) NSArray<SCDSectionHeaderModel*> *sectionModels;
 @property (strong, nonatomic) NSArray<NSNumber*> *currentReportTypes;
-
 @property (strong, nonatomic) void (^exitCallback)();
 
 
@@ -35,27 +33,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.nameForType = @{
-        @(TypeAccessedUnlistedURL) : @"Access unlisted url",
-        @(TypePrivacyLevelViolation): @"Privacy level violation",
-        @(TypeUnregisteredSensorAccessed): @"Access unlisted input",
-        @(TypePrivacyLevelViolation): @"Privacy level violation"
-        };
-    
-    self.reportsArrayPerType = [[NSMutableDictionary alloc] init];
-    
     [self setupTableView:self.tableView];
     self.noReportsLabel.hidden = YES;
     
-    [self.repository getTypesOfReportsIn:^(NSArray<NSNumber *> * _Nullable types, NSError * _Nullable error) {
-        
-        self.currentReportTypes = types;
-        self.noReportsLabel.hidden = self.currentReportTypes.count > 0;
-        [self.tableView reloadData];
-    }];
+    self.currentReportTypes = @[@(TypeAccessedUnlistedURL), @(TypePrivacyLevelViolation),
+                                    @(TypeUnregisteredSensorAccessed), @(TypeAccessFrequencyViolation)];
+    self.reportsArrayPerType = [[NSMutableDictionary alloc] init];
+    self.sectionModels = [UIViolationReportsViewController buildSectionHeaderModelsWithReportTypes:self.currentReportTypes];
 }
 
++(NSArray<SCDSectionHeaderModel*>*)buildSectionHeaderModelsWithReportTypes:(NSArray*)reportTypes {
+    NSDictionary* nameForType = @{
+                         @(TypeAccessedUnlistedURL) : @"Access unlisted url",
+                         @(TypePrivacyLevelViolation): @"Privacy level violation",
+                         @(TypeUnregisteredSensorAccessed): @"Access unlisted sensor",
+                         @(TypeAccessFrequencyViolation): @"Access frequency violation"
+                         };
+    
+
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    for (NSNumber *reportType in reportTypes) {
+        SCDSectionHeaderModel *headerModel = [[SCDSectionHeaderModel alloc] initWithName:nameForType[reportType] expanded:NO];
+        
+        [result addObject:headerModel];
+    }
+    
+    return result;
+}
 
 -(void)setupWithRepository:(id<OPViolationReportRepository>)repository onExit:(void (^)())exitCallback{
     
@@ -70,27 +76,23 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    // meh, later the header will be dequeued
-    NSString *title = self.nameForType[self.currentReportTypes[section]];
-    if (!title) {
-        title = @"Unknown title";
-    }
     __weak typeof(self) weakSelf = self;
     
     SCDSectionHeader *header = [[SCDSectionHeader alloc] init];
-    SCDSectionHeaderCallbacks *callbacks = [[SCDSectionHeaderCallbacks alloc] initWithCallToExpand:^{
-        [weakSelf showItemsForSectionAtIndex:section];
-    } callToContract:^{
+    SCDSectionHeaderCallbacks *callbacks = [[SCDSectionHeaderCallbacks alloc] initWithCallToExpand:^(void (^callToConfirmExpand)(BOOL)) {
+        [weakSelf showItemsForSectionAtIndex:section withCallback:callToConfirmExpand];
+    } callToContract:^(void (^callToConfirmContract)(BOOL)) {
         [weakSelf hideItemsForSectionAtIndex:section];
+        SAFECALL(callToConfirmContract, YES);
     }];
     
-    [header setupWithTitle:title callbacks:callbacks];
+    [header setupWithModel:self.sectionModels[section] callbacks:callbacks];
     
     return header;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.currentReportTypes.count;
+    return self.sectionModels.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -118,7 +120,7 @@
 
 #pragma mark -
 
--(void)showItemsForSectionAtIndex:(NSInteger)index {
+-(void)showItemsForSectionAtIndex:(NSInteger)index withCallback:(void(^)(BOOL))successCallback {
     OPMonitorViolationType type = self.currentReportTypes[index].integerValue;
     [self.repository getAllReportsOfType:type in:^(NSArray<OPMonitorViolationReport *> * _Nullable reports, NSError * _Nullable error) {
         if (reports) {
@@ -131,7 +133,11 @@
         }
         if (indexPaths.count) {
             [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+            SAFECALL(successCallback, YES);
+            return;
         }
+        
+        SAFECALL(successCallback, NO);
     }];
 }
 
