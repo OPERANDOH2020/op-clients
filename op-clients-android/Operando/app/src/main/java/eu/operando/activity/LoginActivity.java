@@ -1,5 +1,6 @@
 package eu.operando.activity;
 
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import eu.operando.storage.Storage;
 import eu.operando.swarmService.SwarmService;
 import eu.operando.swarmService.models.LoginSwarm;
 import eu.operando.swarmclient.models.SwarmCallback;
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,7 +37,21 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initUI();
+        autoLoginOrComplete();
+    }
 
+    private void autoLoginOrComplete() {
+        Pair<String, String> credentials = Storage.readCredentials();
+        if (credentials.first != null && credentials.second != null) {
+            login(credentials.first,credentials.second);
+            return;
+        }
+        credentials = Storage.readRegisterCredentials();
+        if (credentials.first != null && credentials.second != null) {
+            emailText.setText(credentials.first);
+            passwordText.setText(credentials.second);
+            Storage.clearRegisterCredentials();
+        }
     }
 
     private void initUI() {
@@ -51,17 +68,16 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
+                String email = emailText.getText().toString();
+                String password = passwordText.getText().toString();
+                login(email, password);
             }
         });
         //FIXME
 //        swarmLogin("kkkk@mailinator.com","aaaa",new ProgressDialog(this));
     }
 
-    private void login() {
-
-        String email = emailText.getText().toString();
-        String password = passwordText.getText().toString();
+    private void login(String email, String password) {
         if (email.isEmpty() && password.isEmpty()) {
             Toast.makeText(this, "Please enter an e-mail address and a password.", Toast.LENGTH_SHORT).show();
             return;
@@ -76,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void swarmLogin(String username, final String password, final ProgressDialog dialog) {
+    private void swarmLogin(final String username, final String password, final ProgressDialog dialog) {
 
         SwarmService.getInstance().login(username, password, new SwarmCallback<LoginSwarm>() {
             @Override
@@ -92,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (result.isAuthenticated()) {
                                     Storage.saveUserID(result.getUserId());
                                     MainActivity.start(LoginActivity.this);
+                                    storeCredentials(username, password);
                                     finish();
                                 } else {
                                     emailText.setText("");
@@ -104,6 +121,10 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void storeCredentials(String user, String pass) {
+        Storage.saveCredentials(user, pass);
     }
 
 

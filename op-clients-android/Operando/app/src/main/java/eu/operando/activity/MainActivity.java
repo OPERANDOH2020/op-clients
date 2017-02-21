@@ -23,6 +23,7 @@ import eu.operando.swarmclient.SwarmClient;
 import eu.operando.swarmclient.models.Swarm;
 import eu.operando.swarmclient.models.SwarmCallback;
 import eu.operando.utils.PermissionUtils;
+import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -208,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
     private void logOut() {
         Toast.makeText(this, "Log Out", Toast.LENGTH_SHORT).show();
         SwarmService.getInstance().logout(null);
+        Storage.clearData();
         LoginActivity.start(MainActivity.this);
         finish();
     }
