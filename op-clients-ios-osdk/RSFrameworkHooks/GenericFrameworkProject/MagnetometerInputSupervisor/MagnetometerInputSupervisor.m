@@ -54,7 +54,8 @@
         return nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app uses the magnetometer sensor without specifying in the self-compliance document" violationType:TypeUnregisteredSensorAccessed];
+    NSDictionary *details = @{kInputTypeReportKey: InputType.Magnetometer};
+    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

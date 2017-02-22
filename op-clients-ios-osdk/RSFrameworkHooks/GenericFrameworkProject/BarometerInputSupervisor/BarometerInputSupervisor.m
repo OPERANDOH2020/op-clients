@@ -42,7 +42,9 @@
         return nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The barometer sensor is accessed without being specified in the SCD" violationType:TypeUnregisteredSensorAccessed];
+    
+    NSDictionary *details = @{kInputTypeReportKey: InputType.Barometer};
+    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

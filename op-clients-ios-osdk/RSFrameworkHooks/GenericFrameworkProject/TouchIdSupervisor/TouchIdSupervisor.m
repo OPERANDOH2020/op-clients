@@ -46,8 +46,8 @@
     if (self.accessedSensor) {
         return nil;
     }
-    
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app accesses the TouchID API even though it is not specified in the self-compliance document!" violationType:TypeUnregisteredSensorAccessed];
+    NSDictionary *details = @{kInputTypeReportKey: InputType.TouchID};
+    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

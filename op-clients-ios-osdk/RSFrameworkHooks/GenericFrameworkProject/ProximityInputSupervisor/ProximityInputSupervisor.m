@@ -43,8 +43,8 @@
     if (self.proximitySensor) {
         return nil;
     }
-    
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app uses the proxmity sensor even though it is not specified in the self compliance document!" violationType:TypeUnregisteredSensorAccessed];
+    NSDictionary *details = @{kInputTypeReportKey: InputType.Proximity};
+    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

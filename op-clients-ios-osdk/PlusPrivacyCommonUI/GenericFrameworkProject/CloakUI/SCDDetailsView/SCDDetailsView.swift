@@ -66,8 +66,6 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
     private var sectionRowsAreVisibleAt: [Bool] = [false, false]
     private var headerModelsPerSection: [Int: SCDSectionHeaderModel] = [:]
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bundleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     private var scd: SCDDocument?
@@ -80,9 +78,6 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
     
     func setupWith(scd: SCDDocument){
         self.scd = scd
-        
-        self.titleLabel.text = scd.appTitle
-        self.bundleLabel.text = scd.bundleId
         
         if scd.accessedLinks.count > 0 {
             self.sectionSources.append(UrlListSectionSource(scd: scd))

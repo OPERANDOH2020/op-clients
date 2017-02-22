@@ -43,8 +43,8 @@
     if (self.micSensor) {
         return nil;
     }
-    
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app accesses the microphone even though it is not specified in the self-compliance document!" violationType:TypeUnregisteredSensorAccessed];
+    NSDictionary *details = @{kInputTypeReportKey: InputType.Microphone};
+    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

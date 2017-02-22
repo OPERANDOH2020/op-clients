@@ -39,7 +39,8 @@
         return  nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app is accessing the contacts without having specified in the self-compliance document!" violationType:TypeUnregisteredSensorAccessed];
+    NSDictionary *details = @{kInputTypeReportKey: InputType.Contacts};
+    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

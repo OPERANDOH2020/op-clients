@@ -128,13 +128,19 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @end
 
 @protocol SCDRepository;
+enum ExitArrowDirection : NSInteger;
 @class UIViewController;
 
 SWIFT_CLASS("_TtC19PlusPrivacyCommonUI15CommonUIBUilder")
 @interface CommonUIBUilder : NSObject
-+ (UIViewController * _Nullable)buildFlowFor:(id <SCDRepository> _Nonnull)repository whenExiting:(void (^ _Nullable)(void))whenExiting;
++ (UIViewController * _Nullable)buildFlowFor:(id <SCDRepository> _Nonnull)repository exitArrowDirection:(enum ExitArrowDirection)exitArrowDirection whenExiting:(void (^ _Nullable)(void))whenExiting;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
+
+typedef SWIFT_ENUM(NSInteger, ExitArrowDirection) {
+  ExitArrowDirectionLeft = 0,
+  ExitArrowDirectionUp = 1,
+};
 
 @class SCDDocument;
 @class NSError;

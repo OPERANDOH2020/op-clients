@@ -45,7 +45,8 @@
         return nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app accesses the camera even though it is not specified in the self-compliance document" violationType:TypeUnregisteredSensorAccessed];
+    NSDictionary *details = @{kInputTypeReportKey: InputType.Camera};
+    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

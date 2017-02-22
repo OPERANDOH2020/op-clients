@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonReportKeys.h"
 
 typedef NS_ENUM(NSUInteger, OPMonitorViolationType) {
     TypeUndefined,
@@ -16,14 +17,20 @@ typedef NS_ENUM(NSUInteger, OPMonitorViolationType) {
     TypeAccessedUnlistedURL
 };
 
+
+
 @interface OPMonitorViolationReport : NSObject
 
-@property (strong, nonatomic, readonly) NSString *violationDetails;
+@property (strong, nonatomic, readonly) NSDictionary *violationDetails;
 @property (assign, nonatomic, readonly) OPMonitorViolationType violationType;
 @property (strong, nonatomic, readonly) NSDate *dateReported;
 
--(instancetype)initWithDetails:(NSString*)details violationType:(OPMonitorViolationType)type;
+-(instancetype)initWithDetails:(NSDictionary*)details violationType:(OPMonitorViolationType)type;
 
--(instancetype)initWithDetails:(NSString*)details violationType:(OPMonitorViolationType)type date:(NSDate*)dateReported;
+-(instancetype)initWithDetails:(NSDictionary*)details violationType:(OPMonitorViolationType)type date:(NSDate*)dateReported;
 
+@end
+
+@interface OPMonitorViolationReport(MeaningfulDescription)
+-(NSString*)meaningfulDescription;
 @end

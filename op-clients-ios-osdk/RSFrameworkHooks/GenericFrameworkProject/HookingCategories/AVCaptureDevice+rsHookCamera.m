@@ -15,9 +15,6 @@
 #import "InputSupervisorsManager.h"
 
 
-
-
-
 @interface AVCaptureDevice(rsHook_Camera)
 
 @end

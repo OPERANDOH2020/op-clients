@@ -43,8 +43,9 @@
         }
     }
     
-    NSString *message = [NSString stringWithFormat:@"The app accesses the host:\n%@\nbut the host isn't specified in the self-compliance document!", host];
-    report = [[OPMonitorViolationReport alloc] initWithDetails:message violationType:violationType];
+    NSDictionary *details = @{kURLReportKey: host};
+    
+    report = [[OPMonitorViolationReport alloc] initWithDetails:details violationType:violationType];
     return report;
 }
 

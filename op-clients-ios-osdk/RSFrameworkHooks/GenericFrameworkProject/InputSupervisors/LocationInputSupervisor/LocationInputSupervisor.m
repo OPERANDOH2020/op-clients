@@ -51,8 +51,9 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
         return nil;
     }
     
-    NSString *message = @"The app accesses the location APIs even though the self-compliance document does not specify using the location!";
-    return [[OPMonitorViolationReport alloc] initWithDetails:message violationType:TypeUnregisteredSensorAccessed];
+    NSDictionary *details = @{kInputTypeReportKey: InputType.Location};
+    
+    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

@@ -15,15 +15,18 @@ class SCDDetailsViewController: UIViewController {
 
     @IBOutlet weak var scdDetailsView: SCDDetailsView!
 
+    @IBOutlet weak var appTitleLabel: UILabel!
     private var backCallback: VoidBlock?
     
     func setupWith(scd: SCDDocument, backCallback: VoidBlock?) {
         let _ = self.view
         self.scdDetailsView.setupWith(scd: scd)
         self.backCallback = backCallback
+        self.appTitleLabel.text = scd.appTitle;
     }
     
-    @IBAction func didPressBackButton(_ sender: Any) {
+
+    @IBAction func didPressExitButton(_ sender: Any) {
         self.backCallback?()
     }
 

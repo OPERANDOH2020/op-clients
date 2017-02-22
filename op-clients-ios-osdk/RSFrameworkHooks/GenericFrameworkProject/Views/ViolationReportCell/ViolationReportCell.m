@@ -8,6 +8,8 @@
 
 #import "ViolationReportCell.h"
 
+
+
 @interface ViolationReportCell ()
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
@@ -21,7 +23,7 @@
 }
 
 -(void)setupWithReport:(OPMonitorViolationReport *)report {
-    self.messageLabel.text = report.violationDetails;
+    self.messageLabel.text = report.meaningfulDescription;
     self.dateLabel.text = report.dateReported.description;
     
 }

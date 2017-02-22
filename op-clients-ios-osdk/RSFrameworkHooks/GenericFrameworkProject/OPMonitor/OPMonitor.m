@@ -161,7 +161,7 @@ static void __attribute__((constructor)) initialize(void){
 #pragma mark - 
 -(void)newViolationReported:(OPMonitorViolationReport *)report {
     if (self.monitorSettings.allowNotifications) {
-        [OPMonitor displayNotification:report.violationDetails];
+        [OPMonitor displayNotification:report.meaningfulDescription];
     }
     
     [self.reportsRepository addReport:report];

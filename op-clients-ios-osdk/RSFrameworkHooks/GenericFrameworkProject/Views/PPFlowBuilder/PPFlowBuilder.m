@@ -40,7 +40,7 @@
     UIPPOptionsViewControllerCallbacks *callbacks = [[UIPPOptionsViewControllerCallbacks alloc] init];
     
     callbacks.whenChoosingSCDInfo = ^{
-        UIViewController *commonUIVC = [CommonUIBUilder buildFlowFor:model.scdRepository whenExiting:^{
+        UIViewController *commonUIVC = [CommonUIBUilder buildFlowFor:model.scdRepository exitArrowDirection:ExitArrowDirectionLeft whenExiting:^{
             [weakNavgController popViewControllerAnimated:true];
         }];
     

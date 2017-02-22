@@ -9,7 +9,7 @@
 #import "OPMonitorViolationReport.h"
 
 @interface OPMonitorViolationReport()
-@property (strong, nonatomic, readwrite) NSString *violationDetails;
+@property (strong, nonatomic, readwrite) NSDictionary *violationDetails;
 @property (assign, nonatomic, readwrite) OPMonitorViolationType violationType;
 @property (strong, nonatomic, readwrite) NSDate *dateReported;
 
@@ -17,7 +17,7 @@
 
 @implementation OPMonitorViolationReport
 
--(instancetype)initWithDetails:(NSString *)details violationType:(OPMonitorViolationType)type{
+-(instancetype)initWithDetails:(NSDictionary *)details violationType:(OPMonitorViolationType)type{
     if (self = [super init]) {
         self.violationDetails = details;
         self.violationType = type;
@@ -27,7 +27,7 @@
     return self;
 }
 
--(instancetype)initWithDetails:(NSString*)details violationType:(OPMonitorViolationType)type date:(NSDate*)dateReported {
+-(instancetype)initWithDetails:(NSDictionary*)details violationType:(OPMonitorViolationType)type date:(NSDate*)dateReported {
     
     if (self = [super init]) {
         self.violationType = type;
@@ -37,4 +37,24 @@
     
     return self;
 }
+@end
+
+
+
+@implementation OPMonitorViolationReport(MeaningfulDescription)
+
+-(NSString *)meaningfulDescription {
+    NSString *description = nil;
+    
+    if (self.violationType == TypeAccessedUnlistedURL) {
+        description = [NSString stringWithFormat:@"Accessed unlisted host: %@", self.violationDetails[kURLReportKey]];
+    }
+    
+    if (self.violationType == TypeUnregisteredSensorAccessed) {
+        description = [NSString stringWithFormat:@"Accessed unlisted input: %@", self.violationDetails[kInputTypeReportKey]];
+    }
+    
+    return description;
+}
+
 @end

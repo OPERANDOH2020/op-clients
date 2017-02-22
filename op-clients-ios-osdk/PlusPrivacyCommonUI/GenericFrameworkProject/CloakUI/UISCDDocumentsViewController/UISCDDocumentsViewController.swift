@@ -14,8 +14,15 @@ public protocol SCDRepository {
     func retrieveAllDocuments(with callback: ((_ documents: [SCDDocument]?, _ error: NSError?) -> Void)?)
 }
 
+@objc
+public enum ExitArrowDirection: Int {
+    case Left
+    case Up
+}
+
 struct UISCDDocumentsViewControllerModel {
     let repository: SCDRepository
+    let arrowDirection: ExitArrowDirection
 }
 
 
@@ -28,6 +35,7 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var tableView: UITableView?
     
+    @IBOutlet weak var exitButton: UIButton!
     private var model: UISCDDocumentsViewControllerModel?
     private var callbacks: UISCDDocumentsViewControllerCallbacks?
     private var documentsFromRepository: [SCDDocument] = []
@@ -43,6 +51,11 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
         self.callbacks = callbacks
         self.model = model
         let _ = self.view
+        
+        let imageName: String = model.arrowDirection == .Left ? "arrow_left" : "arrow_up_brown";
+        let image = UIImage(named: imageName, in: Bundle.commonUIBundle, compatibleWith: nil)
+        self.exitButton.setImage(image, for: .normal)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

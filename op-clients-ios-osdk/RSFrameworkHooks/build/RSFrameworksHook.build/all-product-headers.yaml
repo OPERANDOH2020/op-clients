@@ -8,6 +8,11 @@
       'contents': [
         {
           'type': 'file',
+          'name': "CommonReportKeys.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/CommonReportKeys/CommonReportKeys.h"
+        },
+        {
+          'type': 'file',
           'name': "LocationInputSupervisor.h",
           'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/InputSupervisors/LocationInputSupervisor/LocationInputSupervisor.h"
         },

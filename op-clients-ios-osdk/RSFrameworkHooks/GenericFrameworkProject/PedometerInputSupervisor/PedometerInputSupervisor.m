@@ -45,7 +45,9 @@
         return nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app accesses the pedometer sensor even though it is not specified in the self compliance document" violationType:TypeUnregisteredSensorAccessed];
+    NSDictionary *details = @{kInputTypeReportKey: InputType.Pedometer};
+    
+    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
 }
 
 @end

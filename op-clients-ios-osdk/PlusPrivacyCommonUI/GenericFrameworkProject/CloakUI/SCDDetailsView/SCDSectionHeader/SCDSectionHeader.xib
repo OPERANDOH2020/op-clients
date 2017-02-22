@@ -20,20 +20,27 @@
             <rect key="frame" x="0.0" y="0.0" width="388" height="34"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybu-TZ-Zwu" userLabel="sectionTitleLabel">
-                    <rect key="frame" x="13" y="5" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybu-TZ-Zwu" userLabel="sectionTitleLabel">
+                    <rect key="frame" x="13" y="6.5" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.92156862745098034" green="0.94901960784313721" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7y-Q0-icV" userLabel="separatorView">
+                    <rect key="frame" x="5" y="33" width="378" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="PcF-dJ-MVt"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLr-XV-qrT" userLabel="expandContractButton">
                     <rect key="frame" x="334" y="-5" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="5vK-D6-G23"/>
                         <constraint firstAttribute="width" constant="44" id="wsX-MM-N2B"/>
                     </constraints>
-                    <state key="normal" image="arrow_down"/>
-                    <state key="selected" title="Hide" image="arrow_up">
+                    <state key="normal" image="arrow_down_brown"/>
+                    <state key="selected" title="Hide" image="arrow_up_brown">
                         <color key="titleColor" red="0.99607843139999996" green="0.89019607840000003" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -41,9 +48,12 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.56470588235294117" green="0.64313725490196072" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="L7y-Q0-icV" secondAttribute="bottom" id="2ph-Xb-0W6"/>
+                <constraint firstItem="L7y-Q0-icV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="3Ro-GE-SDb"/>
                 <constraint firstAttribute="trailing" secondItem="OLr-XV-qrT" secondAttribute="trailing" constant="10" id="Vht-2P-ueo"/>
+                <constraint firstAttribute="trailing" secondItem="L7y-Q0-icV" secondAttribute="trailing" constant="5" id="bPx-1v-94w"/>
                 <constraint firstItem="Ybu-TZ-Zwu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bno-ze-CeG"/>
                 <constraint firstItem="OLr-XV-qrT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="f49-ec-iBm"/>
                 <constraint firstItem="Ybu-TZ-Zwu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="13" id="sD5-ta-ZvT"/>
@@ -54,7 +64,7 @@
         </view>
     </objects>
     <resources>
-        <image name="arrow_down" width="64" height="64"/>
-        <image name="arrow_up" width="64" height="64"/>
+        <image name="arrow_down_brown" width="64" height="64"/>
+        <image name="arrow_up_brown" width="64" height="64"/>
     </resources>
 </document>

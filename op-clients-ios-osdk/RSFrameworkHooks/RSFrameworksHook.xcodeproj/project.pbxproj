@@ -39,6 +39,7 @@
 		981EAC711E48C7C6000F59E3 /* PlistReportsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */; };
 		982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */; };
 		982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */; };
+		982507601E5DD47D00EDB8A2 /* CommonReportKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 9825075F1E5DD47D00EDB8A2 /* CommonReportKeys.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98331C821E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98331C801E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.h */; };
 		98331C831E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m in Sources */ = {isa = PBXBuildFile; fileRef = 98331C811E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m */; };
 		98331C841E56F6A0005D3A84 /* ViolationReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98804EF91E4DEB57009E6748 /* ViolationReportCell.xib */; };
@@ -87,9 +88,9 @@
 		98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */; };
 		98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B234681E53376B0015C2E9 /* UISCDViewController.h */; };
 		98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B234691E53376B0015C2E9 /* UISCDViewController.m */; };
-		98CEF28F1E5C7EFC006FBF5F /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CEF28E1E5C7EFC006FBF5F /* PlusPrivacyCommonUI.framework */; };
 		98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603E21E2F800B00E59A42 /* OPMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603E31E2F800B00E59A42 /* OPMonitor.m */; };
+		98E705641E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E705631E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework */; };
 		98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */; };
 		98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */; };
 		98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */; };
@@ -121,6 +122,7 @@
 		981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlistReportsStorage.m; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.m; sourceTree = "<group>"; };
 		982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProximityInputSupervisor.h; path = ProximityInputSupervisor/ProximityInputSupervisor.h; sourceTree = "<group>"; };
 		982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProximityInputSupervisor.m; path = ProximityInputSupervisor/ProximityInputSupervisor.m; sourceTree = "<group>"; };
+		9825075F1E5DD47D00EDB8A2 /* CommonReportKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonReportKeys.h; path = Models/CommonReportKeys/CommonReportKeys.h; sourceTree = "<group>"; };
 		98331C801E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+RSFrameworkHooks.h"; path = "Views/NSBundle+RSFrameworkHooks/NSBundle+RSFrameworkHooks.h"; sourceTree = "<group>"; };
 		98331C811E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+RSFrameworkHooks.m"; path = "Views/NSBundle+RSFrameworkHooks/NSBundle+RSFrameworkHooks.m"; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSFrameworksHook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,9 +176,9 @@
 		98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputSupervisorsManager.m; path = InputSupervisorsManager/InputSupervisorsManager.m; sourceTree = "<group>"; };
 		98B234681E53376B0015C2E9 /* UISCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISCDViewController.h; path = Views/UISCDViewController/UISCDViewController.h; sourceTree = "<group>"; };
 		98B234691E53376B0015C2E9 /* UISCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISCDViewController.m; path = Views/UISCDViewController/UISCDViewController.m; sourceTree = "<group>"; };
-		98CEF28E1E5C7EFC006FBF5F /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		98D603E21E2F800B00E59A42 /* OPMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitor.h; path = OPMonitor/OPMonitor.h; sourceTree = "<group>"; };
 		98D603E31E2F800B00E59A42 /* OPMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitor.m; path = OPMonitor/OPMonitor.m; sourceTree = "<group>"; };
+		98E705631E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchIdSupervisor.h; path = TouchIdSupervisor/TouchIdSupervisor.h; sourceTree = "<group>"; };
 		98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchIdSupervisor.m; path = TouchIdSupervisor/TouchIdSupervisor.m; sourceTree = "<group>"; };
@@ -193,7 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98CEF28F1E5C7EFC006FBF5F /* PlusPrivacyCommonUI.framework in Frameworks */,
+				98E705641E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework in Frameworks */,
 				98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,7 +250,6 @@
 		981EAC6B1E48C62C000F59E3 /* ReportsStorageAndUI */ = {
 			isa = PBXGroup;
 			children = (
-				98804EF11E4DDB73009E6748 /* Factories */,
 				981EAC6C1E48C63F000F59E3 /* Repositories */,
 				981EAC6D1E48C660000F59E3 /* ReportsStorageProtocol.h */,
 			);
@@ -271,6 +272,15 @@
 				982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */,
 			);
 			name = ProximityInputSupervisor;
+			sourceTree = "<group>";
+		};
+		9825075D1E5DD10C00EDB8A2 /* LocationInputSwizzlerSettings */ = {
+			isa = PBXGroup;
+			children = (
+				9895FB371E5B337A00B1F56D /* LocationInputSwizzlerSettings.h */,
+				9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */,
+			);
+			name = LocationInputSwizzlerSettings;
 			sourceTree = "<group>";
 		};
 		98331C7F1E56F09D005D3A84 /* NSBundle+RSFrameworkHooks */ = {
@@ -348,7 +358,6 @@
 				981EAC6B1E48C62C000F59E3 /* ReportsStorageAndUI */,
 				98182AAF1E44B76700895F19 /* HookingCategories */,
 				987F837A1E3241250058633C /* InputSupervisors */,
-				987F83791E32410E0058633C /* OPMonitorViolationReport */,
 				987F83741E32357C0058633C /* OPMonitorInputSourceReport */,
 				987F836F1E3212140058633C /* Common.h */,
 			);
@@ -376,7 +385,7 @@
 		987F837A1E3241250058633C /* InputSupervisors */ = {
 			isa = PBXGroup;
 			children = (
-				98997C5F1E449D83002D82F1 /* InputSupervisorsFactory */,
+				98997C5F1E449D83002D82F1 /* InputSupervisorsManager */,
 				98ECE47E1E424A9E0042A262 /* ContactsInputSupervisor */,
 				98ECE4791E422E550042A262 /* MicrophoneInputSupervisor */,
 				98ECE4741E421AD20042A262 /* CameraInputSupervisor */,
@@ -401,13 +410,6 @@
 				987F837D1E3241930058633C /* LocationInputSupervisor.m */,
 			);
 			name = LocationInputSupervisor;
-			sourceTree = "<group>";
-		};
-		98804EF11E4DDB73009E6748 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Factories;
 			sourceTree = "<group>";
 		};
 		98804EF31E4DE258009E6748 /* View */ = {
@@ -546,8 +548,9 @@
 		9895FB351E5B331F00B1F56D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9895FB371E5B337A00B1F56D /* LocationInputSwizzlerSettings.h */,
-				9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */,
+				987F83791E32410E0058633C /* OPMonitorViolationReport */,
+				9825075D1E5DD10C00EDB8A2 /* LocationInputSwizzlerSettings */,
+				9825075F1E5DD47D00EDB8A2 /* CommonReportKeys.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -555,7 +558,7 @@
 		9895FB361E5B332A00B1F56D /* Frameworks+Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				98CEF28E1E5C7EFC006FBF5F /* PlusPrivacyCommonUI.framework */,
+				98E705631E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework */,
 				98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */,
 			);
 			name = "Frameworks+Libraries";
@@ -570,13 +573,13 @@
 			name = "UIWindow+RSHookHandle";
 			sourceTree = "<group>";
 		};
-		98997C5F1E449D83002D82F1 /* InputSupervisorsFactory */ = {
+		98997C5F1E449D83002D82F1 /* InputSupervisorsManager */ = {
 			isa = PBXGroup;
 			children = (
 				98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */,
 				98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */,
 			);
-			name = InputSupervisorsFactory;
+			name = InputSupervisorsManager;
 			sourceTree = "<group>";
 		};
 		98B234671E5337370015C2E9 /* UISCDViewController */ = {
@@ -642,6 +645,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				982507601E5DD47D00EDB8A2 /* CommonReportKeys.h in Headers */,
 				98ECE4811E424AC80042A262 /* ContactsInputSupervisor.h in Headers */,
 				981A4A6B1E58ABFE002C4876 /* OPMonitorSettings.h in Headers */,
 				987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */,
