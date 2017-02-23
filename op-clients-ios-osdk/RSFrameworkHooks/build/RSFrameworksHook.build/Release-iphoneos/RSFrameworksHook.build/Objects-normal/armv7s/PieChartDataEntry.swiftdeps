@@ -1,0 +1,237 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "PieChartDataEntry"
+provides-nominal:
+- "C16RSFrameworksHook17PieChartDataEntry"
+provides-member:
+- ["C16RSFrameworksHook17PieChartDataEntry", ""]
+provides-dynamic-lookup:
+- "label"
+- "x"
+- "value"
+- "copyWithZone"
+depends-top-level:
+- "String"
+- "AnyObject"
+- !private "StringLiteralType"
+- "PieChartDataEntry"
+- !private "print"
+- "CastingPrecedence"
+- "ChartDataEntry"
+- "AssignmentPrecedence"
+- "Double"
+- "NSZone"
+- "NSUIImage"
+depends-member:
+- ["Ps9AnyObject", "copyWithZone"]
+- ["Ps9AnyObject", "deinit"]
+- ["Ps9AnyObject", "init"]
+- ["Ps9AnyObject", "label"]
+- !private ["Ps9AnyObject", "print"]
+- ["Ps9AnyObject", "value"]
+- ["Ps9AnyObject", "x"]
+- !private ["Ps9AnyObject", "y"]
+- ["Ps9AnyObject", ""]
+- ["Ps7CVarArg", "copyWithZone"]
+- ["Ps7CVarArg", "init"]
+- ["Ps7CVarArg", "label"]
+- !private ["Ps7CVarArg", "print"]
+- ["Ps7CVarArg", "value"]
+- ["Ps7CVarArg", "x"]
+- !private ["Ps7CVarArg", "y"]
+- ["Ps7CVarArg", ""]
+- ["C16RSFrameworksHook14ChartDataEntry", "AnyObject"]
+- ["C16RSFrameworksHook14ChartDataEntry", "Double"]
+- ["C16RSFrameworksHook14ChartDataEntry", "NSUIImage"]
+- ["C16RSFrameworksHook14ChartDataEntry", "NSZone"]
+- !private ["C16RSFrameworksHook14ChartDataEntry", "PieChartDataEntry"]
+- ["C16RSFrameworksHook14ChartDataEntry", "String"]
+- ["C16RSFrameworksHook14ChartDataEntry", "copyWithZone"]
+- ["C16RSFrameworksHook14ChartDataEntry", "deinit"]
+- ["C16RSFrameworksHook14ChartDataEntry", "init"]
+- ["C16RSFrameworksHook14ChartDataEntry", "label"]
+- !private ["C16RSFrameworksHook14ChartDataEntry", "print"]
+- ["C16RSFrameworksHook14ChartDataEntry", "value"]
+- ["C16RSFrameworksHook14ChartDataEntry", "x"]
+- !private ["C16RSFrameworksHook14ChartDataEntry", "y"]
+- ["C16RSFrameworksHook14ChartDataEntry", ""]
+- ["C16RSFrameworksHook18ChartDataEntryBase", "AnyObject"]
+- ["C16RSFrameworksHook18ChartDataEntryBase", "Double"]
+- ["C16RSFrameworksHook18ChartDataEntryBase", "NSUIImage"]
+- ["C16RSFrameworksHook18ChartDataEntryBase", "NSZone"]
+- !private ["C16RSFrameworksHook18ChartDataEntryBase", "PieChartDataEntry"]
+- ["C16RSFrameworksHook18ChartDataEntryBase", "String"]
+- ["C16RSFrameworksHook18ChartDataEntryBase", "copyWithZone"]
+- ["C16RSFrameworksHook18ChartDataEntryBase", "label"]
+- !private ["C16RSFrameworksHook18ChartDataEntryBase", "print"]
+- ["C16RSFrameworksHook18ChartDataEntryBase", "value"]
+- ["C16RSFrameworksHook18ChartDataEntryBase", "x"]
+- !private ["C16RSFrameworksHook18ChartDataEntryBase", "y"]
+- !private ["Ps10Comparable", "init"]
+- ["Ps28CustomDebugStringConvertible", "copyWithZone"]
+- ["Ps28CustomDebugStringConvertible", "init"]
+- ["Ps28CustomDebugStringConvertible", "label"]
+- !private ["Ps28CustomDebugStringConvertible", "print"]
+- ["Ps28CustomDebugStringConvertible", "value"]
+- ["Ps28CustomDebugStringConvertible", "x"]
+- !private ["Ps28CustomDebugStringConvertible", "y"]
+- ["Ps28CustomDebugStringConvertible", ""]
+- !private ["Ps29CustomPlaygroundQuickLookable", "init"]
+- !private ["Ps17CustomReflectable", "init"]
+- ["Ps23CustomStringConvertible", "copyWithZone"]
+- ["Ps23CustomStringConvertible", "init"]
+- ["Ps23CustomStringConvertible", "label"]
+- !private ["Ps23CustomStringConvertible", "print"]
+- ["Ps23CustomStringConvertible", "value"]
+- ["Ps23CustomStringConvertible", "x"]
+- !private ["Ps23CustomStringConvertible", "y"]
+- ["Ps23CustomStringConvertible", ""]
+- ["Sd", "deinit"]
+- ["Ps9Equatable", "copyWithZone"]
+- ["Ps9Equatable", "init"]
+- ["Ps9Equatable", "label"]
+- !private ["Ps9Equatable", "print"]
+- ["Ps9Equatable", "value"]
+- ["Ps9Equatable", "x"]
+- !private ["Ps9Equatable", "y"]
+- ["Ps9Equatable", ""]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps32ExpressibleByStringInterpolation", "init"]
+- !private ["Ps26ExpressibleByStringLiteral", "init"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "init"]
+- ["Ps8Hashable", "copyWithZone"]
+- ["Ps8Hashable", "init"]
+- ["Ps8Hashable", "label"]
+- !private ["Ps8Hashable", "print"]
+- ["Ps8Hashable", "value"]
+- ["Ps8Hashable", "x"]
+- !private ["Ps8Hashable", "y"]
+- ["Ps8Hashable", ""]
+- !private ["Ps25LosslessStringConvertible", "init"]
+- !private ["Ps10MirrorPath", "init"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["PSo16NSMutableCopying", "init"]
+- ["CSo8NSObject", "AnyObject"]
+- ["CSo8NSObject", "Double"]
+- ["CSo8NSObject", "NSUIImage"]
+- ["CSo8NSObject", "NSZone"]
+- !private ["CSo8NSObject", "PieChartDataEntry"]
+- ["CSo8NSObject", "String"]
+- ["CSo8NSObject", "copyWithZone"]
+- !private ["CSo8NSObject", "init"]
+- ["CSo8NSObject", "label"]
+- !private ["CSo8NSObject", "print"]
+- ["CSo8NSObject", "value"]
+- ["CSo8NSObject", "x"]
+- !private ["CSo8NSObject", "y"]
+- ["PSo16NSObjectProtocol", "copyWithZone"]
+- ["PSo16NSObjectProtocol", "init"]
+- ["PSo16NSObjectProtocol", "label"]
+- !private ["PSo16NSObjectProtocol", "print"]
+- ["PSo16NSObjectProtocol", "value"]
+- ["PSo16NSObjectProtocol", "x"]
+- !private ["PSo16NSObjectProtocol", "y"]
+- ["PSo16NSObjectProtocol", ""]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["CSo8NSString", "init"]
+- ["Os5Never", "deinit"]
+- ["Sq", "deinit"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "AnyObject"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "Double"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "NSUIImage"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "NSZone"]
+- !private ["C16RSFrameworksHook17PieChartDataEntry", "PieChartDataEntry"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "String"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "copyWithZone"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "deinit"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "init"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "label"]
+- !private ["C16RSFrameworksHook17PieChartDataEntry", "print"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "value"]
+- ["C16RSFrameworksHook17PieChartDataEntry", "x"]
+- !private ["C16RSFrameworksHook17PieChartDataEntry", "y"]
+- ["Vs12StaticString", "deinit"]
+- !private ["Vs12StaticString", "init"]
+- ["SS", "deinit"]
+- !private ["SS", "init"]
+- !private ["Ps16TextOutputStream", "init"]
+- !private ["Ps20TextOutputStreamable", "init"]
+- ["Su", "deinit"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "init"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "init"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "init"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "init"]
+- ["Ps9_Hashable", "copyWithZone"]
+- ["Ps9_Hashable", "init"]
+- ["Ps9_Hashable", "label"]
+- !private ["Ps9_Hashable", "print"]
+- ["Ps9_Hashable", "value"]
+- ["Ps9_Hashable", "x"]
+- !private ["Ps9_Hashable", "y"]
+- ["Ps9_Hashable", ""]
+- !private ["Ps21_ObjectiveCBridgeable", "init"]
+depends-nominal:
+- "Ps9AnyObject"
+- "Ps7CVarArg"
+- "C16RSFrameworksHook14ChartDataEntry"
+- "C16RSFrameworksHook18ChartDataEntryBase"
+- !private "Ps10Comparable"
+- "Ps28CustomDebugStringConvertible"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- !private "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- "Sd"
+- "Ps9Equatable"
+- !private "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
+- !private "Ps32ExpressibleByStringInterpolation"
+- !private "Ps26ExpressibleByStringLiteral"
+- !private "Ps33ExpressibleByUnicodeScalarLiteral"
+- "Ps8Hashable"
+- !private "Ps25LosslessStringConvertible"
+- !private "Ps10MirrorPath"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "PSo16NSMutableCopying"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "CSo8NSString"
+- "Os5Never"
+- "Sq"
+- "C16RSFrameworksHook17PieChartDataEntry"
+- "Vs12StaticString"
+- "SS"
+- !private "Ps16TextOutputStream"
+- !private "Ps20TextOutputStreamable"
+- "Su"
+- !private "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
+- !private "Ps34_ExpressibleByBuiltinStringLiteral"
+- !private "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
+- !private "Ps41_ExpressibleByBuiltinUnicodeScalarLiteral"
+- !private "Ps35_HasCustomAnyHashableRepresentation"
+- "Ps9_Hashable"
+- !private "Ps21_ObjectiveCBridgeable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Swift.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes-Swift.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitor.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/CommonReportKeys/CommonReportKeys.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/SupervisorProtocols.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/RSFrameworksHook.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreImage.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/PlusPrivacyCommonTypes.swiftmodule/arm.swiftmodule"
+interface-hash: "77a060a0afef03a14faeb6a65c0d5296"

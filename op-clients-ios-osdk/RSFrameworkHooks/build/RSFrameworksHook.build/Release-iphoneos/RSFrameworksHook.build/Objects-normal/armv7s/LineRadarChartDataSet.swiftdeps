@@ -1,0 +1,394 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "LineRadarChartDataSet"
+provides-nominal:
+- "C16RSFrameworksHook21LineRadarChartDataSet"
+provides-member:
+- ["C16RSFrameworksHook21LineRadarChartDataSet", ""]
+provides-dynamic-lookup:
+- "copyWithZone"
+- "isDrawFilledEnabled"
+- "fillAlpha"
+- "drawFilledEnabled"
+- "fill"
+- "fillColor"
+- "lineWidth"
+depends-top-level:
+- "/"
+- "NSZone"
+- "BooleanLiteralType"
+- !private ">"
+- "ILineRadarChartDataSet"
+- "Bool"
+- "CastingPrecedence"
+- "AssignmentPrecedence"
+- "NSUIColor"
+- "LineScatterCandleRadarChartDataSet"
+- "LineRadarChartDataSet"
+- "CGFloat"
+- !private "<"
+- "Fill"
+- "AnyObject"
+depends-member:
+- ["Ps16AbsoluteValuable", "init"]
+- ["Ps9AnyObject", "CGFloat"]
+- ["Ps9AnyObject", "NSUIColor"]
+- ["Ps9AnyObject", "_fillColor"]
+- ["Ps9AnyObject", "_lineWidth"]
+- ["Ps9AnyObject", "copyWithZone"]
+- ["Ps9AnyObject", "deinit"]
+- ["Ps9AnyObject", "drawFilledEnabled"]
+- ["Ps9AnyObject", "fill"]
+- ["Ps9AnyObject", "fillAlpha"]
+- ["Ps9AnyObject", "fillColor"]
+- ["Ps9AnyObject", "init"]
+- ["Ps9AnyObject", "isDrawFilledEnabled"]
+- ["Ps9AnyObject", "lineWidth"]
+- ["Ps9AnyObject", ""]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "AnyObject"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "Bool"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "CGFloat"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "Fill"]
+- !private ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "LineRadarChartDataSet"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "NSUIColor"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "NSZone"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "_fillColor"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "_lineWidth"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "copyWithZone"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "drawFilledEnabled"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "fill"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "fillAlpha"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "fillColor"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "init"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "isDrawFilledEnabled"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "lineWidth"]
+- ["Ps19BinaryFloatingPoint", "init"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- ["Sb", "deinit"]
+- ["V12CoreGraphics7CGFloat", "deinit"]
+- ["V12CoreGraphics7CGFloat", "init"]
+- ["Ps7CVarArg", "CGFloat"]
+- ["Ps7CVarArg", "NSUIColor"]
+- ["Ps7CVarArg", "_fillColor"]
+- ["Ps7CVarArg", "_lineWidth"]
+- ["Ps7CVarArg", "copyWithZone"]
+- ["Ps7CVarArg", "drawFilledEnabled"]
+- ["Ps7CVarArg", "fill"]
+- ["Ps7CVarArg", "fillAlpha"]
+- ["Ps7CVarArg", "fillColor"]
+- ["Ps7CVarArg", "init"]
+- ["Ps7CVarArg", "isDrawFilledEnabled"]
+- ["Ps7CVarArg", "lineWidth"]
+- ["Ps7CVarArg", ""]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "AnyObject"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "Bool"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "CGFloat"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "Fill"]
+- !private ["C16RSFrameworksHook16ChartBaseDataSet", "LineRadarChartDataSet"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "NSUIColor"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "NSZone"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "_fillColor"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "_lineWidth"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "copyWithZone"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "drawFilledEnabled"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "fill"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "fillAlpha"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "fillColor"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "init"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "isDrawFilledEnabled"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "lineWidth"]
+- ["C16RSFrameworksHook12ChartDataSet", "AnyObject"]
+- ["C16RSFrameworksHook12ChartDataSet", "Bool"]
+- ["C16RSFrameworksHook12ChartDataSet", "CGFloat"]
+- ["C16RSFrameworksHook12ChartDataSet", "Fill"]
+- !private ["C16RSFrameworksHook12ChartDataSet", "LineRadarChartDataSet"]
+- ["C16RSFrameworksHook12ChartDataSet", "NSUIColor"]
+- ["C16RSFrameworksHook12ChartDataSet", "NSZone"]
+- ["C16RSFrameworksHook12ChartDataSet", "_fillColor"]
+- ["C16RSFrameworksHook12ChartDataSet", "_lineWidth"]
+- ["C16RSFrameworksHook12ChartDataSet", "copyWithZone"]
+- ["C16RSFrameworksHook12ChartDataSet", "drawFilledEnabled"]
+- ["C16RSFrameworksHook12ChartDataSet", "fill"]
+- ["C16RSFrameworksHook12ChartDataSet", "fillAlpha"]
+- ["C16RSFrameworksHook12ChartDataSet", "fillColor"]
+- ["C16RSFrameworksHook12ChartDataSet", "init"]
+- ["C16RSFrameworksHook12ChartDataSet", "isDrawFilledEnabled"]
+- ["C16RSFrameworksHook12ChartDataSet", "lineWidth"]
+- ["Ps10Comparable", "init"]
+- ["Ps28CustomDebugStringConvertible", "CGFloat"]
+- ["Ps28CustomDebugStringConvertible", "NSUIColor"]
+- ["Ps28CustomDebugStringConvertible", "_fillColor"]
+- ["Ps28CustomDebugStringConvertible", "_lineWidth"]
+- ["Ps28CustomDebugStringConvertible", "copyWithZone"]
+- ["Ps28CustomDebugStringConvertible", "drawFilledEnabled"]
+- ["Ps28CustomDebugStringConvertible", "fill"]
+- ["Ps28CustomDebugStringConvertible", "fillAlpha"]
+- ["Ps28CustomDebugStringConvertible", "fillColor"]
+- ["Ps28CustomDebugStringConvertible", "init"]
+- ["Ps28CustomDebugStringConvertible", "isDrawFilledEnabled"]
+- ["Ps28CustomDebugStringConvertible", "lineWidth"]
+- ["Ps28CustomDebugStringConvertible", ""]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- ["Ps17CustomReflectable", "init"]
+- ["Ps23CustomStringConvertible", "CGFloat"]
+- ["Ps23CustomStringConvertible", "NSUIColor"]
+- ["Ps23CustomStringConvertible", "_fillColor"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- ["Ps23CustomStringConvertible", "_lineWidth"]
+- ["Ps23CustomStringConvertible", "copyWithZone"]
+- ["Ps23CustomStringConvertible", "drawFilledEnabled"]
+- ["Ps23CustomStringConvertible", "fill"]
+- ["Ps23CustomStringConvertible", "fillAlpha"]
+- ["Ps23CustomStringConvertible", "fillColor"]
+- ["Ps23CustomStringConvertible", "init"]
+- ["Ps23CustomStringConvertible", "isDrawFilledEnabled"]
+- ["Ps23CustomStringConvertible", "lineWidth"]
+- ["Ps23CustomStringConvertible", ""]
+- ["Sd", "deinit"]
+- ["Ps9Equatable", "CGFloat"]
+- ["Ps9Equatable", "NSUIColor"]
+- ["Ps9Equatable", "_fillColor"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- ["Ps9Equatable", "_lineWidth"]
+- ["Ps9Equatable", "copyWithZone"]
+- ["Ps9Equatable", "drawFilledEnabled"]
+- ["Ps9Equatable", "fill"]
+- ["Ps9Equatable", "fillAlpha"]
+- ["Ps9Equatable", "fillColor"]
+- ["Ps9Equatable", "init"]
+- ["Ps9Equatable", "isDrawFilledEnabled"]
+- ["Ps9Equatable", "lineWidth"]
+- ["Ps9Equatable", ""]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- ["Ps25ExpressibleByFloatLiteral", "init"]
+- ["Ps27ExpressibleByIntegerLiteral", "init"]
+- ["Ps13FloatingPoint", "init"]
+- ["Ps8Hashable", "CGFloat"]
+- ["Ps8Hashable", "NSUIColor"]
+- ["Ps8Hashable", "_fillColor"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- ["Ps8Hashable", "_lineWidth"]
+- ["Ps8Hashable", "copyWithZone"]
+- ["Ps8Hashable", "drawFilledEnabled"]
+- ["Ps8Hashable", "fill"]
+- ["Ps8Hashable", "fillAlpha"]
+- ["Ps8Hashable", "fillColor"]
+- ["Ps8Hashable", "init"]
+- ["Ps8Hashable", "isDrawFilledEnabled"]
+- ["Ps8Hashable", "lineWidth"]
+- ["Ps8Hashable", ""]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "CGFloat"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "NSUIColor"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "_fillColor"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "_lineWidth"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "copyWithZone"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "drawFilledEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "fill"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "fillAlpha"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "fillColor"]
+- !private ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "init"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "isDrawFilledEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "lineWidth"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", ""]
+- ["P16RSFrameworksHook13IChartDataSet", "CGFloat"]
+- ["P16RSFrameworksHook13IChartDataSet", "NSUIColor"]
+- ["P16RSFrameworksHook13IChartDataSet", "_fillColor"]
+- ["P16RSFrameworksHook13IChartDataSet", "_lineWidth"]
+- ["P16RSFrameworksHook13IChartDataSet", "copyWithZone"]
+- ["P16RSFrameworksHook13IChartDataSet", "drawFilledEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "fill"]
+- ["P16RSFrameworksHook13IChartDataSet", "fillAlpha"]
+- ["P16RSFrameworksHook13IChartDataSet", "fillColor"]
+- !private ["P16RSFrameworksHook13IChartDataSet", "init"]
+- ["P16RSFrameworksHook13IChartDataSet", "isDrawFilledEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "lineWidth"]
+- ["P16RSFrameworksHook13IChartDataSet", ""]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "CGFloat"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "NSUIColor"]
+- !private ["P16RSFrameworksHook22ILineRadarChartDataSet", "_fillColor"]
+- !private ["P16RSFrameworksHook22ILineRadarChartDataSet", "_lineWidth"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "drawFilledEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "fill"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "fillAlpha"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "fillColor"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "isDrawFilledEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "lineWidth"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", ""]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "CGFloat"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "NSUIColor"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "_fillColor"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "_lineWidth"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "copyWithZone"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "drawFilledEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "fill"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "fillAlpha"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "fillColor"]
+- !private ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "init"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "isDrawFilledEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "lineWidth"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", ""]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "AnyObject"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "Bool"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "CGFloat"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "Fill"]
+- !private ["C16RSFrameworksHook21LineRadarChartDataSet", "LineRadarChartDataSet"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "NSUIColor"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "NSZone"]
+- !private ["C16RSFrameworksHook21LineRadarChartDataSet", "_fillColor"]
+- !private ["C16RSFrameworksHook21LineRadarChartDataSet", "_lineWidth"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "copyWithZone"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "deinit"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "drawFilledEnabled"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "fill"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "fillAlpha"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "fillColor"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "init"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "isDrawFilledEnabled"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "lineWidth"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "AnyObject"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "Bool"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "CGFloat"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "Fill"]
+- !private ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "LineRadarChartDataSet"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "NSUIColor"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "NSZone"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "_fillColor"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "_lineWidth"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "copyWithZone"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "deinit"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "drawFilledEnabled"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "fill"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "fillAlpha"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "fillColor"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "init"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "isDrawFilledEnabled"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "lineWidth"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", ""]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- ["PSo8NSCoding", "init"]
+- ["PSo9NSCopying", "init"]
+- ["CSo8NSObject", "AnyObject"]
+- ["CSo8NSObject", "Bool"]
+- ["CSo8NSObject", "CGFloat"]
+- ["CSo8NSObject", "Fill"]
+- !private ["CSo8NSObject", "LineRadarChartDataSet"]
+- ["CSo8NSObject", "NSUIColor"]
+- ["CSo8NSObject", "NSZone"]
+- ["CSo8NSObject", "_fillColor"]
+- ["CSo8NSObject", "_lineWidth"]
+- ["CSo8NSObject", "copyWithZone"]
+- ["CSo8NSObject", "drawFilledEnabled"]
+- ["CSo8NSObject", "fill"]
+- ["CSo8NSObject", "fillAlpha"]
+- ["CSo8NSObject", "fillColor"]
+- ["CSo8NSObject", "init"]
+- ["CSo8NSObject", "isDrawFilledEnabled"]
+- ["CSo8NSObject", "lineWidth"]
+- ["PSo16NSObjectProtocol", "CGFloat"]
+- ["PSo16NSObjectProtocol", "NSUIColor"]
+- ["PSo16NSObjectProtocol", "_fillColor"]
+- ["PSo16NSObjectProtocol", "_lineWidth"]
+- ["PSo16NSObjectProtocol", "copyWithZone"]
+- ["PSo16NSObjectProtocol", "drawFilledEnabled"]
+- ["PSo16NSObjectProtocol", "fill"]
+- ["PSo16NSObjectProtocol", "fillAlpha"]
+- ["PSo16NSObjectProtocol", "fillColor"]
+- ["PSo16NSObjectProtocol", "init"]
+- ["PSo16NSObjectProtocol", "isDrawFilledEnabled"]
+- ["PSo16NSObjectProtocol", "lineWidth"]
+- ["PSo16NSObjectProtocol", ""]
+- ["PSo14NSSecureCoding", "init"]
+- ["Sq", "deinit"]
+- ["Ps12SignedNumber", "init"]
+- ["Ps10Strideable", "init"]
+- ["CSo7UIColor", "deinit"]
+- ["CSo7UIColor", "init"]
+- ["Ps15_CVarArgAligned", "init"]
+- ["Ps22_CVarArgPassedAsDouble", "init"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- ["Ps26_ExpressibleByColorLiteral", "init"]
+- ["Ps9_Hashable", "CGFloat"]
+- ["Ps9_Hashable", "NSUIColor"]
+- ["Ps9_Hashable", "_fillColor"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- ["Ps9_Hashable", "_lineWidth"]
+- ["Ps9_Hashable", "copyWithZone"]
+- ["Ps9_Hashable", "drawFilledEnabled"]
+- ["Ps9_Hashable", "fill"]
+- ["Ps9_Hashable", "fillAlpha"]
+- ["Ps9_Hashable", "fillColor"]
+- ["Ps9_Hashable", "init"]
+- ["Ps9_Hashable", "isDrawFilledEnabled"]
+- ["Ps9_Hashable", "lineWidth"]
+- ["Ps9_Hashable", ""]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- ["Ps21_ObjectiveCBridgeable", "init"]
+- ["Ps11_Strideable", "init"]
+depends-nominal:
+- "Ps16AbsoluteValuable"
+- "Ps9AnyObject"
+- "C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet"
+- "Ps19BinaryFloatingPoint"
+- "Sb"
+- "V12CoreGraphics7CGFloat"
+- "Ps7CVarArg"
+- "C16RSFrameworksHook16ChartBaseDataSet"
+- "C16RSFrameworksHook12ChartDataSet"
+- "Ps10Comparable"
+- "Ps28CustomDebugStringConvertible"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- "Sd"
+- "Ps9Equatable"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- "Ps25ExpressibleByFloatLiteral"
+- "Ps27ExpressibleByIntegerLiteral"
+- "Ps13FloatingPoint"
+- "Ps8Hashable"
+- "P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet"
+- "P16RSFrameworksHook13IChartDataSet"
+- "P16RSFrameworksHook22ILineRadarChartDataSet"
+- "P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet"
+- "C16RSFrameworksHook21LineRadarChartDataSet"
+- "C16RSFrameworksHook34LineScatterCandleRadarChartDataSet"
+- !private "Ps25LosslessStringConvertible"
+- "PSo8NSCoding"
+- "PSo9NSCopying"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- "PSo14NSSecureCoding"
+- "Sq"
+- "Ps12SignedNumber"
+- "Ps10Strideable"
+- "CSo7UIColor"
+- "Ps15_CVarArgAligned"
+- "Ps22_CVarArgPassedAsDouble"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- "Ps26_ExpressibleByColorLiteral"
+- "Ps9_Hashable"
+- "Ps21_ObjectiveCBridgeable"
+- "Ps11_Strideable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Swift.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes-Swift.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitor.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/CommonReportKeys/CommonReportKeys.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/SupervisorProtocols.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/RSFrameworksHook.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreImage.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/PlusPrivacyCommonTypes.swiftmodule/arm.swiftmodule"
+interface-hash: "009b0cc1430e746d49d5874a3ef20476"

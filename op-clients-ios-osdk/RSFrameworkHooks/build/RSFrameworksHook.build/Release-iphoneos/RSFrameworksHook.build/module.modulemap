@@ -4,3 +4,7 @@ framework module RSFrameworksHook {
   export *
   module * { export * }
 }
+
+module RSFrameworksHook.Swift {
+    header "RSFrameworksHook-Swift.h"
+}

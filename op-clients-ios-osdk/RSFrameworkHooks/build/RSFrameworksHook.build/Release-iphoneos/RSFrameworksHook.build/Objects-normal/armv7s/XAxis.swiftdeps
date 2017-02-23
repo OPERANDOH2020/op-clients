@@ -1,0 +1,416 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "XAxis"
+provides-nominal:
+- "C16RSFrameworksHook5XAxis"
+- "OC16RSFrameworksHook5XAxis13LabelPosition"
+provides-member:
+- ["C16RSFrameworksHook5XAxis", ""]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", ""]
+provides-dynamic-lookup:
+- "labelHeight"
+- "isWordWrapEnabled"
+- "labelRotatedWidth"
+- "labelWidth"
+- "labelRotatedHeight"
+- "wordWrapEnabled"
+- "avoidFirstLastClippingEnabled"
+- "isAvoidFirstLastClippingEnabled"
+- "labelPosition"
+- "wordWrapWidthPercent"
+- "labelRotationAngle"
+depends-top-level:
+- !private "~="
+- "=="
+- "AssignmentPrecedence"
+- "Int"
+- "CGFloat"
+- "Bool"
+- "BooleanLiteralType"
+- "XAxis"
+- "AxisBase"
+depends-member:
+- ["Ps16AbsoluteValuable", "init"]
+- ["Ps9AnyObject", "CGFloat"]
+- ["Ps9AnyObject", "LabelPosition"]
+- ["Ps9AnyObject", "avoidFirstLastClippingEnabled"]
+- ["Ps9AnyObject", "init"]
+- ["Ps9AnyObject", "isAvoidFirstLastClippingEnabled"]
+- ["Ps9AnyObject", "isWordWrapEnabled"]
+- ["Ps9AnyObject", "labelHeight"]
+- ["Ps9AnyObject", "labelPosition"]
+- ["Ps9AnyObject", "labelRotatedHeight"]
+- ["Ps9AnyObject", "labelRotatedWidth"]
+- ["Ps9AnyObject", "labelRotationAngle"]
+- ["Ps9AnyObject", "labelWidth"]
+- ["Ps9AnyObject", "wordWrapEnabled"]
+- ["Ps9AnyObject", "wordWrapWidthPercent"]
+- !private ["Ps9AnyObject", "yOffset"]
+- ["Ps9AnyObject", ""]
+- ["C16RSFrameworksHook8AxisBase", "Bool"]
+- ["C16RSFrameworksHook8AxisBase", "CGFloat"]
+- ["C16RSFrameworksHook8AxisBase", "Int"]
+- ["C16RSFrameworksHook8AxisBase", "LabelPosition"]
+- ["C16RSFrameworksHook8AxisBase", "avoidFirstLastClippingEnabled"]
+- ["C16RSFrameworksHook8AxisBase", "deinit"]
+- ["C16RSFrameworksHook8AxisBase", "init"]
+- ["C16RSFrameworksHook8AxisBase", "isAvoidFirstLastClippingEnabled"]
+- ["C16RSFrameworksHook8AxisBase", "isWordWrapEnabled"]
+- ["C16RSFrameworksHook8AxisBase", "labelHeight"]
+- ["C16RSFrameworksHook8AxisBase", "labelPosition"]
+- ["C16RSFrameworksHook8AxisBase", "labelRotatedHeight"]
+- ["C16RSFrameworksHook8AxisBase", "labelRotatedWidth"]
+- ["C16RSFrameworksHook8AxisBase", "labelRotationAngle"]
+- ["C16RSFrameworksHook8AxisBase", "labelWidth"]
+- ["C16RSFrameworksHook8AxisBase", "wordWrapEnabled"]
+- ["C16RSFrameworksHook8AxisBase", "wordWrapWidthPercent"]
+- !private ["C16RSFrameworksHook8AxisBase", "yOffset"]
+- ["C16RSFrameworksHook8AxisBase", ""]
+- ["Ps19BinaryFloatingPoint", "init"]
+- !private ["Ps17BitwiseOperations", "Stride"]
+- !private ["Ps17BitwiseOperations", "hashValue"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- ["Sb", "deinit"]
+- ["V12CoreGraphics7CGFloat", "deinit"]
+- ["V12CoreGraphics7CGFloat", "init"]
+- ["Ps7CVarArg", "CGFloat"]
+- ["Ps7CVarArg", "LabelPosition"]
+- !private ["Ps7CVarArg", "Stride"]
+- ["Ps7CVarArg", "avoidFirstLastClippingEnabled"]
+- !private ["Ps7CVarArg", "hashValue"]
+- ["Ps7CVarArg", "init"]
+- ["Ps7CVarArg", "isAvoidFirstLastClippingEnabled"]
+- ["Ps7CVarArg", "isWordWrapEnabled"]
+- ["Ps7CVarArg", "labelHeight"]
+- ["Ps7CVarArg", "labelPosition"]
+- ["Ps7CVarArg", "labelRotatedHeight"]
+- ["Ps7CVarArg", "labelRotatedWidth"]
+- ["Ps7CVarArg", "labelRotationAngle"]
+- ["Ps7CVarArg", "labelWidth"]
+- ["Ps7CVarArg", "wordWrapEnabled"]
+- ["Ps7CVarArg", "wordWrapWidthPercent"]
+- !private ["Ps7CVarArg", "yOffset"]
+- ["Ps7CVarArg", ""]
+- !private ["Vs11ClosedRange", "deinit"]
+- !private ["Ps10Comparable", "Stride"]
+- !private ["Ps10Comparable", "hashValue"]
+- ["Ps10Comparable", "init"]
+- ["C16RSFrameworksHook13ComponentBase", "Bool"]
+- ["C16RSFrameworksHook13ComponentBase", "CGFloat"]
+- ["C16RSFrameworksHook13ComponentBase", "Int"]
+- ["C16RSFrameworksHook13ComponentBase", "LabelPosition"]
+- ["C16RSFrameworksHook13ComponentBase", "avoidFirstLastClippingEnabled"]
+- ["C16RSFrameworksHook13ComponentBase", "init"]
+- ["C16RSFrameworksHook13ComponentBase", "isAvoidFirstLastClippingEnabled"]
+- ["C16RSFrameworksHook13ComponentBase", "isWordWrapEnabled"]
+- ["C16RSFrameworksHook13ComponentBase", "labelHeight"]
+- ["C16RSFrameworksHook13ComponentBase", "labelPosition"]
+- ["C16RSFrameworksHook13ComponentBase", "labelRotatedHeight"]
+- ["C16RSFrameworksHook13ComponentBase", "labelRotatedWidth"]
+- ["C16RSFrameworksHook13ComponentBase", "labelRotationAngle"]
+- ["C16RSFrameworksHook13ComponentBase", "labelWidth"]
+- ["C16RSFrameworksHook13ComponentBase", "wordWrapEnabled"]
+- ["C16RSFrameworksHook13ComponentBase", "wordWrapWidthPercent"]
+- !private ["C16RSFrameworksHook13ComponentBase", "yOffset"]
+- !private ["Vs20CountableClosedRange", "deinit"]
+- !private ["Vs14CountableRange", "deinit"]
+- ["Ps28CustomDebugStringConvertible", "CGFloat"]
+- ["Ps28CustomDebugStringConvertible", "LabelPosition"]
+- ["Ps28CustomDebugStringConvertible", "avoidFirstLastClippingEnabled"]
+- ["Ps28CustomDebugStringConvertible", "init"]
+- ["Ps28CustomDebugStringConvertible", "isAvoidFirstLastClippingEnabled"]
+- ["Ps28CustomDebugStringConvertible", "isWordWrapEnabled"]
+- ["Ps28CustomDebugStringConvertible", "labelHeight"]
+- ["Ps28CustomDebugStringConvertible", "labelPosition"]
+- ["Ps28CustomDebugStringConvertible", "labelRotatedHeight"]
+- ["Ps28CustomDebugStringConvertible", "labelRotatedWidth"]
+- ["Ps28CustomDebugStringConvertible", "labelRotationAngle"]
+- ["Ps28CustomDebugStringConvertible", "labelWidth"]
+- ["Ps28CustomDebugStringConvertible", "wordWrapEnabled"]
+- ["Ps28CustomDebugStringConvertible", "wordWrapWidthPercent"]
+- !private ["Ps28CustomDebugStringConvertible", "yOffset"]
+- ["Ps28CustomDebugStringConvertible", ""]
+- !private ["Ps29CustomPlaygroundQuickLookable", "Stride"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "hashValue"]
+- !private ["Ps17CustomReflectable", "Stride"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "hashValue"]
+- ["Ps17CustomReflectable", "init"]
+- ["Ps23CustomStringConvertible", "CGFloat"]
+- ["Ps23CustomStringConvertible", "LabelPosition"]
+- !private ["Ps23CustomStringConvertible", "Stride"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- ["Ps23CustomStringConvertible", "avoidFirstLastClippingEnabled"]
+- !private ["Ps23CustomStringConvertible", "hashValue"]
+- ["Ps23CustomStringConvertible", "init"]
+- ["Ps23CustomStringConvertible", "isAvoidFirstLastClippingEnabled"]
+- ["Ps23CustomStringConvertible", "isWordWrapEnabled"]
+- ["Ps23CustomStringConvertible", "labelHeight"]
+- ["Ps23CustomStringConvertible", "labelPosition"]
+- ["Ps23CustomStringConvertible", "labelRotatedHeight"]
+- ["Ps23CustomStringConvertible", "labelRotatedWidth"]
+- ["Ps23CustomStringConvertible", "labelRotationAngle"]
+- ["Ps23CustomStringConvertible", "labelWidth"]
+- ["Ps23CustomStringConvertible", "wordWrapEnabled"]
+- ["Ps23CustomStringConvertible", "wordWrapWidthPercent"]
+- !private ["Ps23CustomStringConvertible", "yOffset"]
+- ["Ps23CustomStringConvertible", ""]
+- ["Sd", "deinit"]
+- ["Ps9Equatable", "CGFloat"]
+- ["Ps9Equatable", "LabelPosition"]
+- ["Ps9Equatable", "RawValue"]
+- !private ["Ps9Equatable", "Stride"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- ["Ps9Equatable", "_toAnyHashable"]
+- ["Ps9Equatable", "avoidFirstLastClippingEnabled"]
+- ["Ps9Equatable", "hashValue"]
+- ["Ps9Equatable", "init"]
+- ["Ps9Equatable", "isAvoidFirstLastClippingEnabled"]
+- ["Ps9Equatable", "isWordWrapEnabled"]
+- ["Ps9Equatable", "labelHeight"]
+- ["Ps9Equatable", "labelPosition"]
+- ["Ps9Equatable", "labelRotatedHeight"]
+- ["Ps9Equatable", "labelRotatedWidth"]
+- ["Ps9Equatable", "labelRotationAngle"]
+- ["Ps9Equatable", "labelWidth"]
+- ["Ps9Equatable", "rawValue"]
+- ["Ps9Equatable", "top"]
+- ["Ps9Equatable", "wordWrapEnabled"]
+- ["Ps9Equatable", "wordWrapWidthPercent"]
+- !private ["Ps9Equatable", "yOffset"]
+- ["Ps9Equatable", ""]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- ["Ps25ExpressibleByFloatLiteral", "init"]
+- !private ["Ps27ExpressibleByIntegerLiteral", "Stride"]
+- !private ["Ps27ExpressibleByIntegerLiteral", "hashValue"]
+- ["Ps27ExpressibleByIntegerLiteral", "init"]
+- ["Ps13FloatingPoint", "init"]
+- ["Ps8Hashable", "CGFloat"]
+- ["Ps8Hashable", "LabelPosition"]
+- ["Ps8Hashable", "RawValue"]
+- !private ["Ps8Hashable", "Stride"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- ["Ps8Hashable", "_toAnyHashable"]
+- ["Ps8Hashable", "avoidFirstLastClippingEnabled"]
+- ["Ps8Hashable", "hashValue"]
+- ["Ps8Hashable", "init"]
+- ["Ps8Hashable", "isAvoidFirstLastClippingEnabled"]
+- ["Ps8Hashable", "isWordWrapEnabled"]
+- ["Ps8Hashable", "labelHeight"]
+- ["Ps8Hashable", "labelPosition"]
+- ["Ps8Hashable", "labelRotatedHeight"]
+- ["Ps8Hashable", "labelRotatedWidth"]
+- ["Ps8Hashable", "labelRotationAngle"]
+- ["Ps8Hashable", "labelWidth"]
+- ["Ps8Hashable", "rawValue"]
+- ["Ps8Hashable", "top"]
+- ["Ps8Hashable", "wordWrapEnabled"]
+- ["Ps8Hashable", "wordWrapWidthPercent"]
+- !private ["Ps8Hashable", "yOffset"]
+- ["Ps8Hashable", ""]
+- !private ["Si", "Stride"]
+- ["Si", "deinit"]
+- !private ["Si", "hashValue"]
+- !private ["Ps7Integer", "Stride"]
+- !private ["Ps7Integer", "hashValue"]
+- !private ["Ps17IntegerArithmetic", "Stride"]
+- !private ["Ps17IntegerArithmetic", "hashValue"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "RawValue"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "_toAnyHashable"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "bothSided"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "bottom"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "bottomInside"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "deinit"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "hashValue"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "init"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "rawValue"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "top"]
+- ["OC16RSFrameworksHook5XAxis13LabelPosition", "topInside"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps10MirrorPath", "Stride"]
+- !private ["Ps10MirrorPath", "hashValue"]
+- ["CSo8NSObject", "Bool"]
+- ["CSo8NSObject", "CGFloat"]
+- ["CSo8NSObject", "Int"]
+- ["CSo8NSObject", "LabelPosition"]
+- ["CSo8NSObject", "avoidFirstLastClippingEnabled"]
+- ["CSo8NSObject", "init"]
+- ["CSo8NSObject", "isAvoidFirstLastClippingEnabled"]
+- ["CSo8NSObject", "isWordWrapEnabled"]
+- ["CSo8NSObject", "labelHeight"]
+- ["CSo8NSObject", "labelPosition"]
+- ["CSo8NSObject", "labelRotatedHeight"]
+- ["CSo8NSObject", "labelRotatedWidth"]
+- ["CSo8NSObject", "labelRotationAngle"]
+- ["CSo8NSObject", "labelWidth"]
+- ["CSo8NSObject", "wordWrapEnabled"]
+- ["CSo8NSObject", "wordWrapWidthPercent"]
+- !private ["CSo8NSObject", "yOffset"]
+- ["PSo16NSObjectProtocol", "CGFloat"]
+- ["PSo16NSObjectProtocol", "LabelPosition"]
+- ["PSo16NSObjectProtocol", "avoidFirstLastClippingEnabled"]
+- ["PSo16NSObjectProtocol", "init"]
+- ["PSo16NSObjectProtocol", "isAvoidFirstLastClippingEnabled"]
+- ["PSo16NSObjectProtocol", "isWordWrapEnabled"]
+- ["PSo16NSObjectProtocol", "labelHeight"]
+- ["PSo16NSObjectProtocol", "labelPosition"]
+- ["PSo16NSObjectProtocol", "labelRotatedHeight"]
+- ["PSo16NSObjectProtocol", "labelRotatedWidth"]
+- ["PSo16NSObjectProtocol", "labelRotationAngle"]
+- ["PSo16NSObjectProtocol", "labelWidth"]
+- ["PSo16NSObjectProtocol", "wordWrapEnabled"]
+- ["PSo16NSObjectProtocol", "wordWrapWidthPercent"]
+- !private ["PSo16NSObjectProtocol", "yOffset"]
+- ["PSo16NSObjectProtocol", ""]
+- !private ["Vs5Range", "deinit"]
+- ["Ps16RawRepresentable", "RawValue"]
+- ["Ps16RawRepresentable", "_toAnyHashable"]
+- ["Ps16RawRepresentable", "hashValue"]
+- ["Ps16RawRepresentable", "init"]
+- ["Ps16RawRepresentable", "rawValue"]
+- ["Ps16RawRepresentable", "top"]
+- ["Ps16RawRepresentable", ""]
+- !private ["Ps13SignedInteger", "Stride"]
+- !private ["Ps13SignedInteger", "hashValue"]
+- !private ["Ps12SignedNumber", "Stride"]
+- !private ["Ps12SignedNumber", "hashValue"]
+- ["Ps12SignedNumber", "init"]
+- !private ["Ps10Strideable", "Stride"]
+- !private ["Ps10Strideable", "hashValue"]
+- ["Ps10Strideable", "init"]
+- ["C16RSFrameworksHook5XAxis", "Bool"]
+- ["C16RSFrameworksHook5XAxis", "CGFloat"]
+- ["C16RSFrameworksHook5XAxis", "Int"]
+- ["C16RSFrameworksHook5XAxis", "LabelPosition"]
+- ["C16RSFrameworksHook5XAxis", "avoidFirstLastClippingEnabled"]
+- ["C16RSFrameworksHook5XAxis", "deinit"]
+- ["C16RSFrameworksHook5XAxis", "init"]
+- ["C16RSFrameworksHook5XAxis", "isAvoidFirstLastClippingEnabled"]
+- ["C16RSFrameworksHook5XAxis", "isWordWrapEnabled"]
+- ["C16RSFrameworksHook5XAxis", "labelHeight"]
+- ["C16RSFrameworksHook5XAxis", "labelPosition"]
+- ["C16RSFrameworksHook5XAxis", "labelRotatedHeight"]
+- ["C16RSFrameworksHook5XAxis", "labelRotatedWidth"]
+- ["C16RSFrameworksHook5XAxis", "labelRotationAngle"]
+- ["C16RSFrameworksHook5XAxis", "labelWidth"]
+- ["C16RSFrameworksHook5XAxis", "wordWrapEnabled"]
+- ["C16RSFrameworksHook5XAxis", "wordWrapWidthPercent"]
+- !private ["C16RSFrameworksHook5XAxis", "yOffset"]
+- ["Ps15_CVarArgAligned", "init"]
+- ["Ps22_CVarArgPassedAsDouble", "init"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps35_ExpressibleByBuiltinIntegerLiteral", "Stride"]
+- !private ["Ps35_ExpressibleByBuiltinIntegerLiteral", "hashValue"]
+- ["Ps9_Hashable", "CGFloat"]
+- ["Ps9_Hashable", "LabelPosition"]
+- ["Ps9_Hashable", "RawValue"]
+- !private ["Ps9_Hashable", "Stride"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- ["Ps9_Hashable", "_toAnyHashable"]
+- ["Ps9_Hashable", "avoidFirstLastClippingEnabled"]
+- ["Ps9_Hashable", "hashValue"]
+- ["Ps9_Hashable", "init"]
+- ["Ps9_Hashable", "isAvoidFirstLastClippingEnabled"]
+- ["Ps9_Hashable", "isWordWrapEnabled"]
+- ["Ps9_Hashable", "labelHeight"]
+- ["Ps9_Hashable", "labelPosition"]
+- ["Ps9_Hashable", "labelRotatedHeight"]
+- ["Ps9_Hashable", "labelRotatedWidth"]
+- ["Ps9_Hashable", "labelRotationAngle"]
+- ["Ps9_Hashable", "labelWidth"]
+- ["Ps9_Hashable", "rawValue"]
+- ["Ps9_Hashable", "top"]
+- ["Ps9_Hashable", "wordWrapEnabled"]
+- ["Ps9_Hashable", "wordWrapWidthPercent"]
+- !private ["Ps9_Hashable", "yOffset"]
+- ["Ps9_Hashable", ""]
+- !private ["Ps14_Incrementable", "Stride"]
+- !private ["Ps14_Incrementable", "hashValue"]
+- !private ["Ps8_Integer", "Stride"]
+- !private ["Ps8_Integer", "hashValue"]
+- !private ["Ps18_IntegerArithmetic", "Stride"]
+- !private ["Ps18_IntegerArithmetic", "hashValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "Stride"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "hashValue"]
+- ["Ps21_ObjectiveCBridgeable", "init"]
+- !private ["Vs26_OptionalNilComparisonType", "deinit"]
+- !private ["Ps14_SignedInteger", "Stride"]
+- !private ["Ps14_SignedInteger", "hashValue"]
+- !private ["Ps11_Strideable", "Stride"]
+- !private ["Ps11_Strideable", "hashValue"]
+- ["Ps11_Strideable", "init"]
+depends-nominal:
+- "Ps16AbsoluteValuable"
+- "Ps9AnyObject"
+- "C16RSFrameworksHook8AxisBase"
+- "Ps19BinaryFloatingPoint"
+- !private "Ps17BitwiseOperations"
+- "Sb"
+- "V12CoreGraphics7CGFloat"
+- "Ps7CVarArg"
+- !private "Vs11ClosedRange"
+- "Ps10Comparable"
+- "C16RSFrameworksHook13ComponentBase"
+- !private "Vs20CountableClosedRange"
+- !private "Vs14CountableRange"
+- "Ps28CustomDebugStringConvertible"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- "Sd"
+- "Ps9Equatable"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- "Ps25ExpressibleByFloatLiteral"
+- "Ps27ExpressibleByIntegerLiteral"
+- "Ps13FloatingPoint"
+- "Ps8Hashable"
+- "Si"
+- !private "Ps7Integer"
+- !private "Ps17IntegerArithmetic"
+- "OC16RSFrameworksHook5XAxis13LabelPosition"
+- !private "Ps25LosslessStringConvertible"
+- !private "Ps10MirrorPath"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- !private "Vs5Range"
+- "Ps16RawRepresentable"
+- !private "Ps13SignedInteger"
+- "Ps12SignedNumber"
+- "Ps10Strideable"
+- "C16RSFrameworksHook5XAxis"
+- "Ps15_CVarArgAligned"
+- "Ps22_CVarArgPassedAsDouble"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- !private "Ps35_ExpressibleByBuiltinIntegerLiteral"
+- "Ps9_Hashable"
+- !private "Ps14_Incrementable"
+- !private "Ps8_Integer"
+- !private "Ps18_IntegerArithmetic"
+- "Ps21_ObjectiveCBridgeable"
+- !private "Vs26_OptionalNilComparisonType"
+- !private "Ps14_SignedInteger"
+- "Ps11_Strideable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Swift.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes-Swift.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitor.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/CommonReportKeys/CommonReportKeys.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/SupervisorProtocols.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/RSFrameworksHook.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreImage.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/PlusPrivacyCommonTypes.swiftmodule/arm.swiftmodule"
+interface-hash: "b12bad3f46eaa2878ceb562e77a9aeaf"

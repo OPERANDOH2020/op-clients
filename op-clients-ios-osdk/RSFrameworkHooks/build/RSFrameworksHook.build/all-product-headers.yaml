@@ -4,7 +4,7 @@
   'roots': [
     {
       'type': 'directory',
-      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/Release-iphonesimulator/RSFrameworksHook.framework/Headers",
+      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/Release-iphoneos/RSFrameworksHook.framework/Headers",
       'contents': [
         {
           'type': 'file',
@@ -34,7 +34,7 @@
         {
           'type': 'file',
           'name': "RSFrameworksHook-Swift.h",
-          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/Release-iphonesimulator/RSFrameworksHook.framework/Headers/RSFrameworksHook-Swift.h"
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/Release-iphoneos/RSFrameworksHook.framework/Headers/RSFrameworksHook-Swift.h"
         },
         {
           'type': 'file',
@@ -50,12 +50,12 @@
     },
     {
       'type': 'directory',
-      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/Release-iphonesimulator/RSFrameworksHook.framework/Modules",
+      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/Release-iphoneos/RSFrameworksHook.framework/Modules",
       'contents': [
         {
           'type': 'file',
           'name': "module.modulemap",
-          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphonesimulator/RSFrameworksHook.build/module.modulemap"
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/module.modulemap"
         }
       ]
     }

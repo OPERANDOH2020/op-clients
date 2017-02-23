@@ -1,0 +1,73 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "CombinedChartDataProvider"
+provides-nominal:
+- "P16RSFrameworksHook25CombinedChartDataProvider"
+provides-member:
+- ["P16RSFrameworksHook25CombinedChartDataProvider", ""]
+provides-dynamic-lookup:
+- "combinedData"
+depends-top-level:
+- "CombinedChartData"
+- "CandleChartDataProvider"
+- "BubbleChartDataProvider"
+- "LineChartDataProvider"
+- "BarChartDataProvider"
+- "CombinedChartDataProvider"
+- "ScatterChartDataProvider"
+depends-member:
+- ["P16RSFrameworksHook20BarChartDataProvider", "CombinedChartData"]
+- ["P16RSFrameworksHook20BarChartDataProvider", "combinedData"]
+- ["P16RSFrameworksHook20BarChartDataProvider", ""]
+- ["P16RSFrameworksHook43BarLineScatterCandleBubbleChartDataProvider", "CombinedChartData"]
+- ["P16RSFrameworksHook43BarLineScatterCandleBubbleChartDataProvider", "combinedData"]
+- ["P16RSFrameworksHook43BarLineScatterCandleBubbleChartDataProvider", ""]
+- ["P16RSFrameworksHook23BubbleChartDataProvider", "CombinedChartData"]
+- ["P16RSFrameworksHook23BubbleChartDataProvider", "combinedData"]
+- ["P16RSFrameworksHook23BubbleChartDataProvider", ""]
+- ["P16RSFrameworksHook23CandleChartDataProvider", "CombinedChartData"]
+- ["P16RSFrameworksHook23CandleChartDataProvider", "combinedData"]
+- ["P16RSFrameworksHook23CandleChartDataProvider", ""]
+- ["P16RSFrameworksHook17ChartDataProvider", "CombinedChartData"]
+- ["P16RSFrameworksHook17ChartDataProvider", "combinedData"]
+- ["P16RSFrameworksHook17ChartDataProvider", ""]
+- ["P16RSFrameworksHook25CombinedChartDataProvider", "CombinedChartData"]
+- ["P16RSFrameworksHook25CombinedChartDataProvider", "combinedData"]
+- ["P16RSFrameworksHook25CombinedChartDataProvider", ""]
+- ["P16RSFrameworksHook21LineChartDataProvider", "CombinedChartData"]
+- ["P16RSFrameworksHook21LineChartDataProvider", "combinedData"]
+- ["P16RSFrameworksHook21LineChartDataProvider", ""]
+- ["P16RSFrameworksHook24ScatterChartDataProvider", "CombinedChartData"]
+- ["P16RSFrameworksHook24ScatterChartDataProvider", "combinedData"]
+- ["P16RSFrameworksHook24ScatterChartDataProvider", ""]
+depends-nominal:
+- "P16RSFrameworksHook20BarChartDataProvider"
+- "P16RSFrameworksHook43BarLineScatterCandleBubbleChartDataProvider"
+- "P16RSFrameworksHook23BubbleChartDataProvider"
+- "P16RSFrameworksHook23CandleChartDataProvider"
+- "P16RSFrameworksHook17ChartDataProvider"
+- "P16RSFrameworksHook25CombinedChartDataProvider"
+- "P16RSFrameworksHook21LineChartDataProvider"
+- "P16RSFrameworksHook24ScatterChartDataProvider"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Swift.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes-Swift.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitor.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/CommonReportKeys/CommonReportKeys.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/SupervisorProtocols.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/RSFrameworksHook.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreImage.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/PlusPrivacyCommonTypes.swiftmodule/arm.swiftmodule"
+interface-hash: "196e0a238ac0341de4e3444d706f445a"

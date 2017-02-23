@@ -58,6 +58,9 @@
             break;
         case 2:
             return self.callbacks.whenChoosingReportsInfo;
+            break;
+        case 3:
+            return self.callbacks.whenChoosingUsageGraphs;
         default:
             break;
     }

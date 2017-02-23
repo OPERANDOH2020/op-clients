@@ -1,0 +1,10 @@
+framework module RSFrameworksHook {
+  umbrella header "RSFrameworksHook.h"
+
+  export *
+  module * { export * }
+}
+
+module RSFrameworksHook.__Swift {
+    exclude header "RSFrameworksHook-Swift.h"
+}

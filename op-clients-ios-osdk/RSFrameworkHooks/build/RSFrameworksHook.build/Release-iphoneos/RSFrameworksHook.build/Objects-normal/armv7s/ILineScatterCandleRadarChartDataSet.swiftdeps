@@ -1,0 +1,65 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ILineScatterCandleRadarChartDataSet"
+provides-nominal:
+- "P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet"
+provides-member:
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", ""]
+provides-dynamic-lookup:
+- "isHorizontalHighlightIndicatorEnabled"
+- "drawVerticalHighlightIndicatorEnabled"
+- "setDrawHighlightIndicators"
+- "isVerticalHighlightIndicatorEnabled"
+- "drawHorizontalHighlightIndicatorEnabled"
+depends-top-level:
+- "ILineScatterCandleRadarChartDataSet"
+- "Bool"
+- "IBarLineScatterCandleBubbleChartDataSet"
+depends-member:
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "Bool"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "drawHorizontalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "drawVerticalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "isHorizontalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "isVerticalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "setDrawHighlightIndicators"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", ""]
+- ["P16RSFrameworksHook13IChartDataSet", "Bool"]
+- ["P16RSFrameworksHook13IChartDataSet", "drawHorizontalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "drawVerticalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "isHorizontalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "isVerticalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "setDrawHighlightIndicators"]
+- ["P16RSFrameworksHook13IChartDataSet", ""]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "Bool"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "drawHorizontalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "drawVerticalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "isHorizontalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "isVerticalHighlightIndicatorEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "setDrawHighlightIndicators"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", ""]
+depends-nominal:
+- "P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet"
+- "P16RSFrameworksHook13IChartDataSet"
+- "P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Swift.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes-Swift.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitor.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/CommonReportKeys/CommonReportKeys.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/SupervisorProtocols.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/RSFrameworksHook.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreImage.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/PlusPrivacyCommonTypes.swiftmodule/arm.swiftmodule"
+interface-hash: "9eb86fbf545b3c46930d729f830768c7"

@@ -1,0 +1,64 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ChartDataProvider"
+provides-nominal:
+- "P16RSFrameworksHook17ChartDataProvider"
+provides-member:
+- ["P16RSFrameworksHook17ChartDataProvider", ""]
+provides-dynamic-lookup:
+- "maxHighlightDistance"
+- "maxVisibleCount"
+- "centerOffsets"
+- "chartXMax"
+- "chartXMin"
+- "data"
+- "chartYMin"
+- "chartYMax"
+- "xRange"
+depends-top-level:
+- "Int"
+- "ChartDataProvider"
+- "CGPoint"
+- "ChartData"
+- "Double"
+- "CGFloat"
+depends-member:
+- ["P16RSFrameworksHook17ChartDataProvider", "CGFloat"]
+- ["P16RSFrameworksHook17ChartDataProvider", "CGPoint"]
+- ["P16RSFrameworksHook17ChartDataProvider", "ChartData"]
+- ["P16RSFrameworksHook17ChartDataProvider", "Double"]
+- ["P16RSFrameworksHook17ChartDataProvider", "Int"]
+- ["P16RSFrameworksHook17ChartDataProvider", "centerOffsets"]
+- ["P16RSFrameworksHook17ChartDataProvider", "chartXMax"]
+- ["P16RSFrameworksHook17ChartDataProvider", "chartXMin"]
+- ["P16RSFrameworksHook17ChartDataProvider", "chartYMax"]
+- ["P16RSFrameworksHook17ChartDataProvider", "chartYMin"]
+- ["P16RSFrameworksHook17ChartDataProvider", "data"]
+- ["P16RSFrameworksHook17ChartDataProvider", "maxHighlightDistance"]
+- ["P16RSFrameworksHook17ChartDataProvider", "maxVisibleCount"]
+- ["P16RSFrameworksHook17ChartDataProvider", "xRange"]
+- ["P16RSFrameworksHook17ChartDataProvider", ""]
+depends-nominal:
+- "P16RSFrameworksHook17ChartDataProvider"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Swift.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes-Swift.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitor.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/CommonReportKeys/CommonReportKeys.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/SupervisorProtocols.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/RSFrameworksHook.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreImage.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/PlusPrivacyCommonTypes.swiftmodule/arm.swiftmodule"
+interface-hash: "bfd86304792d1d77f7ef25f62edb5894"

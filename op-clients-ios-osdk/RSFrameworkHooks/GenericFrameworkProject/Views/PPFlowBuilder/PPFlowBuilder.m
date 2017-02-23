@@ -13,8 +13,8 @@
 #import "UIEncapsulatorViewController.h"
 #import "UISCDViewController.h"
 #import "NSBundle+RSFrameworkHooks.h"
-
-
+#import "UIInputUsageGraphsViewController.h"
+#import "UIInputGraphViewController.h"
 
 @implementation PPFlowBuilderModel
 @end
@@ -68,6 +68,32 @@
         [weakNavgController pushViewController:scdVC animated:true];
     };
     
+    callbacks.whenChoosingUsageGraphs = ^{
+        UIInputUsageGraphsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"UIInputUsageGraphsViewController"];
+        
+        UIInputUsageGraphsCallbacks *cbs = [[UIInputUsageGraphsCallbacks alloc] init];
+        cbs.exitCallback = ^{
+            [weakNavgController popViewControllerAnimated:YES];
+        };
+        
+        cbs.inputTypeSelectedCallback = ^void(NSString* inputType){
+            
+            [model.violationReportsRepository getInputViolationReportsOfInputType:inputType in:^(NSArray<OPMonitorViolationReport *> * _Nullable reports, NSError * _Nullable error) {
+                UIGraphViewController *graphVC = [storyboard instantiateViewControllerWithIdentifier:@"UIGraphViewController"];
+                
+                [graphVC setupWithReports:reports exitCallback:^{
+                    [weakNavgController popViewControllerAnimated:YES];
+                }];
+                
+                [weakNavgController pushViewController:graphVC animated:YES];
+            }];
+            
+        };
+        
+        [vc setupWithRepository:model.violationReportsRepository andCallbacks:cbs];
+        [weakNavgController pushViewController:vc animated:YES];
+    };
+    
     callbacks.whenChoosingOverrideLocation = ^{
         UILocationSettingsViewController *locSettingsVC = [storyboard instantiateViewControllerWithIdentifier:@"UILocationSettingsViewController"];
         [locSettingsVC setupWithModel:model.locationSettingsModel onExit:^{
@@ -76,13 +102,12 @@
         [weakNavgController pushViewController:locSettingsVC animated:YES];
     };
     
+    
+    
     callbacks.whenExiting = model.onExitCallback;
-    
     [optionsVC setupWithCallbacks:callbacks andMonitorSettings:model.monitoringSettings];
-    
     navigationController.automaticallyAdjustsScrollViewInsets = NO;
     navigationController.viewControllers = @[optionsVC];
-    
     return navigationController;
 }
 

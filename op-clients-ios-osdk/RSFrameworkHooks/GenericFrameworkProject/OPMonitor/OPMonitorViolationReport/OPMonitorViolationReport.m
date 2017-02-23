@@ -51,7 +51,9 @@
     }
     
     if (self.violationType == TypeUnregisteredSensorAccessed) {
-        description = [NSString stringWithFormat:@"Accessed unlisted input: %@", self.violationDetails[kInputTypeReportKey]];
+        NSString *inputType = self.violationDetails[kInputTypeReportKey];
+        NSString *inputName = InputType.namesPerInputType[inputType];
+        description = [NSString stringWithFormat:@"Accessed unlisted input: %@", inputName];
     }
     
     return description;

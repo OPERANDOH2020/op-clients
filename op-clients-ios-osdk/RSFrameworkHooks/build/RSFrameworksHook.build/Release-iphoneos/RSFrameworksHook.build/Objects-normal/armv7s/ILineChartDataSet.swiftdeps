@@ -1,0 +1,248 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ILineChartDataSet"
+provides-nominal:
+- "P16RSFrameworksHook17ILineChartDataSet"
+provides-member:
+- ["P16RSFrameworksHook17ILineChartDataSet", ""]
+provides-dynamic-lookup:
+- "resetCircleColors"
+- "getCircleColor"
+- "drawCubicEnabled"
+- "drawCircleHoleEnabled"
+- "lineDashPhase"
+- "cubicIntensity"
+- "fillFormatter"
+- "lineCapType"
+- "circleHoleRadius"
+- "mode"
+- "circleColors"
+- "isDrawCirclesEnabled"
+- "isDrawCircleHoleEnabled"
+- "circleHoleColor"
+- "circleRadius"
+- "isDrawSteppedEnabled"
+- "isDrawCubicEnabled"
+- "drawSteppedEnabled"
+- "lineDashLengths"
+- "drawCirclesEnabled"
+- "setCircleColor"
+depends-top-level:
+- "CGFloat"
+- "LineChartDataSet"
+- "ILineRadarChartDataSet"
+- "Bool"
+- "IFillFormatter"
+- "NSUIColor"
+- "CGLineCap"
+- "Int"
+- "ILineChartDataSet"
+depends-member:
+- ["Ps9AnyObject", "Mode"]
+- ["C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet", "Mode"]
+- ["Ps7CVarArg", "Mode"]
+- ["C16RSFrameworksHook16ChartBaseDataSet", "Mode"]
+- ["C16RSFrameworksHook12ChartDataSet", "Mode"]
+- ["Ps28CustomDebugStringConvertible", "Mode"]
+- ["Ps23CustomStringConvertible", "Mode"]
+- ["Ps9Equatable", "Mode"]
+- ["Ps8Hashable", "Mode"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "Bool"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "CGFloat"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "CGLineCap"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "IFillFormatter"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "Int"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "LineChartDataSet"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "Mode"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "NSUIColor"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "circleColors"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "circleHoleColor"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "circleHoleRadius"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "circleRadius"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "cubicIntensity"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "drawCircleHoleEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "drawCirclesEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "drawCubicEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "drawSteppedEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "fillFormatter"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "getCircleColor"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "isDrawCircleHoleEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "isDrawCirclesEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "isDrawCubicEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "isDrawSteppedEnabled"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "lineCapType"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "lineDashLengths"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "lineDashPhase"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "mode"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "resetCircleColors"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "setCircleColor"]
+- ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", ""]
+- ["P16RSFrameworksHook13IChartDataSet", "Bool"]
+- ["P16RSFrameworksHook13IChartDataSet", "CGFloat"]
+- ["P16RSFrameworksHook13IChartDataSet", "CGLineCap"]
+- ["P16RSFrameworksHook13IChartDataSet", "IFillFormatter"]
+- ["P16RSFrameworksHook13IChartDataSet", "Int"]
+- ["P16RSFrameworksHook13IChartDataSet", "LineChartDataSet"]
+- ["P16RSFrameworksHook13IChartDataSet", "Mode"]
+- ["P16RSFrameworksHook13IChartDataSet", "NSUIColor"]
+- ["P16RSFrameworksHook13IChartDataSet", "circleColors"]
+- ["P16RSFrameworksHook13IChartDataSet", "circleHoleColor"]
+- ["P16RSFrameworksHook13IChartDataSet", "circleHoleRadius"]
+- ["P16RSFrameworksHook13IChartDataSet", "circleRadius"]
+- ["P16RSFrameworksHook13IChartDataSet", "cubicIntensity"]
+- ["P16RSFrameworksHook13IChartDataSet", "drawCircleHoleEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "drawCirclesEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "drawCubicEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "drawSteppedEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "fillFormatter"]
+- ["P16RSFrameworksHook13IChartDataSet", "getCircleColor"]
+- ["P16RSFrameworksHook13IChartDataSet", "isDrawCircleHoleEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "isDrawCirclesEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "isDrawCubicEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "isDrawSteppedEnabled"]
+- ["P16RSFrameworksHook13IChartDataSet", "lineCapType"]
+- ["P16RSFrameworksHook13IChartDataSet", "lineDashLengths"]
+- ["P16RSFrameworksHook13IChartDataSet", "lineDashPhase"]
+- ["P16RSFrameworksHook13IChartDataSet", "mode"]
+- ["P16RSFrameworksHook13IChartDataSet", "resetCircleColors"]
+- ["P16RSFrameworksHook13IChartDataSet", "setCircleColor"]
+- ["P16RSFrameworksHook13IChartDataSet", ""]
+- ["P16RSFrameworksHook17ILineChartDataSet", "Bool"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "CGFloat"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "CGLineCap"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "IFillFormatter"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "Int"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "LineChartDataSet"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "Mode"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "NSUIColor"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "circleColors"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "circleHoleColor"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "circleHoleRadius"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "circleRadius"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "cubicIntensity"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "drawCircleHoleEnabled"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "drawCirclesEnabled"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "drawCubicEnabled"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "drawSteppedEnabled"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "fillFormatter"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "getCircleColor"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "isDrawCircleHoleEnabled"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "isDrawCirclesEnabled"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "isDrawCubicEnabled"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "isDrawSteppedEnabled"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "lineCapType"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "lineDashLengths"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "lineDashPhase"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "mode"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "resetCircleColors"]
+- ["P16RSFrameworksHook17ILineChartDataSet", "setCircleColor"]
+- ["P16RSFrameworksHook17ILineChartDataSet", ""]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "Bool"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "CGFloat"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "CGLineCap"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "IFillFormatter"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "Int"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "LineChartDataSet"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "Mode"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "NSUIColor"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "circleColors"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "circleHoleColor"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "circleHoleRadius"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "circleRadius"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "cubicIntensity"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "drawCircleHoleEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "drawCirclesEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "drawCubicEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "drawSteppedEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "fillFormatter"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "getCircleColor"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "isDrawCircleHoleEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "isDrawCirclesEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "isDrawCubicEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "isDrawSteppedEnabled"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "lineCapType"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "lineDashLengths"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "lineDashPhase"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "mode"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "resetCircleColors"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", "setCircleColor"]
+- ["P16RSFrameworksHook22ILineRadarChartDataSet", ""]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "Bool"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "CGFloat"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "CGLineCap"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "IFillFormatter"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "Int"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "LineChartDataSet"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "Mode"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "NSUIColor"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "circleColors"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "circleHoleColor"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "circleHoleRadius"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "circleRadius"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "cubicIntensity"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "drawCircleHoleEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "drawCirclesEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "drawCubicEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "drawSteppedEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "fillFormatter"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "getCircleColor"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "isDrawCircleHoleEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "isDrawCirclesEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "isDrawCubicEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "isDrawSteppedEnabled"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "lineCapType"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "lineDashLengths"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "lineDashPhase"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "mode"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "resetCircleColors"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", "setCircleColor"]
+- ["P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet", ""]
+- ["C16RSFrameworksHook16LineChartDataSet", "Mode"]
+- ["C16RSFrameworksHook21LineRadarChartDataSet", "Mode"]
+- ["C16RSFrameworksHook34LineScatterCandleRadarChartDataSet", "Mode"]
+- ["CSo8NSObject", "Mode"]
+- ["PSo16NSObjectProtocol", "Mode"]
+- ["Ps9_Hashable", "Mode"]
+depends-nominal:
+- "Ps9AnyObject"
+- "C16RSFrameworksHook38BarLineScatterCandleBubbleChartDataSet"
+- "Ps7CVarArg"
+- "C16RSFrameworksHook16ChartBaseDataSet"
+- "C16RSFrameworksHook12ChartDataSet"
+- "Ps28CustomDebugStringConvertible"
+- "Ps23CustomStringConvertible"
+- "Ps9Equatable"
+- "Ps8Hashable"
+- "P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet"
+- "P16RSFrameworksHook13IChartDataSet"
+- "P16RSFrameworksHook17ILineChartDataSet"
+- "P16RSFrameworksHook22ILineRadarChartDataSet"
+- "P16RSFrameworksHook35ILineScatterCandleRadarChartDataSet"
+- "C16RSFrameworksHook16LineChartDataSet"
+- "C16RSFrameworksHook21LineRadarChartDataSet"
+- "C16RSFrameworksHook34LineScatterCandleRadarChartDataSet"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- "Ps9_Hashable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Swift.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes-Swift.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitor.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/CommonReportKeys/CommonReportKeys.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/SupervisorProtocols.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/RSFrameworksHook.h"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/RSFrameworksHook.build/Release-iphoneos/RSFrameworksHook.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7s/CoreImage.swiftmodule"
+- "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/PlusPrivacyCommonTypes.swiftmodule/arm.swiftmodule"
+interface-hash: "a0125c9b4dfd23d204adb4a00946c865"

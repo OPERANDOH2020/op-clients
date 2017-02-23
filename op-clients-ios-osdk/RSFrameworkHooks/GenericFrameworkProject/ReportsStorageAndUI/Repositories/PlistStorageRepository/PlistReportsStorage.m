@@ -126,6 +126,30 @@ static const NSString *kObjectNotInRepository = @"Object is not in repository";
     
 }
 
+-(void)getInputViolationReportsOfInputType:(NSString *)inputType in:(ReportsCallback)callback {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (OPMonitorViolationReport *report in self.reportsArray) {
+        if ([report.violationDetails[kInputTypeReportKey] isEqualToString:inputType]) {
+            [result addObject:report];
+        }
+    }
+    
+    SAFECALL(callback, result, nil);
+}
+
+
+-(void)getCurrentInputTypesInViolationReportsIn:(InputTypesCallback)callback {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (OPMonitorViolationReport *report in self.reportsArray) {
+        NSString *inputType = nil;
+        if ((inputType = report.violationDetails[kInputTypeReportKey]) && ![result containsObject:inputType]) {
+            [result addObject:inputType];
+        }
+    }
+    
+    SAFECALL(callback, result, nil)
+}
+
 #pragma mark - private methods
 
 
