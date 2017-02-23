@@ -1,4 +1,4 @@
-privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService, $window) {
+privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService, userService, $window) {
 
     $scope.authenticationError = false;
     $scope.requestProcessed = false;
@@ -7,7 +7,7 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
         password: ""
     };
 
-    connectionService.getCurrentUser(function(data){
+    /*connectionService.getCurrentUser(function(data){
         if(data.data && Object.keys(data.data).length>0){
             $scope.userIsLoggedIn = true;
             $scope.currentUser = data.data.email;
@@ -19,19 +19,34 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
             });
         }
         $scope.$apply();
+    });*/
+
+    userService.isAuthenticated(function(isAuthenticated){
+        $scope.userIsLoggedIn = isAuthenticated;
+
+    });
+
+    userService.getUser(function(user){
+        $scope.userIsLoggedIn = true;
+        $scope.currentUser = user.email;
+        $scope.$apply();
     });
 
     $scope.submitLoginForm = function () {
         $scope.requestProcessed = true;
         $scope.authenticationError = false;
-        connectionService.loginUser($scope.user, function (response) {
+        connectionService.loginUser($scope.user, function (user) {
+                userService.setUser(user);
                 $scope.authenticationError = false;
                 $scope.requestProcessed = false;
                 $scope.userIsLoggedIn = true;
-                connectionService.getCurrentUser(function(data){
+
+                $scope.$apply();
+
+                /*userService.getCurrentUser(function(data){
                     $scope.currentUser = data.data.email;
                     $scope.$apply();
-                });
+                });*/
 
             },
             function (error) {
@@ -46,13 +61,12 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
                 $scope.requestProcessed = false;
                 $scope.authenticationError = true;
                 $scope.$apply();
-            })
-    }
+            });
+    };
 
     $scope.goToDashboard = function(){
         messengerService.send("goToDashboard");
-    }
-
+    };
 
     setTimeout(function(){
         var relayResponded = messengerService.extensionIsActive();
@@ -60,11 +74,18 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
             $scope.extension_not_active = true;
             $scope.$apply();
         }
-    }, 500);
+    }, 1000);
 
-
-    messengerService.on("logout", function () {
+    /*messengerService.on("logout", function () {
         $window.location.reload();
-    });
+    });*/
+});
+
+angular.element(document).ready(function() {
+
+    /*var $inj = angular.injector(['sharedService']);
+    var MenuLocatorService = $inj.get('SharedService');
+    MenuLocatorService.setLocation("login");*/
+    angular.bootstrap(document.getElementById('login'), ['plusprivacy']);
 
 });

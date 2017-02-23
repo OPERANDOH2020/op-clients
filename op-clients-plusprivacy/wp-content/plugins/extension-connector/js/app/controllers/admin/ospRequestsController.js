@@ -43,7 +43,6 @@ privacyPlusApp.controller("ospRequestsController", ["$scope", "connectionService
             $scope.$apply();
         });
 
-
         $scope.deleteOSPRequest = function(userId){
 
             (function(userId){
@@ -107,3 +106,13 @@ privacyPlusApp.controller("ospRequestsController", ["$scope", "connectionService
     connectionService.restoreUserSession(restoredSessionSuccessfully, restoredSessionFailed);
 
 }]);
+
+
+angular.element(document).ready(function() {
+
+    /*var $inj = angular.injector(['sharedService']);
+    var MenuLocatorService = $inj.get('SharedService');
+    MenuLocatorService.setLocation("ospRequests");*/
+    angular.bootstrap(document.getElementById('osp-requests'), ['plusprivacy']);
+
+});

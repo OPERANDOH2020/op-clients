@@ -11,7 +11,7 @@
  */
 
 
-privacyPlusApp.service("swarmService",function() {
+angular.module('sharedService').service("swarmService",function() {
 
     var swarmConnection = null;
     var connectCallbacks = [];
@@ -74,7 +74,7 @@ privacyPlusApp.service("swarmService",function() {
 
             swarmConnection = new SwarmClient(host, port, email, sessionId, "chromeBrowserExtension", "restoreSession", securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
             swarmHub.resetConnection(swarmConnection);
-        }
+        };
         removeConnection = function () {
             swarmConnection.logout();
             swarmConnection = null;

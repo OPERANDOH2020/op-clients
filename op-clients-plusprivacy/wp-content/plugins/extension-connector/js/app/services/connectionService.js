@@ -4,225 +4,274 @@ var SERVER_PORT = "8080";
 var GUEST_EMAIL = "guest@operando.eu";
 var GUEST_PASSWORD = "guest";
 
-privacyPlusApp.service("connectionService",function(swarmService, messengerService){
-return {
-    activateUser:function(activationCode, successCallback, failCallback){
-        swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-            "plusprivacy-website", "userLogin", function(){
-            console.log("reconnect cbk");
-            }, function(){
-             console.log("connect cbk");
-            });
+angular.module('sharedService').factory("connectionService",function(swarmService, messengerService) {
 
-        swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
-            swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
-            if (swarm.authenticated) {
-               var  verifyAccountHandler = swarmHub.startSwarm("register.js", "verifyValidationCode", activationCode);
-               verifyAccountHandler.onResponse("success", function (swarm) {
+    var ConnectionService;
+    ConnectionService = (function () {
 
-                    swarmService.removeConnection();
-                    successCallback("success");
+        function ConnectionService() {
 
-                });
-
-                verifyAccountHandler.onResponse("failed", function (swarm) {
-                    swarmService.removeConnection();
-                    failCallback(swarm.error);
-                });
-            }
-        });
-    },
-
-    loginUser:function (user, successCallback, failCallback) {
-        swarmService.initConnection(SERVER_HOST, SERVER_PORT, user.email, user.password,
-            "plusprivacy-website", "userLogin", function(error) {
-            });
-
-        var userLoginSuccess = function (swarm) {
-            swarmHub.off("login.js", "success", userLoginSuccess);
-            if (swarm.authenticated) {
-
-                Cookies.set("sessionId", swarm.meta.sessionId,  { expires: 1 });
-                Cookies.set("userId", swarm.userId,{ expires: 1 });
-
-                messengerService.send("authenticateUserInExtension", {
-                    userId: swarm.userId,
-                    sessionId: swarm.meta.sessionId,
-                    remember: user.remember
-                }, function (status) {
-                    successCallback({status: "success"});
-                });
-            }
-        };
-
-        var loginFailed = function (swarm) {
-            console.log(swarm.error);
-            failCallback(swarm.error);
-            swarmHub.off("login.js", "success",userLoginSuccess);
-            swarmHub.off("login.js", "failed",loginFailed);
-        };
-
-        swarmHub.on("login.js", "success", userLoginSuccess);
-        swarmHub.on('login.js', "failed", loginFailed);
-    },
-
-    getCurrentUser: function(successCbk){
-        messengerService.send("getCurrentUserLoggedInInExtension",function(data){
-            successCbk(data);
-        });
-    },
-
-    registerNewUser: function (user, successCallback, failCallback) {
-        swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-            "plusprivacy-website", "userLogin", function(){
-                console.log("reconnect cbk");
-            }, function(){
-                console.log("connect cbk");
-            });
-
-        swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
-            swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
-            if (swarm.authenticated) {
-                var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
-                registerHandler.onResponse("success", function(swarm){
-                    successCallback("success");
-                    swarmService.removeConnection();
-                });
-
-                registerHandler.onResponse("error", function(swarm){
-                    failCallback(swarm.error);
-                    swarmService.removeConnection();
-                });
-            }
-        });
-    },
-
-    registerNewOSPOrganisation: function (user, successCallback, failCallback) {
-        swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-            "plusprivacy-website", "userLogin", function(){
-                console.log("reconnect cbk");
-            }, function(){
-                console.log("connect cbk");
-            });
-
-        swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
-            swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
-            if (swarm.authenticated) {
-
-                var registerOSPHandler = swarmHub.startSwarm("login.js", "registerNewOSPOrganisation", user);
-                registerOSPHandler.onResponse("success", function (swarm) {
-                    successCallback("success");
-                    swarmService.removeConnection();
-                });
-
-                registerOSPHandler.onResponse("error", function (swarm) {
-                    failCallback(swarm.error);
-                    swarmService.removeConnection();
-                });
-            }
-        });
-    },
-
-    restoreUserSession:function(successCallback, failCallback){
-        var username = Cookies.get("userId");
-        var sessionId = Cookies.get("sessionId");
-        var self = this;
-
-        if (!username || !sessionId) {
-            failCallback();
         }
-        else{
-            swarmService.restoreConnection(SERVER_HOST, SERVER_PORT, username, sessionId, failCallback, failCallback, function(){
-                console.log("reconnect cbk");
-            });
-            swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
-                Cookies.set("sessionId", swarm.meta.sessionId);
-                successCallback();
-                swarmHub.off("login.js", "restoreSucceed",restoredSuccessfully);
-            });
 
-            swarmHub.on('login.js', "restoreFailed", function restoredSuccessfully(swarm) {
+        ConnectionService.prototype.activateUser = function (activationCode, successCallback, failCallback) {
+            swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
+                "plusprivacy-website", "userLogin", function () {
+                    console.log("reconnect cbk");
+                }, function () {
+                    console.log("connect cbk");
+                });
+
+            swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
+                swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
+                if (swarm.authenticated) {
+                    var verifyAccountHandler = swarmHub.startSwarm("register.js", "verifyValidationCode", activationCode);
+                    verifyAccountHandler.onResponse("success", function (swarm) {
+
+                        swarmService.removeConnection();
+                        successCallback("success");
+
+                    });
+
+                    verifyAccountHandler.onResponse("failed", function (swarm) {
+                        swarmService.removeConnection();
+                        failCallback(swarm.error);
+                    });
+                }
+            });
+        };
+
+        ConnectionService.prototype.loginUser = function (user, successCallback, failCallback) {
+
+            var self = this;
+
+            swarmService.initConnection(SERVER_HOST, SERVER_PORT, user.email, user.password,
+                "plusprivacy-website", "userLogin", function (error) {
+                });
+
+            var userLoginSuccess = function (swarm) {
+                swarmHub.off("login.js", "success", userLoginSuccess);
+                if (swarm.authenticated) {
+
+                    Cookies.set("sessionId", swarm.meta.sessionId, {expires: 1});
+                    Cookies.set("userId", swarm.userId, {expires: 1});
+
+                    self.getUser(successCallback);
+
+                    /*messengerService.send("authenticateUserInExtension", {
+                     userId: swarm.userId,
+                     sessionId: swarm.meta.sessionId,
+                     remember: user.remember
+                     }, function (status) {
+                     successCallback({status: "success"});
+                     });*/
+                }
+            };
+
+            var loginFailed = function (swarm) {
+                console.log(swarm.error);
+                failCallback(swarm.error);
+                swarmHub.off("login.js", "success", userLoginSuccess);
+                swarmHub.off("login.js", "failed", loginFailed);
+            };
+
+            swarmHub.on("login.js", "success", userLoginSuccess);
+            swarmHub.on('login.js', "failed", loginFailed);
+        };
+
+
+        ConnectionService.prototype.getUser = function (callback) {
+            var getUserHandler = swarmHub.startSwarm('UserInfo.js', 'info');
+            getUserHandler.onResponse("result", function (swarm) {
+                authenticated = true;
+                user = swarm.result;
+                if (callback) {
+                    callback(user);
+                }
+            });
+        };
+
+        /*used for getting authenticated user in extension*/
+        ConnectionService.prototype.getCurrentUser = function (successCbk) {
+            messengerService.send("getCurrentUserLoggedInInExtension", function (data) {
+                successCbk(data);
+            });
+        };
+
+        ConnectionService.prototype.registerNewUser = function (user, successCallback, failCallback) {
+            swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
+                "plusprivacy-website", "userLogin", function () {
+                    console.log("reconnect cbk");
+                }, function () {
+                    console.log("connect cbk");
+                });
+
+            swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
+                swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
+                if (swarm.authenticated) {
+                    var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
+                    registerHandler.onResponse("success", function (swarm) {
+                        successCallback("success");
+                        swarmService.removeConnection();
+                    });
+
+                    registerHandler.onResponse("error", function (swarm) {
+                        failCallback(swarm.error);
+                        swarmService.removeConnection();
+                    });
+                }
+            });
+        };
+
+        ConnectionService.prototype.restoreUserSession = function (successCallback, failCallback) {
+            var username = Cookies.get("userId");
+            var sessionId = Cookies.get("sessionId");
+            var self = this;
+
+            if (!username || !sessionId) {
                 failCallback();
-                swarmHub.off("login.js", "restoreSucceed",restoredSuccessfully);
+            }
+            else {
+                swarmService.restoreConnection(SERVER_HOST, SERVER_PORT, username, sessionId, failCallback, failCallback, function () {
+                    console.log("reconnect cbk");
+                });
+                swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
+
+                    self.getUser(successCallback);
+
+                    Cookies.set("sessionId", swarm.meta.sessionId);
+                    swarmHub.off("login.js", "restoreSucceed", restoredSuccessfully);
+                });
+
+                swarmHub.on('login.js', "restoreFailed", function restoredSuccessfully(swarm) {
+                    failCallback();
+                    swarmHub.off("login.js", "restoreSucceed", restoredSuccessfully);
+                });
+            }
+        };
+
+        ConnectionService.prototype.logoutCurrentUser = function (callback) {
+            console.log("here");
+            swarmHub.startSwarm("login.js", "logout");
+            swarmHub.on("login.js", "logoutSucceed", function logoutSucceed(swarm) {
+                Cookies.remove("userId");
+                Cookies.remove("sessionId");
+                swarmHub.off("login.js", "logoutSucceed", logoutSucceed);
+                swarmService.removeConnection();
+                if (callback) {
+                    callback();
+                }
             });
-        }
-    },
+        };
 
-    getOspRequests: function(successCallback, failCallback){
+        ConnectionService.prototype.registerNewOSPOrganisation = function (user, successCallback, failCallback) {
+            swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
+                "plusprivacy-website", "userLogin", function () {
+                    console.log("reconnect cbk");
+                }, function () {
+                    console.log("connect cbk");
+                });
 
-        var getRequestsHandler = swarmHub.startSwarm("osp.js", "getRequests");
-        getRequestsHandler.onResponse("success", function(swarm){
-            successCallback(swarm.ospRequests);
-        });
+            swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
+                swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
+                if (swarm.authenticated) {
 
-        getRequestsHandler.onResponse("failed", function(swarm){
-            failCallback(swarm.error);
-        });
-    },
+                    var registerOSPHandler = swarmHub.startSwarm("login.js", "registerNewOSPOrganisation", user);
+                    registerOSPHandler.onResponse("success", function (swarm) {
+                        successCallback("success");
+                        swarmService.removeConnection();
+                    });
 
-    deleteOSPRequest:function(userId, successCallback, failCallback){
-        var getDeleteRequestHandler = swarmHub.startSwarm("osp.js", "removeOSPRequest", userId);
-        getDeleteRequestHandler.onResponse("success", function(swarm){
-            successCallback();
-        });
+                    registerOSPHandler.onResponse("error", function (swarm) {
+                        failCallback(swarm.error);
+                        swarmService.removeConnection();
+                    });
+                }
+            });
+        };
 
-        getDeleteRequestHandler.onResponse("failed", function(swarm){
-            failCallback(swarm.error);
-        });
-    },
+        ConnectionService.prototype.getOspRequests = function (successCallback, failCallback) {
 
-    acceptOSPRequest:function(userId, successCallback, failCallback){
-        var acceptRequestHandler = swarmHub.startSwarm("osp.js","acceptOSPRequest",userId);
-        acceptRequestHandler.onResponse("success", function(swarm){
-            successCallback();
-        });
+            var getRequestsHandler = swarmHub.startSwarm("osp.js", "getRequests");
+            getRequestsHandler.onResponse("success", function (swarm) {
+                successCallback(swarm.ospRequests);
+            });
 
-        acceptRequestHandler.onResponse("failed", function(swarm){
-            failCallback(swarm.error);
-        });
-    },
+            getRequestsHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
 
-    listOSPs:function(successCallback, failCallback){
-        var listOSPsHandler = swarmHub.startSwarm("osp.js","listOSPs");
-        listOSPsHandler.onResponse("success", function(swarm){
-            successCallback(swarm.ospList);
-        });
+        ConnectionService.prototype.deleteOSPRequest = function (userId, successCallback, failCallback) {
+            var getDeleteRequestHandler = swarmHub.startSwarm("osp.js", "removeOSPRequest", userId);
+            getDeleteRequestHandler.onResponse("success", function (swarm) {
+                successCallback();
+            });
 
-        listOSPsHandler.onResponse("failed", function(swarm){
-            failCallback(swarm.error);
-        });
-    },
-    addOspOffer:function(offerDetails, successCallback, failCallback){
-        var addOspOfferHandler = swarmHub.startSwarm("osp.js","addOspOffer",offerDetails);
-        addOspOfferHandler.onResponse("success", function(swarm){
-            successCallback(swarm.offer);
-        });
+            getDeleteRequestHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
 
-        addOspOfferHandler.onResponse("failed", function(swarm){
-            failCallback(swarm.error);
-        });
-    },
-    deleteOspOffer:function(offerId, successCallback, failCallback){
-        var deleteOspOfferHandler = swarmHub.startSwarm("osp.js","deleteOspOffer",offerId);
-        deleteOspOfferHandler.onResponse("success", function(swarm){
-            successCallback();
-        });
+        ConnectionService.prototype.acceptOSPRequest = function (userId, successCallback, failCallback) {
+            var acceptRequestHandler = swarmHub.startSwarm("osp.js", "acceptOSPRequest", userId);
+            acceptRequestHandler.onResponse("success", function (swarm) {
+                successCallback();
+            });
 
-        deleteOspOfferHandler.onResponse("failed", function(swarm){
-            failCallback(swarm.error);
-        });
-    },
+            acceptRequestHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
 
-    listOSPOffers:function(successCallback, failCallback){
-        var listOspOffersHandler = swarmHub.startSwarm("osp.js","listOSPOffers");
-        listOspOffersHandler.onResponse("success", function(swarm){
-            successCallback(swarm.offers);
-        });
+        ConnectionService.prototype.listOSPs = function (successCallback, failCallback) {
+            var listOSPsHandler = swarmHub.startSwarm("osp.js", "listOSPs");
+            listOSPsHandler.onResponse("success", function (swarm) {
+                successCallback(swarm.ospList);
+            });
 
-        listOspOffersHandler.onResponse("failed", function(swarm){
-            failCallback(swarm.error);
-        });
+            listOSPsHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
+        ConnectionService.prototype.addOspOffer = function (offerDetails, successCallback, failCallback) {
+            var addOspOfferHandler = swarmHub.startSwarm("osp.js", "addOspOffer", offerDetails);
+            addOspOfferHandler.onResponse("success", function (swarm) {
+                successCallback(swarm.offer);
+            });
+
+            addOspOfferHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
+        ConnectionService.prototype.deleteOspOffer = function (offerId, successCallback, failCallback) {
+            var deleteOspOfferHandler = swarmHub.startSwarm("osp.js", "deleteOspOffer", offerId);
+            deleteOspOfferHandler.onResponse("success", function (swarm) {
+                successCallback();
+            });
+
+            deleteOspOfferHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
+
+        ConnectionService.prototype.listOSPOffers = function (successCallback, failCallback) {
+            var listOspOffersHandler = swarmHub.startSwarm("osp.js", "listOSPOffers");
+            listOspOffersHandler.onResponse("success", function (swarm) {
+                successCallback(swarm.offers);
+            });
+
+            listOspOffersHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
+        return ConnectionService;
+
+    })();
+
+    if (typeof(window.angularConnectionService) === 'undefined' || window.angularConnectionService === null) {
+        window.angularConnectionService = new ConnectionService();
     }
-}
 
+    return window.angularConnectionService;
 });
+

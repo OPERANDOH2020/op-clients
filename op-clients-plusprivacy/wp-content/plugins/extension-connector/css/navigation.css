@@ -1,4 +1,9 @@
 #site-navigation{
-    width:680px;
+    width:570px;
     float:left;
+}
+
+.dropdown .logged_in_as{
+    white-space: nowrap;
+    padding:10px;
 }

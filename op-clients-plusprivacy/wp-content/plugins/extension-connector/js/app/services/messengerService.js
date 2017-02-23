@@ -1,4 +1,4 @@
-privacyPlusApp.service("messengerService",function(){
+angular.module('sharedService').factory("messengerService",function(){
 
     var callbacks = {};
     var events = {};
@@ -68,13 +68,10 @@ privacyPlusApp.service("messengerService",function(){
 
     });
 
-
-
     window.addEventListener("relayIsDown", function(event){
         relayIsReady = false;
         //alert("Connection is lost!");
     });
-
 
     return {
         send: send,

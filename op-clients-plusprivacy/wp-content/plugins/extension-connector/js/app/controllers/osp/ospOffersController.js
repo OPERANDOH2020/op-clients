@@ -202,16 +202,16 @@ function OspOffersController ($scope, $rootScope, connectionService, DTColumnDef
         });
     };
 
-    connectionService.restoreUserSession(restoredSessionSuccessfully, restoredSessionFailed);
+    //connectionService.restoreUserSession(restoredSessionSuccessfully, restoredSessionFailed);
 };
 
 privacyPlusApp.controller("ospOffersController", OspOffersController);
 
 angular.element(document).ready(function() {
 
-  var $inj = angular.injector(['sharedService']);
+  /*var $inj = angular.injector(['sharedService']);
   var MenuLocatorService = $inj.get('SharedService');
-  MenuLocatorService.setLocation("ospOffers");
+  MenuLocatorService.setLocation("ospOffers");*/
   angular.bootstrap(document.getElementById('osp-offers'), ['plusprivacy']);
 
 });
