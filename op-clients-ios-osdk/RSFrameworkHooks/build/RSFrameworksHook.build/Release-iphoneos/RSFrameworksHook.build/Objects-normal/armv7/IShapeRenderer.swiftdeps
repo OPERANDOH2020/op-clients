@@ -8,13 +8,13 @@ provides-member:
 provides-dynamic-lookup:
 - "renderShape"
 depends-top-level:
-- "NSObjectProtocol"
-- "IShapeRenderer"
-- "ViewPortHandler"
-- "CGPoint"
 - "NSUIColor"
-- "CGContext"
+- "CGPoint"
+- "ViewPortHandler"
 - "IScatterChartDataSet"
+- "IShapeRenderer"
+- "CGContext"
+- "NSObjectProtocol"
 depends-member:
 - ["P16RSFrameworksHook14IShapeRenderer", "CGContext"]
 - ["P16RSFrameworksHook14IShapeRenderer", "CGPoint"]

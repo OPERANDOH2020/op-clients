@@ -7,9 +7,9 @@ provides-member:
 - ["C16RSFrameworksHook35BarLineScatterCandleBubbleChartData", ""]
 provides-dynamic-lookup:
 depends-top-level:
-- "ChartData"
-- "IChartDataSet"
 - "BarLineScatterCandleBubbleChartData"
+- "IChartDataSet"
+- "ChartData"
 depends-member:
 - ["Ps9AnyObject", "init"]
 - ["Ps9AnyObject", ""]

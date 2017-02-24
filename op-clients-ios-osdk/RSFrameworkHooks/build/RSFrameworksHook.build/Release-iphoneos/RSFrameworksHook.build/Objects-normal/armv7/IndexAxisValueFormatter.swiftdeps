@@ -7,22 +7,22 @@ provides-member:
 - ["C16RSFrameworksHook23IndexAxisValueFormatter", ""]
 provides-dynamic-lookup:
 - "values"
-- "with"
 - "stringForValue"
+- "with"
 depends-top-level:
-- "IndexAxisValueFormatter"
-- !private "!="
-- !private "StringLiteralType"
-- "String"
-- !private "||"
+- !private "<"
 - "NSObject"
-- "AssignmentPrecedence"
+- !private "StringLiteralType"
+- !private "!="
 - !private ">="
-- "Double"
-- "IAxisValueFormatter"
+- "IndexAxisValueFormatter"
+- "String"
 - "Int"
 - "AxisBase"
-- !private "<"
+- !private "||"
+- "IAxisValueFormatter"
+- "Double"
+- "AssignmentPrecedence"
 depends-member:
 - !private ["Ps16AbsoluteValuable", "rounded"]
 - !private ["Ps9AnyObject", "IndexAxisValueFormatter"]

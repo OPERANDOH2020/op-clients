@@ -6,22 +6,22 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook17PieChartDataEntry", ""]
 provides-dynamic-lookup:
-- "label"
 - "x"
-- "value"
+- "label"
 - "copyWithZone"
+- "value"
 depends-top-level:
 - "String"
-- "AnyObject"
-- !private "StringLiteralType"
 - "PieChartDataEntry"
 - !private "print"
-- "CastingPrecedence"
+- "NSUIImage"
+- !private "StringLiteralType"
+- "NSZone"
+- "AnyObject"
 - "ChartDataEntry"
 - "AssignmentPrecedence"
+- "CastingPrecedence"
 - "Double"
-- "NSZone"
-- "NSUIImage"
 depends-member:
 - ["Ps9AnyObject", "copyWithZone"]
 - ["Ps9AnyObject", "deinit"]

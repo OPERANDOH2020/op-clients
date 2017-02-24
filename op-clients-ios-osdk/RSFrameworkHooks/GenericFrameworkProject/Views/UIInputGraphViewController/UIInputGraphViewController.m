@@ -7,9 +7,9 @@
 //
 
 #import "UIInputGraphViewController.h"
-#import <RSFrameworksHook/RSFrameworksHook-Swift.h>
 #import "PerSecondReportAggregator.h"
 #import "Common.h"
+#import <RSFrameworksHook/RSFrameworksHook-Swift.h>
 
 @interface UIGraphViewController ()
 
@@ -32,6 +32,7 @@
     
     BarChartData *data = [self createChartDataWithReports:reports inSecondGroupsOf:60];
     self.barChartView.data = data;
+    self.barChartView.descriptionText = @"";
 }
 
 - (void)viewDidLoad {
@@ -73,9 +74,11 @@
         [dataEntries addObject:de];
     }
     
-    BarChartDataSet *ds = [[BarChartDataSet alloc] initWithValues:dataEntries label:@"Groups"];
-    
+    NSString *message = [NSString stringWithFormat:@"Accesses in %ld seconds", (long)seconds];
+    BarChartDataSet *ds = [[BarChartDataSet alloc] initWithValues:dataEntries label:message];
     BarChartData *chartData = [[BarChartData alloc] initWithDataSet:ds];
+    
+    
     
     return chartData;
 }

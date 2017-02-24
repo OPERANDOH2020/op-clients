@@ -6,15 +6,15 @@ provides-nominal:
 provides-member:
 - ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", ""]
 provides-dynamic-lookup:
-- "highlightColor"
+- "highlightLineDashPhase"
 - "highlightLineWidth"
 - "highlightLineDashLengths"
-- "highlightLineDashPhase"
+- "highlightColor"
 depends-top-level:
-- "CGFloat"
+- "NSUIColor"
 - "IBarLineScatterCandleBubbleChartDataSet"
 - "IChartDataSet"
-- "NSUIColor"
+- "CGFloat"
 depends-member:
 - ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "CGFloat"]
 - ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "NSUIColor"]

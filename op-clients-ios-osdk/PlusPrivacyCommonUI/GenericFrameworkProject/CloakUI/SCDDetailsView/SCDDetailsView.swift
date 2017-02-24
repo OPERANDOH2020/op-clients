@@ -89,7 +89,7 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
         
         for i in 0..<self.sectionSources.count {
             let sectionSource = self.sectionSources[i];
-            self.headerModelsPerSection[i] = SCDSectionHeaderModel(name: sectionSource.sectionTitle, expanded: false)
+            self.headerModelsPerSection[i] = SCDSectionHeaderModel(name: sectionSource.sectionTitle, expanded: false, enabled: true)
         }
         
         self.tableView.reloadData()

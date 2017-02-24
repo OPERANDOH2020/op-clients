@@ -6,20 +6,20 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook11Description", ""]
 provides-dynamic-lookup:
-- "font"
-- "text"
-- "textColor"
 - "textAlign"
+- "text"
+- "font"
+- "textColor"
 depends-top-level:
-- "CGPoint"
-- "NSUIFont"
-- "String"
-- "StringLiteralType"
-- "NSUIColor"
 - "NSTextAlignment"
-- "ComponentBase"
-- "AssignmentPrecedence"
+- "StringLiteralType"
+- "CGPoint"
+- "NSUIColor"
+- "String"
 - "Description"
+- "AssignmentPrecedence"
+- "NSUIFont"
+- "ComponentBase"
 depends-member:
 - ["Ps9AnyObject", "NSTextAlignment"]
 - ["Ps9AnyObject", "NSUIColor"]

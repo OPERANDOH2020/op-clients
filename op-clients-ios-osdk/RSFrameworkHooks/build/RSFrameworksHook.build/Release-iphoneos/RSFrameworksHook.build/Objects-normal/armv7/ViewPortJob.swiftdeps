@@ -6,23 +6,23 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook11ViewPortJob", ""]
 provides-dynamic-lookup:
-- "doJob"
 - "viewPortHandler"
-- "view"
-- "transformer"
-- "yValue"
 - "point"
 - "xValue"
+- "transformer"
+- "yValue"
+- "view"
+- "doJob"
 depends-top-level:
+- "NSObject"
 - "ViewPortHandler"
-- "CGPoint"
+- "Double"
+- !private "StringLiteralType"
 - "ViewPortJob"
 - "Transformer"
-- !private "StringLiteralType"
-- "Double"
 - "ChartViewBase"
 - "AssignmentPrecedence"
-- "NSObject"
+- "CGPoint"
 depends-member:
 - ["Ps9AnyObject", "CGPoint"]
 - ["Ps9AnyObject", "doJob"]

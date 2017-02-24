@@ -8,26 +8,26 @@ provides-member:
 - ["C16RSFrameworksHook5XAxis", ""]
 - ["OC16RSFrameworksHook5XAxis13LabelPosition", ""]
 provides-dynamic-lookup:
+- "wordWrapEnabled"
+- "labelRotationAngle"
+- "labelPosition"
+- "wordWrapWidthPercent"
 - "isWordWrapEnabled"
 - "labelWidth"
 - "labelHeight"
-- "labelRotatedHeight"
 - "avoidFirstLastClippingEnabled"
-- "wordWrapEnabled"
 - "isAvoidFirstLastClippingEnabled"
-- "labelPosition"
 - "labelRotatedWidth"
-- "wordWrapWidthPercent"
-- "labelRotationAngle"
+- "labelRotatedHeight"
 depends-top-level:
-- "BooleanLiteralType"
-- "CGFloat"
-- "Int"
-- "XAxis"
+- "AxisBase"
 - !private "~="
 - "=="
 - "AssignmentPrecedence"
-- "AxisBase"
+- "Int"
+- "CGFloat"
+- "XAxis"
+- "BooleanLiteralType"
 - "Bool"
 depends-member:
 - ["Ps16AbsoluteValuable", "init"]

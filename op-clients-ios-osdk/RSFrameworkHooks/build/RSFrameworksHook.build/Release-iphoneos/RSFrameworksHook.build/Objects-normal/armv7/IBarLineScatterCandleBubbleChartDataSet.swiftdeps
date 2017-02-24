@@ -11,10 +11,10 @@ provides-dynamic-lookup:
 - "highlightLineWidth"
 - "highlightLineDashLengths"
 depends-top-level:
-- "NSUIColor"
-- "CGFloat"
 - "IBarLineScatterCandleBubbleChartDataSet"
+- "NSUIColor"
 - "IChartDataSet"
+- "CGFloat"
 depends-member:
 - ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "CGFloat"]
 - ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "NSUIColor"]

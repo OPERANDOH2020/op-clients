@@ -444,7 +444,7 @@
         <!--Graph View Controller-->
         <scene sceneID="xXc-oR-4gm">
             <objects>
-                <viewController storyboardIdentifier="UIGraphViewController" automaticallyAdjustsScrollViewInsets="NO" id="dQO-fv-e1a" customClass="UIGraphViewController" customModule="RSFrameworksHook" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UIGraphViewController" automaticallyAdjustsScrollViewInsets="NO" id="dQO-fv-e1a" customClass="UIGraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="exN-Vi-OOi"/>
                         <viewControllerLayoutGuide type="bottom" id="BAi-tp-Hcv"/>
@@ -467,7 +467,7 @@
                                             <action selector="didPressBackButton:" destination="dQO-fv-e1a" eventType="touchUpInside" id="hre-RR-ezV"/>
                                         </connections>
                                     </button>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IgU-ku-gMC">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="IgU-ku-gMC">
                                         <rect key="frame" x="66" y="28" width="242" height="29"/>
                                         <segments>
                                             <segment title="Seconds"/>
@@ -506,12 +506,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="barChartView" destination="yCK-Og-FE0" id="zcR-uY-drY"/>
+                        <outlet property="barChartView" destination="yCK-Og-FE0" id="Zaz-V6-9iv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Veg-1E-mVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="655"/>
+            <point key="canvasLocation" x="1851" y="888"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Nal-ID-E3f">

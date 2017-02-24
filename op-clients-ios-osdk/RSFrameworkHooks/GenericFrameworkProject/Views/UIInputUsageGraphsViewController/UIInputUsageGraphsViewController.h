@@ -12,7 +12,7 @@
 @interface UIInputUsageGraphsCallbacks : NSObject
 @property (strong, nonatomic) void (^__nullable exitCallback)();
 @property (strong, nonatomic) void (^ __nullable inputTypeSelectedCallback)(NSString* _Nonnull inputType);
-
+@property (strong, nonatomic) void (^ __nullable networkReportsSelectedCallback)(NSArray<OPMonitorViolationReport*>* _Nonnull reportsArray);
 @end
 
 @interface UIInputUsageGraphsViewController : UITableViewController

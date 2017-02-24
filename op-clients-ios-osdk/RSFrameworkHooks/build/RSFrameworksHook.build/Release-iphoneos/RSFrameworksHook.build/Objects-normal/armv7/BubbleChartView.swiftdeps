@@ -6,16 +6,16 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook15BubbleChartView", ""]
 provides-dynamic-lookup:
-- "bubbleData"
 - "initialize"
+- "bubbleData"
 depends-top-level:
-- !private "BubbleChartRenderer"
-- "BarLineChartViewBase"
-- "CastingPrecedence"
-- "AssignmentPrecedence"
-- "BubbleChartData"
 - "BubbleChartDataProvider"
+- "BarLineChartViewBase"
+- !private "BubbleChartRenderer"
+- "BubbleChartData"
 - "BubbleChartView"
+- "AssignmentPrecedence"
+- "CastingPrecedence"
 depends-member:
 - !private ["P16RSFrameworksHook16AnimatorDelegate", "BubbleChartRenderer"]
 - !private ["P16RSFrameworksHook16AnimatorDelegate", "_animator"]

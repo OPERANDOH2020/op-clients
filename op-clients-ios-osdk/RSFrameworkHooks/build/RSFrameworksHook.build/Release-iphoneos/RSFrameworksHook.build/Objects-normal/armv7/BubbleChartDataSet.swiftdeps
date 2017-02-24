@@ -6,27 +6,27 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook18BubbleChartDataSet", ""]
 provides-dynamic-lookup:
-- "copyWithZone"
 - "maxSize"
+- "_maxSize"
+- "copyWithZone"
 - "normalizeSizeEnabled"
-- "isNormalizeSizeEnabled"
 - "calcMinMax"
 - "highlightCircleWidth"
-- "_maxSize"
+- "isNormalizeSizeEnabled"
 depends-top-level:
-- !private "BubbleChartDataEntry"
-- "AssignmentPrecedence"
-- "CastingPrecedence"
-- "IBubbleChartDataSet"
-- "BarLineScatterCandleBubbleChartDataSet"
-- "ChartDataEntry"
 - "Bool"
+- "BarLineScatterCandleBubbleChartDataSet"
+- "BooleanLiteralType"
+- "IBubbleChartDataSet"
+- "NSZone"
+- "AnyObject"
+- "ChartDataEntry"
+- !private "BubbleChartDataEntry"
 - "CGFloat"
 - "BubbleChartDataSet"
-- "AnyObject"
-- "BooleanLiteralType"
-- "NSZone"
 - !private ">"
+- "CastingPrecedence"
+- "AssignmentPrecedence"
 depends-member:
 - ["Ps16AbsoluteValuable", "init"]
 - ["Ps9AnyObject", "CGFloat"]

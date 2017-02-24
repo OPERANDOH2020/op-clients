@@ -6,15 +6,15 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook13ComponentBase", ""]
 provides-dynamic-lookup:
+- "isEnabled"
+- "xOffset"
 - "yOffset"
 - "enabled"
-- "xOffset"
-- "isEnabled"
 depends-top-level:
+- "Bool"
+- "ComponentBase"
 - "BooleanLiteralType"
 - "NSObject"
-- "ComponentBase"
-- "Bool"
 - "CGFloat"
 depends-member:
 - ["Ps16AbsoluteValuable", "init"]

@@ -6,12 +6,12 @@ provides-nominal:
 provides-member:
 - ["P16RSFrameworksHook19IBubbleChartDataSet", ""]
 provides-dynamic-lookup:
-- "isNormalizeSizeEnabled"
 - "highlightCircleWidth"
+- "isNormalizeSizeEnabled"
 - "maxSize"
 depends-top-level:
-- "Bool"
 - "IBarLineScatterCandleBubbleChartDataSet"
+- "Bool"
 - "IBubbleChartDataSet"
 - "CGFloat"
 depends-member:

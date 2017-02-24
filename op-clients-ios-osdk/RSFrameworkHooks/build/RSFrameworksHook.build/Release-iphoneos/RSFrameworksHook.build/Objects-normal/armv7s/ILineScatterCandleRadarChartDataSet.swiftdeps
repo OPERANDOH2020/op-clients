@@ -8,12 +8,12 @@ provides-member:
 provides-dynamic-lookup:
 - "isHorizontalHighlightIndicatorEnabled"
 - "drawVerticalHighlightIndicatorEnabled"
+- "drawHorizontalHighlightIndicatorEnabled"
 - "setDrawHighlightIndicators"
 - "isVerticalHighlightIndicatorEnabled"
-- "drawHorizontalHighlightIndicatorEnabled"
 depends-top-level:
-- "ILineScatterCandleRadarChartDataSet"
 - "Bool"
+- "ILineScatterCandleRadarChartDataSet"
 - "IBarLineScatterCandleBubbleChartDataSet"
 depends-member:
 - ["P16RSFrameworksHook39IBarLineScatterCandleBubbleChartDataSet", "Bool"]

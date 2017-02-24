@@ -76,19 +76,26 @@
             [weakNavgController popViewControllerAnimated:YES];
         };
         
+        void (^displayGraphWithReports)(NSArray<OPMonitorViolationReport*>*) = ^void(NSArray<OPMonitorViolationReport*> *reports){
+            UIGraphViewController *graphVC = [storyboard instantiateViewControllerWithIdentifier:@"UIGraphViewController"];
+            
+            [graphVC setupWithReports:reports exitCallback:^{
+                [weakNavgController popViewControllerAnimated:YES];
+            }];
+            
+            [weakNavgController pushViewController:graphVC animated:YES];
+
+        };
+        
         cbs.inputTypeSelectedCallback = ^void(NSString* inputType){
             
             [model.violationReportsRepository getInputViolationReportsOfInputType:inputType in:^(NSArray<OPMonitorViolationReport *> * _Nullable reports, NSError * _Nullable error) {
-                UIGraphViewController *graphVC = [storyboard instantiateViewControllerWithIdentifier:@"UIGraphViewController"];
-                
-                [graphVC setupWithReports:reports exitCallback:^{
-                    [weakNavgController popViewControllerAnimated:YES];
-                }];
-                
-                [weakNavgController pushViewController:graphVC animated:YES];
+                displayGraphWithReports(reports);
             }];
             
         };
+        
+        cbs.networkReportsSelectedCallback = displayGraphWithReports;
         
         [vc setupWithRepository:model.violationReportsRepository andCallbacks:cbs];
         [weakNavgController pushViewController:vc animated:YES];

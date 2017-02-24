@@ -15,7 +15,7 @@
 
 @interface UIViolationReportsViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber*,NSArray<OPMonitorViolationReport*> *>* reportsArrayPerType;
 
 @property (strong, nonatomic) id<OPViolationReportRepository> repository;
@@ -33,16 +33,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupTableView:self.tableView];
     self.noReportsLabel.hidden = YES;
-    
-    self.currentReportTypes = @[@(TypeAccessedUnlistedURL), @(TypePrivacyLevelViolation),
-                                    @(TypeUnregisteredSensorAccessed), @(TypeAccessFrequencyViolation)];
-    self.reportsArrayPerType = [[NSMutableDictionary alloc] init];
-    self.sectionModels = [UIViolationReportsViewController buildSectionHeaderModelsWithReportTypes:self.currentReportTypes];
+    self.sectionModels = @[];
+    [self setupTableView:self.tableView];
 }
 
-+(NSArray<SCDSectionHeaderModel*>*)buildSectionHeaderModelsWithReportTypes:(NSArray*)reportTypes {
++(NSArray<SCDSectionHeaderModel*>*)buildSectionHeaderModelsWithDisplayedTypes:(NSArray*)displayedTypes crossCheckingWithAvailableTypes:(NSArray<NSNumber*>*)availableTypes{
+    
+
     NSDictionary* nameForType = @{
                          @(TypeAccessedUnlistedURL) : @"Access unlisted url",
                          @(TypePrivacyLevelViolation): @"Privacy level violation",
@@ -54,8 +52,8 @@
     
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    for (NSNumber *reportType in reportTypes) {
-        SCDSectionHeaderModel *headerModel = [[SCDSectionHeaderModel alloc] initWithName:nameForType[reportType] expanded:NO];
+    for (NSNumber *reportType in displayedTypes) {
+        SCDSectionHeaderModel *headerModel = [[SCDSectionHeaderModel alloc] initWithName:nameForType[reportType] expanded:NO enabled:[availableTypes containsObject:reportType]];
         
         [result addObject:headerModel];
     }
@@ -65,14 +63,23 @@
 
 -(void)setupWithRepository:(id<OPViolationReportRepository>)repository onExit:(void (^)())exitCallback{
     
+    [self view];
     self.repository = repository;
     self.exitCallback = exitCallback;
+    self.currentReportTypes = @[@(TypeAccessedUnlistedURL), @(TypePrivacyLevelViolation),
+                                @(TypeUnregisteredSensorAccessed), @(TypeAccessFrequencyViolation)];
+    self.reportsArrayPerType = [[NSMutableDictionary alloc] init];
     
-    
-    [self view];
+    [repository getTypesOfReportsIn:^(NSArray<NSNumber *> * _Nullable reportTypes, NSError * _Nullable error) {
+        
+        self.sectionModels = [UIViolationReportsViewController buildSectionHeaderModelsWithDisplayedTypes:self.currentReportTypes crossCheckingWithAvailableTypes:reportTypes];
+        
+        [self.tableView reloadData];
+        
+    }];
 }
 
-#pragma mark - 
+#pragma mark -
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
@@ -92,7 +99,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.sectionModels.count;
+    return 0;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

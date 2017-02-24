@@ -6,27 +6,27 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook25DefaultAxisValueFormatter", ""]
 provides-dynamic-lookup:
-- "hasAutoDecimals"
 - "block"
-- "with"
-- "stringForValue"
+- "hasAutoDecimals"
 - "formatter"
+- "stringForValue"
+- "with"
 depends-top-level:
-- !private "!="
-- "BooleanLiteralType"
+- "String"
+- "NSObject"
 - "DefaultAxisValueFormatter"
-- !private "StringLiteralType"
-- "Int"
-- "Bool"
 - !private "NSNumber"
+- !private "!="
+- "Bool"
+- !private "StringLiteralType"
+- "BooleanLiteralType"
 - !private "??"
+- "Int"
+- "IAxisValueFormatter"
+- "AxisBase"
 - "NumberFormatter"
 - "AssignmentPrecedence"
 - "Double"
-- "String"
-- "NSObject"
-- "IAxisValueFormatter"
-- "AxisBase"
 depends-member:
 - !private ["Ps9AnyObject", "DefaultAxisValueFormatter"]
 - !private ["Ps9AnyObject", "NSNumber"]

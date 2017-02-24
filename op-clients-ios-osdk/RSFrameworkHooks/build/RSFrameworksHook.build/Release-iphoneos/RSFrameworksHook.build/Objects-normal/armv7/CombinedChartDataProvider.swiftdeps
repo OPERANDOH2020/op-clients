@@ -12,9 +12,9 @@ depends-top-level:
 - "CandleChartDataProvider"
 - "BubbleChartDataProvider"
 - "ScatterChartDataProvider"
+- "BarChartDataProvider"
 - "CombinedChartDataProvider"
 - "CombinedChartData"
-- "BarChartDataProvider"
 depends-member:
 - ["P16RSFrameworksHook20BarChartDataProvider", "CombinedChartData"]
 - ["P16RSFrameworksHook20BarChartDataProvider", "combinedData"]

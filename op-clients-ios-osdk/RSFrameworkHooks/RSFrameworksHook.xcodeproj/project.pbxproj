@@ -230,7 +230,6 @@
 		98CEF3AC1E5F3064002C2145 /* PerSecondReportAggregator.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CEF3AA1E5F3064002C2145 /* PerSecondReportAggregator.m */; };
 		98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603E21E2F800B00E59A42 /* OPMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603E31E2F800B00E59A42 /* OPMonitor.m */; };
-		98E705641E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E705631E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework */; };
 		98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */; };
 		98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */; };
 		98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */; };
@@ -240,6 +239,7 @@
 		98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */; };
 		98ECE4811E424AC80042A262 /* ContactsInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */; };
 		98ECE4821E424AC80042A262 /* ContactsInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */; };
+		98FDA6621E607EB700EE878F /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FDA6611E607EB700EE878F /* PlusPrivacyCommonUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -458,7 +458,6 @@
 		98CEF3AA1E5F3064002C2145 /* PerSecondReportAggregator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PerSecondReportAggregator.m; path = Models/Aggregators/PerSecondReportAggregator/PerSecondReportAggregator.m; sourceTree = "<group>"; };
 		98D603E21E2F800B00E59A42 /* OPMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitor.h; path = OPMonitor/OPMonitor.h; sourceTree = "<group>"; };
 		98D603E31E2F800B00E59A42 /* OPMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitor.m; path = OPMonitor/OPMonitor.m; sourceTree = "<group>"; };
-		98E705631E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchIdSupervisor.h; path = TouchIdSupervisor/TouchIdSupervisor.h; sourceTree = "<group>"; };
 		98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchIdSupervisor.m; path = TouchIdSupervisor/TouchIdSupervisor.m; sourceTree = "<group>"; };
@@ -468,6 +467,7 @@
 		98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MicrophoneInputSupervisor.m; path = MicrophoneInputSupervisor/MicrophoneInputSupervisor.m; sourceTree = "<group>"; };
 		98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsInputSupervisor.h; path = ContactsInputSupervisor/ContactsInputSupervisor.h; sourceTree = "<group>"; };
 		98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsInputSupervisor.m; path = ContactsInputSupervisor/ContactsInputSupervisor.m; sourceTree = "<group>"; };
+		98FDA6611E607EB700EE878F /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PlusPrivacyCommonUI.framework; path = Charts/PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,7 +475,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98E705641E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework in Frameworks */,
+				98FDA6621E607EB700EE878F /* PlusPrivacyCommonUI.framework in Frameworks */,
 				98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -842,7 +842,7 @@
 			isa = PBXGroup;
 			children = (
 				98CEF2831E5F1B24002C2145 /* Charts */,
-				98E705631E5D8FC700C7A8DA /* PlusPrivacyCommonUI.framework */,
+				98FDA6611E607EB700EE878F /* PlusPrivacyCommonUI.framework */,
 				98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */,
 			);
 			name = "Frameworks+Libraries";
@@ -1577,6 +1577,7 @@
 		98584F431D3F9E18009FB89F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1629,6 +1630,7 @@
 		98584F441D3F9E18009FB89F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1682,6 +1684,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GenericFrameworkProject",
 					"$(PROJECT_DIR)/GenericFrameworkProject/SPUserResizableView",
+					"$(PROJECT_DIR)/GenericFrameworkProject/Charts",
 				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1705,6 +1708,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GenericFrameworkProject",
 					"$(PROJECT_DIR)/GenericFrameworkProject/SPUserResizableView",
+					"$(PROJECT_DIR)/GenericFrameworkProject/Charts",
 				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

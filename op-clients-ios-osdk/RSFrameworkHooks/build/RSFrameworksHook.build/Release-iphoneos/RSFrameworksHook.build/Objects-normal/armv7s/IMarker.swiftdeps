@@ -6,17 +6,17 @@ provides-nominal:
 provides-member:
 - ["P16RSFrameworksHook7IMarker", ""]
 provides-dynamic-lookup:
-- "draw"
-- "offset"
 - "refreshContent"
+- "offset"
 - "offsetForDrawing"
+- "draw"
 depends-top-level:
 - "ChartDataEntry"
-- "CGPoint"
-- "Highlight"
-- "NSObjectProtocol"
-- "IMarker"
 - "CGContext"
+- "CGPoint"
+- "IMarker"
+- "NSObjectProtocol"
+- "Highlight"
 depends-member:
 - ["P16RSFrameworksHook7IMarker", "CGContext"]
 - ["P16RSFrameworksHook7IMarker", "CGPoint"]

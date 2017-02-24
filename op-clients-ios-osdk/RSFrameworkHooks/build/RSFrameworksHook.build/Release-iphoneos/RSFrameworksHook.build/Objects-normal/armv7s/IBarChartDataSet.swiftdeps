@@ -6,21 +6,21 @@ provides-nominal:
 provides-member:
 - ["P16RSFrameworksHook16IBarChartDataSet", ""]
 provides-dynamic-lookup:
-- "highlightAlpha"
-- "barBorderWidth"
 - "isStacked"
-- "stackSize"
 - "stackLabels"
+- "stackSize"
 - "barShadowColor"
 - "barBorderColor"
+- "highlightAlpha"
+- "barBorderWidth"
 depends-top-level:
 - "Int"
-- "NSUIColor"
-- "IBarChartDataSet"
 - "IBarLineScatterCandleBubbleChartDataSet"
-- "Bool"
+- "IBarChartDataSet"
+- "NSUIColor"
 - "CGFloat"
 - "String"
+- "Bool"
 depends-member:
 - ["P16RSFrameworksHook16IBarChartDataSet", "Bool"]
 - ["P16RSFrameworksHook16IBarChartDataSet", "CGFloat"]

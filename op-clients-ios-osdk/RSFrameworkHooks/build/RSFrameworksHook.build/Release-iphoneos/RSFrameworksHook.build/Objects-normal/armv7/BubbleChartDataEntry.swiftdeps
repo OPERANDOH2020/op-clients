@@ -9,16 +9,16 @@ provides-dynamic-lookup:
 - "size"
 - "copyWithZone"
 depends-top-level:
-- "Double"
 - "NSUIImage"
-- "BubbleChartDataEntry"
 - !private "StringLiteralType"
-- "CastingPrecedence"
-- "AssignmentPrecedence"
+- "ChartDataEntry"
 - "NSZone"
 - "AnyObject"
+- "BubbleChartDataEntry"
 - "CGFloat"
-- "ChartDataEntry"
+- "AssignmentPrecedence"
+- "Double"
+- "CastingPrecedence"
 depends-member:
 - ["Ps16AbsoluteValuable", "init"]
 - ["Ps9AnyObject", "CGFloat"]

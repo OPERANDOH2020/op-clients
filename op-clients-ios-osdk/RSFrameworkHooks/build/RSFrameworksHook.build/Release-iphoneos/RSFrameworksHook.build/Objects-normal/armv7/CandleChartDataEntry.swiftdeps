@@ -6,28 +6,28 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook20CandleChartDataEntry", ""]
 provides-dynamic-lookup:
-- "shadowRange"
 - "close"
+- "shadowRange"
 - "y"
-- "bodyRange"
 - "copyWithZone"
-- "high"
 - "low"
 - "open"
+- "high"
+- "bodyRange"
 depends-top-level:
-- "NSZone"
-- "Double"
-- !private "abs"
-- !private "+"
-- !private "StringLiteralType"
-- !private "-"
 - "NSUIImage"
+- !private "StringLiteralType"
 - !private "/"
+- "NSZone"
+- !private "abs"
+- !private "-"
 - "AnyObject"
-- "CastingPrecedence"
-- "AssignmentPrecedence"
-- "CandleChartDataEntry"
 - "ChartDataEntry"
+- !private "+"
+- "CandleChartDataEntry"
+- "AssignmentPrecedence"
+- "CastingPrecedence"
+- "Double"
 depends-member:
 - ["Ps16AbsoluteValuable", "init"]
 - ["Ps9AnyObject", "Double"]

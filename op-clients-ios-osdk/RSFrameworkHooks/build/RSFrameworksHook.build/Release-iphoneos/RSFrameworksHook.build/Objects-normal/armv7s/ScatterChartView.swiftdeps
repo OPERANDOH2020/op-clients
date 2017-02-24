@@ -6,16 +6,16 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook16ScatterChartView", ""]
 provides-dynamic-lookup:
-- "scatterData"
 - "initialize"
+- "scatterData"
 depends-top-level:
+- "ScatterChartView"
+- !private "ScatterChartRenderer"
+- "BarLineChartViewBase"
 - "ScatterChartDataProvider"
 - "AssignmentPrecedence"
 - "CastingPrecedence"
 - "ScatterChartData"
-- !private "ScatterChartRenderer"
-- "BarLineChartViewBase"
-- "ScatterChartView"
 depends-member:
 - !private ["P16RSFrameworksHook16AnimatorDelegate", "ScatterChartRenderer"]
 - !private ["P16RSFrameworksHook16AnimatorDelegate", "_animator"]

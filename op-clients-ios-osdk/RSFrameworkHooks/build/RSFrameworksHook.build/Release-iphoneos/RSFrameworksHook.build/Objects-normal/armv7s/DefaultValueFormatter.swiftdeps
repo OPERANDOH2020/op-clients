@@ -6,28 +6,28 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook21DefaultValueFormatter", ""]
 provides-dynamic-lookup:
-- "with"
 - "formatter"
-- "block"
-- "stringForValue"
 - "hasAutoDecimals"
+- "stringForValue"
+- "with"
+- "block"
 depends-top-level:
-- "AssignmentPrecedence"
-- "ViewPortHandler"
-- "DefaultValueFormatter"
-- "Int"
-- "Double"
-- "NumberFormatter"
-- "IValueFormatter"
 - !private "NSNumber"
-- !private "!="
-- "Bool"
-- "BooleanLiteralType"
 - "NSObject"
-- "ChartDataEntry"
+- "Double"
+- "ViewPortHandler"
 - !private "StringLiteralType"
+- "Int"
+- "BooleanLiteralType"
+- !private "!="
+- "DefaultValueFormatter"
 - !private "??"
+- "IValueFormatter"
+- "NumberFormatter"
 - "String"
+- "Bool"
+- "ChartDataEntry"
+- "AssignmentPrecedence"
 depends-member:
 - !private ["Ps9AnyObject", "DefaultValueFormatter"]
 - !private ["Ps9AnyObject", "NSNumber"]

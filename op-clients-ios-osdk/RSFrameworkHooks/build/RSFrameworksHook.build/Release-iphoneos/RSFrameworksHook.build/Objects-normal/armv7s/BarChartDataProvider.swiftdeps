@@ -6,13 +6,13 @@ provides-nominal:
 provides-member:
 - ["P16RSFrameworksHook20BarChartDataProvider", ""]
 provides-dynamic-lookup:
-- "barData"
-- "isDrawValueAboveBarEnabled"
 - "isDrawBarShadowEnabled"
+- "barData"
 - "isHighlightFullBarEnabled"
+- "isDrawValueAboveBarEnabled"
 depends-top-level:
-- "BarLineScatterCandleBubbleChartDataProvider"
 - "Bool"
+- "BarLineScatterCandleBubbleChartDataProvider"
 - "BarChartData"
 - "BarChartDataProvider"
 depends-member:

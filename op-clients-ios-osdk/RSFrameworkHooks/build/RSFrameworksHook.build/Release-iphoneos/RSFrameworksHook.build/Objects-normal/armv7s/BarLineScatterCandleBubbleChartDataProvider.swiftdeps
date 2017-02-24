@@ -6,17 +6,17 @@ provides-nominal:
 provides-member:
 - ["P16RSFrameworksHook43BarLineScatterCandleBubbleChartDataProvider", ""]
 provides-dynamic-lookup:
-- "lowestVisibleX"
+- "isInverted"
 - "highestVisibleX"
 - "getTransformer"
-- "isInverted"
+- "lowestVisibleX"
 depends-top-level:
 - "ChartDataProvider"
-- "Bool"
 - "Transformer"
 - "Double"
-- "BarLineScatterCandleBubbleChartDataProvider"
 - "YAxis"
+- "Bool"
+- "BarLineScatterCandleBubbleChartDataProvider"
 depends-member:
 - ["Ps9AnyObject", "AxisDependency"]
 - ["C16RSFrameworksHook8AxisBase", "AxisDependency"]

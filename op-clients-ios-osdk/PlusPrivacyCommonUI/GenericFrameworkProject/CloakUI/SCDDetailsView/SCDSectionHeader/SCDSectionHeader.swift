@@ -12,12 +12,14 @@ import UIKit
 @objc
 public class SCDSectionHeaderModel: NSObject {
     
+    public let enabled: Bool
     public let name: String
     public var expanded: Bool
     
-    public init(name: String, expanded: Bool) {
-        self.name = name
+    public init(name: String, expanded: Bool, enabled: Bool) {
+        self.name = name;
         self.expanded = expanded;
+        self.enabled = enabled;
     }
 }
 
@@ -53,6 +55,12 @@ public class SCDSectionHeader: PPNibDesignableView {
         self.model = model
         self.sectionTitleLabel.text = model?.name
         self.expandContractButton.isSelected = model?.expanded ?? false
+        
+        if let enabled = model?.enabled, enabled {
+            self.expandContractButton.alpha = 0.6;
+        } else {
+            self.expandContractButton.alpha = 1.0;
+        }
     }
     
     

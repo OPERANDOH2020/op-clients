@@ -8,10 +8,10 @@ provides-member:
 provides-dynamic-lookup:
 - "getFillLinePosition"
 depends-top-level:
-- "IFillFormatter"
-- "ILineChartDataSet"
-- "LineChartDataProvider"
 - "CGFloat"
+- "LineChartDataProvider"
+- "ILineChartDataSet"
+- "IFillFormatter"
 depends-member:
 - ["P16RSFrameworksHook14IFillFormatter", "CGFloat"]
 - ["P16RSFrameworksHook14IFillFormatter", "ILineChartDataSet"]

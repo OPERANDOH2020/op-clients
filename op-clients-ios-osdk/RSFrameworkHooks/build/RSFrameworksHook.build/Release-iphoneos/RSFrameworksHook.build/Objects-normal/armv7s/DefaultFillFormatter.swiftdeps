@@ -6,24 +6,24 @@ provides-nominal:
 provides-member:
 - ["C16RSFrameworksHook20DefaultFillFormatter", ""]
 provides-dynamic-lookup:
-- "with"
 - "block"
 - "getFillLinePosition"
+- "with"
 depends-top-level:
-- "IFillFormatter"
-- "AssignmentPrecedence"
-- !private ">"
-- "ILineChartDataSet"
-- "TernaryPrecedence"
-- "CGFloat"
-- !private "Double"
-- !private ">="
-- "NSObject"
-- !private "&&"
-- !private "<"
-- !private "!="
 - "DefaultFillFormatter"
+- !private "&&"
+- !private "!="
+- !private ">="
+- "TernaryPrecedence"
 - "LineChartDataProvider"
+- "ILineChartDataSet"
+- !private "Double"
+- "IFillFormatter"
+- !private "<"
+- "CGFloat"
+- "AssignmentPrecedence"
+- "NSObject"
+- !private ">"
 depends-member:
 - !private ["Ps16AbsoluteValuable", "init"]
 - !private ["Ps9AnyObject", "CGFloat"]
