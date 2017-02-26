@@ -57,9 +57,9 @@ public class SCDSectionHeader: PPNibDesignableView {
         self.expandContractButton.isSelected = model?.expanded ?? false
         
         if let enabled = model?.enabled, enabled {
-            self.expandContractButton.alpha = 0.6;
-        } else {
             self.expandContractButton.alpha = 1.0;
+        } else {
+            self.expandContractButton.alpha = 0.6;
         }
     }
     

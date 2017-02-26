@@ -62,6 +62,14 @@
     return sections;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0 && self.unregisterdURLReports.count) {
+        return @"Network";
+    }
+    
+    return @"Sensors & Other input";
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0 && self.unregisterdURLReports.count) {
         return 1;

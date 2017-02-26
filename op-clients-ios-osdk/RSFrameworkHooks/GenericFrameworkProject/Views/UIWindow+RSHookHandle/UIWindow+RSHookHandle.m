@@ -13,7 +13,7 @@
 @implementation UIWindow(rsHookHandle)
 
 static UIButton *handle = nil;
-
+static NSTimer *repositionHandleTimer = nil;
 
 +(void)load {
     [self jr_swizzleMethod:@selector(addSubview:) withMethod:@selector(rsHook_addSubview:) error:nil];
@@ -27,21 +27,24 @@ static UIButton *handle = nil;
     dispatch_once(&onceToken, ^{
         handle = [[OPMonitor sharedInstance] getHandle];
         [handle addTarget:self action:@selector(rsHookdragMoving:withEvent:) forControlEvents:UIControlEventTouchDragInside];
+        
+        NSBlockOperation *blockOperation = [NSBlockOperation blockOperationWithBlock:^{
+            if ([self.subviews containsObject:handle]) {
+                [self bringSubviewToFront:handle];
+            } else {
+                [self rsHook_addSubview:handle];
+            }
+        }];
+        
+
+        
+        repositionHandleTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:blockOperation selector:@selector(main) userInfo:nil repeats:YES];
     });
     
     [self rsHook_addSubview:view];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        if ([self.subviews containsObject:handle]) {
-            [self bringSubviewToFront:handle];
-        } else {
-            [self rsHook_addSubview:handle];
-        }
-    });
-    
-    
 }
+
 
 - (void)rsHookdragMoving: (UIControl *) c withEvent:ev
 {
