@@ -40,6 +40,10 @@
     }
 }
 
+-(void)processPhotoLibraryAccess {
+    [self processCameraAccess];
+}
+
 -(OPMonitorViolationReport*)detectUnregisteredAccess {
     if (self.cameraSensor) {
         return nil;

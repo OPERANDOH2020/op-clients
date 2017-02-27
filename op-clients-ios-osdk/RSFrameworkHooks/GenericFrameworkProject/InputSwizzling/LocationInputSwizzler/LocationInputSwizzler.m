@@ -13,7 +13,9 @@
 
 
 
-
+@interface CLLocationManager(LocationInputSwizzler)
+-(void)ppLocSwizzling_setDelegate:(id<CLLocationManagerDelegate>)delegate;
+@end
 
 
 
@@ -21,23 +23,16 @@
 
 @interface WeakDelegateHolder : NSObject
 @property (weak, nonatomic) id<CLLocationManagerDelegate> delegate;
-@property (strong, nonatomic) void (^whenDelegateSetToNil)();
 @end
 
 @implementation WeakDelegateHolder
--(void)setDelegate:(id<CLLocationManagerDelegate>)delegate {
-    _delegate = delegate;
-    if (!delegate) {
-        SAFECALL(self.whenDelegateSetToNil)
-    }
-}
 @end
 
 #pragma mark -
 
 @interface LocationInputSwizzler() <CLLocationManagerDelegate>
 @property (strong, nonatomic) LocationInputSwizzlerSettings *currentSettings;
-@property (strong, nonatomic) NSMutableArray<WeakDelegateHolder*> *delegateHolders;
+@property (strong, nonatomic) NSMutableDictionary<NSNumber*, WeakDelegateHolder*> *delegatePerInstance;
 @end
 
 
@@ -55,9 +50,9 @@
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.delegateHolders = [[NSMutableArray alloc] init];
+        self.delegatePerInstance = [[NSMutableDictionary alloc] init];
     }
-    
+
     return self;
 }
 
@@ -75,18 +70,18 @@
 
 -(void)didAskToSetDelegate:(id<CLLocationManagerDelegate>)delegate onInstance:(CLLocationManager*)instance {
     
-    instance.delegate = self;
+    if (delegate == nil) {
+        self.delegatePerInstance[@(instance.hash)] = nil;
+        [instance ppLocSwizzling_setDelegate: nil];
+        return;
+    }
     
-    __weak typeof(self) weakSelf = self;
+    [instance ppLocSwizzling_setDelegate:self];
+    
     WeakDelegateHolder *newHolder = [[WeakDelegateHolder alloc] init];
-    __weak WeakDelegateHolder *weakHolder = newHolder;
-    
     newHolder.delegate = delegate;
-    newHolder.whenDelegateSetToNil = ^{
-        [weakSelf.delegateHolders removeObject:weakHolder];
-    };
     
-    [self.delegateHolders addObject:newHolder];
+    [self.delegatePerInstance setObject:newHolder forKey:@(instance.hash)];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
@@ -98,16 +93,12 @@
         locationsForDelegates = locations;
     }
     
-    for (WeakDelegateHolder *delegateHolder in self.delegateHolders) {
-        [delegateHolder.delegate locationManager:manager didUpdateLocations:locationsForDelegates];
-    }
+    WeakDelegateHolder *holder  = self.delegatePerInstance[@(manager.hash)];
+    [holder.delegate locationManager:manager didUpdateLocations:locationsForDelegates];
 }
 
 @end
 
-
-@interface CLLocationManager(LocationInputSwizzler)
-@end
 
 @implementation CLLocationManager(LocationInputSwizzler)
 
@@ -120,10 +111,6 @@
 }
 
 -(void)ppLocSwizzling_setDelegate:(id<CLLocationManagerDelegate>)delegate {
-    if ([delegate isKindOfClass:[LocationInputSwizzler class]]) {
-        [self ppLocSwizzling_setDelegate:delegate];
-        return;
-    }
     [[LocationInputSwizzler sharedInstance] didAskToSetDelegate:delegate onInstance:self];
 }
 

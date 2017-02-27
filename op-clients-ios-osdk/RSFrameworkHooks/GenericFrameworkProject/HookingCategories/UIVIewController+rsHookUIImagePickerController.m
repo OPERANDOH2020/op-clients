@@ -14,34 +14,37 @@
 #import "CommonUtils.h"
 #import "JRSwizzle.h"
 
-@interface UIViewController(rsHook_UIImagePickerController)
+@interface UIImagePickerController(rsHook_UIImagePickerController)
 
 @end
 
-@implementation UIViewController(rsHook_UIImagePickerController)
+@implementation UIImagePickerController(rsHook_UIImagePickerController)
 
 
 +(void)load {
     
-    [self jr_swizzleMethod:@selector(presentViewController:animated:completion:) withMethod:@selector(rsHookUIImagePickerController_presentViewController:animated:completion:) error:nil];
+    [self jr_swizzleMethod:@selector(setSourceType:) withMethod:@selector(rsHookUIImagePickerController_setSourceType:) error:nil];
     
 }
 
-
--(void)rsHookUIImagePickerController_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion{
+-(void)rsHookUIImagePickerController_setSourceType:(UIImagePickerControllerSourceType)sourceType {
     
-    Class pickerClass = [UIImagePickerController class];
+    NSLog(@"In UIImagePickerController setSourceType");
+    CameraInputSupervisor *supervisor = [[self class] cameraInputSupervisor];
     
-    if ([viewControllerToPresent isKindOfClass:pickerClass]) {
-        UIImagePickerController *pickerVC = (UIImagePickerController*)
-        viewControllerToPresent;
-        
-        if (pickerVC.sourceType == UIImagePickerControllerSourceTypeCamera) {
-            [[UIViewController cameraInputSupervisor] processCameraAccess];
-        }
+    
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        [supervisor processCameraAccess];
+        NSLog(@"Camera Access");
     }
     
-    [self rsHookUIImagePickerController_presentViewController:viewControllerToPresent animated:flag completion:completion];
+    if (sourceType == UIImagePickerControllerSourceTypeSavedPhotosAlbum ||
+        sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        [supervisor processPhotoLibraryAccess];
+        NSLog(@"Photo library access");
+    }
+    
+    [self rsHookUIImagePickerController_setSourceType:sourceType];
 }
 
 

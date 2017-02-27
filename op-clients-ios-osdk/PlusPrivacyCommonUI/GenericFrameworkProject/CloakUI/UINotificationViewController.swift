@@ -38,6 +38,9 @@ public class UINotificationViewController: UIViewController {
         
         self.notificationLabel.text = message;
         self.notificationViewTopSpaceCn.constant = distance - 20; // -20 because the constraint is set to the top layout guide
+        
+        self.notificationView.setNeedsLayout()
+        self.notificationLabel.layoutIfNeeded()
     }
     
     fileprivate func fadeOutNotificationViewWithCompletion(_ completion: ((_ finished: Bool) -> ())?)
@@ -54,6 +57,13 @@ public class UINotificationViewController: UIViewController {
                                                                     atDistanceFromTop topDistance:CGFloat)
     
     {
+        if let existingVC = hostController.childViewControllers.first(where: { vc -> Bool in
+            return vc is UINotificationViewController
+        }) as? UINotificationViewController {
+            
+            existingVC.setNotificationMessage(message, backgroundColor: nil, atDistanceFromTop: topDistance)
+            return
+        }
         
         let storyboard = UIStoryboard(name: "Cloak", bundle: Bundle.commonUIBundle)
         let vc = storyboard.instantiateViewController(withIdentifier: UINotificationViewControllerIdentifier) as! UINotificationViewController
