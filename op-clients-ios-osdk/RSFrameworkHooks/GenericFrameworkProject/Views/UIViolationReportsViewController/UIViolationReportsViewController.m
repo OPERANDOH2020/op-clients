@@ -18,7 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber*,NSArray<OPMonitorViolationReport*> *>* reportsArrayPerType;
 
-@property (strong, nonatomic) id<OPViolationReportRepository> repository;
+@property (strong, nonatomic) PPReportsSourcesBundle *reportSources;
 @property (strong, nonatomic) NSArray<SCDSectionHeaderModel*> *sectionModels;
 @property (strong, nonatomic) NSArray<NSNumber*> *currentReportTypes;
 @property (strong, nonatomic) void (^exitCallback)();
@@ -61,8 +61,8 @@
     return result;
 }
 
--(void)setupWithRepository:(id<OPViolationReportRepository>)repository onExit:(void (^)())exitCallback{
-    
+-(void)setupWithReportSources:(PPReportsSourcesBundle*)reportSources
+                       onExit:(void (^)())exitCallback {
     [self view];
     self.repository = repository;
     self.exitCallback = exitCallback;

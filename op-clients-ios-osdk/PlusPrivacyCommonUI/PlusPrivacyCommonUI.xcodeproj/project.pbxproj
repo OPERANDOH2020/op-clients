@@ -22,7 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		9807875A1E3F44E40099B642 /* UINotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980787591E3F44E40099B642 /* UINotificationViewController.swift */; };
-		98182AC91E44E53F00895F19 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98182AC81E44E53F00895F19 /* PlusPrivacyCommonTypes.framework */; };
+		98281D081E69AC4700373369 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98281D071E69AC4700373369 /* PlusPrivacyCommonTypes.framework */; };
 		98331C901E56F848005D3A84 /* Cloak.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985635F71E30B0FF0033788A /* Cloak.storyboard */; };
 		98331C911E56F848005D3A84 /* SCDDocumentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985636041E30BEA50033788A /* SCDDocumentCell.xib */; };
 		98331C921E56F848005D3A84 /* SCDDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635DC1E30B0F90033788A /* SCDDetailsView.xib */; };
@@ -47,7 +47,7 @@
 
 /* Begin PBXFileReference section */
 		980787591E3F44E40099B642 /* UINotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINotificationViewController.swift; sourceTree = "<group>"; };
-		98182AC81E44E53F00895F19 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
+		98281D071E69AC4700373369 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		98331C8A1E56F725005D3A84 /* PPCommonUIBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPCommonUIBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		98331C8C1E56F725005D3A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		985635D91E30B0F90033788A /* EULATextBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EULATextBuilder.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98182AC91E44E53F00895F19 /* PlusPrivacyCommonTypes.framework in Frameworks */,
+				98281D081E69AC4700373369 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +217,7 @@
 		98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */ = {
 			isa = PBXGroup;
 			children = (
-				98182AC81E44E53F00895F19 /* PlusPrivacyCommonTypes.framework */,
+				98281D071E69AC4700373369 /* PlusPrivacyCommonTypes.framework */,
 				985635FD1E30B98C0033788A /* CommonUIBuilder.swift */,
 				985635F91E30B2130033788A /* ViewUtilities.swift */,
 				985635F71E30B0FF0033788A /* Cloak.storyboard */,
@@ -590,6 +590,7 @@
 				98331C8E1E56F725005D3A84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98584F371D3F9E18009FB89F /* Build configuration list for PBXProject "PlusPrivacyCommonUI" */ = {
 			isa = XCConfigurationList;

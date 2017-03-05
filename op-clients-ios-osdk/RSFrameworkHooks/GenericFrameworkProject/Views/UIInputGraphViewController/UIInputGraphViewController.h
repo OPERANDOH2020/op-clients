@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OPMonitorViolationReport.h"
+#import "BaseReportWithDate.h"
 
 
 @interface UIGraphViewController : UIViewController
 
--(void)setupWithReports:(NSArray<OPMonitorViolationReport*>* _Nonnull)reports exitCallback:(void (^ __nullable)())exitCallback;
+-(void)setupWithReports:(NSArray<BaseReportWithDate*>* _Nonnull)reports exitCallback:(void (^ __nullable)())exitCallback;
 
 @end

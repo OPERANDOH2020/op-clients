@@ -12,13 +12,16 @@
 #import "ReportsStorageProtocol.h"
 #import "OPMonitorSettings.h"
 #import "UILocationSettingsViewController.h"
+#import "PPReportsSourcesBundle.h"
+
+
 
 @interface PPFlowBuilderModel : NSObject
 
 @property (strong, nonatomic) OPMonitorSettings *monitoringSettings;
 @property (strong, nonatomic) NSDictionary *scdJSON;
 @property (strong, nonatomic) id<SCDRepository> scdRepository;
-@property (strong, nonatomic) id<OPViolationReportRepository> violationReportsRepository;
+@property (strong, nonatomic) PPReportsSourcesBundle *reportSources;
 @property (strong, nonatomic) void (^onExitCallback)();
 
 @property (strong, nonatomic) LocationSettingsModel *locationSettingsModel;

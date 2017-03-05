@@ -163,16 +163,13 @@ class EULATextBuilder: NSObject {
         return NSAttributedString(string: story)
     }
     
-    private static func aggregateBasedOnAccessFrequensy(sensors: [AccessedInput]) -> [String: [AccessedInput]] {
-        var result: [String: [AccessedInput]] = [:]
+    private static func aggregateBasedOnAccessFrequensy(sensors: [AccessedInput]) -> [AccessFrequencyType: [AccessedInput]] {
+        var result: [AccessFrequencyType: [AccessedInput]] = [:]
         for af in [AccessFrequencyType.Continuous, AccessFrequencyType.ContinuousIntervals, AccessFrequencyType.SingularSample] {
             result[af] = []
         }
         
         sensors.forEach { sensor in
-            guard AccessFrequencyType.isValid(rawValue: sensor.accessFrequency) else {
-                return
-            }
             result[sensor.accessFrequency]?.append(sensor)
         }
         

@@ -9,11 +9,17 @@
 #ifndef InputSupervisorDelegate_h
 #define InputSupervisorDelegate_h
 
-#import "OPMonitorViolationReport.h"
 #import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
+#import "PPAccessFrequencyViolationReport.h"
+#import "PPAccessUnlistedHostReport.h"
+#import "PPPrivacyLevelViolationReport.h"
+#import "PPUnlistedInputAccessViolation.h"
 
 @protocol InputSupervisorDelegate <NSObject>
--(void)newViolationReported:(OPMonitorViolationReport*)report;
+-(void)newURLHostViolationReported:(PPAccessUnlistedHostReport*)report;
+-(void)newPrivacyLevelViolationReported:(PPPrivacyLevelViolationReport*)report;
+-(void)newUnlistedInputAccessViolationReported:(PPUnlistedInputAccessViolation*)report;
+
 @end
 
 @protocol InputSourceSupervisor <NSObject>

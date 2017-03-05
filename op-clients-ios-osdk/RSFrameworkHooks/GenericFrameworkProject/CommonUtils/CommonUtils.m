@@ -10,10 +10,10 @@
 
 @implementation CommonUtils
 
-+(AccessedInput *)extractInputOfType:(NSString *)type from:(NSArray<AccessedInput *> *)sensors{
++(AccessedInput *)extractInputOfType:(InputType *)type from:(NSArray<AccessedInput *> *)sensors{
     
     for (AccessedInput *sensor in sensors) {
-        if ([sensor.inputType isEqualToString:type]) {
+        if ([sensor.inputType isEqual:type]) {
             return sensor;
         }
     }

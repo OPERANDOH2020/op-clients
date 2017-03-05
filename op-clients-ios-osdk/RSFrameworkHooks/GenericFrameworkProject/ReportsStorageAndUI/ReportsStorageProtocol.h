@@ -9,27 +9,55 @@
 #ifndef ReportsStorageProtocol_h
 #define ReportsStorageProtocol_h
 
-#import "OPMonitorViolationReport.h"
+#import "PPUnlistedInputAccessViolation.h"
+#import "PPPrivacyLevelViolationReport.h"
+#import "PPAccessFrequencyViolationReport.h"
+#import "PPAccessUnlistedHostReport.h"
 
-typedef void(^ReportsCallback)(NSArray<OPMonitorViolationReport*>* __nullable, NSError* __nullable);
+#pragma mark - Block typedefs
+// -- Block typedefs ---
+
 typedef void(^InputTypesCallback)(NSArray<NSString*>* __nullable, NSError * __nullable);
+typedef void(^UnlistedInputReportsCallback)(NSArray<PPUnlistedInputAccessViolation*>* __nullable, NSError * __nullable);
 
-@protocol OPViolationReportRepository <NSObject>
+typedef void(^PrivacyLevelReportsCallback)(NSArray<PPPrivacyLevelViolationReport*>* __nullable, NSError * __nullable);
 
--(void)addReport:(OPMonitorViolationReport* __nonnull)report;
--(void)getAllReportsIn:(ReportsCallback _Nullable)completion;
+typedef void(^UnlistedHostReportsCallback)(NSArray<PPAccessUnlistedHostReport*>* __nullable, NSError * __nullable);
 
--(void)clearAllReportsWithCompletion:(void(^ _Nullable)(NSError* _Nullable))completion;
--(void)deleteReport:(OPMonitorViolationReport* __nonnull)report withCompletion:(void (^ _Nullable)(NSError * _Nullable))completion;
 
--(void)getAllReportsOfType:(OPMonitorViolationType)type in:(ReportsCallback _Nullable)completion;
--(void)getTypesOfReportsIn:(void (^ _Nullable)(NSArray<NSNumber*> * _Nullable, NSError * _Nullable))completion;
+typedef void(^PossibleErrorCallback)(NSError * __nullable error);
 
--(void)getInputViolationReportsOfInputType:(NSString* _Nonnull)inputType in:(ReportsCallback __nullable)callback;
+// -- End of block typedefs ---
 
+#pragma mark - Source protocols
+// -- Source protocols
+
+@protocol PPUnlistedInputReportsSource <NSObject>
+-(void)getAllReportsIn:(UnlistedInputReportsCallback __nullable )callback;
 -(void)getCurrentInputTypesInViolationReportsIn:(InputTypesCallback __nullable)callback;
 @end
 
+@protocol PPPrivacyLevelReportsSource <NSObject>
+-(void)getAllReportsIn:(PrivacyLevelReportsCallback __nullable )callback;
+@end
 
+@protocol PPUnlistedHostReportsSource <NSObject>
+-(void)getAllReportsIn:(UnlistedInputReportsCallback __nullable)callback;
+@end
+
+#pragma mark - Repository protocols
+// -- Repository protocols
+
+@protocol PPUnlistedInputReportsRepository <PPUnlistedInputReportsSource>
+-(void)addReport:(PPUnlistedInputAccessViolation* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
+@end
+
+@protocol PPPrivacyLevelReportsRepository <PPPrivacyLevelReportsSource>
+-(void)addReport:(PPPrivacyLevelViolationReport* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
+@end
+
+@protocol PPUnlistedHostReportsRepository <PPUnlistedHostReportsSource>
+-(void)addReport:(PPAccessUnlistedHostReport* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
+@end
 
 #endif /* ReportsStorageProtocol_h */

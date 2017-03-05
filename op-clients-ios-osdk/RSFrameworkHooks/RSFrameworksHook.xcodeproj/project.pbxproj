@@ -40,6 +40,10 @@
 		982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */; };
 		982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */; };
 		982507601E5DD47D00EDB8A2 /* CommonReportKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 9825075F1E5DD47D00EDB8A2 /* CommonReportKeys.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98281D051E696FD100373369 /* PPAccessFrequencyViolationReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 98281D031E696FD100373369 /* PPAccessFrequencyViolationReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98281D061E696FD100373369 /* PPAccessFrequencyViolationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 98281D041E696FD100373369 /* PPAccessFrequencyViolationReport.m */; };
+		98281D0B1E69B0E100373369 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98281D091E69B0E100373369 /* PlusPrivacyCommonTypes.framework */; };
+		98281D0C1E69B0E100373369 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98281D0A1E69B0E100373369 /* PlusPrivacyCommonUI.framework */; };
 		98331C821E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98331C801E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.h */; };
 		98331C831E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m in Sources */ = {isa = PBXBuildFile; fileRef = 98331C811E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m */; };
 		98331C841E56F6A0005D3A84 /* ViolationReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98804EF91E4DEB57009E6748 /* ViolationReportCell.xib */; };
@@ -49,8 +53,6 @@
 		9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */; };
 		9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */; };
 		9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */; };
-		987F83721E322AA90058633C /* OPMonitorViolationReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83701E322AA90058633C /* OPMonitorViolationReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83711E322AA90058633C /* OPMonitorViolationReport.m */; };
 		987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */; };
 		987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F837C1E3241930058633C /* LocationInputSupervisor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,6 +68,10 @@
 		98804F0B1E4E0E7C009E6748 /* UIPPOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98804F091E4E0E7C009E6748 /* UIPPOptionsViewController.m */; };
 		98804F131E4E26DB009E6748 /* UIEncapsulatorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98804F111E4E26DB009E6748 /* UIEncapsulatorViewController.h */; };
 		98804F141E4E26DB009E6748 /* UIEncapsulatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98804F121E4E26DB009E6748 /* UIEncapsulatorViewController.m */; };
+		9888B16F1E6C2F6200D783AB /* BaseReportWithDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9888B16D1E6C2F6200D783AB /* BaseReportWithDate.h */; };
+		9888B1701E6C2F6200D783AB /* BaseReportWithDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9888B16E1E6C2F6200D783AB /* BaseReportWithDate.m */; };
+		9888B1741E6C625900D783AB /* PPReportsSourcesBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9888B1721E6C625900D783AB /* PPReportsSourcesBundle.h */; };
+		9888B1751E6C625900D783AB /* PPReportsSourcesBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9888B1731E6C625900D783AB /* PPReportsSourcesBundle.m */; };
 		988A15011E40A4F600AABD43 /* PedometerInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A14FF1E40A4F600AABD43 /* PedometerInputSupervisor.h */; };
 		988A15021E40A4F600AABD43 /* PedometerInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988A15001E40A4F600AABD43 /* PedometerInputSupervisor.m */; };
 		988A15061E40AA7F00AABD43 /* CommonUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 988A15041E40AA7F00AABD43 /* CommonUtils.h */; };
@@ -230,7 +236,12 @@
 		98CEF3AC1E5F3064002C2145 /* PerSecondReportAggregator.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CEF3AA1E5F3064002C2145 /* PerSecondReportAggregator.m */; };
 		98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D603E21E2F800B00E59A42 /* OPMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D603E31E2F800B00E59A42 /* OPMonitor.m */; };
-		98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */; };
+		98DF60F81E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 98DF60F61E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98DF60F91E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF60F71E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h.m */; };
+		98DF60FD1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 98DF60FB1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98DF60FE1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF60FC1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.m */; };
+		98DF61021E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.h in Headers */ = {isa = PBXBuildFile; fileRef = 98DF61001E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98DF61031E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DF61011E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.m */; };
 		98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */; };
 		98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */; };
 		98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */; };
@@ -239,7 +250,6 @@
 		98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */; };
 		98ECE4811E424AC80042A262 /* ContactsInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */; };
 		98ECE4821E424AC80042A262 /* ContactsInputSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */; };
-		98FDA6621E607EB700EE878F /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FDA6611E607EB700EE878F /* PlusPrivacyCommonUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -263,6 +273,10 @@
 		982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProximityInputSupervisor.h; path = ProximityInputSupervisor/ProximityInputSupervisor.h; sourceTree = "<group>"; };
 		982175CA1E3FA0A700495627 /* ProximityInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProximityInputSupervisor.m; path = ProximityInputSupervisor/ProximityInputSupervisor.m; sourceTree = "<group>"; };
 		9825075F1E5DD47D00EDB8A2 /* CommonReportKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonReportKeys.h; path = Models/CommonReportKeys/CommonReportKeys.h; sourceTree = "<group>"; };
+		98281D031E696FD100373369 /* PPAccessFrequencyViolationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPAccessFrequencyViolationReport.h; path = Models/ViolationReports/PPAccessFrequencyViolationReport.h; sourceTree = "<group>"; };
+		98281D041E696FD100373369 /* PPAccessFrequencyViolationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPAccessFrequencyViolationReport.m; path = Models/ViolationReports/PPAccessFrequencyViolationReport.m; sourceTree = "<group>"; };
+		98281D091E69B0E100373369 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
+		98281D0A1E69B0E100373369 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		98331C801E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+RSFrameworkHooks.h"; path = "Views/NSBundle+RSFrameworkHooks/NSBundle+RSFrameworkHooks.h"; sourceTree = "<group>"; };
 		98331C811E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+RSFrameworkHooks.m"; path = "Views/NSBundle+RSFrameworkHooks/NSBundle+RSFrameworkHooks.m"; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSFrameworksHook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,8 +289,6 @@
 		9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSURLSessionSupervisor.h; path = NSURLSessionHook/NSURLSessionSupervisor.h; sourceTree = "<group>"; };
 		9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSURLSessionSupervisor.m; path = NSURLSessionHook/NSURLSessionSupervisor.m; sourceTree = "<group>"; };
 		987F836F1E3212140058633C /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Common.h; path = Common/Common.h; sourceTree = "<group>"; };
-		987F83701E322AA90058633C /* OPMonitorViolationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorViolationReport.h; path = OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.h; sourceTree = "<group>"; };
-		987F83711E322AA90058633C /* OPMonitorViolationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorViolationReport.m; path = OPMonitor/OPMonitorViolationReport/OPMonitorViolationReport.m; sourceTree = "<group>"; };
 		987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorInputSourceEvent.h; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.h; sourceTree = "<group>"; };
 		987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorInputSourceEvent.m; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.m; sourceTree = "<group>"; };
 		987F837C1E3241930058633C /* LocationInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationInputSupervisor.h; path = InputSupervisors/LocationInputSupervisor/LocationInputSupervisor.h; sourceTree = "<group>"; };
@@ -294,6 +306,10 @@
 		98804F091E4E0E7C009E6748 /* UIPPOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIPPOptionsViewController.m; path = Views/UIPPOptionsViewController/UIPPOptionsViewController.m; sourceTree = "<group>"; };
 		98804F111E4E26DB009E6748 /* UIEncapsulatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIEncapsulatorViewController.h; path = Views/UIEncapsulatorViewController/UIEncapsulatorViewController.h; sourceTree = "<group>"; };
 		98804F121E4E26DB009E6748 /* UIEncapsulatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIEncapsulatorViewController.m; path = Views/UIEncapsulatorViewController/UIEncapsulatorViewController.m; sourceTree = "<group>"; };
+		9888B16D1E6C2F6200D783AB /* BaseReportWithDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseReportWithDate.h; path = Models/ViolationReports/BaseReportWithDate/BaseReportWithDate.h; sourceTree = "<group>"; };
+		9888B16E1E6C2F6200D783AB /* BaseReportWithDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseReportWithDate.m; path = Models/ViolationReports/BaseReportWithDate/BaseReportWithDate.m; sourceTree = "<group>"; };
+		9888B1721E6C625900D783AB /* PPReportsSourcesBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPReportsSourcesBundle.h; path = Models/ViolationReports/PPReportsSourcesBundle.h; sourceTree = "<group>"; };
+		9888B1731E6C625900D783AB /* PPReportsSourcesBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPReportsSourcesBundle.m; path = Models/ViolationReports/PPReportsSourcesBundle.m; sourceTree = "<group>"; };
 		988A14FF1E40A4F600AABD43 /* PedometerInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PedometerInputSupervisor.h; path = PedometerInputSupervisor/PedometerInputSupervisor.h; sourceTree = "<group>"; };
 		988A15001E40A4F600AABD43 /* PedometerInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PedometerInputSupervisor.m; path = PedometerInputSupervisor/PedometerInputSupervisor.m; sourceTree = "<group>"; };
 		988A15041E40AA7F00AABD43 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonUtils.h; path = CommonUtils/CommonUtils.h; sourceTree = "<group>"; };
@@ -458,7 +474,12 @@
 		98CEF3AA1E5F3064002C2145 /* PerSecondReportAggregator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PerSecondReportAggregator.m; path = Models/Aggregators/PerSecondReportAggregator/PerSecondReportAggregator.m; sourceTree = "<group>"; };
 		98D603E21E2F800B00E59A42 /* OPMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitor.h; path = OPMonitor/OPMonitor.h; sourceTree = "<group>"; };
 		98D603E31E2F800B00E59A42 /* OPMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitor.m; path = OPMonitor/OPMonitor.m; sourceTree = "<group>"; };
-		98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
+		98DF60F61E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPAccessUnlistedHostReport.h; path = Models/ViolationReports/PPAccessUnlistedURLReport/PPAccessUnlistedHostReport.h; sourceTree = "<group>"; };
+		98DF60F71E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPAccessUnlistedHostReport.h.m; path = Models/ViolationReports/PPAccessUnlistedURLReport/PPAccessUnlistedHostReport.h.m; sourceTree = "<group>"; };
+		98DF60FB1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPPrivacyLevelViolationReport.h; path = Models/ViolationReports/PPPrivacyLevelViolationReport/PPPrivacyLevelViolationReport.h; sourceTree = "<group>"; };
+		98DF60FC1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPPrivacyLevelViolationReport.m; path = Models/ViolationReports/PPPrivacyLevelViolationReport/PPPrivacyLevelViolationReport.m; sourceTree = "<group>"; };
+		98DF61001E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPUnlistedInputAccessViolation.h; path = Views/PPInputAccessViolation/PPUnlistedInputAccessViolation.h; sourceTree = "<group>"; };
+		98DF61011E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPUnlistedInputAccessViolation.m; path = Views/PPInputAccessViolation/PPUnlistedInputAccessViolation.m; sourceTree = "<group>"; };
 		98ECE46B1E41F8150042A262 /* TouchIdSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchIdSupervisor.h; path = TouchIdSupervisor/TouchIdSupervisor.h; sourceTree = "<group>"; };
 		98ECE46C1E41F8150042A262 /* TouchIdSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchIdSupervisor.m; path = TouchIdSupervisor/TouchIdSupervisor.m; sourceTree = "<group>"; };
 		98ECE4751E421AFD0042A262 /* CameraInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraInputSupervisor.h; path = CameraInputSupervisor/CameraInputSupervisor.h; sourceTree = "<group>"; };
@@ -467,7 +488,6 @@
 		98ECE47B1E422E720042A262 /* MicrophoneInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MicrophoneInputSupervisor.m; path = MicrophoneInputSupervisor/MicrophoneInputSupervisor.m; sourceTree = "<group>"; };
 		98ECE47F1E424AC80042A262 /* ContactsInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsInputSupervisor.h; path = ContactsInputSupervisor/ContactsInputSupervisor.h; sourceTree = "<group>"; };
 		98ECE4801E424AC80042A262 /* ContactsInputSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsInputSupervisor.m; path = ContactsInputSupervisor/ContactsInputSupervisor.m; sourceTree = "<group>"; };
-		98FDA6611E607EB700EE878F /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PlusPrivacyCommonUI.framework; path = Charts/PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,8 +495,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98FDA6621E607EB700EE878F /* PlusPrivacyCommonUI.framework in Frameworks */,
-				98E89E181E43868C006447CE /* PlusPrivacyCommonTypes.framework in Frameworks */,
+				98281D0C1E69B0E100373369 /* PlusPrivacyCommonUI.framework in Frameworks */,
+				98281D0B1E69B0E100373369 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +583,15 @@
 			name = LocationInputSwizzlerSettings;
 			sourceTree = "<group>";
 		};
+		98281D021E696ECB00373369 /* PPAccessFrequencyViolationReport */ = {
+			isa = PBXGroup;
+			children = (
+				98281D031E696FD100373369 /* PPAccessFrequencyViolationReport.h */,
+				98281D041E696FD100373369 /* PPAccessFrequencyViolationReport.m */,
+			);
+			name = PPAccessFrequencyViolationReport;
+			sourceTree = "<group>";
+		};
 		98331C7F1E56F09D005D3A84 /* NSBundle+RSFrameworkHooks */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +623,8 @@
 			isa = PBXGroup;
 			children = (
 				9895FB361E5B332A00B1F56D /* Frameworks+Libraries */,
+				98281D091E69B0E100373369 /* PlusPrivacyCommonTypes.framework */,
+				98281D0A1E69B0E100373369 /* PlusPrivacyCommonUI.framework */,
 				9895FB351E5B331F00B1F56D /* Models */,
 				9895FB2A1E5AEC9500B1F56D /* InputSwizzling */,
 				987F836E1E3211F90058633C /* Supervising */,
@@ -656,8 +687,6 @@
 		987F83791E32410E0058633C /* OPMonitorViolationReport */ = {
 			isa = PBXGroup;
 			children = (
-				987F83701E322AA90058633C /* OPMonitorViolationReport.h */,
-				987F83711E322AA90058633C /* OPMonitorViolationReport.m */,
 			);
 			name = OPMonitorViolationReport;
 			sourceTree = "<group>";
@@ -756,6 +785,24 @@
 			name = UIEncapsulatorViewController;
 			sourceTree = "<group>";
 		};
+		9888B16C1E6C2F4800D783AB /* BaseReportWithDate */ = {
+			isa = PBXGroup;
+			children = (
+				9888B16D1E6C2F6200D783AB /* BaseReportWithDate.h */,
+				9888B16E1E6C2F6200D783AB /* BaseReportWithDate.m */,
+			);
+			name = BaseReportWithDate;
+			sourceTree = "<group>";
+		};
+		9888B1711E6C5F6600D783AB /* PPReportsSourcesBundle */ = {
+			isa = PBXGroup;
+			children = (
+				9888B1721E6C625900D783AB /* PPReportsSourcesBundle.h */,
+				9888B1731E6C625900D783AB /* PPReportsSourcesBundle.m */,
+			);
+			name = PPReportsSourcesBundle;
+			sourceTree = "<group>";
+		};
 		988A14FE1E40A48500AABD43 /* PedometerInputSupervisor */ = {
 			isa = PBXGroup;
 			children = (
@@ -830,6 +877,7 @@
 		9895FB351E5B331F00B1F56D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				98DF60F41E65C691006EF2B3 /* ViolationReports */,
 				98CEF3A61E5F25A6002C2145 /* Aggregators */,
 				987F83791E32410E0058633C /* OPMonitorViolationReport */,
 				9825075D1E5DD10C00EDB8A2 /* LocationInputSwizzlerSettings */,
@@ -842,8 +890,6 @@
 			isa = PBXGroup;
 			children = (
 				98CEF2831E5F1B24002C2145 /* Charts */,
-				98FDA6611E607EB700EE878F /* PlusPrivacyCommonUI.framework */,
-				98E89E171E43868C006447CE /* PlusPrivacyCommonTypes.framework */,
 			);
 			name = "Frameworks+Libraries";
 			sourceTree = "<group>";
@@ -1182,6 +1228,46 @@
 			name = OPMonitor;
 			sourceTree = "<group>";
 		};
+		98DF60F41E65C691006EF2B3 /* ViolationReports */ = {
+			isa = PBXGroup;
+			children = (
+				9888B1711E6C5F6600D783AB /* PPReportsSourcesBundle */,
+				9888B16C1E6C2F4800D783AB /* BaseReportWithDate */,
+				98281D021E696ECB00373369 /* PPAccessFrequencyViolationReport */,
+				98DF60FF1E65D714006EF2B3 /* PPInputAccessViolation */,
+				98DF60FA1E65D220006EF2B3 /* PPPrivacyLevelViolationReport */,
+				98DF60F51E65C6A2006EF2B3 /* PPURLAccessViolationReport */,
+			);
+			name = ViolationReports;
+			sourceTree = "<group>";
+		};
+		98DF60F51E65C6A2006EF2B3 /* PPURLAccessViolationReport */ = {
+			isa = PBXGroup;
+			children = (
+				98DF60F61E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h */,
+				98DF60F71E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h.m */,
+			);
+			name = PPURLAccessViolationReport;
+			sourceTree = "<group>";
+		};
+		98DF60FA1E65D220006EF2B3 /* PPPrivacyLevelViolationReport */ = {
+			isa = PBXGroup;
+			children = (
+				98DF60FB1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.h */,
+				98DF60FC1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.m */,
+			);
+			name = PPPrivacyLevelViolationReport;
+			sourceTree = "<group>";
+		};
+		98DF60FF1E65D714006EF2B3 /* PPInputAccessViolation */ = {
+			isa = PBXGroup;
+			children = (
+				98DF61001E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.h */,
+				98DF61011E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.m */,
+			);
+			name = PPInputAccessViolation;
+			sourceTree = "<group>";
+		};
 		98ECE46A1E41F7D80042A262 /* TouchIdInputSupervisor */ = {
 			isa = PBXGroup;
 			children = (
@@ -1228,11 +1314,13 @@
 				982507601E5DD47D00EDB8A2 /* CommonReportKeys.h in Headers */,
 				98ECE4811E424AC80042A262 /* ContactsInputSupervisor.h in Headers */,
 				981A4A6B1E58ABFE002C4876 /* OPMonitorSettings.h in Headers */,
+				9888B16F1E6C2F6200D783AB /* BaseReportWithDate.h in Headers */,
 				987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */,
+				98DF60F81E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h in Headers */,
 				988A151F1E40E2DD00AABD43 /* BarometerInputSupervisor.h in Headers */,
 				988A15151E40D1B400AABD43 /* MagnetometerInputSupervisor.h in Headers */,
 				98CEF3A41E5F2204002C2145 /* UIInputGraphViewController.h in Headers */,
-				987F83721E322AA90058633C /* OPMonitorViolationReport.h in Headers */,
+				98281D051E696FD100373369 /* PPAccessFrequencyViolationReport.h in Headers */,
 				987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */,
 				9895FB331E5B1A2A00B1F56D /* UILocationSettingsViewController.h in Headers */,
 				9895FB2E1E5AED3D00B1F56D /* LocationInputSwizzler.h in Headers */,
@@ -1240,11 +1328,14 @@
 				98804F001E4DF1D8009E6748 /* UIViolationReportsViewController.h in Headers */,
 				98804EFA1E4DEB57009E6748 /* ViolationReportCell.h in Headers */,
 				98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */,
+				98DF60FD1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.h in Headers */,
+				9888B1741E6C625900D783AB /* PPReportsSourcesBundle.h in Headers */,
 				98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */,
 				98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */,
 				98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */,
 				98804F131E4E26DB009E6748 /* UIEncapsulatorViewController.h in Headers */,
 				9895FB391E5B337A00B1F56D /* LocationInputSwizzlerSettings.h in Headers */,
+				98DF61021E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.h in Headers */,
 				981EAC701E48C7C6000F59E3 /* PlistReportsStorage.h in Headers */,
 				98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */,
 				98CEF2691E5EEE84002C2145 /* UIInputUsageGraphsViewController.h in Headers */,
@@ -1409,6 +1500,7 @@
 				98CEF3821E5F1B24002C2145 /* LegendRenderer.swift in Sources */,
 				9895FB3A1E5B337A00B1F56D /* LocationInputSwizzlerSettings.m in Sources */,
 				98804F0B1E4E0E7C009E6748 /* UIPPOptionsViewController.m in Sources */,
+				98DF60F91E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h.m in Sources */,
 				98CEF3311E5F1B24002C2145 /* YAxis.swift in Sources */,
 				98CEF3671E5F1B24002C2145 /* IHighlighter.swift in Sources */,
 				98CEF3461E5F1B24002C2145 /* LineScatterCandleRadarChartDataSet.swift in Sources */,
@@ -1503,7 +1595,6 @@
 				98CEF3281E5F1B24002C2145 /* ChartLimitLine.swift in Sources */,
 				98CEF3661E5F1B24002C2145 /* HorizontalBarHighlighter.swift in Sources */,
 				98CEF35E1E5F1B24002C2145 /* IAxisValueFormatter.swift in Sources */,
-				987F83731E322AA90058633C /* OPMonitorViolationReport.m in Sources */,
 				98CEF31D1E5F1B24002C2145 /* BubbleChartView.swift in Sources */,
 				98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */,
 				981EAC711E48C7C6000F59E3 /* PlistReportsStorage.m in Sources */,
@@ -1539,15 +1630,18 @@
 				98CEF34C1E5F1B24002C2145 /* RadarChartDataSet.swift in Sources */,
 				98CEF38F1E5F1B24002C2145 /* TriangleShapeRenderer.swift in Sources */,
 				98ECE4781E421AFD0042A262 /* CameraInputSupervisor.m in Sources */,
+				9888B1701E6C2F6200D783AB /* BaseReportWithDate.m in Sources */,
 				98182AB71E44BC4100895F19 /* LAContext+rsHook.m in Sources */,
 				988A15021E40A4F600AABD43 /* PedometerInputSupervisor.m in Sources */,
 				98CEF3221E5F1B24002C2145 /* LineChartView.swift in Sources */,
 				98CEF36B1E5F1B24002C2145 /* Range.swift in Sources */,
+				98DF61031E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.m in Sources */,
 				987F837F1E3241930058633C /* LocationInputSupervisor.m in Sources */,
 				9895FB4A1E5B3CB200B1F56D /* UIWindow+RSHookHandle.m in Sources */,
 				98CEF38E1E5F1B24002C2145 /* SquareShapeRenderer.swift in Sources */,
 				98CEF3811E5F1B24002C2145 /* HorizontalBarChartRenderer.swift in Sources */,
 				98CEF3431E5F1B24002C2145 /* LineChartData.swift in Sources */,
+				9888B1751E6C625900D783AB /* PPReportsSourcesBundle.m in Sources */,
 				98331C831E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m in Sources */,
 				9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */,
 				982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */,
@@ -1557,8 +1651,10 @@
 				98182AC31E44D18E00895F19 /* NSURLSession+rsHook.m in Sources */,
 				98CEF3761E5F1B24002C2145 /* AnimatedZoomViewJob.swift in Sources */,
 				98CEF3321E5F1B24002C2145 /* ChartBaseDataSet.swift in Sources */,
+				98DF60FE1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.m in Sources */,
 				98804EFB1E4DEB57009E6748 /* ViolationReportCell.m in Sources */,
 				98CEF3421E5F1B24002C2145 /* CombinedChartData.swift in Sources */,
+				98281D061E696FD100373369 /* PPAccessFrequencyViolationReport.m in Sources */,
 				98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */,
 				98CEF26A1E5EEE84002C2145 /* UIInputUsageGraphsViewController.m in Sources */,
 			);

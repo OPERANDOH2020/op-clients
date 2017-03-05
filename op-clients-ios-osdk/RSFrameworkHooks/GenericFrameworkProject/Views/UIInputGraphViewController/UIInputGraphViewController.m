@@ -15,7 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet BarChartView *barChartView;
 @property (strong, nonatomic) PerSecondReportAggregator *reportAggregator;
-@property (strong, nonatomic) NSArray<OPMonitorViolationReport*> *reportsArray;
+@property (strong, nonatomic) NSArray<BaseReportWithDate*> *reportsArray;
 @property (strong, nonatomic) void (^exitCallback)();
 
 
@@ -24,7 +24,7 @@
 @implementation UIGraphViewController
 
 
--(void)setupWithReports:(NSArray<OPMonitorViolationReport*>* _Nonnull)reports exitCallback:(void (^ __nullable)())exitCallback {
+-(void)setupWithReports:(NSArray<BaseReportWithDate*>* _Nonnull)reports exitCallback:(void (^ __nullable)())exitCallback {
     
     self.reportsArray = reports;
     self.exitCallback = exitCallback;
@@ -56,9 +56,9 @@
 }
 
 
--(BarChartData*)createChartDataWithReports:(NSArray<OPMonitorViolationReport*> *)reports inSecondGroupsOf:(NSInteger)seconds {
+-(BarChartData*)createChartDataWithReports:(NSArray<BaseReportWithDate*> *)reports inSecondGroupsOf:(NSInteger)seconds {
     
-    NSArray<NSArray<OPMonitorViolationReport*> *> *aggregatedReports = [self.reportAggregator aggregateReports:reports inSecondGroupsOfLength:seconds];
+    NSArray<NSArray<BaseReportWithDate*> *> *aggregatedReports = [self.reportAggregator aggregateReports:reports inSecondGroupsOfLength:seconds];
     
     
     NSMutableArray<NSString*> *xVals = [[NSMutableArray alloc] init];

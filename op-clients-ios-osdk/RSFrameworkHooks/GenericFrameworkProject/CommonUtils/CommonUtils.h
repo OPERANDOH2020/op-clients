@@ -11,5 +11,5 @@
 
 @interface CommonUtils : NSObject
 
-+(AccessedInput *)extractInputOfType:(NSString *)type from:(NSArray<AccessedInput *> *)sensors;
++(AccessedInput *)extractInputOfType:(InputType *)type from:(NSArray<AccessedInput *> *)sensors;
 @end

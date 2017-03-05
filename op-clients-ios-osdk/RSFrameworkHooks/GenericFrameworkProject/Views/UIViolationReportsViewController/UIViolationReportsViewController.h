@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ReportsStorageProtocol.h"
+#import "PPReportsSourcesBundle.h"
 
 
 @interface UIViolationReportsViewController : UIViewController
 
--(void)setupWithRepository:(id<OPViolationReportRepository>)repository
+-(void)setupWithReportSources:(PPReportsSourcesBundle*)reportSources
                     onExit:(void (^)())exitCallback;
 
 @end

@@ -122,31 +122,52 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
 
-SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes19AccessFrequencyType")
-@interface AccessFrequencyType : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull SingularSample;)
-+ (NSString * _Nonnull)SingularSample;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Continuous;)
-+ (NSString * _Nonnull)Continuous;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull ContinuousIntervals;)
-+ (NSString * _Nonnull)ContinuousIntervals;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull accessFrequenciesDescriptions;)
-+ (NSDictionary<NSString *, NSString *> * _Nonnull)accessFrequenciesDescriptions;
-+ (BOOL)isValidWithRawValue:(NSString * _Nonnull)rawValue;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes14BaseStringEnum")
+@interface BaseStringEnum : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull rawValue;
+- (BOOL)isEqual:(id _Nullable)object;
+@property (nonatomic, readonly) NSUInteger hash;
+@property (nonatomic, readonly) NSInteger hashValue;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
+
+SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes19AccessFrequencyType")
+@interface AccessFrequencyType : BaseStringEnum
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull SingularSampleRawValue;)
++ (NSString * _Nonnull)SingularSampleRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull ContinuousRawValue;)
++ (NSString * _Nonnull)ContinuousRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull ContinuousIntervalsRawValue;)
++ (NSString * _Nonnull)ContinuousIntervalsRawValue;
++ (AccessFrequencyType * _Nullable)createFromRawValue:(NSString * _Nonnull)rawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) AccessFrequencyType * _Nonnull Continuous;)
++ (AccessFrequencyType * _Nonnull)Continuous;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) AccessFrequencyType * _Nonnull SingularSample;)
++ (AccessFrequencyType * _Nonnull)SingularSample;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) AccessFrequencyType * _Nonnull ContinuousIntervals;)
++ (AccessFrequencyType * _Nonnull)ContinuousIntervals;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<AccessFrequencyType *, NSString *> * _Nonnull accessFrequenciesDescriptions;)
++ (NSDictionary<AccessFrequencyType *, NSString *> * _Nonnull)accessFrequenciesDescriptions;
+@end
+
+@class InputType;
 @class PrivacyDescription;
 
 SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes13AccessedInput")
 @interface AccessedInput : NSObject
-@property (nonatomic, readonly, copy) NSString * _Nonnull inputType;
+@property (nonatomic, readonly, strong) InputType * _Nonnull inputType;
 @property (nonatomic, readonly, strong) PrivacyDescription * _Nonnull privacyDescription;
-@property (nonatomic, readonly, copy) NSString * _Nonnull accessFrequency;
+@property (nonatomic, readonly, strong) AccessFrequencyType * _Nonnull accessFrequency;
 @property (nonatomic, readonly) BOOL userControl;
 - (nullable instancetype)initWithDict:(NSDictionary<NSString *, id> * _Nonnull)dict OBJC_DESIGNATED_INITIALIZER;
 + (NSArray<AccessedInput *> * _Nullable)buildFromJsonArray:(NSArray<NSDictionary<NSString *, id> *> * _Nonnull)array;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+
+@interface NSBundle (SWIFT_EXTENSION(PlusPrivacyCommonTypes))
 @end
 
 @class SCDDocument;
@@ -163,43 +184,62 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CommonTypeBu
 
 
 SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes9InputType")
-@interface InputType : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Location;)
-+ (NSString * _Nonnull)Location;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Microphone;)
-+ (NSString * _Nonnull)Microphone;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Camera;)
-+ (NSString * _Nonnull)Camera;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Gyroscope;)
-+ (NSString * _Nonnull)Gyroscope;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Accelerometer;)
-+ (NSString * _Nonnull)Accelerometer;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Proximity;)
-+ (NSString * _Nonnull)Proximity;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull TouchID;)
-+ (NSString * _Nonnull)TouchID;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Barometer;)
-+ (NSString * _Nonnull)Barometer;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Force;)
-+ (NSString * _Nonnull)Force;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Pedometer;)
-+ (NSString * _Nonnull)Pedometer;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Magnetometer;)
-+ (NSString * _Nonnull)Magnetometer;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull Contacts;)
-+ (NSString * _Nonnull)Contacts;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull namesPerInputType;)
-+ (NSDictionary<NSString *, NSString *> * _Nonnull)namesPerInputType;
-+ (BOOL)isValidInputTypeWithSensorType:(NSString * _Nonnull)sensorType;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface NSError (SWIFT_EXTENSION(PlusPrivacyCommonTypes))
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull LocalSchemaProviderDomain;)
-+ (NSString * _Nonnull)LocalSchemaProviderDomain;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) NSError * _Nonnull jsonSchemaNotFound;)
-+ (NSError * _Nonnull)jsonSchemaNotFound;
+@interface InputType : BaseStringEnum
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull LocationRawValue;)
++ (NSString * _Nonnull)LocationRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull MicrophoneRawValue;)
++ (NSString * _Nonnull)MicrophoneRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull CameraRawValue;)
++ (NSString * _Nonnull)CameraRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull GyroscopeRawValue;)
++ (NSString * _Nonnull)GyroscopeRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull AccelerometerRawValue;)
++ (NSString * _Nonnull)AccelerometerRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull ProximityRawValue;)
++ (NSString * _Nonnull)ProximityRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull TouchIDRawValue;)
++ (NSString * _Nonnull)TouchIDRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull BarometerRawValue;)
++ (NSString * _Nonnull)BarometerRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull ForceRawValue;)
++ (NSString * _Nonnull)ForceRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull PedometerRawValue;)
++ (NSString * _Nonnull)PedometerRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull MagnetometerRawValue;)
++ (NSString * _Nonnull)MagnetometerRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull ContactsRawValue;)
++ (NSString * _Nonnull)ContactsRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull BatteryRawValue;)
++ (NSString * _Nonnull)BatteryRawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Location;)
++ (InputType * _Nonnull)Location;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Microphone;)
++ (InputType * _Nonnull)Microphone;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Camera;)
++ (InputType * _Nonnull)Camera;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Gyroscope;)
++ (InputType * _Nonnull)Gyroscope;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Accelerometer;)
++ (InputType * _Nonnull)Accelerometer;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Proximity;)
++ (InputType * _Nonnull)Proximity;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull TouchID;)
++ (InputType * _Nonnull)TouchID;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Barometer;)
++ (InputType * _Nonnull)Barometer;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Force;)
++ (InputType * _Nonnull)Force;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Pedometer;)
++ (InputType * _Nonnull)Pedometer;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Magnetometer;)
++ (InputType * _Nonnull)Magnetometer;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Contacts;)
++ (InputType * _Nonnull)Contacts;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) InputType * _Nonnull Battery;)
++ (InputType * _Nonnull)Battery;
++ (InputType * _Nullable)createFromRawValue:(NSString * _Nonnull)rawValue;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<InputType *, NSString *> * _Nonnull namesPerInputType;)
++ (NSDictionary<InputType *, NSString *> * _Nonnull)namesPerInputType;
 @end
 
 
@@ -208,6 +248,14 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 + (NSString * _Nonnull)SchemaValidatorDomain;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) NSError * _Nonnull jsonNotValidAccordingToSchema;)
 + (NSError * _Nonnull)jsonNotValidAccordingToSchema;
+@end
+
+
+@interface NSError (SWIFT_EXTENSION(PlusPrivacyCommonTypes))
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull LocalSchemaProviderDomain;)
++ (NSString * _Nonnull)LocalSchemaProviderDomain;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) NSError * _Nonnull jsonSchemaNotFound;)
++ (NSError * _Nonnull)jsonSchemaNotFound;
 @end
 
 

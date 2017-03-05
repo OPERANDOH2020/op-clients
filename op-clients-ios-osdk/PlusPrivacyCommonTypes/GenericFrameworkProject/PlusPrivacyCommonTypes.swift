@@ -7,39 +7,172 @@
 //
 
 import Foundation
+
 @objc
-public class AccessFrequencyType: NSObject {
-    public static let SingularSample = "singularSample"
-    public static let Continuous = "continuously"
-    public static let ContinuousIntervals = "continuousIntervals"
+public class BaseStringEnum: NSObject {
+    private(set) public var rawValue: String
+    internal init?(rawValue: String) {
+        self.rawValue = rawValue
+    }
     
-    public static let accessFrequenciesDescriptions: [String: String] = [ AccessFrequencyType.Continuous : "The data is collected continuously throughout the lifetime of the app.",
+    public override func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? BaseStringEnum,
+            other.rawValue == self.rawValue else {
+                return false
+        }
+        
+        return true
+    }
+    
+    public override var hash: Int {
+        return self.rawValue.hash
+    }
+    
+    public override var hashValue: Int {
+        return self.rawValue.hash
+    }
+}
+
+@objc
+public class AccessFrequencyType: BaseStringEnum {
+    public static let SingularSampleRawValue = "singularSample"
+    public static let ContinuousRawValue = "continuously"
+    public static let ContinuousIntervalsRawValue = "continuousIntervals"
+    
+
+    
+    override internal init?(rawValue: String){
+        guard rawValue == AccessFrequencyType.SingularSampleRawValue ||
+              rawValue == AccessFrequencyType.ContinuousRawValue ||
+            rawValue == AccessFrequencyType.ContinuousRawValue else {
+                return nil
+        }
+        
+        super.init(rawValue: rawValue)
+    }
+    
+    public static func createFrom(rawValue: String) -> AccessFrequencyType? {
+        return AccessFrequencyType(rawValue: rawValue)
+    }
+    
+    
+    public static var Continuous: AccessFrequencyType {
+        return AccessFrequencyType(rawValue: ContinuousRawValue)!
+    }
+    
+    public static var SingularSample: AccessFrequencyType {
+        return AccessFrequencyType(rawValue: SingularSampleRawValue)!
+    }
+    
+    public static var ContinuousIntervals:AccessFrequencyType {
+        return AccessFrequencyType(rawValue: ContinuousIntervalsRawValue)!
+    }
+    
+
+    
+    public static let accessFrequenciesDescriptions: [AccessFrequencyType: String] = [ AccessFrequencyType.Continuous : "The data is collected continuously throughout the lifetime of the app.",
                                                                            AccessFrequencyType.ContinuousIntervals: "The data is collected continuously in time intervals, triggered by certain events (e.g when the you presss Record/Stop or enter in a geofencing area)",
                                                                            AccessFrequencyType.SingularSample: "Only one sample of data is collected at certain times."]
-    
-    public static func isValid(rawValue: String) -> Bool {
-        return self.accessFrequenciesDescriptions.keys.contains(rawValue)
-    }
+
 }
 
 
 @objc
-public class InputType: NSObject {
-    public static let Location = "loc"
-    public static let Microphone = "mic"
-    public static let Camera = "cam"
-    public static let Gyroscope = "gyro"
-    public static let Accelerometer = "acc"
-    public static let Proximity = "prox"
-    public static let TouchID = "touchID"
-    public static let Barometer = "bar"
-    public static let Force = "force"
-    public static let Pedometer = "pedo"
-    public static let Magnetometer = "magneto"
-    public static let Contacts = "contacts"
-    public static let Battery = "bat"
+public class InputType: BaseStringEnum {
+    public static let LocationRawValue = "loc"
+    public static let MicrophoneRawValue = "mic"
+    public static let CameraRawValue = "cam"
+    public static let GyroscopeRawValue = "gyro"
+    public static let AccelerometerRawValue = "acc"
+    public static let ProximityRawValue = "prox"
+    public static let TouchIDRawValue = "touchID"
+    public static let BarometerRawValue = "bar"
+    public static let ForceRawValue = "force"
+    public static let PedometerRawValue = "pedo"
+    public static let MagnetometerRawValue = "magneto"
+    public static let ContactsRawValue = "contacts"
+    public static let BatteryRawValue = "bat"
+ 
+    private static let rawValuesArray: [String] = [InputType.LocationRawValue,
+                                                   InputType.MicrophoneRawValue,
+                                                   InputType.CameraRawValue,
+                                                   InputType.GyroscopeRawValue,
+                                                   InputType.AccelerometerRawValue,
+                                                   InputType.ProximityRawValue,
+                                                   InputType.TouchIDRawValue,
+                                                   InputType.BarometerRawValue,
+                                                   InputType.ForceRawValue,
+                                                   InputType.PedometerRawValue,
+                                                   InputType.MagnetometerRawValue,
+                                                   InputType.ContactsRawValue,
+                                                   InputType.BatteryRawValue]
     
-    public static let namesPerInputType: [String: String] = [ InputType.Camera : "Camera",
+    internal override init?(rawValue: String) {
+        guard InputType.rawValuesArray.contains(rawValue) else {
+            return nil 
+        }
+        
+        super.init(rawValue: rawValue)
+    }
+    
+    public static var Location: InputType {
+        return InputType(rawValue: LocationRawValue)!
+    }
+    
+    public static var Microphone: InputType {
+        return InputType(rawValue: MicrophoneRawValue)!
+    }
+    
+    public static var Camera: InputType {
+        return InputType(rawValue: CameraRawValue)!
+    }
+    
+    public static var Gyroscope: InputType {
+        return InputType(rawValue: GyroscopeRawValue)!
+    }
+    
+    public static var Accelerometer: InputType {
+        return InputType(rawValue: AccelerometerRawValue)!
+    }
+    
+    public static var Proximity: InputType {
+        return InputType(rawValue: ProximityRawValue)!
+    }
+    
+    public static var TouchID: InputType {
+        return InputType(rawValue: TouchIDRawValue)!
+    }
+    
+    public static var Barometer: InputType {
+        return InputType(rawValue: BarometerRawValue)!
+    }
+    
+    public static var Force: InputType {
+        return InputType(rawValue: ForceRawValue)!
+    }
+    
+    public static var Pedometer: InputType {
+        return InputType(rawValue: PedometerRawValue)!
+    }
+    
+    public static var Magnetometer: InputType {
+        return InputType(rawValue: MagnetometerRawValue)!
+    }
+    
+    public static var Contacts: InputType {
+        return InputType(rawValue: ContactsRawValue)!
+    }
+    
+    public static var Battery: InputType {
+        return InputType(rawValue: BatteryRawValue)!
+    }
+    
+    public static func createFrom(rawValue: String) -> InputType? {
+        return InputType(rawValue: rawValue)
+    }
+    
+    
+    public static let namesPerInputType: [InputType: String] = [ InputType.Camera : "Camera",
                                                                InputType.Accelerometer : "Accelerometer",
                                                                InputType.Location : "Location",
                                                                InputType.Gyroscope: "Gyroscope",
@@ -54,9 +187,7 @@ public class InputType: NSObject {
                                                                InputType.Battery: "Battery"];
     
     
-    public static func isValidInputType(sensorType: String) -> Bool {
-        return self.namesPerInputType.keys.contains(sensorType)
-    }
+
 }
 
 @objc
@@ -102,17 +233,18 @@ public class PrivacyDescription: NSObject {
 
 @objc
 public class AccessedInput: NSObject {
-    public let inputType: String
+    public let inputType: InputType
     public let privacyDescription: PrivacyDescription
-    public let accessFrequency: String
+    public let accessFrequency: AccessFrequencyType
     public let userControl: Bool
     
     public init?(dict: [String: Any]) {
-        guard let inputType = dict["inputType"] as? String,
-            InputType.isValidInputType(sensorType: inputType),
+        guard let inputTypeRawValue = dict["inputType"] as? String,
+            let inputType = InputType.createFrom(rawValue: inputTypeRawValue),
             let pdDict = dict["privacyDescription"] as? [String: Any],
             let privacyDescription = PrivacyDescription(dict: pdDict),
-            let accessFrequency = dict["accessFrequency"] as? String,
+            let accessFrequencyRawValue = dict["accessFrequency"] as? String,
+            let accessFrequency = AccessFrequencyType.createFrom(rawValue: accessFrequencyRawValue),
             let userControl = dict["userControl"] as? Bool
             else {
                 return nil

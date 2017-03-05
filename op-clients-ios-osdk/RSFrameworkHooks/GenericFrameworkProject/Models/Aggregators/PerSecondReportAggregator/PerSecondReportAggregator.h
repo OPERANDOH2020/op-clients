@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OPMonitorViolationReport.h"
+#import "BaseReportWithDate.h"
 
 @interface PerSecondReportAggregator : NSObject
--(NSArray<NSArray<OPMonitorViolationReport*>*> *_Nonnull)aggregateReports:(NSArray<OPMonitorViolationReport *> * _Nonnull)reports inSecondGroupsOfLength:(NSInteger)numOfSeconds;
+-(NSArray<NSArray<BaseReportWithDate*>*> *_Nonnull)aggregateReports:(NSArray<BaseReportWithDate *> * _Nonnull)reports inSecondGroupsOfLength:(NSInteger)numOfSeconds;
 @end

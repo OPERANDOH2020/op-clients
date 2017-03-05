@@ -42,20 +42,19 @@
 
 
 -(void)processMagnetometerStatus {
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.magnetoSensor) {
         return nil;
     }
     
-    NSDictionary *details = @{kInputTypeReportKey: InputType.Magnetometer};
-    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Magnetometer dateReported:[NSDate date]];
 }
 
 @end

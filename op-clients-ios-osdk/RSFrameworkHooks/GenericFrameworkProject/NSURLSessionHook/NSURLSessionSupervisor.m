@@ -8,6 +8,7 @@
 
 #import "NSURLSessionSupervisor.h"
 #import "JRSwizzle.h"
+#import "PPAccessUnlistedHostReport.h"
 
 @interface NSURLSessionSupervisor()
 @property (strong, nonatomic) SCDDocument *document;
@@ -24,17 +25,14 @@
 
 
 -(void)processRequest:(NSURLRequest*)request {
-    OPMonitorViolationReport *report;
+    PPAccessUnlistedHostReport *report;
     if ((report = [self accessesUnspecifiedLink:request])) {
-        [self.delegate newViolationReported:report];
+        [self.delegate newURLHostViolationReported:report];
     }
 }
 
 
--(OPMonitorViolationReport*)accessesUnspecifiedLink:(NSURLRequest*)request {
-    
-    OPMonitorViolationType violationType = TypeAccessedUnlistedURL;
-    OPMonitorViolationReport *report = nil;
+-(PPAccessUnlistedHostReport*)accessesUnspecifiedLink:(NSURLRequest*)request {
     NSString *host = request.URL.host;
     
     for (NSString *listedHost in self.document.accessedLinks) {
@@ -43,10 +41,7 @@
         }
     }
     
-    NSDictionary *details = @{kURLReportKey: host};
-    
-    report = [[OPMonitorViolationReport alloc] initWithDetails:details violationType:violationType];
-    return report;
+    return [[PPAccessUnlistedHostReport alloc] initWithURLHost:host reportedDate:[NSDate date]];
 }
 
 @end

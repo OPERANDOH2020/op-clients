@@ -27,20 +27,19 @@
 
 
 -(void)processContactsAccess {
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.contactsSource) {
         return  nil;
     }
     
-    NSDictionary *details = @{kInputTypeReportKey: InputType.Contacts};
-    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Contacts dateReported:[NSDate date]];
 }
 
 @end

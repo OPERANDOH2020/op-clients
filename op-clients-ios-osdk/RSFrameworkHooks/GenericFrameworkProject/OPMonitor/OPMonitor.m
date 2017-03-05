@@ -34,7 +34,7 @@
 @property (strong, nonatomic) NSDictionary *scdJson;
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
-@property (strong, nonatomic) id<OPViolationReportRepository> reportsRepository;
+@property (strong, nonatomic) PlistReportsStorage *reportsRepository;
 @property (strong, nonnull) NSArray<id<InputSourceSupervisor>> *supervisorsArray;
 
 @end
@@ -158,14 +158,8 @@ static void __attribute__((constructor)) initialize(void){
 }
 
 
-#pragma mark - 
--(void)newViolationReported:(OPMonitorViolationReport *)report {
-    if (self.monitorSettings.allowNotifications) {
-        [OPMonitor displayNotification:report.meaningfulDescription];
-    }
-    
-    [self.reportsRepository addReport:report];
-}
+#pragma mark - Reports from input supervisors
+
 
 #pragma mark -
 

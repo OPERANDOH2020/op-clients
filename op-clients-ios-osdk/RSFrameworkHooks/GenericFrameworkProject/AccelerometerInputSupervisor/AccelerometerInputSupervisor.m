@@ -11,23 +11,17 @@
 #import "CommonUtils.h"
 #import <CoreMotion/CoreMotion.h>
 #import "JRSwizzle.h"
-
-
-
-
-
+#import "PPUnlistedInputAccessViolation.h"
 
 
 @interface AccelerometerInputSupervisor()
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) AccessedInput *accSensor;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-
 @end
 
 
 @implementation AccelerometerInputSupervisor
-
 
 -(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document{
     
@@ -39,21 +33,19 @@
 
 
 -(void)processAccelerometerStatus{
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
 
--(OPMonitorViolationReport*)detectUnregisteredAccess{
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess{
     if (self.accSensor) {
         return nil;
     }
     
-    NSDictionary *details = @{kInputTypeReportKey: InputType.Accelerometer};
-    
-    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
+    return  [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Accelerometer dateReported:[NSDate date]];
 }
 
 @end
