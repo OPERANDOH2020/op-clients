@@ -22,3 +22,7 @@ privacyPlusApp.controller("OSPSignupController", function ($scope, connectionSer
         })
     }
 });
+
+angular.element(document).ready(function() {
+    angular.bootstrap(document.getElementById('osp_register'), ['plusprivacy']);
+});

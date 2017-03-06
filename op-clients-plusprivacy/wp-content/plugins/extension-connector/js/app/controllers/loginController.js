@@ -7,20 +7,6 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
         password: ""
     };
 
-    /*connectionService.getCurrentUser(function(data){
-        if(data.data && Object.keys(data.data).length>0){
-            $scope.userIsLoggedIn = true;
-            $scope.currentUser = data.data.email;
-        }
-        else{
-            $scope.userIsLoggedIn = false;
-            messengerService.on("loggedIn", function () {
-                $window.location.reload();
-            });
-        }
-        $scope.$apply();
-    });*/
-
     userService.isAuthenticated(function(isAuthenticated){
         $scope.userIsLoggedIn = isAuthenticated;
 
@@ -42,11 +28,6 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
                 $scope.userIsLoggedIn = true;
 
                 $scope.$apply();
-
-                /*userService.getCurrentUser(function(data){
-                    $scope.currentUser = data.data.email;
-                    $scope.$apply();
-                });*/
 
             },
             function (error) {

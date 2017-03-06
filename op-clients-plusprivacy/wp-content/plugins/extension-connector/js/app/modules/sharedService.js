@@ -39,19 +39,3 @@ angular.module('sharedService', []).factory('SharedService', function () {
     }
     return window.angularSharedService;
 });
-
-/*angular.module('sharedService').run(["connectionService", "userService", function (connectionService, userService) {
-        //console.log("HERE");
-        var restoredSessionSuccessfully = function (user) {
-            userService.setUser(user);
-            userService.getUser(function(user){
-                console.log(user);
-            });
-        };
-
-        var restoredSessionFailed = function () {
-            userService.removeUser();
-        };
-        connectionService.restoreUserSession(restoredSessionSuccessfully, restoredSessionFailed);
-    }]);
-*/

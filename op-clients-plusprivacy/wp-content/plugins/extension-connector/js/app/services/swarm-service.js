@@ -11,30 +11,36 @@
  */
 
 
-angular.module('sharedService').service("swarmService",function() {
+angular.module('sharedService').service("swarmService", function () {
 
-    var swarmConnection = null;
-    var connectCallbacks = [];
-    var reconnectCallbacks = [];
-    var connectionErrorCallback = [];
+    var SwarmService = (function () {
 
-    function runConnectCallbacks() {
-        connectCallbacks.forEach(function (callback) {
-            callback();
-        });
-    }
+        function SwarmService() {
 
-    function runReconnectCallbacks() {
-        reconnectCallbacks.forEach(function (callback) {
-            callback();
-        });
-    }
+        }
 
-    function runConnectionErrorCallback() {
-        connectionErrorCallback.forEach(function (callback) {
-            callback();
-        });
-    }
+        var swarmConnection = null;
+        var connectCallbacks = [];
+        var reconnectCallbacks = [];
+        var connectionErrorCallback = [];
+
+        function runConnectCallbacks() {
+            connectCallbacks.forEach(function (callback) {
+                callback();
+            });
+        }
+
+        function runReconnectCallbacks() {
+            reconnectCallbacks.forEach(function (callback) {
+                callback();
+            });
+        }
+
+        function runConnectionErrorCallback() {
+            connectionErrorCallback.forEach(function (callback) {
+                callback();
+            });
+        }
 
         initConnection = function (host, port, email, password, tenant, ctor, securityErrorFunction, errorFunction, reconnectCbk, connectCbk) {
             if (errorFunction) {
@@ -92,10 +98,18 @@ angular.module('sharedService').service("swarmService",function() {
             connectionErrorCallback.push(callback);
         };
 
-    return {
-        initConnection: initConnection,
-        removeConnection:removeConnection,
-        restoreConnection:restoreConnection
+        SwarmService.prototype.initConnection = initConnection;
+        SwarmService.prototype.removeConnection = removeConnection;
+        SwarmService.prototype.restoreConnection = restoreConnection;
 
+        return SwarmService;
+
+    })();
+
+    if (typeof(window.SwarmService) === 'undefined' || window.SwarmService === null) {
+        window.SwarmService = new SwarmService();
     }
+
+    return window.SwarmService;
+
 });

@@ -8,8 +8,6 @@ angular.module('sharedService').factory("userService", ["connectionService", fun
         var isAuthenticated;
         var couldBeRestoredCallbacks = [];
 
-
-
         function handleRestoredCallbacks(){
             while(couldBeRestoredCallbacks.length>0){
                 var restoredCallback = couldBeRestoredCallbacks.pop();
