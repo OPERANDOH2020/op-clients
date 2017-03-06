@@ -18,6 +18,7 @@ function insertPlusPrivacyHeader(){
 add_shortcode('confirm-account', 'confirm_user_account');
 add_shortcode('account-login', 'account_login');
 add_shortcode('account-register', 'register_account');
+add_shortcode('osp-login', 'osp_login');
 add_shortcode('osp-register', 'osp_register_account');
 add_shortcode('osp-dashboard-offers', 'osp_dashboard_offers');
 add_shortcode('osp-dashboard-deals', 'osp_dashboard_deals');
@@ -30,6 +31,7 @@ add_action('wp_enqueue_scripts', 'load_swarm_resources');
 add_action('wp_enqueue_scripts', 'confirmUserController');
 add_action('wp_enqueue_scripts', 'loginController');
 add_action('wp_enqueue_scripts', 'signupController');
+add_action('wp_enqueue_scripts', 'ospLoginController');
 add_action('wp_enqueue_scripts', 'ospSignupController');
 add_action('wp_enqueue_scripts', 'ospOffersController');
 add_action('wp_enqueue_scripts', 'ospDealsController');
@@ -94,6 +96,10 @@ function osp_register_account()
     echo file_get_contents(plugins_url('/html/osp/register_osp.html', __FILE__));
 }
 
+function osp_login(){
+    echo file_get_contents(plugins_url('/html/osp/login_osp.html', __FILE__));
+}
+
 function osp_dashboard_offers()
 {
     echo file_get_contents(plugins_url('/html/osp/dashboard/offers.html', __FILE__));
@@ -137,6 +143,12 @@ function loginController()
 function signupController()
 {
     insertScriptIfShortcode("signupController", 'account-register', plugins_url('/js/app/controllers/signupController.js', __FILE__));
+}
+
+
+function ospLoginController()
+{
+    insertScriptIfShortcode("ospLoginController", 'osp-login', plugins_url('/js/app/controllers/osp/ospLoginController.js', __FILE__));
 }
 
 function ospSignupController()

@@ -51,7 +51,7 @@ function convertImageToBase64(file, successCallback, errorCallback) {
 
                     reader.readAsBinaryString(file);
                 }
-                else{
+                else {
                     errorCallback("invalidImageMeasures");
                 }
             };
@@ -60,3 +60,9 @@ function convertImageToBase64(file, successCallback, errorCallback) {
         }
     }
 }
+
+var ORGANISATIONS = {
+    public: "Public",
+    osp: "OSP",
+    psp: "PSP"
+};
