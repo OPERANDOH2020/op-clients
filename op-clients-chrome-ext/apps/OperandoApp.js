@@ -79,7 +79,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             })
             .state("notifications", {
                 url: "/notifications",
-                templateUrl: "views/home/notifications.html",
+                templateUrl: "views/home/notifications.html"
             })
             .state("home.blog", {
                 url: "/blog",
@@ -212,7 +212,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                         twitter: "Twitter",
                         google: "Google"
 
-                    }
+                    };
 
                     if (!$stateParams.sn) {
                         $scope.osp = {
@@ -255,7 +255,7 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                     }],
                     settings:['ospService', function (ospService) {
                         return ospService.loadOSPs();
-                    }],
+                    }]
                 },
                 controller:["$scope","$stateParams","settings", function($scope, $stateParams, settings) {
                     if (!$stateParams.sn) {

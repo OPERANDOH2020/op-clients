@@ -25,7 +25,7 @@ angular.module('notifications', ['ui-notification'])
                 $rootScope.$broadcast('notificationCounterUpdate', notifications);
                 callback();
             });
-        }
+        };
 
 
         var notifyUserNow = function(){
@@ -54,7 +54,7 @@ angular.module('notifications', ['ui-notification'])
                     })
                 })
             });
-        }
+        };
 
          function loadUserNotifications(callback) {
              var deferred = $q.defer();
@@ -70,7 +70,7 @@ angular.module('notifications', ['ui-notification'])
 
         var getUserNotifications = function(callback){
             loadUserNotifications(callback);
-        }
+        };
 
         return {
             dismissNotification: dismissNotification,

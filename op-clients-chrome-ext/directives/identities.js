@@ -27,7 +27,7 @@ angular.module('identities', [])
                             $scope.identities = response.data;
                             $scope.$apply();
                         });
-                    }
+                    };
 
                     $scope.$on('refreshIdentities', refreshIdentities);
                     $scope.$on('changedDefaultSID', function (defaultIdentity) {
@@ -38,7 +38,6 @@ angular.module('identities', [])
                             }
                         });
                     });
-
 
                     $scope.add_new_sid = function () {
                         var identities = $scope.identities;
@@ -72,7 +71,7 @@ angular.module('identities', [])
                                             });
                                         }
                                     });
-                                }
+                                };
 
 
                                 $scope.generateIdentity = function () {
@@ -96,7 +95,7 @@ angular.module('identities', [])
 
                                 $scope.refreshSID = function () {
                                     $scope.identity.email = $scope.identity.alias + "@" + $scope.identity.domain.name;
-                                }
+                                };
 
                                 $scope.close = function (result) {
                                     $element.modal('hide');
@@ -107,7 +106,7 @@ angular.module('identities', [])
                         }).then(function (modal) {
                             modal.element.modal();
                         });
-                    }
+                    };
 
                     refreshIdentities();
                 },
@@ -126,7 +125,7 @@ angular.module('identities', [])
 
                     $scope.stopEventPropagation = function($event){
                         $event.stopPropagation();
-                    }
+                    };
 
                     $scope.changeDefaultIdentity = function () {
 
@@ -136,13 +135,13 @@ angular.module('identities', [])
                             $scope.$apply();
 
                         });
-                    }
+                    };
 
                     $scope.removeIdentity = function () {
                         var identity = $scope.identity;
                         var emitToParent = function (event) {
                             $scope.$emit(event);
-                        }
+                        };
 
                         ModalService.showModal({
 
@@ -171,7 +170,7 @@ angular.module('identities', [])
                                             });
                                         }
                                     })
-                                }
+                                };
 
                                 $scope.close = function (result) {
                                     close(result, 500);
