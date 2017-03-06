@@ -36,18 +36,19 @@
 }
 
 -(void)processTouchIDUsage{
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.accessedSensor) {
         return nil;
     }
-    NSDictionary *details = @{kInputTypeReportKey: InputType.TouchID};
-    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
+    
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.TouchID dateReported:[NSDate date]];
+    
 }
 
 @end

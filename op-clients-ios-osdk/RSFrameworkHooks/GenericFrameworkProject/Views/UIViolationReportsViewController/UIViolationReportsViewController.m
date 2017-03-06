@@ -11,20 +11,16 @@
 #import "Common.h"
 #import "NSBundle+RSFrameworkHooks.h"
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI.h>
-
+#import "UIPrivacyLevelViolationReportsSection.h"
+#import "UIInputAccessViolationReportsSection.h"
+#import "UIHostAccessViolationReportsSection.h"
+#import "UIAccessFrequencyViolationReportsSection.h"
 
 @interface UIViolationReportsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableDictionary<NSNumber*,NSArray<OPMonitorViolationReport*> *>* reportsArrayPerType;
-
-@property (strong, nonatomic) PPReportsSourcesBundle *reportSources;
-@property (strong, nonatomic) NSArray<SCDSectionHeaderModel*> *sectionModels;
-@property (strong, nonatomic) NSArray<NSNumber*> *currentReportTypes;
 @property (strong, nonatomic) void (^exitCallback)();
-
-
-
+@property (strong, nonatomic) NSArray<UIViolationReportsSection*> *reportSections;
 @property (weak, nonatomic) IBOutlet UILabel *noReportsLabel;
 
 @end
@@ -34,134 +30,62 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.noReportsLabel.hidden = YES;
-    self.sectionModels = @[];
     [self setupTableView:self.tableView];
 }
 
-+(NSArray<SCDSectionHeaderModel*>*)buildSectionHeaderModelsWithDisplayedTypes:(NSArray*)displayedTypes crossCheckingWithAvailableTypes:(NSArray<NSNumber*>*)availableTypes{
-    
-
-    NSDictionary* nameForType = @{
-                         @(TypeAccessedUnlistedURL) : @"Access unlisted url",
-                         @(TypePrivacyLevelViolation): @"Privacy level violation",
-                         @(TypeUnregisteredSensorAccessed): @"Access unlisted sensor",
-                         @(TypeAccessFrequencyViolation): @"Access frequency violation"
-                         };
-    
-
-    
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    
-    for (NSNumber *reportType in displayedTypes) {
-        SCDSectionHeaderModel *headerModel = [[SCDSectionHeaderModel alloc] initWithName:nameForType[reportType] expanded:NO enabled:[availableTypes containsObject:reportType]];
-        
-        [result addObject:headerModel];
-    }
-    
-    return result;
-}
 
 -(void)setupWithReportSources:(PPReportsSourcesBundle*)reportSources
                        onExit:(void (^)())exitCallback {
     [self view];
-    self.repository = repository;
     self.exitCallback = exitCallback;
-    self.currentReportTypes = @[@(TypeAccessedUnlistedURL), @(TypePrivacyLevelViolation),
-                                @(TypeUnregisteredSensorAccessed), @(TypeAccessFrequencyViolation)];
-    self.reportsArrayPerType = [[NSMutableDictionary alloc] init];
+}
+
+
+-(NSArray<UIViolationReportsSection*>*)createReportSectionsWith:(PPReportsSourcesBundle*)reportSourcesBundle {
     
-    [repository getTypesOfReportsIn:^(NSArray<NSNumber *> * _Nullable reportTypes, NSError * _Nullable error) {
-        
-        self.sectionModels = [UIViolationReportsViewController buildSectionHeaderModelsWithDisplayedTypes:self.currentReportTypes crossCheckingWithAvailableTypes:reportTypes];
-        
-        [self.tableView reloadData];
-        
-    }];
+    return @[
+             [[UIInputAccessViolationReportsSection alloc] initWithSectionIndex:0 tableView:self.tableView inputAccessReportsSource:reportSourcesBundle.unlistedInputReportsSource],
+             
+             [[UIHostAccessViolationReportsSection alloc] initWithSectionIndex:1 tableView:self.tableView reportsSource:reportSourcesBundle.unlistedHostReportsSource],
+             
+             [[UIPrivacyLevelViolationReportsSection alloc] initWithSectionIndex:2 tableView:self.tableView reportsSource:reportSourcesBundle.privacyViolationReportsSource],
+             
+             [[UIAccessFrequencyViolationReportsSection alloc] initWithSectionIndex:3 tableView:self.tableView reportsSource:reportSourcesBundle.accessFrequencyReportsSource]
+             
+             ] ;
 }
 
 #pragma mark -
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    __weak typeof(self) weakSelf = self;
-    
-    SCDSectionHeader *header = [[SCDSectionHeader alloc] init];
-    SCDSectionHeaderCallbacks *callbacks = [[SCDSectionHeaderCallbacks alloc] initWithCallToExpand:^(void (^callToConfirmExpand)(BOOL)) {
-        [weakSelf showItemsForSectionAtIndex:section withCallback:callToConfirmExpand];
-    } callToContract:^(void (^callToConfirmContract)(BOOL)) {
-        [weakSelf hideItemsForSectionAtIndex:section];
-        SAFECALL(callToConfirmContract, YES);
-    }];
-    
-    [header setupWithModel:self.sectionModels[section] callbacks:callbacks];
-    
-    return header;
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.sectionModels.count;
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return  self.reportSections.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.reportsArrayPerType[self.currentReportTypes[section]].count;
+    if (section >= self.reportSections.count) {
+        return 0;
+    }
+    
+    return self.reportSections[section].numberOfRows;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 60;
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section >= self.reportSections.count) {
+        return nil;
+    }
+    return self.reportSections[section].sectionHeader;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section >= self.reportSections.count) {
+        return [[UITableViewCell alloc] init];
+    }
     
-    ViolationReportCell *cell = [tableView dequeueReusableCellWithIdentifier:[ViolationReportCell identifierNibName]];
-    
-    NSArray *reportsArray = self.reportsArrayPerType[self.currentReportTypes[indexPath.section]];
-    [cell setupWithReport:reportsArray[indexPath.row]];
-    
-    return cell;
+    return [self.reportSections[indexPath.section] cellForRowAtIndex:indexPath.row];
 }
-
--(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  NO;
-}
-
 
 #pragma mark -
 
--(void)showItemsForSectionAtIndex:(NSInteger)index withCallback:(void(^)(BOOL))successCallback {
-    OPMonitorViolationType type = self.currentReportTypes[index].integerValue;
-    [self.repository getAllReportsOfType:type in:^(NSArray<OPMonitorViolationReport *> * _Nullable reports, NSError * _Nullable error) {
-        if (reports) {
-            self.reportsArrayPerType[@(type)] = reports;
-        }
-        
-        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-        for(int i=0; i<reports.count; i++) {
-            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:index]];
-        }
-        if (indexPaths.count) {
-            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-            SAFECALL(successCallback, YES);
-            return;
-        }
-        
-        SAFECALL(successCallback, NO);
-    }];
-}
-
--(void)hideItemsForSectionAtIndex:(NSInteger)index {
-    
-    NSArray *reports = self.reportsArrayPerType[self.currentReportTypes[index]];
-    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-    for(int i=0; i<reports.count; i++) {
-        [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:index]];
-    }
-    
-    self.reportsArrayPerType[self.currentReportTypes[index]] = nil;
-    
-    if (indexPaths.count) {
-        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-}
 
 -(void)setupTableView:(UITableView*)tableView {
     

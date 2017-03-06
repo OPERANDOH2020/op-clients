@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SupervisorProtocols.h"
+#import "ReportsStorageProtocol.h"
 
 @interface PPReportsSourcesBundle : NSObject
 @property (strong, nonatomic) id<PPUnlistedHostReportsSource> unlistedHostReportsSource;
 @property (strong, nonatomic) id<PPUnlistedInputReportsSource> unlistedInputReportsSource;
 @property (strong, nonatomic) id<PPPrivacyLevelReportsSource> privacyViolationReportsSource;
+@property (strong, nonatomic) id<PPAccessFrequencyReportsSource> accessFrequencyReportsSource;
 @end

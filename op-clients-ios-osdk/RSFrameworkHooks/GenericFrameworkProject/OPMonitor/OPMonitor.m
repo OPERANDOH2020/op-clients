@@ -25,6 +25,7 @@
 
 #import "PPFlowBuilder.h"
 
+
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
 
 
@@ -138,9 +139,12 @@ static void __attribute__((constructor)) initialize(void){
         [settings synchronizeToUserDefaults];
     };
     
+    PPReportsSourcesBundle *reportSources = [[PPReportsSourcesBundle alloc] init];
+    
+    
     PPFlowBuilderModel *flowModel = [[PPFlowBuilderModel alloc] init];
     flowModel.monitoringSettings = self.monitorSettings;
-    flowModel.violationReportsRepository = self.reportsRepository;
+    flowModel.reportSources = reportSources;
     flowModel.scdRepository = repo;
     flowModel.scdJSON = self.scdJson;
     flowModel.locationSettingsModel = locSettingsModel;

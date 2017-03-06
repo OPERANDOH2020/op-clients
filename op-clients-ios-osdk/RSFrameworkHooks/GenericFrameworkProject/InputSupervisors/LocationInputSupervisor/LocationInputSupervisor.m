@@ -39,21 +39,19 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
 }
 
 -(void)processStatus:(LocationStatus)locStatus {
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.locationSensor) {
         return nil;
     }
     
-    NSDictionary *details = @{kInputTypeReportKey: InputType.Location};
-    
-    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Location dateReported:[NSDate date]];
 }
 
 @end

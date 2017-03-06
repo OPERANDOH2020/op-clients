@@ -44,10 +44,24 @@
 		98281D061E696FD100373369 /* PPAccessFrequencyViolationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 98281D041E696FD100373369 /* PPAccessFrequencyViolationReport.m */; };
 		98281D0B1E69B0E100373369 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98281D091E69B0E100373369 /* PlusPrivacyCommonTypes.framework */; };
 		98281D0C1E69B0E100373369 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98281D0A1E69B0E100373369 /* PlusPrivacyCommonUI.framework */; };
+		9831E29F1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 9831E29D1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.h */; };
+		9831E2A01E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9831E29E1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.m */; };
+		9831E2A41E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 9831E2A21E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.h */; };
+		9831E2A51E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9831E2A31E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.m */; };
+		9831E2A91E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 9831E2A71E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.h */; };
+		9831E2AA1E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9831E2A81E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.m */; };
 		98331C821E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98331C801E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.h */; };
 		98331C831E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m in Sources */ = {isa = PBXBuildFile; fileRef = 98331C811E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m */; };
 		98331C841E56F6A0005D3A84 /* ViolationReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98804EF91E4DEB57009E6748 /* ViolationReportCell.xib */; };
 		98331C851E56F6A0005D3A84 /* PPViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98804EF41E4DE277009E6748 /* PPViews.storyboard */; };
+		983F87B31E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 983F87B11E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h */; };
+		983F87B41E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 983F87B21E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m */; };
+		983F87B81E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 983F87B61E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h */; };
+		983F87B91E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 983F87B71E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.m */; };
+		983F87BD1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 983F87BB1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h */; };
+		983F87BE1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 983F87BC1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m */; };
+		983F87C21E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 983F87C01E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h */; };
+		983F87C31E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 983F87C11E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m */; };
 		98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* RSFrameworksHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E8FB1DEC6F0D0095CA30 /* JRSwizzle.h */; };
 		9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */; };
@@ -68,6 +82,10 @@
 		98804F0B1E4E0E7C009E6748 /* UIPPOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98804F091E4E0E7C009E6748 /* UIPPOptionsViewController.m */; };
 		98804F131E4E26DB009E6748 /* UIEncapsulatorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98804F111E4E26DB009E6748 /* UIEncapsulatorViewController.h */; };
 		98804F141E4E26DB009E6748 /* UIEncapsulatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98804F121E4E26DB009E6748 /* UIEncapsulatorViewController.m */; };
+		988716ED1E6D81CD005FAA45 /* UIViolationReportsSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 988716EB1E6D81CD005FAA45 /* UIViolationReportsSection.h */; };
+		988716EE1E6D81CD005FAA45 /* UIViolationReportsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 988716EC1E6D81CD005FAA45 /* UIViolationReportsSection.m */; };
+		988716F21E6D883A005FAA45 /* UIInputAccessViolationReportsSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 988716F01E6D883A005FAA45 /* UIInputAccessViolationReportsSection.h */; };
+		988716F31E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 988716F11E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m */; };
 		9888B16F1E6C2F6200D783AB /* BaseReportWithDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9888B16D1E6C2F6200D783AB /* BaseReportWithDate.h */; };
 		9888B1701E6C2F6200D783AB /* BaseReportWithDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9888B16E1E6C2F6200D783AB /* BaseReportWithDate.m */; };
 		9888B1741E6C625900D783AB /* PPReportsSourcesBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9888B1721E6C625900D783AB /* PPReportsSourcesBundle.h */; };
@@ -94,8 +112,8 @@
 		98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */; };
 		98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B234681E53376B0015C2E9 /* UISCDViewController.h */; };
 		98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B234691E53376B0015C2E9 /* UISCDViewController.m */; };
-		98CEF2691E5EEE84002C2145 /* UIInputUsageGraphsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98CEF2671E5EEE84002C2145 /* UIInputUsageGraphsViewController.h */; };
-		98CEF26A1E5EEE84002C2145 /* UIInputUsageGraphsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CEF2681E5EEE84002C2145 /* UIInputUsageGraphsViewController.m */; };
+		98CEF2691E5EEE84002C2145 /* UIUsageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98CEF2671E5EEE84002C2145 /* UIUsageViewController.h */; };
+		98CEF26A1E5EEE84002C2145 /* UIUsageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CEF2681E5EEE84002C2145 /* UIUsageViewController.m */; };
 		98CEF3191E5F1B24002C2145 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CEF2851E5F1B24002C2145 /* Animator.swift */; };
 		98CEF31A1E5F1B24002C2145 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CEF2861E5F1B24002C2145 /* ChartAnimationEasing.swift */; };
 		98CEF31B1E5F1B24002C2145 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CEF2881E5F1B24002C2145 /* BarChartView.swift */; };
@@ -277,8 +295,23 @@
 		98281D041E696FD100373369 /* PPAccessFrequencyViolationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPAccessFrequencyViolationReport.m; path = Models/ViolationReports/PPAccessFrequencyViolationReport.m; sourceTree = "<group>"; };
 		98281D091E69B0E100373369 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		98281D0A1E69B0E100373369 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
+		9831E29D1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIHostAccessViolationReportsSection.h; path = Views/UIViolationReportsViewController/UIHostAccessViolationReportsSection/UIHostAccessViolationReportsSection.h; sourceTree = "<group>"; };
+		9831E29E1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIHostAccessViolationReportsSection.m; path = Views/UIViolationReportsViewController/UIHostAccessViolationReportsSection/UIHostAccessViolationReportsSection.m; sourceTree = "<group>"; };
+		9831E2A21E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIPrivacyLevelViolationReportsSection.h; path = Views/UIViolationReportsViewController/UIPrivacyLevelViolationReportsSection/UIPrivacyLevelViolationReportsSection.h; sourceTree = "<group>"; };
+		9831E2A31E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIPrivacyLevelViolationReportsSection.m; path = Views/UIViolationReportsViewController/UIPrivacyLevelViolationReportsSection/UIPrivacyLevelViolationReportsSection.m; sourceTree = "<group>"; };
+		9831E2A71E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIAccessFrequencyViolationReportsSection.h; path = Views/UIViolationReportsViewController/UIAccessFrequencyViolationReportsSection/UIAccessFrequencyViolationReportsSection.h; sourceTree = "<group>"; };
+		9831E2A81E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAccessFrequencyViolationReportsSection.m; path = Views/UIViolationReportsViewController/UIAccessFrequencyViolationReportsSection/UIAccessFrequencyViolationReportsSection.m; sourceTree = "<group>"; };
 		98331C801E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+RSFrameworkHooks.h"; path = "Views/NSBundle+RSFrameworkHooks/NSBundle+RSFrameworkHooks.h"; sourceTree = "<group>"; };
 		98331C811E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+RSFrameworkHooks.m"; path = "Views/NSBundle+RSFrameworkHooks/NSBundle+RSFrameworkHooks.m"; sourceTree = "<group>"; };
+		983F87B11E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPUnlistedInputAccessViolation+NSDictionaryRepresentation/PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h"; sourceTree = "<group>"; };
+		983F87B21E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPUnlistedInputAccessViolation+NSDictionaryRepresentation/PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m"; sourceTree = "<group>"; };
+		983F87B61E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessFrequencyViolationReport+NSDictionaryRepresentation/PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h"; sourceTree = "<group>"; };
+		983F87B71E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPAccessFrequencyViolationReport+NSDictionaryRepresentation.m"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessFrequencyViolationReport+NSDictionaryRepresentation/PPAccessFrequencyViolationReport+NSDictionaryRepresentation.m"; sourceTree = "<group>"; };
+		983F87BB1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPPrivacyLevelViolationReport+NSDictionaryRepresentation/PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h"; sourceTree = "<group>"; };
+		983F87BC1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPPrivacyLevelViolationReport+NSDictionaryRepresentation/PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m"; sourceTree = "<group>"; };
+		983F87C01E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPAccessUnlistedHostReport+NSDictionaryRepresentation.h"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessUnlistedHostReport+NSDictionaryRepresentation/PPAccessUnlistedHostReport+NSDictionaryRepresentation.h"; sourceTree = "<group>"; };
+		983F87C11E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPAccessUnlistedHostReport+NSDictionaryRepresentation.m"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessUnlistedHostReport+NSDictionaryRepresentation/PPAccessUnlistedHostReport+NSDictionaryRepresentation.m"; sourceTree = "<group>"; };
+		983F87C41E6DCBA60002DEC9 /* DictionaryRepresentableProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DictionaryRepresentableProtocol.h; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/DictionaryRepresentableProtocol.h; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSFrameworksHook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* RSFrameworksHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSFrameworksHook.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -306,6 +339,10 @@
 		98804F091E4E0E7C009E6748 /* UIPPOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIPPOptionsViewController.m; path = Views/UIPPOptionsViewController/UIPPOptionsViewController.m; sourceTree = "<group>"; };
 		98804F111E4E26DB009E6748 /* UIEncapsulatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIEncapsulatorViewController.h; path = Views/UIEncapsulatorViewController/UIEncapsulatorViewController.h; sourceTree = "<group>"; };
 		98804F121E4E26DB009E6748 /* UIEncapsulatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIEncapsulatorViewController.m; path = Views/UIEncapsulatorViewController/UIEncapsulatorViewController.m; sourceTree = "<group>"; };
+		988716EB1E6D81CD005FAA45 /* UIViolationReportsSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViolationReportsSection.h; path = Views/UIViolationReportsViewController/UIViolationReportsSection/UIViolationReportsSection.h; sourceTree = "<group>"; };
+		988716EC1E6D81CD005FAA45 /* UIViolationReportsSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViolationReportsSection.m; path = Views/UIViolationReportsViewController/UIViolationReportsSection/UIViolationReportsSection.m; sourceTree = "<group>"; };
+		988716F01E6D883A005FAA45 /* UIInputAccessViolationReportsSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIInputAccessViolationReportsSection.h; path = Views/UIViolationReportsViewController/UIInputAccessViolationReportsSection/UIInputAccessViolationReportsSection.h; sourceTree = "<group>"; };
+		988716F11E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIInputAccessViolationReportsSection.m; path = Views/UIViolationReportsViewController/UIInputAccessViolationReportsSection/UIInputAccessViolationReportsSection.m; sourceTree = "<group>"; };
 		9888B16D1E6C2F6200D783AB /* BaseReportWithDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseReportWithDate.h; path = Models/ViolationReports/BaseReportWithDate/BaseReportWithDate.h; sourceTree = "<group>"; };
 		9888B16E1E6C2F6200D783AB /* BaseReportWithDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseReportWithDate.m; path = Models/ViolationReports/BaseReportWithDate/BaseReportWithDate.m; sourceTree = "<group>"; };
 		9888B1721E6C625900D783AB /* PPReportsSourcesBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPReportsSourcesBundle.h; path = Models/ViolationReports/PPReportsSourcesBundle.h; sourceTree = "<group>"; };
@@ -332,8 +369,8 @@
 		98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputSupervisorsManager.m; path = InputSupervisorsManager/InputSupervisorsManager.m; sourceTree = "<group>"; };
 		98B234681E53376B0015C2E9 /* UISCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISCDViewController.h; path = Views/UISCDViewController/UISCDViewController.h; sourceTree = "<group>"; };
 		98B234691E53376B0015C2E9 /* UISCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISCDViewController.m; path = Views/UISCDViewController/UISCDViewController.m; sourceTree = "<group>"; };
-		98CEF2671E5EEE84002C2145 /* UIInputUsageGraphsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIInputUsageGraphsViewController.h; path = Views/UIInputUsageGraphsViewController/UIInputUsageGraphsViewController.h; sourceTree = "<group>"; };
-		98CEF2681E5EEE84002C2145 /* UIInputUsageGraphsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIInputUsageGraphsViewController.m; path = Views/UIInputUsageGraphsViewController/UIInputUsageGraphsViewController.m; sourceTree = "<group>"; };
+		98CEF2671E5EEE84002C2145 /* UIUsageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIUsageViewController.h; path = Views/UIInputUsageGraphsViewController/UIUsageViewController.h; sourceTree = "<group>"; };
+		98CEF2681E5EEE84002C2145 /* UIUsageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIUsageViewController.m; path = Views/UIInputUsageGraphsViewController/UIUsageViewController.m; sourceTree = "<group>"; };
 		98CEF2851E5F1B24002C2145 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		98CEF2861E5F1B24002C2145 /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimationEasing.swift; sourceTree = "<group>"; };
 		98CEF2881E5F1B24002C2145 /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
@@ -559,8 +596,7 @@
 		981EAC6C1E48C63F000F59E3 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */,
-				981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */,
+				983F87AE1E6DB0160002DEC9 /* PlistReportStorage */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -592,6 +628,33 @@
 			name = PPAccessFrequencyViolationReport;
 			sourceTree = "<group>";
 		};
+		9831E29C1E6D974500A5FE0A /* UIHostAccessViolationReportsSection */ = {
+			isa = PBXGroup;
+			children = (
+				9831E29D1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.h */,
+				9831E29E1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.m */,
+			);
+			name = UIHostAccessViolationReportsSection;
+			sourceTree = "<group>";
+		};
+		9831E2A11E6D9EB900A5FE0A /* UIPrivacyLevelViolationReportsSection */ = {
+			isa = PBXGroup;
+			children = (
+				9831E2A21E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.h */,
+				9831E2A31E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.m */,
+			);
+			name = UIPrivacyLevelViolationReportsSection;
+			sourceTree = "<group>";
+		};
+		9831E2A61E6DA1C600A5FE0A /* UIAccessFrequencyViolationReportsSection */ = {
+			isa = PBXGroup;
+			children = (
+				9831E2A71E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.h */,
+				9831E2A81E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.m */,
+			);
+			name = UIAccessFrequencyViolationReportsSection;
+			sourceTree = "<group>";
+		};
 		98331C7F1E56F09D005D3A84 /* NSBundle+RSFrameworkHooks */ = {
 			isa = PBXGroup;
 			children = (
@@ -599,6 +662,64 @@
 				98331C811E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m */,
 			);
 			name = "NSBundle+RSFrameworkHooks";
+			sourceTree = "<group>";
+		};
+		983F87AE1E6DB0160002DEC9 /* PlistReportStorage */ = {
+			isa = PBXGroup;
+			children = (
+				983F87AF1E6DB0320002DEC9 /* ModelsDictionaryRepresentations */,
+				981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */,
+				981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */,
+			);
+			name = PlistReportStorage;
+			sourceTree = "<group>";
+		};
+		983F87AF1E6DB0320002DEC9 /* ModelsDictionaryRepresentations */ = {
+			isa = PBXGroup;
+			children = (
+				983F87C41E6DCBA60002DEC9 /* DictionaryRepresentableProtocol.h */,
+				983F87BF1E6DBEEF0002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation */,
+				983F87BA1E6DBE0E0002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation */,
+				983F87B51E6DB41D0002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation */,
+				983F87B01E6DB03F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation */,
+			);
+			name = ModelsDictionaryRepresentations;
+			sourceTree = "<group>";
+		};
+		983F87B01E6DB03F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation */ = {
+			isa = PBXGroup;
+			children = (
+				983F87B11E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h */,
+				983F87B21E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m */,
+			);
+			name = "PPUnlistedInputAccessViolation+NSDictionaryRepresentation";
+			sourceTree = "<group>";
+		};
+		983F87B51E6DB41D0002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation */ = {
+			isa = PBXGroup;
+			children = (
+				983F87B61E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h */,
+				983F87B71E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.m */,
+			);
+			name = "PPAccessFrequencyViolationReport+NSDictionaryRepresentation";
+			sourceTree = "<group>";
+		};
+		983F87BA1E6DBE0E0002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation */ = {
+			isa = PBXGroup;
+			children = (
+				983F87BB1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h */,
+				983F87BC1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m */,
+			);
+			name = "PPPrivacyLevelViolationReport+NSDictionaryRepresentation";
+			sourceTree = "<group>";
+		};
+		983F87BF1E6DBEEF0002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation */ = {
+			isa = PBXGroup;
+			children = (
+				983F87C01E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h */,
+				983F87C11E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m */,
+			);
+			name = "PPAccessUnlistedHostReport+NSDictionaryRepresentation";
 			sourceTree = "<group>";
 		};
 		98584F331D3F9E18009FB89F = {
@@ -752,6 +873,11 @@
 		98804EFD1E4DF194009E6748 /* UIViolationReportsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9831E2A61E6DA1C600A5FE0A /* UIAccessFrequencyViolationReportsSection */,
+				9831E2A11E6D9EB900A5FE0A /* UIPrivacyLevelViolationReportsSection */,
+				9831E29C1E6D974500A5FE0A /* UIHostAccessViolationReportsSection */,
+				988716EF1E6D8813005FAA45 /* UIInputAccessViolationReportsSection */,
+				988716EA1E6D8199005FAA45 /* UIViolationReportsSection */,
 				98804EFE1E4DF1D8009E6748 /* UIViolationReportsViewController.h */,
 				98804EFF1E4DF1D8009E6748 /* UIViolationReportsViewController.m */,
 			);
@@ -783,6 +909,24 @@
 				98804F121E4E26DB009E6748 /* UIEncapsulatorViewController.m */,
 			);
 			name = UIEncapsulatorViewController;
+			sourceTree = "<group>";
+		};
+		988716EA1E6D8199005FAA45 /* UIViolationReportsSection */ = {
+			isa = PBXGroup;
+			children = (
+				988716EB1E6D81CD005FAA45 /* UIViolationReportsSection.h */,
+				988716EC1E6D81CD005FAA45 /* UIViolationReportsSection.m */,
+			);
+			name = UIViolationReportsSection;
+			sourceTree = "<group>";
+		};
+		988716EF1E6D8813005FAA45 /* UIInputAccessViolationReportsSection */ = {
+			isa = PBXGroup;
+			children = (
+				988716F01E6D883A005FAA45 /* UIInputAccessViolationReportsSection.h */,
+				988716F11E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m */,
+			);
+			name = UIInputAccessViolationReportsSection;
 			sourceTree = "<group>";
 		};
 		9888B16C1E6C2F4800D783AB /* BaseReportWithDate */ = {
@@ -924,8 +1068,8 @@
 		98CEF2661E5EEE5E002C2145 /* UIInputUsageGraphsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				98CEF2671E5EEE84002C2145 /* UIInputUsageGraphsViewController.h */,
-				98CEF2681E5EEE84002C2145 /* UIInputUsageGraphsViewController.m */,
+				98CEF2671E5EEE84002C2145 /* UIUsageViewController.h */,
+				98CEF2681E5EEE84002C2145 /* UIUsageViewController.m */,
 			);
 			name = UIInputUsageGraphsViewController;
 			sourceTree = "<group>";
@@ -1317,6 +1461,8 @@
 				9888B16F1E6C2F6200D783AB /* BaseReportWithDate.h in Headers */,
 				987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */,
 				98DF60F81E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h in Headers */,
+				9831E29F1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.h in Headers */,
+				988716ED1E6D81CD005FAA45 /* UIViolationReportsSection.h in Headers */,
 				988A151F1E40E2DD00AABD43 /* BarometerInputSupervisor.h in Headers */,
 				988A15151E40D1B400AABD43 /* MagnetometerInputSupervisor.h in Headers */,
 				98CEF3A41E5F2204002C2145 /* UIInputGraphViewController.h in Headers */,
@@ -1325,26 +1471,33 @@
 				9895FB331E5B1A2A00B1F56D /* UILocationSettingsViewController.h in Headers */,
 				9895FB2E1E5AED3D00B1F56D /* LocationInputSwizzler.h in Headers */,
 				987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */,
+				988716F21E6D883A005FAA45 /* UIInputAccessViolationReportsSection.h in Headers */,
 				98804F001E4DF1D8009E6748 /* UIViolationReportsViewController.h in Headers */,
 				98804EFA1E4DEB57009E6748 /* ViolationReportCell.h in Headers */,
+				983F87B31E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h in Headers */,
 				98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */,
 				98DF60FD1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.h in Headers */,
+				9831E2A41E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.h in Headers */,
 				9888B1741E6C625900D783AB /* PPReportsSourcesBundle.h in Headers */,
 				98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */,
 				98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */,
+				983F87C21E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h in Headers */,
 				98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */,
 				98804F131E4E26DB009E6748 /* UIEncapsulatorViewController.h in Headers */,
 				9895FB391E5B337A00B1F56D /* LocationInputSwizzlerSettings.h in Headers */,
+				983F87B81E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h in Headers */,
 				98DF61021E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.h in Headers */,
 				981EAC701E48C7C6000F59E3 /* PlistReportsStorage.h in Headers */,
 				98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */,
-				98CEF2691E5EEE84002C2145 /* UIInputUsageGraphsViewController.h in Headers */,
+				9831E2A91E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.h in Headers */,
+				98CEF2691E5EEE84002C2145 /* UIUsageViewController.h in Headers */,
 				9895FB491E5B3CB200B1F56D /* UIWindow+RSHookHandle.h in Headers */,
 				98804F051E4DFD47009E6748 /* PPFlowBuilder.h in Headers */,
 				988A151A1E40DF3300AABD43 /* AccelerometerInputSupervisor.h in Headers */,
 				982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */,
 				98CEF3AB1E5F3064002C2145 /* PerSecondReportAggregator.h in Headers */,
 				98804F0A1E4E0E7C009E6748 /* UIPPOptionsViewController.h in Headers */,
+				983F87BD1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h in Headers */,
 				98D603E41E2F800B00E59A42 /* OPMonitor.h in Headers */,
 				9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */,
 				98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */,
@@ -1487,6 +1640,8 @@
 				98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */,
 				98CEF3621E5F1B24002C2145 /* BarHighlighter.swift in Sources */,
 				98CEF3331E5F1B24002C2145 /* BarChartData.swift in Sources */,
+				988716F31E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m in Sources */,
+				9831E2A51E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.m in Sources */,
 				98CEF3571E5F1B24002C2145 /* IPieChartDataSet.swift in Sources */,
 				98CEF34F1E5F1B24002C2145 /* IBarChartDataSet.swift in Sources */,
 				98CEF3631E5F1B24002C2145 /* ChartHighlighter.swift in Sources */,
@@ -1520,11 +1675,13 @@
 				98CEF34D1E5F1B24002C2145 /* ScatterChartData.swift in Sources */,
 				98CEF36E1E5F1B24002C2145 /* BubbleChartDataProvider.swift in Sources */,
 				98CEF37B1E5F1B24002C2145 /* BarChartRenderer.swift in Sources */,
+				983F87BE1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m in Sources */,
 				9895FB2F1E5AED3D00B1F56D /* LocationInputSwizzler.m in Sources */,
 				988A151B1E40DF3300AABD43 /* AccelerometerInputSupervisor.m in Sources */,
 				98CEF3951E5F1B24002C2145 /* YAxisRenderer.swift in Sources */,
 				98CEF37D1E5F1B24002C2145 /* BubbleChartRenderer.swift in Sources */,
 				98CEF3881E5F1B24002C2145 /* Renderer.swift in Sources */,
+				983F87C31E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m in Sources */,
 				98CEF33C1E5F1B24002C2145 /* CandleChartDataEntry.swift in Sources */,
 				98CEF32D1E5F1B24002C2145 /* LegendEntry.swift in Sources */,
 				98182AB51E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
@@ -1535,6 +1692,7 @@
 				98CEF34A1E5F1B24002C2145 /* RadarChartData.swift in Sources */,
 				98CEF33A1E5F1B24002C2145 /* BubbleChartDataSet.swift in Sources */,
 				98CEF3361E5F1B24002C2145 /* BarLineScatterCandleBubbleChartData.swift in Sources */,
+				983F87B41E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m in Sources */,
 				98CEF38B1E5F1B24002C2145 /* CircleShapeRenderer.swift in Sources */,
 				98CEF37A1E5F1B24002C2145 /* AxisRendererBase.swift in Sources */,
 				98182AC11E44CDFC00895F19 /* UIDevice+rsHook.m in Sources */,
@@ -1588,6 +1746,7 @@
 				98CEF3411E5F1B24002C2145 /* ChartDataSet.swift in Sources */,
 				98CEF32B1E5F1B24002C2145 /* IMarker.swift in Sources */,
 				988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */,
+				9831E2A01E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.m in Sources */,
 				98CEF3611E5F1B24002C2145 /* IValueFormatter.swift in Sources */,
 				98CEF3191E5F1B24002C2145 /* Animator.swift in Sources */,
 				98CEF3381E5F1B24002C2145 /* BubbleChartData.swift in Sources */,
@@ -1600,6 +1759,7 @@
 				981EAC711E48C7C6000F59E3 /* PlistReportsStorage.m in Sources */,
 				98CEF3351E5F1B24002C2145 /* BarChartDataSet.swift in Sources */,
 				98CEF3981E5F1B24002C2145 /* ChartColorTemplates.swift in Sources */,
+				9831E2AA1E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.m in Sources */,
 				98CEF31E1E5F1B24002C2145 /* CandleStickChartView.swift in Sources */,
 				98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */,
 				988A15071E40AA7F00AABD43 /* CommonUtils.m in Sources */,
@@ -1625,6 +1785,7 @@
 				98CEF3271E5F1B24002C2145 /* AxisBase.swift in Sources */,
 				98CEF3891E5F1B24002C2145 /* ChevronDownShapeRenderer.swift in Sources */,
 				98CEF3591E5F1B24002C2145 /* IScatterChartDataSet.swift in Sources */,
+				983F87B91E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.m in Sources */,
 				98CEF3901E5F1B24002C2145 /* XShapeRenderer.swift in Sources */,
 				98CEF3831E5F1B24002C2145 /* LineChartRenderer.swift in Sources */,
 				98CEF34C1E5F1B24002C2145 /* RadarChartDataSet.swift in Sources */,
@@ -1644,6 +1805,7 @@
 				9888B1751E6C625900D783AB /* PPReportsSourcesBundle.m in Sources */,
 				98331C831E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m in Sources */,
 				9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */,
+				988716EE1E6D81CD005FAA45 /* UIViolationReportsSection.m in Sources */,
 				982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */,
 				98CEF3861E5F1B24002C2145 /* PieChartRenderer.swift in Sources */,
 				98CEF31A1E5F1B24002C2145 /* ChartAnimationEasing.swift in Sources */,
@@ -1656,7 +1818,7 @@
 				98CEF3421E5F1B24002C2145 /* CombinedChartData.swift in Sources */,
 				98281D061E696FD100373369 /* PPAccessFrequencyViolationReport.m in Sources */,
 				98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */,
-				98CEF26A1E5EEE84002C2145 /* UIInputUsageGraphsViewController.m in Sources */,
+				98CEF26A1E5EEE84002C2145 /* UIUsageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,18 +33,18 @@
 
 
 -(void)processProximitySensorAccess {
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.proximitySensor) {
         return nil;
     }
-    NSDictionary *details = @{kInputTypeReportKey: InputType.Proximity};
-    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
+    
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Proximity dateReported:[NSDate date]];
 }
 
 @end

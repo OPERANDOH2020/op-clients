@@ -8,12 +8,6 @@
 
 
 #import <UIKit/UIKit.h>
-#import "OPMonitorViolationReport.h"
-
-
 @interface ViolationReportCell : UITableViewCell
-
 +(NSString*)identifierNibName;
--(void)setupWithReport:(OPMonitorViolationReport*)report;
-
 @end
