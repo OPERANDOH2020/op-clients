@@ -40,12 +40,109 @@ static NSString *kInputRepository = @"kInputRepository";
 {
     self = [super init];
     if (self) {
+        [self populateArrays];
     }
     return self;
 }
 
 
-+(NSArray*)buildObjectsOfClass:(Class)class fromDictionaries:(NSArray<NSDictionary*>*)dictionaries {
+#pragma mark - AccessFrequency Repository
+
+-(void)addAccessFrequencyReport:(PPAccessFrequencyViolationReport *)report withCompletion:(PossibleErrorCallback)completion {
+    
+    [self.frequencyReportsArray addObject:report];
+    [PlistReportsStorage synchronizeArray:self.frequencyReportsArray toPlistNamed:kFrequencyRepository];
+    SAFECALL(completion, nil)
+}
+
+-(void)getFrequencyReportsIn:(AccessFrequencyReportsCallback)callback {
+    SAFECALL(callback, self.frequencyReportsArray, nil)
+}
+
+#pragma mark - HostReports Repository
+
+-(void)addUnlistedHostReport:(PPAccessUnlistedHostReport *)report withCompletion:(PossibleErrorCallback)completion {
+    [self.hostReportsArray addObject:report];
+    [PlistReportsStorage synchronizeArray:self.hostReportsArray toPlistNamed:kHostRepository];
+    SAFECALL(completion, nil)
+}
+
+-(void)getUnlistedHostReportsIn:(UnlistedHostReportsCallback)callback {
+    SAFECALL(callback, self.hostReportsArray, nil)
+}
+
+
+#pragma mark - PrivacyLevel Repository
+
+-(void)addPrivacyLevelReport:(PPPrivacyLevelViolationReport *)report withCompletion:(PossibleErrorCallback)completion{
+    
+    [self.privacyLevelReportsArray addObject:report];
+    [PlistReportsStorage synchronizeArray:self.privacyLevelReportsArray toPlistNamed:kPrivacyLevelRepository];
+    
+    SAFECALL(completion, nil)
+}
+
+-(void)getPrivacyLevelReportsIn:(PrivacyLevelReportsCallback)callback {
+    SAFECALL(callback, self.privacyLevelReportsArray, nil)
+}
+
+#pragma mark - UnlistedInput Repository 
+
+-(void)addUnlistedInputReport:(PPUnlistedInputAccessViolation *)report withCompletion:(PossibleErrorCallback)completion {
+    [self.inputReportsArray addObject:report];
+    [PlistReportsStorage synchronizeArray:self.inputReportsArray toPlistNamed:kInputRepository];
+    SAFECALL(completion, nil)
+}
+
+-(void)getUnlistedInputReportsIn:(UnlistedInputReportsCallback)callback{
+    SAFECALL(callback, self.inputReportsArray, nil)
+}
+
+#pragma mark - private methods
+
+-(void)populateArrays {
+    NSArray<NSDictionary*> *frequencyDicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPathForRepositoryName:kFrequencyRepository]];
+    
+    NSArray<NSDictionary*> *hostDicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPathForRepositoryName:kHostRepository]];
+    
+    NSArray<NSDictionary*> *privacyLevelDicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPathForRepositoryName:kPrivacyLevelRepository]];
+    
+    NSArray<NSDictionary*> *inputAccessDicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPathForRepositoryName:kInputRepository]];
+    
+    
+    self.frequencyReportsArray = [PlistReportsStorage buildObjectsOfClass:[PPAccessFrequencyViolationReport class] fromDictionaries:frequencyDicts];
+    
+    self.hostReportsArray = [PlistReportsStorage buildObjectsOfClass:[PPAccessUnlistedHostReport class] fromDictionaries:hostDicts];
+    
+    self.privacyLevelReportsArray = [PlistReportsStorage buildObjectsOfClass:[PPPrivacyLevelViolationReport class] fromDictionaries:privacyLevelDicts];
+    
+    self.inputReportsArray = [PlistReportsStorage buildObjectsOfClass:[PPUnlistedInputAccessViolation class] fromDictionaries:inputAccessDicts];
+    
+}
+
++(void)synchronizeArray:(NSArray<id<DictionaryRepresentable>>*)array toPlistNamed:(NSString*)plistName {
+    NSArray *dicts = [PlistReportsStorage createDictionaryRepresentationsOfObjects:array];
+    [dicts writeToFile:[PlistReportsStorage plistPathForRepositoryName:plistName] atomically:YES];
+}
+
+
++(NSString*)plistPathForRepositoryName:(NSString*)repositoryName {
+    if (repositoryName == nil) {
+        return @"";
+    }
+    NSString *pathComponent = [NSString stringWithFormat:@"%@.plist", repositoryName];
+    
+    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    if (paths.firstObject) {
+        return [paths.firstObject stringByAppendingPathComponent:pathComponent];
+    }
+    
+    
+    return @"";
+}
+
++(NSMutableArray*)buildObjectsOfClass:(Class)class fromDictionaries:(NSArray<NSDictionary*>*)dictionaries {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
     for (NSDictionary *dict in dictionaries) {
@@ -70,25 +167,6 @@ static NSString *kInputRepository = @"kInputRepository";
     
     return result;
     
-}
-
-#pragma mark - private methods
-
-
-+(NSString*)plistPathForRepositoryName:(NSString*)repositoryName {
-    if (repositoryName == nil) {
-        return @"";
-    }
-    NSString *pathComponent = [NSString stringWithFormat:@"%@.plist", repositoryName];
-    
-    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    if (paths.firstObject) {
-        return [paths.firstObject stringByAppendingPathComponent:pathComponent];
-    }
-    
-    
-    return @"";
 }
 
 @end

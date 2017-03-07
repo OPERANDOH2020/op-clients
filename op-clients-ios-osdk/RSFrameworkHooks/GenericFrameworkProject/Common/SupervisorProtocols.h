@@ -19,7 +19,7 @@
 -(void)newURLHostViolationReported:(PPAccessUnlistedHostReport*)report;
 -(void)newPrivacyLevelViolationReported:(PPPrivacyLevelViolationReport*)report;
 -(void)newUnlistedInputAccessViolationReported:(PPUnlistedInputAccessViolation*)report;
-
+-(void)newAccessFrequencyViolationReported:(PPAccessFrequencyViolationReport*)report;
 @end
 
 @protocol InputSourceSupervisor <NSObject>

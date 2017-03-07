@@ -7,6 +7,7 @@
 //
 
 #import "UIHostAccessViolationReportsSection.h"
+#import "Common.h"
 
 @interface UIHostAccessViolationReportsSection()
 @property (strong, nonatomic) id<PPUnlistedHostReportsSource> reportsSource;
@@ -21,4 +22,12 @@
     
     return self;
 }
+
+-(void)loadReportsWithCompletion:(void (^)())completion {
+    [self.reportsSource getUnlistedHostReportsIn:^(NSArray<PPAccessUnlistedHostReport *> * _Nullable reports, NSError * _Nullable error) {
+        self.reportsArray = reports;
+        SAFECALL(completion)
+    }];
+}
+
 @end

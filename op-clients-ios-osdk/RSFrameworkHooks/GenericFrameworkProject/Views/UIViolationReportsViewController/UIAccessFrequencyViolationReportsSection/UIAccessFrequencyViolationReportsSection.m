@@ -7,20 +7,40 @@
 //
 
 #import "UIAccessFrequencyViolationReportsSection.h"
+#import "ViolationReportCell.h"
+#import <PlusPrivacyCommonUI/PlusPrivacyCommonUI.h>
+#import "Common.h"
 
 @interface UIAccessFrequencyViolationReportsSection()
-
 @property (strong, nonatomic) id<PPAccessFrequencyReportsSource> reportsSource;
-@property (strong, nonatomic) NSArray<PPAccessFrequencyViolationReport*> *reportsArray;
-
 @end
 
 @implementation UIAccessFrequencyViolationReportsSection
+
+
+
 -(instancetype)initWithSectionIndex:(NSInteger)sectionIndex tableView:(UITableView *)tableView reportsSource:(id<PPAccessFrequencyReportsSource>)reportsSource {
     if (self = [super initWithSectionIndex:sectionIndex tableView:tableView]) {
         self.reportsSource = reportsSource;
+        self.amExpanded = NO;
     }
     
     return self;
 }
+
+-(void)loadReportsWithCompletion:(void (^)())completion {
+    [self.reportsSource getFrequencyReportsIn:^(NSArray<PPAccessFrequencyViolationReport *> * _Nullable reportsArray, NSError * _Nullable error) {
+        self.reportsArray = reportsArray;
+        SAFECALL(completion);
+    }];
+}
+
+-(UITableViewCell *)cellForRowAtIndex:(NSInteger)index {
+    ViolationReportCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[ViolationReportCell identifierNibName]];
+    
+    [cell setMessage:@"Access frequency error" subMessage:@""];
+    
+    return cell;
+}
+
 @end

@@ -7,10 +7,10 @@
 //
 
 #import "UIInputAccessViolationReportsSection.h"
+#import "Common.h"
 
 @interface UIInputAccessViolationReportsSection()
 @property (strong, nonatomic) id<PPUnlistedInputReportsSource> reportsSource;
-@property (strong, nonatomic) NSArray<PPUnlistedInputAccessViolation*> *reportsArray;
 @end
 
 @implementation UIInputAccessViolationReportsSection
@@ -22,8 +22,11 @@
     return self;
 }
 
--(NSInteger)numberOfRows {
-    return  self.reportsArray.count;
+-(void)loadReportsWithCompletion:(void (^)())completion {
+    [self.reportsSource getUnlistedInputReportsIn:^(NSArray<PPUnlistedInputAccessViolation *> * _Nullable reports, NSError * _Nullable error ) {
+        self.reportsArray = reports;
+        SAFECALL(completion)
+    }];
 }
 
 

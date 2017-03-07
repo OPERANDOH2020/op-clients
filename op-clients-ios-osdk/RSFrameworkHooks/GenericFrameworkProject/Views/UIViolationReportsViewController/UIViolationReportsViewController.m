@@ -38,12 +38,14 @@
                        onExit:(void (^)())exitCallback {
     [self view];
     self.exitCallback = exitCallback;
+    self.reportSections = [self createReportSectionsWith:reportSources];
+    [self.tableView reloadData];
 }
 
 
 -(NSArray<UIViolationReportsSection*>*)createReportSectionsWith:(PPReportsSourcesBundle*)reportSourcesBundle {
     
-    return @[
+    NSArray *sectionsArray =  @[
              [[UIInputAccessViolationReportsSection alloc] initWithSectionIndex:0 tableView:self.tableView inputAccessReportsSource:reportSourcesBundle.unlistedInputReportsSource],
              
              [[UIHostAccessViolationReportsSection alloc] initWithSectionIndex:1 tableView:self.tableView reportsSource:reportSourcesBundle.unlistedHostReportsSource],
@@ -53,11 +55,18 @@
              [[UIAccessFrequencyViolationReportsSection alloc] initWithSectionIndex:3 tableView:self.tableView reportsSource:reportSourcesBundle.accessFrequencyReportsSource]
              
              ] ;
+    
+    for (UIViolationReportsSection *section in sectionsArray) {
+        [section prepare];
+    }
+    
+    return sectionsArray;
 }
 
 #pragma mark -
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSLog(@"Returning %ld number of sections", self.reportSections.count);
     return  self.reportSections.count;
 }
 
@@ -74,6 +83,14 @@
         return nil;
     }
     return self.reportSections[section].sectionHeader;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section >= self.reportSections.count) {
+        return 0;
+    }
+    
+    return self.reportSections[section].headerHeight;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

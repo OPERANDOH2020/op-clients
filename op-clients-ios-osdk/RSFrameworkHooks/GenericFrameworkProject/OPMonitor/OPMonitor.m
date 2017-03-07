@@ -35,7 +35,7 @@
 @property (strong, nonatomic) NSDictionary *scdJson;
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
-@property (strong, nonatomic) PlistReportsStorage *reportsRepository;
+@property (strong, nonatomic) PlistReportsStorage *plistRepository;
 @property (strong, nonnull) NSArray<id<InputSourceSupervisor>> *supervisorsArray;
 
 @end
@@ -88,14 +88,14 @@ static void __attribute__((constructor)) initialize(void){
         if (error || !scdDocument) {
             NSString *errorMessage = [error description];
             displayMessage(errorMessage);
-            [OPMonitor displayNotification:errorMessage];
+            [self displayNotificationIfPossible:errorMessage];
             return;
             
         }
         
         self.monitorSettings = [[OPMonitorSettings alloc] initFromDefaults];
         self.scdJson = document;
-        self.reportsRepository = [[PlistReportsStorage alloc] init];
+        self.plistRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
         self.supervisorsArray = [self buildSupervisors];
         [self setupInputSwizzlers];
@@ -119,17 +119,20 @@ static void __attribute__((constructor)) initialize(void){
 }
 
 -(void)didPressHandle:(id)sender {
+    [self displayFlowIfNecessary];
+}
+
+-(void)displayFlowIfNecessary {
     
     static BOOL isFlowDisplayed = NO;
     
     if (isFlowDisplayed) {
         return;
     }
-    
     OneDocumentRepository *repo = [[OneDocumentRepository alloc] initWithDocument:self.document];
     
     __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
-
+    
     __block UIViewController *flowRoot = nil;
     
     LocationSettingsModel *locSettingsModel = [[LocationSettingsModel alloc] init];
@@ -140,7 +143,10 @@ static void __attribute__((constructor)) initialize(void){
     };
     
     PPReportsSourcesBundle *reportSources = [[PPReportsSourcesBundle alloc] init];
-    
+    reportSources.accessFrequencyReportsSource = self.plistRepository;
+    reportSources.privacyViolationReportsSource = self.plistRepository;
+    reportSources.unlistedHostReportsSource = self.plistRepository;
+    reportSources.unlistedInputReportsSource = self.plistRepository;
     
     PPFlowBuilderModel *flowModel = [[PPFlowBuilderModel alloc] init];
     flowModel.monitoringSettings = self.monitorSettings;
@@ -161,13 +167,38 @@ static void __attribute__((constructor)) initialize(void){
     [rootViewController ppAddChildContentController:flowRoot];
 }
 
-
 #pragma mark - Reports from input supervisors
+
+-(void)newURLHostViolationReported:(PPAccessUnlistedHostReport *)report {
+    [self.plistRepository addUnlistedHostReport:report withCompletion:nil];
+    NSString *notification = [NSString stringWithFormat:@"Accessed unlisted host %@", report.urlHost];
+    [self displayNotificationIfPossible:notification];
+}
+
+-(void)newUnlistedInputAccessViolationReported:(PPUnlistedInputAccessViolation *)report {
+    [self.plistRepository addUnlistedInputReport:report withCompletion:nil];
+    NSString *notification = [NSString stringWithFormat:@"Accessed unlisted input %@", InputType.namesPerInputType[report.inputType]];
+    [self displayNotificationIfPossible:notification];
+
+}
+
+
+-(void)newPrivacyLevelViolationReported:(PPPrivacyLevelViolationReport *)report {
+    // must complete later
+}
+
+-(void)newAccessFrequencyViolationReported:(PPAccessFrequencyViolationReport *)report{
+    // must complete later
+}
 
 
 #pragma mark -
 
-+(void)displayNotification:(NSString*)notification {
+-(void)displayNotificationIfPossible:(NSString*)notification {
+    if (!self.monitorSettings.allowNotifications) {
+        return;
+    }
+    
     __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
     
     dispatch_async(dispatch_get_main_queue(), ^{

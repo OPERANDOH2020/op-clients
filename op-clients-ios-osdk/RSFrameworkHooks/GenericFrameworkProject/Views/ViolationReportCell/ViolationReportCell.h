@@ -10,4 +10,7 @@
 #import <UIKit/UIKit.h>
 @interface ViolationReportCell : UITableViewCell
 +(NSString*)identifierNibName;
+
+-(void)setMessage:(NSString*)message subMessage:(NSString*)subMessage;
+
 @end

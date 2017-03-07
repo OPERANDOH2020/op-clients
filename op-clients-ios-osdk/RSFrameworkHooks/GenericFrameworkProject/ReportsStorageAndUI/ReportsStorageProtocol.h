@@ -48,26 +48,26 @@ typedef void(^PossibleErrorCallback)(NSError * __nullable error);
 @end
 
 @protocol PPAccessFrequencyReportsSource <NSObject>
--(void)getAllReportsIn:(AccessFrequencyReportsCallback __nullable)callback;
+-(void)getFrequencyReportsIn:(AccessFrequencyReportsCallback __nullable)callback;
 @end
 
 #pragma mark - Repository protocols
 // -- Repository protocols
 
 @protocol PPUnlistedInputReportsRepository <PPUnlistedInputReportsSource>
--(void)addReport:(PPUnlistedInputAccessViolation* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
+-(void)addUnlistedInputReport:(PPUnlistedInputAccessViolation* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
 @end
 
 @protocol PPPrivacyLevelReportsRepository <PPPrivacyLevelReportsSource>
--(void)addReport:(PPPrivacyLevelViolationReport* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
+-(void)addPrivacyLevelReport:(PPPrivacyLevelViolationReport* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
 @end
 
 @protocol PPUnlistedHostReportsRepository <PPUnlistedHostReportsSource>
--(void)addReport:(PPAccessUnlistedHostReport* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
+-(void)addUnlistedHostReport:(PPAccessUnlistedHostReport* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
 @end
 
 @protocol PPAccessFrequencyReportsRepository <PPAccessFrequencyReportsSource>
--(void)addReport:(PPAccessFrequencyViolationReport* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
+-(void)addAccessFrequencyReport:(PPAccessFrequencyViolationReport* _Nonnull)report withCompletion:(PossibleErrorCallback __nullable)completion;
 @end
 
 #endif /* ReportsStorageProtocol_h */

@@ -44,7 +44,7 @@ public class AccessFrequencyType: BaseStringEnum {
     override internal init?(rawValue: String){
         guard rawValue == AccessFrequencyType.SingularSampleRawValue ||
               rawValue == AccessFrequencyType.ContinuousRawValue ||
-            rawValue == AccessFrequencyType.ContinuousRawValue else {
+            rawValue == AccessFrequencyType.ContinuousIntervalsRawValue else {
                 return nil
         }
         

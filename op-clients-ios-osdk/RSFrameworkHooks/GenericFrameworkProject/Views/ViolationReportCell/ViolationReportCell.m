@@ -22,6 +22,9 @@
     return @"ViolationReportCell";
 }
 
-
+-(void)setMessage:(NSString *)message subMessage:(NSString *)subMessage{
+    self.messageLabel.text = message;
+    self.dateLabel.text = subMessage;
+}
 
 @end

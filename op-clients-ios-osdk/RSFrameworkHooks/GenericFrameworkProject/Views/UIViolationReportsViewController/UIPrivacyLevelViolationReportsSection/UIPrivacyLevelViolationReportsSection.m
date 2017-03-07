@@ -7,6 +7,7 @@
 //
 
 #import "UIPrivacyLevelViolationReportsSection.h"
+#import "Common.h"
 
 @interface UIPrivacyLevelViolationReportsSection()
 @property (strong, nonatomic) id<PPPrivacyLevelReportsSource> reportsSource;
@@ -19,4 +20,12 @@
     }
     return self;
 }
+
+-(void)loadReportsWithCompletion:(void (^)())completion{
+    [self.reportsSource getPrivacyLevelReportsIn:^(NSArray<PPPrivacyLevelViolationReport *> * _Nullable array, NSError * _Nullable error) {
+        self.reportsArray = array;
+        SAFECALL(completion)
+    }];
+}
+
 @end
