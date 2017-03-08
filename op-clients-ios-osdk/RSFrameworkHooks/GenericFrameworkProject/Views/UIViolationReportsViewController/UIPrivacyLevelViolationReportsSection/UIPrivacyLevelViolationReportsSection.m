@@ -28,4 +28,8 @@
     }];
 }
 
+-(NSString *)sectionName {
+    return @"Privacy level violation";
+}
+
 @end

@@ -50,5 +50,7 @@
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.TouchID dateReported:[NSDate date]];
     
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

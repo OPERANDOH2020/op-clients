@@ -13,7 +13,7 @@
 @interface NSURLSessionSupervisor()
 @property (strong, nonatomic) SCDDocument *document;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-
+@property (strong, nonatomic) NSArray<id<NetworkRequestAnalyzer>> *requestAnalyzers;
 @end
 
 @implementation NSURLSessionSupervisor
@@ -23,11 +23,18 @@
     self.delegate = delegate;
 }
 
+-(void)reportRequestsToAnalyzers:(NSArray<id<NetworkRequestAnalyzer>> *)analyzers {
+    self.requestAnalyzers = analyzers;
+}
 
 -(void)processRequest:(NSURLRequest*)request {
     PPAccessUnlistedHostReport *report;
     if ((report = [self accessesUnspecifiedLink:request])) {
         [self.delegate newURLHostViolationReported:report];
+    }
+    
+    for (id<NetworkRequestAnalyzer> analyzer in self.requestAnalyzers) {
+        [analyzer newURLRequestMade:request];
     }
 }
 

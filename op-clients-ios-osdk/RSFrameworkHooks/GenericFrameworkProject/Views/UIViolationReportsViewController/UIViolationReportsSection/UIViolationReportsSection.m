@@ -118,7 +118,7 @@
 
 
 -(CGFloat)headerHeight{
-    return 80;
+    return 60;
 }
 
 @end

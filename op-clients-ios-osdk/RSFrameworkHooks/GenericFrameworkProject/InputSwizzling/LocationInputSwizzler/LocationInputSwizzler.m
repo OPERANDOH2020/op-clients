@@ -33,6 +33,7 @@
 @interface LocationInputSwizzler() <CLLocationManagerDelegate>
 @property (strong, nonatomic) LocationInputSwizzlerSettings *currentSettings;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber*, WeakDelegateHolder*> *delegatePerInstance;
+@property (weak, nonatomic) id<LocationInputAnalyzer> analyzer;
 @end
 
 
@@ -56,6 +57,10 @@
     return self;
 }
 
+-(void)reportInputToAnalyzer:(id<LocationInputAnalyzer>)analyzer{
+    self.analyzer = analyzer;
+}
+
 -(void)applySettings:(LocationInputSwizzlerSettings *)settings {
     self.currentSettings = settings;
 }
@@ -66,6 +71,11 @@
     }
     
     return [[CLLocation alloc] initWithLatitude:self.currentSettings.locationLatitude longitude:self.currentSettings.locationLongitude];
+}
+
+-(CLLocation*)locationSubstituteIfAnyForActualLocation:(CLLocation*)actualLocation {
+    [self.analyzer newUserLocationsRequested:@[actualLocation]];
+    return [self locationSubstituteIfAny];
 }
 
 -(void)didAskToSetDelegate:(id<CLLocationManagerDelegate>)delegate onInstance:(CLLocationManager*)instance {
@@ -95,6 +105,7 @@
     
     WeakDelegateHolder *holder  = self.delegatePerInstance[@(manager.hash)];
     [holder.delegate locationManager:manager didUpdateLocations:locationsForDelegates];
+    [self.analyzer newUserLocationsRequested:locations];
 }
 
 @end
@@ -116,9 +127,10 @@
 
 -(CLLocation *)ppLocSwizzling_location {
     
-    CLLocation *loc = [[LocationInputSwizzler sharedInstance] locationSubstituteIfAny];
+    CLLocation *actualLocation = [self ppLocSwizzling_location];
+    CLLocation *loc = [[LocationInputSwizzler sharedInstance] locationSubstituteIfAnyForActualLocation:actualLocation];
     if (!loc) {
-        return [self ppLocSwizzling_location];
+        return actualLocation;
     }
     return loc;
 }

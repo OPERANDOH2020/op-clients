@@ -43,4 +43,8 @@
     return cell;
 }
 
+-(NSString *)sectionName {
+    return @"Access frequency violation";
+}
+
 @end

@@ -56,5 +56,7 @@
     
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Magnetometer dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

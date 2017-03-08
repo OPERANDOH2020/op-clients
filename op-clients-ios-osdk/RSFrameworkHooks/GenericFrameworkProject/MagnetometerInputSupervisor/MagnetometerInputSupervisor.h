@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SupervisorProtocols.h"
 
-@interface MagnetometerInputSupervisor : NSObject <InputSourceSupervisor>
+@interface MagnetometerInputSupervisor : NSObject <InputSourceSupervisor, NetworkRequestAnalyzer>
 -(void)processMagnetometerStatus;
 @end

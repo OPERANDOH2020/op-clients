@@ -10,7 +10,7 @@
 #import "CommonUtils.h"
 #import <CoreLocation/CoreLocation.h>
 #import <JRSwizzle.h>
-
+#import "PPCircularArray.h"
 
 typedef void (^LocationCallbackWithInfo)(NSDictionary*);
 LocationCallbackWithInfo _rsHookGlobalLocationCallback;
@@ -20,6 +20,7 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
 @property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) AccessedInput *locationSensor;
+@property (strong, nonatomic) PPCircularArray *locationsArray;
 @end
 
 
@@ -52,6 +53,10 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
     }
     
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Location dateReported:[NSDate date]];
+}
+
+-(void)newUserLocationsRequested:(NSArray<CLLocation *> *)locations{
+    
 }
 
 @end

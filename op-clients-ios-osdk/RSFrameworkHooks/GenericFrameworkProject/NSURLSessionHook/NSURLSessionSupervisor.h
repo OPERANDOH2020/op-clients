@@ -12,7 +12,7 @@
 
 
 @interface NSURLSessionSupervisor: NSObject <InputSourceSupervisor>
-
 -(void)processRequest:(NSURLRequest*)request;
+-(void)reportRequestsToAnalyzers:(NSArray<id<NetworkRequestAnalyzer>>* _Nonnull)analyzers;
 
 @end

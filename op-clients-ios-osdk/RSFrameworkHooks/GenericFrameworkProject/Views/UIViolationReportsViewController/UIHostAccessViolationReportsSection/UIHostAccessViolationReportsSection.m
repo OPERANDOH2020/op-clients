@@ -8,10 +8,10 @@
 
 #import "UIHostAccessViolationReportsSection.h"
 #import "Common.h"
+#import "ViolationReportCell.h"
 
 @interface UIHostAccessViolationReportsSection()
 @property (strong, nonatomic) id<PPUnlistedHostReportsSource> reportsSource;
-@property (strong, nonatomic) NSArray<PPAccessUnlistedHostReport*> *reportsArray;
 @end
 
 @implementation UIHostAccessViolationReportsSection
@@ -28,6 +28,25 @@
         self.reportsArray = reports;
         SAFECALL(completion)
     }];
+}
+
+-(UITableViewCell *)cellForRowAtIndex:(NSInteger)index{
+    ViolationReportCell *cell  = [self.tableView dequeueReusableCellWithIdentifier:[ViolationReportCell identifierNibName]];
+    
+    if (index >= self.reportsArray.count) {
+        return cell;
+    }
+    
+    
+    PPAccessUnlistedHostReport *report = self.reportsArray[index];
+    NSString *message = [NSString stringWithFormat:@"Request to unlisted host: %@", report.urlHost];
+    NSString *subMessage = [NSString stringWithFormat:@"Date: %@", report.reportDate];
+    [cell setMessage:message subMessage:subMessage];
+    return cell;
+}
+
+-(NSString *)sectionName {
+    return @"Network";
 }
 
 @end

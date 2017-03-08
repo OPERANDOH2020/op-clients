@@ -47,5 +47,7 @@
     
     return  [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Accelerometer dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

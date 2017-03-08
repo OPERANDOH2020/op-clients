@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SupervisorProtocols.h"
 
-@interface TouchIdSupervisor : NSObject <InputSourceSupervisor>
+@interface TouchIdSupervisor : NSObject <InputSourceSupervisor, NetworkRequestAnalyzer>
 -(void)processTouchIDUsage;
 @end

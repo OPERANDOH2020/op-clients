@@ -47,5 +47,7 @@
     
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Pedometer dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

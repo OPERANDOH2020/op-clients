@@ -31,6 +31,7 @@
     self.model = model;
     self.callbacks = callbacks;
     [self view];
+    [self.tableView reloadData];
     
 }
 

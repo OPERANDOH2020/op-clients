@@ -70,12 +70,6 @@
     };
     
     callbacks.whenChoosingUsageGraphs = ^{
-        UIUsageViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"UIUsageViewController"];
-        
-        UIUsageViewControllerCallbacks *cbs = [[UIUsageViewControllerCallbacks alloc] init];
-        cbs.exitCallback = ^{
-            [weakNavgController popViewControllerAnimated:YES];
-        };
         
         void (^displayGraphWithReports)(NSArray<BaseReportWithDate*>*) = ^void(NSArray<BaseReportWithDate*> *reports){
             UIGraphViewController *graphVC = [storyboard instantiateViewControllerWithIdentifier:@"UIGraphViewController"];
@@ -85,20 +79,44 @@
             }];
             
             [weakNavgController pushViewController:graphVC animated:YES];
-
+            
         };
         
-        cbs.inputTypeSelectedCallback = ^void(InputType* inputType){
+        [model.reportSources.unlistedHostReportsSource getUnlistedHostReportsIn:^(NSArray<PPAccessUnlistedHostReport *> * _Nullable hostReports, NSError * _Nullable hostReportsError) {
             
-            [model.reportSources.unlistedInputReportsSource getViolationReportsOfInputType:inputType in:^(NSArray<PPUnlistedInputAccessViolation *> * _Nullable reports, NSError * _Nullable error) {
-                displayGraphWithReports(reports);
+            [model.reportSources.unlistedInputReportsSource getCurrentInputTypesInViolationReportsIn:^(NSArray<InputType *> * _Nullable inputTypes, NSError * _Nullable inputTypesError) {
+                
+                
+                UIUsageViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"UIUsageViewController"];
+                
+                UIUsageViewControllerModel *usageModel = [[UIUsageViewControllerModel alloc] init];
+                usageModel.displayNetworkReportsOption = hostReports.count > 0;
+                usageModel.inputTypesOptions = inputTypes;
+                
+                UIUsageViewControllerCallbacks *callbacks = [[UIUsageViewControllerCallbacks alloc] init];
+                callbacks.exitCallback = ^{
+                    [weakNavgController popViewControllerAnimated:YES];
+                };
+                
+                callbacks.inputTypeSelectedCallback = ^void(InputType* inputType){
+                    
+                    [model.reportSources.unlistedInputReportsSource getViolationReportsOfInputType:inputType in:^(NSArray<PPUnlistedInputAccessViolation *> * _Nullable reports, NSError * _Nullable error) {
+                        displayGraphWithReports(reports);
+                    }];
+                    
+                };
+                
+                callbacks.networkReportsSelectedCallback = ^{
+                    displayGraphWithReports(hostReports);
+                };
+                
+                [vc setupWithModel:usageModel andCallbacks:callbacks];
+                [weakNavgController pushViewController:vc animated:YES];
+                
             }];
             
-        };
+        }];
         
-
-        [vc setupWithModel:nil andCallbacks:cbs];
-        [weakNavgController pushViewController:vc animated:YES];
     };
     
     callbacks.whenChoosingOverrideLocation = ^{

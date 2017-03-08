@@ -47,4 +47,8 @@
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Proximity dateReported:[NSDate date]];
 }
 
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
+
 @end

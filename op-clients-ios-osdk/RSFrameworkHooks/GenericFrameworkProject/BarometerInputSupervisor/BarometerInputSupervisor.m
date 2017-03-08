@@ -44,5 +44,7 @@
     
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Barometer dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SupervisorProtocols.h"
 
-@interface MicrophoneInputSupervisor : NSObject <InputSourceSupervisor>
+@interface MicrophoneInputSupervisor : NSObject <InputSourceSupervisor, NetworkRequestAnalyzer>
 
 -(void)processMicrophoneUsage;
 

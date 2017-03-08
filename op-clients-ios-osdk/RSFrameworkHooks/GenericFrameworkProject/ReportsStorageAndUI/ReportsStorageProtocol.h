@@ -17,7 +17,7 @@
 #pragma mark - Block typedefs
 // -- Block typedefs ---
 
-typedef void(^InputTypesCallback)(NSArray<NSString*>* __nullable, NSError * __nullable);
+typedef void(^InputTypesCallback)(NSArray<InputType*>* __nullable, NSError * __nullable);
 typedef void(^UnlistedInputReportsCallback)(NSArray<PPUnlistedInputAccessViolation*>* __nullable, NSError * __nullable);
 
 typedef void(^PrivacyLevelReportsCallback)(NSArray<PPPrivacyLevelViolationReport*>* __nullable, NSError * __nullable);

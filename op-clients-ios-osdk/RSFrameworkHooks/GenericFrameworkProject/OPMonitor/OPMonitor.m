@@ -28,6 +28,22 @@
 
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
 
+@interface NSArray(FindObjectOfClass)
+-(id _Nullable)firstObjectOfClass:(Class)class;
+@end
+
+@implementation NSArray(FindObjectOfClass)
+
+-(id)firstObjectOfClass:(Class)class{
+    for (id obj in self) {
+        if ([obj isKindOfClass:class]) {
+            return obj;
+        }
+    }
+    return nil;
+}
+
+@end
 
 @interface OPMonitor() <InputSupervisorDelegate>
 
@@ -98,7 +114,8 @@ static void __attribute__((constructor)) initialize(void){
         self.plistRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
         self.supervisorsArray = [self buildSupervisors];
-        [self setupInputSwizzlers];
+        LocationInputSupervisor *locSupervisor = [self.supervisorsArray firstObjectOfClass:[LocationInputSupervisor class]];
+        [self setupLocationInputSwizzlerUsingSupervisor:locSupervisor];
         
         [InputSupervisorsManager buildSharedInstanceWithSupervisors:self.supervisorsArray];
     }];
@@ -209,8 +226,16 @@ static void __attribute__((constructor)) initialize(void){
 -(NSArray<id<InputSourceSupervisor>>*)buildSupervisors {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
+    // set up the network supervisor separately
+    // as it will report url requests to the other supervisors also
+    //
+
+    NSURLSessionSupervisor *urlSessionSupervisor = [[NSURLSessionSupervisor alloc] init];
+
+    [urlSessionSupervisor reportToDelegate:self analyzingSCD:self.document];
+    [result addObject:urlSessionSupervisor];
+    
     NSArray *supervisorClasses = @[[LocationInputSupervisor class],
-                                   [NSURLSessionSupervisor class],
                                    [ProximityInputSupervisor class],
                                    [PedometerInputSupervisor class],
                                    [MagnetometerInputSupervisor class],
@@ -222,18 +247,23 @@ static void __attribute__((constructor)) initialize(void){
                                    [ContactsInputSupervisor class]
                                    ];
     
+    NSMutableArray *networkAnalyzers = [[NSMutableArray alloc] init];
     for (Class class in supervisorClasses) {
         id supervisor = [[class alloc] init];
         [supervisor reportToDelegate:self analyzingSCD:self.document];
+        [networkAnalyzers addObject:supervisor];
         [result addObject:supervisor];
     }
+    
+    [urlSessionSupervisor reportRequestsToAnalyzers:networkAnalyzers];
     
     return  result;
 }
 
--(void)setupInputSwizzlers {
+-(void)setupLocationInputSwizzlerUsingSupervisor:(LocationInputSupervisor*)supervisor {
     LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults];
     [[LocationInputSwizzler sharedInstance] applySettings:defaultLocationSettings];
+    [[LocationInputSwizzler sharedInstance] reportInputToAnalyzer:supervisor];
 }
 
 @end

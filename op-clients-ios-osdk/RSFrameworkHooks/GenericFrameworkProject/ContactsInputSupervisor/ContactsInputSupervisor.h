@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SupervisorProtocols.h"
 
-@interface ContactsInputSupervisor : NSObject <InputSourceSupervisor>
+@interface ContactsInputSupervisor : NSObject <InputSourceSupervisor, NetworkRequestAnalyzer>
 
 -(void)processContactsAccess;
 

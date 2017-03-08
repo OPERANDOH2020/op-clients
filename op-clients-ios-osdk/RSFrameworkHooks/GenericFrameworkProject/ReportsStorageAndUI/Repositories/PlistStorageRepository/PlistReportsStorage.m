@@ -98,6 +98,30 @@ static NSString *kInputRepository = @"kInputRepository";
     SAFECALL(callback, self.inputReportsArray, nil)
 }
 
+-(void)getCurrentInputTypesInViolationReportsIn:(InputTypesCallback)callback{
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    for (PPUnlistedInputAccessViolation *report in self.inputReportsArray) {
+        if (![result containsObject:report.inputType]) {
+            [result addObject:report.inputType];
+        }
+    }
+    
+    SAFECALL(callback, result, nil)
+}
+
+-(void)getViolationReportsOfInputType:(InputType *)inputType in:(UnlistedInputReportsCallback)callback {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    for (PPUnlistedInputAccessViolation *report in self.inputReportsArray) {
+        if ([report.inputType isEqual:inputType]) {
+            [result addObject:report];
+        }
+    }
+    
+    SAFECALL(callback, result, nil)
+}
+
 #pragma mark - private methods
 
 -(void)populateArrays {

@@ -45,5 +45,7 @@
     }
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Microphone dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

@@ -41,5 +41,7 @@
     
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Contacts dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "LocationInputSwizzlerSettings.h"
+#import <CoreLocation/CoreLocation.h>
 
-
-
+@protocol LocationInputAnalyzer <NSObject>
+-(void)newUserLocationsRequested:(NSArray<CLLocation*>* _Nonnull)locations;
+@end
 
 @interface LocationInputSwizzler : NSObject
 
 @property (readonly, nonatomic) LocationInputSwizzlerSettings *currentSettings;
 -(void)applySettings:(LocationInputSwizzlerSettings*)settings;
+-(void)reportInputToAnalyzer:(id<LocationInputAnalyzer> _Nullable)analyzer;
 
 +(LocationInputSwizzler*)sharedInstance;
 

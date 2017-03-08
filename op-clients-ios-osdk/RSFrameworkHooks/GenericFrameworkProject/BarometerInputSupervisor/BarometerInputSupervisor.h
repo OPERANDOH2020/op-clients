@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SupervisorProtocols.h"
 
-@interface BarometerInputSupervisor : NSObject <InputSourceSupervisor>
+@interface BarometerInputSupervisor : NSObject <InputSourceSupervisor, NetworkRequestAnalyzer>
 -(void)processAltimeterStatus;
 @end
