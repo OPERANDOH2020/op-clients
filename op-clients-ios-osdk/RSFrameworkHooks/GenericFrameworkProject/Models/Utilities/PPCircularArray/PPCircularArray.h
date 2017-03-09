@@ -10,8 +10,9 @@
 
 @interface PPCircularArray : NSObject
 
--(instancetype)initWithCapacity:(NSInteger)capacity;
+-(instancetype _Nullable)initWithCapacity:(NSInteger)capacity;
 
+-(void)addObjects:(NSArray* _Nonnull)objects;
 -(void)addObject:(id _Nonnull)object;
 -(NSArray* _Nonnull)allObjects;
 

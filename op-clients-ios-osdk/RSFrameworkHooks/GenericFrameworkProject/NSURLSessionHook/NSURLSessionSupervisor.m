@@ -11,17 +11,17 @@
 #import "PPAccessUnlistedHostReport.h"
 
 @interface NSURLSessionSupervisor()
-@property (strong, nonatomic) SCDDocument *document;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 @property (strong, nonatomic) NSArray<id<NetworkRequestAnalyzer>> *requestAnalyzers;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @end
 
 @implementation NSURLSessionSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    self.document = document;
-    self.delegate = delegate;
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
 }
+
+
 
 -(void)reportRequestsToAnalyzers:(NSArray<id<NetworkRequestAnalyzer>> *)analyzers {
     self.requestAnalyzers = analyzers;
@@ -30,7 +30,7 @@
 -(void)processRequest:(NSURLRequest*)request {
     PPAccessUnlistedHostReport *report;
     if ((report = [self accessesUnspecifiedLink:request])) {
-        [self.delegate newURLHostViolationReported:report];
+        [self.model.delegate newURLHostViolationReported:report];
     }
     
     for (id<NetworkRequestAnalyzer> analyzer in self.requestAnalyzers) {
@@ -42,7 +42,7 @@
 -(PPAccessUnlistedHostReport*)accessesUnspecifiedLink:(NSURLRequest*)request {
     NSString *host = request.URL.host;
     
-    for (NSString *listedHost in self.document.accessedLinks) {
+    for (NSString *listedHost in self.model.scdDocument.accessedLinks) {
         if ([listedHost isEqualToString:host]) {
             return nil;
         }

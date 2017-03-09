@@ -21,7 +21,7 @@ typedef enum : NSUInteger {
 } LocationStatus;
 
 
-@interface LocationInputSupervisor : NSObject <InputSourceSupervisor, LocationInputAnalyzer>
+@interface LocationInputSupervisor : NSObject <InputSourceSupervisor, LocationInputAnalyzer, NetworkRequestAnalyzer>
 
 -(void)processLocationStatus:(NSDictionary*)statusDict;
 

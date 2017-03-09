@@ -38,6 +38,12 @@
     self.numOfItemsEverInserted++;
 }
 
+-(void)addObjects:(NSArray *)objects{
+    for (id obj in objects) {
+        [self addObject:obj];
+    }
+}
+
 -(NSArray *)allObjects {
     return [NSArray arrayWithArray:self.backingArray];
 }

@@ -15,27 +15,26 @@
 
 
 @interface AccelerometerInputSupervisor()
-@property (strong, nonatomic) SCDDocument *document;
+
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (strong, nonatomic) AccessedInput *accSensor;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
+
 @end
 
 
 @implementation AccelerometerInputSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document{
+-(void)setupWithModel:(InputSupervisorModel *)model {
     
-    self.delegate = delegate;
-    self.document = document;
-    self.accSensor = [CommonUtils extractInputOfType: InputType.Accelerometer from:document.accessedInputs];
     
+    self.accSensor = [CommonUtils extractInputOfType: InputType.Accelerometer from:model.scdDocument.accessedInputs];
 }
 
 
 -(void)processAccelerometerStatus{
     PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newUnlistedInputAccessViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 

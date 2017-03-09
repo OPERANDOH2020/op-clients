@@ -14,28 +14,22 @@
 
 
 @interface MicrophoneInputSupervisor()
-
-@property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) AccessedInput *micSensor;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-
+@property (strong, nonatomic) InputSupervisorModel *model;
 @end
 
 @implementation MicrophoneInputSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    
-    self.document = document;
-    self.delegate = delegate;
-    self.micSensor = [CommonUtils extractInputOfType:InputType.Microphone from:document.accessedInputs];
-    
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.micSensor = [CommonUtils extractInputOfType:InputType.Microphone from:model.scdDocument.accessedInputs];
 }
 
 
 -(void)processMicrophoneUsage {
     PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newUnlistedInputAccessViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 

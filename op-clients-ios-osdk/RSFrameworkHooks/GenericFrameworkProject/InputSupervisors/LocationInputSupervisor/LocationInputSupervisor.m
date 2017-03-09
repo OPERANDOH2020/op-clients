@@ -11,14 +11,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import <JRSwizzle.h>
 #import "PPCircularArray.h"
+#import "LocationHTTPAnalyzer.h"
 
 typedef void (^LocationCallbackWithInfo)(NSDictionary*);
 LocationCallbackWithInfo _rsHookGlobalLocationCallback;
 
 
 @interface LocationInputSupervisor()
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-@property (strong, nonatomic) SCDDocument *document;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (strong, nonatomic) AccessedInput *locationSensor;
 @property (strong, nonatomic) PPCircularArray *locationsArray;
 @end
@@ -26,10 +26,11 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
 
 @implementation LocationInputSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    self.delegate = delegate;
-    self.document = document;
-    self.locationSensor = [CommonUtils extractInputOfType: InputType.Location from:document.accessedInputs];
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.locationSensor = [CommonUtils extractInputOfType: InputType.Location from:model.scdDocument.accessedInputs];
+    
+    self.locationsArray = [[PPCircularArray alloc] initWithCapacity:100];
 }
 
 
@@ -42,7 +43,7 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
 -(void)processStatus:(LocationStatus)locStatus {
     PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newUnlistedInputAccessViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
@@ -56,6 +57,20 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
 }
 
 -(void)newUserLocationsRequested:(NSArray<CLLocation *> *)locations{
+    [self.locationsArray addObjects:locations];
+}
+
+
+-(void)newURLRequestMade:(NSURLRequest *)request {
+    
+    [self.model.httpAnalyzers.locationHTTPAnalyzer checkIfAnyLocationFrom:[self.locationsArray allObjects] isSentInRequest:request withCompletion:^(BOOL yesTheyAreSent) {
+        NSLog(@"Received result for location analyzing: %d", yesTheyAreSent);
+
+        if (yesTheyAreSent) {
+            
+            
+        }
+    }];
     
 }
 

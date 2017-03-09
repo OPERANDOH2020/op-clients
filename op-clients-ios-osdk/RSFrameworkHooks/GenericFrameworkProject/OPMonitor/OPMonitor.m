@@ -113,7 +113,7 @@ static void __attribute__((constructor)) initialize(void){
         self.scdJson = document;
         self.plistRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
-        self.supervisorsArray = [self buildSupervisors];
+        self.supervisorsArray = [self buildSupervisorsWithDocument:scdDocument];
         LocationInputSupervisor *locSupervisor = [self.supervisorsArray firstObjectOfClass:[LocationInputSupervisor class]];
         [self setupLocationInputSwizzlerUsingSupervisor:locSupervisor];
         
@@ -223,8 +223,16 @@ static void __attribute__((constructor)) initialize(void){
     });
 }
 
--(NSArray<id<InputSourceSupervisor>>*)buildSupervisors {
+-(NSArray<id<InputSourceSupervisor>>*)buildSupervisorsWithDocument:(SCDDocument*)document {
     NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    InputSupervisorModel *supervisorsModel = [[InputSupervisorModel alloc] init];
+    supervisorsModel.scdDocument = document;
+    supervisorsModel.delegate = self;
+    supervisorsModel.privacyLevelAbuseDetector = [[PrivacyLevelAbuseDetector alloc] initWithDocument:document];
+    supervisorsModel.httpAnalyzers = [[HTTPAnalyzers alloc] init];
+    supervisorsModel.httpAnalyzers.locationHTTPAnalyzer = [[LocationHTTPAnalyzer alloc] init];
+    
     
     // set up the network supervisor separately
     // as it will report url requests to the other supervisors also
@@ -232,7 +240,7 @@ static void __attribute__((constructor)) initialize(void){
 
     NSURLSessionSupervisor *urlSessionSupervisor = [[NSURLSessionSupervisor alloc] init];
 
-    [urlSessionSupervisor reportToDelegate:self analyzingSCD:self.document];
+    [urlSessionSupervisor setupWithModel:supervisorsModel];
     [result addObject:urlSessionSupervisor];
     
     NSArray *supervisorClasses = @[[LocationInputSupervisor class],
@@ -250,7 +258,7 @@ static void __attribute__((constructor)) initialize(void){
     NSMutableArray *networkAnalyzers = [[NSMutableArray alloc] init];
     for (Class class in supervisorClasses) {
         id supervisor = [[class alloc] init];
-        [supervisor reportToDelegate:self analyzingSCD:self.document];
+        [supervisor setupWithModel:supervisorsModel];
         [networkAnalyzers addObject:supervisor];
         [result addObject:supervisor];
     }

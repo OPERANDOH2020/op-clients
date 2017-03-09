@@ -14,28 +14,25 @@
 
 
 @interface PedometerInputSupervisor()
-
-@property (strong, nonatomic) SCDDocument *document;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (weak, nonatomic) AccessedInput *pedoSensor;
 
 @end
 
 @implementation PedometerInputSupervisor
 
-
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.pedoSensor = [CommonUtils extractInputOfType: InputType.Pedometer from:model.scdDocument.accessedInputs];
     
-    self.delegate = delegate;
-    self.document = document;
-    self.pedoSensor = [CommonUtils extractInputOfType: InputType.Pedometer from:document.accessedInputs];
 }
+
 
 -(void)processPedometerStatus {
     
     PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newUnlistedInputAccessViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 

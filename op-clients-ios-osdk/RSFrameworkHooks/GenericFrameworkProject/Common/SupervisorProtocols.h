@@ -14,6 +14,7 @@
 #import "PPAccessUnlistedHostReport.h"
 #import "PPPrivacyLevelViolationReport.h"
 #import "PPUnlistedInputAccessViolation.h"
+#import "InputSupervisorModel.h"
 
 @protocol NetworkRequestAnalyzer <NSObject>
 -(void)newURLRequestMade:(NSURLRequest* _Nonnull)request;
@@ -27,7 +28,7 @@
 @end
 
 @protocol InputSourceSupervisor <NSObject>
--(void)reportToDelegate:(id<InputSupervisorDelegate> _Nonnull)delegate analyzingSCD:(SCDDocument* _Nonnull)document;
+-(void)setupWithModel:(InputSupervisorModel* _Nonnull)model;
 @end
 
 #endif /* InputSupervisorDelegate_h */

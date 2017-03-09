@@ -11,25 +11,25 @@
 #import "CommonUtils.h"
 
 @interface ContactsInputSupervisor()
-@property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) AccessedInput *contactsSource;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @end
 
 @implementation ContactsInputSupervisor
 
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    self.delegate = delegate;
-    self.document = document;
-    self.contactsSource = [CommonUtils extractInputOfType:InputType.Contacts from:document.accessedInputs];
+
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.contactsSource = [CommonUtils extractInputOfType:InputType.Contacts from:model.scdDocument.accessedInputs];
 }
+
 
 
 -(void)processContactsAccess {
     PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newUnlistedInputAccessViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
@@ -41,7 +41,10 @@
     
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Contacts dateReported:[NSDate date]];
 }
+
 -(void)newURLRequestMade:(NSURLRequest *)request{
     
 }
+
+
 @end

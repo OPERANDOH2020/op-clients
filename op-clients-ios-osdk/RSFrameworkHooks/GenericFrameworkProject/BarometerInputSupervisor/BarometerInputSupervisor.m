@@ -14,25 +14,23 @@
 
 @interface BarometerInputSupervisor()
 
-@property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) AccessedInput *sensor;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
+@property (strong, nonatomic) InputSupervisorModel *model;
 
 @end
 
 @implementation BarometerInputSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document{
-    self.document = document;
-    self.delegate = delegate;
-    self.sensor = [CommonUtils extractInputOfType:InputType.Barometer from:document.accessedInputs];
-    
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.sensor = [CommonUtils extractInputOfType:InputType.Barometer from:model.scdDocument.accessedInputs];
 }
+
 
 -(void)processAltimeterStatus {
     PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newUnlistedInputAccessViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
