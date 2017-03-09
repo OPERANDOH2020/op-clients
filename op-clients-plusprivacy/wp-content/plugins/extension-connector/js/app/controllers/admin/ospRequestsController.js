@@ -103,16 +103,11 @@ privacyPlusApp.controller("ospRequestsController", ["$scope", "connectionService
         alert("FAILED");
     };
 
-    connectionService.restoreUserSession(restoredSessionSuccessfully, restoredSessionFailed);
+    //connectionService.restoreUserSession(restoredSessionSuccessfully, restoredSessionFailed);
 
 }]);
 
 
 angular.element(document).ready(function() {
-
-    /*var $inj = angular.injector(['sharedService']);
-    var MenuLocatorService = $inj.get('SharedService');
-    MenuLocatorService.setLocation("ospRequests");*/
     angular.bootstrap(document.getElementById('osp-requests'), ['plusprivacy']);
-
 });

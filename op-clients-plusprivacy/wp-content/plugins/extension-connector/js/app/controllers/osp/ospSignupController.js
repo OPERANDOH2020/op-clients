@@ -1,4 +1,4 @@
-privacyPlusApp.controller("OSPSignupController", function ($scope, connectionService) {
+privacyPlusApp.controller("OSPSignupController", function ($scope, connectionService, SharedService) {
 
     $scope.requestInProgress = false;
     $scope.user = {};
@@ -20,7 +20,9 @@ privacyPlusApp.controller("OSPSignupController", function ($scope, connectionSer
             $scope.registerError = true;
             $scope.$apply();
         })
-    }
+    };
+
+    SharedService.setLocation("ospRegister");
 });
 
 angular.element(document).ready(function() {

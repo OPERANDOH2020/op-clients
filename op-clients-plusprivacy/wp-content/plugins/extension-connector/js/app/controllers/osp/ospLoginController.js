@@ -1,4 +1,4 @@
-privacyPlusApp.controller("ospLoginController", function ($scope, connectionService, messengerService, userService) {
+privacyPlusApp.controller("ospLoginController", function ($scope, connectionService, messengerService, userService,SharedService) {
 
     $scope.authenticationError = false;
     $scope.requestProcessed = false;
@@ -7,9 +7,9 @@ privacyPlusApp.controller("ospLoginController", function ($scope, connectionServ
         password: ""
     };
 
-    userService.isAuthenticated(function(isAuthenticated){
+    /*userService.isAuthenticated(function(isAuthenticated){
         $scope.userIsLoggedIn = isAuthenticated;
-
+        $scope.$apply();
     });
 
     userService.getUser(function(user){
@@ -17,12 +17,12 @@ privacyPlusApp.controller("ospLoginController", function ($scope, connectionServ
         $scope.userIsLoggedIn = true;
         $scope.currentUser = user.email;
         $scope.$apply();
-    });
+    });*/
 
     $scope.submitLoginForm = function () {
         $scope.requestProcessed = true;
         $scope.authenticationError = false;
-        connectionService.loginUser($scope.user, function (user) {
+        connectionService.loginUser($scope.user, "OSP", function (user) {
                 userService.setUser(user);
                 $scope.authenticationError = false;
                 $scope.requestProcessed = false;
@@ -55,6 +55,8 @@ privacyPlusApp.controller("ospLoginController", function ($scope, connectionServ
             $scope.$apply();
         }
     }, 1000);
+
+    SharedService.setLocation("ospLogin");
 
 });
 

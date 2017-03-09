@@ -1,4 +1,4 @@
-privacyPlusApp.controller("signupController", function ($scope, connectionService) {
+privacyPlusApp.controller("signupController", function ($scope, connectionService,SharedService) {
 
 $scope.requestInProgress = false;
 $scope.user = {};
@@ -20,5 +20,10 @@ $scope.register = function(){
         $scope.registerError = true;
         $scope.$apply();
     })
-}
+};
+    SharedService.setLocation("userRegister");
+});
+
+angular.element(document).ready(function() {
+    angular.bootstrap(document.getElementById('user_register'), ['plusprivacy']);
 });

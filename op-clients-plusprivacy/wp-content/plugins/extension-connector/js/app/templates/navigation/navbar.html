@@ -1,0 +1,21 @@
+<ul class="nav navbar-nav navbar-right">
+
+    <li class="dropdown" ng-repeat="item in navigationModel" ng-class="location.indexOf(item.name.toLowerCase())>-1?'active':''">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false">{{item.name}}<span class="caret"></span></a>
+
+        <ul class="dropdown-menu">
+            <menu-item  ng-repeat="item in item.subItems" item="item" location="location"></menu-item>
+        </ul>
+    </li>
+
+
+    <li class="dropdown" ng-if="user.authenticated" ng-cloak>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false">{{user.email}}<span class="caret"></span></a>
+        <ul class="dropdown-menu" ng-switch="user.authenticated">
+            <li ng-switch-when="true"><a href="#" ng-click="logout()">Log out</a></li>
+        </ul>
+    </li>
+
+</ul>

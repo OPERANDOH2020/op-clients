@@ -40,12 +40,19 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
             });
         };
 
-        ConnectionService.prototype.loginUser = function (user, successCallback, failCallback) {
+        ConnectionService.prototype.loginUser = function (user, userType, successCallback, failCallback) {
+
+            var loginCtor;
+            switch (userType){
+                case "Public" : loginCtor = "userLogin"; break;
+                case "OSP": loginCtor = "ospLogin"; break;
+                case "PSP": loginCtor ="pspLogin"; break;
+            }
 
             var self = this;
 
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, user.email, user.password,
-                "plusprivacy-website", "userLogin", function (error) {
+                "plusprivacy-website", loginCtor, function (error) {
                 });
 
             var userLoginSuccess = function (swarm) {
@@ -127,11 +134,18 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
             var sessionId = Cookies.get("sessionId");
             var self = this;
 
+            /*
+            TODO
+            I could send the failCallback function, but the SwarmClient should be modified in the future
+             */
+
+            var failCallbackPlaceholder = function(){};
+
             if (!username || !sessionId) {
                 failCallback();
             }
             else {
-                swarmService.restoreConnection(SERVER_HOST, SERVER_PORT, username, sessionId, failCallback, failCallback, function () {
+                swarmService.restoreConnection(SERVER_HOST, SERVER_PORT, username, sessionId, failCallbackPlaceholder, failCallbackPlaceholder, function () {
                     console.log("reconnect cbk");
                 });
                 swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {

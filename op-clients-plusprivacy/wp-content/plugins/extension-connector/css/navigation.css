@@ -7,3 +7,7 @@
     white-space: nowrap;
     padding:10px;
 }
+
+li.logged_in_feature ul{
+    padding: 0;
+}

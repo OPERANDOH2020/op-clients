@@ -64,7 +64,6 @@ angular.module('sharedService').factory("userService", ["connectionService", fun
             }
         };
 
-
         UserService.prototype.logout = function (callback) {
             connectionService.logoutCurrentUser(function(){
                 user = undefined;

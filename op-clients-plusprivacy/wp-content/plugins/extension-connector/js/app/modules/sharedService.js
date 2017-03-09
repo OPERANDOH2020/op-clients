@@ -31,6 +31,10 @@ angular.module('sharedService', []).factory('SharedService', function () {
                 locationCallbacks.push(callback);
             }
         };
+
+
+        SharedService.prototype.hasAccess
+
         return SharedService;
     })();
 

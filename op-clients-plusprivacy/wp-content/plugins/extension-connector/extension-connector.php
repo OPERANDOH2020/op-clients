@@ -58,7 +58,10 @@ function load_swarm_resources()
     wp_enqueue_script('angular-messenger-service', plugins_url('/js/app/services/messengerService.js', __FILE__));
     wp_enqueue_script('angular-swarm-service', plugins_url('/js/app/services/swarm-service.js', __FILE__));
     wp_enqueue_script('user-service', plugins_url('/js/app/services/user-service.js', __FILE__));
-    wp_enqueue_script('menu-controller', plugins_url('/js/app/controllers/menuController.js', __FILE__));
+    wp_enqueue_script('access-service', plugins_url('/js/app/services/access-service.js', __FILE__));
+    wp_enqueue_script('menu-controller', plugins_url('/js/app/controllers/navigationController.js', __FILE__));
+    wp_enqueue_script('navigation-directive', plugins_url('/js/app/directives/navigation.js', __FILE__));
+
 
     wp_enqueue_script('angular-app', plugins_url('/js/app/app.js', __FILE__));
     wp_enqueue_script('loader', plugins_url('/js/app/directives/loader.js', __FILE__));

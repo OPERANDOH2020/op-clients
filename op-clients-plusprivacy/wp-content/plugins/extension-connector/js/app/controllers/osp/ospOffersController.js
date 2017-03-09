@@ -6,7 +6,6 @@ privacyPlusApp.requires.push('datatables');
 function AddOspOfferController($scope, $element, $rootScope, close, connectionService, Notification, offer, modalTitle, saveBtn) {
 
     $scope.offer = offer;
-    console.log($scope.offer);
     $scope.modalTitle = modalTitle;
     $scope.saveBtn = saveBtn;
     if ($scope.offer['start_date']) {
@@ -45,10 +44,9 @@ function AddOspOfferController($scope, $element, $rootScope, close, connectionSe
                     message: error
                 };
                 $scope.$apply();
-            })
+            });
         });
     };
-
 
     $scope.addOspOffer = function () {
 
@@ -84,8 +82,7 @@ function AddOspOfferController($scope, $element, $rootScope, close, connectionSe
     };
 }
 
-
-function OspOffersController($scope, $rootScope, connectionService, DTColumnDefBuilder, ModalService, Notification, userService) {
+function OspOffersController($scope, $rootScope, connectionService, DTColumnDefBuilder, ModalService, Notification, userService, SharedService) {
 
     $scope.$on("newOfferAdded", function (event, offer) {
         if (!$scope.offers) {
@@ -151,7 +148,6 @@ function OspOffersController($scope, $rootScope, connectionService, DTColumnDefB
         return $scope.offers.find(function (offer) {
             return offer.offerId === offerId;
         })
-
     };
 
     var restoredSessionFailed = function () {
@@ -222,6 +218,7 @@ function OspOffersController($scope, $rootScope, connectionService, DTColumnDefB
     };
 
     userService.getUser(listOffers);
+    SharedService.setLocation("ospOffers");
 };
 
 privacyPlusApp.controller("ospOffersController", OspOffersController);

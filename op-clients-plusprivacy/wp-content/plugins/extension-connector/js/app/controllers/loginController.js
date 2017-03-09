@@ -1,4 +1,4 @@
-privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService, userService, $window) {
+privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService, userService,SharedService) {
 
     $scope.authenticationError = false;
     $scope.requestProcessed = false;
@@ -9,25 +9,22 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
 
     userService.isAuthenticated(function(isAuthenticated){
         $scope.userIsLoggedIn = isAuthenticated;
-
+        $scope.$apply();
     });
 
     userService.getUser(function(user){
         $scope.userIsLoggedIn = true;
         $scope.currentUser = user.email;
-        $scope.$apply();
     });
 
     $scope.submitLoginForm = function () {
         $scope.requestProcessed = true;
         $scope.authenticationError = false;
-        connectionService.loginUser($scope.user, function (user) {
+        connectionService.loginUser($scope.user, "Public", function (user) {
                 userService.setUser(user);
                 $scope.authenticationError = false;
                 $scope.requestProcessed = false;
                 $scope.userIsLoggedIn = true;
-
-                $scope.$apply();
 
             },
             function (error) {
@@ -41,7 +38,6 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
 
                 $scope.requestProcessed = false;
                 $scope.authenticationError = true;
-                $scope.$apply();
             });
     };
 
@@ -57,16 +53,9 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
         }
     }, 1000);
 
-    /*messengerService.on("logout", function () {
-        $window.location.reload();
-    });*/
+    SharedService.setLocation("userLogin");
 });
 
 angular.element(document).ready(function() {
-
-    /*var $inj = angular.injector(['sharedService']);
-    var MenuLocatorService = $inj.get('SharedService');
-    MenuLocatorService.setLocation("login");*/
     angular.bootstrap(document.getElementById('login'), ['plusprivacy']);
-
 });

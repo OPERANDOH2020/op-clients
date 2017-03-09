@@ -15,9 +15,8 @@ angular.module('sharedService').service("swarmService", function () {
 
     var SwarmService = (function () {
 
-        function SwarmService() {
 
-        }
+        function SwarmService() {}
 
         var swarmConnection = null;
         var connectCallbacks = [];
