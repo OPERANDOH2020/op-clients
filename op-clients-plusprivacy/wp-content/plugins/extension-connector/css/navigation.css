@@ -11,3 +11,6 @@
 li.logged_in_feature ul{
     padding: 0;
 }
+.current_user_email{
+    padding: 5px 10px;
+}

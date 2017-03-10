@@ -1,4 +1,4 @@
-privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService, userService,SharedService) {
+privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService, userService,SharedService, $window) {
 
     $scope.authenticationError = false;
     $scope.requestProcessed = false;
@@ -9,7 +9,7 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
 
     userService.isAuthenticated(function(isAuthenticated){
         $scope.userIsLoggedIn = isAuthenticated;
-        $scope.$apply();
+        //$scope.$apply();
     });
 
     userService.getUser(function(user){
@@ -21,10 +21,12 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
         $scope.requestProcessed = true;
         $scope.authenticationError = false;
         connectionService.loginUser($scope.user, "Public", function (user) {
-                userService.setUser(user);
-                $scope.authenticationError = false;
+
+                //userService.setUser(user);
+                $window.location="/user-dashboard";
+                /*$scope.authenticationError = false;
                 $scope.requestProcessed = false;
-                $scope.userIsLoggedIn = true;
+                $scope.userIsLoggedIn = true;*/
 
             },
             function (error) {

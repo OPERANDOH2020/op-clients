@@ -4,6 +4,7 @@ menuApp.controller("navigationController", function ($scope, SharedService, user
     $scope.menuItems = [
         {
             name: "OSP",
+            zone:"ospZone",
             subItems: [{
                 key: "ospLogin",
                 title: "OSP Login",
@@ -44,6 +45,7 @@ menuApp.controller("navigationController", function ($scope, SharedService, user
         },
         {
             name: "PSP",
+            zone:"pspZone",
             subItems: [{
                 key: "pspLogin",
                 title: "PSP Login",
@@ -61,12 +63,14 @@ menuApp.controller("navigationController", function ($scope, SharedService, user
         },
         {
             name: "User",
-            subItems: [{
-                key: "userLogin",
-                title: "User Login",
-                zone: "guestZone",
-                path: "/login"
-            },
+            zone:"userZone",
+            subItems: [
+                {
+                    key: "userLogin",
+                    title: "User Login",
+                    zone: "guestZone",
+                    path: "/login"
+                },
 
                 {
                     key: "userRegister",
@@ -78,7 +82,7 @@ menuApp.controller("navigationController", function ($scope, SharedService, user
                     key: "userDashboard",
                     title: "Dashboard",
                     zone: "userZone",
-                    path: "/register"
+                    path: "/user-dashboard"
                 }
             ]
         }

@@ -14,15 +14,19 @@ function insertPlusPrivacyHeader(){
     echo file_get_contents(plugins_url('/html/header/navbar.html', __FILE__));
     wp_enqueue_style('app-navigation', plugins_url('/css/navigation.css', __FILE__));
 }
-
+//USER
 add_shortcode('confirm-account', 'confirm_user_account');
 add_shortcode('account-login', 'account_login');
 add_shortcode('account-register', 'register_account');
+add_shortcode('user-dashboard', 'user_dashboard');
+//OSP
 add_shortcode('osp-login', 'osp_login');
 add_shortcode('osp-register', 'osp_register_account');
 add_shortcode('osp-dashboard-offers', 'osp_dashboard_offers');
 add_shortcode('osp-dashboard-deals', 'osp_dashboard_deals');
 add_shortcode('osp-dashboard-account', 'osp_dashboard_account');
+//PSP
+add_shortcode('psp-login', 'psp_login');
 add_shortcode('osp-requests', 'osp_requests');
 add_shortcode('osp-list', 'osp_list');
 
@@ -31,11 +35,13 @@ add_action('wp_enqueue_scripts', 'load_swarm_resources');
 add_action('wp_enqueue_scripts', 'confirmUserController');
 add_action('wp_enqueue_scripts', 'loginController');
 add_action('wp_enqueue_scripts', 'signupController');
+add_action('wp_enqueue_scripts', 'userDashboardController');
 add_action('wp_enqueue_scripts', 'ospLoginController');
 add_action('wp_enqueue_scripts', 'ospSignupController');
 add_action('wp_enqueue_scripts', 'ospOffersController');
 add_action('wp_enqueue_scripts', 'ospDealsController');
 add_action('wp_enqueue_scripts', 'ospAccountController');
+add_action('wp_enqueue_scripts', 'pspLoginController');
 add_action('wp_enqueue_scripts', 'ospRequestsController');
 add_action('wp_enqueue_scripts', 'ospListController');
 
@@ -73,6 +79,11 @@ function load_swarm_resources()
 
 }
 
+
+/************************************************
+ *************** Add file contents ***************
+ ************************************************/
+//USER
 function confirm_user_account()
 {
     if (isset ($_GET['confirmation_code']) && $_GET['confirmation_code']) {
@@ -80,20 +91,21 @@ function confirm_user_account()
     }
 }
 
-/************************************************
- *************** Add file contents ***************
- ************************************************/
-
 function account_login()
 {
-    echo file_get_contents(plugins_url('/html/user_login.html', __FILE__));
+    echo file_get_contents(plugins_url('/html/user/user_login.html', __FILE__));
 }
 
 function register_account()
 {
-    echo file_get_contents(plugins_url('/html/user_signup.html', __FILE__));
+    echo file_get_contents(plugins_url('/html/user/user_signup.html', __FILE__));
 }
 
+function user_dashboard(){
+    echo file_get_contents(plugins_url('/html/user/user_dashboard.html', __FILE__));
+}
+
+//OSP
 function osp_register_account()
 {
     echo file_get_contents(plugins_url('/html/osp/register_osp.html', __FILE__));
@@ -118,37 +130,45 @@ function osp_dashboard_account()
     echo file_get_contents(plugins_url('/html/osp/dashboard/account.html', __FILE__));
 }
 
+//PSP
+function psp_login(){
+    echo file_get_contents(plugins_url('/html/psp/psp_login.html', __FILE__));
+}
+
 function osp_requests()
 {
-    echo file_get_contents(plugins_url('/html/admin/osp_requests.html', __FILE__));
+    echo file_get_contents(plugins_url('/html/psp/osp_requests.html', __FILE__));
 }
 
 function osp_list()
 {
-    echo file_get_contents(plugins_url('/html/admin/osp_list.html', __FILE__));
+    echo file_get_contents(plugins_url('/html/psp/osp_list.html', __FILE__));
 }
-
 
 /************************************************
  *************** Insert JS app files *************
  ************************************************/
-
+//USER
 function confirmUserController()
 {
-    insertScriptIfShortcode("confirmUserController", 'confirm-account', plugins_url('/js/app/controllers/confirmUserController.js', __FILE__));
+    insertScriptIfShortcode("confirmUserController", 'confirm-account', plugins_url('/js/app/controllers/user/confirmUserController.js', __FILE__));
 }
 
 function loginController()
 {
-    insertScriptIfShortcode("loginController", 'account-login', plugins_url('/js/app/controllers/loginController.js', __FILE__));
+    insertScriptIfShortcode("loginController", 'account-login', plugins_url('/js/app/controllers/user/loginController.js', __FILE__));
 }
 
 function signupController()
 {
-    insertScriptIfShortcode("signupController", 'account-register', plugins_url('/js/app/controllers/signupController.js', __FILE__));
+    insertScriptIfShortcode("signupController", 'account-register', plugins_url('/js/app/controllers/user/signupController.js', __FILE__));
 }
 
+function userDashboardController(){
+    insertScriptIfShortcode("userDashboardController", 'user-dashboard', plugins_url('/js/app/controllers/user/dashboardController.js', __FILE__));
+}
 
+//OSP
 function ospLoginController()
 {
     insertScriptIfShortcode("ospLoginController", 'osp-login', plugins_url('/js/app/controllers/osp/ospLoginController.js', __FILE__));
@@ -186,6 +206,10 @@ function ospDealsController()
 function ospAccountController()
 {
     insertScriptIfShortcode("ospAccountController", 'osp-dashboard-account', plugins_url('/js/app/controllers/osp/ospAccountController.js', __FILE__));
+}
+//PSP
+function pspLoginController(){
+    insertScriptIfShortcode("pspLoginController", 'psp-login', plugins_url('/js/app/controllers/osp/pspLoginController.js', __FILE__));
 }
 
 function ospRequestsController()
