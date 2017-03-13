@@ -19,7 +19,6 @@ angular.module('sharedService').factory("accessService", ["userService", functio
                     if (authenticated === true) {
                         userService.getUser(function (user) {
                             var userZone = user["organisationId"];
-
                             if (accessRules[zone].indexOf(userZone) > -1) {
                                 callback(true);
                             }

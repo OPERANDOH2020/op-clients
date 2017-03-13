@@ -218,7 +218,7 @@ function OspOffersController($scope, $rootScope, connectionService, DTColumnDefB
     };
 
     userService.getUser(listOffers);
-    SharedService.setLocation("ospOffers");
+    SharedService.setLocation("ospZone");
 };
 
 privacyPlusApp.controller("ospOffersController", OspOffersController);

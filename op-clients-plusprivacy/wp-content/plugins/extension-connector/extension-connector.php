@@ -27,8 +27,7 @@ add_shortcode('osp-dashboard-deals', 'osp_dashboard_deals');
 add_shortcode('osp-dashboard-account', 'osp_dashboard_account');
 //PSP
 add_shortcode('psp-login', 'psp_login');
-add_shortcode('osp-requests', 'osp_requests');
-add_shortcode('osp-list', 'osp_list');
+add_shortcode('psp-dashboard', 'psp_dashboard');
 
 
 add_action('wp_enqueue_scripts', 'load_swarm_resources');
@@ -42,8 +41,7 @@ add_action('wp_enqueue_scripts', 'ospOffersController');
 add_action('wp_enqueue_scripts', 'ospDealsController');
 add_action('wp_enqueue_scripts', 'ospAccountController');
 add_action('wp_enqueue_scripts', 'pspLoginController');
-add_action('wp_enqueue_scripts', 'ospRequestsController');
-add_action('wp_enqueue_scripts', 'ospListController');
+add_action('wp_enqueue_scripts', 'pspDashboardController');
 
 function load_swarm_resources()
 {
@@ -135,14 +133,8 @@ function psp_login(){
     echo file_get_contents(plugins_url('/html/psp/psp_login.html', __FILE__));
 }
 
-function osp_requests()
-{
-    echo file_get_contents(plugins_url('/html/psp/osp_requests.html', __FILE__));
-}
-
-function osp_list()
-{
-    echo file_get_contents(plugins_url('/html/psp/osp_list.html', __FILE__));
+function psp_dashboard(){
+    echo file_get_contents(plugins_url('/html/psp/psp_dashboard.html', __FILE__));
 }
 
 /************************************************
@@ -209,25 +201,15 @@ function ospAccountController()
 }
 //PSP
 function pspLoginController(){
-    insertScriptIfShortcode("pspLoginController", 'psp-login', plugins_url('/js/app/controllers/osp/pspLoginController.js', __FILE__));
+    insertScriptIfShortcode("pspLoginController", 'psp-login', plugins_url('/js/app/controllers/psp/pspLoginController.js', __FILE__));
 }
 
-function ospRequestsController()
-{
-    insertScriptIfShortcode("angular-datatables.min.js", 'osp-requests', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
-    insertScriptIfShortcode("angular-datatables.bootstrap.min", 'osp-requests', plugins_url('/js/utils/angular-datatables/angular-datatables.bootstrap.min.js', __FILE__));
-    insertScriptIfShortcode("jquery.dataTables.min", 'osp-requests', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
-    insertStyleIfShortcode("datatables.bootstrap", 'osp-requests', plugins_url('/js/utils/angular-datatables/datatables.bootstrap.min.css', __FILE__));
-    insertScriptIfShortcode("ospRequestsController", 'osp-requests', plugins_url('/js/app/controllers/admin/ospRequestsController.js', __FILE__));
-}
-
-function ospListController()
-{
-    insertScriptIfShortcode("angular-datatables.min.js", 'osp-list', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
-    insertScriptIfShortcode("angular-datatables.bootstrap.min", 'osp-list', plugins_url('/js/utils/angular-datatables/angular-datatables.bootstrap.min.js', __FILE__));
-    insertScriptIfShortcode("jquery.dataTables.min", 'osp-list', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
-    insertStyleIfShortcode("datatables.bootstrap", 'osp-list', plugins_url('/js/utils/angular-datatables/datatables.bootstrap.min.css', __FILE__));
-    insertScriptIfShortcode("ospListController", 'osp-list', plugins_url('/js/app/controllers/admin/ospListController.js', __FILE__));
+function pspDashboardController(){
+    insertScriptIfShortcode("angular-datatables.min.js", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
+    insertScriptIfShortcode("angular-datatables.bootstrap.min", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/angular-datatables.bootstrap.min.js', __FILE__));
+    insertScriptIfShortcode("jquery.dataTables.min", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
+    insertStyleIfShortcode("datatables.bootstrap", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/datatables.bootstrap.min.css', __FILE__));
+    insertScriptIfShortcode("pspDashboardController", 'psp-dashboard', plugins_url('/js/app/controllers/psp/pspDashboardController.js', __FILE__));
 }
 
 function insertScriptIfShortcode($script_name, $shortcode, $script)

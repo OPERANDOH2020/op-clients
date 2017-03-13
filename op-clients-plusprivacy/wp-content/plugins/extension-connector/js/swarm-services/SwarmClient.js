@@ -337,10 +337,10 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
 
     var counter = 0;
     var filters = {};
-
+    var self = this;
     this.template_onResponse = function(phaseName, callback){
         filters[this.meta.swarmId + phaseName] = callback;
-    }
+    };
 
     function filter_onResult(data){
         var name = data.meta.swarmId + data.meta.currentPhase;
@@ -389,7 +389,6 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
         else {
             pendingCmds.push(cmd);
         }
-
         return cmd;
     }
 

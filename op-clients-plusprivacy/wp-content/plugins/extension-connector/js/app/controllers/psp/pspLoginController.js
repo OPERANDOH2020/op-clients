@@ -1,4 +1,4 @@
-privacyPlusApp.controller("ospLoginController", function ($scope, connectionService, messengerService, userService,SharedService,$window) {
+privacyPlusApp.controller("pspLoginController", function ($scope, connectionService, messengerService, userService,SharedService,$window) {
 
     $scope.authenticationError = false;
     $scope.requestProcessed = false;
@@ -10,10 +10,8 @@ privacyPlusApp.controller("ospLoginController", function ($scope, connectionServ
     $scope.submitLoginForm = function () {
         $scope.requestProcessed = true;
         $scope.authenticationError = false;
-        connectionService.loginUser($scope.user, "OSP", function (user) {
-
-                $window.location="/osp-offers";
-
+        connectionService.loginUser($scope.user, "PSP", function (user) {
+                $window.location="/psp-dashboard";
             },
             function (error) {
 
@@ -42,10 +40,10 @@ privacyPlusApp.controller("ospLoginController", function ($scope, connectionServ
         }
     }, 1000);
 
-    SharedService.setLocation("ospLogin");
+    SharedService.setLocation("pspLogin");
 
 });
 
 angular.element(document).ready(function() {
-    angular.bootstrap(document.getElementById('osp_login'), ['plusprivacy']);
+    angular.bootstrap(document.getElementById('psp_login'), ['plusprivacy']);
 });

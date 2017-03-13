@@ -204,7 +204,6 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
         };
 
         ConnectionService.prototype.getOspRequests = function (successCallback, failCallback) {
-
             var getRequestsHandler = swarmHub.startSwarm("osp.js", "getRequests");
             getRequestsHandler.onResponse("success", function (swarm) {
                 successCallback(swarm.ospRequests);

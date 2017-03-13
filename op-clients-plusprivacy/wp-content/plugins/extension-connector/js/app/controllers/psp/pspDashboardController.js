@@ -1,38 +1,37 @@
 privacyPlusApp.requires.push('datatables');
 
-privacyPlusApp.controller("ospRequestsController", ["$scope", "connectionService", "messengerService", "$window", "DTColumnDefBuilder", "ModalService", "Notification",
-    function ($scope, connectionService, messengerService, $window, DTColumnDefBuilder, ModalService, Notification) {
+privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionService", "messengerService", "$window", "DTColumnDefBuilder", "ModalService", "Notification", 'SharedService',
+    function ($scope, connectionService, messengerService, $window, DTColumnDefBuilder, ModalService, Notification, SharedService) {
 
-    $scope.dtInstance={};
+        $scope.dtInstance={};
 
-    $scope.dtOptions = {
-        "paging": false,
-        "searching": false,
-        "info":false,
-        "order": [[ 0, "asc" ]],
-        "columnDefs": [ {
-            "targets": 'no-sort',
-            "orderable": false
-        }]
-    };
+        $scope.dtOptions = {
+            "paging": false,
+            "searching": false,
+            "info":false,
+            "order": [[ 0, "asc" ]],
+            "columnDefs": [ {
+                "targets": 'no-sort',
+                "orderable": false
+            }]
+        };
 
-    $scope.dtColumnDefs = [
-        DTColumnDefBuilder.newColumnDef(0),
-        DTColumnDefBuilder.newColumnDef(1),
-        DTColumnDefBuilder.newColumnDef(2).notSortable(),
-        DTColumnDefBuilder.newColumnDef(3).notSortable(),
-        DTColumnDefBuilder.newColumnDef(4).notSortable(),
-        DTColumnDefBuilder.newColumnDef(5).notSortable()
-    ];
+        $scope.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef(0),
+            DTColumnDefBuilder.newColumnDef(1),
+            DTColumnDefBuilder.newColumnDef(2).notSortable(),
+            DTColumnDefBuilder.newColumnDef(3).notSortable(),
+            DTColumnDefBuilder.newColumnDef(4).notSortable(),
+            DTColumnDefBuilder.newColumnDef(5).notSortable()
+        ];
 
-    var removeOspRequestFromList = function(userId){
-        $scope.ospRequests = $scope.ospRequests.filter(function(ospRequest){
-            return ospRequest.userId!==userId;
-        });
-        $scope.$apply();
-    };
+        var removeOspRequestFromList = function(userId){
+            $scope.ospRequests = $scope.ospRequests.filter(function(ospRequest){
+                return ospRequest.userId!==userId;
+            });
+            $scope.$apply();
+        };
 
-    var restoredSessionSuccessfully = function () {
         connectionService.getOspRequests(function (ospRequests) {
 
             $scope.ospRequests = ospRequests;
@@ -97,17 +96,23 @@ privacyPlusApp.controller("ospRequestsController", ["$scope", "connectionService
 
             })(userId);
         }
-    };
 
-    var restoredSessionFailed = function () {
-        alert("FAILED");
-    };
+        var restoredSessionFailed = function () {
+            alert("FAILED");
+        };
 
-    //connectionService.restoreUserSession(restoredSessionSuccessfully, restoredSessionFailed);
+        connectionService.listOSPs(function(ospList){
+            $scope.ospList = ospList;
+            $scope.$apply();
+        }, function(error){
+            $scope.error = error;
+            $scope.$apply();
+        });
 
-}]);
+        SharedService.setLocation("pspZone");
+    }]);
 
 
 angular.element(document).ready(function() {
-    angular.bootstrap(document.getElementById('osp-requests'), ['plusprivacy']);
+    angular.bootstrap(document.getElementById('psp-dashboard'), ['plusprivacy']);
 });

@@ -33,12 +33,6 @@
 
         </form>
 
-
-        <div ng-cloak class="user_logged_in" ng-if="userIsLoggedIn == true">
-            <h3> You are logged in as <b>{{currentUser}}</b>!</h3>
-            <button class="btn-lg btn-success" ng-click="goToDashboard()">Go to Dashboard</button>
-        </div>
-
         <div class="alert alert-danger" role="alert" ng-if="extension_not_active" ng-cloak>
             <strong>PlusPrivacy Extension is not active!</strong>
             Please activate it or <a href="https://chrome.google.com/webstore/detail/plusprivacy/boagbmhcbemflaclmnbeebgbfhbegekc" target="_blank" class="alert-link">download it from Chrome Web Store</a>.

@@ -1,4 +1,4 @@
-privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService, userService,SharedService, $window) {
+privacyPlusApp.controller("loginController", function ($scope, connectionService, messengerService, userService, SharedService, $window) {
 
     $scope.authenticationError = false;
     $scope.requestProcessed = false;
@@ -7,12 +7,12 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
         password: ""
     };
 
-    userService.isAuthenticated(function(isAuthenticated){
+    userService.isAuthenticated(function (isAuthenticated) {
         $scope.userIsLoggedIn = isAuthenticated;
         //$scope.$apply();
     });
 
-    userService.getUser(function(user){
+    userService.getUser(function (user) {
         $scope.userIsLoggedIn = true;
         $scope.currentUser = user.email;
     });
@@ -21,20 +21,15 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
         $scope.requestProcessed = true;
         $scope.authenticationError = false;
         connectionService.loginUser($scope.user, "Public", function (user) {
-
-                //userService.setUser(user);
-                $window.location="/user-dashboard";
-                /*$scope.authenticationError = false;
-                $scope.requestProcessed = false;
-                $scope.userIsLoggedIn = true;*/
+                $window.location = "/user-dashboard";
 
             },
             function (error) {
 
-            if(error == "account_not_activated"){
+                if (error == "account_not_activated") {
                     $scope.errorResponse = "Account not activated!";
                 }
-                else{
+                else {
                     $scope.errorResponse = "Invalid credentials!";
                 }
 
@@ -43,13 +38,13 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
             });
     };
 
-    $scope.goToDashboard = function(){
+    $scope.goToDashboard = function () {
         messengerService.send("goToDashboard");
     };
 
-    setTimeout(function(){
+    setTimeout(function () {
         var relayResponded = messengerService.extensionIsActive();
-        if(relayResponded === false){
+        if (relayResponded === false) {
             $scope.extension_not_active = true;
             $scope.$apply();
         }
@@ -58,6 +53,6 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
     SharedService.setLocation("userLogin");
 });
 
-angular.element(document).ready(function() {
+angular.element(document).ready(function () {
     angular.bootstrap(document.getElementById('login'), ['plusprivacy']);
 });
