@@ -66,7 +66,7 @@
 }
 
 -(CLLocation*)locationSubstituteIfAny {
-    if (!self.currentSettings) {
+    if (!(self.currentSettings && self.currentSettings.enabled)) {
         return nil;
     }
     
@@ -74,7 +74,10 @@
 }
 
 -(CLLocation*)locationSubstituteIfAnyForActualLocation:(CLLocation*)actualLocation {
-    [self.analyzer newUserLocationsRequested:@[actualLocation]];
+    if (actualLocation) {
+        [self.analyzer newUserLocationsRequested:@[actualLocation]];
+    }
+    
     return [self locationSubstituteIfAny];
 }
 

@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
 
 @interface PPPrivacyLevelViolationReport : NSObject
-// must figure out what to put here 
+
+@property (readonly, nonatomic) InputType *inputType;
+@property (readonly, nonatomic) PrivacyLevelType violatedPrivacyLevel;
+@property (readonly, nonatomic) NSString *destinationURLForData;
+
+-(instancetype)initWithInputType:(InputType*)inputType violatedPrivacyLevel:(PrivacyLevelType)privacyLevel destinationURL:(NSString*)destinationURL;
+
 @end

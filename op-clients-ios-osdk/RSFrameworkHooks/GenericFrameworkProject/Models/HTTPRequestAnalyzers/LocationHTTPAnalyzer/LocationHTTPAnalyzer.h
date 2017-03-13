@@ -8,14 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "URLFormParsersProtocols.h"
 
-@protocol HTTPBodyParser <NSObject>
-
--(NSDictionary* _Nullable)parseJSONFromBodyData:(NSData* _Nonnull)bodyData;
--(NSDictionary* _Nullable)parseFormURLEncodedFromBodyData:(NSData* _Nonnull)bodyData;
--(NSDictionary* _Nullable)parseMultipartBodyData:(NSData* _Nonnull)data withBoundary:(NSString* _Nonnull)boundary;
-
-@end
 
 @interface LocationHTTPAnalyzer : NSObject
 

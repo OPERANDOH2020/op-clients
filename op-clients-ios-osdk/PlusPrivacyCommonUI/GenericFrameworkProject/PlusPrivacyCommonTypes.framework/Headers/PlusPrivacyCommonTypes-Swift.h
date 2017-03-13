@@ -268,17 +268,25 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) NSError * _N
 + (NSError * _Nonnull)unknownCommonTypeError;
 @end
 
+enum PrivacyLevelType : NSInteger;
 @class ThirdParty;
 
 SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes18PrivacyDescription")
 @interface PrivacyDescription : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger maxPrivacyLevel;)
-+ (NSInteger)maxPrivacyLevel;
-@property (nonatomic, readonly) NSInteger privacyLevel;
+@property (nonatomic, readonly) enum PrivacyLevelType privacyLevel;
 @property (nonatomic, readonly, copy) NSArray<ThirdParty *> * _Nonnull thirdParties;
 - (nullable instancetype)initWithDict:(NSDictionary<NSString *, id> * _Nonnull)dict OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
+
+typedef SWIFT_ENUM(NSInteger, PrivacyLevelType) {
+  PrivacyLevelTypeLocalOnly = 1,
+  PrivacyLevelTypeAggregateOnly = 2,
+  PrivacyLevelTypeDPCompatible = 3,
+  PrivacyLevelTypeSelfUseOnly = 4,
+  PrivacyLevelTypeSharedWithThirdParty = 5,
+  PrivacyLevelTypeUnspecified = 6,
+};
 
 
 SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes11SCDDocument")
