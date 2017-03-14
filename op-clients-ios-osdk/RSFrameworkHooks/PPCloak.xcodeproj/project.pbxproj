@@ -65,7 +65,7 @@
 		983F87BE1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 983F87BC1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m */; };
 		983F87C21E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 983F87C01E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h */; };
 		983F87C31E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 983F87C11E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m */; };
-		98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* RSFrameworksHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98584F411D3F9E18009FB89F /* PPCloak.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPCloak.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E8FB1DEC6F0D0095CA30 /* JRSwizzle.h */; };
 		9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */; };
 		9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */; };
@@ -113,6 +113,7 @@
 		9895FB4A1E5B3CB200B1F56D /* UIWindow+RSHookHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */; };
 		98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */; };
 		98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */; };
+		989DB8E51E77D2CF008F4D02 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989DB8E41E77D2CF008F4D02 /* Info.plist */; };
 		98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B234681E53376B0015C2E9 /* UISCDViewController.h */; };
 		98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B234691E53376B0015C2E9 /* UISCDViewController.m */; };
 		98CEF2691E5EEE84002C2145 /* UIUsageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98CEF2671E5EEE84002C2145 /* UIUsageViewController.h */; };
@@ -336,11 +337,10 @@
 		983F87C01E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPAccessUnlistedHostReport+NSDictionaryRepresentation.h"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessUnlistedHostReport+NSDictionaryRepresentation/PPAccessUnlistedHostReport+NSDictionaryRepresentation.h"; sourceTree = "<group>"; };
 		983F87C11E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPAccessUnlistedHostReport+NSDictionaryRepresentation.m"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessUnlistedHostReport+NSDictionaryRepresentation/PPAccessUnlistedHostReport+NSDictionaryRepresentation.m"; sourceTree = "<group>"; };
 		983F87C41E6DCBA60002DEC9 /* DictionaryRepresentableProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DictionaryRepresentableProtocol.h; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/DictionaryRepresentableProtocol.h; sourceTree = "<group>"; };
-		98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSFrameworksHook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		98584F401D3F9E18009FB89F /* RSFrameworksHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSFrameworksHook.h; sourceTree = "<group>"; };
+		98584F3D1D3F9E18009FB89F /* PPCloak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPCloak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98584F401D3F9E18009FB89F /* PPCloak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPCloak.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		985B80E01E56097200F0D19B /* FrameworkHooksBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrameworkHooksBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		985B80E21E56097300F0D19B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		985B80E01E56097200F0D19B /* PPCloakBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPCloakBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		9863E8FB1DEC6F0D0095CA30 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSURLSessionSupervisor.h; path = NSURLSessionHook/NSURLSessionSupervisor.h; sourceTree = "<group>"; };
@@ -391,6 +391,7 @@
 		9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+RSHookHandle.m"; path = "Views/UIWindow+RSHookHandle/UIWindow+RSHookHandle.m"; sourceTree = "<group>"; };
 		98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputSupervisorsManager.h; path = InputSupervisorsManager/InputSupervisorsManager.h; sourceTree = "<group>"; };
 		98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputSupervisorsManager.m; path = InputSupervisorsManager/InputSupervisorsManager.m; sourceTree = "<group>"; };
+		989DB8E41E77D2CF008F4D02 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98B234681E53376B0015C2E9 /* UISCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISCDViewController.h; path = Views/UISCDViewController/UISCDViewController.h; sourceTree = "<group>"; };
 		98B234691E53376B0015C2E9 /* UISCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISCDViewController.m; path = Views/UISCDViewController/UISCDViewController.m; sourceTree = "<group>"; };
 		98CEF2671E5EEE84002C2145 /* UIUsageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIUsageViewController.h; path = Views/UIInputUsageGraphsViewController/UIUsageViewController.h; sourceTree = "<group>"; };
@@ -793,8 +794,8 @@
 		98584F331D3F9E18009FB89F = {
 			isa = PBXGroup;
 			children = (
+				989DB8E31E77D2CF008F4D02 /* PPCloakBundle */,
 				98584F3F1D3F9E18009FB89F /* RSFrameworksHook */,
-				985B80E11E56097300F0D19B /* FrameworkHooksBundle */,
 				98584F3E1D3F9E18009FB89F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -802,8 +803,8 @@
 		98584F3E1D3F9E18009FB89F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */,
-				985B80E01E56097200F0D19B /* FrameworkHooksBundle.bundle */,
+				98584F3D1D3F9E18009FB89F /* PPCloak.framework */,
+				985B80E01E56097200F0D19B /* PPCloakBundle.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -818,19 +819,11 @@
 				98804EF31E4DE258009E6748 /* View */,
 				98D603E11E2F7FEC00E59A42 /* OPMonitor */,
 				9863E8FA1DEC6F0D0095CA30 /* JRSwizzle */,
-				98584F401D3F9E18009FB89F /* RSFrameworksHook.h */,
+				98584F401D3F9E18009FB89F /* PPCloak.h */,
 				98584F421D3F9E18009FB89F /* Info.plist */,
 			);
 			name = RSFrameworksHook;
 			path = GenericFrameworkProject;
-			sourceTree = "<group>";
-		};
-		985B80E11E56097300F0D19B /* FrameworkHooksBundle */ = {
-			isa = PBXGroup;
-			children = (
-				985B80E21E56097300F0D19B /* Info.plist */,
-			);
-			path = FrameworkHooksBundle;
 			sourceTree = "<group>";
 		};
 		9863E8FA1DEC6F0D0095CA30 /* JRSwizzle */ = {
@@ -1118,6 +1111,14 @@
 				98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */,
 			);
 			name = InputSupervisorsManager;
+			sourceTree = "<group>";
+		};
+		989DB8E31E77D2CF008F4D02 /* PPCloakBundle */ = {
+			isa = PBXGroup;
+			children = (
+				989DB8E41E77D2CF008F4D02 /* Info.plist */,
+			);
+			path = PPCloakBundle;
 			sourceTree = "<group>";
 		};
 		98B234671E5337370015C2E9 /* UISCDViewController */ = {
@@ -1649,7 +1650,7 @@
 				9888B1741E6C625900D783AB /* PPReportsSourcesBundle.h in Headers */,
 				98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */,
 				98F7A6891E76D0C000FF635A /* PPEvent.h in Headers */,
-				98584F411D3F9E18009FB89F /* RSFrameworksHook.h in Headers */,
+				98584F411D3F9E18009FB89F /* PPCloak.h in Headers */,
 				983F87C21E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h in Headers */,
 				98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */,
 				98F7A6931E76E48100FF635A /* PPEventDispatcher+Internal.h in Headers */,
@@ -1687,9 +1688,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		98584F3C1D3F9E18009FB89F /* RSFrameworksHook */ = {
+		98584F3C1D3F9E18009FB89F /* PPCloak */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 98584F451D3F9E18009FB89F /* Build configuration list for PBXNativeTarget "RSFrameworksHook" */;
+			buildConfigurationList = 98584F451D3F9E18009FB89F /* Build configuration list for PBXNativeTarget "PPCloak" */;
 			buildPhases = (
 				98584F381D3F9E18009FB89F /* Sources */,
 				98584F391D3F9E18009FB89F /* Frameworks */,
@@ -1700,14 +1701,14 @@
 			);
 			dependencies = (
 			);
-			name = RSFrameworksHook;
+			name = PPCloak;
 			productName = GenericFrameworkProject;
-			productReference = 98584F3D1D3F9E18009FB89F /* RSFrameworksHook.framework */;
+			productReference = 98584F3D1D3F9E18009FB89F /* PPCloak.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		985B80DF1E56097200F0D19B /* FrameworkHooksBundle */ = {
+		985B80DF1E56097200F0D19B /* PPCloakBundle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 985B80E51E56097300F0D19B /* Build configuration list for PBXNativeTarget "FrameworkHooksBundle" */;
+			buildConfigurationList = 985B80E51E56097300F0D19B /* Build configuration list for PBXNativeTarget "PPCloakBundle" */;
 			buildPhases = (
 				985B80DC1E56097200F0D19B /* Sources */,
 				985B80DD1E56097200F0D19B /* Frameworks */,
@@ -1717,9 +1718,9 @@
 			);
 			dependencies = (
 			);
-			name = FrameworkHooksBundle;
+			name = PPCloakBundle;
 			productName = FrameworkHooksBundle;
-			productReference = 985B80E01E56097200F0D19B /* FrameworkHooksBundle.bundle */;
+			productReference = 985B80E01E56097200F0D19B /* PPCloakBundle.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -1743,7 +1744,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 98584F371D3F9E18009FB89F /* Build configuration list for PBXProject "RSFrameworksHook" */;
+			buildConfigurationList = 98584F371D3F9E18009FB89F /* Build configuration list for PBXProject "PPCloak" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1755,9 +1756,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				98584F3C1D3F9E18009FB89F /* RSFrameworksHook */,
+				98584F3C1D3F9E18009FB89F /* PPCloak */,
 				98584F481D3F9E43009FB89F /* AggregateUniversal */,
-				985B80DF1E56097200F0D19B /* FrameworkHooksBundle */,
+				985B80DF1E56097200F0D19B /* PPCloakBundle */,
 			);
 		};
 /* End PBXProject section */
@@ -1776,6 +1777,7 @@
 			files = (
 				98331C841E56F6A0005D3A84 /* ViolationReportCell.xib in Resources */,
 				98331C851E56F6A0005D3A84 /* PPViews.storyboard in Resources */,
+				989DB8E51E77D2CF008F4D02 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2061,7 +2063,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_MODULE_NAME = RSFrameworksHook;
+				PRODUCT_MODULE_NAME = PPCloak;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -2107,7 +2109,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_MODULE_NAME = RSFrameworksHook;
+				PRODUCT_MODULE_NAME = PPCloak;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2132,7 +2134,7 @@
 				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.FrameworkHooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2156,7 +2158,7 @@
 				);
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.FrameworkHooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2188,10 +2190,10 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = FrameworkHooksBundle/Info.plist;
+				INFOPLIST_FILE = PPCloakBundle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = com.plusPrivacy.FrameworkHooksBundle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusPrivacy.PPCloakBundle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2208,10 +2210,10 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = FrameworkHooksBundle/Info.plist;
+				INFOPLIST_FILE = PPCloakBundle/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = com.plusPrivacy.FrameworkHooksBundle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusPrivacy.PPCloakBundle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2222,7 +2224,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		98584F371D3F9E18009FB89F /* Build configuration list for PBXProject "RSFrameworksHook" */ = {
+		98584F371D3F9E18009FB89F /* Build configuration list for PBXProject "PPCloak" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				98584F431D3F9E18009FB89F /* Debug */,
@@ -2231,7 +2233,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		98584F451D3F9E18009FB89F /* Build configuration list for PBXNativeTarget "RSFrameworksHook" */ = {
+		98584F451D3F9E18009FB89F /* Build configuration list for PBXNativeTarget "PPCloak" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				98584F461D3F9E18009FB89F /* Debug */,
@@ -2249,7 +2251,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		985B80E51E56097300F0D19B /* Build configuration list for PBXNativeTarget "FrameworkHooksBundle" */ = {
+		985B80E51E56097300F0D19B /* Build configuration list for PBXNativeTarget "PPCloakBundle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				985B80E31E56097300F0D19B /* Debug */,

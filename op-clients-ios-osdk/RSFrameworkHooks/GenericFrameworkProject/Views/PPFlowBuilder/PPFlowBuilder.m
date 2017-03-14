@@ -26,7 +26,7 @@
 
 -(UIViewController *)buildFlowWithModel:(PPFlowBuilderModel *)model {
     
-    NSBundle *bundle = [NSBundle frameworkHooksBundle];
+    NSBundle *bundle = [NSBundle PPCloakBundle];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PPViews" bundle:bundle];
     

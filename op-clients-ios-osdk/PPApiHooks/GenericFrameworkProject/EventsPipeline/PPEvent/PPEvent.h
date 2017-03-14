@@ -7,17 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef NS_ENUM(NSInteger, PPEventType) {
-    EventLocationManagerRequestAlwaysAuthorization,
-    EventLocationManagerRequestWhenInUseAuthorization
-};
-
-
+#import "Common.h"
 
 @interface PPEvent: NSObject
+@property (readonly, nonatomic) PPEventType eventType;
+@property (strong, nonatomic, nullable) NSMutableDictionary *eventData;
 
-@property (assign, nonatomic) PPEventType eventType;
-@property (strong, nonatomic) NSDictionary *eventData;
+-(instancetype _Nonnull)initWithEventType:(PPEventType)eventType eventData:(NSMutableDictionary* _Nullable)eventData;
 
 @end

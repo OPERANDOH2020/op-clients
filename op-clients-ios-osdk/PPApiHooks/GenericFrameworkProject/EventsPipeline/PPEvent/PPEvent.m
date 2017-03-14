@@ -8,5 +8,19 @@
 
 #import "PPEvent.h"
 
+@interface PPEvent()
+@property (readwrite, assign, nonatomic) PPEventType eventType;
+@end
+
 @implementation PPEvent
+
+-(instancetype)initWithEventType:(PPEventType)eventType eventData:(NSMutableDictionary *)eventData {
+    if (self = [super init]) {
+        self.eventData = eventData;
+        self.eventType = eventType;
+    }
+    
+    return self;
+}
+
 @end

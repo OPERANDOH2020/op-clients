@@ -8,6 +8,9 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "JRSwizzle.h"
+#import "PPEventDispatcher+Internal.h"
+#import "PPEvent.h"
+#import "PPEventsPipelineFactory.h"
 
 @interface CLLocationManager(Hook)
 
@@ -28,26 +31,50 @@
 }
 
 -(void)rsHook_startUpdatingLocation {
-    dispatch_async(dispatch_get_main_queue(), ^{
-    });
     
-    [self rsHook_startUpdatingLocation];
+    __weak typeof(self) weakSelf = self;
+    PPVoidBlock confirmation = ^{
+        [weakSelf rsHook_startUpdatingLocation];
+    };
+    
+    NSMutableDictionary *eventData = [@{
+                                        kPPStartLocationUpdatesConfirmation: confirmation
+                                       } mutableCopy];
+    
+    PPEvent *event = [[PPEvent alloc] initWithEventType:EventLocationManagerStartLocationUpdates eventData:eventData];
+    
+    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
 }
 
 -(void)rsHook_requestAlwaysAuthorization {
-    dispatch_async(dispatch_get_main_queue(), ^{
-    });
     
-    [self rsHook_requestAlwaysAuthorization];
+    __weak typeof(self) weakSelf = self;
+    PPVoidBlock confirmation = ^{
+        [weakSelf rsHook_requestAlwaysAuthorization];
+    };
+    NSMutableDictionary *dict = [@{
+                                   kPPRequestAlwaysAuthorizationConfirmation: confirmation
+                                   } mutableCopy];
+    
+    PPEvent *event = [[PPEvent alloc] initWithEventType:EventLocationManagerRequestAlwaysAuthorization eventData:dict];
+    
+    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
 }
 
 
--(void)rsHook_requestWhenInUseAuthorization{
-    dispatch_async(dispatch_get_main_queue(), ^{
-    });
+-(void)rsHook_requestWhenInUseAuthorization {
     
+    __weak typeof(self) weakSelf = self;
+    PPVoidBlock confirmation =  ^{
+        [weakSelf rsHook_requestWhenInUseAuthorization];
+    };
     
-    [self rsHook_requestWhenInUseAuthorization];
+    NSMutableDictionary *dict = [@{
+                                   kPPRequestWhenInUseAuthorizationConfirmation: confirmation
+                                   } mutableCopy];
+    
+    PPEvent *event = [[PPEvent alloc] initWithEventType:EventLocationManagerRequestWhenInUseAuthorization eventData:dict];
+    [[PPEventsPipelineFactory eventsDispatcher] fireEvent: event];
 }
 
 

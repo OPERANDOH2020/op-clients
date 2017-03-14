@@ -10,8 +10,8 @@
 #import "PPEvent.h"
 
 
-typedef void(^NextHandler)();
-typedef void(^EventHandler)(PPEvent* _Nonnull event, NextHandler _Nullable nextHandlerIfAny);
+typedef void(^NextHandlerConfirmation)();
+typedef void(^EventHandler)(PPEvent* _Nonnull event, NextHandlerConfirmation _Nullable nextHandlerIfAny);
 
 
 @interface PPEventDispatcher : NSObject

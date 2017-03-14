@@ -106,7 +106,7 @@
 
 -(void)setupTableView:(UITableView*)tableView {
     
-    NSBundle *bundle = [NSBundle frameworkHooksBundle];
+    NSBundle *bundle = [NSBundle PPCloakBundle];
     UINib *nib = [UINib nibWithNibName:[ViolationReportCell identifierNibName] bundle:
                   bundle];
     

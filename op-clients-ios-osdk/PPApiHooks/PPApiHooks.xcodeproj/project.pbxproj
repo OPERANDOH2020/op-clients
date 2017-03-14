@@ -22,11 +22,12 @@
 
 /* Begin PBXBuildFile section */
 		98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */; };
+		989DB8F51E78144F008F4D02 /* PPEventsPipelineFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */; };
 		98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */; };
 		98F7A6A31E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */; };
 		98F7A6A41E76ECB200FF635A /* CLLocationManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */; };
 		98F7A6A51E76ECB200FF635A /* CMAltimeter+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6991E76ECB200FF635A /* CMAltimeter+rsHook.m */; };
-		98F7A6A61E76ECB200FF635A /* CMMotionManager+rsHookAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69A1E76ECB200FF635A /* CMMotionManager+rsHookAccelerometer.m */; };
 		98F7A6A71E76ECB200FF635A /* CMMotionManager+rsHookMagnetometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69B1E76ECB200FF635A /* CMMotionManager+rsHookMagnetometer.m */; };
 		98F7A6A81E76ECB200FF635A /* CMPedometer+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69C1E76ECB200FF635A /* CMPedometer+rsHook.m */; };
 		98F7A6A91E76ECB200FF635A /* CNContactStore+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69D1E76ECB200FF635A /* CNContactStore+rsHook.m */; };
@@ -48,11 +49,13 @@
 		98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPApiHooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PPApiHooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPApiHooks.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		989DB8EC1E77DE61008F4D02 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPEventsPipelineFactory.h; path = PPEventsPipelineFactory/PPEventsPipelineFactory.h; sourceTree = "<group>"; };
+		989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEventsPipelineFactory.m; path = PPEventsPipelineFactory/PPEventsPipelineFactory.m; sourceTree = "<group>"; };
 		98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookCamera.m"; sourceTree = "<group>"; };
 		98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookingMicrophone.m"; sourceTree = "<group>"; };
 		98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+rsHook.m"; sourceTree = "<group>"; };
 		98F7A6991E76ECB200FF635A /* CMAltimeter+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMAltimeter+rsHook.m"; sourceTree = "<group>"; };
-		98F7A69A1E76ECB200FF635A /* CMMotionManager+rsHookAccelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+rsHookAccelerometer.m"; sourceTree = "<group>"; };
 		98F7A69B1E76ECB200FF635A /* CMMotionManager+rsHookMagnetometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+rsHookMagnetometer.m"; sourceTree = "<group>"; };
 		98F7A69C1E76ECB200FF635A /* CMPedometer+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMPedometer+rsHook.m"; sourceTree = "<group>"; };
 		98F7A69D1E76ECB200FF635A /* CNContactStore+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContactStore+rsHook.m"; sourceTree = "<group>"; };
@@ -105,8 +108,18 @@
 				98F7A6951E76ECB200FF635A /* HookingCategories */,
 				98584F401D3F9E18009FB89F /* PPApiHooks.h */,
 				98584F421D3F9E18009FB89F /* Info.plist */,
+				989DB8EC1E77DE61008F4D02 /* Common.h */,
 			);
 			path = GenericFrameworkProject;
+			sourceTree = "<group>";
+		};
+		989DB8F11E781428008F4D02 /* PPEventsPipelineFactory */ = {
+			isa = PBXGroup;
+			children = (
+				989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */,
+				989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */,
+			);
+			name = PPEventsPipelineFactory;
 			sourceTree = "<group>";
 		};
 		98F7A6951E76ECB200FF635A /* HookingCategories */ = {
@@ -116,7 +129,6 @@
 				98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */,
 				98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */,
 				98F7A6991E76ECB200FF635A /* CMAltimeter+rsHook.m */,
-				98F7A69A1E76ECB200FF635A /* CMMotionManager+rsHookAccelerometer.m */,
 				98F7A69B1E76ECB200FF635A /* CMMotionManager+rsHookMagnetometer.m */,
 				98F7A69C1E76ECB200FF635A /* CMPedometer+rsHook.m */,
 				98F7A69D1E76ECB200FF635A /* CNContactStore+rsHook.m */,
@@ -140,6 +152,7 @@
 		98F7A6B31E76F16200FF635A /* EventsPipeline */ = {
 			isa = PBXGroup;
 			children = (
+				989DB8F11E781428008F4D02 /* PPEventsPipelineFactory */,
 				98F7A6B41E76F16200FF635A /* PPEvent */,
 				98F7A6B71E76F16200FF635A /* PPEventDispatcher */,
 			);
@@ -181,6 +194,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */,
 				98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */,
 				98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */,
 				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
@@ -278,6 +292,7 @@
 			files = (
 				98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
 				98F7A6A31E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m in Sources */,
+				989DB8F51E78144F008F4D02 /* PPEventsPipelineFactory.m in Sources */,
 				98F7A6AB1E76ECB200FF635A /* NSURLSession+rsHook.m in Sources */,
 				98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */,
 				98F7A6A81E76ECB200FF635A /* CMPedometer+rsHook.m in Sources */,
@@ -290,7 +305,6 @@
 				98F7A6A51E76ECB200FF635A /* CMAltimeter+rsHook.m in Sources */,
 				98F7A6C01E76F16200FF635A /* PPEventDispatcher+Internal.m in Sources */,
 				98F7A6A91E76ECB200FF635A /* CNContactStore+rsHook.m in Sources */,
-				98F7A6A61E76ECB200FF635A /* CMMotionManager+rsHookAccelerometer.m in Sources */,
 				98F7A6A71E76ECB200FF635A /* CMMotionManager+rsHookMagnetometer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

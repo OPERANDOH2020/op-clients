@@ -9,7 +9,7 @@
 #import "UIInputGraphViewController.h"
 #import "PerSecondReportAggregator.h"
 #import "Common.h"
-#import <RSFrameworksHook/RSFrameworksHook-Swift.h>
+#import <PPCloak/PPCloak-Swift.h>
 
 @interface UIGraphViewController ()
 

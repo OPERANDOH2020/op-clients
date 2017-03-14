@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 //! Project version number for GenericFrameworkProject.
-FOUNDATION_EXPORT double RSFrameworksHookVersionNumber;
+FOUNDATION_EXPORT double PPCloakVersionNumber;
 
 //! Project version string for GenericFrameworkProject.
-FOUNDATION_EXPORT const unsigned char RSFrameworksHookVersionString[];
+FOUNDATION_EXPORT const unsigned char PPCloakVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <GenericFrameworkProject/PublicHeader.h>
 

@@ -10,10 +10,10 @@
 
 @implementation NSBundle (RSFrameworkHooks)
 
-+(NSBundle *)frameworkHooksBundle {
++(NSBundle *)PPCloakBundle {
     static NSBundle *bundle = nil;
     if (!bundle) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"FrameworkHooksBundle" ofType:@"bundle"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"PPCloakBundle" ofType:@"bundle"];
         
         bundle = [NSBundle bundleWithPath:path];
     }
