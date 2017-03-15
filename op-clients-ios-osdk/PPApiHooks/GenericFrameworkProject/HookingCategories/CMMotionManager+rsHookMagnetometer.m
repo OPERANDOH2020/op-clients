@@ -27,41 +27,29 @@
 }
 
 -(void)rsHook_startMagnetometerUpdates{
-    
     __weak typeof(self) weakSelf = self;
-    PPVoidBlock confirmation = ^{
+    
+    [[PPEventsPipelineFactory eventsDispatcher] fireSafeEventForType:EventMotionManagerStartMagnetometerUpdates executionBlock:^{
         [weakSelf rsHook_startMagnetometerUpdates];
-    };
-    
-    NSMutableDictionary *evData = [@{
-                                     kPPStartMagnetometerUpdatesConfirmation: confirmation
-                                     }
-                                   mutableCopy];
-    
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventMotionManagerStartMagnetometerUpdates eventData:evData];
-    
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    } executionBlockKey:kPPStartMagnetometerUpdatesConfirmation];
 }
 
 -(void)rsHook_startAccelerometerUpdates {
     __weak typeof(self) weakSelf = self;
-    PPVoidBlock confirmation = ^{
+    
+    [[PPEventsPipelineFactory eventsDispatcher] fireSafeEventForType:EventMotionManagerStartAccelerometerUpdates executionBlock:^{
         [weakSelf rsHook_startAccelerometerUpdates];
-    };
-    
-    NSMutableDictionary *evData = [@{
-                                     kPPStartAccelerometerUpdatesConfirmation: confirmation
-                                     }
-                                   mutableCopy];
-    
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventMotionManagerStartAccelerometerUpdates eventData:evData];
-    
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    } executionBlockKey:kPPStartAccelerometerUpdatesConfirmation];
 }
 
 
 -(void)rsHook_startDeviceMotionUpdates {
-    
+    __weak typeof(self) weakSelf = self;
+    [[PPEventsPipelineFactory eventsDispatcher] fireSafeEventForType:EventMotionManagerStartDeviceMotionUpdates executionBlock:^{
+        [weakSelf rsHook_startDeviceMotionUpdates];
+    } executionBlockKey:kPPStartDeviceMotionUpdatesConfirmation];
 }
+
+
 
 @end

@@ -11,8 +11,8 @@
 
 @interface PPEvent: NSObject
 @property (readonly, nonatomic) PPEventType eventType;
-@property (strong, nonatomic, nullable) NSMutableDictionary *eventData;
+@property (readonly, nonatomic, nullable) NSMutableDictionary *eventData;
 
--(instancetype _Nonnull)initWithEventType:(PPEventType)eventType eventData:(NSMutableDictionary* _Nullable)eventData;
+-(instancetype _Nonnull)initWithEventType:(PPEventType)eventType eventData:(NSMutableDictionary* _Nullable)eventData whenNoHandlerAvailable:(PPVoidBlock _Nullable)whenNoHandlerAvailable;
 
 @end

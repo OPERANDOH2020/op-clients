@@ -22,18 +22,33 @@
     [self jr_swizzleMethod:@selector(dataTaskWithRequest:completionHandler:) withMethod:@selector(rsHook__dataTaskWithRequest:completionHandler:) error:nil];
 }
 
+
+/*
+ Convention:
+  - The parameters sent are:
+    --1. The NSURLRequest
+    --2. The completionHandler
+ 
+  - Upon returning, the code expects that an object of type NSURLRequest is present at the required key. If so, it calls the real API method to create a dataTask object and returns it. If not, then an empty dataTask object is created and returned.
+ 
+  // must continue with more swizzled implementations
+ */
+
 -(NSURLSessionDataTask *)rsHook__dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completionHandler {
     
     NSMutableDictionary *eventData = [@{
-                                kPPURLSessionRequest: request
+                                kPPURLSessionRequest: request,
+                                kPPURLSessionCompletionHandler: completionHandler
                                 } mutableCopy];
     
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventURLSessionStartDataTaskForRequest eventData:eventData];
+    PPEvent *event = [[PPEvent alloc] initWithEventType:EventURLSessionStartDataTaskForRequest eventData:eventData whenNoHandlerAvailable:nil];
+    
     [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
     
     NSURLRequest *possiblyAlteredRequest = [eventData objectForKey:kPPURLSessionRequest];
     if (!(possiblyAlteredRequest && [possiblyAlteredRequest isKindOfClass:[NSURLRequest class]])) {
-        return [self rsHook__dataTaskWithRequest:request completionHandler:completionHandler];
+        
+        return [[NSURLSessionDataTask alloc] init];
     }
     
     return [self rsHook__dataTaskWithRequest:possiblyAlteredRequest completionHandler:completionHandler];

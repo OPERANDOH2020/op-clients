@@ -12,4 +12,7 @@
 @interface PPEventDispatcher(Internal)
 -(void)fireEvent:(PPEvent* _Nonnull)event;
 
+
+-(void)fireSafeEventForType:(PPEventType)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey;
+
 @end

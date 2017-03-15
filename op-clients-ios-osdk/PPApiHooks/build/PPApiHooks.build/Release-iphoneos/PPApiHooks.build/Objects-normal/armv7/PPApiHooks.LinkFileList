@@ -1,5 +1,6 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/UIVIewController+rsHookUIImagePickerController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/AVCaptureDevice+rsHookingMicrophone.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/PPEventsPipelineFactory.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/NSURLSession+rsHook.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/AVCaptureDevice+rsHookCamera.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/CMPedometer+rsHook.o
@@ -12,6 +13,6 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/CMAltimeter+rsHook.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/PPEventDispatcher+Internal.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/CNContactStore+rsHook.o
-/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/CMMotionManager+rsHookAccelerometer.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/PPEvent+FrameworkPrivate.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/CMMotionManager+rsHookMagnetometer.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/Objects-normal/armv7/PPApiHooks_vers.o

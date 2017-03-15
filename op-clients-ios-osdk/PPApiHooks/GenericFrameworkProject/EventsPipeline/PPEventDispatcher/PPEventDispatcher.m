@@ -8,8 +8,8 @@
 
 #import "PPEventDispatcher.h"
 #import "PPEventDispatcher+Internal.h"
-
-#define SAFECALL(x, ...) if(x){x(__VA_ARGS__);}
+#import "Common.h"
+#import "PPEvent+FrameworkPrivate.h"
 
 @interface IdentifiedHandler : NSObject
 @property (strong, nonatomic) NSString *identifier;
@@ -79,6 +79,7 @@
 
 -(void)fireEvent:(PPEvent *)event forHandlerAtIndex:(NSInteger)index {
     if (index >= self.handlersArray.count || index < 0) {
+        [event consumeWhenNoHandlerAvailable];
         return;
     }
     
@@ -89,6 +90,10 @@
     if (index + 1 < self.handlersArray.count) {
         confirmation = ^{
             [weakSelf fireEvent:event forHandlerAtIndex:index + 1];
+        };
+    } else {
+        confirmation = ^ {
+            [event consumeWhenNoHandlerAvailable];
         };
     }
     
@@ -102,4 +107,27 @@
 -(void)fireEvent:(PPEvent *)event {
     [self internalFireEvent:event];
 }
+
+-(void)fireSafeEventForType:(PPEventType)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey {
+    
+    
+    __block BOOL didExecute = NO;
+    PPVoidBlock confirmation =  ^{
+        if (didExecute) {
+            return;
+        }
+        didExecute = YES;
+        SAFECALL(executionBlock)
+    };
+    
+    NSMutableDictionary *dict = [@{
+                                   executionBlockKey: confirmation
+                                   } mutableCopy];
+    
+    PPEvent *event = [[PPEvent alloc] initWithEventType:EventLocationManagerRequestWhenInUseAuthorization eventData:dict whenNoHandlerAvailable:executionBlock];
+    
+    [self fireEvent:event];
+}
+
+
 @end

@@ -21,20 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		98182AB21E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB01E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m */; };
-		98182AB31E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB11E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m */; };
-		98182AB51E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB41E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m */; };
-		98182AB71E44BC4100895F19 /* LAContext+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB61E44BC4100895F19 /* LAContext+rsHook.m */; };
-		98182AB91E44BCE700895F19 /* CMAltimeter+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AB81E44BCE700895F19 /* CMAltimeter+rsHook.m */; };
-		98182ABB1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182ABA1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m */; };
-		98182ABD1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182ABC1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m */; };
-		98182ABF1E44C58200895F19 /* CMPedometer+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182ABE1E44C58200895F19 /* CMPedometer+rsHook.m */; };
-		98182AC11E44CDFC00895F19 /* UIDevice+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AC01E44CDFC00895F19 /* UIDevice+rsHook.m */; };
-		98182AC31E44D18E00895F19 /* NSURLSession+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98182AC21E44D18E00895F19 /* NSURLSession+rsHook.m */; };
 		981A4A6B1E58ABFE002C4876 /* OPMonitorSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 981A4A691E58ABFE002C4876 /* OPMonitorSettings.h */; };
 		981A4A6C1E58ABFE002C4876 /* OPMonitorSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 981A4A6A1E58ABFE002C4876 /* OPMonitorSettings.m */; };
-		981EAC681E48AF40000F59E3 /* CNContactStore+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC671E48AF40000F59E3 /* CNContactStore+rsHook.m */; };
-		981EAC6A1E48B463000F59E3 /* CLLocationManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC691E48B463000F59E3 /* CLLocationManager+rsHook.m */; };
 		981EAC701E48C7C6000F59E3 /* PlistReportsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */; };
 		981EAC711E48C7C6000F59E3 /* PlistReportsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */; };
 		982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */; };
@@ -292,20 +280,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		98182AB01E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookCamera.m"; sourceTree = "<group>"; };
-		98182AB11E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookingMicrophone.m"; sourceTree = "<group>"; };
-		98182AB41E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVIewController+rsHookUIImagePickerController.m"; sourceTree = "<group>"; };
-		98182AB61E44BC4100895F19 /* LAContext+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LAContext+rsHook.m"; sourceTree = "<group>"; };
-		98182AB81E44BCE700895F19 /* CMAltimeter+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMAltimeter+rsHook.m"; sourceTree = "<group>"; };
-		98182ABA1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+rsHookAccelerometer.m"; sourceTree = "<group>"; };
-		98182ABC1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+rsHookMagnetometer.m"; sourceTree = "<group>"; };
-		98182ABE1E44C58200895F19 /* CMPedometer+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMPedometer+rsHook.m"; sourceTree = "<group>"; };
-		98182AC01E44CDFC00895F19 /* UIDevice+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+rsHook.m"; sourceTree = "<group>"; };
-		98182AC21E44D18E00895F19 /* NSURLSession+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+rsHook.m"; sourceTree = "<group>"; };
 		981A4A691E58ABFE002C4876 /* OPMonitorSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorSettings.h; path = OPMonitorSettings/OPMonitorSettings.h; sourceTree = "<group>"; };
 		981A4A6A1E58ABFE002C4876 /* OPMonitorSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorSettings.m; path = OPMonitorSettings/OPMonitorSettings.m; sourceTree = "<group>"; };
-		981EAC671E48AF40000F59E3 /* CNContactStore+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContactStore+rsHook.m"; sourceTree = "<group>"; };
-		981EAC691E48B463000F59E3 /* CLLocationManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+rsHook.m"; sourceTree = "<group>"; };
 		981EAC6D1E48C660000F59E3 /* ReportsStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReportsStorageProtocol.h; path = ReportsStorageAndUI/ReportsStorageProtocol.h; sourceTree = "<group>"; };
 		981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlistReportsStorage.h; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.h; sourceTree = "<group>"; };
 		981EAC6F1E48C7C6000F59E3 /* PlistReportsStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlistReportsStorage.m; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.m; sourceTree = "<group>"; };
@@ -598,25 +574,6 @@
 			name = NetworkSupervisor;
 			sourceTree = "<group>";
 		};
-		98182AAF1E44B76700895F19 /* HookingCategories */ = {
-			isa = PBXGroup;
-			children = (
-				98182AB01E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m */,
-				98182AB11E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m */,
-				98182AB41E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m */,
-				98182AB61E44BC4100895F19 /* LAContext+rsHook.m */,
-				98182AB81E44BCE700895F19 /* CMAltimeter+rsHook.m */,
-				98182ABA1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m */,
-				98182ABC1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m */,
-				98182ABE1E44C58200895F19 /* CMPedometer+rsHook.m */,
-				98182AC01E44CDFC00895F19 /* UIDevice+rsHook.m */,
-				98182AC21E44D18E00895F19 /* NSURLSession+rsHook.m */,
-				981EAC671E48AF40000F59E3 /* CNContactStore+rsHook.m */,
-				981EAC691E48B463000F59E3 /* CLLocationManager+rsHook.m */,
-			);
-			path = HookingCategories;
-			sourceTree = "<group>";
-		};
 		981A4A681E58ABCC002C4876 /* OPMonitorSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -839,7 +796,6 @@
 			isa = PBXGroup;
 			children = (
 				981EAC6B1E48C62C000F59E3 /* ReportsStorageAndUI */,
-				98182AAF1E44B76700895F19 /* HookingCategories */,
 				987F837A1E3241250058633C /* InputSupervisors */,
 				987F83741E32357C0058633C /* OPMonitorInputSourceReport */,
 				987F836F1E3212140058633C /* Common.h */,
@@ -1838,10 +1794,8 @@
 				98CEF3311E5F1B24002C2145 /* YAxis.swift in Sources */,
 				98CEF3671E5F1B24002C2145 /* IHighlighter.swift in Sources */,
 				98CEF3461E5F1B24002C2145 /* LineScatterCandleRadarChartDataSet.swift in Sources */,
-				981EAC6A1E48B463000F59E3 /* CLLocationManager+rsHook.m in Sources */,
 				98CEF3701E5F1B24002C2145 /* ChartDataProvider.swift in Sources */,
 				98CEF3481E5F1B24002C2145 /* PieChartDataEntry.swift in Sources */,
-				98182AB31E44B76700895F19 /* AVCaptureDevice+rsHookingMicrophone.m in Sources */,
 				98CEF3A51E5F2204002C2145 /* UIInputGraphViewController.m in Sources */,
 				98CEF3781E5F1B24002C2145 /* ViewPortJob.swift in Sources */,
 				98CEF36F1E5F1B24002C2145 /* CandleChartDataProvider.swift in Sources */,
@@ -1865,9 +1819,7 @@
 				983F87C31E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m in Sources */,
 				98CEF33C1E5F1B24002C2145 /* CandleChartDataEntry.swift in Sources */,
 				98CEF32D1E5F1B24002C2145 /* LegendEntry.swift in Sources */,
-				98182AB51E44B92300895F19 /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
 				98CEF3651E5F1B24002C2145 /* Highlight.swift in Sources */,
-				981EAC681E48AF40000F59E3 /* CNContactStore+rsHook.m in Sources */,
 				981A4A6C1E58ABFE002C4876 /* OPMonitorSettings.m in Sources */,
 				98804F141E4E26DB009E6748 /* UIEncapsulatorViewController.m in Sources */,
 				98CEF34A1E5F1B24002C2145 /* RadarChartData.swift in Sources */,
@@ -1876,7 +1828,6 @@
 				983F87B41E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m in Sources */,
 				98CEF38B1E5F1B24002C2145 /* CircleShapeRenderer.swift in Sources */,
 				98CEF37A1E5F1B24002C2145 /* AxisRendererBase.swift in Sources */,
-				98182AC11E44CDFC00895F19 /* UIDevice+rsHook.m in Sources */,
 				98CEF3261E5F1B24002C2145 /* ScatterChartView.swift in Sources */,
 				98F7A68F1E76DA7000FF635A /* PPEventDispatcher.m in Sources */,
 				98CEF33B1E5F1B24002C2145 /* CandleChartData.swift in Sources */,
@@ -1896,7 +1847,6 @@
 				98CEF3371E5F1B24002C2145 /* BarLineScatterCandleBubbleChartDataSet.swift in Sources */,
 				98CEF31C1E5F1B24002C2145 /* BarLineChartViewBase.swift in Sources */,
 				98CEF3911E5F1B24002C2145 /* ScatterChartRenderer.swift in Sources */,
-				98182ABB1E44BFE500895F19 /* CMMotionManager+rsHookAccelerometer.m in Sources */,
 				98CEF3851E5F1B24002C2145 /* LineScatterCandleRadarRenderer.swift in Sources */,
 				98CEF33D1E5F1B24002C2145 /* CandleChartDataSet.swift in Sources */,
 				98CEF3521E5F1B24002C2145 /* ICandleChartDataSet.swift in Sources */,
@@ -1920,7 +1870,6 @@
 				98CEF35B1E5F1B24002C2145 /* DefaultAxisValueFormatter.swift in Sources */,
 				98CEF34B1E5F1B24002C2145 /* RadarChartDataEntry.swift in Sources */,
 				987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */,
-				98182AB21E44B76700895F19 /* AVCaptureDevice+rsHookCamera.m in Sources */,
 				98CEF36D1E5F1B24002C2145 /* BarLineScatterCandleBubbleChartDataProvider.swift in Sources */,
 				98CEF3681E5F1B24002C2145 /* PieHighlighter.swift in Sources */,
 				98CEF38D1E5F1B24002C2145 /* IShapeRenderer.swift in Sources */,
@@ -1947,13 +1896,11 @@
 				98CEF31E1E5F1B24002C2145 /* CandleStickChartView.swift in Sources */,
 				98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */,
 				988A15071E40AA7F00AABD43 /* CommonUtils.m in Sources */,
-				98182ABF1E44C58200895F19 /* CMPedometer+rsHook.m in Sources */,
 				98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */,
 				98CEF3921E5F1B24002C2145 /* XAxisRenderer.swift in Sources */,
 				98CEF32E1E5F1B24002C2145 /* MarkerImage.swift in Sources */,
 				98F1FF701E71508000A664AB /* PrivacyLevelAbuseDetector.m in Sources */,
 				98CEF34E1E5F1B24002C2145 /* ScatterChartDataSet.swift in Sources */,
-				98182AB91E44BCE700895F19 /* CMAltimeter+rsHook.m in Sources */,
 				98CEF3581E5F1B24002C2145 /* IRadarChartDataSet.swift in Sources */,
 				98CEF37F1E5F1B24002C2145 /* ChartDataRendererBase.swift in Sources */,
 				98CEF3961E5F1B24002C2145 /* YAxisRendererHorizontalBarChart.swift in Sources */,
@@ -1964,7 +1911,6 @@
 				98804F011E4DF1D8009E6748 /* UIViolationReportsViewController.m in Sources */,
 				98CEF3561E5F1B24002C2145 /* ILineScatterCandleRadarChartDataSet.swift in Sources */,
 				98CEF3941E5F1B24002C2145 /* XAxisRendererRadarChart.swift in Sources */,
-				98182ABD1E44C2F700895F19 /* CMMotionManager+rsHookMagnetometer.m in Sources */,
 				98CEF39C1E5F1B24002C2145 /* Transformer.swift in Sources */,
 				98CEF31F1E5F1B24002C2145 /* ChartViewBase.swift in Sources */,
 				98CEF3271E5F1B24002C2145 /* AxisBase.swift in Sources */,
@@ -1977,7 +1923,6 @@
 				98CEF38F1E5F1B24002C2145 /* TriangleShapeRenderer.swift in Sources */,
 				98ECE4781E421AFD0042A262 /* CameraInputSupervisor.m in Sources */,
 				9888B1701E6C2F6200D783AB /* BaseReportWithDate.m in Sources */,
-				98182AB71E44BC4100895F19 /* LAContext+rsHook.m in Sources */,
 				988A15021E40A4F600AABD43 /* PedometerInputSupervisor.m in Sources */,
 				98CEF3221E5F1B24002C2145 /* LineChartView.swift in Sources */,
 				98CEF36B1E5F1B24002C2145 /* Range.swift in Sources */,
@@ -1998,7 +1943,6 @@
 				98CEF3861E5F1B24002C2145 /* PieChartRenderer.swift in Sources */,
 				98CEF31A1E5F1B24002C2145 /* ChartAnimationEasing.swift in Sources */,
 				98CEF3401E5F1B24002C2145 /* ChartDataEntryBase.swift in Sources */,
-				98182AC31E44D18E00895F19 /* NSURLSession+rsHook.m in Sources */,
 				98CEF3761E5F1B24002C2145 /* AnimatedZoomViewJob.swift in Sources */,
 				98CEF3321E5F1B24002C2145 /* ChartBaseDataSet.swift in Sources */,
 				98DF60FE1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.m in Sources */,

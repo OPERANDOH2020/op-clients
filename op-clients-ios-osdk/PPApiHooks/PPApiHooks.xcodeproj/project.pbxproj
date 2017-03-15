@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */; };
+		984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */; };
 		98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */; };
 		989DB8F51E78144F008F4D02 /* PPEventsPipelineFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */; };
@@ -46,6 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPEvent+FrameworkPrivate.h"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.h"; sourceTree = "<group>"; };
+		984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPEvent+FrameworkPrivate.m"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.m"; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPApiHooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PPApiHooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPApiHooks.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		984C38601E7937D300F5AEF5 /* PPEvent+Private */ = {
+			isa = PBXGroup;
+			children = (
+				984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */,
+				984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */,
+			);
+			name = "PPEvent+Private";
+			sourceTree = "<group>";
+		};
 		98584F331D3F9E18009FB89F = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +175,7 @@
 		98F7A6B41E76F16200FF635A /* PPEvent */ = {
 			isa = PBXGroup;
 			children = (
+				984C38601E7937D300F5AEF5 /* PPEvent+Private */,
 				98F7A6B51E76F16200FF635A /* PPEvent.h */,
 				98F7A6B61E76F16200FF635A /* PPEvent.m */,
 			);
@@ -194,10 +208,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */,
+				984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */,
+				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
 				989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */,
 				98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */,
-				98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */,
-				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
 				98F7A6B11E76ECF000FF635A /* JRSwizzle.h in Headers */,
 				98F7A6BF1E76F16200FF635A /* PPEventDispatcher+Internal.h in Headers */,
 			);
@@ -305,6 +320,7 @@
 				98F7A6A51E76ECB200FF635A /* CMAltimeter+rsHook.m in Sources */,
 				98F7A6C01E76F16200FF635A /* PPEventDispatcher+Internal.m in Sources */,
 				98F7A6A91E76ECB200FF635A /* CNContactStore+rsHook.m in Sources */,
+				984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */,
 				98F7A6A71E76ECB200FF635A /* CMMotionManager+rsHookMagnetometer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
