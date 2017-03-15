@@ -73,6 +73,8 @@
 		AD7E07E41DFFEC0A002FA133 /* AMWriteSettingParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7E07E31DFFEC0A002FA133 /* AMWriteSettingParameter.swift */; };
 		AD7E07E71E00097D002FA133 /* AMRecommendedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7E07E61E00097D002FA133 /* AMRecommendedSettings.swift */; };
 		AD8F360D1E601A7600B28075 /* ACPrivacyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F360C1E601A7600B28075 /* ACPrivacyWriter.swift */; };
+		AD9A5D601E79459C00A31865 /* Disclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A5D5E1E79459C00A31865 /* Disclaimer.xib */; };
+		AD9A5D611E79459C00A31865 /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D5F1E79459C00A31865 /* DisclaimerView.swift */; };
 		ADAF999D1E2E32E700E9A18D /* UILabel+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */; };
 		ADBBCAF91E1BCD35007A7686 /* ACMathOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */; };
 		ADBBCAFD1E1BCD87007A7686 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */; };
@@ -192,6 +194,8 @@
 		AD7E07E31DFFEC0A002FA133 /* AMWriteSettingParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMWriteSettingParameter.swift; sourceTree = "<group>"; };
 		AD7E07E61E00097D002FA133 /* AMRecommendedSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMRecommendedSettings.swift; sourceTree = "<group>"; };
 		AD8F360C1E601A7600B28075 /* ACPrivacyWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPrivacyWriter.swift; sourceTree = "<group>"; };
+		AD9A5D5E1E79459C00A31865 /* Disclaimer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Disclaimer.xib; sourceTree = "<group>"; };
+		AD9A5D5F1E79459C00A31865 /* DisclaimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
 		ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Utils.swift"; sourceTree = "<group>"; };
 		ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACMathOperator.swift; sourceTree = "<group>"; };
 		ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -702,6 +706,15 @@
 			path = ACPrivacyWriter;
 			sourceTree = "<group>";
 		};
+		AD9A5D5D1E79459C00A31865 /* ScrollableOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				AD9A5D5E1E79459C00A31865 /* Disclaimer.xib */,
+				AD9A5D5F1E79459C00A31865 /* DisclaimerView.swift */,
+			);
+			path = ScrollableOverlay;
+			sourceTree = "<group>";
+		};
 		ADAF999B1E2E32DE00E9A18D /* UILabel+Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -907,6 +920,7 @@
 		ADEDBBE71E5B0F7800C220B0 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD9A5D5D1E79459C00A31865 /* ScrollableOverlay */,
 				AD291BFC1E5DCE9F00F158E0 /* RSFBSecure */,
 				AD291BE51E5C690B00F158E0 /* ProgressHUD */,
 				ADEDBBEC1E5B0F7800C220B0 /* SwarmClient.framework */,
@@ -1007,6 +1021,7 @@
 				AD291C3C1E5DCE9F00F158E0 /* UISNSettingsView.xib in Resources */,
 				AD291C2A1E5DCE9F00F158E0 /* osp-settings.js in Resources */,
 				AD291C341E5DCE9F00F158E0 /* interceptPOST.js in Resources */,
+				AD9A5D601E79459C00A31865 /* Disclaimer.xib in Resources */,
 				ADEDBBCA1E5713A400C220B0 /* PrivacyWizardModule.js in Resources */,
 				ADE061161E1F7AEE00ACC00E /* Common.xcassets in Resources */,
 				AD291C2C1E5DCE9F00F158E0 /* readSNSettings.js in Resources */,
@@ -1044,6 +1059,7 @@
 				AD291C421E5DCE9F00F158E0 /* UIViewController+Extensions.swift in Sources */,
 				AD291C3B1E5DCE9F00F158E0 /* UISNSettingsView.swift in Sources */,
 				AD291BEF1E5DA1E600F158E0 /* UIPrivacySettingFlowController.swift in Sources */,
+				AD9A5D611E79459C00A31865 /* DisclaimerView.swift in Sources */,
 				ADEDBBCF1E573E9000C220B0 /* UIMainScreenFlowController.swift in Sources */,
 				ADE060F11E1E297F00ACC00E /* UIView+Utils.swift in Sources */,
 				AD1FCD381E0801CB001DADD8 /* JSPrivacyWizardContext.swift in Sources */,
