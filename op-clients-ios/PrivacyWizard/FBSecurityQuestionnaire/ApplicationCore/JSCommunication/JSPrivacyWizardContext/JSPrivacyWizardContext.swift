@@ -45,7 +45,7 @@ class JSPrivacyWizardContext: NSObject {
     }
     
     // MARK: - Public Methods
-    static func getNextQuestionAndSuggestions(selectedOptions: [Int], completionHandler: @convention(block) (NSDictionary) -> Void) {
+    static func getNextQuestionAndSuggestions(selectedOptions: [Int], networks: [String], completionHandler: @convention(block) (NSDictionary) -> Void) {
         guard let context = context else { return }
         context.setObject(unsafeBitCast(completionHandler, to: AnyObject.self), forKeyedSubscript: "callback" as (NSCopying & NSObjectProtocol)!)
         
@@ -54,6 +54,8 @@ class JSPrivacyWizardContext: NSObject {
             ACPrivacyWizard.shared.recommendedParameters?.conditionalProbabilitiesMatrix ?? [],
             ACPrivacyWizard.shared.recommendedParameters?.initialProbabilities ?? [],
             ACPrivacyWizard.shared.recommendedParameters?.settingsToOptions ?? [],
-            ACPrivacyWizard.shared.recommendedParameters?.optionsToSettings ?? []])
+            ACPrivacyWizard.shared.recommendedParameters?.optionsToSettings ?? [],
+            ACPrivacyWizard.shared.recommendedParameters?.settingsToNetwork ?? [],
+            networks])
     }
 }

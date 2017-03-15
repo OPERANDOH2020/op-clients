@@ -16,15 +16,18 @@ class UIAlertViewController: NSObject {
     }
     
     class func presentOkAlert(from viewController: UIViewController, title: String, message: String, submitCallback: ((UIAlertAction) -> Void)?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: submitCallback))
-        viewController.present(alert, animated: true, completion: nil)
+        presentOptionsAlert(from: viewController, title: title, message: message, actions: [(title: "Ok", callback: submitCallback)])
     }
     
     class func presentOkCancelAlert(from viewController: UIViewController, title: String, message: String, submitCallback: ((UIAlertAction) -> Void)?, cancelCallback: ((UIAlertAction) -> Void)?) {
+        presentOptionsAlert(from: viewController, title: title, message: message, actions: [(title: "Cancel", callback: cancelCallback), (title: "Ok", callback: submitCallback)])
+    }
+    
+    class func presentOptionsAlert(from viewController: UIViewController, title: String, message: String, actions: [(title: String, callback: ((UIAlertAction) -> Void)?)]) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: cancelCallback))
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: submitCallback))
+        for action in actions {
+            alert.addAction(UIAlertAction(title: action.title, style: .default, handler: action.callback))
+        }
         viewController.present(alert, animated: true, completion: nil)
     }
 }

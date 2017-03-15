@@ -11,6 +11,7 @@ import UIKit
 class UIMainFlowController: UIFlowController {
     let configuration : UIFlowConfiguration
     var childFlow : UIFlowController?
+    private var privacyWizardSetupAttempts = 0
     
     required init(configuration : UIFlowConfiguration) {
         self.configuration = configuration
@@ -30,6 +31,24 @@ class UIMainFlowController: UIFlowController {
         childFlow = UIMainScreenFlowController(configuration: mainScreenVCConfiguration)
         childFlow?.start()
         
-        ACPrivacyWizard.shared.setup()
+        //ProgressHUD.show("Configuring Privacy Wizard")
+        //setupPrivacyWizard()
+    }
+    
+    private func setupPrivacyWizard() {
+        privacyWizardSetupAttempts += 1
+        print("Privacy Wizard Setup Attempt No.\(privacyWizardSetupAttempts)")
+        ACPrivacyWizard.shared.setup { (success) in
+            if success {
+                ProgressHUD.dismiss()
+            } else {
+                if self.privacyWizardSetupAttempts < 3 {
+                    self.setupPrivacyWizard()
+                } else {
+                    // TODO: - Show error
+                    ProgressHUD.dismiss()
+                }
+            }
+        }
     }
 }

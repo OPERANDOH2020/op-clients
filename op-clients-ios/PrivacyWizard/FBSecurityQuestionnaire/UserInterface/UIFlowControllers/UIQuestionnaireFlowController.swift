@@ -22,6 +22,10 @@ class UIQuestionnaireFlowController: UIFlowController, UIQuestionnaireTVCProtoco
     }
     
     // MARK: - Public Methods
+    func setup(withPrivacyWizardScope scope: ACPrivacyWizardScope) {
+        privacyWizard.privacyWizardScope = scope
+    }
+    
     func start() {
         let questionnaireTVC = UINavigationManager.getQuestionnaireTableViewController()
         questionnaireTVC.delegate = self

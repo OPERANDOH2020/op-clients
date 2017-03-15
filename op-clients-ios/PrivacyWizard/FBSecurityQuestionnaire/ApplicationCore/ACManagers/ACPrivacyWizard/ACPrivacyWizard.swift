@@ -14,6 +14,23 @@ enum ACPrivacyWizardState {
     case final
 }
 
+enum ACPrivacyWizardScope {
+    case facebook
+    case linkedIn
+    case all
+    
+    func getNetworks() -> [String] {
+        switch self {
+        case .facebook:
+            return ["facebook"]
+        case .linkedIn:
+            return ["linkedin"]
+        case .all:
+            return ["facebook", "linkedin"]
+        }
+    }
+}
+
 class ACPrivacyWizard: NSObject {
     
     // MARK: - Properties
@@ -22,6 +39,7 @@ class ACPrivacyWizard: NSObject {
     private(set) var currentSettings = [AMPrivacySetting]()
     var privacySettings: AMPrivacySettings?
     var recommendedParameters: AMRecommendedSettings?
+    var privacyWizardScope: ACPrivacyWizardScope = .all
     
     // MARK: - Lifecycle
     private override init() {
@@ -84,7 +102,7 @@ class ACPrivacyWizard: NSObject {
     }
     
     private func retrieveQuestionAndSuggestions(completionHandler: @escaping (_ privacySettings: [AMPrivacySetting], _ state: ACPrivacyWizardState) -> Void) {
-        JSPrivacyWizardContext.getNextQuestionAndSuggestions(selectedOptions: getCurrentChosenOptions(), completionHandler: { [weak self] (data) in
+        JSPrivacyWizardContext.getNextQuestionAndSuggestions(selectedOptions: getCurrentChosenOptions(), networks: privacyWizardScope.getNetworks(), completionHandler: { [weak self] (data) in
             guard let strongSelf = self else { return }
             strongSelf.currentRecommendation = AMPrivacyRecommendation(dictionary: data as! [String : Any])
             if let currentRecommendation = strongSelf.currentRecommendation, let privacySettings = strongSelf.privacySettings, let setting = privacySettings.getPrivacySetting(withId: currentRecommendation.questionId) {
@@ -98,22 +116,14 @@ class ACPrivacyWizard: NSObject {
     }
     
     // MARK: - Public Methods
-    func setup() {
-        ACSwarmManager.shared.loginWithUsername(username: "a", password: "aaaa") { (error, _) in
-            ACSwarmManager.shared.getOSPSettings(completionHandler: { [weak self] (error, settings) in
-                if let strongSelf = self {
-                    DispatchQueue.main.async {
-                        strongSelf.privacySettings = settings
-                    }
-                }
-                ACSwarmManager.shared.getOSPSettingsRecommendedParameters(completionHandler: { [weak self] (error, recSettings) in
-                    if let strongSelf = self {
-                        DispatchQueue.main.async {
-                            strongSelf.recommendedParameters = recSettings
-                        }
-                    }
-                })
-            })
+    func setup(completion: @escaping (_ success: Bool) -> Void) {
+        ACSwarmManager.shared.retrieveConfiguration(forUser: "admin@plusprivacy.com", withPassword: "swarm") { [weak self] (error, privacySettings, recommendedSettings) in
+            guard let strongSelf = self else { completion(false); return }
+            DispatchQueue.main.async {
+                strongSelf.privacySettings = privacySettings
+                strongSelf.recommendedParameters = recommendedSettings
+                completion(true)
+            }
         }
     }
     

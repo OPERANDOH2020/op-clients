@@ -136,12 +136,20 @@
                                     <action selector="didTapSetupPrivacyButton:" destination="aex-tg-qeA" eventType="touchUpInside" id="Q5K-IT-o0L"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PwQ-pt-YuF">
+                                <rect key="frame" x="16" y="28" width="22" height="22"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="didTapInfoButton:" destination="aex-tg-qeA" eventType="touchUpInside" id="JBE-BM-FCf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oXv-0o-irl" firstAttribute="leading" secondItem="qdE-8O-a1M" secondAttribute="leadingMargin" constant="37" id="7hr-qt-90F"/>
                             <constraint firstAttribute="trailing" secondItem="Rri-1b-rfA" secondAttribute="trailing" constant="86" id="82O-Ec-gX9"/>
                             <constraint firstItem="Rri-1b-rfA" firstAttribute="leading" secondItem="qdE-8O-a1M" secondAttribute="leading" constant="86" id="97J-Px-uwz"/>
+                            <constraint firstItem="PwQ-pt-YuF" firstAttribute="top" secondItem="4WD-sB-qAQ" secondAttribute="bottom" constant="8" id="FwP-2N-uxG"/>
                             <constraint firstItem="4dY-EY-Tfc" firstAttribute="top" secondItem="Rri-1b-rfA" secondAttribute="bottom" constant="8.5" id="G72-DE-fXE"/>
                             <constraint firstItem="PBO-CD-Fkc" firstAttribute="top" secondItem="viL-5F-XAx" secondAttribute="bottom" id="IJ0-aX-CNb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oXv-0o-irl" secondAttribute="trailing" constant="38" id="KXa-IR-O1r"/>
@@ -151,6 +159,7 @@
                             <constraint firstAttribute="trailing" secondItem="4dY-EY-Tfc" secondAttribute="trailing" constant="50" id="USe-2p-awZ"/>
                             <constraint firstItem="viL-5F-XAx" firstAttribute="top" secondItem="qdE-8O-a1M" secondAttribute="top" id="agF-iz-Tdq"/>
                             <constraint firstItem="4dY-EY-Tfc" firstAttribute="leading" secondItem="qdE-8O-a1M" secondAttribute="leading" constant="50" id="j9P-iq-3CM"/>
+                            <constraint firstItem="PwQ-pt-YuF" firstAttribute="leading" secondItem="qdE-8O-a1M" secondAttribute="leadingMargin" id="teX-W6-IvC"/>
                             <constraint firstAttribute="trailing" secondItem="viL-5F-XAx" secondAttribute="trailing" id="wzQ-of-jav"/>
                         </constraints>
                     </view>

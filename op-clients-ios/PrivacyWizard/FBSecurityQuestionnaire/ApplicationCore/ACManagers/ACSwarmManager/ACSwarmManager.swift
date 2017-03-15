@@ -44,6 +44,20 @@ class ACSwarmManager: NSObject {
     }
     
     // MARK: - Public Methods
+    func retrieveConfiguration(forUser username: String, withPassword password: String, completionHandler: @escaping (NSError?, AMPrivacySettings?, AMRecommendedSettings?) -> Void) {
+        loginWithUsername(username: username, password: password) {[weak self] (error, _) in
+            guard let strongSelf = self else { completionHandler(error, nil, nil); return }
+            
+            strongSelf.getOSPSettings(completionHandler: {(error, settings) in
+                strongSelf.getOSPSettingsRecommendedParameters(completionHandler: { (error, recSettings) in
+                    DispatchQueue.main.async {
+                        completionHandler(error, settings, recSettings)
+                    }
+                })
+            })
+        }
+    }
+    
     func loginWithUsername(username: String, password: String, completionHandler: @escaping (NSError?, [Any]?) -> Void) {
         swarmClientHelper.loginWithUsername(username: username, password: password) { (error, data) in
             completionHandler(error, nil)

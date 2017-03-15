@@ -13,18 +13,21 @@ struct AMRecommendedSettings {
     var settingsToOptions: [[Int]]
     var optionsToSettings: [Int]
     var initialProbabilities: [Double]
+    var settingsToNetwork: [String]
     
     init?(dictionary: [String: Any]) {
         conditionalProbabilitiesMatrix = [[Double]]()
         settingsToOptions = [[Int]]()
         optionsToSettings = [Int]()
         initialProbabilities = [Double]()
+        settingsToNetwork = [String]()
         
         if let recommenderParameters = dictionary["recommenderParameters"] as? NSDictionary {
             conditionalProbabilitiesMatrix.append(contentsOf: extractMatrix(fromDictionary: recommenderParameters, key: "conditionalProbabilitiesMatrix"))
             settingsToOptions.append(contentsOf: extractMatrix(fromDictionary: recommenderParameters, key: "settingsToOptions"))
             optionsToSettings.append(contentsOf: extractArray(fromDictionary: recommenderParameters, key: "optionsToSettings"))
             initialProbabilities.append(contentsOf: extractArray(fromDictionary: recommenderParameters, key: "initialProbabilities"))
+            settingsToNetwork.append(contentsOf: extractArray(fromDictionary: recommenderParameters, key: "settingToNetwork"))
         }
     }
     

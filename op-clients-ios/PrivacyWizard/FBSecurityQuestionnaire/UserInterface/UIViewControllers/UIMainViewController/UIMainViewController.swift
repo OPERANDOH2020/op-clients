@@ -10,6 +10,11 @@ import UIKit
 
 let UIMainVCStoryboardId = "UIMainVCStoryboardId"
 
+protocol UIMainScreenVCDelegate {
+    func openQuestionnaire()
+    func displayInfo()
+}
+
 class UIMainViewController: UIViewController {
     
     // MARK: - Properties
@@ -23,6 +28,10 @@ class UIMainViewController: UIViewController {
     // MARK: - @IBActions
     @IBAction func didTapSetupPrivacyButton(_ sender: Any) {
         delegate?.openQuestionnaire()
+    }
+    
+    @IBAction func didTapInfoButton(_ sender: Any) {
+        delegate?.displayInfo()
     }
     
     // MARK: - Private Methods
