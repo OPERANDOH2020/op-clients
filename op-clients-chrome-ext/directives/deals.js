@@ -69,7 +69,7 @@ angular.module('pfbdeals', [])
                     }
 
                     $scope.acceptDeal = function(){
-                         messengerService.send("acceptPfbDeal", $scope.deal.serviceId, function(response){
+                         messengerService.send("acceptPfbDeal", $scope.deal.offerId, function(response){
                              var deal = response.data;
                              $scope.deal.subscribed = true;
                              $scope.deal.voucher = deal.voucher;
@@ -80,7 +80,7 @@ angular.module('pfbdeals', [])
                     }
 
                     $scope.unsubscribeDeal = function(){
-                        messengerService.send("unsubscribePfbDeal", $scope.deal.serviceId, function(response){
+                        messengerService.send("unsubscribePfbDeal", $scope.deal.offerId, function(response){
                             var deal = response.data;
                             $scope.deal.subscribed = false;
                             $scope.$apply();
