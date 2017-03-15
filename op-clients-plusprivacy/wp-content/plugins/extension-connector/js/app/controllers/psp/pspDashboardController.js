@@ -49,9 +49,10 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
                     templateUrl: '/wp-content/plugins/extension-connector/js/app/templates/osp/modals/denyOspRequest.html',
 
                     controller: function ($scope, close) {
+                        $scope.dismissFeedback="";
                         $scope.deleteOspRequest = function(){
 
-                            connectionService.deleteOSPRequest(userId, function () {
+                            connectionService.deleteOSPRequest(userId, $scope.dismissFeedback, function () {
                                 removeOspRequestFromList(userId);
                                 Notification.success({message: 'OSP request successfully removed!', positionY: 'bottom', positionX: 'center', delay: 2000});
                             }, function (error) {

@@ -14,8 +14,9 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
            aria-expanded="false"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu" ng-switch="user.authenticated">
-            <li class="current_user_email" class="dropdown">{{user.email}}</a></li>
-            <li ng-switch-when="true"><a href="#" ng-click="logout()">Log out</a></li>
+            <li class="current_user_email" class="dropdown"><span class="glyphicon glyphicon-envelope"></span><span class="user_email">{{user.email}}</span></li>
+            <li role="separator" class="divider"></li>
+            <li ng-switch-when="true"><a class="user_logout" href="#" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>
         </ul>
     </li>
 

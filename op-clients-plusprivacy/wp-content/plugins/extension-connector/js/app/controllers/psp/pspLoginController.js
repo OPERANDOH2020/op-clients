@@ -32,14 +32,6 @@ privacyPlusApp.controller("pspLoginController", function ($scope, connectionServ
         messengerService.send("goToDashboard");
     };
 
-    setTimeout(function(){
-        var relayResponded = messengerService.extensionIsActive();
-        if(relayResponded === false){
-            $scope.extension_not_active = true;
-            $scope.$apply();
-        }
-    }, 1000);
-
     SharedService.setLocation("pspLogin");
 
 });

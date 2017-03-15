@@ -24,6 +24,7 @@ add_shortcode('osp-login', 'osp_login');
 add_shortcode('osp-register', 'osp_register_account');
 add_shortcode('osp-dashboard-offers', 'osp_dashboard_offers');
 add_shortcode('osp-dashboard-deals', 'osp_dashboard_deals');
+add_shortcode('osp-certifications', 'osp_certifications');
 add_shortcode('osp-dashboard-account', 'osp_dashboard_account');
 //PSP
 add_shortcode('psp-login', 'psp_login');
@@ -121,6 +122,10 @@ function osp_dashboard_offers()
 function osp_dashboard_deals()
 {
     echo file_get_contents(plugins_url('/html/osp/dashboard/deals.html', __FILE__));
+}
+
+function osp_certifications(){
+    echo file_get_contents(plugins_url('/html/osp/dashboard/certifications.html', __FILE__));
 }
 
 function osp_dashboard_account()

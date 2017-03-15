@@ -19,7 +19,7 @@ $scope.register = function(){
         $scope.registerErrorMessage = error;
         $scope.registerError = true;
         $scope.$apply();
-    })
+    });
 };
     SharedService.setLocation("userRegister");
 });

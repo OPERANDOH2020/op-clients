@@ -64,13 +64,13 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
 
                     self.getUser(successCallback);
 
-                    /*messengerService.send("authenticateUserInExtension", {
+                    messengerService.send("authenticateUserInExtension", {
                      userId: swarm.userId,
                      sessionId: swarm.meta.sessionId,
                      remember: user.remember
                      }, function (status) {
-                     successCallback({status: "success"});
-                     });*/
+                        successCallback({status: "success"});
+                     });
                 }
             };
 
@@ -214,8 +214,8 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
             });
         };
 
-        ConnectionService.prototype.deleteOSPRequest = function (userId, successCallback, failCallback) {
-            var getDeleteRequestHandler = swarmHub.startSwarm("osp.js", "removeOSPRequest", userId);
+        ConnectionService.prototype.deleteOSPRequest = function (userId, dismissFeedback, successCallback, failCallback) {
+            var getDeleteRequestHandler = swarmHub.startSwarm("osp.js", "removeOSPRequest", userId, dismissFeedback);
             getDeleteRequestHandler.onResponse("success", function (swarm) {
                 successCallback();
             });

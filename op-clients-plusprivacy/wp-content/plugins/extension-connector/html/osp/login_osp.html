@@ -1,6 +1,6 @@
 <div class = "container" ng-app="plusprivacy" id="osp_login">
     <div class="wrapper" ng-controller="ospLoginController">
-        <form method="post" name="Login_Form" class="form-signin" ng-submit="submitLoginForm()" ng-cloak>
+        <form method="post" name="Login_Form" class="form-signin" ng-submit="submitLoginForm()">
             <h3 class="form-signin-heading">Online Service Provider Authentication</h3>
             <hr class="colorgraph"><br>
 
@@ -32,12 +32,5 @@
             <ui-loader ng-cloak ng-if="requestProcessed"></ui-loader>
 
         </form>
-
-        <div class="alert alert-danger" role="alert" ng-if="extension_not_active" ng-cloak>
-            <strong>PlusPrivacy Extension is not active!</strong>
-            Please activate it or <a href="https://chrome.google.com/webstore/detail/plusprivacy/boagbmhcbemflaclmnbeebgbfhbegekc" target="_blank" class="alert-link">download it from Chrome Web Store</a>.
-        </div>
-
-
     </div>
 </div>

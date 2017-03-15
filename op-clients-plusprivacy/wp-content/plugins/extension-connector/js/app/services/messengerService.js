@@ -26,19 +26,19 @@ angular.module('sharedService').factory("messengerService", function () {
                 events[event] = [];
             }
             events[event].push(callback);
-            relayMessage({type: "FROM_WEBSITE", action: event, message: {messageType: "SUBSCRIBER"}});
+            this.relayMessage({type: "FROM_WEBSITE", action: event, message: {messageType: "SUBSCRIBER"}});
         };
 
         MessengerService.prototype.send = function () {
             var action = arguments[0];
             if (arguments.length == 2) {
                 if (typeof arguments[1] === "function") {
-                    relayMessage({type: "FROM_WEBSITE", action: action});
+                    this.relayMessage({type: "FROM_WEBSITE", action: action});
 
                 }
             }
             else {
-                relayMessage({type: "FROM_WEBSITE", action: action, message: arguments[1]});
+                this.relayMessage({type: "FROM_WEBSITE", action: action, message: arguments[1]});
             }
 
             if (!callbacks[action]) {

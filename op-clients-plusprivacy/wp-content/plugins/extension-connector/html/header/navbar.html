@@ -1,57 +1,5 @@
 <div ng-app="menuApp" id="menuApp">
     <div ng-controller="navigationController">
         <navigation navigation-model = "menuItems" location = "location"></navigation>
-        <!--<ul class="nav navbar-nav navbar-right">
-            <li class="dropdown" ng-class="location.indexOf('osp')>-1?'active':''">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">OSP<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li ng-class="location.indexOf('ospLogin')>-1?'active':''"><a href="/osp-login">OSP Login</a></li>
-                    <li ng-class="location.indexOf('ospRegister')>-1?'active':''"><a href="/osp-register">OSP Register</a></li>
-
-                    <li class="logged_in_feature">
-                        <ul>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/osp-offers">OSP Offers</a></li>
-                            <li><a href="/osp-offers">OSP Deals</a></li>
-                            <li><a href="/osp-offers">Certifications</a></li>
-                            <li><a href="/osp-offers">Account</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="dropdown" ng-class="location == 'ospRequests'?'active':''">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">PSP<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">PSP Login</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="/osp-requests">PSP Dashboard</a></li>
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">User<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">User Login</a></li>
-                    <li><a href="#">User Register</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Dashboard</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Account<span class="caret"></span></a>
-                <ul class="dropdown-menu" ng-switch="user.authenticated">
-                    <li class="logged_in_as" ng-switch-when="true">Logged in as <strong>{{user.email}}</strong></li>
-                    <li ng-switch-default><a href="login">User Login</a></li>
-                    <li ng-switch-when="true" role="separator" class="divider"></li>
-                    <li ng-switch-when="true"><a href="#" ng-click="logout()">Log out</a></li>
-                </ul>
-            </li>
-        </ul>-->
     </div>
 </div>

@@ -12,6 +12,13 @@
     background-color: #eee;
     border: 1px solid rgba(0,0,0,0.1);
 }
+.registration_successfully{
+    max-width: 560px;
+    padding: 30px;
+    margin: 0 auto;
+    background-color: #eee;
+    border: 1px solid rgba(0,0,0,0.1);
+}
 
 .form-signin-heading {
     text-align:center;
@@ -353,5 +360,8 @@ md-backdrop.md-opaque.md-default-theme{
     display:none!important;
 }
 
-
-
+.dismiss_feedback{
+    width:100%;
+    border-radius: 4px;
+    height: 60px;
+}

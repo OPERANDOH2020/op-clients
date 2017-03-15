@@ -14,3 +14,14 @@ li.logged_in_feature ul{
 .current_user_email{
     padding: 5px 10px;
 }
+.current_user_email .glyphicon{
+    position: absolute;
+    top:15px;
+}
+.current_user_email span.user_email{
+    margin-left: 20px;
+}
+
+.dropdown-menu > li > a.user_logout{
+    padding-left: 10px;
+}

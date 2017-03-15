@@ -22,6 +22,11 @@ privacyPlusApp.controller("OSPSignupController", function ($scope, connectionSer
         })
     };
 
+    $scope.acceptTermsAndConditions = function(){
+        $scope.user.accept_conditions = true;
+        $scope.$apply();
+    };
+
     SharedService.setLocation("ospRegister");
 });
 

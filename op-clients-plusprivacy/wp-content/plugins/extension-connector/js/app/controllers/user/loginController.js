@@ -7,14 +7,15 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
         password: ""
     };
 
-    userService.isAuthenticated(function (isAuthenticated) {
+    /*userService.isAuthenticated(function (isAuthenticated) {
         $scope.userIsLoggedIn = isAuthenticated;
-        //$scope.$apply();
-    });
+        $scope.$apply();
+    });*/
 
     userService.getUser(function (user) {
         $scope.userIsLoggedIn = true;
         $scope.currentUser = user.email;
+        $window.location = "/user-dashboard";
     });
 
     $scope.submitLoginForm = function () {
