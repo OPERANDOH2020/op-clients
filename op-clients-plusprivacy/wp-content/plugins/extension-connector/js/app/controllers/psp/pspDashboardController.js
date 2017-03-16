@@ -1,5 +1,33 @@
 privacyPlusApp.requires.push('datatables');
 
+
+function ViewOSPOffersDetailsController($scope, DTColumnDefBuilder, ospTitleOffer,offersStats){
+    $scope.dtInstance = {};
+    $scope.dtOptions = {
+        "paging": false,
+        "searching": false,
+        "info": false,
+        "order": [[0, "asc"]],
+        "columnDefs": [{
+            "targets": 'no-sort',
+            "orderable": false
+        }]
+    };
+
+    $scope.dtColumnDefs = [
+        DTColumnDefBuilder.newColumnDef(0),
+        DTColumnDefBuilder.newColumnDef(1),
+        DTColumnDefBuilder.newColumnDef(2).notSortable(),
+        DTColumnDefBuilder.newColumnDef(3).notSortable(),
+        DTColumnDefBuilder.newColumnDef(4).notSortable()
+    ];
+
+    $scope.ospTitleOffer = ospTitleOffer;
+    $scope.offersStats = offersStats;
+
+}
+
+
 privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionService", "messengerService", "$window", "DTColumnDefBuilder", "ModalService", "Notification", 'SharedService',
     function ($scope, connectionService, messengerService, $window, DTColumnDefBuilder, ModalService, Notification, SharedService) {
 
@@ -46,7 +74,7 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
 
             (function(userId){
                 ModalService.showModal({
-                    templateUrl: '/wp-content/plugins/extension-connector/js/app/templates/osp/modals/denyOspRequest.html',
+                    templateUrl: '/wp-content/plugins/extension-connector/js/app/templates/psp/modals/denyOspRequest.html',
 
                     controller: function ($scope, close) {
                         $scope.dismissFeedback="";
@@ -74,7 +102,7 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
         $scope.acceptOSPRequest = function(userId){
             (function(userId){
                 ModalService.showModal({
-                    templateUrl: '/wp-content/plugins/extension-connector/js/app/templates/osp/modals/acceptOspRequest.html',
+                    templateUrl: '/wp-content/plugins/extension-connector/js/app/templates/psp/modals/acceptOspRequest.html',
 
                     controller: function ($scope, close) {
                         $scope.acceptOspRequest = function(){
@@ -96,10 +124,26 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
                 });
 
             })(userId);
-        }
+        };
 
-        var restoredSessionFailed = function () {
-            alert("FAILED");
+        $scope.viewOffersStats = function(ospUserId){
+            connectionService.getOffersStats(ospUserId, function(offersStats){
+
+                    ModalService.showModal({
+                        templateUrl: '/wp-content/plugins/extension-connector/js/app/templates/psp/modals/viewOffersStats.html',
+                        controller: ViewOSPOffersDetailsController,
+                        inputs: {
+                            ospTitleOffer: "OSP Offers Statistics",
+                            offersStats: offersStats,
+                        }
+                    }).then(function (modal) {
+                        modal.element.modal({backdrop: 'static', keyboard: false});
+                    });
+
+            },
+            function(errorMessage){
+                console.log(errorMessage);
+            });
         };
 
         connectionService.listOSPs(function(ospList){
@@ -109,6 +153,11 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
             $scope.error = error;
             $scope.$apply();
         });
+
+
+
+
+
 
         SharedService.setLocation("pspZone");
     }]);

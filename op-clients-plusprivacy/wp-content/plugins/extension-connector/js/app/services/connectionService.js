@@ -277,6 +277,18 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
                 failCallback(swarm.error);
             });
         };
+
+        ConnectionService.prototype.getOffersStats = function(ospId, successCallback, failCallback){
+            var listOspOffersHandler = swarmHub.startSwarm("osp.js", "getOffersStats",ospId);
+            listOspOffersHandler.onResponse("success", function (swarm) {
+                successCallback(swarm.offersStats);
+            });
+
+            listOspOffersHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
+
         return ConnectionService;
 
     })();
