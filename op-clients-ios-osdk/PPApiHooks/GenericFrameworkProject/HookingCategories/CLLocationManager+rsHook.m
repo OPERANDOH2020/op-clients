@@ -68,10 +68,12 @@
     }
     
     NSMutableDictionary *evData = [@{} mutableCopy];
+    __weak NSMutableDictionary *weakEvData = evData;
+    
     
     __weak typeof(self) weakSelf = self;
     PPVoidBlock setDelegateConfirmation = ^{
-        id possiblyModifiedDelegate = evData[kPPLocationManagerDelegate];
+        id possiblyModifiedDelegate = weakEvData[kPPLocationManagerDelegate];
         if (![possiblyModifiedDelegate conformsToProtocol:@protocol(CLLocationManagerDelegate)]) {
             return;
         }

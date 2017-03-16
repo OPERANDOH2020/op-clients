@@ -13,9 +13,11 @@
 #import "JRSwizzle.h"
 #import "Common.h"
 
+
 @interface ProximityInputSupervisor()
 @property (strong, nonatomic) InputSupervisorModel *model;
 @property (strong, nonatomic) AccessedInput *proximitySensor;
+
 @end
 
 @implementation ProximityInputSupervisor
@@ -24,13 +26,33 @@
     self.model = model;
     self.proximitySensor = [CommonUtils extractInputOfType: InputType.Proximity from:model.scdDocument.accessedInputs];
     
+    __weak typeof(self) weakSelf = self;
+    NSArray *interestingEvents = @[@(EventGetDeviceProximityState),
+                                   @(EventSetDeviceProximitySensingEnabled),
+                                   @(EventGetDeviceProximityState),
+                                   @(EventSetDeviceProximityMonitoringEnabled)];
+    
+    [model.eventsDispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+        NSLog(@"proximity parsing event");
+        
+        NSNumber *eventType = @(event.eventType);
+        if ([interestingEvents containsObject:eventType]) {
+            NSLog(@"found proximity event: %d", eventType.intValue);
+            [weakSelf processEvent:event withNextHandler:nextHandlerIfAny];
+            return;
+        }
+        SAFECALL(nextHandlerIfAny)
+    }];
 }
 
--(void)processProximitySensorAccess {
-    PPUnlistedInputAccessViolation *report = nil;
-    if ((report = [self detectUnregisteredAccess])) {
-        [self.model.delegate newUnlistedInputAccessViolationReported:report];
+-(void)processEvent:(PPEvent*)event withNextHandler:(NextHandlerConfirmation)nextHandlerIfAny {
+    PPUnlistedInputAccessViolation *violationReport = nil;
+    if ((violationReport = [self detectUnregisteredAccess])) {
+        [self.model.delegate newUnlistedInputAccessViolationReported:violationReport];
+        return;
     }
+    
+    SAFECALL(nextHandlerIfAny)
 }
 
 -(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {

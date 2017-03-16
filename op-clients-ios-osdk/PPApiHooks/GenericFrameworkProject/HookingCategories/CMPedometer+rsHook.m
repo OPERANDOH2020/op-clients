@@ -8,7 +8,9 @@
 
 #import <CoreMotion/CoreMotion.h>
 #import "JRSwizzle.h"
-
+#import "Common.h"
+#import "PPEventDispatcher+Internal.h"
+#import "PPEventsPipelineFactory.h"
 
 
 @interface CMPedometer(rsHook)
@@ -27,7 +29,29 @@
 }
 
 -(void)rsHook_startPedometerUpdatesFromDate:(NSDate *)start withHandler:(CMPedometerHandler)handler {
-    [self rsHook_startPedometerUpdatesFromDate:start withHandler:handler];
+    
+    __weak typeof(self) weakSelf = self;
+    NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
+    __weak NSMutableDictionary *weakData = evData;
+    
+    SAFEADD(evData, kPPPedometerUpdatesDateValue, start)
+    SAFEADD(evData, kPPPedometerUpdatesHandler, handler)
+    PPVoidBlock confirmation = ^{
+        NSDate *possiblyModifiedDate = weakData[kPPPedometerUpdatesDateValue];
+        CMPedometerHandler possiblyModifiedHandler = weakData[kPPPedometerUpdatesHandler];
+        if (!(possiblyModifiedDate && possiblyModifiedHandler)) {
+            return;
+        }
+        
+        [weakSelf rsHook_startPedometerUpdatesFromDate:possiblyModifiedDate withHandler:possiblyModifiedHandler];
+        
+    };
+    [evData setObject:confirmation forKey:kPPStartPedometerUpdatesConfirmation];
+    
+    PPEvent *event = [[PPEvent alloc] initWithEventType:EventStartPedometerUpdates eventData:evData whenNoHandlerAvailable:confirmation];
+    
+    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    
 }
 
 

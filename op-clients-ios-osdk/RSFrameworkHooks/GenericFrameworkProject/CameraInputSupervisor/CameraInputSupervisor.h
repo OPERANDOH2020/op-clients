@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SupervisorProtocols.h"
 
-@interface CameraInputSupervisor : NSObject <InputSourceSupervisor, NetworkRequestAnalyzer>
+@interface CameraInputSupervisor : NSObject <InputSourceSupervisor>
 -(void)processCameraAccess;
 -(void)processPhotoLibraryAccess;
 @end

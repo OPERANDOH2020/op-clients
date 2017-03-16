@@ -9,6 +9,5 @@
 #import <Foundation/Foundation.h>
 #import "SupervisorProtocols.h"
 
-@interface ProximityInputSupervisor : NSObject <InputSourceSupervisor, NetworkRequestAnalyzer>
--(void)processProximitySensorAccess;
+@interface ProximityInputSupervisor : NSObject <InputSourceSupervisor>
 @end

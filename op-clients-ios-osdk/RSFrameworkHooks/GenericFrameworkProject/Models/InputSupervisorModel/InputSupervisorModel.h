@@ -10,6 +10,7 @@
 #import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
 #import "PrivacyLevelAbuseDetector.h"
 #import "LocationHTTPAnalyzer.h"
+#import <PPApiHooks/PPApiHooks.h>
 
 @protocol InputSupervisorDelegate;
 
@@ -24,5 +25,5 @@
 @property (strong, nonatomic) SCDDocument *scdDocument;
 @property (strong, nonatomic) PrivacyLevelAbuseDetector *privacyLevelAbuseDetector;
 @property (strong, nonatomic) HTTPAnalyzers *httpAnalyzers;
-
+@property (strong, nonatomic) PPEventDispatcher *eventsDispatcher;
 @end

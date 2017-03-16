@@ -161,16 +161,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2S-YE-jVa" userLabel="notificationView">
-                                <rect key="frame" x="0.0" y="20" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKK-Gs-gVh">
-                                        <rect key="frame" x="10" y="10" width="305" height="16"/>
+                                        <rect key="frame" x="10" y="10" width="305" height="24"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20V-ep-OfD">
-                                        <rect key="frame" x="325" y="6" width="50" height="24"/>
+                                        <rect key="frame" x="325" y="10" width="50" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Mfa-TB-qtQ"/>
                                             <constraint firstAttribute="width" constant="50" id="Whv-Zp-buJ"/>
@@ -191,20 +191,21 @@
                                     <constraint firstAttribute="bottom" secondItem="pKK-Gs-gVh" secondAttribute="bottom" constant="10" id="Ubd-gL-m0B"/>
                                     <constraint firstAttribute="trailing" secondItem="20V-ep-OfD" secondAttribute="trailing" id="Vcn-oc-koW"/>
                                     <constraint firstItem="20V-ep-OfD" firstAttribute="centerY" secondItem="Y2S-YE-jVa" secondAttribute="centerY" id="YB6-GN-3vz"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="gDu-8C-9mM"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Y2S-YE-jVa" firstAttribute="top" secondItem="3AR-Hv-8Ys" secondAttribute="bottom" id="5ZP-wY-5MW"/>
                             <constraint firstItem="Y2S-YE-jVa" firstAttribute="leading" secondItem="vg3-JM-WKK" secondAttribute="leading" id="6fY-Dm-fk2"/>
                             <constraint firstAttribute="trailing" secondItem="Y2S-YE-jVa" secondAttribute="trailing" id="LVZ-MV-7og"/>
+                            <constraint firstItem="Y2S-YE-jVa" firstAttribute="top" secondItem="vg3-JM-WKK" secondAttribute="top" id="vcz-cY-IIo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="notificationLabel" destination="pKK-Gs-gVh" id="SKb-RO-Daq"/>
                         <outlet property="notificationView" destination="Y2S-YE-jVa" id="oso-F5-pND"/>
-                        <outlet property="notificationViewTopSpaceCn" destination="5ZP-wY-5MW" id="5uG-kA-LAw"/>
+                        <outlet property="notificationViewTopSpaceCn" destination="vcz-cY-IIo" id="mpK-kH-8ih"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQD-Bh-AFC" userLabel="First Responder" sceneMemberID="firstResponder"/>

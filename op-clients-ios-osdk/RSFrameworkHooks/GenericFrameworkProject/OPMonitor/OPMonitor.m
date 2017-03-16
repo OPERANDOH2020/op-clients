@@ -18,7 +18,6 @@
 #import "MagnetometerInputSupervisor.h"
 #import "AccelerometerInputSupervisor.h"
 #import "BarometerInputSupervisor.h"
-#import "InputSupervisorsManager.h"
 #import "PlistReportsStorage.h"
 #import "JRSwizzle.h"
 #import "LocationInputSwizzler.h"
@@ -52,7 +51,10 @@
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
 @property (strong, nonatomic) PlistReportsStorage *plistRepository;
-@property (strong, nonnull) NSArray<id<InputSourceSupervisor>> *supervisorsArray;
+@property (strong, nonatomic) NSArray<id<InputSourceSupervisor>> *supervisorsArray;
+
+
+@property (strong, nonatomic) LocationInputSwizzler *locationInputSwizzler;
 
 @end
 
@@ -114,10 +116,10 @@ static void __attribute__((constructor)) initialize(void){
         self.plistRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
         self.supervisorsArray = [self buildSupervisorsWithDocument:scdDocument];
+        
         LocationInputSupervisor *locSupervisor = [self.supervisorsArray firstObjectOfClass:[LocationInputSupervisor class]];
         [self setupLocationInputSwizzlerUsingSupervisor:locSupervisor];
         
-        [InputSupervisorsManager buildSharedInstanceWithSupervisors:self.supervisorsArray];
     }];
     
 
@@ -151,11 +153,12 @@ static void __attribute__((constructor)) initialize(void){
     __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
     
     __block UIViewController *flowRoot = nil;
+    __weak typeof(self) weakSelf = self;
     
     LocationSettingsModel *locSettingsModel = [[LocationSettingsModel alloc] init];
-    locSettingsModel.currentSettings = [LocationInputSwizzler sharedInstance].currentSettings;
+    locSettingsModel.currentSettings = self.locationInputSwizzler.currentSettings;
     locSettingsModel.saveCallback = ^void(LocationInputSwizzlerSettings *settings) {
-        [[LocationInputSwizzler sharedInstance] applySettings:settings];
+        [weakSelf.locationInputSwizzler applyNewSettings:settings];
         [settings synchronizeToUserDefaults];
     };
     
@@ -219,7 +222,7 @@ static void __attribute__((constructor)) initialize(void){
     __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UINotificationViewController presentBadNotificationMessage:notification inController:rootViewController atDistanceFromTop:22];
+        [UINotificationViewController presentBadNotificationMessage:notification inController:rootViewController atDistanceFromTop:20];
     });
 }
 
@@ -232,16 +235,8 @@ static void __attribute__((constructor)) initialize(void){
     supervisorsModel.privacyLevelAbuseDetector = [[PrivacyLevelAbuseDetector alloc] initWithDocument:document];
     supervisorsModel.httpAnalyzers = [[HTTPAnalyzers alloc] init];
     supervisorsModel.httpAnalyzers.locationHTTPAnalyzer = [[LocationHTTPAnalyzer alloc] init];
+    supervisorsModel.eventsDispatcher = [PPEventsPipelineFactory eventsDispatcher];
     
-    
-    // set up the network supervisor separately
-    // as it will report url requests to the other supervisors also
-    //
-
-    NSURLSessionSupervisor *urlSessionSupervisor = [[NSURLSessionSupervisor alloc] init];
-
-    [urlSessionSupervisor setupWithModel:supervisorsModel];
-    [result addObject:urlSessionSupervisor];
     
     NSArray *supervisorClasses = @[[LocationInputSupervisor class],
                                    [ProximityInputSupervisor class],
@@ -252,26 +247,26 @@ static void __attribute__((constructor)) initialize(void){
                                    [TouchIdSupervisor class],
                                    [CameraInputSupervisor class],
                                    [MicrophoneInputSupervisor class],
-                                   [ContactsInputSupervisor class]
+                                   [ContactsInputSupervisor class],
+                                   [NSURLSessionSupervisor class]
                                    ];
     
-    NSMutableArray *networkAnalyzers = [[NSMutableArray alloc] init];
     for (Class class in supervisorClasses) {
         id supervisor = [[class alloc] init];
         [supervisor setupWithModel:supervisorsModel];
-        [networkAnalyzers addObject:supervisor];
         [result addObject:supervisor];
     }
     
-    [urlSessionSupervisor reportRequestsToAnalyzers:networkAnalyzers];
     
     return  result;
 }
 
 -(void)setupLocationInputSwizzlerUsingSupervisor:(LocationInputSupervisor*)supervisor {
     LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults];
-    [[LocationInputSwizzler sharedInstance] applySettings:defaultLocationSettings];
-    [[LocationInputSwizzler sharedInstance] reportInputToAnalyzer:supervisor];
+    self.locationInputSwizzler = [[LocationInputSwizzler alloc] init];
+    [self.locationInputSwizzler setupWithSettings:defaultLocationSettings eventsDispatcher:[PPEventsPipelineFactory eventsDispatcher] whenLocationsAreRequested:^(NSArray<CLLocation *> * _Nonnull locations) {
+        
+    }];
 }
 
 @end

@@ -10,6 +10,6 @@
 #import "Common.h"
 #import "SupervisorProtocols.h"
 
-@interface PedometerInputSupervisor : NSObject <InputSourceSupervisor, NetworkRequestAnalyzer>
+@interface PedometerInputSupervisor : NSObject <InputSourceSupervisor>
 -(void)processPedometerStatus;
 @end

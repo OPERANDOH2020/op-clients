@@ -11,18 +11,6 @@
 #import "Common.h"
 #import "LocationInputSwizzler.h"
 
-static const NSString *kStatusKey = @"status";
-
-typedef enum : NSUInteger {
-    Undefined,
-    StartUpdatingLocation,
-    RequestAlwaysAuthorization,
-    RequestWhenInUseAuthorization
-} LocationStatus;
-
-
-@interface LocationInputSupervisor : NSObject <InputSourceSupervisor, LocationInputAnalyzer, NetworkRequestAnalyzer>
-
--(void)processLocationStatus:(NSDictionary*)statusDict;
-
+@interface LocationInputSupervisor : NSObject <InputSourceSupervisor>
+-(void)processNewlyRequestedLocations:(NSArray<CLLocation*>* _Nonnull)locations;
 @end

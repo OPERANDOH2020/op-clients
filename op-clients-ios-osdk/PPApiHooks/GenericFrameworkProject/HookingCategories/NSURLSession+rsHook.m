@@ -12,6 +12,22 @@
 #import "PPEventsPipelineFactory.h"
 #import "PPEventDispatcher+Internal.h"
 
+@interface NullUrlSessionDataTask : NSURLSessionDataTask
+@end
+
+@implementation NullUrlSessionDataTask
+
+-(void)resume {
+}
+
+-(void)cancel {
+}
+
+-(void)suspend {
+}
+
+@end
+
 @interface NSURLSession(rsHook)
 @end
 
@@ -36,10 +52,14 @@
 
 -(NSURLSessionDataTask *)rsHook__dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completionHandler {
     
-    NSMutableDictionary *eventData = [@{
-                                kPPURLSessionRequest: request,
-                                kPPURLSessionCompletionHandler: completionHandler
-                                } mutableCopy];
+    NSMutableDictionary *eventData = [@{} mutableCopy];
+    if (request) {
+        [eventData setObject:request forKey:kPPURLSessionRequest];
+    }
+    
+    if (completionHandler) {
+        [eventData setObject:completionHandler forKey:kPPURLSessionCompletionHandler];
+    }
     
     PPEvent *event = [[PPEvent alloc] initWithEventType:EventURLSessionStartDataTaskForRequest eventData:eventData whenNoHandlerAvailable:nil];
     
@@ -48,7 +68,7 @@
     NSURLRequest *possiblyAlteredRequest = [eventData objectForKey:kPPURLSessionRequest];
     if (!(possiblyAlteredRequest && [possiblyAlteredRequest isKindOfClass:[NSURLRequest class]])) {
         
-        return [[NSURLSessionDataTask alloc] init];
+        return [[NullUrlSessionDataTask alloc] init];
     }
     
     return [self rsHook__dataTaskWithRequest:possiblyAlteredRequest completionHandler:completionHandler];

@@ -24,7 +24,8 @@
 		984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */; };
 		984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */; };
 		98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */; };
+		9869FA581E7A7C19001A8218 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8EC1E77DE61008F4D02 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		989DB8F51E78144F008F4D02 /* PPEventsPipelineFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */; };
 		98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */; };
 		98F7A6A31E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */; };
@@ -39,11 +40,11 @@
 		98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6A11E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m */; };
 		98F7A6B11E76ECF000FF635A /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6AF1E76ECF000FF635A /* JRSwizzle.h */; };
 		98F7A6B21E76ECF000FF635A /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6B01E76ECF000FF635A /* JRSwizzle.m */; };
-		98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6B51E76F16200FF635A /* PPEvent.h */; };
+		98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6B51E76F16200FF635A /* PPEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98F7A6BE1E76F16200FF635A /* PPEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6B61E76F16200FF635A /* PPEvent.m */; };
 		98F7A6BF1E76F16200FF635A /* PPEventDispatcher+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6B91E76F16200FF635A /* PPEventDispatcher+Internal.h */; };
 		98F7A6C01E76F16200FF635A /* PPEventDispatcher+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6BA1E76F16200FF635A /* PPEventDispatcher+Internal.m */; };
-		98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6BB1E76F16200FF635A /* PPEventDispatcher.h */; };
+		98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6BB1E76F16200FF635A /* PPEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98F7A6C21E76F16200FF635A /* PPEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6BC1E76F16200FF635A /* PPEventDispatcher.m */; };
 /* End PBXBuildFile section */
 
@@ -209,12 +210,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */,
-				984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */,
-				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
 				989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */,
 				98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */,
+				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
+				984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */,
 				98F7A6B11E76ECF000FF635A /* JRSwizzle.h in Headers */,
 				98F7A6BF1E76F16200FF635A /* PPEventDispatcher+Internal.h in Headers */,
+				9869FA581E7A7C19001A8218 /* Common.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +352,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -399,6 +402,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

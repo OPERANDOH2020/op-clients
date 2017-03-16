@@ -25,16 +25,26 @@
     self.model = model;
     self.pedoSensor = [CommonUtils extractInputOfType: InputType.Pedometer from:model.scdDocument.accessedInputs];
     
-}
-
-
--(void)processPedometerStatus {
+    __weak typeof(self) weakSelf = self;
     
-    PPUnlistedInputAccessViolation *report = nil;
-    if ((report = [self detectUnregisteredAccess])) {
-        [self.model.delegate newUnlistedInputAccessViolationReported:report];
-    }
+    [model.eventsDispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+        
+        NSLog(@"did register pedometer for updates");
+        
+        if (event.eventType == EventStartPedometerUpdates) {
+            PPUnlistedInputAccessViolation *violationReport = nil;
+            if ((violationReport = [weakSelf detectUnregisteredAccess])) {
+                [weakSelf.model.delegate newUnlistedInputAccessViolationReported:violationReport];
+                return;
+            }
+        }
+        
+        SAFECALL(nextHandlerIfAny)
+    }];
+    
 }
+
+
 
 
 -(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {

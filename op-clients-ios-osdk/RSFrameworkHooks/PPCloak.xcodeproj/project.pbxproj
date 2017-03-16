@@ -58,6 +58,7 @@
 		9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */; };
 		9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */; };
 		9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */; };
+		9869FA941E7AC7DC001A8218 /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9869FA931E7AC7DC001A8218 /* PPApiHooks.framework */; };
 		987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */; };
 		987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F837C1E3241930058633C /* LocationInputSupervisor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -99,8 +100,6 @@
 		9895FB3A1E5B337A00B1F56D /* LocationInputSwizzlerSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */; };
 		9895FB491E5B3CB200B1F56D /* UIWindow+RSHookHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB471E5B3CB200B1F56D /* UIWindow+RSHookHandle.h */; };
 		9895FB4A1E5B3CB200B1F56D /* UIWindow+RSHookHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */; };
-		98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */; };
-		98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */; };
 		989DB8E51E77D2CF008F4D02 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989DB8E41E77D2CF008F4D02 /* Info.plist */; };
 		98B2346A1E53376B0015C2E9 /* UISCDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B234681E53376B0015C2E9 /* UISCDViewController.h */; };
 		98B2346B1E53376B0015C2E9 /* UISCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B234691E53376B0015C2E9 /* UISCDViewController.m */; };
@@ -321,6 +320,7 @@
 		9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSURLSessionSupervisor.h; path = NSURLSessionHook/NSURLSessionSupervisor.h; sourceTree = "<group>"; };
 		9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSURLSessionSupervisor.m; path = NSURLSessionHook/NSURLSessionSupervisor.m; sourceTree = "<group>"; };
+		9869FA931E7AC7DC001A8218 /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		987F836F1E3212140058633C /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Common.h; path = Common/Common.h; sourceTree = "<group>"; };
 		987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorInputSourceEvent.h; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.h; sourceTree = "<group>"; };
 		987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorInputSourceEvent.m; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.m; sourceTree = "<group>"; };
@@ -365,8 +365,6 @@
 		9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationInputSwizzlerSettings.m; path = Models/LocationInputSwizzlerSettings/LocationInputSwizzlerSettings.m; sourceTree = "<group>"; };
 		9895FB471E5B3CB200B1F56D /* UIWindow+RSHookHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWindow+RSHookHandle.h"; path = "Views/UIWindow+RSHookHandle/UIWindow+RSHookHandle.h"; sourceTree = "<group>"; };
 		9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+RSHookHandle.m"; path = "Views/UIWindow+RSHookHandle/UIWindow+RSHookHandle.m"; sourceTree = "<group>"; };
-		98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputSupervisorsManager.h; path = InputSupervisorsManager/InputSupervisorsManager.h; sourceTree = "<group>"; };
-		98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputSupervisorsManager.m; path = InputSupervisorsManager/InputSupervisorsManager.m; sourceTree = "<group>"; };
 		989DB8E41E77D2CF008F4D02 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98B234681E53376B0015C2E9 /* UISCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISCDViewController.h; path = Views/UISCDViewController/UISCDViewController.h; sourceTree = "<group>"; };
 		98B234691E53376B0015C2E9 /* UISCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISCDViewController.m; path = Views/UISCDViewController/UISCDViewController.m; sourceTree = "<group>"; };
@@ -550,6 +548,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9869FA941E7AC7DC001A8218 /* PPApiHooks.framework in Frameworks */,
 				98F1FF6B1E714AF100A664AB /* PlusPrivacyCommonTypes.framework in Frameworks */,
 				98281D0C1E69B0E100373369 /* PlusPrivacyCommonUI.framework in Frameworks */,
 			);
@@ -823,7 +822,6 @@
 			isa = PBXGroup;
 			children = (
 				98F1FF711E71551B00A664AB /* InputSupervisorModel */,
-				98997C5F1E449D83002D82F1 /* InputSupervisorsManager */,
 				98ECE47E1E424A9E0042A262 /* ContactsInputSupervisor */,
 				98ECE4791E422E550042A262 /* MicrophoneInputSupervisor */,
 				98ECE4741E421AD20042A262 /* CameraInputSupervisor */,
@@ -1044,6 +1042,7 @@
 		9895FB361E5B332A00B1F56D /* Frameworks+Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				9869FA931E7AC7DC001A8218 /* PPApiHooks.framework */,
 				98281D0A1E69B0E100373369 /* PlusPrivacyCommonUI.framework */,
 				98F1FF6A1E714AF100A664AB /* PlusPrivacyCommonTypes.framework */,
 				98CEF2831E5F1B24002C2145 /* Charts */,
@@ -1058,15 +1057,6 @@
 				9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */,
 			);
 			name = "UIWindow+RSHookHandle";
-			sourceTree = "<group>";
-		};
-		98997C5F1E449D83002D82F1 /* InputSupervisorsManager */ = {
-			isa = PBXGroup;
-			children = (
-				98997C601E449DC4002D82F1 /* InputSupervisorsManager.h */,
-				98997C611E449DC4002D82F1 /* InputSupervisorsManager.m */,
-			);
-			name = InputSupervisorsManager;
 			sourceTree = "<group>";
 		};
 		989DB8E31E77D2CF008F4D02 /* PPCloakBundle */ = {
@@ -1604,7 +1594,6 @@
 				9831E2A41E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.h in Headers */,
 				98F1FF741E71555900A664AB /* InputSupervisorModel.h in Headers */,
 				9888B1741E6C625900D783AB /* PPReportsSourcesBundle.h in Headers */,
-				98997C621E449DC4002D82F1 /* InputSupervisorsManager.h in Headers */,
 				98F7A6891E76D0C000FF635A /* PPEvent.h in Headers */,
 				98584F411D3F9E18009FB89F /* PPCloak.h in Headers */,
 				983F87C21E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h in Headers */,
@@ -1772,7 +1761,6 @@
 				98CEF3231E5F1B24002C2145 /* PieChartView.swift in Sources */,
 				98CEF3771E5F1B24002C2145 /* MoveViewJob.swift in Sources */,
 				98CEF3711E5F1B24002C2145 /* CombinedChartDataProvider.swift in Sources */,
-				98997C631E449DC4002D82F1 /* InputSupervisorsManager.m in Sources */,
 				98CEF3621E5F1B24002C2145 /* BarHighlighter.swift in Sources */,
 				98CEF3331E5F1B24002C2145 /* BarChartData.swift in Sources */,
 				988716F31E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m in Sources */,

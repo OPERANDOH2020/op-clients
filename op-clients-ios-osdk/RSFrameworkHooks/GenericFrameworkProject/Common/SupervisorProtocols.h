@@ -16,9 +16,6 @@
 #import "PPUnlistedInputAccessViolation.h"
 #import "InputSupervisorModel.h"
 
-@protocol NetworkRequestAnalyzer <NSObject>
--(void)newURLRequestMade:(NSURLRequest* _Nonnull)request;
-@end
 
 @protocol InputSupervisorDelegate <NSObject>
 -(void)newURLHostViolationReported:(PPAccessUnlistedHostReport* _Nonnull)report;

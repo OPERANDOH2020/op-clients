@@ -31,21 +31,26 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
     self.locationSensor = [CommonUtils extractInputOfType: InputType.Location from:model.scdDocument.accessedInputs];
     
     self.locationsArray = [[PPCircularArray alloc] initWithCapacity:100];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [model.eventsDispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+        
+        
+        
+        PPEventType type = event.eventType;
+        PPUnlistedInputAccessViolation *violationReport = nil;
+        if ((type == EventLocationManagerRequestAlwaysAuthorization ||
+            type == EventLocationManagerRequestWhenInUseAuthorization) &&
+            (violationReport = [weakSelf detectUnregisteredAccess])) {
+            
+            [weakSelf.model.delegate newUnlistedInputAccessViolationReported:violationReport];
+        } else {
+            SAFECALL(nextHandlerIfAny)
+        }
+    }];
 }
 
-
--(void)processLocationStatus:(NSDictionary*)statusDict{
-    if (statusDict[kStatusKey]) {
-        [self processStatus:[statusDict[kStatusKey] integerValue]];
-    }
-}
-
--(void)processStatus:(LocationStatus)locStatus {
-    PPUnlistedInputAccessViolation *report = nil;
-    if ((report = [self detectUnregisteredAccess])) {
-        [self.model.delegate newUnlistedInputAccessViolationReported:report];
-    }
-}
 
 
 -(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
@@ -56,7 +61,7 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Location dateReported:[NSDate date]];
 }
 
--(void)newUserLocationsRequested:(NSArray<CLLocation *> *)locations{
+-(void)processNewlyRequestedLocations:(NSArray<CLLocation *> *)locations {
     [self.locationsArray addObjects:locations];
 }
 

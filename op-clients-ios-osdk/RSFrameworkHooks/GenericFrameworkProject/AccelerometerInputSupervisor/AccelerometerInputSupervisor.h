@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SupervisorProtocols.h"
 
-@interface AccelerometerInputSupervisor : NSObject <InputSourceSupervisor, NetworkRequestAnalyzer>
+@interface AccelerometerInputSupervisor : NSObject <InputSourceSupervisor>
 -(void)processAccelerometerStatus;
 @end

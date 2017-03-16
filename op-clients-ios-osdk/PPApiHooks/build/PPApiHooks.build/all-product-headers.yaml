@@ -8,6 +8,11 @@
       'contents': [
         {
           'type': 'file',
+          'name': "Common.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/Common.h"
+        },
+        {
+          'type': 'file',
           'name': "PPApiHooks-Swift.h",
           'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/Release-iphonesimulator/PPApiHooks.framework/Headers/PPApiHooks-Swift.h"
         },
@@ -15,6 +20,21 @@
           'type': 'file',
           'name': "PPApiHooks.h",
           'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/PPApiHooks.h"
+        },
+        {
+          'type': 'file',
+          'name': "PPEvent.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEvent/PPEvent.h"
+        },
+        {
+          'type': 'file',
+          'name': "PPEventDispatcher.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventDispatcher/PPEventDispatcher.h"
+        },
+        {
+          'type': 'file',
+          'name': "PPEventsPipelineFactory.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventsPipelineFactory/PPEventsPipelineFactory.h"
         }
       ]
     },
