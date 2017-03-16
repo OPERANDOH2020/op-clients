@@ -40,7 +40,7 @@ var TabsManager = function(){
                 }
 
                 if (changeInfo.status === "complete") {
-                    suggestPrivacyForBenefits(tab);
+                    //suggestPrivacyForBenefits(tab);
                 }
             }
         }
