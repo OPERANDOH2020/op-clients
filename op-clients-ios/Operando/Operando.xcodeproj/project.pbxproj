@@ -139,6 +139,10 @@
 		98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */; };
 		98F55FF41DD5EEFF0076555C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F55FF21DD5EEF90076555C /* SwarmClient.framework */; };
 		98F55FF51DD5EEFF0076555C /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98F55FF21DD5EEF90076555C /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		98F6B1241E7BE5A200D193FF /* UIWebToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6B1231E7BE5A200D193FF /* UIWebToolbarView.swift */; };
+		98F6B1261E7BE62400D193FF /* UIWebToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F6B1251E7BE62400D193FF /* UIWebToolbarView.xib */; };
+		98F6B1291E7BFC7100D193FF /* UIWebViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6B1281E7BFC7100D193FF /* UIWebViewTab.swift */; };
+		98F6B12B1E7BFD9300D193FF /* UIWebViewTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F6B12A1E7BFD9300D193FF /* UIWebViewTab.xib */; };
 		ADB2AD4E1DB7FC85003E3AC1 /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */; };
 		ADB2AD501DB80474003E3AC1 /* LeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */; };
 		ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */; };
@@ -341,6 +345,10 @@
 		98EAF6B11CCF99C300C77649 /* Operando-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Operando-BridgingHeader.h"; path = "BridgingHeader/Operando-BridgingHeader.h"; sourceTree = "<group>"; };
 		98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRegistrationViewController.swift; path = UserInterface/UIRegistrationViewController/UIRegistrationViewController.swift; sourceTree = "<group>"; };
 		98F55FF21DD5EEF90076555C /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		98F6B1231E7BE5A200D193FF /* UIWebToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebToolbarView.swift; path = UserInterface/UIWebToolbarView/UIWebToolbarView.swift; sourceTree = "<group>"; };
+		98F6B1251E7BE62400D193FF /* UIWebToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebToolbarView.xib; path = UserInterface/UIWebToolbarView/UIWebToolbarView.xib; sourceTree = "<group>"; };
+		98F6B1281E7BFC7100D193FF /* UIWebViewTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewTab.swift; path = UserInterface/UIWebViewTab/UIWebViewTab.swift; sourceTree = "<group>"; };
+		98F6B12A1E7BFD9300D193FF /* UIWebViewTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebViewTab.xib; path = UserInterface/UIWebViewTab/UIWebViewTab.xib; sourceTree = "<group>"; };
 		ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
 		ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LeftMenu.storyboard; sourceTree = "<group>"; };
 		ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SideMenu.xcassets; sourceTree = "<group>"; };
@@ -951,6 +959,8 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				98F6B1271E7BFC2D00D193FF /* UIWebViewTab */,
+				98F6B1221E7BE58500D193FF /* UIWebToolbarView */,
 				989C8A7A1DD34634003BF341 /* UIRealIdentityView */,
 				982227531DC8EBB90053B993 /* UILocalizable */,
 				9866A7C21DBF850500907D05 /* UINotificationsListView */,
@@ -1097,6 +1107,24 @@
 				98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */,
 			);
 			name = UIRegistrationController;
+			sourceTree = "<group>";
+		};
+		98F6B1221E7BE58500D193FF /* UIWebToolbarView */ = {
+			isa = PBXGroup;
+			children = (
+				98F6B1231E7BE5A200D193FF /* UIWebToolbarView.swift */,
+				98F6B1251E7BE62400D193FF /* UIWebToolbarView.xib */,
+			);
+			name = UIWebToolbarView;
+			sourceTree = "<group>";
+		};
+		98F6B1271E7BFC2D00D193FF /* UIWebViewTab */ = {
+			isa = PBXGroup;
+			children = (
+				98F6B1281E7BFC7100D193FF /* UIWebViewTab.swift */,
+				98F6B12A1E7BFD9300D193FF /* UIWebViewTab.xib */,
+			);
+			name = UIWebViewTab;
 			sourceTree = "<group>";
 		};
 		ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */ = {
@@ -1248,6 +1276,8 @@
 				ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */,
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
 				98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */,
+				98F6B12B1E7BFD9300D193FF /* UIWebViewTab.xib in Resources */,
+				98F6B1261E7BE62400D193FF /* UIWebToolbarView.xib in Resources */,
 				98EAF6761CCF86DC00C77649 /* Assets.xcassets in Resources */,
 				9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */,
 				98516FD41E042089007428F3 /* ProgressHUD.bundle in Resources */,
@@ -1326,6 +1356,7 @@
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
 				ADF3CA6F1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift in Sources */,
 				982DF0371DB6579200231BBD /* AFSecurityPolicy.m in Sources */,
+				98F6B1291E7BFC7100D193FF /* UIWebViewTab.swift in Sources */,
 				9866A7BE1DBF778100907D05 /* UIChangePasswordView.swift in Sources */,
 				9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */,
 				98668B6B1DB1346600FDE63A /* UIIdentitiesListView.swift in Sources */,
@@ -1359,6 +1390,7 @@
 				986E3E631DB3CA5600453DC6 /* UIAddIdentityView.swift in Sources */,
 				986D4CAC1DB27F940006DA0B /* PrivacyForBenefitsRepository.swift in Sources */,
 				98387BC31DB7633500A76F01 /* UIColor+Utilities.swift in Sources */,
+				98F6B1241E7BE5A200D193FF /* UIWebToolbarView.swift in Sources */,
 				98500BC01E0935ED00DF87E8 /* KiteJSONValidator.m in Sources */,
 				988509B61E0845AA0088272D /* SchemaProvider.swift in Sources */,
 				985A0D4C1DCCB0E40010C799 /* LocksmithSecurityClass.swift in Sources */,
