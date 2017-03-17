@@ -13,7 +13,7 @@
 #import "UIEncapsulatorViewController.h"
 #import "UISCDViewController.h"
 #import "NSBundle+RSFrameworkHooks.h"
-#import "UIInputUsageGraphsViewController.h"
+#import "UIUsageViewController.h"
 #import "UIInputGraphViewController.h"
 
 @implementation PPFlowBuilderModel
@@ -26,7 +26,7 @@
 
 -(UIViewController *)buildFlowWithModel:(PPFlowBuilderModel *)model {
     
-    NSBundle *bundle = [NSBundle frameworkHooksBundle];
+    NSBundle *bundle = [NSBundle PPCloakBundle];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PPViews" bundle:bundle];
     
@@ -52,9 +52,10 @@
     
     callbacks.whenChoosingReportsInfo = ^{
         UIViolationReportsViewController *reportsVC = [storyboard instantiateViewControllerWithIdentifier:@"UIViolationReportsViewController"];
-        [reportsVC setupWithRepository:model.violationReportsRepository onExit:^{
+        [reportsVC setupWithReportSources:model.reportSources onExit:^{
             [weakNavgController popViewControllerAnimated:true];
         }];
+        
         [weakNavgController pushViewController:reportsVC animated:true];
     };
     
@@ -69,14 +70,8 @@
     };
     
     callbacks.whenChoosingUsageGraphs = ^{
-        UIInputUsageGraphsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"UIInputUsageGraphsViewController"];
         
-        UIInputUsageGraphsCallbacks *cbs = [[UIInputUsageGraphsCallbacks alloc] init];
-        cbs.exitCallback = ^{
-            [weakNavgController popViewControllerAnimated:YES];
-        };
-        
-        void (^displayGraphWithReports)(NSArray<OPMonitorViolationReport*>*) = ^void(NSArray<OPMonitorViolationReport*> *reports){
+        void (^displayGraphWithReports)(NSArray<BaseReportWithDate*>*) = ^void(NSArray<BaseReportWithDate*> *reports){
             UIGraphViewController *graphVC = [storyboard instantiateViewControllerWithIdentifier:@"UIGraphViewController"];
             
             [graphVC setupWithReports:reports exitCallback:^{
@@ -84,21 +79,44 @@
             }];
             
             [weakNavgController pushViewController:graphVC animated:YES];
-
+            
         };
         
-        cbs.inputTypeSelectedCallback = ^void(NSString* inputType){
+        [model.reportSources.unlistedHostReportsSource getUnlistedHostReportsIn:^(NSArray<PPAccessUnlistedHostReport *> * _Nullable hostReports, NSError * _Nullable hostReportsError) {
             
-            [model.violationReportsRepository getInputViolationReportsOfInputType:inputType in:^(NSArray<OPMonitorViolationReport *> * _Nullable reports, NSError * _Nullable error) {
-                displayGraphWithReports(reports);
+            [model.reportSources.unlistedInputReportsSource getCurrentInputTypesInViolationReportsIn:^(NSArray<InputType *> * _Nullable inputTypes, NSError * _Nullable inputTypesError) {
+                
+                
+                UIUsageViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"UIUsageViewController"];
+                
+                UIUsageViewControllerModel *usageModel = [[UIUsageViewControllerModel alloc] init];
+                usageModel.displayNetworkReportsOption = hostReports.count > 0;
+                usageModel.inputTypesOptions = inputTypes;
+                
+                UIUsageViewControllerCallbacks *callbacks = [[UIUsageViewControllerCallbacks alloc] init];
+                callbacks.exitCallback = ^{
+                    [weakNavgController popViewControllerAnimated:YES];
+                };
+                
+                callbacks.inputTypeSelectedCallback = ^void(InputType* inputType){
+                    
+                    [model.reportSources.unlistedInputReportsSource getViolationReportsOfInputType:inputType in:^(NSArray<PPUnlistedInputAccessViolation *> * _Nullable reports, NSError * _Nullable error) {
+                        displayGraphWithReports(reports);
+                    }];
+                    
+                };
+                
+                callbacks.networkReportsSelectedCallback = ^{
+                    displayGraphWithReports(hostReports);
+                };
+                
+                [vc setupWithModel:usageModel andCallbacks:callbacks];
+                [weakNavgController pushViewController:vc animated:YES];
+                
             }];
             
-        };
+        }];
         
-        cbs.networkReportsSelectedCallback = displayGraphWithReports;
-        
-        [vc setupWithRepository:model.violationReportsRepository andCallbacks:cbs];
-        [weakNavgController pushViewController:vc animated:YES];
     };
     
     callbacks.whenChoosingOverrideLocation = ^{

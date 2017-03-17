@@ -12,18 +12,18 @@ import PlusPrivacyCommonTypes
 class EULATextBuilder: NSObject {
 
     
-    private static let privacyLevelShortNames: [Int: String] = [1: "Local-Only", 2: "Only-Aggregate", 3: "DP-Compatible", 4: "Self-Use Only",
-                                                                5: "ThirdParty-Shared", 6: "Unspecified-Usages"]
+    private static let privacyLevelShortNames: [PrivacyLevelType: String] = [.LocalOnly: "Local-Only", .AggregateOnly: "Only-Aggregate", .DPCompatible: "DP-Compatible", .SelfUseOnly: "Self-Use Only",
+                                                                .SharedWithThirdParty: "ThirdParty-Shared", .Unspecified: "Unspecified-Usages"]
     
     
     
     
-    private static let privacyLevelDescriptions: [Int: String] = [1: "The data collected under this privacy level is used locally only.",
-                                                                  2: "Under this privacy level, bulks of data are sent to the vendor of the app, in an anonymised method (i.e. via https) and they may link the data to your account/ id if any.",
-                                                                  3: "Bulks of data are sent securely (i.e via https) to the vendor of the app, in a manner that guarantees the data does not link back to your account/id if any.",
-                                                                  4: "De discutat cu Sinica",
-                                                                  5: "The data is shared with a list of of specfied third parties",
-                                                                  6: "The vendor of the app does not disclose the manner in which this data is used."]
+    private static let privacyLevelDescriptions: [PrivacyLevelType: String] = [.LocalOnly: "The data collected under this privacy level is used locally only.",
+                                                                  .AggregateOnly: "Under this privacy level, bulks of data are sent to the vendor of the app, in an anonymised method (i.e. via https) and they may link the data to your account/ id if any.",
+                                                                  .DPCompatible: "Bulks of data are sent securely (i.e via https) to the vendor of the app, in a manner that guarantees the data does not link back to your account/id if any.",
+                                                                  .SelfUseOnly: "De discutat cu Sinica",
+                                                                  .SharedWithThirdParty: "The data is shared with a list of of specfied third parties",
+                                                                  .Unspecified: "The vendor of the app does not disclose the manner in which this data is used."]
     
     
     
@@ -81,7 +81,8 @@ class EULATextBuilder: NSObject {
         
         let aggregatedSensors = EULATextBuilder.agreggateBasedOnPrivacyLevel(sensors: scd.accessedInputs)
         
-        for i in (1...PrivacyDescription.maxPrivacyLevel).reversed() {
+        for i in [PrivacyLevelType.LocalOnly, PrivacyLevelType.SelfUseOnly, PrivacyLevelType.DPCompatible,
+                  PrivacyLevelType.AggregateOnly, PrivacyLevelType.SharedWithThirdParty, PrivacyLevelType.Unspecified].reversed() {
             if let sensorsAtI = aggregatedSensors[i], sensorsAtI.count > 0 {
                 var sensorsNames: String = ""
                 sensorsAtI.forEach {sensorsNames.append("\(InputType.namesPerInputType[$0.inputType] ?? ""), ")}
@@ -93,7 +94,7 @@ class EULATextBuilder: NSObject {
                 story.append(" located under the privacy level PL\(i), that is \"\(EULATextBuilder.privacyLevelShortNames[i] ?? "")\". ")
                 story.append(EULATextBuilder.privacyLevelDescriptions[i] ?? "")
                 
-                if i == 5 {
+                if i == .SharedWithThirdParty {
                     story.append("\nThese are listed as follows:\n\n")
                     sensorsAtI.forEach {
                         story.append("For \(InputType.namesPerInputType[$0.inputType] ?? "")\n\n")
@@ -125,10 +126,13 @@ class EULATextBuilder: NSObject {
         return story
     }
     
-    private static func agreggateBasedOnPrivacyLevel(sensors: [AccessedInput]) -> [Int: [AccessedInput]] {
-        var result: [Int: [AccessedInput]] = [:]
-        for i in 1...PrivacyDescription.maxPrivacyLevel {
-            result[i] = []
+    private static func agreggateBasedOnPrivacyLevel(sensors: [AccessedInput]) -> [PrivacyLevelType: [AccessedInput]] {
+        var result: [PrivacyLevelType: [AccessedInput]] = [:]
+        
+        for type in [PrivacyLevelType.AggregateOnly, PrivacyLevelType.DPCompatible, PrivacyLevelType.LocalOnly,
+                     PrivacyLevelType.Unspecified, PrivacyLevelType.SharedWithThirdParty, PrivacyLevelType.SelfUseOnly] {
+            
+                        result[type] = [];
         }
         
         for sensor in sensors {

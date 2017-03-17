@@ -12,7 +12,4 @@
 
 
 @interface NSURLSessionSupervisor: NSObject <InputSourceSupervisor>
-
--(void)processRequest:(NSURLRequest*)request;
-
 @end

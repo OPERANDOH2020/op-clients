@@ -14,16 +14,18 @@
 #import "PPAccessUnlistedHostReport.h"
 #import "PPPrivacyLevelViolationReport.h"
 #import "PPUnlistedInputAccessViolation.h"
+#import "InputSupervisorModel.h"
+
 
 @protocol InputSupervisorDelegate <NSObject>
--(void)newURLHostViolationReported:(PPAccessUnlistedHostReport*)report;
--(void)newPrivacyLevelViolationReported:(PPPrivacyLevelViolationReport*)report;
--(void)newUnlistedInputAccessViolationReported:(PPUnlistedInputAccessViolation*)report;
-
+-(void)newURLHostViolationReported:(PPAccessUnlistedHostReport* _Nonnull)report;
+-(void)newPrivacyLevelViolationReported:(PPPrivacyLevelViolationReport* _Nonnull)report;
+-(void)newUnlistedInputAccessViolationReported:(PPUnlistedInputAccessViolation* _Nonnull)report;
+-(void)newAccessFrequencyViolationReported:(PPAccessFrequencyViolationReport* _Nonnull)report;
 @end
 
 @protocol InputSourceSupervisor <NSObject>
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument*)document;
+-(void)setupWithModel:(InputSupervisorModel* _Nonnull)model;
 @end
 
 #endif /* InputSupervisorDelegate_h */

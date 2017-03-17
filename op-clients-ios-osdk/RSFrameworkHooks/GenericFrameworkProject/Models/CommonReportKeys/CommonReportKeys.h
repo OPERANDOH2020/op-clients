@@ -12,6 +12,10 @@
 #import <Foundation/Foundation.h>
 #import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
 
-static const NSString *kURLReportKey = @"kURLReportKey";
-static const NSString *kInputTypeReportKey = @"kInputTypeReportKey";
+static NSString *kURLReportKey = @"kURLReportKey";
+static NSString *kActualFrequencyRawValueKey = @"kActualFrequencyRawValueKey";
+static NSString *kRegisteredFrequencyRawValueKey = @"kRegisteredFrequencyRawValueKey";
+static NSString *kInputTypeRawValueKey = @"kInputTypeRawValueKey";
+static NSString *kDateKey = @"kDateKey";
+
 #endif /* CommonReportKeys_h */

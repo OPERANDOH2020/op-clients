@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "LocationInputSwizzlerSettings.h"
+#import <CoreLocation/CoreLocation.h>
+#import <PPApiHooks/PPApiHooks.h>
 
-
-
+typedef void(^LocationsCallback)(NSArray<CLLocation*>* _Nonnull locations);
 
 @interface LocationInputSwizzler : NSObject
 
-@property (readonly, nonatomic) LocationInputSwizzlerSettings *currentSettings;
--(void)applySettings:(LocationInputSwizzlerSettings*)settings;
+@property (readonly, nonatomic, nullable) LocationInputSwizzlerSettings *currentSettings;
 
-+(LocationInputSwizzler*)sharedInstance;
+-(void)setupWithSettings:(LocationInputSwizzlerSettings* _Nullable)settings eventsDispatcher:(PPEventDispatcher* _Nonnull)eventsDispatcher whenLocationsAreRequested:(LocationsCallback _Nonnull)whenLocationsAreRequested;
 
+-(void)applyNewSettings:(LocationInputSwizzlerSettings* _Nonnull)settings;
 @end

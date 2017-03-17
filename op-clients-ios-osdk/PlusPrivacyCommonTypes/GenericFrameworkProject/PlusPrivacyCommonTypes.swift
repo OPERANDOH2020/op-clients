@@ -44,7 +44,7 @@ public class AccessFrequencyType: BaseStringEnum {
     override internal init?(rawValue: String){
         guard rawValue == AccessFrequencyType.SingularSampleRawValue ||
               rawValue == AccessFrequencyType.ContinuousRawValue ||
-            rawValue == AccessFrequencyType.ContinuousRawValue else {
+            rawValue == AccessFrequencyType.ContinuousIntervalsRawValue else {
                 return nil
         }
         
@@ -208,14 +208,25 @@ public class ThirdParty: NSObject {
 }
 
 @objc
+public enum PrivacyLevelType: Int {
+    case LocalOnly = 1
+    case AggregateOnly = 2
+    case DPCompatible = 3
+    case SelfUseOnly = 4
+    case SharedWithThirdParty = 5
+    case Unspecified = 6
+    
+}
+
+@objc
 public class PrivacyDescription: NSObject {
-    public static let maxPrivacyLevel = 6
-    public let privacyLevel: Int
+    public let privacyLevel: PrivacyLevelType
     public let thirdParties: [ThirdParty]
     
     public init?(dict: [String: Any]) {
-        guard let privacyLevel = dict["privacyLevel"] as? Int,
-            privacyLevel >= 1 && privacyLevel <= PrivacyDescription.maxPrivacyLevel else {
+        guard let privacyLevelRawValue = dict["privacyLevel"] as? Int,
+            let privacyLevel = PrivacyLevelType(rawValue: privacyLevelRawValue)
+             else {
                 return nil
         }
         

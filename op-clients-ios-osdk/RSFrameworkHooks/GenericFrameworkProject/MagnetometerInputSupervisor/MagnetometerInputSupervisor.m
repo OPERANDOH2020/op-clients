@@ -14,14 +14,8 @@
 #import <CoreMotion/CoreMotion.h>
 #import <CoreLocation/CoreLocation.h>
 
-
-
-
-
-
 @interface MagnetometerInputSupervisor()
-@property (strong, nonatomic) SCDDocument *document;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (strong, nonatomic) AccessedInput *magnetoSensor;
 @end
 
@@ -29,22 +23,15 @@
 
 @implementation MagnetometerInputSupervisor
 
-
-
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document{
-    
-    self.document = document;
-    self.delegate = delegate;
-    self.magnetoSensor = [CommonUtils extractInputOfType: InputType.Magnetometer from:document.accessedInputs];
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.magnetoSensor = [CommonUtils extractInputOfType: InputType.Magnetometer from:model.scdDocument.accessedInputs];
 }
-
-
-
 
 -(void)processMagnetometerStatus {
     PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newUnlistedInputAccessViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
@@ -56,5 +43,7 @@
     
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Magnetometer dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

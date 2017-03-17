@@ -16,27 +16,24 @@
 
 
 @interface CameraInputSupervisor()
-
-@property (strong, nonatomic) SCDDocument *document;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (strong, nonatomic) AccessedInput *cameraSensor;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 
 @end
 
 @implementation CameraInputSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    
-    self.document = document;
-    self.delegate = delegate;
-    self.cameraSensor = [CommonUtils extractInputOfType: InputType.Camera from:document.accessedInputs];
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.cameraSensor = [CommonUtils extractInputOfType: InputType.Camera from:model.scdDocument.accessedInputs];
     
 }
 
+
 -(void)processCameraAccess {
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
@@ -44,13 +41,14 @@
     [self processCameraAccess];
 }
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.cameraSensor) {
         return nil;
     }
     
-    NSDictionary *details = @{kInputTypeReportKey: InputType.Camera};
-    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Camera dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

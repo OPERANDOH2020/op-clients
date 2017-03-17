@@ -10,50 +10,73 @@
 #import "CommonUtils.h"
 #import <CoreLocation/CoreLocation.h>
 #import <JRSwizzle.h>
-
+#import "PPCircularArray.h"
+#import "LocationHTTPAnalyzer.h"
 
 typedef void (^LocationCallbackWithInfo)(NSDictionary*);
 LocationCallbackWithInfo _rsHookGlobalLocationCallback;
 
 
 @interface LocationInputSupervisor()
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-@property (strong, nonatomic) SCDDocument *document;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (strong, nonatomic) AccessedInput *locationSensor;
+@property (strong, nonatomic) PPCircularArray *locationsArray;
 @end
 
 
 @implementation LocationInputSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    self.delegate = delegate;
-    self.document = document;
-    self.locationSensor = [CommonUtils extractInputOfType: InputType.Location from:document.accessedInputs];
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.locationSensor = [CommonUtils extractInputOfType: InputType.Location from:model.scdDocument.accessedInputs];
+    
+    self.locationsArray = [[PPCircularArray alloc] initWithCapacity:100];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [model.eventsDispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+        
+        
+        
+        PPEventType type = event.eventType;
+        PPUnlistedInputAccessViolation *violationReport = nil;
+        if ((type == EventLocationManagerRequestAlwaysAuthorization ||
+            type == EventLocationManagerRequestWhenInUseAuthorization) &&
+            (violationReport = [weakSelf detectUnregisteredAccess])) {
+            
+            [weakSelf.model.delegate newUnlistedInputAccessViolationReported:violationReport];
+        } else {
+            SAFECALL(nextHandlerIfAny)
+        }
+    }];
 }
 
 
--(void)processLocationStatus:(NSDictionary*)statusDict{
-    if (statusDict[kStatusKey]) {
-        [self processStatus:[statusDict[kStatusKey] integerValue]];
-    }
-}
 
--(void)processStatus:(LocationStatus)locStatus {
-    OPMonitorViolationReport *report = nil;
-    if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
-    }
-}
-
-
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.locationSensor) {
         return nil;
     }
     
-    NSDictionary *details = @{kInputTypeReportKey: InputType.Location};
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Location dateReported:[NSDate date]];
+}
+
+-(void)processNewlyRequestedLocations:(NSArray<CLLocation *> *)locations {
+    [self.locationsArray addObjects:locations];
+}
+
+
+-(void)newURLRequestMade:(NSURLRequest *)request {
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:TypeUnregisteredSensorAccessed];
+    [self.model.httpAnalyzers.locationHTTPAnalyzer checkIfAnyLocationFrom:[self.locationsArray allObjects] isSentInRequest:request withCompletion:^(BOOL yesTheyAreSent) {
+        NSLog(@"Received result for location analyzing: %d", yesTheyAreSent);
+
+        if (yesTheyAreSent) {
+            
+            
+        }
+    }];
+    
 }
 
 @end

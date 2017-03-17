@@ -8,142 +8,114 @@
 
 #import "PlistReportsStorage.h"
 #import "Common.h"
+#import "PPAccessUnlistedHostReport+NSDictionaryRepresentation.h"
+#import "PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h"
+#import "PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h"
+#import "PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h"
 
-@interface OPMonitorViolationReport(PlistReportsSerialize)
-
--(NSDictionary*)plistRepository_toPlistDictionary;
-+(OPMonitorViolationReport*)plistRepository_fromPlistDictionary:(NSDictionary*)dict;
-
-@end
-
-
-@implementation OPMonitorViolationReport(PlistReportsSerialize)
-
--(NSDictionary *)plistRepository_toPlistDictionary{
-    return @{
-              @"details": self.violationDetails,
-              @"type": @(self.violationType),
-              @"date": self.dateReported
-              };
-}
-
-+(OPMonitorViolationReport *)plistRepository_fromPlistDictionary:(NSDictionary *)dict {
-    
-    NSString *details = dict[@"details"];
-    NSNumber *type = dict[@"type"];
-    NSDate *date = dict[@"date"];
-    
-    if (details && type && date) {
-        return [[OPMonitorViolationReport alloc] initWithDetails:details violationType:type.integerValue date:date];
-    }
-    
-    return nil;
-}
-
-@end
 
 
 
 @interface PlistReportsStorage()
 
-@property (strong, nonatomic) NSMutableArray *reportsArray;
+@property (strong, nonatomic) NSMutableArray<PPAccessFrequencyViolationReport*> *frequencyReportsArray;
+@property (strong, nonatomic) NSMutableArray<PPAccessUnlistedHostReport*> *hostReportsArray;
+@property (strong, nonatomic) NSMutableArray<PPPrivacyLevelViolationReport*> *privacyLevelReportsArray;
+@property (strong, nonatomic) NSMutableArray<PPUnlistedInputAccessViolation*> *inputReportsArray;
 
 @end
 
 @implementation PlistReportsStorage
 
-static const NSString *kPlistReportStorageDomain = @"com.plistReportStorage";
-static const NSString *kIndexOutOfRangeDescription = @"Index is out of range";
-static const NSString *kObjectNotInRepository = @"Object is not in repository";
+static NSString *kPlistReportStorageDomain = @"com.plistReportStorage";
+static NSString *kIndexOutOfRangeDescription = @"Index is out of range";
+static NSString *kObjectNotInRepository = @"Object is not in repository";
+
+static NSString *kFrequencyRepository = @"kFrequencyRepository";
+static NSString *kHostRepository = @"kHostRepository";
+static NSString *kPrivacyLevelRepository = @"kPrivacyLevelRepository";
+static NSString *kInputRepository = @"kInputRepository";
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.reportsArray = [PlistReportsStorage buildFromPlist];        
+        [self populateArrays];
     }
     return self;
 }
 
--(void)addReport:(OPMonitorViolationReport *)report{
-    if (report) {
-        [self.reportsArray addObject:report];
-        [self synchronize];
-    }
-}
 
+#pragma mark - AccessFrequency Repository
 
--(void)clearAllReportsWithCompletion:(void (^)(NSError *))completion {
-    [self.reportsArray removeAllObjects];
-    [self synchronize];
+-(void)addAccessFrequencyReport:(PPAccessFrequencyViolationReport *)report withCompletion:(PossibleErrorCallback)completion {
+    
+    [self.frequencyReportsArray addObject:report];
+    [PlistReportsStorage synchronizeArray:self.frequencyReportsArray toPlistNamed:kFrequencyRepository];
     SAFECALL(completion, nil)
 }
 
-
--(void)deleteReport:(OPMonitorViolationReport *)report withCompletion:(void (^)(NSError *))completion {
-    
-    NSError *error = nil;
-    if (! [self.reportsArray containsObject:report]) {
-        error = [NSError errorWithDomain:kPlistReportStorageDomain code:TypeObjectNotInRepository userInfo:@{NSLocalizedDescriptionKey: kObjectNotInRepository}];
-    } else {
-        [self.reportsArray removeObject:report];
-    }
-    
-    SAFECALL(completion, error)
+-(void)getFrequencyReportsIn:(AccessFrequencyReportsCallback)callback {
+    SAFECALL(callback, self.frequencyReportsArray, nil)
 }
 
--(void)getAllReportsIn:(void (^)(NSArray<OPMonitorViolationReport *> * _Nullable, NSError * _Nullable))completion {
-    
-    SAFECALL(completion, self.reportsArray, nil)
+#pragma mark - HostReports Repository
+
+-(void)addUnlistedHostReport:(PPAccessUnlistedHostReport *)report withCompletion:(PossibleErrorCallback)completion {
+    [self.hostReportsArray addObject:report];
+    [PlistReportsStorage synchronizeArray:self.hostReportsArray toPlistNamed:kHostRepository];
+    SAFECALL(completion, nil)
+}
+
+-(void)getUnlistedHostReportsIn:(UnlistedHostReportsCallback)callback {
+    SAFECALL(callback, self.hostReportsArray, nil)
 }
 
 
--(void)getAllReportsOfType:(OPMonitorViolationType)type in:(ReportsCallback)completion {
+#pragma mark - PrivacyLevel Repository
+
+-(void)addPrivacyLevelReport:(PPPrivacyLevelViolationReport *)report withCompletion:(PossibleErrorCallback)completion{
     
+    [self.privacyLevelReportsArray addObject:report];
+    [PlistReportsStorage synchronizeArray:self.privacyLevelReportsArray toPlistNamed:kPrivacyLevelRepository];
+    
+    SAFECALL(completion, nil)
+}
+
+-(void)getPrivacyLevelReportsIn:(PrivacyLevelReportsCallback)callback {
+    SAFECALL(callback, self.privacyLevelReportsArray, nil)
+}
+
+#pragma mark - UnlistedInput Repository 
+
+-(void)addUnlistedInputReport:(PPUnlistedInputAccessViolation *)report withCompletion:(PossibleErrorCallback)completion {
+    [self.inputReportsArray addObject:report];
+    [PlistReportsStorage synchronizeArray:self.inputReportsArray toPlistNamed:kInputRepository];
+    SAFECALL(completion, nil)
+}
+
+-(void)getUnlistedInputReportsIn:(UnlistedInputReportsCallback)callback{
+    SAFECALL(callback, self.inputReportsArray, nil)
+}
+
+-(void)getCurrentInputTypesInViolationReportsIn:(InputTypesCallback)callback{
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    for (OPMonitorViolationReport *report in self.reportsArray) {
-        if (report.violationType == type) {
+    for (PPUnlistedInputAccessViolation *report in self.inputReportsArray) {
+        if (![result containsObject:report.inputType]) {
+            [result addObject:report.inputType];
+        }
+    }
+    
+    SAFECALL(callback, result, nil)
+}
+
+-(void)getViolationReportsOfInputType:(InputType *)inputType in:(UnlistedInputReportsCallback)callback {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    for (PPUnlistedInputAccessViolation *report in self.inputReportsArray) {
+        if ([report.inputType isEqual:inputType]) {
             [result addObject:report];
-        }
-    }
-    
-    SAFECALL(completion, result, nil)
-}
-
-
--(void)getTypesOfReportsIn:(void (^)(NSArray<NSNumber *> * _Nullable, NSError * _Nullable))completion{
-    
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (OPMonitorViolationReport *report in self.reportsArray) {
-        NSNumber *type = @(report.violationType);
-        if (! [result containsObject:type]) {
-            [result addObject:type];
-        }
-    }
-    
-    SAFECALL(completion, result, nil)
-    
-}
-
--(void)getInputViolationReportsOfInputType:(NSString *)inputType in:(ReportsCallback)callback {
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (OPMonitorViolationReport *report in self.reportsArray) {
-        if ([report.violationDetails[kInputTypeReportKey] isEqualToString:inputType]) {
-            [result addObject:report];
-        }
-    }
-    
-    SAFECALL(callback, result, nil);
-}
-
-
--(void)getCurrentInputTypesInViolationReportsIn:(InputTypesCallback)callback {
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (OPMonitorViolationReport *report in self.reportsArray) {
-        NSString *inputType = nil;
-        if ((inputType = report.violationDetails[kInputTypeReportKey]) && ![result containsObject:inputType]) {
-            [result addObject:inputType];
         }
     }
     
@@ -152,47 +124,73 @@ static const NSString *kObjectNotInRepository = @"Object is not in repository";
 
 #pragma mark - private methods
 
+-(void)populateArrays {
+    NSArray<NSDictionary*> *frequencyDicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPathForRepositoryName:kFrequencyRepository]];
+    
+    NSArray<NSDictionary*> *hostDicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPathForRepositoryName:kHostRepository]];
+    
+    NSArray<NSDictionary*> *privacyLevelDicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPathForRepositoryName:kPrivacyLevelRepository]];
+    
+    NSArray<NSDictionary*> *inputAccessDicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPathForRepositoryName:kInputRepository]];
+    
+    
+    self.frequencyReportsArray = [PlistReportsStorage buildObjectsOfClass:[PPAccessFrequencyViolationReport class] fromDictionaries:frequencyDicts];
+    
+    self.hostReportsArray = [PlistReportsStorage buildObjectsOfClass:[PPAccessUnlistedHostReport class] fromDictionaries:hostDicts];
+    
+    self.privacyLevelReportsArray = [PlistReportsStorage buildObjectsOfClass:[PPPrivacyLevelViolationReport class] fromDictionaries:privacyLevelDicts];
+    
+    self.inputReportsArray = [PlistReportsStorage buildObjectsOfClass:[PPUnlistedInputAccessViolation class] fromDictionaries:inputAccessDicts];
+    
+}
 
--(void)synchronize {
-    NSMutableArray<NSDictionary*> *dictsArray = [[NSMutableArray alloc] init];
-    
-    for (OPMonitorViolationReport *report in self.reportsArray) {
-        NSDictionary *dict = [report plistRepository_toPlistDictionary];
-        [dictsArray addObject:dict];
-    }
-    
-    [dictsArray writeToFile:[PlistReportsStorage plistPath] atomically:YES];
++(void)synchronizeArray:(NSArray<id<DictionaryRepresentable>>*)array toPlistNamed:(NSString*)plistName {
+    NSArray *dicts = [PlistReportsStorage createDictionaryRepresentationsOfObjects:array];
+    [dicts writeToFile:[PlistReportsStorage plistPathForRepositoryName:plistName] atomically:YES];
 }
 
 
++(NSString*)plistPathForRepositoryName:(NSString*)repositoryName {
+    if (repositoryName == nil) {
+        return @"";
+    }
+    NSString *pathComponent = [NSString stringWithFormat:@"%@.plist", repositoryName];
+    
+    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    if (paths.firstObject) {
+        return [paths.firstObject stringByAppendingPathComponent:pathComponent];
+    }
+    
+    
+    return @"";
+}
 
-+(NSMutableArray<OPMonitorViolationReport*> *)buildFromPlist {
++(NSMutableArray*)buildObjectsOfClass:(Class)class fromDictionaries:(NSArray<NSDictionary*>*)dictionaries {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    NSArray *dicts = [[NSArray alloc] initWithContentsOfFile:[PlistReportsStorage plistPath]];
-    
-    
-    for (NSDictionary *dict in dicts) {
-        OPMonitorViolationReport *report = [OPMonitorViolationReport plistRepository_fromPlistDictionary:dict];
-        
-        if (report) {
-            [result addObject:report];
+    for (NSDictionary *dict in dictionaries) {
+        id object = [[class alloc] initWithNSDictionary:dict];
+        if (object) {
+            [result addObject:object];
         }
     }
     
     return result;
 }
 
-+(NSString*)plistPath {
++(NSArray<NSDictionary*>*)createDictionaryRepresentationsOfObjects:(NSArray<id<DictionaryRepresentable>>*)objects{
+    NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    if (paths.firstObject) {
-        return [paths.firstObject stringByAppendingPathComponent:@"MonitorViolationReportPlist.plist"];
+    for (id<DictionaryRepresentable> repr in objects) {
+        NSDictionary *dict = [repr dictionaryRepresentation];
+        if (dict) {
+            [result addObject:dict];
+        }
     }
     
+    return result;
     
-    return @"";
 }
 
 @end

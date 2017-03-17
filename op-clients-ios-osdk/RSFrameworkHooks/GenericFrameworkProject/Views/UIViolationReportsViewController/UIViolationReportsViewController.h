@@ -11,8 +11,6 @@
 
 
 @interface UIViolationReportsViewController : UIViewController
-
 -(void)setupWithReportSources:(PPReportsSourcesBundle*)reportSources
                     onExit:(void (^)())exitCallback;
-
 @end

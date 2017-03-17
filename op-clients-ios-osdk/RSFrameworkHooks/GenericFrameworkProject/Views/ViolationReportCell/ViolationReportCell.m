@@ -22,10 +22,9 @@
     return @"ViolationReportCell";
 }
 
--(void)setupWithReport:(OPMonitorViolationReport *)report {
-    self.messageLabel.text = report.meaningfulDescription;
-    self.dateLabel.text = report.dateReported.description;
-    
+-(void)setMessage:(NSString *)message subMessage:(NSString *)subMessage{
+    self.messageLabel.text = message;
+    self.dateLabel.text = subMessage;
 }
 
 @end
