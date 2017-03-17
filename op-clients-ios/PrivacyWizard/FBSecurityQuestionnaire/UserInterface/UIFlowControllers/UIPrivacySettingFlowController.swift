@@ -26,8 +26,8 @@ class UIPrivacySettingFlowController: UIFlowController, UIPrivacySettingProtocol
     }
     
     func launchFacebookPrivacySetting() {
-        let questionnaireTVCConfiguration = UIFlowConfiguration(window: nil, navigationController: configuration.navigationController, parent: self)
-        childFlow = UISetPrivacyFlowController(configuration: questionnaireTVCConfiguration)
+        let setPrivacyTVCConfiguration = UIFlowConfiguration(window: nil, navigationController: configuration.navigationController, parent: self)
+        childFlow = UISetPrivacyFlowController(configuration: setPrivacyTVCConfiguration)
         childFlow?.start()
     }
     

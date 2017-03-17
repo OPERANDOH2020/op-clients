@@ -75,6 +75,16 @@
 		AD8F360D1E601A7600B28075 /* ACPrivacyWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8F360C1E601A7600B28075 /* ACPrivacyWriter.swift */; };
 		AD9A5D601E79459C00A31865 /* Disclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A5D5E1E79459C00A31865 /* Disclaimer.xib */; };
 		AD9A5D611E79459C00A31865 /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D5F1E79459C00A31865 /* DisclaimerView.swift */; };
+		AD9A5D641E79765F00A31865 /* WKWebView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D631E79765F00A31865 /* WKWebView+Utils.swift */; };
+		AD9A5D6A1E7BE55600A31865 /* Twitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D681E7BE55600A31865 /* Twitter.swift */; };
+		AD9A5D6B1E7BE55600A31865 /* TwitterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A5D691E7BE55600A31865 /* TwitterCell.xib */; };
+		AD9A5D731E7BE6E400A31865 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D6C1E7BE6E400A31865 /* Action.swift */; };
+		AD9A5D741E7BE6E400A31865 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D6D1E7BE6E400A31865 /* ActionCell.swift */; };
+		AD9A5D751E7BE6E400A31865 /* ActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9A5D6E1E7BE6E400A31865 /* ActionCell.xib */; };
+		AD9A5D761E7BE6E400A31865 /* ActionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D6F1E7BE6E400A31865 /* ActionController.swift */; };
+		AD9A5D771E7BE6E400A31865 /* ActionControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D701E7BE6E400A31865 /* ActionControllerSettings.swift */; };
+		AD9A5D781E7BE6E400A31865 /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D711E7BE6E400A31865 /* ActionData.swift */; };
+		AD9A5D791E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D721E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift */; };
 		ADAF999D1E2E32E700E9A18D /* UILabel+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */; };
 		ADBBCAF91E1BCD35007A7686 /* ACMathOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */; };
 		ADBBCAFD1E1BCD87007A7686 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */; };
@@ -196,6 +206,16 @@
 		AD8F360C1E601A7600B28075 /* ACPrivacyWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPrivacyWriter.swift; sourceTree = "<group>"; };
 		AD9A5D5E1E79459C00A31865 /* Disclaimer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Disclaimer.xib; sourceTree = "<group>"; };
 		AD9A5D5F1E79459C00A31865 /* DisclaimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
+		AD9A5D631E79765F00A31865 /* WKWebView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+Utils.swift"; sourceTree = "<group>"; };
+		AD9A5D681E7BE55600A31865 /* Twitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twitter.swift; sourceTree = "<group>"; };
+		AD9A5D691E7BE55600A31865 /* TwitterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterCell.xib; sourceTree = "<group>"; };
+		AD9A5D6C1E7BE6E400A31865 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		AD9A5D6D1E7BE6E400A31865 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
+		AD9A5D6E1E7BE6E400A31865 /* ActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionCell.xib; sourceTree = "<group>"; };
+		AD9A5D6F1E7BE6E400A31865 /* ActionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionController.swift; sourceTree = "<group>"; };
+		AD9A5D701E7BE6E400A31865 /* ActionControllerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionControllerSettings.swift; sourceTree = "<group>"; };
+		AD9A5D711E7BE6E400A31865 /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionData.swift; sourceTree = "<group>"; };
+		AD9A5D721E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Utils.swift"; sourceTree = "<group>"; };
 		ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACMathOperator.swift; sourceTree = "<group>"; };
 		ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -715,6 +735,30 @@
 			path = ScrollableOverlay;
 			sourceTree = "<group>";
 		};
+		AD9A5D621E79764F00A31865 /* WKWebView+Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AD9A5D631E79765F00A31865 /* WKWebView+Utils.swift */,
+			);
+			path = "WKWebView+Utils";
+			sourceTree = "<group>";
+		};
+		AD9A5D671E7BE55600A31865 /* XLActionController */ = {
+			isa = PBXGroup;
+			children = (
+				AD9A5D6C1E7BE6E400A31865 /* Action.swift */,
+				AD9A5D6D1E7BE6E400A31865 /* ActionCell.swift */,
+				AD9A5D6E1E7BE6E400A31865 /* ActionCell.xib */,
+				AD9A5D6F1E7BE6E400A31865 /* ActionController.swift */,
+				AD9A5D701E7BE6E400A31865 /* ActionControllerSettings.swift */,
+				AD9A5D711E7BE6E400A31865 /* ActionData.swift */,
+				AD9A5D721E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift */,
+				AD9A5D681E7BE55600A31865 /* Twitter.swift */,
+				AD9A5D691E7BE55600A31865 /* TwitterCell.xib */,
+			);
+			path = XLActionController;
+			sourceTree = "<group>";
+		};
 		ADAF999B1E2E32DE00E9A18D /* UILabel+Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +794,7 @@
 		ADE060D91E1D3A3E00ACC00E /* UICategories */ = {
 			isa = PBXGroup;
 			children = (
+				AD9A5D621E79764F00A31865 /* WKWebView+Utils */,
 				ADAF999B1E2E32DE00E9A18D /* UILabel+Utils */,
 				ADE061171E1F863F00ACC00E /* UITableViewCell+Utils */,
 				ADE061121E1F787C00ACC00E /* UINavigationItem+Utils */,
@@ -920,6 +965,7 @@
 		ADEDBBE71E5B0F7800C220B0 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD9A5D671E7BE55600A31865 /* XLActionController */,
 				AD9A5D5D1E79459C00A31865 /* ScrollableOverlay */,
 				AD291BFC1E5DCE9F00F158E0 /* RSFBSecure */,
 				AD291BE51E5C690B00F158E0 /* ProgressHUD */,
@@ -1014,6 +1060,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD9A5D751E7BE6E400A31865 /* ActionCell.xib in Resources */,
 				AD291C271E5DCE9F00F158E0 /* facebook_iOS.js in Resources */,
 				AD291C2B1E5DCE9F00F158E0 /* OSP.Settings.js in Resources */,
 				AD291C281E5DCE9F00F158E0 /* jquery-3.1.0.min.js in Resources */,
@@ -1031,6 +1078,7 @@
 				AD291C291E5DCE9F00F158E0 /* jquery214min.js in Resources */,
 				AD1FCD331E07FF88001DADD8 /* PrivacyWizard.js in Resources */,
 				ADE060E81E1D4C6700ACC00E /* Questionnaire.xcassets in Resources */,
+				AD9A5D6B1E7BE55600A31865 /* TwitterCell.xib in Resources */,
 				AD15663E1E095F8700036616 /* PrivacyWizardResources.js in Resources */,
 				AD42FB721DF59D2D0034FA99 /* Info.plist in Resources */,
 				AD42FB6F1DF59D2D0034FA99 /* Assets.xcassets in Resources */,
@@ -1060,6 +1108,7 @@
 				AD291C3B1E5DCE9F00F158E0 /* UISNSettingsView.swift in Sources */,
 				AD291BEF1E5DA1E600F158E0 /* UIPrivacySettingFlowController.swift in Sources */,
 				AD9A5D611E79459C00A31865 /* DisclaimerView.swift in Sources */,
+				AD9A5D771E7BE6E400A31865 /* ActionControllerSettings.swift in Sources */,
 				ADEDBBCF1E573E9000C220B0 /* UIMainScreenFlowController.swift in Sources */,
 				ADE060F11E1E297F00ACC00E /* UIView+Utils.swift in Sources */,
 				AD1FCD381E0801CB001DADD8 /* JSPrivacyWizardContext.swift in Sources */,
@@ -1067,6 +1116,7 @@
 				ADE060F61E1E3F0800ACC00E /* UIMainFlowController.swift in Sources */,
 				ADBBCAF91E1BCD35007A7686 /* ACMathOperator.swift in Sources */,
 				ADE061191E1F864900ACC00E /* UITableViewCell+Utils.swift in Sources */,
+				AD9A5D761E7BE6E400A31865 /* ActionController.swift in Sources */,
 				AD42FB7C1DF59DCB0034FA99 /* ACSwarmClientHelper.swift in Sources */,
 				AD291C381E5DCE9F00F158E0 /* UISNSettingsReaderViewController.swift in Sources */,
 				ADEDBBD51E5AFD9C00C220B0 /* ACPrivacyWizard.swift in Sources */,
@@ -1076,6 +1126,7 @@
 				AD42FB731DF59D2D0034FA99 /* ViewController.swift in Sources */,
 				AD291BF81E5DCB8800F158E0 /* UISetPrivacyFlowController.swift in Sources */,
 				AD291BF41E5DA22500F158E0 /* UIPrivacySettingViewController.swift in Sources */,
+				AD9A5D791E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift in Sources */,
 				AD1CC5E71DF84BF20013FE77 /* AMAvailableReadSetting.swift in Sources */,
 				AD291C3D1E5DCE9F00F158E0 /* NSError+Utilities.swift in Sources */,
 				AD1CC5EA1DF84BF20013FE77 /* AMWrite.swift in Sources */,
@@ -1083,6 +1134,7 @@
 				ADAF999D1E2E32E700E9A18D /* UILabel+Utils.swift in Sources */,
 				ADBBCAFD1E1BCD87007A7686 /* Array+Utils.swift in Sources */,
 				ADE0610E1E1E6B2500ACC00E /* UICustomTableViewHeader.swift in Sources */,
+				AD9A5D6A1E7BE55600A31865 /* Twitter.swift in Sources */,
 				AD7E07E71E00097D002FA133 /* AMRecommendedSettings.swift in Sources */,
 				ADE060DC1E1D3A3E00ACC00E /* UIColor+Utils.swift in Sources */,
 				AD1CC5C71DF815230013FE77 /* ACErrorContainer.swift in Sources */,
@@ -1090,6 +1142,7 @@
 				AD291BE81E5C690B00F158E0 /* ProgressHUD.m in Sources */,
 				AD8F360D1E601A7600B28075 /* ACPrivacyWriter.swift in Sources */,
 				ADEDBBD21E574AD100C220B0 /* UIAppearanceManager.swift in Sources */,
+				AD9A5D641E79765F00A31865 /* WKWebView+Utils.swift in Sources */,
 				ADE061141E1F788600ACC00E /* UINavigationItem+Utils.swift in Sources */,
 				AD42FB6E1DF59D2D0034FA99 /* AppDelegate.swift in Sources */,
 				ADE060FA1E1E41A300ACC00E /* UINavigationManager.swift in Sources */,
@@ -1103,7 +1156,9 @@
 				AD291C371E5DCE9F00F158E0 /* WebViewSettingsReader.swift in Sources */,
 				AD291C311E5DCE9F00F158E0 /* FacebookSecurityEnforcer.swift in Sources */,
 				AD291C391E5DCE9F00F158E0 /* UISNSettingsTableViewCell.swift in Sources */,
+				AD9A5D781E7BE6E400A31865 /* ActionData.swift in Sources */,
 				AD1CC5E81DF84BF20013FE77 /* AMRead.swift in Sources */,
+				AD9A5D731E7BE6E400A31865 /* Action.swift in Sources */,
 				AD42FB801DF59E920034FA99 /* ACNetworkingConstants.swift in Sources */,
 				AD291C331E5DCE9F00F158E0 /* FbWebKitParametersProvider.swift in Sources */,
 				AD291C351E5DCE9F00F158E0 /* FbWebKitSecurityEnforcer.swift in Sources */,
@@ -1114,6 +1169,7 @@
 				AD7B500B1DF5A9D70097AA5C /* ACSwarmClientHelper+ConnectionCallbacks.swift in Sources */,
 				AD291C301E5DCE9F00F158E0 /* LocalJSSettingsProvider.swift in Sources */,
 				AD291BFB1E5DCBBA00F158E0 /* UISetPrivacyViewController.swift in Sources */,
+				AD9A5D741E7BE6E400A31865 /* ActionCell.swift in Sources */,
 				AD1CC5EC1DF84C090013FE77 /* AMPrivacySetting.swift in Sources */,
 				ADE060E11E1D445700ACC00E /* UIQuestionnaireTableViewController.swift in Sources */,
 			);

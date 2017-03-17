@@ -24,6 +24,9 @@ class UIMainViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var setupPrivacyButton: UIButton!
+    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var infoButton: UIButton!
     
     // MARK: - @IBActions
     @IBAction func didTapSetupPrivacyButton(_ sender: Any) {
@@ -36,8 +39,20 @@ class UIMainViewController: UIViewController {
     
     // MARK: - Private Methods
     private func setupControls() {
-        self.navigationController?.navigationBar.barTintColor = .operandoBlue
-        setupPrivacyButton.backgroundColor = .operandoBlue
+        self.navigationController?.navigationBar.barTintColor = .operandoSkyBlue
+        setupPrivacyButton.backgroundColor = .operandoDarkBlue
+        backgroundImageView.image = nil
+        setupPrivacyButton.roundedCorners(withRadius: 5.0)
+        view.add(gradientWithType: .vertical, fromColors: UIColor.operandoSkyGradientColors)
+        bringControlsToFront()
+    }
+    
+    private func bringControlsToFront() {
+        view.bringSubview(toFront: titleLabel)
+        view.bringSubview(toFront: detailLabel)
+        view.bringSubview(toFront: setupPrivacyButton)
+        view.bringSubview(toFront: logoImageView)
+        view.bringSubview(toFront: infoButton)
     }
     
     // MARK: - Lifecycle

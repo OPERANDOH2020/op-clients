@@ -26,7 +26,7 @@ class UICustomTableViewHeader: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = .operandoBlue
+        contentView.backgroundColor = .operandoMidBlue
         titleLabel.backgroundColor = .clear
         titleLabel.textColor = .white
         borderView.backgroundColor = .white

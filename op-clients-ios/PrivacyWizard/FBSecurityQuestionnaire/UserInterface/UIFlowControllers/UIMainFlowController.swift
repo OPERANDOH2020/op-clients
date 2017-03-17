@@ -32,7 +32,7 @@ class UIMainFlowController: UIFlowController {
         childFlow?.start()
         
         //ProgressHUD.show("Configuring Privacy Wizard")
-        //setupPrivacyWizard()
+        setupPrivacyWizard()
     }
     
     private func setupPrivacyWizard() {

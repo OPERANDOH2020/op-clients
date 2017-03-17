@@ -117,7 +117,7 @@ class ACPrivacyWizard: NSObject {
     
     // MARK: - Public Methods
     func setup(completion: @escaping (_ success: Bool) -> Void) {
-        ACSwarmManager.shared.retrieveConfiguration(forUser: "admin@plusprivacy.com", withPassword: "swarm") { [weak self] (error, privacySettings, recommendedSettings) in
+        ACSwarmManager.shared.retrieveConfiguration(forUser: "privacy_wizard@rms.ro", withPassword: "wizard") { [weak self] (error, privacySettings, recommendedSettings) in
             guard let strongSelf = self else { completion(false); return }
             DispatchQueue.main.async {
                 strongSelf.privacySettings = privacySettings
@@ -131,6 +131,7 @@ class ACPrivacyWizard: NSObject {
         state = .interrogation
         currentSettings = []
         currentRecommendation = nil
+        privacyWizardScope = .all
     }
     
     func getPrivacySettings(completion: @escaping (_ privacySettings: [AMPrivacySetting], _ state: ACPrivacyWizardState) -> Void) {

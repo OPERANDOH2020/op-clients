@@ -37,17 +37,16 @@ class UIMainScreenFlowController: UIFlowController, UIMainScreenVCDelegate, Disc
     
     private func presentOptions() {
         guard let childViewController = childViewController else { return }
-        UIAlertViewController.presentOptionsAlert(from: childViewController, title: "Configuration options", message: "Select the social media network for setting your privacy.", actions: [
-            (title: "Facebook", callback: { (action) in
+        UIAlertViewController.presentXLActionController(from: childViewController, headerTitle: "Options", actions: [
+            ((title: "Facebook", subtitle: "Set your privacy on Facebook.", image: UIImage(named: "facebook_icon_"), callback: {
                 self.openQuestionnnaire(withScope: .facebook)
-            }),
-            (title: "LinkedIn", callback: { (action) in
+            })),
+            ((title: "LinkedIn", subtitle: "Set your privacy on LinkedIn.", image: UIImage(named: "linkedin_icon_"), callback: {
                 self.openQuestionnnaire(withScope: .linkedIn)
-            }),
-            (title: "All Social Networks", callback: { (action) in
+            })),
+            ((title: "All Social Networks", subtitle: "Set your privacy on multiple social media at once.", image: UIImage(named: "multiple_social_media_"), callback: {
                 self.openQuestionnnaire(withScope: .all)
-            }),
-            (title: "Cancel", callback: nil)
+            }))
             ])
     }
     

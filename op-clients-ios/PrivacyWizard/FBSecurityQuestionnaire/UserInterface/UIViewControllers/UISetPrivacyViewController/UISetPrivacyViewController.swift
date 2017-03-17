@@ -55,7 +55,7 @@ class UISetPrivacyViewController: UIViewController {
             
             self.whenUserPressedLoggedIn = {
                 callbackWhenLogInIsDone?()
-                //self.whenUserPressedLoggedIn = nil
+                self.whenUserPressedLoggedIn = nil
             }
             
         }, whenDisplayingMessage: {RSCommonUtilities.showOKAlertWithMessage(message: $0)}, completion: { error in

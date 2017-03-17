@@ -47,7 +47,7 @@ class DisclaimerView: UIView {
         disclaimerView.content.text = content
         disclaimerView.contentView.backgroundColor = .operandoMidBlue
         disclaimerView.acceptButton.setTitle(acceptTitle, for: .normal)
-        disclaimerView.acceptButton.backgroundColor = .operandoBlue
+        disclaimerView.acceptButton.backgroundColor = .operandoDarkBlue
         disclaimerView.acceptButton.setTitleColor(.white, for: .normal)
         disclaimerView.delegate = delegate
         disclaimerView.content.isSelectable = false
@@ -55,7 +55,10 @@ class DisclaimerView: UIView {
         disclaimerView.frame = frame
         
         addGradient(toView: disclaimerView.contentView)
-        disclaimerView.backgroundColor = .lightGray
+        disclaimerView.backgroundColor = .operandoSkyMidBlue
+        disclaimerView.contentView.roundedCorners(withRadius: 5.0)
+        disclaimerView.acceptButton.roundedCorners(withRadius: 5.0)
+        disclaimerView.content.backgroundColor = .clear
         
         disclaimerView.contentView.bringSubview(toFront: disclaimerView.title)
         disclaimerView.contentView.bringSubview(toFront: disclaimerView.content)
@@ -111,16 +114,12 @@ extension UIView {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         
-        let color1 = UIColor.white.cgColor as CGColor
-        let color2 = UIColor.white.cgColor as CGColor
-        let color3 = UIColor.operandoLightBlue.cgColor as CGColor
-        let color4 = UIColor.operandoLightBlue.cgColor as CGColor
-        let color5 = UIColor.operandoMidBlue.cgColor as CGColor
-        let color6 = UIColor.operandoMidBlue.cgColor as CGColor
-        let color7 = UIColor.operandoBlue.cgColor as CGColor
-        let color8 = UIColor.operandoBlue.cgColor as CGColor
+        let color1 = UIColor.white.cgColor
+        let color2 = UIColor.operandoSkyLightBlue.cgColor
+        let color3 = UIColor.operandoSkyMidBlue.cgColor
+        let color4 = UIColor.operandoSkyBlue.cgColor
         
-        gradientLayer.colors = [color1, color2, color3, color4, color5, color6, color7, color8]
+        gradientLayer.colors = [color1, color2, color2, color2, color3, color3, color3, color4, color4, color4]
         gradientLayer.locations = [0.0, 0.25, 0.75, 1.0]
         
         view.layer.addSublayer(gradientLayer)

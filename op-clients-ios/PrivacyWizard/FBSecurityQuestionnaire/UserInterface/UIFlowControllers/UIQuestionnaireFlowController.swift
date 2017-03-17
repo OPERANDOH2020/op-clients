@@ -36,7 +36,7 @@ class UIQuestionnaireFlowController: UIFlowController, UIQuestionnaireTVCProtoco
     func requestNewPrivacySettings(completionHandler: @escaping (_ privacySettings: UIQuestionnaireTVCObject?) -> Void) {
         if wizzardIsFinished {
             completionHandler(nil)
-            openPrivacySettingsScreen()
+            wizardDidFinished()
         } else {
             ACPrivacyWizard.shared.getPrivacySettings { [weak self] (privacySettings, state) in
                 guard let strongSelf = self else {
@@ -77,9 +77,26 @@ class UIQuestionnaireFlowController: UIFlowController, UIQuestionnaireTVCProtoco
         }
     }
     
+    private func wizardDidFinished() {
+        switch privacyWizard.privacyWizardScope {
+        case .facebook:
+            launchPrivacySetting()
+        case .linkedIn:
+            openPrivacySettingsScreen()
+        case .all:
+            openPrivacySettingsScreen()
+        }
+    }
+    
     private func openPrivacySettingsScreen() {
         let questionnaireTVCConfiguration = UIFlowConfiguration(window: nil, navigationController: configuration.navigationController, parent: self)
         childFlow = UIPrivacySettingFlowController(configuration: questionnaireTVCConfiguration)
+        childFlow?.start()
+    }
+    
+    func launchPrivacySetting() {
+        let questionnaireTVCConfiguration = UIFlowConfiguration(window: nil, navigationController: configuration.navigationController, parent: self)
+        childFlow = UISetPrivacyFlowController(configuration: questionnaireTVCConfiguration)
         childFlow?.start()
     }
 }

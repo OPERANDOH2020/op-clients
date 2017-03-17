@@ -35,7 +35,6 @@ getNextQuestionAndSuggestions = function(options, conditionalProbabilitiesMatrix
                                validNetworks[networkName] = true;
                                });
     
-    callback(settingToNetworkX);
     if (activeOptions === undefined){
         activeOptions = [];
     }
@@ -61,7 +60,7 @@ getNextQuestionAndSuggestions = function(options, conditionalProbabilitiesMatrix
                                                    return prev;
                                                    }, []);
     
-    callback(unknownSettings);
+    
     var questionAndSuggestions = unknownSettings.reduce(function (prev, setting) {
                                                         
                                                         var options = settingsToOptions[setting];

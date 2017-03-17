@@ -23,6 +23,7 @@ class UIPrivacySettingViewController: UIViewController {
     // MARK: - @IBActions
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var linkedInButton: UIButton!
+    @IBOutlet weak var contentView: UIView!
     
     // MARK: - @IBActions
     func didTapBackButtonItem() {
@@ -41,7 +42,12 @@ class UIPrivacySettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        facebookButton.backgroundColor = .operandoDarkBlue
+        linkedInButton.backgroundColor = .operandoDarkBlue
+        facebookButton.roundedCorners(withRadius: 5.0)
+        linkedInButton.roundedCorners(withRadius: 5.0)
+        view.add(gradientWithType: .vertical, fromColors: UIColor.operandoSkyGradientColors)
+        view.bringSubview(toFront: contentView)
         navigationItem.addCustomBackButton(target: self, selector: #selector(UIPrivacySettingViewController.didTapBackButtonItem))
     }
-
 }

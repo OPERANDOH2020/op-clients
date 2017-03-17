@@ -41,7 +41,7 @@ class UIQuestionnaireTableViewCell: UITableViewCell {
         super.awakeFromNib()
         toggleImageView.image = UIImage.emptyMarkImage?.withRenderingMode(.alwaysTemplate)
         toggleImageView.tintColor = .lightGray
-        contentView.backgroundColor = .operandoMidBlue
+        contentView.backgroundColor = .operandoLightBlue
     }
     
     // MARK: - Public Methods

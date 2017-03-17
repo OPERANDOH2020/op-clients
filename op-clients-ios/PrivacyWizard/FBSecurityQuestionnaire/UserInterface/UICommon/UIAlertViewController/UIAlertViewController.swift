@@ -30,4 +30,13 @@ class UIAlertViewController: NSObject {
         }
         viewController.present(alert, animated: true, completion: nil)
     }
+    
+    class func presentXLActionController(from viewController: UIViewController, headerTitle: String, actions: [(title: String, subtitle: String, image: UIImage?, callback: (() -> Void)?)]) {
+        let actionController = TwitterActionController()
+        for action in actions {
+            actionController.addAction(Action(ActionData(title: action.title, subtitle: action.subtitle, image: action.image), style: .default, handler: action.callback))
+        }
+        actionController.headerData = headerTitle
+        viewController.present(actionController, animated: true, completion: nil)
+    }
 }

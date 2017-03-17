@@ -110,9 +110,9 @@ class UIQuestionnaireTableViewController: UIViewController, UITableViewDelegate,
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UICustomTableViewHeader.self, forHeaderFooterViewReuseIdentifier: UICustomTableViewHeaderReuseIdentifier)
-        tableView.backgroundColor = UIColor.operandoBlue
-        statusLabel.backgroundColor = .operandoGreen
-        footerButton.backgroundColor = .operandoGreen
+        tableView.backgroundColor = .operandoMidBlue
+        statusLabel.backgroundColor = .operandoSkyBlue
+        footerButton.backgroundColor = .operandoSkyBlue
     }
     
     // MARK: - Lifecycle
