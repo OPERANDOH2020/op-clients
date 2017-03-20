@@ -61,45 +61,6 @@ function convertImageToBase64(file, successCallback, errorCallback) {
     }
 }
 
-function JSON2CSV(header,objArray) {
-    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-
-    var str = '';
-    var line = '';
-
-        for (var index in header) {
-            var value = header[index] + "";
-            line +=  value.replace(/"/g, '""') + ',';
-        }
-
-        line = line.slice(0, -1);
-        str += line + '\r\n';
-
-    for (var i = 0; i < array.length; i++) {
-        var line = '';
-
-        /*if ($("#quote").is(':checked')) {
-            for (var index in array[i]) {
-                var value = array[i][index] + "";
-                line += '"' + value.replace(/"/g, '""') + '",';
-            }
-        } else {
-            for (var index in array[i]) {
-                line += array[i][index] + ',';
-            }
-        }*/
-
-
-        for (var index in array[i]) {
-            line += array[i][index] + ',';
-        }
-
-        line = line.slice(0, -1);
-        str += line + '\r\n';
-    }
-    return str;
-
-}
 
 var ORGANISATIONS = {
     public: "Public",

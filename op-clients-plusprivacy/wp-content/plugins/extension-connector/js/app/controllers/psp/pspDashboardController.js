@@ -78,39 +78,10 @@ function TableController ($scope, DTColumnDefBuilder,$q){
 privacyPlusApp.controller("TableController",TableController);
 
 
-function ViewOSPOffersDetailsController($scope, $filter, ospTitleOffer,offersStats){
-
+function ViewOSPOffersDetailsController($scope, ospTitleOffer,offersStats){
 
     $scope.ospTitleOffer = ospTitleOffer;
     $scope.offersStats = offersStats;
-
-    $scope.exportToCSV = function(){
-
-        var header = ["Name","Description","Start date","End date", "Impact"];
-        var data = [];
-
-        $scope.offersStats.forEach(function(offer){
-
-            data.push({
-                name:offer.name,
-                description:offer.description,
-                start_date:$filter("timestampToDateFormat")(offer.start_date),
-                end_date:$filter("timestampToDateFormat")(offer.end_date),
-                impact:offer.deals_number
-            });
-
-        });
-
-        var csv = JSON2CSV(header,data);
-
-        var csvData = new Blob([csv], {type: 'application/vnd.ms-excel;charset=utf-8;'});
-        var csvURL = window.URL.createObjectURL(csvData);
-        var tempLink = document.createElement('a');
-        tempLink.href = csvURL;
-        tempLink.setAttribute('download', $scope.ospTitleOffer+'.csv');
-        tempLink.click();
-    }
-
 }
 
 
