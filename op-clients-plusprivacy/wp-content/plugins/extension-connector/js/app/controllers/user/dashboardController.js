@@ -4,6 +4,11 @@ privacyPlusApp.controller("dashboardController", function ($scope, userService,S
         $scope.$apply();
     });
 
+    $scope.goToDashboard = function(){
+        console.log("here?");
+        messengerService.send("goToDashboard");
+    };
+
     SharedService.setLocation("userZone");
 });
 angular.element(document).ready(function() {

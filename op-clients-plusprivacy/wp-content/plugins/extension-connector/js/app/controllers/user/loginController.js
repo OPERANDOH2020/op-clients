@@ -39,10 +39,6 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
             });
     };
 
-    $scope.goToDashboard = function () {
-        messengerService.send("goToDashboard");
-    };
-
     setTimeout(function () {
         var relayResponded = messengerService.extensionIsActive();
         if (relayResponded === false) {

@@ -1,20 +1,18 @@
 privacyPlusApp.requires.push('datatables');
 
 
-function ViewOSPOffersDetailsController($scope, DTColumnDefBuilder, ospTitleOffer,offersStats){
-    $scope.dtInstance = {};
-    $scope.dtOptions = {
-        "paging": false,
-        "searching": false,
-        "info": false,
-        "order": [[0, "asc"]],
-        "columnDefs": [{
-            "targets": 'no-sort',
-            "orderable": false
-        }]
-    };
+function TableController ($scope, DTColumnDefBuilder,$q){
 
-    $scope.dtColumnDefs = [
+    function getOSPTitle(){
+        var deferred = $q.defer();
+        $scope.$parent.$watch("ospTitleOffer", function(value){
+            deferred.resolve(value);
+        });
+        return deferred.promise;
+    }
+
+    $scope.offerStatsInstance = {};
+    $scope.offerStatsColumnDefs = [
         DTColumnDefBuilder.newColumnDef(0),
         DTColumnDefBuilder.newColumnDef(1),
         DTColumnDefBuilder.newColumnDef(2).notSortable(),
@@ -22,8 +20,96 @@ function ViewOSPOffersDetailsController($scope, DTColumnDefBuilder, ospTitleOffe
         DTColumnDefBuilder.newColumnDef(4).notSortable()
     ];
 
+    $scope.offerStatsOptions = {
+        "paging": false,
+        "searching": true,
+        "info": false,
+        "order": [[0, "asc"]],
+        "columnDefs": [{
+            "targets": 'no-sort',
+            "orderable": false
+        }],
+        dom: 'frtipB',
+        buttons: [
+            {
+                extend:'excelHtml5',
+                title: getOSPTitle(),
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                title: getOSPTitle(),
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                extend : 'pdfHtml5',
+                title: getOSPTitle(),
+                pageSize: 'A4',
+                exportOptions : {
+                    stripHtml: false
+                },
+                customize: function(doc) {
+                    doc.info = {
+                        title: getOSPTitle(),
+                        subject: 'OSP statistics',
+                        keywords: 'osp statistics'
+                    };
+                    doc.content[1].table.widths = [ 'auto', '*', '*', 'auto', "auto", "auto" ];
+                    var regex = /<img.*?data-ng-src="(.*?)"/;
+                    for (var i=1;i<doc.content[1].table.body.length;i++) {
+                        var src = regex.exec(doc.content[1].table.body[i][0].text)[1];
+                        delete doc.content[1].table.body[i][0].text;
+                        doc.content[1].table.body[i][0].image = src;
+                        doc.content[1].table.body[i][0].width = 16;
+                    }
+                }
+            }
+        ]
+    };
+
+
+
+}
+
+privacyPlusApp.controller("TableController",TableController);
+
+
+function ViewOSPOffersDetailsController($scope, $filter, ospTitleOffer,offersStats){
+
+
     $scope.ospTitleOffer = ospTitleOffer;
     $scope.offersStats = offersStats;
+
+    $scope.exportToCSV = function(){
+
+        var header = ["Name","Description","Start date","End date", "Impact"];
+        var data = [];
+
+        $scope.offersStats.forEach(function(offer){
+
+            data.push({
+                name:offer.name,
+                description:offer.description,
+                start_date:$filter("timestampToDateFormat")(offer.start_date),
+                end_date:$filter("timestampToDateFormat")(offer.end_date),
+                impact:offer.deals_number
+            });
+
+        });
+
+        var csv = JSON2CSV(header,data);
+
+        var csvData = new Blob([csv], {type: 'application/vnd.ms-excel;charset=utf-8;'});
+        var csvURL = window.URL.createObjectURL(csvData);
+        var tempLink = document.createElement('a');
+        tempLink.href = csvURL;
+        tempLink.setAttribute('download', $scope.ospTitleOffer+'.csv');
+        tempLink.click();
+    }
 
 }
 
@@ -129,11 +215,15 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
         $scope.viewOffersStats = function(ospUserId){
             connectionService.getOffersStats(ospUserId, function(offersStats){
 
+                    var selectedOsp = $scope.ospList.find(function(osp){
+                       return osp.userId === ospUserId;
+                    });
+
                     ModalService.showModal({
-                        templateUrl: '/wp-content/plugins/extension-connector/js/app/templates/psp/modals/viewOffersStats.html',
+                        templateUrl:"/wp-content/plugins/extension-connector/js/app/templates/psp/modals/viewOffersStats.html",
                         controller: ViewOSPOffersDetailsController,
                         inputs: {
-                            ospTitleOffer: "OSP Offers Statistics",
+                            ospTitleOffer: selectedOsp.name,
                             offersStats: offersStats,
                         }
                     }).then(function (modal) {

@@ -33,7 +33,3 @@ privacyPlusApp.filter('isEmpty', [function() {
     }
 }]);
 
-privacyPlusApp.run(function () {
-
-});
-

@@ -365,3 +365,38 @@ md-backdrop.md-opaque.md-default-theme{
     border-radius: 4px;
     height: 60px;
 }
+
+div.dt-buttons{
+    float:right;
+}
+#osp_offers_table_wrapper:after{
+display: block;
+clear:both;
+content: "";
+}
+
+
+a.dt-button.buttons-excel,
+a.dt-button.buttons-csv,
+a.dt-button.buttons-pdf{
+padding: 10px 10px 10px 35px;
+    background-position: 5px center;
+    background-repeat:no-repeat;
+    background-color: #FFB400;
+    margin: 0px 10px;
+    color:#FFF;
+    border-radius: 5px;
+}
+
+a.dt-button.buttons-excel{
+    background-image:url("images/export_xls.png");
+}
+
+a.dt-button.buttons-csv{
+    background-image:url("images/export_csv.png");
+}
+
+a.dt-button.buttons-pdf{
+    background-image:url("images/export_pdf.png");
+}
+

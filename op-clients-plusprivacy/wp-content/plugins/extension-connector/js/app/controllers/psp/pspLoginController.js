@@ -1,5 +1,5 @@
 privacyPlusApp.controller("pspLoginController", function ($scope, connectionService, messengerService, userService,SharedService,$window) {
-
+    console.log("here");
     $scope.authenticationError = false;
     $scope.requestProcessed = false;
     $scope.user = {
@@ -26,10 +26,6 @@ privacyPlusApp.controller("pspLoginController", function ($scope, connectionServ
                 $scope.authenticationError = true;
                 $scope.$apply();
             });
-    };
-
-    $scope.goToDashboard = function(){
-        messengerService.send("goToDashboard");
     };
 
     SharedService.setLocation("pspLogin");

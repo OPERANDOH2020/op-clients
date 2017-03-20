@@ -210,9 +210,15 @@ function pspLoginController(){
 }
 
 function pspDashboardController(){
+    insertScriptIfShortcode("jquery.dataTables.min", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
     insertScriptIfShortcode("angular-datatables.min.js", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
     insertScriptIfShortcode("angular-datatables.bootstrap.min", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/angular-datatables.bootstrap.min.js', __FILE__));
-    insertScriptIfShortcode("jquery.dataTables.min", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
+    insertScriptIfShortcode("dataTables.buttons.min.js", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/exports/dataTables.buttons.min.js', __FILE__));
+    insertScriptIfShortcode("jszip.min.js", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/exports/jszip.min.js', __FILE__));
+    insertScriptIfShortcode("pdfmake.min.js", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/exports/pdfmake.min.js', __FILE__));
+    insertScriptIfShortcode("vfs_fonts.js", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/exports/vfs_fonts.js', __FILE__));
+    insertScriptIfShortcode("buttons.html5.min.js", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/exports/buttons.html5.min.js', __FILE__));
+
     insertStyleIfShortcode("datatables.bootstrap", 'psp-dashboard', plugins_url('/js/utils/angular-datatables/datatables.bootstrap.min.css', __FILE__));
     insertScriptIfShortcode("pspDashboardController", 'psp-dashboard', plugins_url('/js/app/controllers/psp/pspDashboardController.js', __FILE__));
 }
