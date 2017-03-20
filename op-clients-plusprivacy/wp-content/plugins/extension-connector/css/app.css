@@ -379,13 +379,14 @@ content: "";
 a.dt-button.buttons-excel,
 a.dt-button.buttons-csv,
 a.dt-button.buttons-pdf{
-padding: 10px 10px 10px 35px;
+padding: 9px 10px 9px 35px;
     background-position: 5px center;
     background-repeat:no-repeat;
     background-color: #FFB400;
+    font-family: 'Dosis', sans-serif;
     margin: 0px 10px;
     color:#FFF;
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 a.dt-button.buttons-excel{
@@ -398,5 +399,125 @@ a.dt-button.buttons-csv{
 
 a.dt-button.buttons-pdf{
     background-image:url("images/export_pdf.png");
+}
+
+
+.btn.btn-primary
+{
+    background: #FFB400;
+    border-color:#FFB400;
+    color:#FFF;
+    border-radius: 0;
+    font-family: 'Dosis', sans-serif;
+    font-size: 16px;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+.btn.btn-primary:hover
+{
+    background: #FF9900;
+    border-color:#FF9900;
+}
+
+.btn.btn-primary:focus,
+.btn.btn-primary:active{
+    outline: none;
+    background: #FF9900;
+    border-color:#FF9900;
+}
+
+.btn.btn-primary-black{
+    background: #000;
+    border-color:#000;
+    color:#FFB400;
+    border-radius: 0;
+    font-family: 'Dosis', sans-serif;
+    font-size: 16px;
+}
+
+.btn.btn-primary-black:hover{
+    color:#FFF;
+}
+.btn.btn-primary-black[disabled]
+{
+    opacity: 0.5;
+    color:#FFB400;
+}
+
+
+.btn.btn-primary-black:focus,
+.btn.btn-primary-black:active{
+    outline: none;
+    background: #000;
+    border-color:#000;
+    color:#FFB400;
+}
+
+.modal .modal-content {
+    background: #fdfaef;
+}
+
+.dataTables_filter input[type='search']{
+    border: 1px solid #FFB400;
+    border-radius: 3px;
+    margin-left: 10px;
+    height: 30px;
+}
+.modal-content .close {
+    color: #a06205;
+}
+
+ul.nav-tabs>li>a{
+    border-radius: 0;
+    border: 1px solid #ddd;
+    color: #FFb400;
+}
+
+ul.nav-tabs>li.active>a, ul.nav-tabs>li.active>a:focus, ul.nav-tabs>li.active>a:hover{
+    background:#FFB400;
+    color:#FFF;
+}
+
+.container ul.nav-tabs{
+    margin-bottom: 0px;
+    border-bottom: none;
+}
+.container .table-bordered>thead>tr>td,
+.container .table-bordered>thead>tr>th {
+    border-bottom-width: 1px;
+    background: #ffebba;
+}
+
+.container .table{
+    background:#fff6e0;
+}
+
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.open>a {
+    background-image: -webkit-linear-gradient(top,#FFB400 0,#ffba16 100%);
+    background-image: -o-linear-gradient(top,#FFB400 0,#ffba16 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#FFB400),to(#ffba16));
+    background-image: linear-gradient(to bottom,#FFB400 0,#ffba16 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFB400', endColorstr='#ffba16', GradientType=0);
+    background-repeat: repeat-x;
+    -webkit-box-shadow: inset 0 3px 9px rgba(160,113,0,.075);
+    box-shadow: inset 0 3px 9px rgba(160,113,0,.075);
+    color:#FFF!important;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open>a:hover,
+.navbar-default .navbar-nav > .open>a:focus{
+    background: #ffebba!important;
+    color:#333!important;
+    border-color: #333;
+}
+
+
+.navbar-default .navbar-nav > .open > a span,
+.navbar-default .navbar-nav > .open>a:hover span,
+.navbar-default .navbar-nav > .open>a:focus span{
+    color:#333!important;
 }
 

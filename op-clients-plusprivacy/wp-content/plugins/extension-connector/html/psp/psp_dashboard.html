@@ -37,9 +37,9 @@
                             <td>{{ospRequest.phone}}</td>
                             <td>{{ospRequest.request_time|timeAgo}} ago</td>
                             <td>{{ospRequest.deals_description}}</td>
-                            <td>
-                                <button ng-click="deleteOSPRequest(ospRequest.userId)">Delete request</button>
-                                <button ng-click="acceptOSPRequest(ospRequest.userId)">Approve OSP</button>
+                            <td style="width:260px">
+                                <button class="btn btn-primary" ng-click="acceptOSPRequest(ospRequest.userId)">Approve OSP</button>
+                                <button  class="btn btn-primary-black" ng-click="deleteOSPRequest(ospRequest.userId)">Delete request</button>
                             </td>
                         </tr>
                         </tbody>
@@ -73,7 +73,7 @@
                             <td>{{osp.phone}}</td>
                             <td>{{osp.osp_accepted_time|timestampToDateFormat}}</td>
                             <td>{{osp.deals_description}}</td>
-                            <td> <button ng-click="viewOffersStats(osp.userId)">View</button></td>
+                            <td> <button class="btn btn-primary" ng-click="viewOffersStats(osp.userId)">View</button></td>
                         </tr>
                         </tbody>
                     </table>

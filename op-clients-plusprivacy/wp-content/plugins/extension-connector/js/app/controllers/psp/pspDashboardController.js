@@ -13,11 +13,12 @@ function TableController ($scope, DTColumnDefBuilder,$q){
 
     $scope.offerStatsInstance = {};
     $scope.offerStatsColumnDefs = [
-        DTColumnDefBuilder.newColumnDef(0),
+        DTColumnDefBuilder.newColumnDef(0).notSortable(),
         DTColumnDefBuilder.newColumnDef(1),
         DTColumnDefBuilder.newColumnDef(2).notSortable(),
-        DTColumnDefBuilder.newColumnDef(3).notSortable(),
-        DTColumnDefBuilder.newColumnDef(4).notSortable()
+        DTColumnDefBuilder.newColumnDef(3),
+        DTColumnDefBuilder.newColumnDef(4),
+        DTColumnDefBuilder.newColumnDef(5)
     ];
 
     $scope.offerStatsOptions = {
@@ -106,7 +107,7 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
             DTColumnDefBuilder.newColumnDef(1),
             DTColumnDefBuilder.newColumnDef(2).notSortable(),
             DTColumnDefBuilder.newColumnDef(3).notSortable(),
-            DTColumnDefBuilder.newColumnDef(4).notSortable(),
+            DTColumnDefBuilder.newColumnDef(4),
             DTColumnDefBuilder.newColumnDef(5).notSortable()
         ];
 

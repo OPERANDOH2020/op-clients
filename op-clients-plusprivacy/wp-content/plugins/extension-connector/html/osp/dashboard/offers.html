@@ -16,7 +16,7 @@
                     <th>Start date</th>
                     <th>End date</th>
                     <th>Impact</th>
-                    <th>Actions</th>
+                    <th style="width:180px">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,14 +28,14 @@
                     <td>{{offer.end_date|timestampToDateFormat}}</td>
                     <td>{{offer.impact_score}}</td>
                     <td>
-                        <button ng-click="deleteOspOffer(offer.offerId)">Delete offer</button>
-                        <button ng-click="modifyOffer(offer.offerId)">Modify</button>
+                        <button class="btn btn-primary" ng-click="modifyOffer(offer.offerId)">Modify</button>
+                        <button class="btn btn-primary-black" ng-click="deleteOspOffer(offer.offerId)">Delete offer</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
-        <button class="btn-default" ng-click="addNewOfferModal()">Add new offer</button>
+        <button class="btn btn-primary" ng-click="addNewOfferModal()">Add new offer</button>
     </div>
 </div>
