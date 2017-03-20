@@ -482,41 +482,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxG-zS-mVW" customClass="UIBrowsingNavigationBar" customModule="Operando" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="PhL-og-E03"/>
-                                </constraints>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moK-Gn-dil">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRZ-mB-auq" customClass="UIWebViewTab" customModule="Operando" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQq-rJ-dGj" customClass="UIWebTabsView" customModule="Operando" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="TxG-zS-mVW" secondAttribute="trailing" id="0DM-Hk-tFg"/>
-                            <constraint firstAttribute="trailing" secondItem="moK-Gn-dil" secondAttribute="trailing" id="217-Di-60q"/>
-                            <constraint firstItem="TxG-zS-mVW" firstAttribute="top" secondItem="xDu-rO-G8M" secondAttribute="top" id="3GI-yw-S3C"/>
+                            <constraint firstItem="iQq-rJ-dGj" firstAttribute="leading" secondItem="xDu-rO-G8M" secondAttribute="leading" id="2Sk-Ww-g1q"/>
                             <constraint firstItem="gRZ-mB-auq" firstAttribute="leading" secondItem="xDu-rO-G8M" secondAttribute="leading" id="6NJ-ev-EHB"/>
                             <constraint firstItem="gRZ-mB-auq" firstAttribute="top" secondItem="xDu-rO-G8M" secondAttribute="top" id="9wd-8Q-Aw5"/>
-                            <constraint firstItem="I7Z-2v-Rq7" firstAttribute="top" secondItem="moK-Gn-dil" secondAttribute="bottom" id="AgR-t3-ayF"/>
-                            <constraint firstItem="moK-Gn-dil" firstAttribute="top" secondItem="TxG-zS-mVW" secondAttribute="bottom" id="G42-om-krw"/>
+                            <constraint firstItem="iQq-rJ-dGj" firstAttribute="top" secondItem="xDu-rO-G8M" secondAttribute="top" id="DXD-41-Pvh"/>
                             <constraint firstItem="I7Z-2v-Rq7" firstAttribute="top" secondItem="gRZ-mB-auq" secondAttribute="bottom" id="e9c-gL-e0V"/>
-                            <constraint firstItem="moK-Gn-dil" firstAttribute="leading" secondItem="xDu-rO-G8M" secondAttribute="leading" id="reN-dc-wtG"/>
+                            <constraint firstAttribute="trailing" secondItem="iQq-rJ-dGj" secondAttribute="trailing" id="n6W-L2-FIu"/>
+                            <constraint firstItem="iQq-rJ-dGj" firstAttribute="height" secondItem="xDu-rO-G8M" secondAttribute="height" id="ttJ-cL-SsO"/>
                             <constraint firstAttribute="trailing" secondItem="gRZ-mB-auq" secondAttribute="trailing" id="uT4-HA-gk5"/>
-                            <constraint firstItem="TxG-zS-mVW" firstAttribute="leading" secondItem="xDu-rO-G8M" secondAttribute="leading" id="xah-aP-BMh"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="browsingNavigationBar" destination="TxG-zS-mVW" id="9qC-of-2k6"/>
-                        <outlet property="webViewHostView" destination="moK-Gn-dil" id="qVj-mX-l7F"/>
+                        <outlet property="webTabsView" destination="iQq-rJ-dGj" id="jFO-bb-bCo"/>
+                        <outlet property="webTabsViewTopCn" destination="DXD-41-Pvh" id="2hg-oy-ycK"/>
+                        <outlet property="webViewTab" destination="gRZ-mB-auq" id="wxl-jA-52H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4yz-nP-zUb" userLabel="First Responder" sceneMemberID="firstResponder"/>

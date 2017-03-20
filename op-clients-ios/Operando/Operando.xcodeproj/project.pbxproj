@@ -119,6 +119,10 @@
 		989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */; };
 		989E47A91E2FC63A005ECE53 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989E47A71E2FC5DD005ECE53 /* PlusPrivacyCommonTypes.framework */; };
 		989E47AA1E2FC63A005ECE53 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 989E47A71E2FC5DD005ECE53 /* PlusPrivacyCommonTypes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		98D220B81E7FFCEA00B3BD06 /* UIWebTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220B71E7FFCEA00B3BD06 /* UIWebTabsView.swift */; };
+		98D220BA1E7FFD1F00B3BD06 /* UIWebTabsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D220B91E7FFD1F00B3BD06 /* UIWebTabsView.xib */; };
+		98D220BE1E80009D00B3BD06 /* UIWebTabCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220BC1E80009D00B3BD06 /* UIWebTabCollectionCell.swift */; };
+		98D220BF1E80009D00B3BD06 /* UIWebTabCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D220BD1E80009D00B3BD06 /* UIWebTabCollectionCell.xib */; };
 		98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */; };
 		98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6701CCF86DC00C77649 /* ViewController.swift */; };
 		98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6721CCF86DC00C77649 /* Main.storyboard */; };
@@ -320,6 +324,10 @@
 		989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRealIdentityView.swift; path = UserInterface/UIRealIdentityView/UIRealIdentityView.swift; sourceTree = "<group>"; };
 		989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIRealIdentityView.xib; path = UserInterface/UIRealIdentityView/UIRealIdentityView.xib; sourceTree = "<group>"; };
 		989E47A71E2FC5DD005ECE53 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
+		98D220B71E7FFCEA00B3BD06 /* UIWebTabsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabsView.swift; path = UserInterface/UIWebTabsView/UIWebTabsView.swift; sourceTree = "<group>"; };
+		98D220B91E7FFD1F00B3BD06 /* UIWebTabsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebTabsView.xib; path = UserInterface/UIWebTabsView/UIWebTabsView.xib; sourceTree = "<group>"; };
+		98D220BC1E80009D00B3BD06 /* UIWebTabCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabCollectionCell.swift; path = UserInterface/UIWebTabsView/UIWebTabCollectionCell/UIWebTabCollectionCell.swift; sourceTree = "<group>"; };
+		98D220BD1E80009D00B3BD06 /* UIWebTabCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebTabCollectionCell.xib; path = UserInterface/UIWebTabsView/UIWebTabCollectionCell/UIWebTabCollectionCell.xib; sourceTree = "<group>"; };
 		98EAF66B1CCF86DC00C77649 /* Operando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Operando.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98EAF6701CCF86DC00C77649 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -904,6 +912,25 @@
 			name = UIRealIdentityView;
 			sourceTree = "<group>";
 		};
+		98D220B61E7FFC8D00B3BD06 /* UIWebTabsView */ = {
+			isa = PBXGroup;
+			children = (
+				98D220BB1E80007000B3BD06 /* UIWebTabCollectionCell */,
+				98D220B71E7FFCEA00B3BD06 /* UIWebTabsView.swift */,
+				98D220B91E7FFD1F00B3BD06 /* UIWebTabsView.xib */,
+			);
+			name = UIWebTabsView;
+			sourceTree = "<group>";
+		};
+		98D220BB1E80007000B3BD06 /* UIWebTabCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				98D220BC1E80009D00B3BD06 /* UIWebTabCollectionCell.swift */,
+				98D220BD1E80009D00B3BD06 /* UIWebTabCollectionCell.xib */,
+			);
+			name = UIWebTabCollectionCell;
+			sourceTree = "<group>";
+		};
 		98EAF6621CCF86DC00C77649 = {
 			isa = PBXGroup;
 			children = (
@@ -959,6 +986,7 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				98D220B61E7FFC8D00B3BD06 /* UIWebTabsView */,
 				98F6B1271E7BFC2D00D193FF /* UIWebViewTab */,
 				98F6B1221E7BE58500D193FF /* UIWebToolbarView */,
 				989C8A7A1DD34634003BF341 /* UIRealIdentityView */,
@@ -1283,11 +1311,13 @@
 				98516FD41E042089007428F3 /* ProgressHUD.bundle in Resources */,
 				982DF0261DB638B900231BBD /* UIPfbDetailsView.xib in Resources */,
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
+				98D220BF1E80009D00B3BD06 /* UIWebTabCollectionCell.xib in Resources */,
 				9866A7C61DBF854000907D05 /* UINotificationsListView.xib in Resources */,
 				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
 				98387BC01DB75ACD00A76F01 /* UIDashboardButton.xib in Resources */,
 				98500BCF1E09A25800DF87E8 /* SCDSchema.json in Resources */,
 				9866A7B41DBF4B1000907D05 /* Localizable.strings in Resources */,
+				98D220BA1E7FFD1F00B3BD06 /* UIWebTabsView.xib in Resources */,
 				9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */,
 				986E3E651DB3CA6B00453DC6 /* UIAddIdentityView.xib in Resources */,
 				986DB8A61E1CE99900F9BE39 /* schema.json in Resources */,
@@ -1351,6 +1381,7 @@
 				986A58F81DB3A43700B622F5 /* UserInfoRepository.swift in Sources */,
 				982DF0351DB6579200231BBD /* AFHTTPSessionManager.m in Sources */,
 				98668B5D1DB0D0D900FDE63A /* ECSlidingViewController.m in Sources */,
+				98D220B81E7FFCEA00B3BD06 /* UIWebTabsView.swift in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
@@ -1438,6 +1469,7 @@
 				9866A7C41DBF852500907D05 /* UINotificationsListView.swift in Sources */,
 				986A58F41DB39E7500B622F5 /* UsersRepository.swift in Sources */,
 				982DF0501DB6579B00231BBD /* AFAutoPurgingImageCache.m in Sources */,
+				98D220BE1E80009D00B3BD06 /* UIWebTabCollectionCell.swift in Sources */,
 				982DF0361DB6579200231BBD /* AFNetworkReachabilityManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

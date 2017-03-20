@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIWebViewTab" customModule="Operando" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="dBD-0w-r3u" id="zhf-yv-mjL"/>
                 <outlet property="addressBarView" destination="gHj-m2-A0j" id="eGL-xJ-UlI"/>
                 <outlet property="addressTF" destination="ARk-g0-lGa" id="SSn-13-BAR"/>
                 <outlet property="webToolbarView" destination="I50-QF-Zae" id="BjX-fU-CTI"/>
@@ -42,16 +43,13 @@
                             </connections>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ARk-g0-lGa">
-                            <rect key="frame" x="6" y="7" width="230" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="o32-br-pQU"/>
-                            </constraints>
+                            <rect key="frame" x="6" y="2" width="230" height="40"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="webSearch" returnKeyType="go"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auN-IE-Fgn">
-                            <rect key="frame" x="6" y="36" width="230" height="1"/>
+                            <rect key="frame" x="6" y="41" width="230" height="1"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="znq-Sp-DcQ"/>
@@ -65,25 +63,31 @@
                         <constraint firstItem="auN-IE-Fgn" firstAttribute="leading" secondItem="ARk-g0-lGa" secondAttribute="leading" id="DGx-rc-7Ft"/>
                         <constraint firstAttribute="height" constant="44" id="DPj-Zn-DFC"/>
                         <constraint firstItem="ARk-g0-lGa" firstAttribute="leading" secondItem="gHj-m2-A0j" secondAttribute="leading" constant="6" id="ED6-tc-6Ri"/>
-                        <constraint firstItem="ARk-g0-lGa" firstAttribute="centerY" secondItem="gHj-m2-A0j" secondAttribute="centerY" id="bQ2-6r-Za8"/>
+                        <constraint firstAttribute="bottom" secondItem="ARk-g0-lGa" secondAttribute="bottom" constant="2" id="acc-Ci-XVP"/>
                         <constraint firstItem="jBJ-6W-h30" firstAttribute="centerY" secondItem="gHj-m2-A0j" secondAttribute="centerY" id="iUB-LS-Bt3"/>
                         <constraint firstItem="jBJ-6W-h30" firstAttribute="leading" secondItem="ARk-g0-lGa" secondAttribute="trailing" constant="-5" id="mA7-Ln-nee"/>
+                        <constraint firstItem="ARk-g0-lGa" firstAttribute="top" secondItem="gHj-m2-A0j" secondAttribute="top" constant="2" id="o0J-h2-ezT"/>
                         <constraint firstItem="auN-IE-Fgn" firstAttribute="bottom" secondItem="ARk-g0-lGa" secondAttribute="bottom" id="xnz-nd-pAo"/>
                     </constraints>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dBD-0w-r3u">
+                    <rect key="frame" x="132" y="191.5" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="gHj-m2-A0j" secondAttribute="trailing" id="9Zf-wc-LB6"/>
                 <constraint firstItem="gHj-m2-A0j" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Gts-b9-PHQ"/>
+                <constraint firstItem="dBD-0w-r3u" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QgV-MY-DLO"/>
                 <constraint firstItem="gHj-m2-A0j" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WJU-2l-FTZ"/>
                 <constraint firstAttribute="bottom" secondItem="I50-QF-Zae" secondAttribute="bottom" id="ctX-m8-LOe"/>
+                <constraint firstItem="dBD-0w-r3u" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mKl-vJ-vdw"/>
                 <constraint firstItem="I50-QF-Zae" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mRO-mH-HWn"/>
                 <constraint firstAttribute="trailing" secondItem="I50-QF-Zae" secondAttribute="trailing" id="na3-Xg-tka"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-4" y="-23.5"/>
+            <point key="canvasLocation" x="-133" y="-79"/>
         </view>
     </objects>
 </document>

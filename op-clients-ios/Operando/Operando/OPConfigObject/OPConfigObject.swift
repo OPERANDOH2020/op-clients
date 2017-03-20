@@ -8,6 +8,7 @@
 
 import UIKit
 import PlusPrivacyCommonUI
+import WebKit
 
 let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
 let kPleaseCheckEmailResetLocalizableKey = "kPleaseCheckEmailResetLocalizableKey"
@@ -86,33 +87,34 @@ class OPConfigObject: NSObject
     {
         self.initPropertiesOnAppStart()
         self.eraseCredentialsIfFreshAppReinstall()
-        
         self.flowController?.setupBaseHierarchyInWindow(window)
-        
-        flowController?.setSideMenu(enabled: false)
+        self.flowController?.setSideMenu(enabled: false)
         weak var weakSelf = self
-        if let (email, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
-        {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            ProgressHUD.show(kConnecting)
-            self.userRepository?.loginWith(email: email, password: password, withCompletion: { (error, data) in
-                ProgressHUD.dismiss()
-                
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                if let error = error {
-                    OPErrorContainer.displayError(error: error)
-                    weakSelf?.flowController?.displayLoginHierarchy()
-                    return
-                }
-                weakSelf?.currentUserIdentity = data
-                weakSelf?.flowController?.setupHierarchyStartingWithDashboardIn(window)
-                weakSelf?.flowController?.setSideMenu(enabled: true)
-            })
+        
+        OPConfigObject.deleteAllWebsiteDataWith {
+            if let (email, password) = CredentialsStore.retrieveLastSavedCredentialsIfAny()
+            {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                ProgressHUD.show(kConnecting)
+                weakSelf?.userRepository?.loginWith(email: email, password: password, withCompletion: { (error, data) in
+                    ProgressHUD.dismiss()
+                    
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    if let error = error {
+                        OPErrorContainer.displayError(error: error)
+                        weakSelf?.flowController?.displayLoginHierarchy()
+                        return
+                    }
+                    weakSelf?.currentUserIdentity = data
+                    weakSelf?.flowController?.setupHierarchyStartingWithDashboardIn(window)
+                    weakSelf?.flowController?.setSideMenu(enabled: true)
+                })
+            }
+            else {
+                weakSelf?.flowController?.displayLoginHierarchy()
+            }
         }
-        else {
-            weakSelf?.flowController?.displayLoginHierarchy()
-            
-        }
+        
     }
     
     func open(url: URL) -> Bool {
@@ -281,7 +283,14 @@ class OPConfigObject: NSObject
         
     }
     
-
+    private static func deleteAllWebsiteDataWith(callback: @escaping VoidBlock) {
+        if #available(iOS 9.0, *) {
+            let dataTypes = WKWebsiteDataStore.allWebsiteDataTypes()
+            WKWebsiteDataStore.default().removeData(ofTypes: dataTypes, modifiedSince: Date(timeIntervalSince1970: 0), completionHandler: callback)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
     
     private static func pathForFile(named: String) -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true);
