@@ -74,6 +74,8 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
     private var callbacks: UIWebViewTabCallbacks?
     private var urlHistory: [URL] = []
     private var currentURLIndex: Int = 0;
+    private var whenWebviewFinishesLoading: VoidBlock?
+    
     var currentNavigationModel: UIWebViewTabNavigationModel? {
         return UIWebViewTabNavigationModel(urlList: self.urlHistory, currentURLIndex: self.currentURLIndex)
     }
@@ -97,14 +99,14 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
         self.webToolbarView.setupWith(callbacks: self.callbacksForToolbar())
         
         if let navigationModel = model.navigationModel {
-            self.changeNavigationModel(to: navigationModel)
+            self.changeNavigationModel(to: navigationModel, callback: nil)
         }
     }
     
-    func changeNavigationModel(to model: UIWebViewTabNavigationModel) {
+    func changeNavigationModel(to model: UIWebViewTabNavigationModel, callback: VoidBlock?) {
         self.urlHistory = model.urlList
         self.currentURLIndex = model.currentURLIndex;
-        self.navigateTo(url: model.urlList[model.currentURLIndex])
+        self.navigateTo(url: model.urlList[model.currentURLIndex], callback: callback)
         self.addressTF.text = model.urlList[model.currentURLIndex].absoluteString
     }
     
@@ -137,6 +139,8 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
             if let resultArray = result as? [String],
                 let first = resultArray.first {
                 callback?(first)
+            } else {
+                callback?(nil)
             }
         })
     }
@@ -154,7 +158,7 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
         
         let navigateBlock: (_ url: URL) -> Void = { url in
             self.addNewURLInHistory(url)
-            self.navigateTo(url: url)
+            self.navigateTo(url: url, callback: nil)
         }
         
         if let url = URL.tryBuildWithHttp(with: userInput) {
@@ -168,9 +172,15 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
     }
     
     
-    private func navigateTo(url: URL) {
+    private func navigateTo(url: URL, callback: VoidBlock?) {
         let request = URLRequest(url: url)
         self.webView?.load(request)
+        weak var weakSelf = self
+        
+        self.whenWebviewFinishesLoading = {
+            callback?()
+            weakSelf?.whenWebviewFinishesLoading = nil
+        }
     }
     
     private func createWebViewWith(configuration: WKWebViewConfiguration) -> WKWebView {
@@ -203,6 +213,10 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
     }
     
     private func addNewURLInHistory(_ url: URL) {
+        guard !self.urlHistory.contains(url) else {
+            return
+        }
+        
         if self.urlHistory.count == 0 {
             self.currentURLIndex = 0;
         } else {
@@ -220,7 +234,7 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
         }
         
         self.currentURLIndex -= 1;
-        self.navigateTo(url: self.urlHistory[self.currentURLIndex])
+        self.navigateTo(url: self.urlHistory[self.currentURLIndex], callback: nil)
     }
     
     private func goForward () {
@@ -229,7 +243,7 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
         }
         
         self.currentURLIndex += 1;
-        self.navigateTo(url: self.urlHistory[self.currentURLIndex])
+        self.navigateTo(url: self.urlHistory[self.currentURLIndex], callback: nil)
     }
     
     private func callbacksForToolbar() -> UIWebToolbarViewCallbacks {
@@ -263,15 +277,6 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(.allow)
-        
-        guard let url = navigationAction.request.url else {
-            return
-        }
-        
-        if navigationAction.navigationType != .other &&
-            navigationAction.navigationType != .reload {
-            self.addNewURLInHistory(url)
-        }
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -280,7 +285,12 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.activityIndicator.isHidden = true
-        self.addressTF.text = webView.url?.absoluteString
+        guard let url = webView.url else {
+            return
+        }
+        self.addNewURLInHistory(url)
+        self.addressTF.text = url.absoluteString
+        self.whenWebviewFinishesLoading?()
     }
     
     //MARK: -

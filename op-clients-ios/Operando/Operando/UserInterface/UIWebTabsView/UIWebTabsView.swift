@@ -17,9 +17,17 @@ struct UIWebTabsViewCallbacks {
 
 class UIWebTabsView: RSNibDesignableView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var webTabs: [WebTabDescription] = []
     private var callbacks: UIWebTabsViewCallbacks?
+    
+    var inBusyState: Bool = false {
+        didSet {
+            self.activityIndicator.isHidden = !self.inBusyState
+            self.isUserInteractionEnabled = !self.inBusyState
+        }
+    }
     
     override func commonInit() {
         super.commonInit()

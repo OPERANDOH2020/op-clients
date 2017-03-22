@@ -482,7 +482,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRZ-mB-auq" customClass="UIWebViewTab" customModule="Operando" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRZ-mB-auq" userLabel="webTabsHostView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -505,9 +505,9 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="webTabsHostView" destination="gRZ-mB-auq" id="adN-Pf-fja"/>
                         <outlet property="webTabsView" destination="iQq-rJ-dGj" id="jFO-bb-bCo"/>
                         <outlet property="webTabsViewTopCn" destination="DXD-41-Pvh" id="2hg-oy-ycK"/>
-                        <outlet property="webViewTab" destination="gRZ-mB-auq" id="wxl-jA-52H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4yz-nP-zUb" userLabel="First Responder" sceneMemberID="firstResponder"/>

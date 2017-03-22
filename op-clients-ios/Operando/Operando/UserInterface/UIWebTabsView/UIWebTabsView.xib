@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIWebTabsView" customModule="Operando" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="sMl-QP-7L0" id="Hjr-y9-EQ5"/>
                 <outlet property="collectionView" destination="gA9-u2-mj4" id="1YE-jy-ARm"/>
             </connections>
         </placeholder>
@@ -46,6 +47,9 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sMl-QP-7L0">
+                    <rect key="frame" x="149" y="233" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -53,7 +57,9 @@
                 <constraint firstItem="1iP-lH-6n5" firstAttribute="leading" secondItem="KX3-z3-2xc" secondAttribute="leading" id="9Xg-qX-psG"/>
                 <constraint firstAttribute="trailing" secondItem="1iP-lH-6n5" secondAttribute="trailing" id="aMF-IN-LEh"/>
                 <constraint firstItem="1iP-lH-6n5" firstAttribute="top" secondItem="gA9-u2-mj4" secondAttribute="bottom" id="iOg-At-0IM"/>
+                <constraint firstItem="sMl-QP-7L0" firstAttribute="centerY" secondItem="KX3-z3-2xc" secondAttribute="centerY" id="iRy-W4-Q7q"/>
                 <constraint firstAttribute="trailing" secondItem="gA9-u2-mj4" secondAttribute="trailing" id="pBw-fs-9dD"/>
+                <constraint firstItem="sMl-QP-7L0" firstAttribute="centerX" secondItem="KX3-z3-2xc" secondAttribute="centerX" id="qmp-Xt-bxr"/>
                 <constraint firstItem="gA9-u2-mj4" firstAttribute="leading" secondItem="KX3-z3-2xc" secondAttribute="leading" id="wsP-HS-4f4"/>
                 <constraint firstAttribute="bottom" secondItem="1iP-lH-6n5" secondAttribute="bottom" id="ylT-gc-Khb"/>
             </constraints>
