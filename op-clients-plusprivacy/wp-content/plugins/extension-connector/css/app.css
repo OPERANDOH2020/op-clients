@@ -401,7 +401,6 @@ a.dt-button.buttons-pdf{
     background-image:url("images/export_pdf.png");
 }
 
-
 .btn.btn-primary
 {
     background: #FFB400;
@@ -519,5 +518,40 @@ ul.nav-tabs>li.active>a, ul.nav-tabs>li.active>a:focus, ul.nav-tabs>li.active>a:
 .navbar-default .navbar-nav > .open>a:hover span,
 .navbar-default .navbar-nav > .open>a:focus span{
     color:#333!important;
+}
+.description_popover{
+    background: url('images/details.png') no-repeat center center;
+    width:32px;
+    height:32px;
+    display:block;
+    margin: 0 auto;
+
+}
+.description_popover + .popover{
+    max-width:700px
+}
+
+.description_popover + .popover .popover-content{
+    min-width:190px;
+    background: #fff6e0;
+}
+
+.description_popover + .popover{
+    background-color: #fff6e0;
+}
+.description_popover + .popover .popover-title {
+    color: #FFF;
+    background-color: #FFb400;
+    border-bottom: 1px solid #FFb400;
+}
+
+.description_popover + .popover.top>.arrow:after{
+    border-top-color: #fff6e0;
+}
+
+#osp_requests_table td,
+#osp_list_table td
+{
+    vertical-align: middle;
 }
 

@@ -77,7 +77,7 @@ angular.module('sharedService').service("swarmService", function () {
             }
 
 
-            swarmConnection = new SwarmClient(host, port, email, sessionId, "chromeBrowserExtension", "restoreSession", securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
+            swarmConnection = new SwarmClient(host, port, email, sessionId, "PlusPrivacyWebsite", "restoreSession", securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
             swarmHub.resetConnection(swarmConnection);
         };
         removeConnection = function () {

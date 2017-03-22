@@ -27,7 +27,6 @@
                         </tr>
                         </thead>
 
-
                         <tbody>
                         <tr ng-repeat="ospRequest in ospRequests">
 
@@ -36,7 +35,10 @@
                             <td>{{ospRequest.website}}</td>
                             <td>{{ospRequest.phone}}</td>
                             <td>{{ospRequest.request_time|timeAgo}} ago</td>
-                            <td>{{ospRequest.deals_description}}</td>
+                            <td>
+                                <a type="button"  class="description_popover" href="#" data-placement="auto" title="{{ospRequest.name}}" data-content="{{ospRequest.deals_description}}" data-trigger="click" data-auto-close="true" bs-popover></a>
+
+                            </td>
                             <td style="width:260px">
                                 <button class="btn btn-primary" ng-click="acceptOSPRequest(ospRequest.userId)">Approve OSP</button>
                                 <button  class="btn btn-primary-black" ng-click="deleteOSPRequest(ospRequest.userId)">Delete request</button>
@@ -44,7 +46,6 @@
                         </tr>
                         </tbody>
                     </table>
-
 
                 </div>
             </div>
@@ -63,7 +64,6 @@
                         </tr>
                         </thead>
 
-
                         <tbody>
                         <tr ng-repeat="osp in ospList">
 
@@ -72,7 +72,7 @@
                             <td>{{osp.website}}</td>
                             <td>{{osp.phone}}</td>
                             <td>{{osp.osp_accepted_time|timestampToDateFormat}}</td>
-                            <td>{{osp.deals_description}}</td>
+                            <td><a type="button"  class="description_popover" href="#" data-placement="auto" title="{{osp.name}}" data-content="{{osp.deals_description}}" data-trigger="click" data-auto-close="true" bs-popover></a></td>
                             <td> <button class="btn btn-primary" ng-click="viewOffersStats(osp.userId)">View</button></td>
                         </tr>
                         </tbody>

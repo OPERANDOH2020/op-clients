@@ -28,7 +28,7 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
                     verifyAccountHandler.onResponse("success", function (swarm) {
 
                         swarmService.removeConnection();
-                        successCallback("success");
+                        successCallback(swarm.validatedUserSession);
 
                     });
 
@@ -75,7 +75,6 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
             };
 
             var loginFailed = function (swarm) {
-                console.log(swarm.error);
                 failCallback(swarm.error);
                 swarmHub.off("login.js", "success", userLoginSuccess);
                 swarmHub.off("login.js", "failed", loginFailed);

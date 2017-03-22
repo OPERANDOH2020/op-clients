@@ -3008,3 +3008,40 @@ a.donwload-app:hover img{
 	background: none;
 	opacity: 1;
 }
+
+#sidebar-footer{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	text-align: center;
+}
+
+#sidebar-footer-secondary{
+	position: absolute;
+	right: 0;
+	bottom: 50px;
+	left: 0;
+	padding: 1rem;
+	text-align: center;
+}
+
+
+
+html {
+	height: 100%;
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	position: relative;
+	margin: 0;
+	min-height: calc(100% - 80px);
+}

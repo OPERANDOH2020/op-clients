@@ -1,4 +1,5 @@
-var privacyPlusApp = window.privacyPlusApp = angular.module("plusprivacy", ['angularModalService', 'ui-notification','sharedService']);
+var privacyPlusApp = window.privacyPlusApp = angular.module("plusprivacy", ['angularModalService', 'ui-notification',
+    'sharedService','mgcrea.ngStrap']);
 privacyPlusApp.config(function (NotificationProvider) {
     NotificationProvider.setOptions({
         delay: 10000,

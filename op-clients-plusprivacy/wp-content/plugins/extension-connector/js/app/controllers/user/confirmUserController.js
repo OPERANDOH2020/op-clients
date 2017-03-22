@@ -11,17 +11,32 @@ function getParameterByName(name, url) {
 }
 
 
-privacyPlusApp.controller("confirmUserController", function ($scope, $location, connectionService) {
+privacyPlusApp.controller("confirmUserController", function ($scope, $location, connectionService,$window) {
 
     $scope.loadingData = true;
     var confirmationCode = getParameterByName("confirmation_code");
 
     if(confirmationCode){
-        connectionService.activateUser(confirmationCode, function (message) {
+        connectionService.activateUser(confirmationCode, function (validatedUserSession) {
                 $scope.verifyUserStatus = "Email verification successful.";
                 $scope.status="success";
                 $scope.loadingData = false;
                 $scope.$apply();
+
+                Cookies.set("sessionId", validatedUserSession.sessionId);
+                Cookies.set("userId", validatedUserSession.userId);
+
+                connectionService.restoreUserSession(function(){
+                    messengerService.send("authenticateUserInExtension", {
+                        userId: Cookies.get("userId"),
+                        sessionId: Cookies.get("sessionId")
+                    }, function (status) {
+                        successCallback({status: "success"});
+                    });
+                },function(){
+                    console.log("Could not restore user session!");
+                });
+
             },
             function(){
                 $scope.verifyUserStatus = "You provided an invalid validation code";
@@ -31,4 +46,14 @@ privacyPlusApp.controller("confirmUserController", function ($scope, $location, 
             });
     }
 
+
+    $scope.goToDashboard = function(){
+        $window.location = "/user-dashboard";
+    }
+
 });
+
+angular.element(document).ready(function() {
+    angular.bootstrap(document.getElementById('confirm-account'), ['plusprivacy']);
+});
+

@@ -36,6 +36,7 @@ privacyPlusApp.controller("loginController", function ($scope, connectionService
 
                 $scope.requestProcessed = false;
                 $scope.authenticationError = true;
+                $scope.$apply();
             });
     };
 

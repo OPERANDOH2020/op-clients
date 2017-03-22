@@ -54,9 +54,14 @@ function load_swarm_resources()
     wp_enqueue_script('swarm-client', plugins_url('/js/swarm-services/SwarmClient.js', __FILE__));
     wp_enqueue_script('swarm-hub', plugins_url('/js/swarm-services/SwarmHub.js', __FILE__));
     wp_enqueue_script('angular', plugins_url('/js/angular/angular.min.js', __FILE__));
+    wp_enqueue_script('angular-animate', plugins_url('/js/utils/angular-animate/angular-animate.js', __FILE__));
+    wp_enqueue_script('angular-strap', plugins_url('/js/utils/angular-strap/angular-strap.min.js', __FILE__));
+    wp_enqueue_script('angular-strap-tpl', plugins_url('/js/utils/angular-strap/angular-strap.tpl.js', __FILE__));
+
+
+
     wp_enqueue_script('modal-service', plugins_url('/js/utils/angular-modal/angular-modal-service.js', __FILE__));
     wp_enqueue_script('notification-service', plugins_url('/js/utils/angular-ui-notification/angular-ui-notification.min.js', __FILE__));
-    wp_enqueue_style('notification-service-style', plugins_url('/js/utils/angular-ui-notification/angular-ui-notification.min.css', __FILE__));
     wp_enqueue_script('shared-service', plugins_url('/js/app/modules/sharedService.js', __FILE__));
     wp_enqueue_script('menu-angular-app', plugins_url('/js/app/menuApp.js', __FILE__));
     wp_enqueue_script('angular-service-connection', plugins_url('/js/app/services/connectionService.js', __FILE__));
@@ -66,15 +71,17 @@ function load_swarm_resources()
     wp_enqueue_script('access-service', plugins_url('/js/app/services/access-service.js', __FILE__));
     wp_enqueue_script('menu-controller', plugins_url('/js/app/controllers/navigationController.js', __FILE__));
     wp_enqueue_script('navigation-directive', plugins_url('/js/app/directives/navigation.js', __FILE__));
-
-
     wp_enqueue_script('angular-app', plugins_url('/js/app/app.js', __FILE__));
     wp_enqueue_script('loader', plugins_url('/js/app/directives/loader.js', __FILE__));
+
     wp_enqueue_style('bootstrap', plugins_url('/css/bootstrap/bootstrap.css', __FILE__));
     wp_enqueue_style('bootstrap-theme', plugins_url('/css/bootstrap/bootstrap-theme.min.css', __FILE__));
     wp_enqueue_style('bootstrap-vertical-tabs', plugins_url('/css/bootstrap/bootstrap.vertical-tabs.min.css', __FILE__));
     wp_enqueue_style('plusprivacy-bootstrap', plugins_url('/css/bootstrap/plusprivacy-theme.css', __FILE__));
+    wp_enqueue_style('notification-service-style', plugins_url('/js/utils/angular-ui-notification/angular-ui-notification.min.css', __FILE__));
     wp_enqueue_style('app-style', plugins_url('/css/app.css', __FILE__));
+    wp_enqueue_style('angular-strap-libs', plugins_url('/js/utils/angular-strap/libs.min.css', __FILE__));
+    wp_enqueue_style('angular-strap-docs', plugins_url('/js/utils/angular-strap/docs.min.css', __FILE__));
 
 }
 
@@ -180,7 +187,6 @@ function ospOffersController()
 {   insertScriptIfShortcode("angular-material-js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-material/angular-material.min.js', __FILE__));
     insertStyleIfShortcode("angular-material-style", 'osp-dashboard-offers', plugins_url('/js/utils/angular-material/angular-material.css', __FILE__));
     insertScriptIfShortcode("moment.js", 'osp-dashboard-offers', plugins_url('/js/utils/momentjs/moment.js', __FILE__));
-    insertScriptIfShortcode("angular-animate.js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-animate/angular-animate.js', __FILE__));
     insertScriptIfShortcode("angular-aria.js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-aria/angular-aria.min.js', __FILE__));
     insertScriptIfShortcode("angular-messages.js", 'osp-dashboard-offers', plugins_url('/js/utils/angular-messages/angular-messages.min.js', __FILE__));
     insertScriptIfShortcode("mdPickers.js", 'osp-dashboard-offers', plugins_url('/js/utils/mdPickers/mdPickers.min.js', __FILE__));
