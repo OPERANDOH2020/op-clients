@@ -27,13 +27,18 @@ typedef NS_ENUM(NSInteger, PPEventType) {
     EventSetDeviceProximitySensingEnabled,
     EventGetDeviceProximityState,
     
-    
-    EventStartPedometerUpdates
+    EventStartPedometerUpdates,
+    EventAllowRequestToExecute
+
 };
 
 #import <Foundation/Foundation.h>
 
 #pragma mark - 
+
+#define kPPRequest @"kPPRequest"
+#define kPPAllowRequestValue @"kPPAllowRequestValue"
+
 // - NSURLSession related keys
 
 #define kPPURLSessionDataTask @"kURLSessionDataTaskKey"

@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		98106FCB1E841A520024F14A /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98106FCA1E841A520024F14A /* PPApiHooks.framework */; };
 		981A4A6B1E58ABFE002C4876 /* OPMonitorSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 981A4A691E58ABFE002C4876 /* OPMonitorSettings.h */; };
 		981A4A6C1E58ABFE002C4876 /* OPMonitorSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 981A4A6A1E58ABFE002C4876 /* OPMonitorSettings.m */; };
 		981EAC701E48C7C6000F59E3 /* PlistReportsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 981EAC6E1E48C7C6000F59E3 /* PlistReportsStorage.h */; };
@@ -58,7 +59,6 @@
 		9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */; };
 		9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */; };
 		9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */; };
-		9869FA941E7AC7DC001A8218 /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9869FA931E7AC7DC001A8218 /* PPApiHooks.framework */; };
 		987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */; };
 		987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F837C1E3241930058633C /* LocationInputSupervisor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -279,6 +279,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		98106FCA1E841A520024F14A /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		981A4A691E58ABFE002C4876 /* OPMonitorSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorSettings.h; path = OPMonitorSettings/OPMonitorSettings.h; sourceTree = "<group>"; };
 		981A4A6A1E58ABFE002C4876 /* OPMonitorSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorSettings.m; path = OPMonitorSettings/OPMonitorSettings.m; sourceTree = "<group>"; };
 		981EAC6D1E48C660000F59E3 /* ReportsStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReportsStorageProtocol.h; path = ReportsStorageAndUI/ReportsStorageProtocol.h; sourceTree = "<group>"; };
@@ -320,7 +321,6 @@
 		9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSURLSessionSupervisor.h; path = NSURLSessionHook/NSURLSessionSupervisor.h; sourceTree = "<group>"; };
 		9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSURLSessionSupervisor.m; path = NSURLSessionHook/NSURLSessionSupervisor.m; sourceTree = "<group>"; };
-		9869FA931E7AC7DC001A8218 /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		987F836F1E3212140058633C /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Common.h; path = Common/Common.h; sourceTree = "<group>"; };
 		987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorInputSourceEvent.h; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.h; sourceTree = "<group>"; };
 		987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorInputSourceEvent.m; path = OPMonitor/OPMonitorInputSourceReport/OPMonitorInputSourceEvent.m; sourceTree = "<group>"; };
@@ -548,7 +548,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9869FA941E7AC7DC001A8218 /* PPApiHooks.framework in Frameworks */,
+				98106FCB1E841A520024F14A /* PPApiHooks.framework in Frameworks */,
 				98F1FF6B1E714AF100A664AB /* PlusPrivacyCommonTypes.framework in Frameworks */,
 				98281D0C1E69B0E100373369 /* PlusPrivacyCommonUI.framework in Frameworks */,
 			);
@@ -1042,7 +1042,7 @@
 		9895FB361E5B332A00B1F56D /* Frameworks+Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				9869FA931E7AC7DC001A8218 /* PPApiHooks.framework */,
+				98106FCA1E841A520024F14A /* PPApiHooks.framework */,
 				98281D0A1E69B0E100373369 /* PlusPrivacyCommonUI.framework */,
 				98F1FF6A1E714AF100A664AB /* PlusPrivacyCommonTypes.framework */,
 				98CEF2831E5F1B24002C2145 /* Charts */,
