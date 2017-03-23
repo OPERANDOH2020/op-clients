@@ -53,7 +53,7 @@ class UIPfbDetailsView: RSNibDesignableView, UIPfbDisplayingView {
         self.dealDescriptionLabel.text = model.description
         
         if let urlString = model.logo, let url = URL(string: urlString){
-            self.logoImageView.setImageWith(url)
+            //self.logoImageView.setImageWith(url)
         }
         
         self.changeSubscribedStatus(to: model.subscribed)

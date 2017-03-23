@@ -115,12 +115,49 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # define SWIFT_UNAVAILABLE __attribute__((unavailable))
 #endif
 #if defined(__has_feature) && __has_feature(modules)
+@import Foundation;
+@import ObjectiveC;
 @import UIKit;
 @import CoreGraphics;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+
+@interface NSBundle (SWIFT_EXTENSION(PlusPrivacyCommonUI))
+@end
+
+@protocol SCDRepository;
+enum ExitArrowDirection : NSInteger;
+@class UIViewController;
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI15CommonUIBUilder")
+@interface CommonUIBUilder : NSObject
++ (UIViewController * _Nullable)buildFlowFor:(id <SCDRepository> _Nonnull)repository exitArrowDirection:(enum ExitArrowDirection)exitArrowDirection whenExiting:(void (^ _Nullable)(void))whenExiting;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+typedef SWIFT_ENUM(NSInteger, ExitArrowDirection) {
+  ExitArrowDirectionLeft = 0,
+  ExitArrowDirectionUp = 1,
+};
+
+@class SCDDocument;
+@class NSError;
+
+SWIFT_PROTOCOL("_TtP19PlusPrivacyCommonUI13SCDRepository_")
+@protocol SCDRepository
+- (void)retrieveAllDocumentsWith:(void (^ _Nullable)(NSArray<SCDDocument *> * _Nullable, NSError * _Nullable))callback;
+@end
+
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI21OneDocumentRepository")
+@interface OneDocumentRepository : NSObject <SCDRepository>
+- (nonnull instancetype)initWithDocument:(SCDDocument * _Nonnull)document OBJC_DESIGNATED_INITIALIZER;
+- (void)retrieveAllDocumentsWith:(void (^ _Nullable)(NSArray<SCDDocument *> * _Nullable, NSError * _Nullable))callback;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
 @class NSCoder;
 
 SWIFT_CLASS("_TtC19PlusPrivacyCommonUI19PPNibDesignableView")
@@ -132,8 +169,53 @@ SWIFT_CLASS("_TtC19PlusPrivacyCommonUI19PPNibDesignableView")
 @end
 
 
+@class SCDSectionHeaderModel;
+@class SCDSectionHeaderCallbacks;
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI16SCDSectionHeader")
+@interface SCDSectionHeader : PPNibDesignableView
+- (void)setupWithModel:(SCDSectionHeaderModel * _Nullable)model callbacks:(SCDSectionHeaderCallbacks * _Nullable)callbacks;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI25SCDSectionHeaderCallbacks")
+@interface SCDSectionHeaderCallbacks : NSObject
+@property (nonatomic, readonly, copy) void (^ _Nullable callToExpand)(SWIFT_NOESCAPE void (^ _Nonnull)(BOOL));
+@property (nonatomic, readonly, copy) void (^ _Nullable callToContract)(SWIFT_NOESCAPE void (^ _Nonnull)(BOOL));
+- (nonnull instancetype)initWithCallToExpand:(void (^ _Nullable)(SWIFT_NOESCAPE void (^ _Nonnull)(BOOL)))callToExpand callToContract:(void (^ _Nullable)(SWIFT_NOESCAPE void (^ _Nonnull)(BOOL)))callToContract OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI21SCDSectionHeaderModel")
+@interface SCDSectionHeaderModel : NSObject
+@property (nonatomic, readonly) BOOL enabled;
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+@property (nonatomic) BOOL expanded;
+- (nonnull instancetype)initWithName:(NSString * _Nonnull)name expanded:(BOOL)expanded enabled:(BOOL)enabled OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
 @interface UIColor (SWIFT_EXTENSION(PlusPrivacyCommonUI))
 + (UIColor * _Nonnull)colorWith:(float)red :(float)green :(float)blue :(float)alpha;
+@end
+
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI28UINotificationViewController")
+@interface UINotificationViewController : UIViewController
+- (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)animated;
++ (void)presentBadNotificationMessage:(NSString * _Nonnull)message inController:(UIViewController * _Nonnull)hostController atDistanceFromTop:(CGFloat)topDistance;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface UIViewController (SWIFT_EXTENSION(PlusPrivacyCommonUI))
+- (void)ppAddChildContentController:(UIViewController * _Nonnull)controller;
+- (void)ppRemoveChildContentController:(UIViewController * _Nonnull)controller;
 @end
 
 #pragma clang diagnostic pop

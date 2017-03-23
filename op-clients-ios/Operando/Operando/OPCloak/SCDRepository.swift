@@ -35,13 +35,16 @@ class PlistSCDRepository: SCDRepository, PlusPrivacyCommonUI.SCDRepository {
     
     private func loadPlistObjects() {
         guard let plistArray = NSArray(contentsOfFile: self.plistFilePath),
-              let plistDictsArray = plistArray as? [[String : Any]],
-              let scdDocuments = SCDDocument.buildFromJSON(array: plistDictsArray) else {
+            let plistDictsArray = plistArray as? [[String : Any]] else {
                 return
         }
-        
-        self.scdDocuments = scdDocuments
-        self.scdJSONS = plistDictsArray
+    
+        CommonTypeBuilder.sharedInstance.buildFromJSON(array: plistDictsArray) { documents, error  in
+            if let documents = documents {
+                self.scdDocuments = documents
+                self.scdJSONS = plistDictsArray
+            }
+        }
     }
     
     internal func retrieveAllDocuments(with completion: (([SCDDocument]?, NSError?) -> Void)?) {
@@ -57,14 +60,17 @@ class PlistSCDRepository: SCDRepository, PlusPrivacyCommonUI.SCDRepository {
     }
 
     internal func registerSCDJson(_ json: [String : Any], withCompletion completion: ErrorCallback?) {
-        guard let scdDocument = SCDDocument(scd: json) else {
-            completion?(NSError.errorMissingValuesFromSCDJSON)
-            return
+        CommonTypeBuilder.sharedInstance.buildSCDDocument(with: json) { document, error  in
+            
+            guard let scdDocument = document else {
+                completion?(error)
+                return
+            }
+            self.scdJSONS.append(json)
+            self.scdDocuments.append(scdDocument)
+            self.synchronize()
+            completion?(nil)
         }
-        self.scdJSONS.append(json)
-        self.scdDocuments.append(scdDocument)
-        self.synchronize()
-        completion?(nil)
     }
 
     

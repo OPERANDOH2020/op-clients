@@ -1,0 +1,6 @@
+framework module PPApiHooks {
+  umbrella header "PPApiHooks.h"
+
+  export *
+  module * { export * }
+}

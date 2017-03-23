@@ -102,29 +102,12 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="6zM-SB-YYm" style="IBUITableViewCellStyleDefault" id="JgB-gc-5Vn" userLabel="UsageGraphsCell">
-                                        <rect key="frame" x="0.0" y="243" width="320" height="41"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JgB-gc-5Vn" id="qc6-gB-JLD">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="40"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Usage graphs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6zM-SB-YYm">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="40"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Settings" id="i2T-Cz-g9n">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kVq-WA-8CL" userLabel="NotificationsCell">
-                                        <rect key="frame" x="0.0" y="341" width="320" height="41"/>
+                                        <rect key="frame" x="0.0" y="300" width="320" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kVq-WA-8CL" id="zxv-Wg-54w">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
@@ -156,7 +139,7 @@
                             <tableViewSection headerTitle="Overrides" id="DEb-h7-EPY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ZLi-Zn-mGb" style="IBUITableViewCellStyleDefault" id="54W-o7-8xJ" userLabel="OverrideLocationCell">
-                                        <rect key="frame" x="0.0" y="439" width="320" height="41"/>
+                                        <rect key="frame" x="0.0" y="398" width="320" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="54W-o7-8xJ" id="oOg-0M-SFv">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="40"/>
@@ -342,7 +325,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l0p-Kw-Zjl" id="Vrj-6U-Oa0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSY-Ew-4eJ">
@@ -489,7 +472,7 @@
                                     <constraint firstItem="IgU-ku-gMC" firstAttribute="centerY" secondItem="KJp-Vz-vCL" secondAttribute="centerY" id="q6p-xv-39k"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCK-Og-FE0" customClass="BarChartView" customModule="RSFrameworksHook">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCK-Og-FE0">
                                 <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -505,9 +488,6 @@
                             <constraint firstAttribute="trailing" secondItem="yCK-Og-FE0" secondAttribute="trailing" id="ufR-Im-pFy"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="barChartView" destination="yCK-Og-FE0" id="Zaz-V6-9iv"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Veg-1E-mVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

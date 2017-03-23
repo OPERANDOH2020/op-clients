@@ -211,7 +211,7 @@ class UIFlowController: SSASideMenuDelegate
     
     private func displaySCDDocumentsViewController() {
         guard let repository = self.dependencies.scdDocumentsRepository,
-              let controller = CommonUIBUilder.buildFlow(for: repository, whenExiting: nil) else {
+              let controller = CommonUIBUilder.buildFlow(for: repository, exitArrowDirection: .Up, whenExiting: nil) else {
             return
         }
         

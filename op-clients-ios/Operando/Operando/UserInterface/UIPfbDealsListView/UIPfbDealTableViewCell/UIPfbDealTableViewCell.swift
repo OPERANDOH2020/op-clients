@@ -31,7 +31,7 @@ class UIPfbDealTableViewCell: UITableViewCell, UIPfbDisplayingView {
         
         self.websiteURL.text = url
         if let url = model.logo, let actualURL  = URL(string: url){
-            self.logoImageView.setImageWith(actualURL)
+            //self.logoImageView.setImageWith(actualURL)
         }
         
         self.subscriebdSwitch.isOn = model.subscribed
