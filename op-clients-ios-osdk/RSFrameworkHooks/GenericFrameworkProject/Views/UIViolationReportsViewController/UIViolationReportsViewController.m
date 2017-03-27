@@ -66,7 +66,6 @@
 #pragma mark -
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"Returning %ld number of sections", self.reportSections.count);
     return  self.reportSections.count;
 }
 

@@ -33,11 +33,9 @@
                                    @(EventSetDeviceProximityMonitoringEnabled)];
     
     [model.eventsDispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
-        NSLog(@"proximity parsing event");
         
         NSNumber *eventType = @(event.eventType);
         if ([interestingEvents containsObject:eventType]) {
-            NSLog(@"found proximity event: %d", eventType.intValue);
             [weakSelf processEvent:event withNextHandler:nextHandlerIfAny];
             return;
         }

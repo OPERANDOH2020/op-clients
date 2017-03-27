@@ -38,16 +38,12 @@
 +(BOOL)canInitWithRequest:(NSURLRequest *)request {
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
-    SAFEADD(evData, kPPRequest, request)
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventAllowRequestToExecute eventData:evData whenNoHandlerAvailable:nil];
+    SAFEADD(evData, kPPWebViewRequest, request)
+    PPEvent *event = [[PPEvent alloc] initWithEventType:EventAllowWebViewRequest eventData:evData whenNoHandlerAvailable:nil];
     
     [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
     
-    if ([evData objectForKey:kPPAllowRequestValue] == nil) {
-        return NO;
-    }
-    
-    return ![[evData objectForKey:kPPAllowRequestValue] boolValue];
+    return [evData[kPPAllowWebViewRequestValue] boolValue];
 }
 
 -(void)startLoading {

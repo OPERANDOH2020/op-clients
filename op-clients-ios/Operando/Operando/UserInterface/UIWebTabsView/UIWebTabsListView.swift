@@ -1,5 +1,5 @@
 //
-//  UIWebTabsView.swift
+//  UIWebTabsListView.swift
 //  Operando
 //
 //  Created by Costin Andronache on 3/20/17.
@@ -15,7 +15,7 @@ struct UIWebTabsViewCallbacks {
     let whenUserDeletedTabAtIndex: ((_ index: Int) -> Void)?
 }
 
-class UIWebTabsView: RSNibDesignableView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class UIWebTabsListView: RSNibDesignableView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     

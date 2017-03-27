@@ -14,7 +14,7 @@ class DummyWebViewTab: UIWebViewTab {
     }
 }
 
-class DummyWebTabsView: UIWebTabsView {
+class DummyWebTabsView: UIWebTabsListView {
     override func commonInit() {
     }
 }

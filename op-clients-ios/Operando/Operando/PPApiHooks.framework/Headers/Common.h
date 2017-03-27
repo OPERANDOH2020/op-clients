@@ -36,14 +36,16 @@ typedef NS_ENUM(NSInteger, PPEventType) {
 
 #pragma mark - 
 
-#define kPPRequest @"kPPRequest"
-#define kPPAllowRequestValue @"kPPAllowRequestValue"
+#define kPPWebViewRequest @"kPPWebViewRequest"
+#define kPPAllowWebViewRequestValue @"kPPAllowWebViewRequestValue"
 
 // - NSURLSession related keys
 
-#define kPPURLSessionDataTask @"kURLSessionDataTaskKey"
-#define kPPURLSessionRequest @"kPPURLSessionRequestKey"
-#define kPPURLSessionCompletionHandler @"kPPURLSessionCompletionHandler"
+#define kPPURLSessionDataTask @"kURLSessionDataTask"
+#define kPPURLSessionDataTaskRequest @"kPPURLSessionDataTaskRequest"
+#define kPPURLSessionDataTaskResponse @"kPPURLSessionDataTaskResponse"
+#define kPPURLSessionDatTaskResponseData @"kPPURLSessionDatTaskResponseData"
+#define kPPURLSessionDataTaskError @"kPPURLSessionDataTaskError"
 
 #pragma mark - 
 // - CLLocationManager related keys

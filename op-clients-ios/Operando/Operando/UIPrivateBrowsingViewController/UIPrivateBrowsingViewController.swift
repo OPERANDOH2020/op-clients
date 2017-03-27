@@ -19,7 +19,7 @@ class WebTab {
 
 class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
 {
-    @IBOutlet weak var webTabsView: UIWebTabsView!
+    @IBOutlet weak var webTabsView: UIWebTabsListView!
     @IBOutlet weak var webTabsViewTopCn: NSLayoutConstraint!
     @IBOutlet weak var webTabsHostView: UIView!
     

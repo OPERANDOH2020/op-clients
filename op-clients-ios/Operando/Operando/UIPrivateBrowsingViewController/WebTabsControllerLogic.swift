@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 typealias WebViewVisibilityModifier = (_ webTab: UIWebViewTab, _ animated: Bool, _ completion: VoidBlock?) -> Void
-typealias WebTabsViewVisibilityModifier = (_ webTabsView: UIWebTabsView, _ animated: Bool, _ completion: VoidBlock?) -> Void
+typealias WebTabsViewVisibilityModifier = (_ webTabsView: UIWebTabsListView, _ animated: Bool, _ completion: VoidBlock?) -> Void
 
 struct WebTabsControllerLogicCallbacks {
     let hideWebViewTabCallback: WebViewVisibilityModifier?
@@ -21,7 +21,7 @@ struct WebTabsControllerLogicCallbacks {
 }
 
 struct WebTabsControllerLogicModel {
-    let webTabsView: UIWebTabsView
+    let webTabsView: UIWebTabsListView
     let maxNumberOfReusableWebViews: Int
     let webPool: WebViewTabManagementPool
 }
@@ -229,7 +229,7 @@ class WebTabsControllerLogic: NSObject {
     
 
     
-    private func callbacksForWebTabsView(_ webTabsView: UIWebTabsView) -> UIWebTabsViewCallbacks? {
+    private func callbacksForWebTabsView(_ webTabsView: UIWebTabsListView) -> UIWebTabsViewCallbacks? {
         weak var weakSelf = self
         weak var weakTabsView = webTabsView
         

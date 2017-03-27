@@ -23,14 +23,10 @@
 		982D316D1E84254C00FE2FB7 /* PPCommonUIBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982D316A1E84254C00FE2FB7 /* PPCommonUIBundle.bundle */; };
 		982D316E1E84254C00FE2FB7 /* PPCloakBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982D316B1E84254C00FE2FB7 /* PPCloakBundle.bundle */; };
 		982D316F1E84254C00FE2FB7 /* PPCommonTypesBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982D316C1E84254C00FE2FB7 /* PPCommonTypesBundle.bundle */; };
-		982D31701E8425B800FE2FB7 /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31611E84253B00FE2FB7 /* PPApiHooks.framework */; };
-		982D31711E8425B800FE2FB7 /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31611E84253B00FE2FB7 /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		982D31721E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31621E84253B00FE2FB7 /* PlusPrivacyCommonUI.framework */; };
 		982D31731E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31621E84253B00FE2FB7 /* PlusPrivacyCommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		982D31741E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31631E84253B00FE2FB7 /* PlusPrivacyCommonTypes.framework */; };
 		982D31751E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31631E84253B00FE2FB7 /* PlusPrivacyCommonTypes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		982D31761E8425B800FE2FB7 /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31641E84253B00FE2FB7 /* PPCloak.framework */; };
-		982D31771E8425B800FE2FB7 /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31641E84253B00FE2FB7 /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		982D31791E8427DB00FE2FB7 /* AppSCD.json in Resources */ = {isa = PBXBuildFile; fileRef = 982D31781E8427DB00FE2FB7 /* AppSCD.json */; };
 		982D31881E842A9B00FE2FB7 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 982D317C1E842A9B00FE2FB7 /* AFHTTPSessionManager.m */; };
 		982D31891E842A9B00FE2FB7 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 982D317F1E842A9B00FE2FB7 /* AFNetworkReachabilityManager.m */; };
@@ -115,13 +111,18 @@
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
 		988509B61E0845AA0088272D /* SchemaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988509B51E0845AA0088272D /* SchemaProvider.swift */; };
+		9896F4611E8924B600BA0D6E /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9896F45F1E8924A800BA0D6E /* PPCloak.framework */; };
+		9896F4621E8924B600BA0D6E /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9896F45F1E8924A800BA0D6E /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9896F4691E8927F600BA0D6E /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9896F4671E8927E900BA0D6E /* PPApiHooks.framework */; };
+		9896F46A1E8927F600BA0D6E /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9896F4671E8927E900BA0D6E /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9896F46D1E892D7B00BA0D6E /* WebAdBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9896F46C1E892D7B00BA0D6E /* WebAdBlocker.swift */; };
 		989C41861DBE18E800951AE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989C41811DBE18E800951AE5 /* Info.plist */; };
 		989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41831DBE18E800951AE5 /* MGSwipeButton.m */; };
 		989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */; };
 		989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */; };
 		989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */; };
-		98D220B81E7FFCEA00B3BD06 /* UIWebTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220B71E7FFCEA00B3BD06 /* UIWebTabsView.swift */; };
-		98D220BA1E7FFD1F00B3BD06 /* UIWebTabsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D220B91E7FFD1F00B3BD06 /* UIWebTabsView.xib */; };
+		98D220B81E7FFCEA00B3BD06 /* UIWebTabsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */; };
+		98D220BA1E7FFD1F00B3BD06 /* UIWebTabsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D220B91E7FFD1F00B3BD06 /* UIWebTabsListView.xib */; };
 		98D220BE1E80009D00B3BD06 /* UIWebTabCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220BC1E80009D00B3BD06 /* UIWebTabCollectionCell.swift */; };
 		98D220BF1E80009D00B3BD06 /* UIWebTabCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D220BD1E80009D00B3BD06 /* UIWebTabCollectionCell.xib */; };
 		98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */; };
@@ -176,8 +177,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				982D31751E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */,
-				982D31771E8425B800FE2FB7 /* PPCloak.framework in Embed Frameworks */,
-				982D31711E8425B800FE2FB7 /* PPApiHooks.framework in Embed Frameworks */,
+				9896F4621E8924B600BA0D6E /* PPCloak.framework in Embed Frameworks */,
+				9896F46A1E8927F600BA0D6E /* PPApiHooks.framework in Embed Frameworks */,
 				982D31731E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Embed Frameworks */,
 				98F55FF51DD5EEFF0076555C /* SwarmClient.framework in Embed Frameworks */,
 			);
@@ -200,10 +201,8 @@
 		9827501F1D0849EB00C73411 /* SwarmClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmClientHelper.swift; sourceTree = "<group>"; };
 		982750241D0849FA00C73411 /* OPConfigObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPConfigObject.swift; sourceTree = "<group>"; };
 		9827502C1D084A4B00C73411 /* WKWebViewUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WKWebViewUtilities.swift; path = Utilities/WKWebViewUtilities.swift; sourceTree = "<group>"; };
-		982D31611E84253B00FE2FB7 /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		982D31621E84253B00FE2FB7 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		982D31631E84253B00FE2FB7 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
-		982D31641E84253B00FE2FB7 /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
 		982D316A1E84254C00FE2FB7 /* PPCommonUIBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCommonUIBundle.bundle; sourceTree = "<group>"; };
 		982D316B1E84254C00FE2FB7 /* PPCloakBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCloakBundle.bundle; sourceTree = "<group>"; };
 		982D316C1E84254C00FE2FB7 /* PPCommonTypesBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCommonTypesBundle.bundle; sourceTree = "<group>"; };
@@ -311,6 +310,9 @@
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
 		988509B51E0845AA0088272D /* SchemaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchemaProvider.swift; path = OPCloak/SchemaProvider.swift; sourceTree = "<group>"; };
+		9896F45F1E8924A800BA0D6E /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
+		9896F4671E8927E900BA0D6E /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
+		9896F46C1E892D7B00BA0D6E /* WebAdBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAdBlocker.swift; path = WebAdBlocker/WebAdBlocker.swift; sourceTree = "<group>"; };
 		989C41811DBE18E800951AE5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		989C41821DBE18E800951AE5 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		989C41831DBE18E800951AE5 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
@@ -318,8 +320,8 @@
 		989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRealIdentityView.swift; path = UserInterface/UIRealIdentityView/UIRealIdentityView.swift; sourceTree = "<group>"; };
 		989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIRealIdentityView.xib; path = UserInterface/UIRealIdentityView/UIRealIdentityView.xib; sourceTree = "<group>"; };
-		98D220B71E7FFCEA00B3BD06 /* UIWebTabsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabsView.swift; path = UserInterface/UIWebTabsView/UIWebTabsView.swift; sourceTree = "<group>"; };
-		98D220B91E7FFD1F00B3BD06 /* UIWebTabsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebTabsView.xib; path = UserInterface/UIWebTabsView/UIWebTabsView.xib; sourceTree = "<group>"; };
+		98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabsListView.swift; path = UserInterface/UIWebTabsView/UIWebTabsListView.swift; sourceTree = "<group>"; };
+		98D220B91E7FFD1F00B3BD06 /* UIWebTabsListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebTabsListView.xib; path = UserInterface/UIWebTabsView/UIWebTabsListView.xib; sourceTree = "<group>"; };
 		98D220BC1E80009D00B3BD06 /* UIWebTabCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabCollectionCell.swift; path = UserInterface/UIWebTabsView/UIWebTabCollectionCell/UIWebTabCollectionCell.swift; sourceTree = "<group>"; };
 		98D220BD1E80009D00B3BD06 /* UIWebTabCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebTabCollectionCell.xib; path = UserInterface/UIWebTabsView/UIWebTabCollectionCell/UIWebTabCollectionCell.xib; sourceTree = "<group>"; };
 		98EAF66B1CCF86DC00C77649 /* Operando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Operando.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -365,8 +367,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				982D31701E8425B800FE2FB7 /* PPApiHooks.framework in Frameworks */,
-				982D31761E8425B800FE2FB7 /* PPCloak.framework in Frameworks */,
+				9896F4691E8927F600BA0D6E /* PPApiHooks.framework in Frameworks */,
+				9896F4611E8924B600BA0D6E /* PPCloak.framework in Frameworks */,
 				982D31741E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 				98F55FF41DD5EEFF0076555C /* SwarmClient.framework in Frameworks */,
 				982D31721E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Frameworks */,
@@ -468,10 +470,10 @@
 		982D31601E84252F00FE2FB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				982D31611E84253B00FE2FB7 /* PPApiHooks.framework */,
+				9896F4671E8927E900BA0D6E /* PPApiHooks.framework */,
+				9896F45F1E8924A800BA0D6E /* PPCloak.framework */,
 				982D31621E84253B00FE2FB7 /* PlusPrivacyCommonUI.framework */,
 				982D31631E84253B00FE2FB7 /* PlusPrivacyCommonTypes.framework */,
-				982D31641E84253B00FE2FB7 /* PPCloak.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -861,6 +863,7 @@
 		9881D2321D0EC845005EE1FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9896F46B1E892D1200BA0D6E /* WebAdBlocker */,
 				9863E8AE1DEC28F50095CA30 /* IdentitiesManagementRepository */,
 				985BA6B11DC23EEB00BC645B /* NotificationsRepository */,
 				986A58F51DB39E7A00B622F5 /* UsersRepository */,
@@ -882,6 +885,14 @@
 				9882DCFB1D14498400C7A70F /* UIScanningView.xib */,
 			);
 			name = UIScanningView;
+			sourceTree = "<group>";
+		};
+		9896F46B1E892D1200BA0D6E /* WebAdBlocker */ = {
+			isa = PBXGroup;
+			children = (
+				9896F46C1E892D7B00BA0D6E /* WebAdBlocker.swift */,
+			);
+			name = WebAdBlocker;
 			sourceTree = "<group>";
 		};
 		989C41801DBE18E800951AE5 /* MGSwipeTableCell */ = {
@@ -909,8 +920,8 @@
 			isa = PBXGroup;
 			children = (
 				98D220BB1E80007000B3BD06 /* UIWebTabCollectionCell */,
-				98D220B71E7FFCEA00B3BD06 /* UIWebTabsView.swift */,
-				98D220B91E7FFD1F00B3BD06 /* UIWebTabsView.xib */,
+				98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */,
+				98D220B91E7FFD1F00B3BD06 /* UIWebTabsListView.xib */,
 			);
 			name = UIWebTabsView;
 			sourceTree = "<group>";
@@ -1317,7 +1328,7 @@
 				98387BC01DB75ACD00A76F01 /* UIDashboardButton.xib in Resources */,
 				98500BCF1E09A25800DF87E8 /* SCDSchema.json in Resources */,
 				9866A7B41DBF4B1000907D05 /* Localizable.strings in Resources */,
-				98D220BA1E7FFD1F00B3BD06 /* UIWebTabsView.xib in Resources */,
+				98D220BA1E7FFD1F00B3BD06 /* UIWebTabsListView.xib in Resources */,
 				9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */,
 				986E3E651DB3CA6B00453DC6 /* UIAddIdentityView.xib in Resources */,
 				986DB8A61E1CE99900F9BE39 /* schema.json in Resources */,
@@ -1383,7 +1394,7 @@
 				9863E8B01DEC28F50095CA30 /* IdentitiesManagementRepository.swift in Sources */,
 				986A58F81DB3A43700B622F5 /* UserInfoRepository.swift in Sources */,
 				98668B5D1DB0D0D900FDE63A /* ECSlidingViewController.m in Sources */,
-				98D220B81E7FFCEA00B3BD06 /* UIWebTabsView.swift in Sources */,
+				98D220B81E7FFCEA00B3BD06 /* UIWebTabsListView.swift in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
@@ -1440,6 +1451,7 @@
 				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
 				982227551DC8EBD40053B993 /* UILocalizable.swift in Sources */,
 				9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */,
+				9896F46D1E892D7B00BA0D6E /* WebAdBlocker.swift in Sources */,
 				98668B631DB1018600FDE63A /* OPErrorContainer.swift in Sources */,
 				98EAF6A61CCF92CA00C77649 /* UISignInViewController.swift in Sources */,
 				98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */,

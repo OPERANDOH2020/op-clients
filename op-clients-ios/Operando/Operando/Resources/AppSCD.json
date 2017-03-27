@@ -1,6 +1,6 @@
 {
     "title": "PlusPrivacy",
     "bundleId": "eu.romsoft.PlusPrivacy",
-    "accessedLinks": [],
+    "accessedLinks": ["plusprivacy.com"],
     "accessedInputs": []
 }

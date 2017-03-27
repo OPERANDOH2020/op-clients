@@ -28,9 +28,7 @@
     __weak typeof(self) weakSelf = self;
     
     [model.eventsDispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
-        
-        NSLog(@"did register pedometer for updates");
-        
+                
         if (event.eventType == EventStartPedometerUpdates) {
             PPUnlistedInputAccessViolation *violationReport = nil;
             if ((violationReport = [weakSelf detectUnregisteredAccess])) {
