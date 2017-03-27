@@ -12,7 +12,6 @@
 
 
 function insertJavascriptFile(id, file, callback){
-    console.log(file);
     chrome.tabs.executeScript(id, {
         file: file,
         allFrames:true

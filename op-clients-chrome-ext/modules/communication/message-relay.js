@@ -14,6 +14,7 @@ port.onMessage.addListener(function (data) {
 
 
 var messageEventHandler = function(event){
+    console.log(event);
     // We only accept messages from ourselves
     if (event.source != window)
         return;

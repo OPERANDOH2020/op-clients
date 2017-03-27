@@ -5,15 +5,7 @@ var portObserversPool = require("observers-pool").portObserversPool;
 var websiteService = exports.websiteService = {
 
     authenticateUserInExtension: function (data) {
-        var daysUntilCookieExpire = 1;
-
-        if(data.remember && data.remember === true){
-            daysUntilCookieExpire = 365;
-        }
-        Cookies.set("sessionId", data.sessionId,  { expires: daysUntilCookieExpire });
-        Cookies.set("userId", data.userId, { expires: daysUntilCookieExpire });
-
-        authenticationService.restoreUserSession(function () {
+        authenticationService.authenticateWithToken(data.userId, data.authenticationToken, function () {
             chrome.runtime.openOptionsPage();
         }, function () {
             //status.fail = "fail";
@@ -32,7 +24,13 @@ var websiteService = exports.websiteService = {
     },
 
     goToDashboard:function(){
-        chrome.runtime.openOptionsPage();
+        if(authenticationService.isLoggedIn()){
+            chrome.runtime.openOptionsPage();
+        }
+        else{
+            portObserversPool.trigger("goToDashboard","sendMeAuthenticationToken");
+        }
+
     },
 
     logout:function(){
@@ -50,5 +48,5 @@ var websiteService = exports.websiteService = {
         );
     }
 
-}
+};
 bus.registerService(websiteService);

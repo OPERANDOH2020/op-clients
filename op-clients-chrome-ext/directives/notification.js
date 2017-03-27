@@ -135,7 +135,7 @@ angular.module('notifications').
                         notificationService.dismissNotification($scope.notification.notificationId, $scope.dismissed, function(){
 
                         });
-                }
+                };
                 $scope.takeAction = function(action){
 
                     switch (action.key){

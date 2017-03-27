@@ -200,7 +200,6 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     }
 
                     portObserversPool.addPortRequestSubscriber(clientPort, request.action, function(status, response){
-
                         if (clientPort) {
                             clientPort.postMessage({
                                 action: request.action,
