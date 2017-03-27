@@ -17,35 +17,30 @@ privacyPlusApp.controller("confirmUserController", function ($scope, $location, 
     var confirmationCode = getParameterByName("confirmation_code");
 
     if(confirmationCode){
-        connectionService.activateUser(confirmationCode, function (validatedUserSession) {
-                $scope.verifyUserStatus = "Email verification successful.";
-                $scope.status="success";
-                $scope.loadingData = false;
-                $scope.$apply();
+            connectionService.activateUser(confirmationCode, function (validatedUserSession) {
+                    $scope.verifyUserStatus = "Email verification successful.";
+                    $scope.status="success";
+                    $scope.loadingData = false;
+                    $scope.$apply();
 
-                Cookies.set("sessionId", validatedUserSession.sessionId);
-                Cookies.set("userId", validatedUserSession.userId);
-
-                connectionService.restoreUserSession(function(){
-                    messengerService.send("authenticateUserInExtension", {
-                        userId: Cookies.get("userId"),
-                        sessionId: Cookies.get("sessionId")
-                    }, function (status) {
-                        successCallback({status: "success"});
+                    connectionService.restoreUserSession(function(){
+                        connectionService.generateAuthenticationToken(function(userId, authenticationToken){
+                            messengerService.send("authenticateUserInExtension", {
+                                userId: userId,
+                                authenticationToken: authenticationToken
+                            }, function(){});
+                        });
+                    },function(){
+                        console.log("Could not restore user session!");
                     });
-                },function(){
-                    console.log("Could not restore user session!");
+                },
+                function(){
+                    $scope.verifyUserStatus = "You provided an invalid validation code";
+                    $scope.status="danger";
+                    $scope.loadingData = false;
+                    $scope.$apply();
                 });
-
-            },
-            function(){
-                $scope.verifyUserStatus = "You provided an invalid validation code";
-                $scope.status="danger";
-                $scope.loadingData = false;
-                $scope.$apply();
-            });
     }
-
 
     $scope.goToDashboard = function(){
         $window.location = "/user-dashboard";

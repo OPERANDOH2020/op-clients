@@ -26,8 +26,11 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
                 if (swarm.authenticated) {
                     var verifyAccountHandler = swarmHub.startSwarm("register.js", "verifyValidationCode", activationCode);
                     verifyAccountHandler.onResponse("success", function (swarm) {
-
                         swarmService.removeConnection();
+
+                        var cookieValidityDays = parseInt(Cookies.get("daysUntilCookieExpire"));
+                        Cookies.set("sessionId", swarm.validatedUserSession.sessionId,{expires:cookieValidityDays});
+                        Cookies.set("userId", swarm.validatedUserSession.userId,{expires:cookieValidityDays});
                         successCallback(swarm.validatedUserSession);
 
                     });
@@ -59,14 +62,20 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
                 swarmHub.off("login.js", "success", userLoginSuccess);
                 if (swarm.authenticated) {
 
-                    Cookies.set("sessionId", swarm.meta.sessionId, {expires: 1});
-                    Cookies.set("userId", swarm.userId, {expires: 1});
+                    var daysUntilCookieExpire = 1;
+                    if(user.remember){
+                        daysUntilCookieExpire = 365;
+                    }
+
+                    Cookies.set("daysUntilCookieExpire",daysUntilCookieExpire,{expires:3650});
+                    Cookies.set("sessionId", swarm.meta.sessionId, {expires: daysUntilCookieExpire});
+                    Cookies.set("userId", swarm.userId, {expires: daysUntilCookieExpire});
 
                     self.getUser(successCallback);
 
                     messengerService.send("authenticateUserInExtension", {
-                     userId: swarm.userId,
-                     sessionId: swarm.meta.sessionId,
+                        userId: swarm.userId,
+                        authenticationToken: swarm.authenticationToken,
                      remember: user.remember
                      }, function (status) {
                         successCallback({status: "success"});
@@ -84,6 +93,16 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
             swarmHub.on('login.js', "failed", loginFailed);
         };
 
+
+        ConnectionService.prototype.generateAuthenticationToken = function (successCallback, failCallback) {
+            var generateAuthenticationTokenHandler =  swarmHub.startSwarm('UserInfo.js', 'generateAnAuthenticationToken');
+            generateAuthenticationTokenHandler.onResponse("generateAuthenticationTokenSuccess", function(response){
+               successCallback(response.meta.userId,response.authenticationToken);
+            });
+            generateAuthenticationTokenHandler.onResponse("generateAuthenticationTokenFailed", function(response){
+                failCallback(response.error);
+            });
+        };
 
         ConnectionService.prototype.getUser = function (callback) {
             var getUserHandler = swarmHub.startSwarm('UserInfo.js', 'info');
@@ -144,18 +163,23 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
                 failCallback();
             }
             else {
-                swarmService.restoreConnection(SERVER_HOST, SERVER_PORT, username, sessionId, failCallbackPlaceholder, failCallbackPlaceholder, function () {
-                    console.log("reconnect cbk");
+                swarmService.restoreConnection(SERVER_HOST, SERVER_PORT, failCallbackPlaceholder, failCallbackPlaceholder, function () {
+                    console.log("connectionIsDown");
+                    self.restoreUserSession(successCallback, failCallback);
+
                 });
                 swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
-
                     self.getUser(successCallback);
-
-                    Cookies.set("sessionId", swarm.meta.sessionId);
+                    var cookieValidityDays = parseInt(Cookies.get("daysUntilCookieExpire"));
+                    Cookies.set("sessionId", swarm.meta.sessionId,{expires: cookieValidityDays});
+                    Cookies.set("userId", swarm.userId,{expires: cookieValidityDays});
                     swarmHub.off("login.js", "restoreSucceed", restoredSuccessfully);
                 });
 
                 swarmHub.on('login.js', "restoreFailed", function restoredSuccessfully(swarm) {
+                    Cookies.remove("userId");
+                    Cookies.remove("sessionId");
+
                     failCallback();
                     swarmHub.off("login.js", "restoreSucceed", restoredSuccessfully);
                 });
@@ -163,7 +187,6 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
         };
 
         ConnectionService.prototype.logoutCurrentUser = function (callback) {
-            console.log("here");
             swarmHub.startSwarm("login.js", "logout");
             swarmHub.on("login.js", "logoutSucceed", function logoutSucceed(swarm) {
                 Cookies.remove("userId");

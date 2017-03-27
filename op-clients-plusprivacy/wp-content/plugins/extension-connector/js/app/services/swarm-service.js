@@ -76,8 +76,10 @@ angular.module('sharedService').service("swarmService", function () {
                 onConnect(connectCbk);
             }
 
+            var username = Cookies.get("userId");
+            var sessionId = Cookies.get("sessionId");
 
-            swarmConnection = new SwarmClient(host, port, email, sessionId, "PlusPrivacyWebsite", "restoreSession", securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
+            swarmConnection = new SwarmClient(host, port, username, sessionId, "PlusPrivacyWebsite", "restoreSession", securityErrorFunction, runConnectionErrorCallback, runReconnectCallbacks, runConnectCallbacks);
             swarmHub.resetConnection(swarmConnection);
         };
         removeConnection = function () {

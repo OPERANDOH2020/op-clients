@@ -30,11 +30,6 @@ privacyPlusApp.controller("ospLoginController", function ($scope, connectionServ
             });
     };
 
-    $scope.goToDashboard = function(){
-        console.log("here?");
-        messengerService.send("goToDashboard");
-    };
-
     SharedService.setLocation("ospLogin");
 
 });

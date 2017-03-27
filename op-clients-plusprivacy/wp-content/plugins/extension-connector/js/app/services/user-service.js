@@ -43,7 +43,6 @@ angular.module('sharedService').factory("userService", ["connectionService", fun
                 var waitingUserCbk = waitingUserCallbacks.pop();
                 waitingUserCbk(user);
             }
-
         };
 
         UserService.prototype.getUser = function (callback) {
