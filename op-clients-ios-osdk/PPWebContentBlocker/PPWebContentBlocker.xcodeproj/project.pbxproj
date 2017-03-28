@@ -22,10 +22,38 @@
 
 /* Begin PBXBuildFile section */
 		98584F411D3F9E18009FB89F /* PPWebContentBlocker.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPWebContentBlocker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9896F4701E89563F00BA0D6E /* PPWebContentBlockerEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9896F46E1E89563F00BA0D6E /* PPWebContentBlockerEngine.h */; };
+		9896F4701E89563F00BA0D6E /* PPWebContentBlockerEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9896F46E1E89563F00BA0D6E /* PPWebContentBlockerEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9896F4711E89563F00BA0D6E /* PPWebContentBlockerEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9896F46F1E89563F00BA0D6E /* PPWebContentBlockerEngine.m */; };
-		9896F4761E8957C400BA0D6E /* PPActionForWebContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 9896F4741E8957C400BA0D6E /* PPActionForWebContent.h */; };
+		9896F4761E8957C400BA0D6E /* PPActionForWebContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 9896F4741E8957C400BA0D6E /* PPActionForWebContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9896F4771E8957C400BA0D6E /* PPActionForWebContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9896F4751E8957C400BA0D6E /* PPActionForWebContent.m */; };
+		98F10DF91E8A795E00AA5A74 /* ad_block_client.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98F10DDF1E8A795E00AA5A74 /* ad_block_client.cc */; };
+		98F10DFA1E8A795E00AA5A74 /* ad_block_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10DE01E8A795E00AA5A74 /* ad_block_client.h */; };
+		98F10DFB1E8A795E00AA5A74 /* base.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10DE11E8A795E00AA5A74 /* base.h */; };
+		98F10DFC1E8A795E00AA5A74 /* BloomFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F10DE21E8A795E00AA5A74 /* BloomFilter.cpp */; };
+		98F10DFD1E8A795E00AA5A74 /* BloomFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10DE31E8A795E00AA5A74 /* BloomFilter.h */; };
+		98F10E001E8A795E00AA5A74 /* cosmetic_filter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98F10DE61E8A795E00AA5A74 /* cosmetic_filter.cc */; };
+		98F10E011E8A795E00AA5A74 /* cosmetic_filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10DE71E8A795E00AA5A74 /* cosmetic_filter.h */; };
+		98F10E021E8A795E00AA5A74 /* brave-unbreak.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98F10DE91E8A795E00AA5A74 /* brave-unbreak.txt */; };
+		98F10E031E8A795E00AA5A74 /* disconnect-simple-malware.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98F10DEA1E8A795E00AA5A74 /* disconnect-simple-malware.txt */; };
+		98F10E041E8A795E00AA5A74 /* easylist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98F10DEB1E8A795E00AA5A74 /* easylist.txt */; };
+		98F10E051E8A795E00AA5A74 /* short-sitelist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98F10DEC1E8A795E00AA5A74 /* short-sitelist.txt */; };
+		98F10E061E8A795E00AA5A74 /* sitelist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98F10DED1E8A795E00AA5A74 /* sitelist.txt */; };
+		98F10E071E8A795E00AA5A74 /* spam404-main-blacklist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98F10DEE1E8A795E00AA5A74 /* spam404-main-blacklist.txt */; };
+		98F10E081E8A795E00AA5A74 /* top500-sitelist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98F10DEF1E8A795E00AA5A74 /* top500-sitelist.txt */; };
+		98F10E091E8A795E00AA5A74 /* ublock-unbreak.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98F10DF01E8A795E00AA5A74 /* ublock-unbreak.txt */; };
+		98F10E0A1E8A795E00AA5A74 /* filter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 98F10DF11E8A795E00AA5A74 /* filter.cc */; };
+		98F10E0B1E8A795E00AA5A74 /* filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10DF21E8A795E00AA5A74 /* filter.h */; };
+		98F10E0C1E8A795E00AA5A74 /* hashFn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F10DF31E8A795E00AA5A74 /* hashFn.cpp */; };
+		98F10E0D1E8A795E00AA5A74 /* hashFn.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10DF41E8A795E00AA5A74 /* hashFn.h */; };
+		98F10E0E1E8A795E00AA5A74 /* HashItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10DF51E8A795E00AA5A74 /* HashItem.h */; };
+		98F10E0F1E8A795E00AA5A74 /* HashSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98F10DF61E8A795E00AA5A74 /* HashSet.cpp */; };
+		98F10E101E8A795E00AA5A74 /* HashSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10DF71E8A795E00AA5A74 /* HashSet.h */; };
+		98F10E111E8A795E00AA5A74 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 98F10DF81E8A795E00AA5A74 /* LICENSE */; };
+		98F10E131E8A7A5600AA5A74 /* bad_fingerprint.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10E121E8A7A5600AA5A74 /* bad_fingerprint.h */; };
+		98F10E151E8A7A7800AA5A74 /* bad_fingerprints.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10E141E8A7A7800AA5A74 /* bad_fingerprints.h */; };
+		98F10E1D1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F10E1B1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.h */; };
+		98F10E1E1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98F10E1C1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.mm */; };
+		98F10E201E8A84F000AA5A74 /* ABPFilterParserData.dat in Resources */ = {isa = PBXBuildFile; fileRef = 98F10E1F1E8A84F000AA5A74 /* ABPFilterParserData.dat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +64,34 @@
 		9896F46F1E89563F00BA0D6E /* PPWebContentBlockerEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPWebContentBlockerEngine.m; path = PPWebContentBlockerEngine/PPWebContentBlockerEngine.m; sourceTree = "<group>"; };
 		9896F4741E8957C400BA0D6E /* PPActionForWebContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPActionForWebContent.h; path = PPActionForWebContent/PPActionForWebContent.h; sourceTree = "<group>"; };
 		9896F4751E8957C400BA0D6E /* PPActionForWebContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPActionForWebContent.m; path = PPActionForWebContent/PPActionForWebContent.m; sourceTree = "<group>"; };
+		98F10DDF1E8A795E00AA5A74 /* ad_block_client.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ad_block_client.cc; sourceTree = "<group>"; };
+		98F10DE01E8A795E00AA5A74 /* ad_block_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ad_block_client.h; sourceTree = "<group>"; };
+		98F10DE11E8A795E00AA5A74 /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
+		98F10DE21E8A795E00AA5A74 /* BloomFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BloomFilter.cpp; sourceTree = "<group>"; };
+		98F10DE31E8A795E00AA5A74 /* BloomFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloomFilter.h; sourceTree = "<group>"; };
+		98F10DE61E8A795E00AA5A74 /* cosmetic_filter.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cosmetic_filter.cc; sourceTree = "<group>"; };
+		98F10DE71E8A795E00AA5A74 /* cosmetic_filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cosmetic_filter.h; sourceTree = "<group>"; };
+		98F10DE91E8A795E00AA5A74 /* brave-unbreak.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "brave-unbreak.txt"; sourceTree = "<group>"; };
+		98F10DEA1E8A795E00AA5A74 /* disconnect-simple-malware.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "disconnect-simple-malware.txt"; sourceTree = "<group>"; };
+		98F10DEB1E8A795E00AA5A74 /* easylist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easylist.txt; sourceTree = "<group>"; };
+		98F10DEC1E8A795E00AA5A74 /* short-sitelist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "short-sitelist.txt"; sourceTree = "<group>"; };
+		98F10DED1E8A795E00AA5A74 /* sitelist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sitelist.txt; sourceTree = "<group>"; };
+		98F10DEE1E8A795E00AA5A74 /* spam404-main-blacklist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "spam404-main-blacklist.txt"; sourceTree = "<group>"; };
+		98F10DEF1E8A795E00AA5A74 /* top500-sitelist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "top500-sitelist.txt"; sourceTree = "<group>"; };
+		98F10DF01E8A795E00AA5A74 /* ublock-unbreak.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ublock-unbreak.txt"; sourceTree = "<group>"; };
+		98F10DF11E8A795E00AA5A74 /* filter.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter.cc; sourceTree = "<group>"; };
+		98F10DF21E8A795E00AA5A74 /* filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filter.h; sourceTree = "<group>"; };
+		98F10DF31E8A795E00AA5A74 /* hashFn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hashFn.cpp; sourceTree = "<group>"; };
+		98F10DF41E8A795E00AA5A74 /* hashFn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashFn.h; sourceTree = "<group>"; };
+		98F10DF51E8A795E00AA5A74 /* HashItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashItem.h; sourceTree = "<group>"; };
+		98F10DF61E8A795E00AA5A74 /* HashSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HashSet.cpp; sourceTree = "<group>"; };
+		98F10DF71E8A795E00AA5A74 /* HashSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashSet.h; sourceTree = "<group>"; };
+		98F10DF81E8A795E00AA5A74 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		98F10E121E8A7A5600AA5A74 /* bad_fingerprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bad_fingerprint.h; sourceTree = "<group>"; };
+		98F10E141E8A7A7800AA5A74 /* bad_fingerprints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bad_fingerprints.h; sourceTree = "<group>"; };
+		98F10E1B1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPFilterLibWrapper.h; sourceTree = "<group>"; };
+		98F10E1C1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ABPFilterLibWrapper.mm; sourceTree = "<group>"; };
+		98F10E1F1E8A84F000AA5A74 /* ABPFilterParserData.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = ABPFilterParserData.dat; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +124,7 @@
 		98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */ = {
 			isa = PBXGroup;
 			children = (
+				98F10CE61E8A683000AA5A74 /* External */,
 				98584F401D3F9E18009FB89F /* PPWebContentBlocker.h */,
 				98584F421D3F9E18009FB89F /* Info.plist */,
 				9896F4731E8957AB00BA0D6E /* PPActionForWebContent */,
@@ -94,6 +151,65 @@
 			name = PPActionForWebContent;
 			sourceTree = "<group>";
 		};
+		98F10CE61E8A683000AA5A74 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				98F10E1A1E8A7D3A00AA5A74 /* ABPFilterLibWrapper */,
+				98F10DDE1E8A795E00AA5A74 /* adBlockPlusBrave */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		98F10DDE1E8A795E00AA5A74 /* adBlockPlusBrave */ = {
+			isa = PBXGroup;
+			children = (
+				98F10E141E8A7A7800AA5A74 /* bad_fingerprints.h */,
+				98F10E121E8A7A5600AA5A74 /* bad_fingerprint.h */,
+				98F10DDF1E8A795E00AA5A74 /* ad_block_client.cc */,
+				98F10DE01E8A795E00AA5A74 /* ad_block_client.h */,
+				98F10DE11E8A795E00AA5A74 /* base.h */,
+				98F10DE21E8A795E00AA5A74 /* BloomFilter.cpp */,
+				98F10DE31E8A795E00AA5A74 /* BloomFilter.h */,
+				98F10DE61E8A795E00AA5A74 /* cosmetic_filter.cc */,
+				98F10DE71E8A795E00AA5A74 /* cosmetic_filter.h */,
+				98F10DE81E8A795E00AA5A74 /* data */,
+				98F10DF11E8A795E00AA5A74 /* filter.cc */,
+				98F10DF21E8A795E00AA5A74 /* filter.h */,
+				98F10DF31E8A795E00AA5A74 /* hashFn.cpp */,
+				98F10DF41E8A795E00AA5A74 /* hashFn.h */,
+				98F10DF51E8A795E00AA5A74 /* HashItem.h */,
+				98F10DF61E8A795E00AA5A74 /* HashSet.cpp */,
+				98F10DF71E8A795E00AA5A74 /* HashSet.h */,
+				98F10DF81E8A795E00AA5A74 /* LICENSE */,
+			);
+			path = adBlockPlusBrave;
+			sourceTree = "<group>";
+		};
+		98F10DE81E8A795E00AA5A74 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				98F10DE91E8A795E00AA5A74 /* brave-unbreak.txt */,
+				98F10DEA1E8A795E00AA5A74 /* disconnect-simple-malware.txt */,
+				98F10DEB1E8A795E00AA5A74 /* easylist.txt */,
+				98F10DEC1E8A795E00AA5A74 /* short-sitelist.txt */,
+				98F10DED1E8A795E00AA5A74 /* sitelist.txt */,
+				98F10DEE1E8A795E00AA5A74 /* spam404-main-blacklist.txt */,
+				98F10DEF1E8A795E00AA5A74 /* top500-sitelist.txt */,
+				98F10DF01E8A795E00AA5A74 /* ublock-unbreak.txt */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		98F10E1A1E8A7D3A00AA5A74 /* ABPFilterLibWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				98F10E1F1E8A84F000AA5A74 /* ABPFilterParserData.dat */,
+				98F10E1B1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.h */,
+				98F10E1C1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.mm */,
+			);
+			path = ABPFilterLibWrapper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -101,8 +217,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9896F4761E8957C400BA0D6E /* PPActionForWebContent.h in Headers */,
+				98F10E0D1E8A795E00AA5A74 /* hashFn.h in Headers */,
 				9896F4701E89563F00BA0D6E /* PPWebContentBlockerEngine.h in Headers */,
+				9896F4761E8957C400BA0D6E /* PPActionForWebContent.h in Headers */,
+				98F10DFB1E8A795E00AA5A74 /* base.h in Headers */,
+				98F10DFA1E8A795E00AA5A74 /* ad_block_client.h in Headers */,
+				98F10E101E8A795E00AA5A74 /* HashSet.h in Headers */,
+				98F10E0B1E8A795E00AA5A74 /* filter.h in Headers */,
+				98F10DFD1E8A795E00AA5A74 /* BloomFilter.h in Headers */,
+				98F10E011E8A795E00AA5A74 /* cosmetic_filter.h in Headers */,
+				98F10E0E1E8A795E00AA5A74 /* HashItem.h in Headers */,
+				98F10E131E8A7A5600AA5A74 /* bad_fingerprint.h in Headers */,
+				98F10E1D1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.h in Headers */,
+				98F10E151E8A7A7800AA5A74 /* bad_fingerprints.h in Headers */,
 				98584F411D3F9E18009FB89F /* PPWebContentBlocker.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,6 +295,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98F10E031E8A795E00AA5A74 /* disconnect-simple-malware.txt in Resources */,
+				98F10E071E8A795E00AA5A74 /* spam404-main-blacklist.txt in Resources */,
+				98F10E081E8A795E00AA5A74 /* top500-sitelist.txt in Resources */,
+				98F10E021E8A795E00AA5A74 /* brave-unbreak.txt in Resources */,
+				98F10E051E8A795E00AA5A74 /* short-sitelist.txt in Resources */,
+				98F10E091E8A795E00AA5A74 /* ublock-unbreak.txt in Resources */,
+				98F10E201E8A84F000AA5A74 /* ABPFilterParserData.dat in Resources */,
+				98F10E111E8A795E00AA5A74 /* LICENSE in Resources */,
+				98F10E041E8A795E00AA5A74 /* easylist.txt in Resources */,
+				98F10E061E8A795E00AA5A74 /* sitelist.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,8 +331,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98F10E1E1E8A7D3A00AA5A74 /* ABPFilterLibWrapper.mm in Sources */,
+				98F10DF91E8A795E00AA5A74 /* ad_block_client.cc in Sources */,
 				9896F4771E8957C400BA0D6E /* PPActionForWebContent.m in Sources */,
+				98F10E0F1E8A795E00AA5A74 /* HashSet.cpp in Sources */,
+				98F10E0C1E8A795E00AA5A74 /* hashFn.cpp in Sources */,
 				9896F4711E89563F00BA0D6E /* PPWebContentBlockerEngine.m in Sources */,
+				98F10E001E8A795E00AA5A74 /* cosmetic_filter.cc in Sources */,
+				98F10DFC1E8A795E00AA5A74 /* BloomFilter.cpp in Sources */,
+				98F10E0A1E8A795E00AA5A74 /* filter.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +368,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -273,6 +418,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -303,7 +449,7 @@
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.GenericFrameworkProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.PPWebContentBlocker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -319,7 +465,7 @@
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericFramework.GenericFrameworkProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.PPWebContentBlocker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

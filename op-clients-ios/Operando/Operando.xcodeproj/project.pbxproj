@@ -111,16 +111,18 @@
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
 		988509B61E0845AA0088272D /* SchemaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988509B51E0845AA0088272D /* SchemaProvider.swift */; };
-		9896F4611E8924B600BA0D6E /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9896F45F1E8924A800BA0D6E /* PPCloak.framework */; };
-		9896F4621E8924B600BA0D6E /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9896F45F1E8924A800BA0D6E /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9896F4691E8927F600BA0D6E /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9896F4671E8927E900BA0D6E /* PPApiHooks.framework */; };
-		9896F46A1E8927F600BA0D6E /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9896F4671E8927E900BA0D6E /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9896F46D1E892D7B00BA0D6E /* WebAdBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9896F46C1E892D7B00BA0D6E /* WebAdBlocker.swift */; };
 		989C41861DBE18E800951AE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989C41811DBE18E800951AE5 /* Info.plist */; };
 		989C41871DBE18E800951AE5 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41831DBE18E800951AE5 /* MGSwipeButton.m */; };
 		989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */; };
 		989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */; };
 		989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */; };
+		98D045DB1E8AA80300D97E56 /* PPWebContentBlocker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */; };
+		98D045DD1E8AA81100D97E56 /* PPWebContentBlocker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		98D045E41E8AB0A300D97E56 /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045E21E8AB09500D97E56 /* PPApiHooks.framework */; };
+		98D045E51E8AB0A300D97E56 /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045E21E8AB09500D97E56 /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		98D045E81E8AB9CD00D97E56 /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045E61E8AB9BF00D97E56 /* PPCloak.framework */; };
+		98D045E91E8AB9CD00D97E56 /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045E61E8AB9BF00D97E56 /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98D220B81E7FFCEA00B3BD06 /* UIWebTabsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */; };
 		98D220BA1E7FFD1F00B3BD06 /* UIWebTabsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D220B91E7FFD1F00B3BD06 /* UIWebTabsListView.xib */; };
 		98D220BE1E80009D00B3BD06 /* UIWebTabCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220BC1E80009D00B3BD06 /* UIWebTabCollectionCell.swift */; };
@@ -176,10 +178,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				98D045E51E8AB0A300D97E56 /* PPApiHooks.framework in Embed Frameworks */,
+				98D045E91E8AB9CD00D97E56 /* PPCloak.framework in Embed Frameworks */,
 				982D31751E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */,
-				9896F4621E8924B600BA0D6E /* PPCloak.framework in Embed Frameworks */,
-				9896F46A1E8927F600BA0D6E /* PPApiHooks.framework in Embed Frameworks */,
 				982D31731E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Embed Frameworks */,
+				98D045DD1E8AA81100D97E56 /* PPWebContentBlocker.framework in Embed Frameworks */,
 				98F55FF51DD5EEFF0076555C /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -310,8 +313,6 @@
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
 		988509B51E0845AA0088272D /* SchemaProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchemaProvider.swift; path = OPCloak/SchemaProvider.swift; sourceTree = "<group>"; };
-		9896F45F1E8924A800BA0D6E /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
-		9896F4671E8927E900BA0D6E /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		9896F46C1E892D7B00BA0D6E /* WebAdBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAdBlocker.swift; path = WebAdBlocker/WebAdBlocker.swift; sourceTree = "<group>"; };
 		989C41811DBE18E800951AE5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		989C41821DBE18E800951AE5 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
@@ -320,6 +321,9 @@
 		989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRealIdentityView.swift; path = UserInterface/UIRealIdentityView/UIRealIdentityView.swift; sourceTree = "<group>"; };
 		989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIRealIdentityView.xib; path = UserInterface/UIRealIdentityView/UIRealIdentityView.xib; sourceTree = "<group>"; };
+		98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPWebContentBlocker.framework; sourceTree = "<group>"; };
+		98D045E21E8AB09500D97E56 /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
+		98D045E61E8AB9BF00D97E56 /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
 		98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabsListView.swift; path = UserInterface/UIWebTabsView/UIWebTabsListView.swift; sourceTree = "<group>"; };
 		98D220B91E7FFD1F00B3BD06 /* UIWebTabsListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebTabsListView.xib; path = UserInterface/UIWebTabsView/UIWebTabsListView.xib; sourceTree = "<group>"; };
 		98D220BC1E80009D00B3BD06 /* UIWebTabCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabCollectionCell.swift; path = UserInterface/UIWebTabsView/UIWebTabCollectionCell/UIWebTabCollectionCell.swift; sourceTree = "<group>"; };
@@ -367,11 +371,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9896F4691E8927F600BA0D6E /* PPApiHooks.framework in Frameworks */,
-				9896F4611E8924B600BA0D6E /* PPCloak.framework in Frameworks */,
+				98D045DB1E8AA80300D97E56 /* PPWebContentBlocker.framework in Frameworks */,
+				98D045E41E8AB0A300D97E56 /* PPApiHooks.framework in Frameworks */,
 				982D31741E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 				98F55FF41DD5EEFF0076555C /* SwarmClient.framework in Frameworks */,
 				982D31721E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Frameworks */,
+				98D045E81E8AB9CD00D97E56 /* PPCloak.framework in Frameworks */,
 				985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,8 +475,9 @@
 		982D31601E84252F00FE2FB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9896F4671E8927E900BA0D6E /* PPApiHooks.framework */,
-				9896F45F1E8924A800BA0D6E /* PPCloak.framework */,
+				98D045E61E8AB9BF00D97E56 /* PPCloak.framework */,
+				98D045E21E8AB09500D97E56 /* PPApiHooks.framework */,
+				98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */,
 				982D31621E84253B00FE2FB7 /* PlusPrivacyCommonUI.framework */,
 				982D31631E84253B00FE2FB7 /* PlusPrivacyCommonTypes.framework */,
 			);
@@ -916,6 +922,13 @@
 			name = UIRealIdentityView;
 			sourceTree = "<group>";
 		};
+		98D045D91E8AA7A600D97E56 /* UIWebOptionsView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UIWebOptionsView;
+			sourceTree = "<group>";
+		};
 		98D220B61E7FFC8D00B3BD06 /* UIWebTabsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -992,6 +1005,7 @@
 		98EAF68E1CCF87AD00C77649 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				98D045D91E8AA7A600D97E56 /* UIWebOptionsView */,
 				98D220B61E7FFC8D00B3BD06 /* UIWebTabsView */,
 				98F6B1271E7BFC2D00D193FF /* UIWebViewTab */,
 				98F6B1221E7BE58500D193FF /* UIWebToolbarView */,

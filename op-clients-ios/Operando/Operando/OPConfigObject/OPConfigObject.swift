@@ -32,11 +32,14 @@ class OPConfigObject: NSObject
     private var dependencies: Dependencies?
     private var actionsPerNotificationType: [String: VoidBlock] = [:]
     private var opCloak: OPCloak?
-
+    private let adBlocker = WebAdBlocker();
+    
     private func initPropertiesOnAppStart() {
         
         self.userRepository = self.swarmClientHelper
         self.notificationsRepository = self.swarmClientHelper
+        self.adBlocker.beginBlocking()
+        
         weak var weakSelf = self
         
         let plistRepositoryPath = OPConfigObject.pathForFile(named: "SCDRepository")
@@ -65,15 +68,9 @@ class OPConfigObject: NSObject
             }
         )
         
-        
-
-        
-        
         self.flowController = UIFlowController(dependencies: dependencies)
         self.dependencies = dependencies
-        
         weak var flowCntroler = self.flowController
-        
         self.actionsPerNotificationType = [NotificationAction.identitiesMangament.rawValue:
             {flowCntroler?.displayIdentitiesManagement()},
                                            NotificationAction.privateBrowsing.rawValue:

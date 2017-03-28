@@ -43,7 +43,9 @@
     
     [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
     
-    return [evData[kPPAllowWebViewRequestValue] boolValue];
+    // this method returning YES means that the request will be blocked
+    // 
+    return ![evData[kPPAllowWebViewRequestValue] boolValue];
 }
 
 -(void)startLoading {

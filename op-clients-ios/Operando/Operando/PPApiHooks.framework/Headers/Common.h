@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, PPEventType) {
     EventGetDeviceProximityState,
     
     EventStartPedometerUpdates,
-    EventAllowRequestToExecute
+    EventAllowWebViewRequest
 
 };
 

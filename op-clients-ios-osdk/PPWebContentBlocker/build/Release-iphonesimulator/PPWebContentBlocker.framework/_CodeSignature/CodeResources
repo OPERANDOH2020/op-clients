@@ -4,30 +4,122 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>ABPFilterParserData.dat</key>
+		<data>
+		EGegnSdX4GccrJAspun8ralxLH4=
+		</data>
+		<key>Headers/PPActionForWebContent.h</key>
+		<data>
+		OrilW9p8Zb25D4g0xszk+OkuBAA=
+		</data>
 		<key>Headers/PPWebContentBlocker.h</key>
 		<data>
-		U9DTpVzGbDxDMoar07pyVMwR/dE=
+		k6QfANIVoKxNbQ/JqzphYm7/XAk=
+		</data>
+		<key>Headers/PPWebContentBlockerEngine.h</key>
+		<data>
+		puWZn+Euqm5igkzzeV9W7p0aFPU=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		y9U+2LDMZjPuYEBKZQgur/cjNZU=
+		yZCnMB8oeC2Xyp7R2/ie979d/wg=
+		</data>
+		<key>LICENSE</key>
+		<data>
+		+nxNdbrjpkHR+atd8CgXW/uKaco=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		E4nx/l0HgcOy/P1hsNxgAGNaZJk=
 		</data>
+		<key>brave-unbreak.txt</key>
+		<data>
+		wtP8fdIpYyGN4r9lthd456RVWeU=
+		</data>
+		<key>disconnect-simple-malware.txt</key>
+		<data>
+		FNlvo4vOI5B9RBW/T7x00k9oqOA=
+		</data>
+		<key>easylist.txt</key>
+		<data>
+		9qy9GsWWmE7nO89I4A9tqncUJG0=
+		</data>
+		<key>short-sitelist.txt</key>
+		<data>
+		Aoymz2AqWU4ksLj5f62TVae0kiQ=
+		</data>
+		<key>sitelist.txt</key>
+		<data>
+		J1m4FkDRTfbdFJS/cmM9cBhxjBU=
+		</data>
+		<key>spam404-main-blacklist.txt</key>
+		<data>
+		dirT0v5iMvjfVbCJkTHAVYWjifY=
+		</data>
+		<key>top500-sitelist.txt</key>
+		<data>
+		J1m4FkDRTfbdFJS/cmM9cBhxjBU=
+		</data>
+		<key>ublock-unbreak.txt</key>
+		<data>
+		YrKHVIs6wy7IYcoDBPs7RS3DqkQ=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>ABPFilterParserData.dat</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			EGegnSdX4GccrJAspun8ralxLH4=
+			</data>
+			<key>hash2</key>
+			<data>
+			r8zserCgjQTM2gUa5YcVoH6wg6QXReIaeKZQdWBg16g=
+			</data>
+		</dict>
+		<key>Headers/PPActionForWebContent.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			OrilW9p8Zb25D4g0xszk+OkuBAA=
+			</data>
+			<key>hash2</key>
+			<data>
+			MRQ4m09oswM7t7p2Ylr7/QEFth0BoL0ev+eduF7ghT8=
+			</data>
+		</dict>
 		<key>Headers/PPWebContentBlocker.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			U9DTpVzGbDxDMoar07pyVMwR/dE=
+			k6QfANIVoKxNbQ/JqzphYm7/XAk=
 			</data>
 			<key>hash2</key>
 			<data>
-			U93tX7MMfZzEpfbIBCg08LVcxhLw4SkDwv8yVfpB4vE=
+			pH0/XQVR5Oef2rAVPCeCim0o503HtGZXuTEP2K6/HgE=
+			</data>
+		</dict>
+		<key>Headers/PPWebContentBlockerEngine.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			puWZn+Euqm5igkzzeV9W7p0aFPU=
+			</data>
+			<key>hash2</key>
+			<data>
+			VdtraoWg48wGBQU+ADi6Ro/h8eu0iGufbh0XGT0qy9s=
+			</data>
+		</dict>
+		<key>LICENSE</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			+nxNdbrjpkHR+atd8CgXW/uKaco=
+			</data>
+			<key>hash2</key>
+			<data>
+			YCIsKMGn9qksffmOXF9EWeYk5uKF4Lm5RGevX2qzND0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -39,6 +131,94 @@
 			<key>hash2</key>
 			<data>
 			7Cyf91kDiq+RFg1GNjK9bZnfhE6GnYAkksu628aK2M8=
+			</data>
+		</dict>
+		<key>brave-unbreak.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wtP8fdIpYyGN4r9lthd456RVWeU=
+			</data>
+			<key>hash2</key>
+			<data>
+			+9lD69SI3nbD31ZeYRkPs648kIHrqc/htWGH87ar5Zw=
+			</data>
+		</dict>
+		<key>disconnect-simple-malware.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			FNlvo4vOI5B9RBW/T7x00k9oqOA=
+			</data>
+			<key>hash2</key>
+			<data>
+			HWetmDIBfR7R/w/XJsr+nV17C0jpHyZA6KD46lPiNF4=
+			</data>
+		</dict>
+		<key>easylist.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			9qy9GsWWmE7nO89I4A9tqncUJG0=
+			</data>
+			<key>hash2</key>
+			<data>
+			lLJIX66Ot12N+H1HyqQqIK9GjFlmISG2bn1A7A0G3ek=
+			</data>
+		</dict>
+		<key>short-sitelist.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Aoymz2AqWU4ksLj5f62TVae0kiQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			j5gJdTu2/Jka/q50t9GBEX77RZvPjHwOSEFEySXeXds=
+			</data>
+		</dict>
+		<key>sitelist.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			J1m4FkDRTfbdFJS/cmM9cBhxjBU=
+			</data>
+			<key>hash2</key>
+			<data>
+			ULyHz1OktuM8sEMWPn5h/H/CYMrci/z3xHsEx4l4XRE=
+			</data>
+		</dict>
+		<key>spam404-main-blacklist.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			dirT0v5iMvjfVbCJkTHAVYWjifY=
+			</data>
+			<key>hash2</key>
+			<data>
+			3bEzKb7+S7FuLn8Oafs++B3WSdKQlkcAgSF39jY3lQM=
+			</data>
+		</dict>
+		<key>top500-sitelist.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			J1m4FkDRTfbdFJS/cmM9cBhxjBU=
+			</data>
+			<key>hash2</key>
+			<data>
+			ULyHz1OktuM8sEMWPn5h/H/CYMrci/z3xHsEx4l4XRE=
+			</data>
+		</dict>
+		<key>ublock-unbreak.txt</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			YrKHVIs6wy7IYcoDBPs7RS3DqkQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			fE+VJwKzkt/OyNFO/t/v9s5eKJ/H92g0m4ESeekF12c=
 			</data>
 		</dict>
 	</dict>
