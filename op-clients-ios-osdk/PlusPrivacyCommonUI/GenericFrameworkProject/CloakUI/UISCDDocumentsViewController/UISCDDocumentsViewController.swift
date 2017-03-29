@@ -15,14 +15,23 @@ public protocol SCDRepository {
 }
 
 @objc
-public enum ExitArrowDirection: Int {
-    case Left
-    case Up
+public enum UISCDDocumentsControllerExitButtonType: Int {
+    case TypeArrowLeft
+    case TypeArrowUp
+    case HamburgerMenu
+    case CloseCircleX
+    case NoneInvisible
+}
+
+@objc
+public class CommonUIDisplayModel: NSObject {
+    var titleBarHeight: CGFloat = 64
+    var exitButtonType: UISCDDocumentsControllerExitButtonType = UISCDDocumentsControllerExitButtonType.CloseCircleX
 }
 
 struct UISCDDocumentsViewControllerModel {
     let repository: SCDRepository
-    let arrowDirection: ExitArrowDirection
+    let displayModel: CommonUIDisplayModel
 }
 
 
@@ -31,11 +40,18 @@ struct UISCDDocumentsViewControllerCallbacks {
     let whenUserSelectsToExit: VoidBlock?
 }
 
+let imageNameForType: [UISCDDocumentsControllerExitButtonType: String] = [.CloseCircleX: "close",
+                                                                          .HamburgerMenu: "hamburger_Icon",
+                                                                          .TypeArrowLeft: "arrow_left",
+                                                                          .TypeArrowUp: "arrow_up"];
+
 class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView?
-    
     @IBOutlet weak var exitButton: UIButton!
+    
+    @IBOutlet weak var titleBarHeightConstraint: NSLayoutConstraint!
+    
     private var model: UISCDDocumentsViewControllerModel?
     private var callbacks: UISCDDocumentsViewControllerCallbacks?
     private var documentsFromRepository: [SCDDocument] = []
@@ -52,10 +68,14 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
         self.model = model
         let _ = self.view
         
-        let imageName: String = model.arrowDirection == .Left ? "arrow_left" : "arrow_up_brown";
-        let image = UIImage(named: imageName, in: Bundle.commonUIBundle, compatibleWith: nil)
+        var imageName = imageNameForType[model.displayModel.exitButtonType]
+        let image = UIImage(named: imageName ?? "close", in: Bundle.commonUIBundle, compatibleWith: nil)
         self.exitButton.setImage(image, for: .normal)
+        if model.displayModel.exitButtonType == .NoneInvisible {
+            self.exitButton.isHidden = true
+        }
         
+        self.titleBarHeightConstraint.constant = model.displayModel.titleBarHeight
     }
     
     override func viewWillAppear(_ animated: Bool) {

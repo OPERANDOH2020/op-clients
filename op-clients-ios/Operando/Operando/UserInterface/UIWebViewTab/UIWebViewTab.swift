@@ -9,59 +9,9 @@
 import UIKit
 import WebKit
 
-extension URL {
-    static func tryBuildWithHttp(with input: String) -> URL? {
-        if let url = URL(string: input), input.contains("http") {
-            return url
-        }
-        
-        if let url = URL(string: "http://\(input)") {
-            return url
-        }
-        
-        if let url = URL(string: "http://www.\(input)") {
-            return url
-        }
-        
-        return nil
-        
-    }
-}
-
-
-
-struct UIWebViewTabNavigationModel {
-    let urlList: [URL]
-    let currentURLIndex: Int
-    init?(urlList: [URL], currentURLIndex: Int) {
-        guard currentURLIndex < urlList.count && currentURLIndex >= 0 else {
-            return nil
-        }
-        self.urlList = urlList
-        self.currentURLIndex = currentURLIndex
-    }
-}
-
-struct UIWebViewTabModel {
-    let navigationModel: UIWebViewTabNavigationModel?
-    let processPool: WKProcessPool
-}
-
-
-struct UIWebViewTabCallbacks {
-    let whenUserChoosesToViewTabs: VoidBlock?
-    let urlForUserInput: (_ userInput: String) -> URL
-}
-
-struct WebTabDescription {
-    let name: String
-    let screenshot: UIImage?
-    let favIconURL: String?
-}
-
 fileprivate let kIconsMessageHandler = "iconsMessageHandler"
 
-class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
+class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var addressBarView: UIView!
     
@@ -85,20 +35,34 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
     override func commonInit() {
         super.commonInit()
         self.activityIndicator.isHidden = true
-
+        self.addressTF.delegate = self
     }
     
-    func setupWith(model: UIWebViewTabModel, callbacks: UIWebViewTabCallbacks?) {
+    func setupWith(model: UIWebViewTabNewWebViewModel, callbacks: UIWebViewTabCallbacks?) {
         self.callbacks = callbacks
         
         let configuration = self.createConfigurationWith(processPool: model.processPool)
-        let webView = self.createWebViewWith(configuration: configuration)
+        let webView = WKWebView(frame: .zero, configuration: configuration)
+        self.commonSetupWith(webView: webView, navigationModel: model.navigationModel)
+    }
+    
+    
+    func setupWith(model: UIWebViewTabExistingWebViewModel, callbacks: UIWebViewTabCallbacks?){
+        self.callbacks = callbacks
+        self.commonSetupWith(webView: model.webView, navigationModel: nil)
+    }
+    
+    private func commonSetupWith(webView: WKWebView, navigationModel: UIWebViewTabNavigationModel?){
+        
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+        
         self.webView = webView
         self.constrain(webView: webView)
         self.contentView?.bringSubview(toFront: self.activityIndicator)
         self.webToolbarView.setupWith(callbacks: self.callbacksForToolbar())
         
-        if let navigationModel = model.navigationModel {
+        if let navigationModel = navigationModel {
             self.changeNavigationModel(to: navigationModel, callback: nil)
         }
     }
@@ -129,9 +93,7 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
     
     
     func getPageTitle(in callback: ((_ title: String?) -> Void)?){
-        self.webView?.evaluateJavaScript(self.pageTitleScript(), completionHandler: { result, error  in
-            callback?(result as? String)
-        })
+        callback?(self.webView?.title)
     }
     
     func getFavIconURL(in callback: ((_ url: String?) -> Void)?) {
@@ -183,12 +145,6 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
         }
     }
     
-    private func createWebViewWith(configuration: WKWebViewConfiguration) -> WKWebView {
-        let webView = WKWebView(frame: .zero, configuration: configuration)
-        webView.navigationDelegate = self
-        
-        return webView
-    }
     
     private func constrain(webView: WKWebView) {
         guard let contentView = self.contentView else {
@@ -295,11 +251,81 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, WKS
     
     //MARK: -
     
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message)
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        
+        return self.callbacks?.whenCreatingExternalWebView?(configuration, navigationAction)
+    }
+    
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        weak var weakAlertController = alertController
+        let action = UIAlertAction(title: "Ok", style: .default) { _ in
+            weakAlertController?.dismiss(animated: true, completion: completionHandler)
+            completionHandler()
+        }
+        alertController.addAction(action)
+        
+        self.callbacks?.whenPresentingAlertController?(alertController)
+        
     }
     
     
+    
+    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+        
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        weak var weakAlertController = alertController
+        let action = UIAlertAction(title: "Ok", style: .default) { _ in
+            completionHandler(true)
+            weakAlertController?.dismiss(animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            completionHandler(false)
+            weakAlertController?.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(action)
+        alertController.addAction(cancelAction)
+        
+        self.callbacks?.whenPresentingAlertController?(alertController)
+        
+    }
+    
+    
+    func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+        
+        let textField = UITextField(frame: .zero)
+        textField.text = defaultText
+        
+        let alertController = UIAlertController(title: "", message: prompt, preferredStyle: .alert)
+        weak var weakAlertController = alertController
+        let action = UIAlertAction(title: "Ok", style: .default) { _ in
+            completionHandler(weakAlertController?.textFields?.first?.text)
+            weakAlertController?.dismiss(animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            completionHandler(nil)
+            weakAlertController?.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addTextField { tf in
+            tf.text = defaultText
+        }
+        alertController.addAction(action)
+        alertController.addAction(cancelAction)
+        self.callbacks?.whenPresentingAlertController?(alertController)
+        
+    }
+    
+    //MARK: TextView delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        self.goWith(userInput: textField.text ?? "")
+        return true
+    }
     
     func iconURLListScript() -> String {
         return "(function(){for(var a=document.getElementsByTagName(\"link\"),b=[],c=0;c<a.length;c++){var d=a[c],e=d.getAttribute(\"rel\");if(e&&e.toLowerCase().indexOf(\"icon\")>-1){var f=d.getAttribute(\"href\");if(f)if(f.toLowerCase().indexOf(\"https:\")==-1&&f.toLowerCase().indexOf(\"http:\")==-1&&0!=f.indexOf(\"//\")){var g=window.location.protocol+\"//\"+window.location.host;if(window.location.port&&(g+=\":\"+window.location.port),0==f.indexOf(\"/\"))g+=f;else{var h=window.location.pathname.split(\"/\");h.pop();var i=h.join(\"/\");g+=i+\"/\"+f}b.push(g)}else if(0==f.indexOf(\"//\")){var j=window.location.protocol+f;b.push(j)}else b.push(f)}}  return b;})()"

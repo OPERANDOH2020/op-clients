@@ -18,6 +18,7 @@ struct WebTabsControllerLogicCallbacks {
     let hideWebTabsView: WebTabsViewVisibilityModifier?
     let showWebTabsViewOnTop: WebTabsViewVisibilityModifier?
     let addNewWebViewTabCallback: (() -> UIWebViewTab)?
+    let presentAlertController: ((_ alertController: UIAlertController) -> Void)?
 }
 
 struct WebTabsControllerLogicModel {
@@ -42,6 +43,9 @@ class WebTabsControllerLogic: NSObject {
     private var activeWebViewTab: UIWebViewTab? {
         return self.webViewAssociatedWithTab(at: self.activeTabIndex)
     }
+    private var canCreateNewWebViewTab: Bool {
+        return self.model.webPool.allWebViewTabs.count < self.model.maxNumberOfReusableWebViews
+    }
     
     //MARK: 
     
@@ -52,11 +56,11 @@ class WebTabsControllerLogic: NSObject {
         super.init()
         
         
-        self.addNewTab()
+        self.addNewDefaultTab()
         self.activeTabIndex = 0;
         
         if let webViewTab = callbacks.addNewWebViewTabCallback?() {
-            let webViewTabModel = UIWebViewTabModel(navigationModel: self.webTabs[self.activeTabIndex].navigationModel, processPool: self.sharedProcessPool)
+            let webViewTabModel = UIWebViewTabNewWebViewModel(navigationModel: self.webTabs[self.activeTabIndex].navigationModel, processPool: self.sharedProcessPool)
             
             webViewTab.setupWith(model: webViewTabModel, callbacks: self.callbacksForWebView())
             self.model.webPool.addNew(webViewTab: webViewTab)
@@ -84,9 +88,9 @@ class WebTabsControllerLogic: NSObject {
             return
         }
         
-        if self.model.webPool.allWebViewTabs.count < self.model.maxNumberOfReusableWebViews,
+        if self.canCreateNewWebViewTab,
             let webViewTab = callbacks.addNewWebViewTabCallback?() {
-            let webViewTabModel = UIWebViewTabModel(navigationModel: self.webTabs[index].navigationModel, processPool: self.sharedProcessPool)
+            let webViewTabModel = UIWebViewTabNewWebViewModel(navigationModel: self.webTabs[index].navigationModel, processPool: self.sharedProcessPool)
             
             webViewTab.setupWith(model: webViewTabModel, callbacks: self.callbacksForWebView())
             self.model.webPool.addNew(webViewTab: webViewTab)
@@ -117,7 +121,7 @@ class WebTabsControllerLogic: NSObject {
     
     //MARK:
     
-    private func addNewTab() {
+    private func addNewDefaultTab() {
         let newTab = self.createDefaultWebTab()
         self.webTabs.append(newTab)
     }
@@ -164,7 +168,7 @@ class WebTabsControllerLogic: NSObject {
         }
         
         if self.webTabs.count == 0 {
-            self.addNewTab()
+            self.addNewDefaultTab()
         }
         
         if activeIndexBeforeChange != self.activeTabIndex ||
@@ -206,7 +210,35 @@ class WebTabsControllerLogic: NSObject {
         }, urlForUserInput: { string in
             let searchURL = queryURLPart + (string.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) ?? "")
             return URL(string: searchURL)!
-        })
+        }, whenPresentingAlertController: self.callbacks.presentAlertController,
+           whenCreatingExternalWebView: { configuration, action in
+            guard let tabView = weakSelf?.callbacks.addNewWebViewTabCallback?(),
+                  let newWebTab = weakSelf?.createDefaultWebTab() else {
+                return nil
+            }
+            
+            weakSelf?.activeWebViewTab?.activityIndicator.isHidden = false
+            
+            let webView = WKWebView(frame: .zero, configuration: configuration)
+            weakSelf?.activeWebViewTab?.createDescriptionWithCompletionHandler({ description in
+                weakSelf?.webTabs[weakSelf?.activeTabIndex ?? 0].webTabDescription = description
+                
+                weakSelf?.activeWebViewTab?.activityIndicator.isHidden = true 
+                
+                weakSelf?.webTabs.append(newWebTab)
+                
+                let model = UIWebViewTabExistingWebViewModel(webView: webView)
+                tabView.setupWith(model: model, callbacks: self.callbacksForWebView())
+                weakSelf?.model.webPool.addNew(webViewTab: tabView)
+                
+                let index = (weakSelf?.webTabs.count ?? 0) - 1
+                weakSelf?.activeTabIndex = index
+                weakSelf?.indexOfTabAssociatedWithWebView[tabView] = index
+                weakSelf?.callbacks.showWebViewTabCallback?(tabView, false, nil)
+            })
+            
+            return webView
+        });
     }
     
     //MARK:
@@ -245,7 +277,7 @@ class WebTabsControllerLogic: NSObject {
             weakTabsView?.inBusyState = true
             
             weakSelf?.saveCurrentTabStateWithCompletion {
-                weakSelf?.addNewTab()
+                weakSelf?.addNewDefaultTab()
                 weakSelf?.changeToTab(atIndex: (weakSelf?.webTabs.count ?? 0) - 1, callback: closeWebTabsView)
             }
         }

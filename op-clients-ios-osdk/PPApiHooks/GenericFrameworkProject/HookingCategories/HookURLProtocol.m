@@ -49,7 +49,10 @@
 }
 
 -(void)startLoading {
-    
+    NSError *error = [[NSError alloc] initWithDomain:@"com.plusprivacy.ApiHooks" code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Request blocked"}];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.client URLProtocol:self didFailWithError:error];
+    });
 }
 
 -(void)stopLoading {
@@ -59,5 +62,7 @@
 +(NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
     return  request;
 }
+
+
 
 @end

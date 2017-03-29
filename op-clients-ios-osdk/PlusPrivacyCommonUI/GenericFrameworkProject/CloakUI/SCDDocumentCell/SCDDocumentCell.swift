@@ -32,7 +32,6 @@ class SCDDocumentCell: UITableViewCell {
     
     func setup(with scdDocument: SCDDocument?, inFullSize: Bool, callbacks: SCDDocumentCellCallbacks?){
         
-        print("Received in cell \(scdDocument)")
         self.callbacks = callbacks
         self.titleLabel.text = scdDocument?.appTitle
         self.bundleLabel.text = scdDocument?.bundleId

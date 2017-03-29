@@ -44,13 +44,15 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
             weakSelf?.setTabsViewTopConstraint(to: 0, animated: true)
             completion?()
             
-        }) { () -> UIWebViewTab in
+        }, addNewWebViewTabCallback:{ () -> UIWebViewTab in
             let newTab = UIWebViewTab(frame: .zero)
             if let webTabHostView = weakSelf?.webTabsHostView {
                 UIView.constrainView(view: newTab, inHostView: webTabHostView)
             }
             return newTab
-        }
+        }, presentAlertController: {
+            weakSelf?.present($0, animated: true, completion: nil)
+        })
         
         
         let model = WebTabsControllerLogicModel(webTabsView: self.webTabsView,
@@ -59,13 +61,6 @@ class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
         
         self.logic = WebTabsControllerLogic(model: model, callbacks: callbacks)
     }
-    
-
-
-    
-
-    
-
     
     //MARK:
 

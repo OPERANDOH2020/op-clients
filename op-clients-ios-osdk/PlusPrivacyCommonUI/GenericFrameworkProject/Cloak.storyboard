@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -75,6 +75,7 @@
                     <connections>
                         <outlet property="exitButton" destination="zkS-qb-v6f" id="X4E-lc-Zdg"/>
                         <outlet property="tableView" destination="lba-mm-HXc" id="2Yc-OY-Pm4"/>
+                        <outlet property="titleBarHeightConstraint" destination="FDO-S3-CBQ" id="C6t-Ry-X32"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFd-pC-5uF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -142,6 +143,7 @@
                     <connections>
                         <outlet property="appTitleLabel" destination="gq6-uy-XDR" id="cVh-7z-Uoo"/>
                         <outlet property="scdDetailsView" destination="jcz-9T-ei2" id="AT4-yB-g5n"/>
+                        <outlet property="titleBarHeightConstraint" destination="Zut-eE-pIP" id="Rrp-1z-Df6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r6O-vQ-Dzr" userLabel="First Responder" sceneMemberID="firstResponder"/>

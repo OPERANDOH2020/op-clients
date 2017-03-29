@@ -23,10 +23,6 @@
 		982D316D1E84254C00FE2FB7 /* PPCommonUIBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982D316A1E84254C00FE2FB7 /* PPCommonUIBundle.bundle */; };
 		982D316E1E84254C00FE2FB7 /* PPCloakBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982D316B1E84254C00FE2FB7 /* PPCloakBundle.bundle */; };
 		982D316F1E84254C00FE2FB7 /* PPCommonTypesBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 982D316C1E84254C00FE2FB7 /* PPCommonTypesBundle.bundle */; };
-		982D31721E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31621E84253B00FE2FB7 /* PlusPrivacyCommonUI.framework */; };
-		982D31731E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31621E84253B00FE2FB7 /* PlusPrivacyCommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		982D31741E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31631E84253B00FE2FB7 /* PlusPrivacyCommonTypes.framework */; };
-		982D31751E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 982D31631E84253B00FE2FB7 /* PlusPrivacyCommonTypes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		982D31791E8427DB00FE2FB7 /* AppSCD.json in Resources */ = {isa = PBXBuildFile; fileRef = 982D31781E8427DB00FE2FB7 /* AppSCD.json */; };
 		982D31881E842A9B00FE2FB7 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 982D317C1E842A9B00FE2FB7 /* AFHTTPSessionManager.m */; };
 		982D31891E842A9B00FE2FB7 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 982D317F1E842A9B00FE2FB7 /* AFNetworkReachabilityManager.m */; };
@@ -107,6 +103,15 @@
 		986F1A5E1E81331900107F23 /* WebTabsControllerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986F1A5D1E81331900107F23 /* WebTabsControllerLogic.swift */; };
 		987072041E82BD2B00151201 /* WebViewTabManagementPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987072031E82BD2B00151201 /* WebViewTabManagementPool.swift */; };
 		987072071E82BF0A00151201 /* WebViewTabManagementPoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987072061E82BF0A00151201 /* WebViewTabManagementPoolTests.swift */; };
+		987E717D1E8BB9480006B240 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71771E8BB8FB0006B240 /* PlusPrivacyCommonUI.framework */; };
+		987E717E1E8BB9480006B240 /* PlusPrivacyCommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71771E8BB8FB0006B240 /* PlusPrivacyCommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		987E717F1E8BB9480006B240 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71781E8BB8FB0006B240 /* PlusPrivacyCommonTypes.framework */; };
+		987E71801E8BB9480006B240 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71781E8BB8FB0006B240 /* PlusPrivacyCommonTypes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		987E71811E8BB94F0006B240 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987E717B1E8BB90C0006B240 /* SwarmClient.framework */; };
+		987E71821E8BB94F0006B240 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987E717B1E8BB90C0006B240 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		987E71881E8BC8D40006B240 /* UIWebViewTabHelperModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E71871E8BC8D40006B240 /* UIWebViewTabHelperModels.swift */; };
+		987E718B1E8BDD480006B240 /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71891E8BDD260006B240 /* PPApiHooks.framework */; };
+		987E718C1E8BDD480006B240 /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71891E8BDD260006B240 /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
@@ -119,8 +124,6 @@
 		989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */; };
 		98D045DB1E8AA80300D97E56 /* PPWebContentBlocker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */; };
 		98D045DD1E8AA81100D97E56 /* PPWebContentBlocker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		98D045E41E8AB0A300D97E56 /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045E21E8AB09500D97E56 /* PPApiHooks.framework */; };
-		98D045E51E8AB0A300D97E56 /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045E21E8AB09500D97E56 /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98D045E81E8AB9CD00D97E56 /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045E61E8AB9BF00D97E56 /* PPCloak.framework */; };
 		98D045E91E8AB9CD00D97E56 /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045E61E8AB9BF00D97E56 /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98D220B81E7FFCEA00B3BD06 /* UIWebTabsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */; };
@@ -144,13 +147,10 @@
 		98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6AA1CCF976200C77649 /* UIRegistrationView.xib */; };
 		98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6AE1CCF995B00C77649 /* IHKeyboardAvoiding.m */; };
 		98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */; };
-		98F55FF41DD5EEFF0076555C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F55FF21DD5EEF90076555C /* SwarmClient.framework */; };
-		98F55FF51DD5EEFF0076555C /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98F55FF21DD5EEF90076555C /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98F6B1241E7BE5A200D193FF /* UIWebToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6B1231E7BE5A200D193FF /* UIWebToolbarView.swift */; };
 		98F6B1261E7BE62400D193FF /* UIWebToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F6B1251E7BE62400D193FF /* UIWebToolbarView.xib */; };
 		98F6B1291E7BFC7100D193FF /* UIWebViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6B1281E7BFC7100D193FF /* UIWebViewTab.swift */; };
 		98F6B12B1E7BFD9300D193FF /* UIWebViewTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F6B12A1E7BFD9300D193FF /* UIWebViewTab.xib */; };
-		98F9D23E1E82C40B00D013B4 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F55FF21DD5EEF90076555C /* SwarmClient.framework */; };
 		98F9D2401E82CD0300D013B4 /* WebTabsControllerLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9D23F1E82CD0300D013B4 /* WebTabsControllerLogicTests.swift */; };
 		98F9D2421E82CE0B00D013B4 /* CommonDummyClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9D2411E82CE0B00D013B4 /* CommonDummyClasses.swift */; };
 		ADB2AD4E1DB7FC85003E3AC1 /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */; };
@@ -178,12 +178,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				98D045E51E8AB0A300D97E56 /* PPApiHooks.framework in Embed Frameworks */,
+				987E718C1E8BDD480006B240 /* PPApiHooks.framework in Embed Frameworks */,
+				987E71821E8BB94F0006B240 /* SwarmClient.framework in Embed Frameworks */,
+				987E71801E8BB9480006B240 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */,
 				98D045E91E8AB9CD00D97E56 /* PPCloak.framework in Embed Frameworks */,
-				982D31751E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */,
-				982D31731E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Embed Frameworks */,
+				987E717E1E8BB9480006B240 /* PlusPrivacyCommonUI.framework in Embed Frameworks */,
 				98D045DD1E8AA81100D97E56 /* PPWebContentBlocker.framework in Embed Frameworks */,
-				98F55FF51DD5EEFF0076555C /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,8 +204,6 @@
 		9827501F1D0849EB00C73411 /* SwarmClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwarmClientHelper.swift; sourceTree = "<group>"; };
 		982750241D0849FA00C73411 /* OPConfigObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPConfigObject.swift; sourceTree = "<group>"; };
 		9827502C1D084A4B00C73411 /* WKWebViewUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WKWebViewUtilities.swift; path = Utilities/WKWebViewUtilities.swift; sourceTree = "<group>"; };
-		982D31621E84253B00FE2FB7 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
-		982D31631E84253B00FE2FB7 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		982D316A1E84254C00FE2FB7 /* PPCommonUIBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCommonUIBundle.bundle; sourceTree = "<group>"; };
 		982D316B1E84254C00FE2FB7 /* PPCloakBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCloakBundle.bundle; sourceTree = "<group>"; };
 		982D316C1E84254C00FE2FB7 /* PPCommonTypesBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCommonTypesBundle.bundle; sourceTree = "<group>"; };
@@ -309,6 +307,11 @@
 		987072031E82BD2B00151201 /* WebViewTabManagementPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewTabManagementPool.swift; sourceTree = "<group>"; };
 		987072051E82BF0A00151201 /* OperandoTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OperandoTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		987072061E82BF0A00151201 /* WebViewTabManagementPoolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewTabManagementPoolTests.swift; sourceTree = "<group>"; };
+		987E71771E8BB8FB0006B240 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
+		987E71781E8BB8FB0006B240 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
+		987E717B1E8BB90C0006B240 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		987E71871E8BC8D40006B240 /* UIWebViewTabHelperModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewTabHelperModels.swift; path = UserInterface/UIWebViewTab/UIWebViewTabHelperModels.swift; sourceTree = "<group>"; };
+		987E71891E8BDD260006B240 /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
@@ -322,7 +325,6 @@
 		989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRealIdentityView.swift; path = UserInterface/UIRealIdentityView/UIRealIdentityView.swift; sourceTree = "<group>"; };
 		989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIRealIdentityView.xib; path = UserInterface/UIRealIdentityView/UIRealIdentityView.xib; sourceTree = "<group>"; };
 		98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPWebContentBlocker.framework; sourceTree = "<group>"; };
-		98D045E21E8AB09500D97E56 /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		98D045E61E8AB9BF00D97E56 /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
 		98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabsListView.swift; path = UserInterface/UIWebTabsView/UIWebTabsListView.swift; sourceTree = "<group>"; };
 		98D220B91E7FFD1F00B3BD06 /* UIWebTabsListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebTabsListView.xib; path = UserInterface/UIWebTabsView/UIWebTabsListView.xib; sourceTree = "<group>"; };
@@ -351,7 +353,6 @@
 		98EAF6AE1CCF995B00C77649 /* IHKeyboardAvoiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHKeyboardAvoiding.m; sourceTree = "<group>"; };
 		98EAF6B11CCF99C300C77649 /* Operando-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Operando-BridgingHeader.h"; path = "BridgingHeader/Operando-BridgingHeader.h"; sourceTree = "<group>"; };
 		98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRegistrationViewController.swift; path = UserInterface/UIRegistrationViewController/UIRegistrationViewController.swift; sourceTree = "<group>"; };
-		98F55FF21DD5EEF90076555C /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		98F6B1231E7BE5A200D193FF /* UIWebToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebToolbarView.swift; path = UserInterface/UIWebToolbarView/UIWebToolbarView.swift; sourceTree = "<group>"; };
 		98F6B1251E7BE62400D193FF /* UIWebToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebToolbarView.xib; path = UserInterface/UIWebToolbarView/UIWebToolbarView.xib; sourceTree = "<group>"; };
 		98F6B1281E7BFC7100D193FF /* UIWebViewTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewTab.swift; path = UserInterface/UIWebViewTab/UIWebViewTab.swift; sourceTree = "<group>"; };
@@ -371,11 +372,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				987E717F1E8BB9480006B240 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 				98D045DB1E8AA80300D97E56 /* PPWebContentBlocker.framework in Frameworks */,
-				98D045E41E8AB0A300D97E56 /* PPApiHooks.framework in Frameworks */,
-				982D31741E8425B800FE2FB7 /* PlusPrivacyCommonTypes.framework in Frameworks */,
-				98F55FF41DD5EEFF0076555C /* SwarmClient.framework in Frameworks */,
-				982D31721E8425B800FE2FB7 /* PlusPrivacyCommonUI.framework in Frameworks */,
+				987E718B1E8BDD480006B240 /* PPApiHooks.framework in Frameworks */,
+				987E717D1E8BB9480006B240 /* PlusPrivacyCommonUI.framework in Frameworks */,
+				987E71811E8BB94F0006B240 /* SwarmClient.framework in Frameworks */,
 				98D045E81E8AB9CD00D97E56 /* PPCloak.framework in Frameworks */,
 				985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */,
 			);
@@ -385,7 +386,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98F9D23E1E82C40B00D013B4 /* SwarmClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,11 +475,11 @@
 		982D31601E84252F00FE2FB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				987E71891E8BDD260006B240 /* PPApiHooks.framework */,
+				987E71771E8BB8FB0006B240 /* PlusPrivacyCommonUI.framework */,
+				987E71781E8BB8FB0006B240 /* PlusPrivacyCommonTypes.framework */,
 				98D045E61E8AB9BF00D97E56 /* PPCloak.framework */,
-				98D045E21E8AB09500D97E56 /* PPApiHooks.framework */,
 				98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */,
-				982D31621E84253B00FE2FB7 /* PlusPrivacyCommonUI.framework */,
-				982D31631E84253B00FE2FB7 /* PlusPrivacyCommonTypes.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1066,10 +1066,10 @@
 		98EAF6931CCF88D400C77649 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				987E717B1E8BB90C0006B240 /* SwarmClient.framework */,
 				982D317A1E842A9B00FE2FB7 /* AFNetworking */,
 				98500BBB1E0935ED00DF87E8 /* KiteJSONValidator */,
 				98516FD01E042089007428F3 /* ProgressHUD */,
-				98F55FF21DD5EEF90076555C /* SwarmClient.framework */,
 				985A0D3E1DCCB0E40010C799 /* Locksmith */,
 				989C41801DBE18E800951AE5 /* MGSwipeTableCell */,
 				ADB2AD4C1DB7FC85003E3AC1 /* SSASideMenu */,
@@ -1169,6 +1169,7 @@
 		98F6B1271E7BFC2D00D193FF /* UIWebViewTab */ = {
 			isa = PBXGroup;
 			children = (
+				987E71871E8BC8D40006B240 /* UIWebViewTabHelperModels.swift */,
 				98F6B1281E7BFC7100D193FF /* UIWebViewTab.swift */,
 				98F6B12A1E7BFD9300D193FF /* UIWebViewTab.xib */,
 			);
@@ -1411,6 +1412,7 @@
 				98D220B81E7FFCEA00B3BD06 /* UIWebTabsListView.swift in Sources */,
 				9852C7001CD1143800AF2BE5 /* UIMenuTableViewController.swift in Sources */,
 				989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */,
+				987E71881E8BC8D40006B240 /* UIWebViewTabHelperModels.swift in Sources */,
 				98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */,
 				ADF3CA6F1DB89F8D00BD2B7A /* UILeftSideMenuViewController+DataSource.swift in Sources */,
 				98F6B1291E7BFC7100D193FF /* UIWebViewTab.swift in Sources */,
@@ -1653,7 +1655,7 @@
 					"$(PROJECT_DIR)/Operando",
 				);
 				INFOPLIST_FILE = Operando/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = costinAndronache.eu.romsoft.Operando;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1676,7 +1678,7 @@
 					"$(PROJECT_DIR)/Operando",
 				);
 				INFOPLIST_FILE = Operando/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = costinAndronache.eu.romsoft.Operando;
 				PRODUCT_NAME = "$(TARGET_NAME)";
