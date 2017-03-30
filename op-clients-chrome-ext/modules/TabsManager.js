@@ -26,6 +26,8 @@ BrowserTab.prototype = {
 };
 
 var TabsManager = function(){
+    init();
+
     this.browserTabs = [];
 
     chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
@@ -81,6 +83,14 @@ function suggestPrivacyForBenefits(tab) {
 
 function establishPlusPrivacyWebsiteCommunication(tabId){
     insertJavascriptFile(tabId, "operando/modules/communication/message-relay.js");
+}
+
+function init(){
+    chrome.tabs.query({url:"*://"+ExtensionConfig.WEBSITE_HOST+"/*"}, function (tabs){
+        tabs.forEach(function(tab){
+            establishPlusPrivacyWebsiteCommunication(tab.id);
+        });
+    });
 }
 
 TabsManager.prototype = {

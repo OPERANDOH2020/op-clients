@@ -15,5 +15,5 @@ var ExtensionConfig = {
     //OPERANDO_SERVER_HOST:"82.77.27.50",
     OPERANDO_SERVER_HOST:"plusprivacy.com",
     OPERANDO_SERVER_PORT:8080,
-    WEBSITE_HOST:"http://plusprivacy.com/"
+    WEBSITE_HOST:"plusprivacy.com"
 }
