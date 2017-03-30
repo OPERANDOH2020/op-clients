@@ -32,12 +32,8 @@ var userService = exports.userService = {
 
     changePassword:function(changePasswordData, success_callback, error_callback){
         var changePasswordHandler = swarmHub.startSwarm('UserInfo.js', 'changePassword', changePasswordData.currentPassword, changePasswordData.newPassword);
-        changePasswordHandler.onResponse("emailDeliverySuccessful", function(response){
+        changePasswordHandler.onResponse("passwordSuccessfullyChanged", function(response){
             success_callback();
-        });
-
-        changePasswordHandler.onResponse("emailDeliveryUnsuccessful", function(response){
-            error_callback(response.error);
         });
 
         changePasswordHandler.onResponse("passwordChangeFailure", function(response){

@@ -171,11 +171,14 @@ var authenticationService = exports.authenticationService = {
         swarmService.restoreConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, username, sessionId, failCallback, errorCallback, reconnectCallback);
         swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
             loggedIn = true;
+            self.setUser(successCallback);
+            swarmHub.off("login.js", "restoreSucceed",restoredSuccessfully);
+        });
+
+        swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
             var cookieValidityDays = parseInt(Cookies.get("daysUntilCookieExpire"));
             Cookies.set("sessionId", swarm.meta.sessionId, {expires: cookieValidityDays});
             Cookies.set("userId", swarm.userId, {expires: cookieValidityDays});
-            self.setUser(successCallback);
-            swarmHub.off("login.js", "restoreSucceed",restoredSuccessfully);
         });
     },
 
