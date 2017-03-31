@@ -19,7 +19,7 @@ typedef void(^LocationSettingsChangedCallback)(LocationInputSwizzlerSettings* _N
 
 @end
 
-@interface UILocationSettingsViewController : UITableViewController
+@interface UILocationSettingsViewController : UIViewController
 
 -(void)setupWithModel:(LocationSettingsModel* _Nullable)model onExit:(void(^ _Nullable)())exitCallback;
 

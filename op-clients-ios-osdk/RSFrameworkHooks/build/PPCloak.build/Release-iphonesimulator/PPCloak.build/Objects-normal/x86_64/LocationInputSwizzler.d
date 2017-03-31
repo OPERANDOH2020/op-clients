@@ -1,5 +1,6 @@
 dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/InputSwizzling/LocationInputSwizzler/LocationInputSwizzler.m \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/module.modulemap \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/InputSwizzling/LocationInputSwizzler/LocationInputSwizzler.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/LocationInputSwizzlerSettings/LocationInputSwizzlerSettings.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PPApiHooks.framework/Modules/module.modulemap \

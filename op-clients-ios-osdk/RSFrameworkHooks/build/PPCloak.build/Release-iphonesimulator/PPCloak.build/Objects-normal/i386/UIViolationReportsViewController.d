@@ -1,9 +1,9 @@
 dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIViolationReportsViewController/UIViolationReportsViewController.m \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/module.modulemap \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIViolationReportsViewController/UIViolationReportsViewController.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/ViolationReports/PPReportsSourcesBundle.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/ReportsStorageProtocol.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/module.modulemap \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/PPInputAccessViolation/PPUnlistedInputAccessViolation.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes-Swift.h \

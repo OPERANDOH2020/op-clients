@@ -289,13 +289,13 @@ public class SCDDocument: NSObject {
     public let bundleId: String
     public let appIconURL: String?
     
-    public let accessedLinks: [String]
+    public let accessedHosts: [String]
     public let accessedInputs: [AccessedInput]
     
     internal init?(scd: [String: Any]) {
         guard let title = scd["title"] as? String,
             let bundleId = scd["bundleId"] as? String,
-            let accessedLinks = scd["accessedLinks"] as? [String],
+            let accessedHosts = scd["accessedHosts"] as? [String],
             let accessedSensorsDictArray = scd["accessedInputs"] as? [[String: Any]],
             let accessedSensors = AccessedInput.buildFromJsonArray(accessedSensorsDictArray) else {
                 return nil
@@ -304,7 +304,7 @@ public class SCDDocument: NSObject {
         self.appTitle = title
         self.bundleId = bundleId
         self.accessedInputs = accessedSensors
-        self.accessedLinks = accessedLinks
+        self.accessedHosts = accessedHosts
         self.appIconURL = scd["appIconURL"] as? String
     }
     

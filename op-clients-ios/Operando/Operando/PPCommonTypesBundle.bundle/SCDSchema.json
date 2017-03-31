@@ -18,7 +18,7 @@
             "type": "string"
         },
         
-        "accessedLinks": {
+        "accessedHosts": {
             "description": "The list of URLS that the app will access",
             "type": "array",
             "items": {
@@ -78,7 +78,7 @@
                                   "required": ["privacyLevel"]
                                   },
                                   {
-                                  "type": "object", 
+                                  "type": "object",
                                   "properties": {
                                   "privacyLevel":  { "enum": [5] }
                                   },
@@ -86,10 +86,10 @@
                                   }
                                   ]
                         
-                    }, 
+                    },
                     
                     "accessFrequency": {
-                        "description": "A string specifying how often the data from this sensor if fetched/queried.", 
+                        "description": "A string specifying how often the data from this sensor if fetched/queried.",
                         "enum": ["continuously", "continuousIntervals", "singularSample"]
                     },
                     
@@ -104,5 +104,5 @@
         }
     },
     
-    "required": ["accessedInputs", "accessedLinks", "bundleId", "title"]
+    "required": ["accessedInputs", "accessedHosts", "bundleId", "title"]
 }

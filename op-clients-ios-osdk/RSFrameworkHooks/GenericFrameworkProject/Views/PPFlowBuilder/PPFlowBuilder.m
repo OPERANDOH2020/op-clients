@@ -40,7 +40,12 @@
     UIPPOptionsViewControllerCallbacks *callbacks = [[UIPPOptionsViewControllerCallbacks alloc] init];
     
     callbacks.whenChoosingSCDInfo = ^{
-        UIViewController *commonUIVC = [CommonUIBUilder buildFlowFor:model.scdRepository exitArrowDirection:ExitArrowDirectionLeft whenExiting:^{
+        
+        CommonUIDisplayModel *displayModel = [[CommonUIDisplayModel alloc] init];
+        displayModel.titleBarHeight = 64;
+        displayModel.exitButtonType = UISCDDocumentsControllerExitButtonTypeTypeArrowLeft;
+        
+        UIViewController *commonUIVC = [CommonUIBUilder buildFlowFor:model.scdRepository displayModel:displayModel whenExiting:^{
             [weakNavgController popViewControllerAnimated:true];
         }];
     

@@ -210,8 +210,11 @@ class UIFlowController: SSASideMenuDelegate
     
     
     private func displaySCDDocumentsViewController() {
+        let displayModel = CommonUIDisplayModel()
+        displayModel.exitButtonType = .NoneInvisible
+        displayModel.titleBarHeight = 50
         guard let repository = self.dependencies.scdDocumentsRepository,
-              let controller = CommonUIBUilder.buildFlow(for: repository, exitArrowDirection: .Up, whenExiting: nil) else {
+            let controller = CommonUIBUilder.buildFlow(for: repository, displayModel: displayModel, whenExiting: nil) else {
             return
         }
         

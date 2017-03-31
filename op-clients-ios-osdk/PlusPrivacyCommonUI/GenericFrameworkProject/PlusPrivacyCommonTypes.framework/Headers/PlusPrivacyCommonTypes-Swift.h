@@ -311,7 +311,7 @@ SWIFT_CLASS("_TtC22PlusPrivacyCommonTypes11SCDDocument")
 @property (nonatomic, readonly, copy) NSString * _Nonnull appTitle;
 @property (nonatomic, readonly, copy) NSString * _Nonnull bundleId;
 @property (nonatomic, readonly, copy) NSString * _Nullable appIconURL;
-@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull accessedLinks;
+@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull accessedHosts;
 @property (nonatomic, readonly, copy) NSArray<AccessedInput *> * _Nonnull accessedInputs;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end

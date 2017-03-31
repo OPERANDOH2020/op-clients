@@ -37,7 +37,7 @@ class OPConfigObject: NSObject
     private func initPropertiesOnAppStart() {
         
         self.userRepository = self.swarmClientHelper
-        self.notificationsRepository = self.swarmClientHelper
+        self.notificationsRepository = DummyNotificationsRepo()//self.swarmClientHelper
         self.adBlocker.beginBlocking()
         
         weak var weakSelf = self
@@ -50,7 +50,7 @@ class OPConfigObject: NSObject
                                scdRepository: scdRepository)
         
         let dependencies = Dependencies(identityManagementRepo:  self.swarmClientHelper,
-                                         privacyForBenefitsRepo:  self.swarmClientHelper,
+                                         privacyForBenefitsRepo:  DummyPfbRepository(),
                                          userInfoRepo:            self.swarmClientHelper,
                                          notificationsRepository: self.notificationsRepository,
                                          scdDocumentsRepository: scdRepository,

@@ -55,7 +55,7 @@
 -(PPAccessUnlistedHostReport*)accessesUnspecifiedLink:(NSURLRequest*)request {
     NSString *host = request.URL.host;
     
-    for (NSString *listedHost in self.model.scdDocument.accessedLinks) {
+    for (NSString *listedHost in self.model.scdDocument.accessedHosts) {
         if ([listedHost isEqualToString:host]) {
             return nil;
         }

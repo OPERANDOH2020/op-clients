@@ -14,4 +14,5 @@
 #include "MGSwipeTableCell.h"
 #include "ProgressHUD.h"
 #include "KiteJSONValidator.h"
+#import "UIKit+AFNetworking.h"
 #endif /* Operando_BridgingHeader_h */

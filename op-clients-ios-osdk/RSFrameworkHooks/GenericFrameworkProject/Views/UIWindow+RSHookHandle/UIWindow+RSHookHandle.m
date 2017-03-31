@@ -22,6 +22,8 @@ static NSTimer *repositionHandleTimer = nil;
 
 -(void)rsHook_addSubview:(UIView*)view {
     
+    [self rsHook_addSubview:view];
+    return;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -41,7 +43,6 @@ static NSTimer *repositionHandleTimer = nil;
         repositionHandleTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:blockOperation selector:@selector(main) userInfo:nil repeats:YES];
     });
     
-    [self rsHook_addSubview:view];
     
 }
 

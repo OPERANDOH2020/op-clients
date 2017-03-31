@@ -25,8 +25,8 @@ public enum UISCDDocumentsControllerExitButtonType: Int {
 
 @objc
 public class CommonUIDisplayModel: NSObject {
-    var titleBarHeight: CGFloat = 64
-    var exitButtonType: UISCDDocumentsControllerExitButtonType = UISCDDocumentsControllerExitButtonType.CloseCircleX
+    public var titleBarHeight: CGFloat = 64
+    public var exitButtonType: UISCDDocumentsControllerExitButtonType = UISCDDocumentsControllerExitButtonType.CloseCircleX
 }
 
 struct UISCDDocumentsViewControllerModel {

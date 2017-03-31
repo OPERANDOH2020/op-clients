@@ -34,15 +34,17 @@ class PlistSCDRepository: SCDRepository, PlusPrivacyCommonUI.SCDRepository {
     }
     
     private func loadPlistObjects() {
+        self.debugRegisterSIMAP_PW()
+        
         guard let plistArray = NSArray(contentsOfFile: self.plistFilePath),
             let plistDictsArray = plistArray as? [[String : Any]] else {
                 return
         }
-    
+
         CommonTypeBuilder.sharedInstance.buildFromJSON(array: plistDictsArray) { documents, error  in
             if let documents = documents {
-                self.scdDocuments = documents
-                self.scdJSONS = plistDictsArray
+                self.scdDocuments.append(contentsOf: documents)
+                self.scdJSONS.append(contentsOf: plistDictsArray)
             }
         }
     }
@@ -73,6 +75,27 @@ class PlistSCDRepository: SCDRepository, PlusPrivacyCommonUI.SCDRepository {
         }
     }
 
+    
+    private func debugRegisterSIMAP_PW() {
+        guard self.scdDocuments.first(where: {
+            return $0.bundleId == "eu.romsoft.SIMAP" || $0.bundleId == "eu.romsoft.PrivacyWizard"
+        }) == nil else {
+            return
+        }
+        
+        let simapDict: [String: Any] = ["title":"SIMAP",
+                                        "bundleId": "eu.romsoft.SIMAP",
+                                        "accessedHosts": ["simap.rms.ro"],
+                                        "accessedInputs": []]
+        
+        let privacyWizardDict: [String: Any] = ["title": "PrivacyWizard",
+                                                "bundleId": "eu.romsoft.PrivacyWizard",
+                                                "accessedHosts": ["plusprivacy.com"],
+                                                "accessedInputs": []]
+        
+        self.registerSCDJson(simapDict, withCompletion: nil)
+        self.registerSCDJson(privacyWizardDict, withCompletion: nil)
+    }
     
     private func synchronize() {
         let array = NSMutableArray()

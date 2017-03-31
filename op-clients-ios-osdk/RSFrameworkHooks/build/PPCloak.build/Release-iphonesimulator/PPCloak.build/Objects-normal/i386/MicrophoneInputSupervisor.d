@@ -1,7 +1,7 @@
 dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/MicrophoneInputSupervisor/MicrophoneInputSupervisor.m \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/MicrophoneInputSupervisor/MicrophoneInputSupervisor.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/module.modulemap \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/MicrophoneInputSupervisor/MicrophoneInputSupervisor.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/SupervisorProtocols.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Headers/PlusPrivacyCommonTypes-Swift.h \

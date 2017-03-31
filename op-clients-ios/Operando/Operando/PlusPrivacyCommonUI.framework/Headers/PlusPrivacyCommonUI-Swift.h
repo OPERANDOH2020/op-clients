@@ -134,8 +134,8 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if defined(__has_feature) && __has_feature(modules)
 @import Foundation;
 @import ObjectiveC;
-@import UIKit;
 @import CoreGraphics;
+@import UIKit;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -145,19 +145,23 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @end
 
 @protocol SCDRepository;
-enum ExitArrowDirection : NSInteger;
+@class CommonUIDisplayModel;
 @class UIViewController;
 
 SWIFT_CLASS("_TtC19PlusPrivacyCommonUI15CommonUIBUilder")
 @interface CommonUIBUilder : NSObject
-+ (UIViewController * _Nullable)buildFlowFor:(id <SCDRepository> _Nonnull)repository exitArrowDirection:(enum ExitArrowDirection)exitArrowDirection whenExiting:(void (^ _Nullable)(void))whenExiting SWIFT_WARN_UNUSED_RESULT;
++ (UIViewController * _Nullable)buildFlowFor:(id <SCDRepository> _Nonnull)repository displayModel:(CommonUIDisplayModel * _Nonnull)displayModel whenExiting:(void (^ _Nullable)(void))whenExiting SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-typedef SWIFT_ENUM(NSInteger, ExitArrowDirection) {
-  ExitArrowDirectionLeft = 0,
-  ExitArrowDirectionUp = 1,
-};
+enum UISCDDocumentsControllerExitButtonType : NSInteger;
+
+SWIFT_CLASS("_TtC19PlusPrivacyCommonUI20CommonUIDisplayModel")
+@interface CommonUIDisplayModel : NSObject
+@property (nonatomic) CGFloat titleBarHeight;
+@property (nonatomic) enum UISCDDocumentsControllerExitButtonType exitButtonType;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
 
 @class SCDDocument;
 @class NSError;
@@ -228,6 +232,14 @@ SWIFT_CLASS("_TtC19PlusPrivacyCommonUI28UINotificationViewController")
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
+
+typedef SWIFT_ENUM(NSInteger, UISCDDocumentsControllerExitButtonType) {
+  UISCDDocumentsControllerExitButtonTypeTypeArrowLeft = 0,
+  UISCDDocumentsControllerExitButtonTypeTypeArrowUp = 1,
+  UISCDDocumentsControllerExitButtonTypeHamburgerMenu = 2,
+  UISCDDocumentsControllerExitButtonTypeCloseCircleX = 3,
+  UISCDDocumentsControllerExitButtonTypeNoneInvisible = 4,
+};
 
 
 @interface UIViewController (SWIFT_EXTENSION(PlusPrivacyCommonUI))

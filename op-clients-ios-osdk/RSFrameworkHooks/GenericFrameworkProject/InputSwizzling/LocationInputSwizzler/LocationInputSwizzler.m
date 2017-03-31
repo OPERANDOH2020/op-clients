@@ -81,7 +81,7 @@
         return nil;
     }
     
-    return [[CLLocation alloc] initWithLatitude:self.currentSettings.locationLatitude longitude:self.currentSettings.locationLongitude];
+    return [[CLLocation alloc] initWithLatitude:0 longitude:0];
 }
 
 
