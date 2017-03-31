@@ -110,7 +110,9 @@ var authenticationService = exports.authenticationService = {
     authenticateWithToken: function(userId, authenticationToken, successCallback, failCallback){
 
         var self = this;
-        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, userId, authenticationToken, "chromeBrowserExtension", "tokenLogin", failCallback, failCallback);
+        swarmService.initConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, userId, authenticationToken, "chromeBrowserExtension", "tokenLogin", failCallback, failCallback, function(){
+            self.restoreUserSession();
+        });
 
         var tokenLoginSuccessfully = function(swarm){
 
@@ -171,7 +173,9 @@ var authenticationService = exports.authenticationService = {
         swarmService.restoreConnection(ExtensionConfig.OPERANDO_SERVER_HOST, ExtensionConfig.OPERANDO_SERVER_PORT, username, sessionId, failCallback, errorCallback, reconnectCallback);
         swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
             loggedIn = true;
-            self.setUser(successCallback);
+            if(successCallback){
+                self.setUser(successCallback);
+            }
             swarmHub.off("login.js", "restoreSucceed",restoredSuccessfully);
         });
 
