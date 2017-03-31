@@ -141,6 +141,7 @@ open class ActionController<ActionViewType: UICollectionViewCell, ActionDataType
             swipeGesture.direction = .down
             collectionView.addGestureRecognizer(swipeGesture)
         }
+        
         return collectionView
     }()
     
@@ -149,6 +150,7 @@ open class ActionController<ActionViewType: UICollectionViewCell, ActionDataType
         collectionViewLayout.useDynamicAnimator = self.settings.behavior.useDynamics
         collectionViewLayout.minimumInteritemSpacing = 0.0
         collectionViewLayout.minimumLineSpacing = 0
+        
         return collectionViewLayout
     }()
     
@@ -424,12 +426,12 @@ open class ActionController<ActionViewType: UICollectionViewCell, ActionDataType
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
             if let headerData = headerData, let headerSpec = headerSpec {
-                return CGSize(width: collectionView.bounds.size.width, height: headerSpec.height(headerData))
+                return CGSize(width: collectionView.bounds.size.width, height: headerSpec.height(headerData) + 10.0)
             } else if let sectionHeaderSpec = sectionHeaderSpec, let section = sectionForIndex(actionSectionIndexFor(section)), let sectionData = section.data {
-                return CGSize(width: collectionView.bounds.size.width, height: sectionHeaderSpec.height(sectionData))
+                return CGSize(width: collectionView.bounds.size.width, height: sectionHeaderSpec.height(sectionData) + 10.0)
             }
         } else if let sectionHeaderSpec = sectionHeaderSpec, let section = sectionForIndex(actionSectionIndexFor(section)), let sectionData = section.data {
-            return CGSize(width: collectionView.bounds.size.width, height: sectionHeaderSpec.height(sectionData))
+            return CGSize(width: collectionView.bounds.size.width, height: sectionHeaderSpec.height(sectionData) + 10.0)
         }
         return CGSize.zero
     }
@@ -467,10 +469,12 @@ open class ActionController<ActionViewType: UICollectionViewCell, ActionDataType
         
         if isPresenting {
             toView?.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-            containerView.addSubview(toView!)
-            
-            transitionContext.completeTransition(true)
-            presentView(toView!, presentingView: fromView!, animationDuration: settings.animation.present.duration, completion: nil)
+            if let toView = toView {
+                containerView.addSubview(toView)
+                
+                transitionContext.completeTransition(true)
+                presentView(toView, presentingView: fromView!, animationDuration: settings.animation.present.duration, completion: nil)
+            }
         } else {
             dismissView(fromView!, presentingView: toView!, animationDuration: settings.animation.dismiss.duration) { completed in
                 if completed {

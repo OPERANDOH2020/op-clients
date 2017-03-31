@@ -64,10 +64,15 @@
 		AD42FB6F1DF59D2D0034FA99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD42FB651DF59D2D0034FA99 /* Assets.xcassets */; };
 		AD42FB721DF59D2D0034FA99 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD42FB6A1DF59D2D0034FA99 /* Info.plist */; };
 		AD42FB731DF59D2D0034FA99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB6D1DF59D2D0034FA99 /* ViewController.swift */; };
-		AD42FB791DF59D690034FA99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD42FB751DF59D690034FA99 /* LaunchScreen.storyboard */; };
-		AD42FB7A1DF59D690034FA99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD42FB771DF59D690034FA99 /* Main.storyboard */; };
 		AD42FB7C1DF59DCB0034FA99 /* ACSwarmClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB7B1DF59DCB0034FA99 /* ACSwarmClientHelper.swift */; };
 		AD42FB801DF59E920034FA99 /* ACNetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB7F1DF59E920034FA99 /* ACNetworkingConstants.swift */; };
+		AD709F461E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD709F451E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift */; };
+		AD798BCE1E8B9BCC00EA5226 /* Dosis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD798BCC1E8B9BCC00EA5226 /* Dosis-Medium.otf */; };
+		AD798BCF1E8B9BCC00EA5226 /* Dosis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD798BCD1E8B9BCC00EA5226 /* Dosis-SemiBold.otf */; };
+		AD798BD01E8B9FCC00EA5226 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD42FB751DF59D690034FA99 /* LaunchScreen.storyboard */; };
+		AD798BD11E8B9FD100EA5226 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD42FB771DF59D690034FA99 /* Main.storyboard */; };
+		AD798BD41E8BDDE800EA5226 /* UIRadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD798BD31E8BDDE800EA5226 /* UIRadialGradientView.swift */; };
+		AD798BD81E8BEE1300EA5226 /* UIRibonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD798BD61E8BEE1300EA5226 /* UIRibonHeaderView.swift */; };
 		AD7B500B1DF5A9D70097AA5C /* ACSwarmClientHelper+ConnectionCallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7B500A1DF5A9D70097AA5C /* ACSwarmClientHelper+ConnectionCallbacks.swift */; };
 		AD7E07E21DFFEA34002FA133 /* AMAvailableWriteSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7E07E11DFFEA34002FA133 /* AMAvailableWriteSetting.swift */; };
 		AD7E07E41DFFEC0A002FA133 /* AMWriteSettingParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7E07E31DFFEC0A002FA133 /* AMWriteSettingParameter.swift */; };
@@ -199,6 +204,11 @@
 		AD42FB781DF59D690034FA99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD42FB7B1DF59DCB0034FA99 /* ACSwarmClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSwarmClientHelper.swift; sourceTree = "<group>"; };
 		AD42FB7F1DF59E920034FA99 /* ACNetworkingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNetworkingConstants.swift; sourceTree = "<group>"; };
+		AD709F451E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadialGradientViewPulsarConfiguration.swift; sourceTree = "<group>"; };
+		AD798BCC1E8B9BCC00EA5226 /* Dosis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.otf"; sourceTree = "<group>"; };
+		AD798BCD1E8B9BCC00EA5226 /* Dosis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-SemiBold.otf"; sourceTree = "<group>"; };
+		AD798BD31E8BDDE800EA5226 /* UIRadialGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadialGradientView.swift; sourceTree = "<group>"; };
+		AD798BD61E8BEE1300EA5226 /* UIRibonHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRibonHeaderView.swift; sourceTree = "<group>"; };
 		AD7B500A1DF5A9D70097AA5C /* ACSwarmClientHelper+ConnectionCallbacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACSwarmClientHelper+ConnectionCallbacks.swift"; sourceTree = "<group>"; };
 		AD7E07E11DFFEA34002FA133 /* AMAvailableWriteSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMAvailableWriteSetting.swift; sourceTree = "<group>"; };
 		AD7E07E31DFFEC0A002FA133 /* AMWriteSettingParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMWriteSettingParameter.swift; sourceTree = "<group>"; };
@@ -710,6 +720,40 @@
 			path = ACNetworkingConstants;
 			sourceTree = "<group>";
 		};
+		AD798BCA1E8B9BCC00EA5226 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AD798BCB1E8B9BCC00EA5226 /* Dosis */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		AD798BCB1E8B9BCC00EA5226 /* Dosis */ = {
+			isa = PBXGroup;
+			children = (
+				AD798BCC1E8B9BCC00EA5226 /* Dosis-Medium.otf */,
+				AD798BCD1E8B9BCC00EA5226 /* Dosis-SemiBold.otf */,
+			);
+			path = Dosis;
+			sourceTree = "<group>";
+		};
+		AD798BD21E8BDDDC00EA5226 /* UIRadialGradientView */ = {
+			isa = PBXGroup;
+			children = (
+				AD798BD31E8BDDE800EA5226 /* UIRadialGradientView.swift */,
+				AD709F451E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift */,
+			);
+			path = UIRadialGradientView;
+			sourceTree = "<group>";
+		};
+		AD798BD51E8BEDF500EA5226 /* UIRibonHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				AD798BD61E8BEE1300EA5226 /* UIRibonHeaderView.swift */,
+			);
+			path = UIRibonHeaderView;
+			sourceTree = "<group>";
+		};
 		AD7E07E51E00095C002FA133 /* AMRecommendedSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,6 +888,7 @@
 		ADE060E51E1D4C4700ACC00E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD798BCA1E8B9BCC00EA5226 /* Fonts */,
 				ADE060E61E1D4C5200ACC00E /* Images */,
 			);
 			name = Resources;
@@ -908,6 +953,8 @@
 		ADE061061E1E6ACE00ACC00E /* UICommon */ = {
 			isa = PBXGroup;
 			children = (
+				AD798BD51E8BEDF500EA5226 /* UIRibonHeaderView */,
+				AD798BD21E8BDDDC00EA5226 /* UIRadialGradientView */,
 				AD291BEB1E5D8DB000F158E0 /* UIAlertViewController */,
 				ADE061071E1E6ACE00ACC00E /* UICustomTableViewHeader */,
 			);
@@ -1060,18 +1107,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD798BD11E8B9FD100EA5226 /* Main.storyboard in Resources */,
+				AD798BD01E8B9FCC00EA5226 /* LaunchScreen.storyboard in Resources */,
 				AD9A5D751E7BE6E400A31865 /* ActionCell.xib in Resources */,
 				AD291C271E5DCE9F00F158E0 /* facebook_iOS.js in Resources */,
 				AD291C2B1E5DCE9F00F158E0 /* OSP.Settings.js in Resources */,
 				AD291C281E5DCE9F00F158E0 /* jquery-3.1.0.min.js in Resources */,
-				AD42FB791DF59D690034FA99 /* LaunchScreen.storyboard in Resources */,
 				AD291C3C1E5DCE9F00F158E0 /* UISNSettingsView.xib in Resources */,
 				AD291C2A1E5DCE9F00F158E0 /* osp-settings.js in Resources */,
+				AD798BCE1E8B9BCC00EA5226 /* Dosis-Medium.otf in Resources */,
 				AD291C341E5DCE9F00F158E0 /* interceptPOST.js in Resources */,
 				AD9A5D601E79459C00A31865 /* Disclaimer.xib in Resources */,
 				ADEDBBCA1E5713A400C220B0 /* PrivacyWizardModule.js in Resources */,
 				ADE061161E1F7AEE00ACC00E /* Common.xcassets in Resources */,
 				AD291C2C1E5DCE9F00F158E0 /* readSNSettings.js in Resources */,
+				AD798BCF1E8B9BCC00EA5226 /* Dosis-SemiBold.otf in Resources */,
 				AD291C321E5DCE9F00F158E0 /* fbExtractData.js in Resources */,
 				AD291C2D1E5DCE9F00F158E0 /* testJQuery.js in Resources */,
 				AD291C3A1E5DCE9F00F158E0 /* UISNSettingsTableViewCell.xib in Resources */,
@@ -1082,7 +1132,6 @@
 				AD15663E1E095F8700036616 /* PrivacyWizardResources.js in Resources */,
 				AD42FB721DF59D2D0034FA99 /* Info.plist in Resources */,
 				AD42FB6F1DF59D2D0034FA99 /* Assets.xcassets in Resources */,
-				AD42FB7A1DF59D690034FA99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,6 +1180,7 @@
 				AD291C3D1E5DCE9F00F158E0 /* NSError+Utilities.swift in Sources */,
 				AD1CC5EA1DF84BF20013FE77 /* AMWrite.swift in Sources */,
 				AD1CC5CB1DF832820013FE77 /* ACSwarmManager.swift in Sources */,
+				AD798BD81E8BEE1300EA5226 /* UIRibonHeaderView.swift in Sources */,
 				ADAF999D1E2E32E700E9A18D /* UILabel+Utils.swift in Sources */,
 				ADBBCAFD1E1BCD87007A7686 /* Array+Utils.swift in Sources */,
 				ADE0610E1E1E6B2500ACC00E /* UICustomTableViewHeader.swift in Sources */,
@@ -1138,6 +1188,7 @@
 				AD7E07E71E00097D002FA133 /* AMRecommendedSettings.swift in Sources */,
 				ADE060DC1E1D3A3E00ACC00E /* UIColor+Utils.swift in Sources */,
 				AD1CC5C71DF815230013FE77 /* ACErrorContainer.swift in Sources */,
+				AD709F461E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift in Sources */,
 				ADE060F41E1E2EFF00ACC00E /* UIFlowController.swift in Sources */,
 				AD291BE81E5C690B00F158E0 /* ProgressHUD.m in Sources */,
 				AD8F360D1E601A7600B28075 /* ACPrivacyWriter.swift in Sources */,
@@ -1160,6 +1211,7 @@
 				AD1CC5E81DF84BF20013FE77 /* AMRead.swift in Sources */,
 				AD9A5D731E7BE6E400A31865 /* Action.swift in Sources */,
 				AD42FB801DF59E920034FA99 /* ACNetworkingConstants.swift in Sources */,
+				AD798BD41E8BDDE800EA5226 /* UIRadialGradientView.swift in Sources */,
 				AD291C331E5DCE9F00F158E0 /* FbWebKitParametersProvider.swift in Sources */,
 				AD291C351E5DCE9F00F158E0 /* FbWebKitSecurityEnforcer.swift in Sources */,
 				AD291C3F1E5DCE9F00F158E0 /* UIView+Utilities.swift in Sources */,

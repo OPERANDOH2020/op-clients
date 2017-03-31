@@ -24,11 +24,11 @@
 
 import Foundation
 #if XLACTIONCONTROLLER_EXAMPLE
-import XLActionController
+    import XLActionController
 #endif
 
 open class TwitterCell: ActionCell {
-
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -42,14 +42,16 @@ open class TwitterCell: ActionCell {
         super.awakeFromNib()
         initialize()
     }
-
+    
     func initialize() {
-        backgroundColor = .operandoSkyTransparentLightBlue
+        backgroundColor = .appLightYellow
         actionImageView?.clipsToBounds = true
         actionImageView?.layer.cornerRadius = 5.0
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(white: 0.0, alpha: 0.15)
         selectedBackgroundView = backgroundView
+        separatorView?.alpha = 1.0
+        separatorView?.backgroundColor = .appLightBlue
     }
 }
 
@@ -59,7 +61,7 @@ open class TwitterActionControllerHeader: UICollectionReusableView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.backgroundColor = .operandoSkyBlue
+        label.backgroundColor = .appLightBlue
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 17)
         return label
@@ -68,19 +70,20 @@ open class TwitterActionControllerHeader: UICollectionReusableView {
     lazy var bottomLine: UIView = {
         let bottomLine = UIView()
         bottomLine.translatesAutoresizingMaskIntoConstraints = false
-        bottomLine.backgroundColor = .lightGray
+        bottomLine.backgroundColor = .appLightBlue
         return bottomLine
     }()
     
+    var title = ""
+    var titleColor = UIColor.white
+    var bcrdColor = UIColor.appLightBlue
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
-        addSubview(label)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["label": label]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[label]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["label": label]))
-        addSubview(bottomLine)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[line(1)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["line": bottomLine]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[line]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["line": bottomLine]))
+        let ribbonView = UIRibonHeaderView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        
+        ribbonView.setup(withTitle: "Options", titleColor: titleColor, backgroundColor: bcrdColor)
+        addSubview(ribbonView)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -101,6 +104,9 @@ open class TwitterActionController: ActionController<TwitterCell, ActionData, Tw
         
         onConfigureHeader = { header, title in
             header.label.text = title
+            header.title = title
+            header.titleColor = .white
+            header.bcrdColor = .appLightBlue
         }
         onConfigureCellForAction = { [weak self] cell, action, indexPath in
             cell.setup(action.data?.title, detail: action.data?.subtitle, image: action.data?.image)
@@ -108,9 +114,9 @@ open class TwitterActionController: ActionController<TwitterCell, ActionData, Tw
             cell.alpha = action.enabled ? 1.0 : 0.5
         }
     }
-  
+    
     required public init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:) has not been implemented")
     }
     
     open override func viewDidLoad() {
@@ -118,13 +124,14 @@ open class TwitterActionController: ActionController<TwitterCell, ActionData, Tw
         
         collectionView.clipsToBounds = false
         let hideBottomSpaceView: UIView = {
-          let hideBottomSpaceView = UIView(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: contentHeight + 20))
+            let hideBottomSpaceView = UIView(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: contentHeight + 20))
             hideBottomSpaceView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
-            hideBottomSpaceView.backgroundColor = .white
+            hideBottomSpaceView.backgroundColor = .clear
             return hideBottomSpaceView
         }()
         collectionView.addSubview(hideBottomSpaceView)
         collectionView.sendSubview(toBack: hideBottomSpaceView)
+        collectionView.backgroundColor = .clear
     }
     
     override open func dismissView(_ presentedView: UIView, presentingView: UIView, animationDuration: Double, completion: ((_ completed: Bool) -> Void)?) {
@@ -133,19 +140,19 @@ open class TwitterActionController: ActionController<TwitterCell, ActionData, Tw
         let upTime = 0.1
         UIView.animate(withDuration: upTime, delay: 0, options: .curveEaseIn, animations: { [weak self] in
             self?.collectionView.frame.origin.y -= 10
-        }, completion: { [weak self] (completed) -> Void in
-            UIView.animate(withDuration: animationDuration - upTime,
-                delay: 0,
-                usingSpringWithDamping: animationSettings.damping,
-                initialSpringVelocity: animationSettings.springVelocity,
-                options: UIViewAnimationOptions.curveEaseIn,
-                animations: { [weak self] in
-                    presentingView.transform = CGAffineTransform.identity
-                    self?.performCustomDismissingAnimation(presentedView, presentingView: presentingView)
-                },
-                completion: { [weak self] finished in
-                    self?.onDidDismissView()
-                    completion?(finished)
+            }, completion: { [weak self] (completed) -> Void in
+                UIView.animate(withDuration: animationDuration - upTime,
+                               delay: 0,
+                               usingSpringWithDamping: animationSettings.damping,
+                               initialSpringVelocity: animationSettings.springVelocity,
+                               options: UIViewAnimationOptions.curveEaseIn,
+                               animations: { [weak self] in
+                                presentingView.transform = CGAffineTransform.identity
+                                self?.performCustomDismissingAnimation(presentedView, presentingView: presentingView)
+                    },
+                               completion: { [weak self] finished in
+                                self?.onDidDismissView()
+                                completion?(finished)
                 })
         })
     }

@@ -15,6 +15,31 @@ enum UIGradientType {
 
 extension UIView {
     
+    
+    func addSubview(withBackgroundColor bgColor: UIColor, alpha: CGFloat, cropRectFrom start: CGPoint, width: CGFloat, height: CGFloat) {
+        let maskLayer = CAShapeLayer()
+        
+        let path = UIBezierPath(rect: self.bounds)
+        path.move(to: start)
+        path.addLine(to: CGPoint(x: start.x + width, y: start.y ))
+        path.addLine(to: CGPoint(x: start.x + width, y: start.y + height))
+        path.addLine(to: CGPoint(x: start.x, y: start.y + height))
+        path.close()
+        
+        maskLayer.path = path.cgPath
+        maskLayer.fillRule = kCAFillRuleEvenOdd
+        
+        let overlay = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+        overlay.layer.mask = maskLayer
+        overlay.clipsToBounds = true
+        
+        overlay.alpha = alpha
+        overlay.backgroundColor = bgColor
+        
+        addSubview(overlay)
+    }
+    
+    // MARK: - Shapes
     func roundedCorners(withRadius radius: CGFloat){
         let maskPath1 = UIBezierPath(roundedRect: self.bounds,
                                      cornerRadius: radius)
@@ -25,12 +50,22 @@ extension UIView {
         
     }
     
+    // MARK: - Gradients
     func add(gradientWithType type: UIGradientType, fromColors colors: [CGColor]) {
         switch type {
         case .diagonal:
             addDiagonalGradient(colors: colors)
         case .vertical:
             addVerticalGradient(colors: colors)
+        }
+    }
+    
+    func addRadialGradient(fromColors colors: [CGColor], gradientCenter: CGPoint, radius: CGFloat) {
+        let colors = colors as CFArray
+        
+        if let gradient = CGGradient(colorsSpace: nil, colors: colors, locations: nil) {
+            
+            UIGraphicsGetCurrentContext()?.drawRadialGradient(gradient, startCenter: gradientCenter, startRadius: 0.0, endCenter: gradientCenter, endRadius: radius, options: CGGradientDrawingOptions.drawsAfterEndLocation)
         }
     }
     

@@ -20,6 +20,7 @@ class DisclaimerView: UIView {
     @IBOutlet weak var content: UITextView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var separatorLAbel: UILabel!
     
     let kAnimationDuration = 0.3
     
@@ -29,6 +30,10 @@ class DisclaimerView: UIView {
     
     @IBAction func acceptAction(_ sender: Any) {
         delegate?.acceptDisclaimer()
+    }
+    
+    override func draw(_ rect: CGRect) {
+        addRadialGradient(fromColors: [UIColor.appBlue.cgColor, UIColor.appMidBlue.cgColor, UIColor.appDarkBlue.cgColor, UIColor.appTransparentDarkBlue.cgColor], gradientCenter: CGPoint(x: 0.0, y: UIScreen.main.bounds.height / 3), radius: 2 * UIScreen.main.bounds.width)
     }
     
     // MARK: Implementation
@@ -44,26 +49,25 @@ class DisclaimerView: UIView {
         let disclaimerView = UINib(nibName: "Disclaimer", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DisclaimerView
         
         disclaimerView.title.text = title
+        disclaimerView.title.textColor = .white
         disclaimerView.content.text = content
-        disclaimerView.contentView.backgroundColor = .operandoMidBlue
+        disclaimerView.content.textColor = .white
+        disclaimerView.contentView.backgroundColor = .appTransparentMidBlue
         disclaimerView.acceptButton.setTitle(acceptTitle, for: .normal)
-        disclaimerView.acceptButton.backgroundColor = .operandoDarkBlue
+        disclaimerView.acceptButton.backgroundColor = .appMidBlue
+        disclaimerView.acceptButton.layer.borderWidth = 1
+        disclaimerView.acceptButton.layer.borderColor = UIColor.appYellow.cgColor
+        disclaimerView.acceptButton.layer.cornerRadius = 5.0
         disclaimerView.acceptButton.setTitleColor(.white, for: .normal)
         disclaimerView.delegate = delegate
         disclaimerView.content.isSelectable = false
+        disclaimerView.separatorLAbel.textColor = .appYellow
         
         disclaimerView.frame = frame
         
-        addGradient(toView: disclaimerView.contentView)
-        disclaimerView.backgroundColor = .operandoSkyMidBlue
+        disclaimerView.backgroundColor = .appDarkBlue
         disclaimerView.contentView.roundedCorners(withRadius: 5.0)
-        disclaimerView.acceptButton.roundedCorners(withRadius: 5.0)
         disclaimerView.content.backgroundColor = .clear
-        
-        disclaimerView.contentView.bringSubview(toFront: disclaimerView.title)
-        disclaimerView.contentView.bringSubview(toFront: disclaimerView.content)
-        disclaimerView.contentView.bringSubview(toFront: disclaimerView.acceptButton)
-        disclaimerView.contentView.bringSubview(toFront: disclaimerView.logoImageView)
         
         return disclaimerView
     }

@@ -19,7 +19,8 @@ class UIQuestionnaireTableViewCell: UITableViewCell {
             guard let dataSource = dataSource else { return }
             
             titleLabel.text = dataSource.name
-            toggleImageView.tintColor = dataSource.isSelected ? .operandoGreen : .lightGray
+            toggleImageView.image = dataSource.isSelected ? UIImage.optionSelectedImage?.withRenderingMode(.alwaysTemplate) : UIImage.optionUnselectedImage?.withRenderingMode(.alwaysTemplate)
+            toggleImageView.tintColor = .white
         }
     }
     
@@ -39,9 +40,11 @@ class UIQuestionnaireTableViewCell: UITableViewCell {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        toggleImageView.image = UIImage.emptyMarkImage?.withRenderingMode(.alwaysTemplate)
-        toggleImageView.tintColor = .lightGray
-        contentView.backgroundColor = .operandoLightBlue
+        titleLabel.textColor = .white
+        toggleImageView.image = UIImage.optionUnselectedImage?.withRenderingMode(.alwaysTemplate)
+        toggleImageView.tintColor = .white
+        contentView.backgroundColor = .clear
+        self.backgroundColor = .clear
     }
     
     // MARK: - Public Methods

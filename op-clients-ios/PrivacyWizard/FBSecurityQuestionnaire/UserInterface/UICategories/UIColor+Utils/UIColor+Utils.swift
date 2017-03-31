@@ -20,6 +20,42 @@ extension UIColor{
         return UIColor(colorLiteralRed: red/maxHex, green: green/maxHex, blue: blue/maxHex, alpha: alpha)
     }
     
+    static var appBlue: UIColor {
+        return customColor(red: 2, green: 70, blue: 95)
+    }
+    
+    static var appTransparentWhite: UIColor {
+        return customColor(red: 255, green: 255, blue: 255, alpha: 0.05)
+    }
+    
+    static var appLightBlue: UIColor {
+        return customColor(red: 65, green: 170, blue: 180)
+    }
+    
+    static var appMidBlue: UIColor {
+        return customColor(red: 29, green: 40, blue: 63)
+    }
+    
+    static var appTransparentMidBlue: UIColor {
+        return customColor(red: 29, green: 40, blue: 63, alpha: 0.5)
+    }
+    
+    static var appDarkBlue: UIColor {
+        return customColor(red: 3, green: 12, blue: 36)
+    }
+    
+    static var appTransparentDarkBlue: UIColor {
+        return customColor(red: 3, green: 12, blue: 36, alpha: 0.5)
+    }
+    
+    static var appYellow: UIColor {
+        return customColor(red: 200, green: 175, blue: 25)
+    }
+    
+    static var appLightYellow: UIColor {
+        return customColor(red: 246, green: 244, blue: 233)
+    }
+    
     static var operandoDarkBlue: UIColor {
         return customColor(red: 44, green: 99, blue: 210)
     }

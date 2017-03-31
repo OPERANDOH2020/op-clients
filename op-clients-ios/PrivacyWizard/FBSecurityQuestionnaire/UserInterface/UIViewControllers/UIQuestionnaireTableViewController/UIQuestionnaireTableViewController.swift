@@ -29,10 +29,10 @@ class UIQuestionnaireTableViewController: UIViewController, UITableViewDelegate,
     var delegate: UIQuestionnaireTVCProtocol?
     
     // MARK: - @IBOutlets
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var questionnaireTableView: UIRadialGradientTableView!
     
     // MARK: - Actions
     func didTapBackButtonItem() {
@@ -53,7 +53,7 @@ class UIQuestionnaireTableViewController: UIViewController, UITableViewDelegate,
                 strongSelf.privacySettings = dataSourceObject.privacySettings
                 strongSelf.statusLabel.text = dataSourceObject.status
                 strongSelf.footerButton.setTitle(dataSourceObject.actionName, for: .normal)
-                strongSelf.tableView.reloadData()
+                strongSelf.questionnaireTableView.reloadData()
             })
         } else {
             UIAlertViewController.presentOkAlert(from: self, title: "Information", message: "One or more settings are missing")
@@ -107,12 +107,13 @@ class UIQuestionnaireTableViewController: UIViewController, UITableViewDelegate,
     private func setupControls() {
         navigationItem.addCustomBackButton(target: self, selector: #selector(UIQuestionnaireTableViewController.didTapBackButtonItem))
         navigationItem.title = "Privacy Wizard"
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UICustomTableViewHeader.self, forHeaderFooterViewReuseIdentifier: UICustomTableViewHeaderReuseIdentifier)
-        tableView.backgroundColor = .operandoMidBlue
-        statusLabel.backgroundColor = .operandoSkyBlue
-        footerButton.backgroundColor = .operandoSkyBlue
+        questionnaireTableView.delegate = self
+        questionnaireTableView.dataSource = self
+        questionnaireTableView.register(UICustomTableViewHeader.self, forHeaderFooterViewReuseIdentifier: UICustomTableViewHeaderReuseIdentifier)
+        self.view.backgroundColor = .appYellow
+        questionnaireTableView.backgroundColor = .appDarkBlue
+        statusLabel.backgroundColor = .appDarkBlue
+        footerButton.backgroundColor = .appDarkBlue
     }
     
     // MARK: - Lifecycle
@@ -121,6 +122,13 @@ class UIQuestionnaireTableViewController: UIViewController, UITableViewDelegate,
         
         setupControls()
         requestPrivacySettings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        questionnaireTableView.setup(colors: [UIColor.appBlue.cgColor, UIColor.appMidBlue.cgColor, UIColor.appDarkBlue.cgColor, UIColor.appTransparentDarkBlue.cgColor], center: CGPoint(x: 0.0, y: UIScreen.main.bounds.height / 3), endRadius: 3/2 * questionnaireTableView.bounds.width)
+        questionnaireTableView.setNeedsDisplay()
     }
     
     deinit {
@@ -155,7 +163,7 @@ class UIQuestionnaireTableViewController: UIViewController, UITableViewDelegate,
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let title = getHeaderTitle(forSection: section)
         let titleHeight = UILabel.heightForView(text: title, width: UIScreen.main.bounds.width - 2 * 15)
-        let result = titleHeight + 20.0 < 55.0 ? 55.0 : titleHeight + 20.0
+        let result = titleHeight + 20.0 < 55.0 ? 57.0 : titleHeight + 22
         return result
     }
     
@@ -164,7 +172,7 @@ class UIQuestionnaireTableViewController: UIViewController, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: UICustomTableViewHeaderReuseIdentifier) as! UICustomTableViewHeader
+        let headerView = self.questionnaireTableView.dequeueReusableHeaderFooterView(withIdentifier: UICustomTableViewHeaderReuseIdentifier) as! UICustomTableViewHeader
         headerView.setup(withTitle: getHeaderTitle(forSection: section), imageNamed: getHeaderImageName(forSection: section))
         
         return headerView
@@ -172,15 +180,20 @@ class UIQuestionnaireTableViewController: UIViewController, UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        guard let currentSetting = getCurrentSetting(index: indexPath.section) else { return }
+        
+        if currentSetting.selectOption(atIndex: indexPath.row) {
+            questionnaireTableView.reloadData()
+        }
     }
     
     // MARK: - Cell Callbacks
     private func didSelectOption(fromCell cell: UITableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell),
+        guard let indexPath = questionnaireTableView.indexPath(for: cell),
             let currentSetting = getCurrentSetting(index: indexPath.section) else { return }
         
         if currentSetting.selectOption(atIndex: indexPath.row) {
-            tableView.reloadData()
+            questionnaireTableView.reloadData()
         }
     }
 }

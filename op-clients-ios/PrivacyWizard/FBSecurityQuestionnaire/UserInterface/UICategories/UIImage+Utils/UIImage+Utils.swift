@@ -10,12 +10,16 @@ import UIKit
 
 extension UIImage {
     
-    static var checkMarkImage: UIImage? {
-        return UIImage(named: "check_mark")
+    static var optionSelectedImage: UIImage? {
+        return UIImage(named: "selected_icon_")
     }
     
-    static var emptyMarkImage: UIImage? {
-        return UIImage(named: "empty_mark")
+    static var optionUnselectedImage: UIImage? {
+        return UIImage(named: "unselected_icon_")
+    }
+    
+    static var upArrowImage: UIImage? {
+        return UIImage(named: "up_indicator_")
     }
     
     func maskWithColor(color: UIColor) -> UIImage? {

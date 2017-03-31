@@ -25,8 +25,9 @@ class UIMainViewController: UIViewController {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var setupPrivacyButton: UIButton!
     @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var infoButton: UIButton!
+    @IBOutlet weak var separatorLabel: UILabel!
+    @IBOutlet var contentView: UIRadialGradientView!
     
     // MARK: - @IBActions
     @IBAction func didTapSetupPrivacyButton(_ sender: Any) {
@@ -39,20 +40,17 @@ class UIMainViewController: UIViewController {
     
     // MARK: - Private Methods
     private func setupControls() {
-        self.navigationController?.navigationBar.barTintColor = .operandoSkyBlue
-        setupPrivacyButton.backgroundColor = .operandoDarkBlue
-        backgroundImageView.image = nil
-        setupPrivacyButton.roundedCorners(withRadius: 5.0)
-        view.add(gradientWithType: .vertical, fromColors: UIColor.operandoSkyGradientColors)
-        bringControlsToFront()
-    }
-    
-    private func bringControlsToFront() {
-        view.bringSubview(toFront: titleLabel)
-        view.bringSubview(toFront: detailLabel)
-        view.bringSubview(toFront: setupPrivacyButton)
-        view.bringSubview(toFront: logoImageView)
-        view.bringSubview(toFront: infoButton)
+        self.navigationController?.navigationBar.barTintColor = .appDarkBlue
+        setupPrivacyButton.layer.borderWidth = 1
+        setupPrivacyButton.layer.borderColor = UIColor.appYellow.cgColor
+        setupPrivacyButton.layer.cornerRadius = 5.0
+        setupPrivacyButton.backgroundColor = .appDarkBlue
+        contentView.backgroundColor = .appDarkBlue
+        separatorLabel.textColor = .appYellow
+        contentView.setup(center: logoImageView.center,
+                          pulsarConfiguration: UIRadialGradientViewPulsarConfiguration(minRadius: logoImageView.bounds.width,
+                                                                                       maxRadius: 2 * logoImageView.bounds.width,
+                                                                                       stepsNo: 100))
     }
     
     // MARK: - Lifecycle
@@ -66,12 +64,14 @@ class UIMainViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        contentView.startPulsar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        contentView.stopPulsar()
     }
     
     // MARK: - Public Methods

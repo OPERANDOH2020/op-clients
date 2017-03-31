@@ -26,10 +26,11 @@ class UICustomTableViewHeader: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = .operandoMidBlue
+        contentView.backgroundColor = .appLightYellow
         titleLabel.backgroundColor = .clear
-        titleLabel.textColor = .white
-        borderView.backgroundColor = .white
+        titleLabel.textColor = .black
+        titleLabel.font = UIFont(name: "Dosis-Medium", size: 17.0)
+        borderView.backgroundColor = .appLightBlue
         borderView.autoresizingMask = .flexibleWidth
         contentView.addSubview(titleLabel)
         contentView.addSubview(logoImageView)
@@ -43,10 +44,10 @@ class UICustomTableViewHeader: UITableViewHeaderFooterView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        titleLabel.frame = CGRect(x: 40.0, y: 0.0, width: contentView.frame.width - 55, height: contentView.frame.height)
+        titleLabel.frame = CGRect(x: 40.0, y: 0.0, width: contentView.frame.width - 57, height: contentView.frame.height)
         titleLabel.numberOfLines = 0
         titleLabel.preferredMaxLayoutWidth = titleLabel.bounds.width
-        borderView.frame = CGRect(x: 0.0, y: contentView.frame.height - 0.5, width: contentView.frame.width, height: 0.5)
+        borderView.frame = CGRect(x: 0.0, y: contentView.frame.height - 3, width: contentView.frame.width, height: 3)
         logoImageView.frame = CGRect(x: 7.5, y: contentView.frame.height/2 - 12.5, width: 25, height: 25)
     }
 }
