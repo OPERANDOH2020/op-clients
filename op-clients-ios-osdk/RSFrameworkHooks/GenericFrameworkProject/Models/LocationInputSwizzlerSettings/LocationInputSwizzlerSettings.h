@@ -16,9 +16,9 @@
 @property (readonly, nonatomic) NSTimeInterval changeInterval;
 @property (readonly, nonatomic) BOOL cycle;
 
--(void)synchronizeToUserDefaults;
+-(void)synchronizeToUserDefaults:(NSUserDefaults*)defaults;
 
 +(LocationInputSwizzlerSettings*)createWithLocations:(NSArray<CLLocation*>*)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval;
 
-+(LocationInputSwizzlerSettings*)createFromUserDefaults;
++(LocationInputSwizzlerSettings*)createFromUserDefaults:(NSUserDefaults*)defaults;
 @end

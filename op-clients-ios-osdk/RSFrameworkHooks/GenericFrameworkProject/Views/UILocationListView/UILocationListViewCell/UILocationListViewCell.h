@@ -7,13 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MGSwipeTableCell.h"
 
 typedef void(^UILocationListCellUpdateCallback)(double latitude, double longitude);
 
-@interface UILocationListViewCell : UITableViewCell
+@interface UILocationListViewCellCallbacks : NSObject
+@property (strong, nonatomic) void(^onCoordinatesUpdate)(double latitude, double longitude);
+@property (strong, nonatomic) void(^onDelete)();
+
+@end
+
+@interface UILocationListViewCell: MGSwipeTableCell
 +(NSString*)identifierNibName;
 
--(void)setupWithLatitude:(double)latitude longitude:(double)longitude callbackOnUpdate:(UILocationListCellUpdateCallback)callback;
+-(void)setupWithLatitude:(double)latitude longitude:(double)longitude index:(NSInteger)index callbacks:(UILocationListViewCellCallbacks*)callbacks;
+
 
 @end

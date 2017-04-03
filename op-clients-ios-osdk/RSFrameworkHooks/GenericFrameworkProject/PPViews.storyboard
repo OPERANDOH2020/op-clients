@@ -200,6 +200,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Back"/>
                                         <connections>
+                                            <action selector="didPressBack:" destination="WAB-sX-Ynb" eventType="touchUpInside" id="hZ7-wf-cAB"/>
                                             <action selector="didPressClose:" destination="6hB-SX-qjk" eventType="touchUpInside" id="VCn-7C-wOD"/>
                                         </connections>
                                     </button>
@@ -209,6 +210,7 @@
                                         <state key="normal" title="Save"/>
                                         <connections>
                                             <action selector="didPressClose:" destination="6hB-SX-qjk" eventType="touchUpInside" id="u7D-dh-M2j"/>
+                                            <action selector="didPressSave:" destination="WAB-sX-Ynb" eventType="touchUpInside" id="efP-gg-zGo"/>
                                         </connections>
                                     </button>
                                 </subviews>

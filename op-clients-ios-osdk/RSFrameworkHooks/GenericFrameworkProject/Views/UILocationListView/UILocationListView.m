@@ -12,9 +12,13 @@
 #import "UILocationListViewCell.h"
 #import "Common.h"
 
+
+@implementation UILocationListViewCallbacks
+@end
+
 @interface UILocationListView() <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *tableView;
-@property (strong, nonatomic) NSMutableArray<CLLocation*> *allLocations;
+@property (readwrite, strong, nonatomic) NSMutableArray<CLLocation*> *allLocations;
 @property (strong, nonatomic) UILocationListViewCallbacks *callbacks;
 @end
 
@@ -44,6 +48,21 @@
     self.callbacks = callbacks;
 }
 
+-(void)addNewLocation:(CLLocation *)location {
+    [self.allLocations addObject:location];
+    [self.tableView reloadData];
+}
+
+-(void)removeLocationAt:(NSInteger)index {
+    [self.allLocations removeObjectAtIndex:index];
+    [self.tableView reloadData];
+}
+
+-(void)modifyLocationAt:(NSInteger)index to:(CLLocation *)location{
+    [self.allLocations replaceObjectAtIndex:index withObject:location];
+    [self.tableView reloadData];
+}
+
 #pragma mark - 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -55,18 +74,34 @@
     
     CLLocationCoordinate2D coord = self.allLocations[indexPath.row].coordinate;
     __weak typeof(self) weakSelf = self;
+    __weak UILocationListViewCell *weakCell = cell;
+
     
-    [cell setupWithLatitude:coord.latitude longitude:coord.longitude callbackOnUpdate:^(double latitude, double longitude) {
-        
+    UILocationListViewCellCallbacks *callbacks = [[UILocationListViewCellCallbacks alloc] init];
+    callbacks.onCoordinatesUpdate = ^void(double latitude, double longitude) {
+        NSIndexPath *idxPath = [weakSelf.tableView indexPathForCell:weakCell];
+
         CLLocation *locaton = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-        [weakSelf.allLocations addObject:locaton];
+        [weakSelf.allLocations replaceObjectAtIndex:idxPath.row withObject:locaton];
         SAFECALL(weakSelf.callbacks.onModifyLocationAtIndex, locaton, indexPath.row)
-        
-    }];
+    };
+    
+    callbacks.onDelete = ^void() {
+        NSIndexPath *idxPath = [weakSelf.tableView indexPathForCell:weakCell];
+        if (idxPath) {
+            [weakSelf.allLocations removeObjectAtIndex:idxPath.row];
+            [weakSelf.tableView reloadData];
+            SAFECALL(weakSelf.callbacks.onDeleteLocationAtIndex, idxPath.row)
+        }
+    };
+    
+    [cell setupWithLatitude:coord.latitude longitude:coord.longitude index:indexPath.row+1 callbacks:callbacks];
     return cell;
 }
 
-
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
 
 
 #pragma mark - 
@@ -83,6 +118,10 @@
     [self.allLocations addObject:location];
     [self.tableView reloadData];
     SAFECALL(self.callbacks.onNewLocationAdded, location)
+}
+
+-(NSArray<CLLocation *> *)currentLocations {
+    return [NSArray arrayWithArray:self.allLocations];
 }
 
 @end

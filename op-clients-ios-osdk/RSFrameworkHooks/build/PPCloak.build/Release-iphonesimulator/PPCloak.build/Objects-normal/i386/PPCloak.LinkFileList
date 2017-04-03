@@ -18,11 +18,13 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PPAccessUnlistedHostReport+NSDictionaryRepresentation.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/CloakNibView.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/OPMonitorSettings.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/CommonViewUtils.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/UIEncapsulatorViewController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PPUnlistedInputAccessViolation+NSDictionaryRepresentation.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PPEventDispatcher.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/UILocationSettingsViewController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/InputSupervisorModel.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/MGSwipeTableCell.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PPFlowBuilder.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PerSecondReportAggregator.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PPBasicHttpBodyParser.o
@@ -40,7 +42,9 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/TouchIdSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PrivacyLevelAbuseDetector.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/UIViolationReportsViewController.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/MGSwipeButton.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PPAccessFrequencyViolationReport+NSDictionaryRepresentation.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/UILocationIndexPinAnnotationView.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/CameraInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/BaseReportWithDate.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PedometerInputSupervisor.o
@@ -52,6 +56,7 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/UIWindow+RSHookHandle.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PPReportsSourcesBundle.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/NSBundle+RSFrameworkHooks.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/UILocationIndexPinView.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/JRSwizzle.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/UIViolationReportsSection.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphonesimulator/PPCloak.build/Objects-normal/i386/PPEvent.o

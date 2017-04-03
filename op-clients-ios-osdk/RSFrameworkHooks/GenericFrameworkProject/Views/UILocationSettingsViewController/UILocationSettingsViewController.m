@@ -51,7 +51,56 @@
 }
 
 -(void)setupWithModel:(LocationSettingsModel *)model onExit:(void (^)())exitCallback {
+    [self view];
     
+    self.model = model;
+    self.onExitCallback = exitCallback;
+    
+    UILocationPinningViewCallbacks *locationPinningViewCallbacks = [self createLocationPinningViewCallbacks];
+    UILocationListViewCallbacks *locationListViewCallbacks = [self createLocationListCallbacks];
+    
+    [self.locationListView setupWithInitialList:model.currentSettings.locations callbacks:locationListViewCallbacks];
+    [self.locationPinningView setupWithLocations:model.currentSettings.locations callbacks:locationPinningViewCallbacks];
+    
+}
+
+
+-(UILocationListViewCallbacks*)createLocationListCallbacks{
+    WEAKSELF
+    UILocationListViewCallbacks *callbacks = [[UILocationListViewCallbacks alloc] init];
+    callbacks.onNewLocationAdded = ^void(CLLocation *location){
+        [weakSelf.locationPinningView addNewLocation:location];
+    };
+    
+    callbacks.onDeleteAll = ^void() {
+        [weakSelf.locationPinningView clearAll];
+    };
+    
+    callbacks.onDeleteLocationAtIndex = ^void(NSInteger index){
+        [weakSelf.locationPinningView deleteLocationAt:index];
+    };
+    
+    callbacks.onModifyLocationAtIndex = ^void(CLLocation *location, NSInteger index){
+        [weakSelf.locationPinningView modifyLocationAt:index toLatitude:location.coordinate.latitude andLongitude:location.coordinate.longitude];
+    };
+    return callbacks;
+}
+
+-(UILocationPinningViewCallbacks*)createLocationPinningViewCallbacks{
+    UILocationPinningViewCallbacks *callbacks = [[UILocationPinningViewCallbacks alloc] init];
+    WEAKSELF
+    callbacks.onNewLocationAdded = ^void(CLLocation *location){
+        [weakSelf.locationListView addNewLocation:location];
+    };
+    
+    callbacks.onDeleteLocationAtIndex = ^void(NSInteger index){
+        [weakSelf.locationListView removeLocationAt:index];
+    };
+    
+    callbacks.onModifyLocationAtIndex = ^void(CLLocation *location, NSInteger index){
+        [weakSelf.locationListView modifyLocationAt:index to:location];
+    };
+    return callbacks;
 }
 
 - (IBAction)didPressInsertCoordinatesManually:(id)sender {
@@ -64,7 +113,17 @@
     self.locationListView.hidden = YES;
 }
 
+- (IBAction)didPressBack:(id)sender {
+    SAFECALL(self.onExitCallback)
+}
 
+- (IBAction)didPressSave:(id)sender {
+    LocationInputSwizzlerSettings *newSettings = [self compileSettings];
+    SAFECALL(self.model.saveCallback, newSettings)
+}
 
+-(LocationInputSwizzlerSettings*)compileSettings {
+    return [LocationInputSwizzlerSettings createWithLocations:self.locationListView.currentLocations enabled:YES cycle:YES changeInterval:5.0];
+}
 
 @end

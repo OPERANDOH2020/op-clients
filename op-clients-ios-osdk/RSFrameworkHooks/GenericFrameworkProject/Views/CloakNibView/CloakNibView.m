@@ -21,17 +21,8 @@
     UIView *view = [nib instantiateWithOwner:self options:nil].firstObject;
     view.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self addSubview:view];
     self.contentView = view;
-    
-    NSLayoutConstraint*(^buildConstraintWithSelfForAttribute)(NSLayoutAttribute attribute) = ^NSLayoutConstraint*(NSLayoutAttribute attribute){
-        return [NSLayoutConstraint constraintWithItem:view attribute:attribute relatedBy:NSLayoutRelationEqual toItem:self attribute:attribute multiplier:1.0 constant:0];
-    };
-    
-    [self addConstraints:@[buildConstraintWithSelfForAttribute(NSLayoutAttributeTop),
-                           buildConstraintWithSelfForAttribute(NSLayoutAttributeBottom),
-                           buildConstraintWithSelfForAttribute(NSLayoutAttributeLeft),
-                           buildConstraintWithSelfForAttribute(NSLayoutAttributeRight)]];
+    [CommonViewUtils fullyConstrainView:view inHostView:self];
 }
 
 

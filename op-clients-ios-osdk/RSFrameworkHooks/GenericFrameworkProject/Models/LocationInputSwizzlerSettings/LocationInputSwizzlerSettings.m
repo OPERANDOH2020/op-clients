@@ -37,8 +37,8 @@ static NSString *kOverrideLocationChangeInterval = @"kOverrideLocationChangeInte
     
 }
 
-+(LocationInputSwizzlerSettings *)createFromUserDefaults {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
++(LocationInputSwizzlerSettings *)createFromUserDefaults:(NSUserDefaults*)defaults {
+    
     LocationInputSwizzlerSettings *settings = [[LocationInputSwizzlerSettings alloc] init];
     
     NSArray<NSNumber*> *latitudes = [defaults objectForKey:kOverrideLocationLatitudesKey];
@@ -63,8 +63,22 @@ static NSString *kOverrideLocationChangeInterval = @"kOverrideLocationChangeInte
     return settings;
 }
 
--(void)synchronizeToUserDefaults {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+-(void)synchronizeToUserDefaults:(NSUserDefaults*)defaults {
+    
+    NSMutableArray<NSNumber*> *latArray = [[NSMutableArray alloc] init],
+                              *longArray = [[NSMutableArray alloc] init];
+    
+    
+    for (CLLocation *location in self.locations) {
+        [latArray addObject:@(location.coordinate.latitude)];
+        [longArray addObject:@(location.coordinate.longitude)];
+    }
+    
+    [defaults setObject:latArray forKey:kOverrideLocationLatitudesKey];
+    [defaults setObject:longArray forKey:kOverrideLocationLongitudesKey];
+    
+    [defaults setObject:@(self.cycle) forKey:kOverrideLocationCycleKey];
+    [defaults setObject:@(self.changeInterval) forKey:kOverrideLocationChangeInterval];
     [defaults setObject:@(self.enabled) forKey:kOverrideLocationEnabledKey];
     [defaults synchronize];
 }

@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,11 +24,11 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VuG-p9-rbR">
-                        <rect key="frame" x="93" y="4" width="223" height="30"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VuG-p9-rbR">
+                        <rect key="frame" x="93" y="4" width="167" height="30"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="continue"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="continue"/>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4P7-bq-baL">
                         <rect key="frame" x="8" y="40.5" width="76.5" height="21"/>
@@ -35,20 +36,40 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jT2-tt-FZN">
-                        <rect key="frame" x="93" y="35.5" width="223" height="30"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jT2-tt-FZN">
+                        <rect key="frame" x="93" y="35.5" width="167" height="30"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                        <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                     </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeU-r4-S34">
+                        <rect key="frame" x="0.0" y="68.5" width="320" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="dth-Ka-eCR"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWS-zp-39a" customClass="UILocationIndexPinView">
+                        <rect key="frame" x="270" y="2" width="50" height="66"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="N1V-ul-jTt"/>
+                            <constraint firstAttribute="height" constant="66" id="lB1-0f-Qs7"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="zfZ-l6-QLI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="GhO-DF-9jH"/>
-                    <constraint firstAttribute="trailing" secondItem="jT2-tt-FZN" secondAttribute="trailing" constant="4" id="NCc-eH-tPE"/>
+                    <constraint firstAttribute="trailing" secondItem="jT2-tt-FZN" secondAttribute="trailing" constant="60" id="NCc-eH-tPE"/>
+                    <constraint firstAttribute="bottom" secondItem="WeU-r4-S34" secondAttribute="bottom" id="Qqo-lk-s4d"/>
                     <constraint firstItem="VuG-p9-rbR" firstAttribute="leading" secondItem="zfZ-l6-QLI" secondAttribute="trailing" constant="22" id="R4Y-TY-r0S"/>
+                    <constraint firstItem="DWS-zp-39a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XxU-IF-bsp"/>
                     <constraint firstItem="4P7-bq-baL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ZUU-Zu-Mqi"/>
-                    <constraint firstAttribute="trailing" secondItem="VuG-p9-rbR" secondAttribute="trailing" constant="4" id="g3k-qG-qMm"/>
+                    <constraint firstItem="WeU-r4-S34" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aDP-BT-z4h"/>
+                    <constraint firstAttribute="trailing" secondItem="WeU-r4-S34" secondAttribute="trailing" id="fLB-mj-JTV"/>
+                    <constraint firstAttribute="trailing" secondItem="VuG-p9-rbR" secondAttribute="trailing" constant="60" id="g3k-qG-qMm"/>
                     <constraint firstItem="zfZ-l6-QLI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="h1M-9O-Dk4"/>
+                    <constraint firstAttribute="trailing" secondItem="DWS-zp-39a" secondAttribute="trailing" id="hc4-6p-caT"/>
                     <constraint firstAttribute="bottom" secondItem="4P7-bq-baL" secondAttribute="bottom" constant="8" id="k6c-tK-gfk"/>
                     <constraint firstAttribute="bottom" secondItem="jT2-tt-FZN" secondAttribute="bottom" constant="4" id="qQe-rs-wZv"/>
                     <constraint firstItem="jT2-tt-FZN" firstAttribute="leading" secondItem="4P7-bq-baL" secondAttribute="trailing" constant="8" id="s9b-Km-ZZd"/>
@@ -57,6 +78,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="latitudeTF" destination="VuG-p9-rbR" id="BaP-AT-Twz"/>
+                <outlet property="locationIndexPinView" destination="DWS-zp-39a" id="E5Y-CP-eib"/>
                 <outlet property="longitudeTF" destination="jT2-tt-FZN" id="fLV-IJ-X8H"/>
             </connections>
             <point key="canvasLocation" x="-14" y="41"/>

@@ -162,6 +162,18 @@
 		98F7A68F1E76DA7000FF635A /* PPEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A68D1E76DA7000FF635A /* PPEventDispatcher.m */; };
 		98F7A6931E76E48100FF635A /* PPEventDispatcher+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6911E76E48100FF635A /* PPEventDispatcher+Internal.h */; };
 		98F7A6941E76E48100FF635A /* PPEventDispatcher+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6921E76E48100FF635A /* PPEventDispatcher+Internal.m */; };
+		98FE5C151E9241C000096744 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 98FE5C111E9241C000096744 /* MGSwipeButton.h */; };
+		98FE5C161E9241C000096744 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 98FE5C121E9241C000096744 /* MGSwipeButton.m */; };
+		98FE5C171E9241C000096744 /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 98FE5C131E9241C000096744 /* MGSwipeTableCell.h */; };
+		98FE5C181E9241C000096744 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98FE5C141E9241C000096744 /* MGSwipeTableCell.m */; };
+		98FE5C221E92641B00096744 /* UILocationIndexPinView.h in Headers */ = {isa = PBXBuildFile; fileRef = 98FE5C201E92641B00096744 /* UILocationIndexPinView.h */; };
+		98FE5C231E92641B00096744 /* UILocationIndexPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98FE5C211E92641B00096744 /* UILocationIndexPinView.m */; };
+		98FE5C251E9264F100096744 /* UILocationIndexPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98FE5C241E9264F100096744 /* UILocationIndexPinView.xib */; };
+		98FE5C271E92657500096744 /* pinIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 98FE5C261E92657500096744 /* pinIcon.png */; };
+		98FE5C2C1E926EBC00096744 /* UILocationIndexPinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98FE5C2A1E926B3100096744 /* UILocationIndexPinAnnotationView.m */; };
+		98FE5C2D1E926EC300096744 /* UILocationIndexPinAnnotationView.h in Headers */ = {isa = PBXBuildFile; fileRef = 98FE5C291E926B3100096744 /* UILocationIndexPinAnnotationView.h */; };
+		98FE5C601E927CB400096744 /* CommonViewUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 98FE5C511E9278C900096744 /* CommonViewUtils.h */; };
+		98FE5C611E927CB700096744 /* CommonViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 98FE5C521E9278C900096744 /* CommonViewUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -314,6 +326,18 @@
 		98F7A68D1E76DA7000FF635A /* PPEventDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEventDispatcher.m; path = Models/EventsPipeline/PPEventDispatcher/PPEventDispatcher.m; sourceTree = "<group>"; };
 		98F7A6911E76E48100FF635A /* PPEventDispatcher+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPEventDispatcher+Internal.h"; path = "Models/EventsPipeline/PPEventDispatcher/PPEventDispatcher+Internal/PPEventDispatcher+Internal.h"; sourceTree = "<group>"; };
 		98F7A6921E76E48100FF635A /* PPEventDispatcher+Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPEventDispatcher+Internal.m"; path = "Models/EventsPipeline/PPEventDispatcher/PPEventDispatcher+Internal/PPEventDispatcher+Internal.m"; sourceTree = "<group>"; };
+		98FE5C111E9241C000096744 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
+		98FE5C121E9241C000096744 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
+		98FE5C131E9241C000096744 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
+		98FE5C141E9241C000096744 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
+		98FE5C201E92641B00096744 /* UILocationIndexPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILocationIndexPinView.h; path = Views/UILocationIndexPinView/UILocationIndexPinView.h; sourceTree = "<group>"; };
+		98FE5C211E92641B00096744 /* UILocationIndexPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILocationIndexPinView.m; path = Views/UILocationIndexPinView/UILocationIndexPinView.m; sourceTree = "<group>"; };
+		98FE5C241E9264F100096744 /* UILocationIndexPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UILocationIndexPinView.xib; path = Views/UILocationIndexPinView/UILocationIndexPinView.xib; sourceTree = "<group>"; };
+		98FE5C261E92657500096744 /* pinIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinIcon.png; sourceTree = "<group>"; };
+		98FE5C291E926B3100096744 /* UILocationIndexPinAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILocationIndexPinAnnotationView.h; path = Views/UILocationIndexPinAnnotationView/UILocationIndexPinAnnotationView.h; sourceTree = "<group>"; };
+		98FE5C2A1E926B3100096744 /* UILocationIndexPinAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILocationIndexPinAnnotationView.m; path = Views/UILocationIndexPinAnnotationView/UILocationIndexPinAnnotationView.m; sourceTree = "<group>"; };
+		98FE5C511E9278C900096744 /* CommonViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonViewUtils.h; path = "Views/UIView+FullConstrain/CommonViewUtils.h"; sourceTree = "<group>"; };
+		98FE5C521E9278C900096744 /* CommonViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonViewUtils.m; path = "Views/UIView+FullConstrain/CommonViewUtils.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -618,6 +642,7 @@
 		987083B21E8E398500D9F8E9 /* ExternalLibraries */ = {
 			isa = PBXGroup;
 			children = (
+				98FE5C101E9241C000096744 /* MGSwipeTableCell */,
 				987083BA1E8E3A9D00D9F8E9 /* TPKeyboardAvoidingTableView */,
 				9863E8FA1DEC6F0D0095CA30 /* JRSwizzle */,
 			);
@@ -707,6 +732,9 @@
 		98804EF31E4DE258009E6748 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				98FE5C501E9278A500096744 /* UIView+FullConstrain */,
+				98FE5C281E926AA600096744 /* UILocationIndexPinAnnotationView */,
+				98FE5C1F1E92639800096744 /* UILocationIndexPinView */,
 				982464E01E8D5F25004D8534 /* UICloakNibView */,
 				982464DB1E8D5EB8004D8534 /* UILocationListView */,
 				983C3FB11E8D352600014F25 /* UILocationPinningView */,
@@ -1158,6 +1186,46 @@
 			name = "PPEventDispatcher+Internal";
 			sourceTree = "<group>";
 		};
+		98FE5C101E9241C000096744 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				98FE5C111E9241C000096744 /* MGSwipeButton.h */,
+				98FE5C121E9241C000096744 /* MGSwipeButton.m */,
+				98FE5C131E9241C000096744 /* MGSwipeTableCell.h */,
+				98FE5C141E9241C000096744 /* MGSwipeTableCell.m */,
+			);
+			path = MGSwipeTableCell;
+			sourceTree = "<group>";
+		};
+		98FE5C1F1E92639800096744 /* UILocationIndexPinView */ = {
+			isa = PBXGroup;
+			children = (
+				98FE5C201E92641B00096744 /* UILocationIndexPinView.h */,
+				98FE5C211E92641B00096744 /* UILocationIndexPinView.m */,
+				98FE5C241E9264F100096744 /* UILocationIndexPinView.xib */,
+				98FE5C261E92657500096744 /* pinIcon.png */,
+			);
+			name = UILocationIndexPinView;
+			sourceTree = "<group>";
+		};
+		98FE5C281E926AA600096744 /* UILocationIndexPinAnnotationView */ = {
+			isa = PBXGroup;
+			children = (
+				98FE5C291E926B3100096744 /* UILocationIndexPinAnnotationView.h */,
+				98FE5C2A1E926B3100096744 /* UILocationIndexPinAnnotationView.m */,
+			);
+			name = UILocationIndexPinAnnotationView;
+			sourceTree = "<group>";
+		};
+		98FE5C501E9278A500096744 /* UIView+FullConstrain */ = {
+			isa = PBXGroup;
+			children = (
+				98FE5C511E9278C900096744 /* CommonViewUtils.h */,
+				98FE5C521E9278C900096744 /* CommonViewUtils.m */,
+			);
+			name = "UIView+FullConstrain";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1177,12 +1245,15 @@
 				988A151F1E40E2DD00AABD43 /* BarometerInputSupervisor.h in Headers */,
 				988A15151E40D1B400AABD43 /* MagnetometerInputSupervisor.h in Headers */,
 				98CEF3A41E5F2204002C2145 /* UIInputGraphViewController.h in Headers */,
+				98FE5C2D1E926EC300096744 /* UILocationIndexPinAnnotationView.h in Headers */,
 				98281D051E696FD100373369 /* PPAccessFrequencyViolationReport.h in Headers */,
+				98FE5C151E9241C000096744 /* MGSwipeButton.h in Headers */,
 				987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */,
 				9895FB331E5B1A2A00B1F56D /* UILocationSettingsViewController.h in Headers */,
 				987083CB1E8E3A9D00D9F8E9 /* UIScrollView+TPKeyboardAvoidingAdditions.h in Headers */,
 				9895FB2E1E5AED3D00B1F56D /* LocationInputSwizzler.h in Headers */,
 				987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */,
+				98FE5C601E927CB400096744 /* CommonViewUtils.h in Headers */,
 				988716F21E6D883A005FAA45 /* UIInputAccessViolationReportsSection.h in Headers */,
 				987083AF1E8E36A500D9F8E9 /* UILocationListViewCell.h in Headers */,
 				98804F001E4DF1D8009E6748 /* UIViolationReportsViewController.h in Headers */,
@@ -1191,6 +1262,7 @@
 				98ECE46D1E41F8150042A262 /* TouchIdSupervisor.h in Headers */,
 				98F1FF821E71980A00A664AB /* GCDWebServerFunctions.h in Headers */,
 				98DF60FD1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.h in Headers */,
+				98FE5C221E92641B00096744 /* UILocationIndexPinView.h in Headers */,
 				9831E2A41E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.h in Headers */,
 				98F1FF741E71555900A664AB /* InputSupervisorModel.h in Headers */,
 				987083C71E8E3A9D00D9F8E9 /* TPKeyboardAvoidingScrollView.h in Headers */,
@@ -1215,6 +1287,7 @@
 				9895FB491E5B3CB200B1F56D /* UIWindow+RSHookHandle.h in Headers */,
 				98804F051E4DFD47009E6748 /* PPFlowBuilder.h in Headers */,
 				98DA11F71E703850008E8373 /* PPCircularArray.h in Headers */,
+				98FE5C171E9241C000096744 /* MGSwipeTableCell.h in Headers */,
 				98F7A68E1E76DA7000FF635A /* PPEventDispatcher.h in Headers */,
 				988A151A1E40DF3300AABD43 /* AccelerometerInputSupervisor.h in Headers */,
 				982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */,
@@ -1329,7 +1402,9 @@
 				987083CE1E8E409D00D9F8E9 /* UILocationListView.xib in Resources */,
 				98331C851E56F6A0005D3A84 /* PPViews.storyboard in Resources */,
 				982464D01E8D5837004D8534 /* mapPin.png in Resources */,
+				98FE5C251E9264F100096744 /* UILocationIndexPinView.xib in Resources */,
 				987083CD1E8E409800D9F8E9 /* UILocationListViewCell.xib in Resources */,
+				98FE5C271E92657500096744 /* pinIcon.png in Resources */,
 				989DB8E51E77D2CF008F4D02 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1377,11 +1452,13 @@
 				983F87C31E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m in Sources */,
 				982464E41E8D613D004D8534 /* CloakNibView.m in Sources */,
 				981A4A6C1E58ABFE002C4876 /* OPMonitorSettings.m in Sources */,
+				98FE5C611E927CB700096744 /* CommonViewUtils.m in Sources */,
 				98804F141E4E26DB009E6748 /* UIEncapsulatorViewController.m in Sources */,
 				983F87B41E6DB08F0002DEC9 /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m in Sources */,
 				98F7A68F1E76DA7000FF635A /* PPEventDispatcher.m in Sources */,
 				9895FB341E5B1A2A00B1F56D /* UILocationSettingsViewController.m in Sources */,
 				98F1FF751E71555900A664AB /* InputSupervisorModel.m in Sources */,
+				98FE5C181E9241C000096744 /* MGSwipeTableCell.m in Sources */,
 				98804F061E4DFD47009E6748 /* PPFlowBuilder.m in Sources */,
 				98CEF3AC1E5F3064002C2145 /* PerSecondReportAggregator.m in Sources */,
 				983A09061E727A1C00AE2D5E /* PPBasicHttpBodyParser.m in Sources */,
@@ -1399,7 +1476,9 @@
 				98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */,
 				98F1FF701E71508000A664AB /* PrivacyLevelAbuseDetector.m in Sources */,
 				98804F011E4DF1D8009E6748 /* UIViolationReportsViewController.m in Sources */,
+				98FE5C161E9241C000096744 /* MGSwipeButton.m in Sources */,
 				983F87B91E6DB4470002DEC9 /* PPAccessFrequencyViolationReport+NSDictionaryRepresentation.m in Sources */,
+				98FE5C2C1E926EBC00096744 /* UILocationIndexPinAnnotationView.m in Sources */,
 				98ECE4781E421AFD0042A262 /* CameraInputSupervisor.m in Sources */,
 				9888B1701E6C2F6200D783AB /* BaseReportWithDate.m in Sources */,
 				988A15021E40A4F600AABD43 /* PedometerInputSupervisor.m in Sources */,
@@ -1411,6 +1490,7 @@
 				9895FB4A1E5B3CB200B1F56D /* UIWindow+RSHookHandle.m in Sources */,
 				9888B1751E6C625900D783AB /* PPReportsSourcesBundle.m in Sources */,
 				98331C831E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m in Sources */,
+				98FE5C231E92641B00096744 /* UILocationIndexPinView.m in Sources */,
 				9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */,
 				988716EE1E6D81CD005FAA45 /* UIViolationReportsSection.m in Sources */,
 				98F7A68A1E76D0C000FF635A /* PPEvent.m in Sources */,
@@ -1477,6 +1557,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_MODULE_NAME = PPCloak;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1523,6 +1604,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_MODULE_NAME = PPCloak;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 3.0;

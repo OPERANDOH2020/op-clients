@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonViewUtils.h"
 
 IB_DESIGNABLE
 @interface CloakNibView : UIView
