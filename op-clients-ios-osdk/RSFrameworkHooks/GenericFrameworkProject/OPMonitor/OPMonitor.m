@@ -159,7 +159,7 @@ static void __attribute__((constructor)) initialize(void){
     locSettingsModel.currentSettings = self.locationInputSwizzler.currentSettings;
     locSettingsModel.saveCallback = ^void(LocationInputSwizzlerSettings *settings) {
         [weakSelf.locationInputSwizzler applyNewSettings:settings];
-        [settings synchronizeToUserDefaults];
+        [settings synchronizeToUserDefaults: [NSUserDefaults standardUserDefaults]];
     };
     
     PPReportsSourcesBundle *reportSources = [[PPReportsSourcesBundle alloc] init];
@@ -262,7 +262,7 @@ static void __attribute__((constructor)) initialize(void){
 }
 
 -(void)setupLocationInputSwizzlerUsingSupervisor:(LocationInputSupervisor*)supervisor {
-    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults];
+    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults: [NSUserDefaults standardUserDefaults]];
     self.locationInputSwizzler = [[LocationInputSwizzler alloc] init];
     [self.locationInputSwizzler setupWithSettings:defaultLocationSettings eventsDispatcher:[PPEventsPipelineFactory eventsDispatcher] whenLocationsAreRequested:^(NSArray<CLLocation *> * _Nonnull locations) {
         

@@ -69,7 +69,6 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
 -(void)newURLRequestMade:(NSURLRequest *)request {
     
     [self.model.httpAnalyzers.locationHTTPAnalyzer checkIfAnyLocationFrom:[self.locationsArray allObjects] isSentInRequest:request withCompletion:^(BOOL yesTheyAreSent) {
-        NSLog(@"Received result for location analyzing: %d", yesTheyAreSent);
 
         if (yesTheyAreSent) {
             

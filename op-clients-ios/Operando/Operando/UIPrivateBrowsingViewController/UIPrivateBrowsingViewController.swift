@@ -12,66 +12,70 @@ import WebKit
 let kSearchEngineURL = "https://www.duckduckgo.com"
 let queryURLPart = "\(kSearchEngineURL)/?q="
 
+class WebTab {
+    var webTabDescription: WebTabDescription?
+    var navigationModel: UIWebViewTabNavigationModel?
+}
+
 class UIPrivateBrowsingViewController: UIViewController, WKNavigationDelegate
 {
+    @IBOutlet weak var webTabsView: UIWebTabsListView!
+    @IBOutlet weak var webTabsViewTopCn: NSLayoutConstraint!
+    @IBOutlet weak var webTabsHostView: UIView!
     
-    @IBOutlet weak var browsingNavigationBar: UIBrowsingNavigationBar!
-    @IBOutlet weak var webViewHostView: UIView!
-    var wkWebView : WKWebView?
+    private var logic: WebTabsControllerLogic?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setTabsViewTopConstraint(to: UIScreen.main.bounds.height)
+        weak var weakSelf = self
         
-        self.wkWebView = self.createWebViewInHostView(hostView: self.webViewHostView);
-        self.wkWebView?.load(URLRequest(url: URL(string: kSearchEngineURL)!));
         
-        self.browsingNavigationBar.setupWithCallbacks(callbacks: self.callBacksForBrowsingBar(browsingBar: self.browsingNavigationBar));
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.view.layoutIfNeeded()
-    }
-    
-    
-    
-    
-    
-    private func callBacksForBrowsingBar(browsingBar: UIBrowsingNavigationBar) -> UIBrowsingNavigationBarCallbacks?
-    {
-        weak var weakSelf = self;
-        return UIBrowsingNavigationBarCallbacks(whenUserPressedBack: { 
-            weakSelf?.wkWebView?.goBack()
-            },
-            whenUserPressedSearchWithString: { (searchString) in
-                weakSelf?.goToAddressOrSearch(string: searchString)
+        
+        let callbacks: WebTabsControllerLogicCallbacks = WebTabsControllerLogicCallbacks(hideWebViewTabCallback: nil, showWebViewTabCallback: { webViewTab, animated, completion in
+            weakSelf?.webTabsHostView.bringSubview(toFront: webViewTab)
+            completion?()
+            
+        }, hideWebTabsView: { _, _, completion in
+            weakSelf?.setTabsViewTopConstraint(to: UIScreen.main.bounds.height, animated: true)
+            completion?()
+            
+        }, showWebTabsViewOnTop: { _, _, completion  in
+            weakSelf?.setTabsViewTopConstraint(to: 0, animated: true)
+            completion?()
+            
+        }, addNewWebViewTabCallback:{ () -> UIWebViewTab in
+            let newTab = UIWebViewTab(frame: .zero)
+            if let webTabHostView = weakSelf?.webTabsHostView {
+                UIView.constrainView(view: newTab, inHostView: webTabHostView)
+            }
+            return newTab
+        }, presentAlertController: {
+            weakSelf?.present($0, animated: true, completion: nil)
         })
+        
+        
+        let model = WebTabsControllerLogicModel(webTabsView: self.webTabsView,
+                                                maxNumberOfReusableWebViews: 6,
+                                                webPool: WebViewTabManagementPool())
+        
+        self.logic = WebTabsControllerLogic(model: model, callbacks: callbacks)
     }
     
-    private func goToAddressOrSearch(string: String)
-    {
-        
-        let searchURL = queryURLPart + (string.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) ?? "")
-        
-        self.wkWebView?.load(URLRequest(url: URL(string: searchURL)!))
+    //MARK:
 
-        
-    }
-    
-    private func createWebViewInHostView(hostView: UIView) -> WKWebView
-    {
-        let configuration = WKWebViewConfiguration()
-        configuration.preferences.javaScriptEnabled = false
-        if #available(iOS 9.0, *) {
-            configuration.allowsAirPlayForMediaPlayback = false
-        } else {
-            // Fallback on earlier versions
+    private func setTabsViewTopConstraint(to value: CGFloat, animated: Bool = false) {
+        self.webTabsViewTopCn.constant = value;
+        self.view.setNeedsLayout()
+        let block: VoidBlock = {
+            self.view.layoutIfNeeded()
         }
         
-        
-        let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
-        webView.navigationDelegate = self
-        UIView.constrainView(view: webView, inHostView: hostView)
-        return webView
+        if animated {
+            UIView.animate(withDuration: 0.5, animations: block, completion: nil)
+        } else {
+            block()
+        }
     }
+    
 }

@@ -1,0 +1,6 @@
+{
+    "title": "PlusPrivacy",
+    "bundleId": "eu.romsoft.PlusPrivacy",
+    "accessedHosts": ["plusprivacy.com", "maxcdn.icons8.com"],
+    "accessedInputs": []
+}

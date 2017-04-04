@@ -27,18 +27,25 @@ typedef NS_ENUM(NSInteger, PPEventType) {
     EventSetDeviceProximitySensingEnabled,
     EventGetDeviceProximityState,
     
-    
-    EventStartPedometerUpdates
+    EventStartPedometerUpdates,
+    EventAllowWebViewRequest
+
 };
 
 #import <Foundation/Foundation.h>
 
 #pragma mark - 
+
+#define kPPWebViewRequest @"kPPWebViewRequest"
+#define kPPAllowWebViewRequestValue @"kPPAllowWebViewRequestValue"
+
 // - NSURLSession related keys
 
-#define kPPURLSessionDataTask @"kURLSessionDataTaskKey"
-#define kPPURLSessionRequest @"kPPURLSessionRequestKey"
-#define kPPURLSessionCompletionHandler @"kPPURLSessionCompletionHandler"
+#define kPPURLSessionDataTask @"kURLSessionDataTask"
+#define kPPURLSessionDataTaskRequest @"kPPURLSessionDataTaskRequest"
+#define kPPURLSessionDataTaskResponse @"kPPURLSessionDataTaskResponse"
+#define kPPURLSessionDatTaskResponseData @"kPPURLSessionDatTaskResponseData"
+#define kPPURLSessionDataTaskError @"kPPURLSessionDataTaskError"
 
 #pragma mark - 
 // - CLLocationManager related keys

@@ -8,6 +8,8 @@
 
 #import "UILocationSettingsViewController.h"
 #import "Common.h"
+#import "UILocationListView.h"
+#import "UILocationPinningView.h"
 
 #pragma mark -
 @interface NSString(UILocationSettingsViewController)
@@ -30,13 +32,13 @@
 @end
 
 @interface UILocationSettingsViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UISwitch *enabledSwitch;
 
-@property (weak, nonatomic) IBOutlet UITextField *latitudeTF;
-@property (weak, nonatomic) IBOutlet UITextField *longitudeTF;
 @property (strong, nonatomic) void(^_Nullable onExitCallback)();
-
 @property (strong, nonatomic) LocationSettingsModel *model;
+
+@property (weak, nonatomic) IBOutlet UILocationListView *locationListView;
+
+@property (weak, nonatomic) IBOutlet UILocationPinningView *locationPinningView;
 @end
 
 
@@ -45,19 +47,70 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.latitudeTF.delegate = self;
-    self.longitudeTF.delegate = self;
-    self.enabledSwitch.on = self.model.currentSettings.enabled;
+    self.locationPinningView.hidden = YES;
+}
+
+-(void)setupWithModel:(LocationSettingsModel *)model onExit:(void (^)())exitCallback {
+    [self view];
+    
+    self.model = model;
+    self.onExitCallback = exitCallback;
+    
+    UILocationPinningViewCallbacks *locationPinningViewCallbacks = [self createLocationPinningViewCallbacks];
+    UILocationListViewCallbacks *locationListViewCallbacks = [self createLocationListCallbacks];
+    
+    [self.locationListView setupWithInitialList:model.currentSettings.locations callbacks:locationListViewCallbacks];
+    [self.locationPinningView setupWithLocations:model.currentSettings.locations callbacks:locationPinningViewCallbacks];
+    
 }
 
 
--(void)setupWithModel:(LocationSettingsModel*)model onExit:(void(^ _Nullable)())exitCallback {
-    [self view];
-    self.model = model;
-    self.onExitCallback = exitCallback;
-    self.latitudeTF.text = [NSString stringWithFormat:@"%.4f", model.currentSettings.locationLatitude];
-    self.longitudeTF.text = [NSString stringWithFormat:@"%.4f", model.currentSettings.locationLongitude];
-    self.enabledSwitch.on = self.model.currentSettings.enabled;
+-(UILocationListViewCallbacks*)createLocationListCallbacks{
+    WEAKSELF
+    UILocationListViewCallbacks *callbacks = [[UILocationListViewCallbacks alloc] init];
+    callbacks.onNewLocationAdded = ^void(CLLocation *location){
+        [weakSelf.locationPinningView addNewLocation:location];
+    };
+    
+    callbacks.onDeleteAll = ^void() {
+        [weakSelf.locationPinningView clearAll];
+    };
+    
+    callbacks.onDeleteLocationAtIndex = ^void(NSInteger index){
+        [weakSelf.locationPinningView deleteLocationAt:index];
+    };
+    
+    callbacks.onModifyLocationAtIndex = ^void(CLLocation *location, NSInteger index){
+        [weakSelf.locationPinningView modifyLocationAt:index toLatitude:location.coordinate.latitude andLongitude:location.coordinate.longitude];
+    };
+    return callbacks;
+}
+
+-(UILocationPinningViewCallbacks*)createLocationPinningViewCallbacks{
+    UILocationPinningViewCallbacks *callbacks = [[UILocationPinningViewCallbacks alloc] init];
+    WEAKSELF
+    callbacks.onNewLocationAdded = ^void(CLLocation *location){
+        [weakSelf.locationListView addNewLocation:location];
+    };
+    
+    callbacks.onDeleteLocationAtIndex = ^void(NSInteger index){
+        [weakSelf.locationListView removeLocationAt:index];
+    };
+    
+    callbacks.onModifyLocationAtIndex = ^void(CLLocation *location, NSInteger index){
+        [weakSelf.locationListView modifyLocationAt:index to:location];
+    };
+    return callbacks;
+}
+
+- (IBAction)didPressInsertCoordinatesManually:(id)sender {
+    self.locationPinningView.hidden = YES;
+    self.locationListView.hidden = NO;
+}
+
+- (IBAction)didPressToAddOnMap:(id)sender {
+    self.locationPinningView.hidden = NO;
+    self.locationListView.hidden = YES;
 }
 
 - (IBAction)didPressBack:(id)sender {
@@ -65,43 +118,12 @@
 }
 
 - (IBAction)didPressSave:(id)sender {
-    [self validateAndSave];
-    [self.view endEditing:YES];
+    LocationInputSwizzlerSettings *newSettings = [self compileSettings];
+    SAFECALL(self.model.saveCallback, newSettings)
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [textField endEditing:YES];
-    });
-    
-    return YES;
+-(LocationInputSwizzlerSettings*)compileSettings {
+    return [LocationInputSwizzlerSettings createWithLocations:self.locationListView.currentLocations enabled:YES cycle:YES changeInterval:5.0];
 }
-
--(void)validateAndSave {
-    NSString *errorMessage = @"Invalid number!";
-    
-    NSNumber *latitude = [self.latitudeTF.text toNumber];
-    if (!latitude) {
-        self.latitudeTF.text = errorMessage;
-        return;
-    }
-    
-    NSNumber *longitude = [self.longitudeTF.text toNumber];
-    if (!longitude) {
-        self.longitudeTF.text = errorMessage;
-        return;
-    }
-    
-    LocationInputSwizzlerSettings *settings = [LocationInputSwizzlerSettings createWithLatitude:latitude.doubleValue longitude:longitude.doubleValue enabled:self.enabledSwitch.on];
-    
-    SAFECALL(self.model.saveCallback, settings)
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Done" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
-}
-
-
-
-
 
 @end

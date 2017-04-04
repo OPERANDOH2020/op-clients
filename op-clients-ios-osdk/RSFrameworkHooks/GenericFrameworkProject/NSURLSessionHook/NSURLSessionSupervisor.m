@@ -39,11 +39,15 @@
 
 
 -(void)processRequestEvent:(PPEvent*)requestEvent {
-    NSURLRequest *request = requestEvent.eventData[kPPURLSessionRequest];
+    NSURLRequest *request = requestEvent.eventData[kPPURLSessionDataTaskRequest];
     PPAccessUnlistedHostReport *report;
     if ((report = [self accessesUnspecifiedLink:request])) {
-        [requestEvent.eventData removeObjectForKey:kPPURLSessionRequest];
         [self.model.delegate newURLHostViolationReported:report];
+        
+        NSString *message = [NSString stringWithFormat:@"Accessed unspecified host. The developer must specifiy in the self compliance document the list of hosts that the app accesses. Host: %@", request.URL.host];
+        NSError *error = [[NSError alloc] initWithDomain:@"com.plusPrivacy" code:-1 userInfo:@{NSLocalizedDescriptionKey: message}];
+        
+        requestEvent.eventData[kPPURLSessionDataTaskError] = error;
     }
 }
 
@@ -51,7 +55,7 @@
 -(PPAccessUnlistedHostReport*)accessesUnspecifiedLink:(NSURLRequest*)request {
     NSString *host = request.URL.host;
     
-    for (NSString *listedHost in self.model.scdDocument.accessedLinks) {
+    for (NSString *listedHost in self.model.scdDocument.accessedHosts) {
         if ([listedHost isEqualToString:host]) {
             return nil;
         }

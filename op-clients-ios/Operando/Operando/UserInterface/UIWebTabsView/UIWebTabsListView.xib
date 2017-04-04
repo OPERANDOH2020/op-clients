@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIWebTabsListView" customModule="Operando" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="sMl-QP-7L0" id="Hjr-y9-EQ5"/>
+                <outlet property="collectionView" destination="gA9-u2-mj4" id="1YE-jy-ARm"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="KX3-z3-2xc">
+            <rect key="frame" x="0.0" y="0.0" width="334" height="577"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="gA9-u2-mj4">
+                    <rect key="frame" x="0.0" y="0.0" width="334" height="533"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="0CY-vA-BjG">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1iP-lH-6n5">
+                    <rect key="frame" x="0.0" y="533" width="334" height="44"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="9ZC-7R-sZi"/>
+                        <barButtonItem systemItem="add" id="jNB-qV-A5x">
+                            <connections>
+                                <action selector="didPressToAdd:" destination="-1" id="fO0-Ha-zfG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="geu-2H-JtI"/>
+                        <barButtonItem systemItem="stop" id="dCo-rr-45S">
+                            <connections>
+                                <action selector="didPressClose:" destination="-1" id="nmk-Rc-vAH"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sMl-QP-7L0">
+                    <rect key="frame" x="149" y="233" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="gA9-u2-mj4" firstAttribute="top" secondItem="KX3-z3-2xc" secondAttribute="top" id="7DD-VV-z9P"/>
+                <constraint firstItem="1iP-lH-6n5" firstAttribute="leading" secondItem="KX3-z3-2xc" secondAttribute="leading" id="9Xg-qX-psG"/>
+                <constraint firstAttribute="trailing" secondItem="1iP-lH-6n5" secondAttribute="trailing" id="aMF-IN-LEh"/>
+                <constraint firstItem="1iP-lH-6n5" firstAttribute="top" secondItem="gA9-u2-mj4" secondAttribute="bottom" id="iOg-At-0IM"/>
+                <constraint firstItem="sMl-QP-7L0" firstAttribute="centerY" secondItem="KX3-z3-2xc" secondAttribute="centerY" id="iRy-W4-Q7q"/>
+                <constraint firstAttribute="trailing" secondItem="gA9-u2-mj4" secondAttribute="trailing" id="pBw-fs-9dD"/>
+                <constraint firstItem="sMl-QP-7L0" firstAttribute="centerX" secondItem="KX3-z3-2xc" secondAttribute="centerX" id="qmp-Xt-bxr"/>
+                <constraint firstItem="gA9-u2-mj4" firstAttribute="leading" secondItem="KX3-z3-2xc" secondAttribute="leading" id="wsP-HS-4f4"/>
+                <constraint firstAttribute="bottom" secondItem="1iP-lH-6n5" secondAttribute="bottom" id="ylT-gc-Khb"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="178" y="-59.5"/>
+        </view>
+    </objects>
+</document>

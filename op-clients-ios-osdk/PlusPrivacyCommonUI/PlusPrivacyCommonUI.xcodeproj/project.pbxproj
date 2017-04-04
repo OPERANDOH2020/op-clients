@@ -30,6 +30,7 @@
 		98331C951E56F848005D3A84 /* SCDUrlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635E51E30B0F90033788A /* SCDUrlCell.xib */; };
 		98331C961E56F848005D3A84 /* SensorDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985635EA1E30B0F90033788A /* SensorDetailsView.xib */; };
 		98331C971E56F848005D3A84 /* PPCommonAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9856360F1E30CEA70033788A /* PPCommonAssets.xcassets */; };
+		983C3F871E8D1ACC00014F25 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983C3F861E8D1ACC00014F25 /* PlusPrivacyCommonTypes.framework */; };
 		985635EB1E30B0F90033788A /* EULATextBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635D91E30B0F90033788A /* EULATextBuilder.swift */; };
 		985635EC1E30B0F90033788A /* SCDDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635DB1E30B0F90033788A /* SCDDetailsView.swift */; };
 		985635EE1E30B0F90033788A /* SCDSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985635DE1E30B0F90033788A /* SCDSectionHeader.swift */; };
@@ -42,13 +43,13 @@
 		985636011E30BD000033788A /* UISCDDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985636001E30BD000033788A /* UISCDDocumentsViewController.swift */; };
 		985636051E30BEA50033788A /* SCDDocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985636031E30BEA50033788A /* SCDDocumentCell.swift */; };
 		98584F411D3F9E18009FB89F /* PlusPrivacyCommonUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PlusPrivacyCommonUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		98F7A66C1E76A03500FF635A /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F7A66B1E76A03500FF635A /* PlusPrivacyCommonTypes.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		980787591E3F44E40099B642 /* UINotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINotificationViewController.swift; sourceTree = "<group>"; };
 		98331C8A1E56F725005D3A84 /* PPCommonUIBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPCommonUIBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		98331C8C1E56F725005D3A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		983C3F861E8D1ACC00014F25 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 		985635D91E30B0F90033788A /* EULATextBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EULATextBuilder.swift; sourceTree = "<group>"; };
 		985635DB1E30B0F90033788A /* SCDDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDDetailsView.swift; sourceTree = "<group>"; };
 		985635DC1E30B0F90033788A /* SCDDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCDDetailsView.xib; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		98584F3D1D3F9E18009FB89F /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PlusPrivacyCommonUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PlusPrivacyCommonUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlusPrivacyCommonUI.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98F7A66B1E76A03500FF635A /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98F7A66C1E76A03500FF635A /* PlusPrivacyCommonTypes.framework in Frameworks */,
+				983C3F871E8D1ACC00014F25 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +217,7 @@
 		98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */ = {
 			isa = PBXGroup;
 			children = (
-				98F7A66B1E76A03500FF635A /* PlusPrivacyCommonTypes.framework */,
+				983C3F861E8D1ACC00014F25 /* PlusPrivacyCommonTypes.framework */,
 				985635FD1E30B98C0033788A /* CommonUIBuilder.swift */,
 				985635F91E30B2130033788A /* ViewUtilities.swift */,
 				985635F71E30B0FF0033788A /* Cloak.storyboard */,

@@ -22,7 +22,6 @@ static NSTimer *repositionHandleTimer = nil;
 
 -(void)rsHook_addSubview:(UIView*)view {
     
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         handle = [[OPMonitor sharedInstance] getHandle];
@@ -42,7 +41,6 @@ static NSTimer *repositionHandleTimer = nil;
     });
     
     [self rsHook_addSubview:view];
-    
 }
 
 

@@ -56,12 +56,12 @@ class EULATextBuilder: NSObject {
     }
     
     private static func buildDownloadDataPart(for scd: SCDDocument) -> NSAttributedString {
-        guard scd.accessedLinks.count > 0 else {
+        guard scd.accessedHosts.count > 0 else {
             return NSAttributedString(string: "")
         }
         
         var story: String = "The app downloads data from the following third party sources:\n";
-        for urlSource in scd.accessedLinks {
+        for urlSource in scd.accessedHosts {
             story.append("\n" + urlSource)
         }
         

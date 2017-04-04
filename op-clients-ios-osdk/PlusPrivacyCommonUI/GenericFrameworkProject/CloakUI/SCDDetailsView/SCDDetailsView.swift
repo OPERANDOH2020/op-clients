@@ -27,12 +27,12 @@ fileprivate class UrlListSectionSource: NSObject, SectionSource {
     }
     
     fileprivate func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return scd.accessedLinks.count
+        return scd.accessedHosts.count
     }
     
     fileprivate func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SCDUrlCell.identifierNibName) as! SCDUrlCell
-        cell.setupWith(url: self.scd.accessedLinks[indexPath.row])
+        cell.setupWith(url: self.scd.accessedHosts[indexPath.row])
         return cell
     }
 }
@@ -79,7 +79,7 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
     func setupWith(scd: SCDDocument){
         self.scd = scd
         
-        if scd.accessedLinks.count > 0 {
+        if scd.accessedHosts.count > 0 {
             self.sectionSources.append(UrlListSectionSource(scd: scd))
         }
         

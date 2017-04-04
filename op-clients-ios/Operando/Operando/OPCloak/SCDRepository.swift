@@ -34,14 +34,19 @@ class PlistSCDRepository: SCDRepository, PlusPrivacyCommonUI.SCDRepository {
     }
     
     private func loadPlistObjects() {
+        self.debugRegisterSIMAP_PW()
+        
         guard let plistArray = NSArray(contentsOfFile: self.plistFilePath),
-              let plistDictsArray = plistArray as? [[String : Any]],
-              let scdDocuments = SCDDocument.buildFromJSON(array: plistDictsArray) else {
+            let plistDictsArray = plistArray as? [[String : Any]] else {
                 return
         }
-        
-        self.scdDocuments = scdDocuments
-        self.scdJSONS = plistDictsArray
+
+        CommonTypeBuilder.sharedInstance.buildFromJSON(array: plistDictsArray) { documents, error  in
+            if let documents = documents {
+                self.scdDocuments.append(contentsOf: documents)
+                self.scdJSONS.append(contentsOf: plistDictsArray)
+            }
+        }
     }
     
     internal func retrieveAllDocuments(with completion: (([SCDDocument]?, NSError?) -> Void)?) {
@@ -57,16 +62,40 @@ class PlistSCDRepository: SCDRepository, PlusPrivacyCommonUI.SCDRepository {
     }
 
     internal func registerSCDJson(_ json: [String : Any], withCompletion completion: ErrorCallback?) {
-        guard let scdDocument = SCDDocument(scd: json) else {
-            completion?(NSError.errorMissingValuesFromSCDJSON)
-            return
+        CommonTypeBuilder.sharedInstance.buildSCDDocument(with: json) { document, error  in
+            
+            guard let scdDocument = document else {
+                completion?(error)
+                return
+            }
+            self.scdJSONS.append(json)
+            self.scdDocuments.append(scdDocument)
+            self.synchronize()
+            completion?(nil)
         }
-        self.scdJSONS.append(json)
-        self.scdDocuments.append(scdDocument)
-        self.synchronize()
-        completion?(nil)
     }
 
+    
+    private func debugRegisterSIMAP_PW() {
+        guard self.scdDocuments.first(where: {
+            return $0.bundleId == "eu.romsoft.SIMAP" || $0.bundleId == "eu.romsoft.PrivacyWizard"
+        }) == nil else {
+            return
+        }
+        
+        let simapDict: [String: Any] = ["title":"SIMAP",
+                                        "bundleId": "eu.romsoft.SIMAP",
+                                        "accessedHosts": ["simap.rms.ro"],
+                                        "accessedInputs": []]
+        
+        let privacyWizardDict: [String: Any] = ["title": "PrivacyWizard",
+                                                "bundleId": "eu.romsoft.PrivacyWizard",
+                                                "accessedHosts": ["plusprivacy.com"],
+                                                "accessedInputs": []]
+        
+        self.registerSCDJson(simapDict, withCompletion: nil)
+        self.registerSCDJson(privacyWizardDict, withCompletion: nil)
+    }
     
     private func synchronize() {
         let array = NSMutableArray()

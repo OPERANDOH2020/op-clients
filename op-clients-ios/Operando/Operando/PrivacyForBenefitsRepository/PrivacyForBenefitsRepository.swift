@@ -38,14 +38,14 @@ class DummyPfbRepository: PrivacyForBenefitsRepository
     func getCurrentPfbDealsWith(completion: ((_ deals: [PfbDeal], _ error: NSError?) -> Void)?){
         
         var deals: [PfbDeal] = []
-        for i in 1...15 {
+        for i in 1...1 {
             deals.append(PfbDeal(dict: ["serviceId": i,
                                         "subscribed": i % 3 == 0,
                                         "benefit": "\(i) euros",
                                          "description": loremIpsum,
                                          "voucher": "\(i) -------- \(i)",
-                                         "logo": "http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/122010/etsy-thumb.png",
-                                         "website": "http://www.google.ro"])!)
+                                         "logo": "https://maxcdn.icons8.com/Share/icon/androidL/Logos//9gag1600.png",
+                                         "website": "https://www.9gag.com"])!)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
