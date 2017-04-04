@@ -26,13 +26,17 @@ class UIPrivacySettingFlowController: UIFlowController, UIPrivacySettingProtocol
     }
     
     func launchFacebookPrivacySetting() {
-        let setPrivacyTVCConfiguration = UIFlowConfiguration(window: nil, navigationController: configuration.navigationController, parent: self)
-        childFlow = UISetPrivacyFlowController(configuration: setPrivacyTVCConfiguration)
-        childFlow?.start()
+        openConfigurator(withScope: .facebook)
     }
     
     func launchLinkedInPrivacySetting() {
-        guard let childViewController = childViewController else { return }
-        UIAlertViewController.presentOkAlert(from: childViewController, title: "Coming soon", message: "This functionality is not available for the moment")
+        openConfigurator(withScope: .linkedIn)
+    }
+    
+    private func openConfigurator(withScope scope: ACPrivacyWizardScope) {
+        ACPrivacyWizard.shared.selectedScope = scope
+        let setPrivacyTVCConfiguration = UIFlowConfiguration(window: nil, navigationController: configuration.navigationController, parent: self)
+        childFlow = UISetPrivacyFlowController(configuration: setPrivacyTVCConfiguration)
+        childFlow?.start()
     }
 }

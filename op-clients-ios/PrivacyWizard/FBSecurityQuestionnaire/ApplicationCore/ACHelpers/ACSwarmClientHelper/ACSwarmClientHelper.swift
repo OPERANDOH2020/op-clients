@@ -12,7 +12,7 @@ import SwarmClient
 class ACSwarmClientHelper: NSObject, SwarmClientProtocol {
     
     // MARK: - Properties
-    static let ServerURL = "https://plusprivacy.com:8080";
+    static let ServerURL = "http://192.168.100.86:8080";
     private let swarmClient = SwarmClient(connectionURL: ACSwarmClientHelper.ServerURL);
     private let workingQueue: DispatchQueue = DispatchQueue.main
     internal let swarmClientActions = ACSwarmCallbackContainer()

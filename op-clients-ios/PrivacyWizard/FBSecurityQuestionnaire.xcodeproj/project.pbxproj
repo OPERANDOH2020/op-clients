@@ -91,6 +91,9 @@
 		AD9A5D781E7BE6E400A31865 /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D711E7BE6E400A31865 /* ActionData.swift */; };
 		AD9A5D791E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D721E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift */; };
 		ADAF999D1E2E32E700E9A18D /* UILabel+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */; };
+		ADB8D01D1E936C8D008926F6 /* UITutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8D01C1E936C8D008926F6 /* UITutorialView.swift */; };
+		ADB8D01F1E936E36008926F6 /* UITutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB8D01E1E936E36008926F6 /* UITutorialView.xib */; };
+		ADB8D0211E93A2A0008926F6 /* linkedin-iOS.js in Resources */ = {isa = PBXBuildFile; fileRef = ADB8D0201E93A2A0008926F6 /* linkedin-iOS.js */; };
 		ADBBCAF91E1BCD35007A7686 /* ACMathOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */; };
 		ADBBCAFD1E1BCD87007A7686 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */; };
 		ADE060DC1E1D3A3E00ACC00E /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060DB1E1D3A3E00ACC00E /* UIColor+Utils.swift */; };
@@ -227,6 +230,9 @@
 		AD9A5D711E7BE6E400A31865 /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionData.swift; sourceTree = "<group>"; };
 		AD9A5D721E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Utils.swift"; sourceTree = "<group>"; };
+		ADB8D01C1E936C8D008926F6 /* UITutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITutorialView.swift; sourceTree = "<group>"; };
+		ADB8D01E1E936E36008926F6 /* UITutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UITutorialView.xib; sourceTree = "<group>"; };
+		ADB8D0201E93A2A0008926F6 /* linkedin-iOS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "linkedin-iOS.js"; sourceTree = "<group>"; };
 		ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACMathOperator.swift; sourceTree = "<group>"; };
 		ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		ADE060DB1E1D3A3E00ACC00E /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
@@ -477,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				AD291BFF1E5DCE9F00F158E0 /* facebook_iOS.js */,
+				ADB8D0201E93A2A0008926F6 /* linkedin-iOS.js */,
 				AD291C001E5DCE9F00F158E0 /* jquery-3.1.0.min.js */,
 				AD291C011E5DCE9F00F158E0 /* jquery214min.js */,
 				AD291C021E5DCE9F00F158E0 /* osp-settings.js */,
@@ -811,6 +818,15 @@
 			path = "UILabel+Utils";
 			sourceTree = "<group>";
 		};
+		ADB8D01B1E936C7B008926F6 /* UITutorialView */ = {
+			isa = PBXGroup;
+			children = (
+				ADB8D01C1E936C8D008926F6 /* UITutorialView.swift */,
+				ADB8D01E1E936E36008926F6 /* UITutorialView.xib */,
+			);
+			path = UITutorialView;
+			sourceTree = "<group>";
+		};
 		ADBBCAF71E1BCD29007A7686 /* ACMathOperator */ = {
 			isa = PBXGroup;
 			children = (
@@ -953,6 +969,7 @@
 		ADE061061E1E6ACE00ACC00E /* UICommon */ = {
 			isa = PBXGroup;
 			children = (
+				ADB8D01B1E936C7B008926F6 /* UITutorialView */,
 				AD798BD51E8BEDF500EA5226 /* UIRibonHeaderView */,
 				AD798BD21E8BDDDC00EA5226 /* UIRadialGradientView */,
 				AD291BEB1E5D8DB000F158E0 /* UIAlertViewController */,
@@ -1120,6 +1137,7 @@
 				AD9A5D601E79459C00A31865 /* Disclaimer.xib in Resources */,
 				ADEDBBCA1E5713A400C220B0 /* PrivacyWizardModule.js in Resources */,
 				ADE061161E1F7AEE00ACC00E /* Common.xcassets in Resources */,
+				ADB8D0211E93A2A0008926F6 /* linkedin-iOS.js in Resources */,
 				AD291C2C1E5DCE9F00F158E0 /* readSNSettings.js in Resources */,
 				AD798BCF1E8B9BCC00EA5226 /* Dosis-SemiBold.otf in Resources */,
 				AD291C321E5DCE9F00F158E0 /* fbExtractData.js in Resources */,
@@ -1132,6 +1150,7 @@
 				AD15663E1E095F8700036616 /* PrivacyWizardResources.js in Resources */,
 				AD42FB721DF59D2D0034FA99 /* Info.plist in Resources */,
 				AD42FB6F1DF59D2D0034FA99 /* Assets.xcassets in Resources */,
+				ADB8D01F1E936E36008926F6 /* UITutorialView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1201,6 +1220,7 @@
 				ADE060E41E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift in Sources */,
 				AD1CC5E91DF84BF20013FE77 /* AMReadJQuerySelector.swift in Sources */,
 				AD1CC5C31DF812CE0013FE77 /* ACTypeConstants.swift in Sources */,
+				ADB8D01D1E936C8D008926F6 /* UITutorialView.swift in Sources */,
 				AD1CC5C01DF812800013FE77 /* ACSwarmCallbackContainer.swift in Sources */,
 				ADE061111E1E709200ACC00E /* UIQuestionnaireFlowController.swift in Sources */,
 				ADEDBBCD1E573D3700C220B0 /* UIMainViewController.swift in Sources */,

@@ -52,6 +52,7 @@ class UIMainScreenFlowController: UIFlowController, UIMainScreenVCDelegate, Disc
     }
     
     private func openQuestionnnaire(withScope scope: ACPrivacyWizardScope) {
+        ACPrivacyWizard.shared.selectedScope = scope
         let questionnaireTVCConfiguration = UIFlowConfiguration(window: nil, navigationController: configuration.navigationController, parent: self)
         childFlow = UIQuestionnaireFlowController(configuration: questionnaireTVCConfiguration)
         (childFlow as? UIQuestionnaireFlowController)?.setup(withPrivacyWizardScope: scope)

@@ -12,14 +12,14 @@ import WebKit
 let UISetPrivacyVCStoryboardId = "UISetPrivacyVCStoryboardId"
 let MozillaUserAgentId = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12"
 
-class UISetPrivacyViewController: UIViewController {
+class UISetPrivacyViewController: UIViewController, UITutorialViewDelegate {
 
     // MARK: - Properties
     private var whenUserPressedLoggedIn: VoidBlock?
     private var fbSecurityEnforcer: FbWebKitSecurityEnforcer?
     
     private var webView: WKWebView = WKWebView(frame: .zero)
-    private var tutorialView: UIView?
+    private var tutorialView: UITutorialView?
     
     // MARK: - @IBOutlets
     @IBOutlet weak var webViewHostView: UIView!
@@ -68,9 +68,8 @@ class UISetPrivacyViewController: UIViewController {
         
         self.alterUserAgentInDefaults()
         
-        //self.addTutorialView()
+        self.addTutorialView()
         self.fbSecurityEnforcer?.enforceWithCallToLogin(callToLoginWithCompletion: { callbackWhenLogInIsDone in
-            //RSCommonUtilities.showOKAlertWithMessage(message: "Please log in and then press the button named 'Logged In' ");
             self.whenUserPressedLoggedIn = {
                 callbackWhenLogInIsDone?()
                 self.whenUserPressedLoggedIn = nil
@@ -82,7 +81,7 @@ class UISetPrivacyViewController: UIViewController {
                 return
             }
             
-            RSCommonUtilities.showOKAlertWithMessage(message: "Your facebook settings have ben secured")
+            RSCommonUtilities.showOKAlertWithMessage(message: "Your privacy settings have ben secured")
         })
     }
     
@@ -101,10 +100,26 @@ class UISetPrivacyViewController: UIViewController {
     }
     
     private func addTutorialView() {
-        tutorialView = UIView(frame: self.view.frame)
         let rect = loggedInButton.frame
-        UIApplication.shared.isStatusBarHidden = true
-        tutorialView?.addSubview(withBackgroundColor: .appDarkBlue, alpha: 0.9, cropRectFrom: CGPoint(x: rect.minX, y: rect.minY) , width: rect.width, height: rect.height)
+        tutorialView = UITutorialView.create(withTitle: "Please log in and then press the pointed button",
+                                                 frame: view.frame,
+                                                 backgroundColor: .appDarkBlue,
+                                                 croppingConfiguration: UITutorialViewCroppingConfiguration(origin: CGPoint(x: rect.minX, y: rect.minY),
+                                                                                                            width: rect.width,
+                                                                                                            height: rect.height),
+                                                 delegate: self)
+        
         view.addSubview(tutorialView!)
+        tutorialView?.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 9.0, *) {
+            tutorialView?.heightAnchor.constraint(equalToConstant: view.bounds.height).isActive = true
+            tutorialView?.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
+            tutorialView?.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            tutorialView?.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        }
+    }
+    
+    func didFinishTutorial() {
+        tutorialView?.removeFromSuperview()
     }
 }

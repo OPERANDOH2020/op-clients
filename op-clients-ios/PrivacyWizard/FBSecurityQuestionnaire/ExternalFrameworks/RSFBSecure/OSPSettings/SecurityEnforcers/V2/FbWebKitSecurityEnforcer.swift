@@ -73,8 +73,6 @@ class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
     private func loginIsDoneInitiateNextStep()
     {
         self.webView.loadAndExecuteScriptNamed(scriptName: "facebook_iOS") { (result, error) in
-            print(error);
-            print(result);
         }
     }
     

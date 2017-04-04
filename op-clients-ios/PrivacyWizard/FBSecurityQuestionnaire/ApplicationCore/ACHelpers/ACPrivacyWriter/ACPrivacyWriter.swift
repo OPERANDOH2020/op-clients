@@ -9,8 +9,22 @@
 import UIKit
 
 class ACPrivacyWriter: NSObject {
+    
+    static func privacyOptionsJsonString() -> String? {
+        guard let privacySettings = ACPrivacyWizard.shared.privacySettings else { return nil }
+        
+        switch ACPrivacyWizard.shared.selectedScope {
+        case .facebook:
+            return createJsonString(fromPrivacySettings: privacySettings.facebookSettings)
+        case .linkedIn:
+            return createJsonString(fromPrivacySettings: privacySettings.linkedinSettings)
+        default:
+            return nil
+        }
+    }
 
-    static func createJsonString(fromPrivacySettings settings: [AMPrivacySetting]) -> String? {
+    static func createJsonString(fromPrivacySettings settings: [AMPrivacySetting]?) -> String? {
+        guard let settings = settings else { return nil }
         var array = [Dictionary<String, Any>]()
         
         for setting in settings {
@@ -42,7 +56,6 @@ class ACPrivacyWriter: NSObject {
         result["page"] = page
         result["url"] = urlTemplate
         result["data"] = write.data
-        
         
         return result
     }

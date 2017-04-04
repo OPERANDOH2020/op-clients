@@ -40,6 +40,7 @@ class ACPrivacyWizard: NSObject {
     var privacySettings: AMPrivacySettings?
     var recommendedParameters: AMRecommendedSettings?
     var privacyWizardScope: ACPrivacyWizardScope = .all
+    var selectedScope: ACPrivacyWizardScope = .all
     
     // MARK: - Lifecycle
     private override init() {

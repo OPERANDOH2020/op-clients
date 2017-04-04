@@ -13,14 +13,8 @@ import WebKit
 extension WKWebView
 {
     func loadAndExecuteScriptNamed(scriptName: String, withCompletion completion: ((_ result: Any?, _ error: Error?) -> Void)?) {
-        guard let filePath = Bundle.main.path(forResource: scriptName, ofType: "js"),
-            let privacySettings = ACPrivacyWizard.shared.privacySettings,
-            let facebookSettings = privacySettings.facebookSettings,
-            let privacySettingsJson = ACPrivacyWriter.createJsonString(fromPrivacySettings: facebookSettings)
-            else {
-                completion?(nil, nil)
-                return
-        }
+        guard let filePath = Bundle.main.path(forResource: scriptName, ofType: "js"), let privacySettingsJson = ACPrivacyWriter.privacyOptionsJsonString()
+            else { completion?(nil, nil); return }
         
         if let jsString = try? NSString(contentsOfFile: filePath, encoding: String.Encoding.utf8.rawValue) {
             let modifiedJS = jsString.replacingOccurrences(of: "RS_PARAM_PLACEHOLDER", with: "\"\(privacySettingsJson.escapedStringForJS)\"")

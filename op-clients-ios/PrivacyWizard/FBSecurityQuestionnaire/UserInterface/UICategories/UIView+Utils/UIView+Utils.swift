@@ -15,7 +15,6 @@ enum UIGradientType {
 
 extension UIView {
     
-    
     func addSubview(withBackgroundColor bgColor: UIColor, alpha: CGFloat, cropRectFrom start: CGPoint, width: CGFloat, height: CGFloat) {
         let maskLayer = CAShapeLayer()
         
@@ -36,7 +35,15 @@ extension UIView {
         overlay.alpha = alpha
         overlay.backgroundColor = bgColor
         
-        addSubview(overlay)
+        insertSubview(overlay, at: 0)
+    }
+    
+    func getPointingImage(at point: CGPoint) -> UIImageView {
+        let imageView = UIImageView(frame: CGRect(x: point.x - 50, y: point.y, width: 50, height: 50))
+        
+        imageView.image = UIImage(named: "pointing_arrow_")
+        
+        return imageView
     }
     
     // MARK: - Shapes
