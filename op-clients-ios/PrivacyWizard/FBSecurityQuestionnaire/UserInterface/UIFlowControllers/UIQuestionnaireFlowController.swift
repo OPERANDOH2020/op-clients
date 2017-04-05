@@ -82,7 +82,7 @@ class UIQuestionnaireFlowController: UIFlowController, UIQuestionnaireTVCProtoco
         case .facebook:
             launchPrivacySetting()
         case .linkedIn:
-            openPrivacySettingsScreen()
+            launchPrivacySetting()
         case .all:
             openPrivacySettingsScreen()
         }

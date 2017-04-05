@@ -21,8 +21,6 @@
 		AD1FCD331E07FF88001DADD8 /* PrivacyWizard.js in Resources */ = {isa = PBXBuildFile; fileRef = AD1FCD321E07FF88001DADD8 /* PrivacyWizard.js */; };
 		AD1FCD381E0801CB001DADD8 /* JSPrivacyWizardContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1FCD371E0801CB001DADD8 /* JSPrivacyWizardContext.swift */; };
 		AD1FCD3B1E0801D5001DADD8 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1FCD3A1E0801D5001DADD8 /* JavaScriptCore.framework */; };
-		AD291BDB1E5B10BB00F158E0 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEDBBEC1E5B0F7800C220B0 /* SwarmClient.framework */; };
-		AD291BDC1E5B10BB00F158E0 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ADEDBBEC1E5B0F7800C220B0 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD291BDF1E5B381C00F158E0 /* AMPrivacyRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD291BDE1E5B381C00F158E0 /* AMPrivacyRecommendation.swift */; };
 		AD291BE81E5C690B00F158E0 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD291BE71E5C690B00F158E0 /* ProgressHUD.m */; };
 		AD291BEA1E5C6E9F00F158E0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD291BE91E5C6E9F00F158E0 /* QuartzCore.framework */; };
@@ -66,6 +64,9 @@
 		AD42FB731DF59D2D0034FA99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB6D1DF59D2D0034FA99 /* ViewController.swift */; };
 		AD42FB7C1DF59DCB0034FA99 /* ACSwarmClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB7B1DF59DCB0034FA99 /* ACSwarmClientHelper.swift */; };
 		AD42FB801DF59E920034FA99 /* ACNetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB7F1DF59E920034FA99 /* ACNetworkingConstants.swift */; };
+		AD6CD9021E94C319000BA3B4 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */; };
+		AD6CD9031E94C31F000BA3B4 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */; };
+		AD6CD9041E94C31F000BA3B4 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD709F461E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD709F451E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift */; };
 		AD798BCE1E8B9BCC00EA5226 /* Dosis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD798BCC1E8B9BCC00EA5226 /* Dosis-Medium.otf */; };
 		AD798BCF1E8B9BCC00EA5226 /* Dosis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD798BCD1E8B9BCC00EA5226 /* Dosis-SemiBold.otf */; };
@@ -115,7 +116,6 @@
 		ADEDBBCF1E573E9000C220B0 /* UIMainScreenFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEDBBCE1E573E9000C220B0 /* UIMainScreenFlowController.swift */; };
 		ADEDBBD21E574AD100C220B0 /* UIAppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEDBBD11E574AD100C220B0 /* UIAppearanceManager.swift */; };
 		ADEDBBD51E5AFD9C00C220B0 /* ACPrivacyWizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEDBBD41E5AFD9C00C220B0 /* ACPrivacyWizard.swift */; };
-		ADEDBBEF1E5B0F7800C220B0 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEDBBEC1E5B0F7800C220B0 /* SwarmClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,13 +129,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		ADEDBBC31E56EEE900C220B0 /* Embed Frameworks */ = {
+		AD6CD9051E94C31F000BA3B4 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AD291BDC1E5B10BB00F158E0 /* SwarmClient.framework in Embed Frameworks */,
+				AD6CD9041E94C31F000BA3B4 /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +207,7 @@
 		AD42FB781DF59D690034FA99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD42FB7B1DF59DCB0034FA99 /* ACSwarmClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSwarmClientHelper.swift; sourceTree = "<group>"; };
 		AD42FB7F1DF59E920034FA99 /* ACNetworkingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNetworkingConstants.swift; sourceTree = "<group>"; };
+		AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		AD709F451E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadialGradientViewPulsarConfiguration.swift; sourceTree = "<group>"; };
 		AD798BCC1E8B9BCC00EA5226 /* Dosis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.otf"; sourceTree = "<group>"; };
 		AD798BCD1E8B9BCC00EA5226 /* Dosis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-SemiBold.otf"; sourceTree = "<group>"; };
@@ -254,7 +255,6 @@
 		ADEDBBCE1E573E9000C220B0 /* UIMainScreenFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIMainScreenFlowController.swift; sourceTree = "<group>"; };
 		ADEDBBD11E574AD100C220B0 /* UIAppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAppearanceManager.swift; sourceTree = "<group>"; };
 		ADEDBBD41E5AFD9C00C220B0 /* ACPrivacyWizard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPrivacyWizard.swift; sourceTree = "<group>"; };
-		ADEDBBEC1E5B0F7800C220B0 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,9 +262,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD6CD9021E94C319000BA3B4 /* SwarmClient.framework in Frameworks */,
 				AD291BEA1E5C6E9F00F158E0 /* QuartzCore.framework in Frameworks */,
-				AD291BDB1E5B10BB00F158E0 /* SwarmClient.framework in Frameworks */,
-				ADEDBBEF1E5B0F7800C220B0 /* SwarmClient.framework in Frameworks */,
+				AD6CD9031E94C31F000BA3B4 /* SwarmClient.framework in Frameworks */,
 				AD1FCD3B1E0801D5001DADD8 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,11 +1029,11 @@
 		ADEDBBE71E5B0F7800C220B0 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */,
 				AD9A5D671E7BE55600A31865 /* XLActionController */,
 				AD9A5D5D1E79459C00A31865 /* ScrollableOverlay */,
 				AD291BFC1E5DCE9F00F158E0 /* RSFBSecure */,
 				AD291BE51E5C690B00F158E0 /* ProgressHUD */,
-				ADEDBBEC1E5B0F7800C220B0 /* SwarmClient.framework */,
 			);
 			path = ExternalFrameworks;
 			sourceTree = "<group>";
@@ -1048,7 +1048,7 @@
 				AD42FB301DF598130034FA99 /* Sources */,
 				AD42FB311DF598130034FA99 /* Frameworks */,
 				AD42FB321DF598130034FA99 /* Resources */,
-				ADEDBBC31E56EEE900C220B0 /* Embed Frameworks */,
+				AD6CD9051E94C31F000BA3B4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -55,7 +55,7 @@ class ACSwarmClientHelper: NSObject, SwarmClientProtocol {
         }
     }
     
-    internal func removeCallbacksForSwarmCalls(){
+    internal func removeCallbacksForSwarmCalls() {
         swarmClientActions.whenReceivedData = nil
         swarmClientActions.whenError = nil
     }

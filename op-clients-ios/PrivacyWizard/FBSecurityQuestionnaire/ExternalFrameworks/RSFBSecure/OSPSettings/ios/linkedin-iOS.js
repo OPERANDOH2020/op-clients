@@ -1,6 +1,35 @@
-(function(privacySettingsJsonString)
+ (function(privacySettingsJsonString) {
  
-var privacySettings =  = JSON.parse(privacySettingsJsonString);
+  var kMessageTypeKey = "messageType";
+  var kLogMessageTypeContentKey = "logContent";
+  var kLogMessageType = "log";
+  
+  var kStatusMessageMessageType = "statusMessageType";
+  var kStatusMessageContentKey = "statusMessageContent";
+  
+  var webkitSendMessage  = function(message) {
+  alert(message);
+  };
+  
+ window.console = {};
+ window.console.log = function(logMessage) {
+ var webkitMessage = {};
+ webkitMessage[kMessageTypeKey] = kLogMessageType;
+ webkitMessage[kLogMessageTypeContentKey] = logMessage;
+ 
+ webkitSendMessage(JSON.stringify(webkitMessage));
+ };
+ 
+ var sendStatusMessage = function(settingName) {
+ var webkitMessage = {};
+ webkitMessage[kMessageTypeKey] = kStatusMessageMessageType;
+ webkitMessage[kStatusMessageContentKey] = settingName;
+ webkitSendMessage(JSON.stringify(webkitMessage));
+ };
+ 
+ sendStatusMessage("Did begin privacy setting!");
+ 
+var privacySettings = JSON.parse(privacySettingsJsonString);
 
 function postToLinkedIn(settings, item, total) {
     
@@ -132,8 +161,9 @@ function secureAccount(callback) {
                                                              /////////////////////
                                                              ////////////Progress////////
                                                              /////////////////////
+                                                             sendStatusMessage(result)
                                                              }).catch(function (err) {
-                                                                      console.log(err)
+                                                                      sendStatusMessage(err)
                                                                       });
                             });
     
@@ -141,6 +171,7 @@ function secureAccount(callback) {
                              //////////////////////
                              //////////Finish//////////
                              /////////////////////
+                             sendStatusMessage("Finished!")
                              });
     
     sequence = sequence.then(function (result) {
@@ -172,4 +203,5 @@ function extractHeaders(content) {
     data['csrfToken'] = decodeURIComponent(match[1]);
     return data;
     
-})(RS_PARAM_PLACEHOLDER)
+}
+  })(RS_PARAM_PLACEHOLDER)

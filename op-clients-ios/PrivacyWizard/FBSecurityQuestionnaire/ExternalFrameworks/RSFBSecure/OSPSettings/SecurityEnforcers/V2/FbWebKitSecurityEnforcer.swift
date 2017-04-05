@@ -47,7 +47,9 @@ class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
     
     func enforceWithCallToLogin(callToLoginWithCompletion: CallToLoginWithCompletion?, whenDisplayingMessage: ((_ message: String) -> Void)? ,completion: ((_ error: NSError?) -> Void)?)
     {
-        if let error = self.webView.loadWebViewToURL(urlString: "https://www.facebook.com")
+        let socialMediaUrl = ACPrivacyWizard.shared.selectedScope.getNetworkUrl()
+        
+        if let error = self.webView.loadWebViewToURL(urlString: socialMediaUrl)
         {
             completion?(error);
             return
@@ -65,14 +67,14 @@ class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
             weakSelf?.whenWebViewFinishesNavigation = nil;
 
         }
-        
-        
     }
     
     
     private func loginIsDoneInitiateNextStep()
     {
-        self.webView.loadAndExecuteScriptNamed(scriptName: "facebook_iOS") { (result, error) in
+        let resource = ACPrivacyWizard.shared.selectedScope.getWizardResourceName()
+        self.webView.loadAndExecuteScriptNamed(scriptName: resource) { (result, error) in
+            print(error)
         }
     }
     
@@ -88,7 +90,8 @@ class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
     
     private func getJSFile() -> String
     {
-        guard let path = Bundle.main.path(forResource: "facebook_iOS", ofType: "js") else {return ""}
+        let resource = ACPrivacyWizard.shared.selectedScope.getWizardResourceName()
+        guard let path = Bundle.main.path(forResource: resource, ofType: "js") else {return ""}
         let js = try? String(contentsOfFile: path)
         return js ?? ""
     }

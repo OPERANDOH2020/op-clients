@@ -29,6 +29,28 @@ enum ACPrivacyWizardScope {
             return ["facebook", "linkedin"]
         }
     }
+    
+    func getNetworkUrl() -> String {
+        switch self {
+        case .facebook:
+            return "https://www.facebook.com"
+        case .linkedIn:
+            return "https://www.linkedin.com"
+        case .all:
+            return "https://www.facebook.com"
+        }
+    }
+    
+    func getWizardResourceName() -> String {
+        switch self {
+        case .facebook:
+            return "facebook_iOS"
+        case .linkedIn:
+            return "linkedin-iOS"
+        case .all:
+            return "facebook_iOS"
+        }
+    }
 }
 
 class ACPrivacyWizard: NSObject {

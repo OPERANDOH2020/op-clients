@@ -22,6 +22,10 @@ class AMWriteSettingParameter: NSObject {
             value = String(intValue)
         } else if let stringValue = dictionary["value"] as? String {
             value = stringValue
+        } else if let intValue = dictionary["type"] as? Int {
+            value = String(intValue)
+        } else if let stringValue = dictionary["type"] as? String {
+            value = stringValue
         }
         
         if dictionary["placeholder"] as? String == "CSRF_TOKEN" {
