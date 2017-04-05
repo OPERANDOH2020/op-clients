@@ -11,15 +11,25 @@
 #import "NSBundle+RSFrameworkHooks.h"
 #import "UILocationListViewCell.h"
 #import "Common.h"
+#import "CommonViewUtils.h"
 
 
-@implementation UILocationListViewCallbacks
-@end
+
 
 @interface UILocationListView() <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *tutorialLabel;
+
+@property (strong, nonatomic) CommonLocationViewModel *model;
+@property (strong, nonatomic) CommonLocationViewCallbacks *callbacks;
+
 @property (readwrite, strong, nonatomic) NSMutableArray<CLLocation*> *allLocations;
-@property (strong, nonatomic) UILocationListViewCallbacks *callbacks;
+@property (assign, nonatomic) NSInteger highlightedIndex;
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightCn;
+
+
 @end
 
 @implementation UILocationListView
@@ -40,17 +50,34 @@
     self.tableView.rowHeight = 70;
 }
 
+-(void)setupWithModel:(CommonLocationViewModel *)model callbacks:(CommonLocationViewCallbacks *)callbacks{
+    [self setupWithInitialList:model.initialLocations callbacks:callbacks];
+    self.model = model;
+    if (!self.model.editable) {
+        self.toolbarHeightCn.constant = 0;
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
+        
+        if (!self.model.initialLocations.count) {
+            self.tutorialLabel.text = @"No locations added";
+        } else {
+            self.tutorialLabel.hidden = YES;
+        }
+    }
+}
 
--(void)setupWithInitialList:(NSArray<CLLocation *> *)initialLocations callbacks:(UILocationListViewCallbacks *)callbacks {
+-(void)setupWithInitialList:(NSArray<CLLocation *> *)initialLocations callbacks:(CommonLocationViewCallbacks *)callbacks {
     if (initialLocations) {
         [self.allLocations addObjectsFromArray:initialLocations];
     }
     self.callbacks = callbacks;
+    self.tutorialLabel.hidden = self.allLocations.count;
 }
 
 -(void)addNewLocation:(CLLocation *)location {
     [self.allLocations addObject:location];
     [self.tableView reloadData];
+    self.tutorialLabel.hidden = YES;
 }
 
 -(void)removeLocationAt:(NSInteger)index {
@@ -61,6 +88,12 @@
 -(void)modifyLocationAt:(NSInteger)index to:(CLLocation *)location{
     [self.allLocations replaceObjectAtIndex:index withObject:location];
     [self.tableView reloadData];
+}
+
+-(void)highlightLocationAt:(NSInteger)index {
+    self.highlightedIndex = index;
+    UILocationListViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    cell.selected = YES;
 }
 
 #pragma mark - 
@@ -92,10 +125,23 @@
             [weakSelf.allLocations removeObjectAtIndex:idxPath.row];
             [weakSelf.tableView reloadData];
             SAFECALL(weakSelf.callbacks.onDeleteLocationAtIndex, idxPath.row)
+            weakSelf.tutorialLabel.hidden = weakSelf.allLocations.count;
         }
     };
     
-    [cell setupWithLatitude:coord.latitude longitude:coord.longitude index:indexPath.row+1 callbacks:callbacks];
+    if (indexPath.row == self.highlightedIndex) {
+        cell.selected = YES;
+    }
+    else {
+        cell.selected = NO;
+    }
+    UILocationListViewCellModel *model = [[UILocationListViewCellModel alloc] init];
+    model.latitude = coord.latitude;
+    model.longitude = coord.longitude;
+    model.locationIndex = indexPath.row + 1;
+    model.editable = self.model.editable;
+    
+    [cell setupWithModel:model callbacks:callbacks];
     return cell;
 }
 
@@ -107,9 +153,14 @@
 #pragma mark - 
 
 - (IBAction)didPressDeleteAll:(id)sender {
-    [self.allLocations removeAllObjects];
-    [self.tableView reloadData];
-    SAFECALL(self.callbacks.onDeleteAll)
+    
+    [CommonViewUtils showConfirmAlertWithMessage:@"Are you sure you want to delete all items?" onConfirm:^{
+        [self.allLocations removeAllObjects];
+        [self.tableView reloadData];
+        SAFECALL(self.callbacks.onDeleteAll)
+        self.tutorialLabel.hidden = NO;
+    }];
+    
 }
 
 
@@ -118,6 +169,7 @@
     [self.allLocations addObject:location];
     [self.tableView reloadData];
     SAFECALL(self.callbacks.onNewLocationAdded, location)
+    self.tutorialLabel.hidden = YES;
 }
 
 -(NSArray<CLLocation *> *)currentLocations {

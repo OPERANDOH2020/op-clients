@@ -27,7 +27,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         UserInfoRepository,
                         NotificationsRepository
 {
-    static let ServerURL = "https://plusprivacy.com:8080";
+    static let ServerURL = "http://192.168.100.86:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
     var whenThereWasAnError: ((_ error: NSError?) -> Void)?

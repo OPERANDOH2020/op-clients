@@ -16,11 +16,14 @@
 #import "UIUsageViewController.h"
 #import "UIInputGraphViewController.h"
 
+
+@implementation PPFlowBuilderLocationModel
+@end
+
 @implementation PPFlowBuilderModel
 @end
 
-@interface PPFlowBuilder ()
-@end
+
 
 @implementation PPFlowBuilder
 
@@ -77,12 +80,27 @@
     
     callbacks.whenChoosingOverrideLocation = ^{
         UILocationSettingsViewController *locSettingsVC = [storyboard instantiateViewControllerWithIdentifier:@"UILocationSettingsViewController"];
-        [locSettingsVC setupWithModel:model.locationSettingsModel onExit:^{
+        [locSettingsVC setupWithModel:model.eveythingLocationRelated.locationSettingsModel onExit:^{
             [weakNavgController popViewControllerAnimated:YES];
         }];
         [weakNavgController pushViewController:locSettingsVC animated:YES];
     };
     
+    callbacks.whenChoosingLocationStatus = ^{
+        UILocationStatusViewController *statusVC = [storyboard instantiateViewControllerWithIdentifier:@"UILocationStatusViewController"];
+        
+        UILocationStatusModel *locStatusModel = [[UILocationStatusModel alloc] init];
+        locStatusModel.removeChangeCallback = model.eveythingLocationRelated.removeChangeCallback;
+        locStatusModel.registerChangeCallback = model.eveythingLocationRelated.registerChangeCallback;
+        locStatusModel.currentActiveLocationIndex = model.eveythingLocationRelated.getCurrentActiveLocationIndex();
+        locStatusModel.currentSettings = model.eveythingLocationRelated.locationSettingsModel.getCallback();
+        
+        [statusVC setupWithModel:locStatusModel onExit:^{
+            [weakNavgController popViewControllerAnimated:YES];
+        }];
+        
+        [weakNavgController pushViewController:statusVC animated:YES];
+    };
     
     
     callbacks.whenExiting = model.onExitCallback;

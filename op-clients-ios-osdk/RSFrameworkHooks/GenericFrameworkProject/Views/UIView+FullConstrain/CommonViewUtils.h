@@ -10,4 +10,6 @@
 
 @interface CommonViewUtils : NSObject 
 +(void)fullyConstrainView:(UIView*)view inHostView:(UIView*)hostView;
++(void)showOkAlertWithMessage:(NSString*)message completion:(void(^)())completion;
++(void)showConfirmAlertWithMessage:(NSString*)message onConfirm:(void(^)())confirm;
 @end

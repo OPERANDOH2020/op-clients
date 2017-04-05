@@ -61,11 +61,18 @@
 		983F87BE1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 983F87BC1E6DBE890002DEC9 /* PPPrivacyLevelViolationReport+NSDictionaryRepresentation.m */; };
 		983F87C21E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 983F87C01E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h */; };
 		983F87C31E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 983F87C11E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m */; };
+		985419001E9502390004370F /* UILocationSettingsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 985418FE1E9502390004370F /* UILocationSettingsView.h */; };
+		985419011E9502390004370F /* UILocationSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985418FF1E9502390004370F /* UILocationSettingsView.m */; };
+		985419031E9502500004370F /* UILocationSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985419021E9502500004370F /* UILocationSettingsView.xib */; };
 		98584F411D3F9E18009FB89F /* PPCloak.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPCloak.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9863E8FD1DEC6F0D0095CA30 /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E8FB1DEC6F0D0095CA30 /* JRSwizzle.h */; };
 		9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */; };
 		9863E9021DEC70E60095CA30 /* NSURLSessionSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */; };
 		9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */; };
+		986AE9B91E93BEC700AF4E0A /* UILocationStatusViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 986AE9B71E93BEC700AF4E0A /* UILocationStatusViewController.h */; };
+		986AE9BA1E93BEC700AF4E0A /* UILocationStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AE9B81E93BEC700AF4E0A /* UILocationStatusViewController.m */; };
+		986AE9C51E93DBA800AF4E0A /* CommonLocationViewModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 986AE9C31E93DBA800AF4E0A /* CommonLocationViewModels.h */; };
+		986AE9C61E93DBA800AF4E0A /* CommonLocationViewModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 986AE9C41E93DBA800AF4E0A /* CommonLocationViewModels.m */; };
 		987083AF1E8E36A500D9F8E9 /* UILocationListViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 987083AC1E8E36A500D9F8E9 /* UILocationListViewCell.h */; };
 		987083B01E8E36A500D9F8E9 /* UILocationListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 987083AD1E8E36A500D9F8E9 /* UILocationListViewCell.m */; };
 		987083C51E8E3A9D00D9F8E9 /* TPKeyboardAvoidingCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 987083BC1E8E3A9D00D9F8E9 /* TPKeyboardAvoidingCollectionView.h */; };
@@ -97,6 +104,8 @@
 		988716EE1E6D81CD005FAA45 /* UIViolationReportsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 988716EC1E6D81CD005FAA45 /* UIViolationReportsSection.m */; };
 		988716F21E6D883A005FAA45 /* UIInputAccessViolationReportsSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 988716F01E6D883A005FAA45 /* UIInputAccessViolationReportsSection.h */; };
 		988716F31E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 988716F11E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m */; };
+		988843091E94E2920000FB7C /* listItemsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 988843071E94E2920000FB7C /* listItemsIcon.png */; };
+		9888430A1E94E2920000FB7C /* mapItemsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 988843081E94E2920000FB7C /* mapItemsIcon.png */; };
 		9888B16F1E6C2F6200D783AB /* BaseReportWithDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9888B16D1E6C2F6200D783AB /* BaseReportWithDate.h */; };
 		9888B1701E6C2F6200D783AB /* BaseReportWithDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9888B16E1E6C2F6200D783AB /* BaseReportWithDate.m */; };
 		9888B1741E6C625900D783AB /* PPReportsSourcesBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9888B1721E6C625900D783AB /* PPReportsSourcesBundle.h */; };
@@ -218,6 +227,9 @@
 		983F87C01E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPAccessUnlistedHostReport+NSDictionaryRepresentation.h"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessUnlistedHostReport+NSDictionaryRepresentation/PPAccessUnlistedHostReport+NSDictionaryRepresentation.h"; sourceTree = "<group>"; };
 		983F87C11E6DBF190002DEC9 /* PPAccessUnlistedHostReport+NSDictionaryRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPAccessUnlistedHostReport+NSDictionaryRepresentation.m"; path = "ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessUnlistedHostReport+NSDictionaryRepresentation/PPAccessUnlistedHostReport+NSDictionaryRepresentation.m"; sourceTree = "<group>"; };
 		983F87C41E6DCBA60002DEC9 /* DictionaryRepresentableProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DictionaryRepresentableProtocol.h; path = ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/DictionaryRepresentableProtocol.h; sourceTree = "<group>"; };
+		985418FE1E9502390004370F /* UILocationSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILocationSettingsView.h; path = Views/UILocationSettingsView/UILocationSettingsView.h; sourceTree = "<group>"; };
+		985418FF1E9502390004370F /* UILocationSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILocationSettingsView.m; path = Views/UILocationSettingsView/UILocationSettingsView.m; sourceTree = "<group>"; };
+		985419021E9502500004370F /* UILocationSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UILocationSettingsView.xib; path = Views/UILocationSettingsView/UILocationSettingsView.xib; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PPCloak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPCloak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PPCloak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPCloak.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -226,6 +238,11 @@
 		9863E8FC1DEC6F0D0095CA30 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		9863E9001DEC70E60095CA30 /* NSURLSessionSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSURLSessionSupervisor.h; path = NSURLSessionHook/NSURLSessionSupervisor.h; sourceTree = "<group>"; };
 		9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSURLSessionSupervisor.m; path = NSURLSessionHook/NSURLSessionSupervisor.m; sourceTree = "<group>"; };
+		986AE9B51E93BD7F00AF4E0A /* Graphs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Graphs.storyboard; sourceTree = "<group>"; };
+		986AE9B71E93BEC700AF4E0A /* UILocationStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILocationStatusViewController.h; path = Views/UILocationStatusViewController/UILocationStatusViewController.h; sourceTree = "<group>"; };
+		986AE9B81E93BEC700AF4E0A /* UILocationStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILocationStatusViewController.m; path = Views/UILocationStatusViewController/UILocationStatusViewController.m; sourceTree = "<group>"; };
+		986AE9C31E93DBA800AF4E0A /* CommonLocationViewModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonLocationViewModels.h; path = Views/CommonLocationViewModels/CommonLocationViewModels.h; sourceTree = "<group>"; };
+		986AE9C41E93DBA800AF4E0A /* CommonLocationViewModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonLocationViewModels.m; path = Views/CommonLocationViewModels/CommonLocationViewModels.m; sourceTree = "<group>"; };
 		987083A91E8E34BB00D9F8E9 /* UILocationListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UILocationListView.xib; path = Views/UILocationListView/UILocationListView.xib; sourceTree = "<group>"; };
 		987083AC1E8E36A500D9F8E9 /* UILocationListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILocationListViewCell.h; path = Views/UILocationListView/UILocationListViewCell/UILocationListViewCell.h; sourceTree = "<group>"; };
 		987083AD1E8E36A500D9F8E9 /* UILocationListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILocationListViewCell.m; path = Views/UILocationListView/UILocationListViewCell/UILocationListViewCell.m; sourceTree = "<group>"; };
@@ -261,6 +278,8 @@
 		988716EC1E6D81CD005FAA45 /* UIViolationReportsSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViolationReportsSection.m; path = Views/UIViolationReportsViewController/UIViolationReportsSection/UIViolationReportsSection.m; sourceTree = "<group>"; };
 		988716F01E6D883A005FAA45 /* UIInputAccessViolationReportsSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIInputAccessViolationReportsSection.h; path = Views/UIViolationReportsViewController/UIInputAccessViolationReportsSection/UIInputAccessViolationReportsSection.h; sourceTree = "<group>"; };
 		988716F11E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIInputAccessViolationReportsSection.m; path = Views/UIViolationReportsViewController/UIInputAccessViolationReportsSection/UIInputAccessViolationReportsSection.m; sourceTree = "<group>"; };
+		988843071E94E2920000FB7C /* listItemsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listItemsIcon.png; sourceTree = "<group>"; };
+		988843081E94E2920000FB7C /* mapItemsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapItemsIcon.png; sourceTree = "<group>"; };
 		9888B16D1E6C2F6200D783AB /* BaseReportWithDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseReportWithDate.h; path = Models/ViolationReports/BaseReportWithDate/BaseReportWithDate.h; sourceTree = "<group>"; };
 		9888B16E1E6C2F6200D783AB /* BaseReportWithDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseReportWithDate.m; path = Models/ViolationReports/BaseReportWithDate/BaseReportWithDate.m; sourceTree = "<group>"; };
 		9888B1721E6C625900D783AB /* PPReportsSourcesBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPReportsSourcesBundle.h; path = Models/ViolationReports/PPReportsSourcesBundle.h; sourceTree = "<group>"; };
@@ -583,6 +602,16 @@
 			name = "PPAccessUnlistedHostReport+NSDictionaryRepresentation";
 			sourceTree = "<group>";
 		};
+		985418FD1E9501C20004370F /* UILocationSettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				985418FE1E9502390004370F /* UILocationSettingsView.h */,
+				985418FF1E9502390004370F /* UILocationSettingsView.m */,
+				985419021E9502500004370F /* UILocationSettingsView.xib */,
+			);
+			name = UILocationSettingsView;
+			sourceTree = "<group>";
+		};
 		98584F331D3F9E18009FB89F = {
 			isa = PBXGroup;
 			children = (
@@ -629,6 +658,43 @@
 			path = JRSwizzle;
 			sourceTree = "<group>";
 		};
+		986AE9B41E93BD5C00AF4E0A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				98804EF41E4DE277009E6748 /* PPViews.storyboard */,
+				986AE9B51E93BD7F00AF4E0A /* Graphs.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		986AE9B61E93BEA900AF4E0A /* UILocationStatusViewController */ = {
+			isa = PBXGroup;
+			children = (
+				986AE9B71E93BEC700AF4E0A /* UILocationStatusViewController.h */,
+				986AE9B81E93BEC700AF4E0A /* UILocationStatusViewController.m */,
+			);
+			name = UILocationStatusViewController;
+			sourceTree = "<group>";
+		};
+		986AE9C11E93DB8400AF4E0A /* LocationListRelated */ = {
+			isa = PBXGroup;
+			children = (
+				986AE9C21E93DB9100AF4E0A /* CommonLocationViewModels */,
+				982464DB1E8D5EB8004D8534 /* UILocationListView */,
+				983C3FB11E8D352600014F25 /* UILocationPinningView */,
+			);
+			name = LocationListRelated;
+			sourceTree = "<group>";
+		};
+		986AE9C21E93DB9100AF4E0A /* CommonLocationViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				986AE9C31E93DBA800AF4E0A /* CommonLocationViewModels.h */,
+				986AE9C41E93DBA800AF4E0A /* CommonLocationViewModels.m */,
+			);
+			name = CommonLocationViewModels;
+			sourceTree = "<group>";
+		};
 		987083AB1E8E367E00D9F8E9 /* UILocationListViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +734,8 @@
 		987083E31E8E704400D9F8E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				988843071E94E2920000FB7C /* listItemsIcon.png */,
+				988843081E94E2920000FB7C /* mapItemsIcon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -732,12 +800,14 @@
 		98804EF31E4DE258009E6748 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				985418FD1E9501C20004370F /* UILocationSettingsView */,
+				986AE9B61E93BEA900AF4E0A /* UILocationStatusViewController */,
+				986AE9B41E93BD5C00AF4E0A /* Storyboards */,
 				98FE5C501E9278A500096744 /* UIView+FullConstrain */,
 				98FE5C281E926AA600096744 /* UILocationIndexPinAnnotationView */,
 				98FE5C1F1E92639800096744 /* UILocationIndexPinView */,
 				982464E01E8D5F25004D8534 /* UICloakNibView */,
-				982464DB1E8D5EB8004D8534 /* UILocationListView */,
-				983C3FB11E8D352600014F25 /* UILocationPinningView */,
+				986AE9C11E93DB8400AF4E0A /* LocationListRelated */,
 				98CEF39F1E5F1CFB002C2145 /* UIInputGraphViewController */,
 				98CEF2661E5EEE5E002C2145 /* UIInputUsageGraphsViewController */,
 				9895FB301E5B1A0600B1F56D /* UILocationSettingsViewController */,
@@ -748,7 +818,6 @@
 				98804F021E4DFD1F009E6748 /* PPFlowBuilder */,
 				98804EFD1E4DF194009E6748 /* UIViolationReportsViewController */,
 				98804EF61E4DEB06009E6748 /* ViolationReportCell */,
-				98804EF41E4DE277009E6748 /* PPViews.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1237,11 +1306,13 @@
 				98ECE4811E424AC80042A262 /* ContactsInputSupervisor.h in Headers */,
 				981A4A6B1E58ABFE002C4876 /* OPMonitorSettings.h in Headers */,
 				9888B16F1E6C2F6200D783AB /* BaseReportWithDate.h in Headers */,
+				985419001E9502390004370F /* UILocationSettingsView.h in Headers */,
 				987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */,
 				98DF60F81E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h in Headers */,
 				987083C91E8E3A9D00D9F8E9 /* TPKeyboardAvoidingTableView.h in Headers */,
 				9831E29F1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.h in Headers */,
 				988716ED1E6D81CD005FAA45 /* UIViolationReportsSection.h in Headers */,
+				986AE9C51E93DBA800AF4E0A /* CommonLocationViewModels.h in Headers */,
 				988A151F1E40E2DD00AABD43 /* BarometerInputSupervisor.h in Headers */,
 				988A15151E40D1B400AABD43 /* MagnetometerInputSupervisor.h in Headers */,
 				98CEF3A41E5F2204002C2145 /* UIInputGraphViewController.h in Headers */,
@@ -1290,6 +1361,7 @@
 				98FE5C171E9241C000096744 /* MGSwipeTableCell.h in Headers */,
 				98F7A68E1E76DA7000FF635A /* PPEventDispatcher.h in Headers */,
 				988A151A1E40DF3300AABD43 /* AccelerometerInputSupervisor.h in Headers */,
+				986AE9B91E93BEC700AF4E0A /* UILocationStatusViewController.h in Headers */,
 				982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */,
 				983A090B1E72933100AE2D5E /* NSData+MultipartParsing.h in Headers */,
 				98F1FF6F1E71508000A664AB /* PrivacyLevelAbuseDetector.h in Headers */,
@@ -1404,8 +1476,11 @@
 				982464D01E8D5837004D8534 /* mapPin.png in Resources */,
 				98FE5C251E9264F100096744 /* UILocationIndexPinView.xib in Resources */,
 				987083CD1E8E409800D9F8E9 /* UILocationListViewCell.xib in Resources */,
+				985419031E9502500004370F /* UILocationSettingsView.xib in Resources */,
 				98FE5C271E92657500096744 /* pinIcon.png in Resources */,
 				989DB8E51E77D2CF008F4D02 /* Info.plist in Resources */,
+				9888430A1E94E2920000FB7C /* mapItemsIcon.png in Resources */,
+				988843091E94E2920000FB7C /* listItemsIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1440,6 +1515,7 @@
 				9831E2A51E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.m in Sources */,
 				9895FB3A1E5B337A00B1F56D /* LocationInputSwizzlerSettings.m in Sources */,
 				98804F0B1E4E0E7C009E6748 /* UIPPOptionsViewController.m in Sources */,
+				986AE9BA1E93BEC700AF4E0A /* UILocationStatusViewController.m in Sources */,
 				98DF60F91E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h.m in Sources */,
 				98CEF3A51E5F2204002C2145 /* UIInputGraphViewController.m in Sources */,
 				9863E9031DEC70E60095CA30 /* NSURLSessionSupervisor.m in Sources */,
@@ -1466,8 +1542,10 @@
 				988A15161E40D1B400AABD43 /* MagnetometerInputSupervisor.m in Sources */,
 				987083CA1E8E3A9D00D9F8E9 /* TPKeyboardAvoidingTableView.m in Sources */,
 				988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */,
+				986AE9C61E93DBA800AF4E0A /* CommonLocationViewModels.m in Sources */,
 				9831E2A01E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.m in Sources */,
 				98ECE4821E424AC80042A262 /* ContactsInputSupervisor.m in Sources */,
+				985419011E9502390004370F /* UILocationSettingsView.m in Sources */,
 				98D603E51E2F800B00E59A42 /* OPMonitor.m in Sources */,
 				981EAC711E48C7C6000F59E3 /* PlistReportsStorage.m in Sources */,
 				9831E2AA1E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.m in Sources */,

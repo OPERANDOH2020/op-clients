@@ -32,7 +32,7 @@ static NSString *kOverrideLocationChangeInterval = @"kOverrideLocationChangeInte
     settings.enabled = enabled;
     settings.cycle = cycle;
     settings.locations = locations;
-    
+    settings.changeInterval = changeInterval;
     return settings;
     
 }

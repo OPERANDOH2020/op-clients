@@ -17,10 +17,18 @@ typedef void(^UILocationListCellUpdateCallback)(double latitude, double longitud
 
 @end
 
+@interface UILocationListViewCellModel: NSObject
+@property (assign, nonatomic) double latitude;
+@property (assign, nonatomic) double longitude;
+@property (assign, nonatomic) NSInteger locationIndex;
+@property (assign, nonatomic) BOOL editable;
+
+@end
+
 @interface UILocationListViewCell: MGSwipeTableCell
 +(NSString*)identifierNibName;
 
--(void)setupWithLatitude:(double)latitude longitude:(double)longitude index:(NSInteger)index callbacks:(UILocationListViewCellCallbacks*)callbacks;
+-(void)setupWithModel:(UILocationListViewCellModel*)model callbacks:(UILocationListViewCellCallbacks*)callbacks;
 
 
 @end

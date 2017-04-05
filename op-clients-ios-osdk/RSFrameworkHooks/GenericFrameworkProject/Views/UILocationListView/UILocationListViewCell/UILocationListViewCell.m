@@ -13,12 +13,16 @@
 @implementation UILocationListViewCellCallbacks
 @end
 
+@implementation UILocationListViewCellModel
+@end
+
 @interface UILocationListViewCell() <UITextFieldDelegate, MGSwipeTableCellDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *latitudeTF;
 @property (weak, nonatomic) IBOutlet UITextField *longitudeTF;
-@property (strong, nonatomic) UILocationListViewCellCallbacks *callbacks;
 @property (weak, nonatomic) IBOutlet UILocationIndexPinView *locationIndexPinView;
 
+@property (strong, nonatomic) UILocationListViewCellCallbacks *callbacks;
+@property (strong, nonatomic) UILocationListViewCellModel *model;
 @end
 
 @implementation UILocationListViewCell
@@ -32,6 +36,14 @@
 
 +(NSString *)identifierNibName {
     return @"UILocationListViewCell";
+}
+
+
+-(void)setupWithModel:(UILocationListViewCellModel *)model callbacks:(UILocationListViewCellCallbacks *)callbacks {
+    [self setupWithLatitude:model.latitude longitude:model.longitude index:model.locationIndex callbacks:callbacks];
+    self.model = model;
+    
+    self.contentView.userInteractionEnabled = model.editable;
 }
 
 -(void)setupWithLatitude:(double)latitude longitude:(double)longitude index:(NSInteger)index callbacks:(UILocationListViewCellCallbacks*)callbacks {
@@ -76,6 +88,10 @@
 
 
 -(NSArray *)swipeTableCell:(MGSwipeTableCell *)cell swipeButtonsForDirection:(MGSwipeDirection)direction swipeSettings:(MGSwipeSettings *)swipeSettings expansionSettings:(MGSwipeExpansionSettings *)expansionSettings {
+    
+    if (!self.model.editable) {
+        return @[];
+    }
     
     expansionSettings.fillOnTrigger = YES;
     expansionSettings.threshold = 3.4;

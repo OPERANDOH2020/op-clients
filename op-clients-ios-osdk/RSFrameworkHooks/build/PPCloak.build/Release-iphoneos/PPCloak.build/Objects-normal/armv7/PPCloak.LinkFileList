@@ -6,6 +6,7 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/UIPrivacyLevelViolationReportsSection.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/LocationInputSwizzlerSettings.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/UIPPOptionsViewController.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/UILocationStatusViewController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/PPAccessUnlistedHostReport.h.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/UIInputGraphViewController.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/NSURLSessionSupervisor.o
@@ -32,8 +33,10 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/MagnetometerInputSupervisor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/TPKeyboardAvoidingTableView.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/BarometerInputSupervisor.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/CommonLocationViewModels.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/UIHostAccessViolationReportsSection.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/ContactsInputSupervisor.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/UILocationSettingsView.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/OPMonitor.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/PlistReportsStorage.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/Objects-normal/armv7/UIAccessFrequencyViolationReportsSection.o
