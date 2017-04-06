@@ -16,38 +16,37 @@
 
 @interface TouchIdSupervisor()
 
-@property (strong, nonatomic) SCDDocument *document;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (strong, nonatomic) AccessedInput *accessedSensor;
 
 @end
 
 @implementation TouchIdSupervisor
 
-
-
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
+-(void)setupWithModel:(InputSupervisorModel *)model {
     
-    self.document = document;
-    self.delegate = delegate;
-    self.accessedSensor = [CommonUtils extractInputOfType: InputType.TouchID from:document.accessedInputs];
-    
-
+    self.model = model;
+    self.accessedSensor = [CommonUtils extractInputOfType: InputType.TouchID from:model.scdDocument.accessedInputs];
 }
 
+
+
 -(void)processTouchIDUsage{
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.accessedSensor) {
         return nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app accesses the TouchID API even though it is not specified in the self-compliance document!" violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.TouchID dateReported:[NSDate date]];
+    
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

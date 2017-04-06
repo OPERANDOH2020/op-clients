@@ -16,9 +16,9 @@ import SwarmClient
 
 typealias ServerResponseHandler = (_ data: [Any]) -> Void
 
-func print(_ items: Any ...){
-    
-}
+//func print(_ items: Any ...){
+//    
+//}
 
 class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         IdentitiesManagementRepository,
@@ -27,7 +27,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         UserInfoRepository,
                         NotificationsRepository
 {
-    static let ServerURL = "https://plusprivacy.com:8080";
+    static let ServerURL = "http://192.168.100.86:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
     var whenThereWasAnError: ((_ error: NSError?) -> Void)?

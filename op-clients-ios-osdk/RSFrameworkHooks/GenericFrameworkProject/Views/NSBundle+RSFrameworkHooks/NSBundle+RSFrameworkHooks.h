@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NSBundle (RSFrameworkHooks)
-+(NSBundle*)frameworkHooksBundle;
++(NSBundle*)PPCloakBundle;
 @end

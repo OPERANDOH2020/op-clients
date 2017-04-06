@@ -14,37 +14,32 @@
 
 
 @interface MicrophoneInputSupervisor()
-
-@property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) AccessedInput *micSensor;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-
+@property (strong, nonatomic) InputSupervisorModel *model;
 @end
 
 @implementation MicrophoneInputSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    
-    self.document = document;
-    self.delegate = delegate;
-    self.micSensor = [CommonUtils extractInputOfType:InputType.Microphone from:document.accessedInputs];
-    
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.micSensor = [CommonUtils extractInputOfType:InputType.Microphone from:model.scdDocument.accessedInputs];
 }
 
 
 -(void)processMicrophoneUsage {
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.micSensor) {
         return nil;
     }
-    
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app accesses the microphone even though it is not specified in the self-compliance document!" violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Microphone dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

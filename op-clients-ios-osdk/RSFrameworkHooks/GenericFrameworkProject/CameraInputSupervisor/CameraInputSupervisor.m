@@ -16,36 +16,39 @@
 
 
 @interface CameraInputSupervisor()
-
-@property (strong, nonatomic) SCDDocument *document;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (strong, nonatomic) AccessedInput *cameraSensor;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
 
 @end
 
 @implementation CameraInputSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    
-    self.document = document;
-    self.delegate = delegate;
-    self.cameraSensor = [CommonUtils extractInputOfType: InputType.Camera from:document.accessedInputs];
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.cameraSensor = [CommonUtils extractInputOfType: InputType.Camera from:model.scdDocument.accessedInputs];
     
 }
 
+
 -(void)processCameraAccess {
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(void)processPhotoLibraryAccess {
+    [self processCameraAccess];
+}
+
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.cameraSensor) {
         return nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app accesses the camera even though it is not specified in the self-compliance document" violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Camera dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

@@ -14,37 +14,55 @@
 #import "Common.h"
 
 
-
 @interface ProximityInputSupervisor()
-@property (strong, nonatomic) SCDDocument *document;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (strong, nonatomic) AccessedInput *proximitySensor;
+
 @end
 
 @implementation ProximityInputSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document{
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.proximitySensor = [CommonUtils extractInputOfType: InputType.Proximity from:model.scdDocument.accessedInputs];
     
-    self.delegate = delegate;
-    self.document = document;
-    self.proximitySensor = [CommonUtils extractInputOfType: InputType.Proximity from:document.accessedInputs];
+    __weak typeof(self) weakSelf = self;
+    NSArray *interestingEvents = @[@(EventGetDeviceProximityState),
+                                   @(EventSetDeviceProximitySensingEnabled),
+                                   @(EventGetDeviceProximityState),
+                                   @(EventSetDeviceProximityMonitoringEnabled)];
     
+    [model.eventsDispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+        
+        NSNumber *eventType = @(event.eventType);
+        if ([interestingEvents containsObject:eventType]) {
+            [weakSelf processEvent:event withNextHandler:nextHandlerIfAny];
+            return;
+        }
+        SAFECALL(nextHandlerIfAny)
+    }];
 }
 
-
--(void)processProximitySensorAccess {
-    OPMonitorViolationReport *report = nil;
-    if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+-(void)processEvent:(PPEvent*)event withNextHandler:(NextHandlerConfirmation)nextHandlerIfAny {
+    PPUnlistedInputAccessViolation *violationReport = nil;
+    if ((violationReport = [self detectUnregisteredAccess])) {
+        [self.model.delegate newUnlistedInputAccessViolationReported:violationReport];
+        return;
     }
+    
+    SAFECALL(nextHandlerIfAny)
 }
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.proximitySensor) {
         return nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app uses the proxmity sensor even though it is not specified in the self compliance document!" violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Proximity dateReported:[NSDate date]];
+}
+
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
 }
 
 @end

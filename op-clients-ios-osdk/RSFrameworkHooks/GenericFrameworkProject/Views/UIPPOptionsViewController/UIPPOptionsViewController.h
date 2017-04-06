@@ -16,8 +16,10 @@
 @property (strong, nonatomic) void (^whenChoosingSCDInfo)();
 @property (strong, nonatomic) void (^whenChoosingViewSCD)();
 @property (strong, nonatomic) void (^whenChoosingReportsInfo)();
+@property (strong, nonatomic) void (^whenChoosingUsageGraphs)();
 
 @property (strong, nonatomic) void (^whenChoosingOverrideLocation)();
+@property (strong, nonatomic) void (^whenChoosingLocationStatus)();
 
 @end
 

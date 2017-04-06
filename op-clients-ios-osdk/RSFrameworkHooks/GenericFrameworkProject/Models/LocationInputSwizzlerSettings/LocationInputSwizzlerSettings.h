@@ -7,16 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @interface LocationInputSwizzlerSettings : NSObject
 
-@property (readonly, nonatomic) double locationLatitude;
-@property (readonly, nonatomic) double locationLongitude;
+@property (readonly, nonatomic) NSArray<CLLocation*>* _Nonnull locations;
 @property (readonly, nonatomic) BOOL enabled;
+@property (readonly, nonatomic) NSTimeInterval changeInterval;
+@property (readonly, nonatomic) BOOL cycle;
 
--(void)synchronizeToUserDefaults;
+-(void)synchronizeToUserDefaults:(NSUserDefaults* _Nonnull)defaults;
 
-+(LocationInputSwizzlerSettings*)createWithLatitude:(double)latitude longitude:(double)longitude enabled:(BOOL)enabled;
-+(LocationInputSwizzlerSettings*)createFromUserDefaults;
++(LocationInputSwizzlerSettings* _Nullable)createWithLocations:(NSArray<CLLocation*>* _Nonnull)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval error:(NSError*_Nullable*_Nullable)error;
 
++(LocationInputSwizzlerSettings* _Nullable)createFromUserDefaults:(NSUserDefaults* _Nonnull)defaults error:(NSError* _Nullable *_Nullable)error;
 @end

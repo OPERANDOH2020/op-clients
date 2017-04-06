@@ -11,35 +11,40 @@
 #import "CommonUtils.h"
 
 @interface ContactsInputSupervisor()
-@property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) AccessedInput *contactsSource;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @end
 
 @implementation ContactsInputSupervisor
 
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    self.delegate = delegate;
-    self.document = document;
-    self.contactsSource = [CommonUtils extractInputOfType:InputType.Contacts from:document.accessedInputs];
+
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.contactsSource = [CommonUtils extractInputOfType:InputType.Contacts from:model.scdDocument.accessedInputs];
 }
 
 
+
 -(void)processContactsAccess {
-    OPMonitorViolationReport *report = nil;
+    PPUnlistedInputAccessViolation *report = nil;
     if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
+        [self.model.delegate newUnlistedInputAccessViolationReported:report];
     }
 }
 
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.contactsSource) {
         return  nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app is accessing the contacts without having specified in the self-compliance document!" violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Contacts dateReported:[NSDate date]];
 }
+
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
+
 
 @end

@@ -25,9 +25,7 @@ public class OneDocumentRepository: NSObject, SCDRepository {
 @objc
 public class CommonUIBUilder: NSObject {
     @objc
-    public static func buildFlow(for repository: SCDRepository, whenExiting: VoidBlock?) -> UIViewController? {
-        
-        
+    public static func buildFlow(for repository: SCDRepository, displayModel: CommonUIDisplayModel, whenExiting: VoidBlock?) -> UIViewController? {
         
         let storyboard = UIStoryboard(name: "Cloak", bundle: Bundle.commonUIBundle)
         
@@ -40,11 +38,11 @@ public class CommonUIBUilder: NSObject {
         navgController.isNavigationBarHidden = true
         
         weak var weakNavgController = navgController
-        vc.setup(with: UISCDDocumentsViewControllerModel(repository: repository),
+        vc.setup(with: UISCDDocumentsViewControllerModel(repository: repository, displayModel: displayModel),
                  callbacks: UISCDDocumentsViewControllerCallbacks(whenUserSelectsSCD: { doc in
                     guard let detailsVC = storyboard.instantiateViewController(withIdentifier: "SCDDetailsViewController") as? SCDDetailsViewController else {return}
                     
-                    detailsVC.setupWith(scd: doc) {
+                    detailsVC.setupWith(scd: doc, titleBarHeight: displayModel.titleBarHeight) {
                         weakNavgController?.popViewController(animated: true)
                     }
                     weakNavgController?.pushViewController(detailsVC, animated: true)

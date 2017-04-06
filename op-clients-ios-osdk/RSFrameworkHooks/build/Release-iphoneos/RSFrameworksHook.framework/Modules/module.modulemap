@@ -1,6 +1,0 @@
-framework module RSFrameworksHook {
-  umbrella header "RSFrameworksHook.h"
-
-  export *
-  module * { export * }
-}

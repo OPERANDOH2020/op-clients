@@ -10,38 +10,64 @@
 #import <CoreLocation/CoreLocation.h>
 #import "JRSwizzle.h"
 #import "Common.h"
-
-
-
-
-
-
+#import <PPApiHooks/PPApiHooks.h>
 
 #pragma mark - Helper class to contain location manager's delegate
 
 @interface WeakDelegateHolder : NSObject
 @property (weak, nonatomic) id<CLLocationManagerDelegate> delegate;
-@property (strong, nonatomic) void (^whenDelegateSetToNil)();
 @end
 
 @implementation WeakDelegateHolder
--(void)setDelegate:(id<CLLocationManagerDelegate>)delegate {
-    _delegate = delegate;
-    if (!delegate) {
-        SAFECALL(self.whenDelegateSetToNil)
-    }
-}
 @end
 
 #pragma mark -
 
 @interface LocationInputSwizzler() <CLLocationManagerDelegate>
 @property (strong, nonatomic) LocationInputSwizzlerSettings *currentSettings;
-@property (strong, nonatomic) NSMutableArray<WeakDelegateHolder*> *delegateHolders;
+@property (strong, nonatomic) NSMutableDictionary<NSNumber*, WeakDelegateHolder*> *delegatePerInstance;
+@property (strong, nonatomic) NSMutableArray<CurrentActiveLocationIndexChangedCallback> *callbacksToNotifyChange;
+@property (strong, nonatomic) LocationsCallback whenLocationsAreRequested;
+@property (strong, nonatomic) NSTimer *timer;
+@property (assign, nonatomic) NSInteger indexOfCurrentSentLocation;
 @end
 
 
 @implementation LocationInputSwizzler
+
+-(void)setupWithSettings:(LocationInputSwizzlerSettings *)settings eventsDispatcher:(PPEventDispatcher *)eventsDispatcher whenLocationsAreRequested:(LocationsCallback)whenLocationsAreRequested {
+    
+    self.callbacksToNotifyChange = [[NSMutableArray alloc] init];
+    
+    [self applyNewSettings:settings];
+    
+    self.whenLocationsAreRequested = whenLocationsAreRequested;
+    __weak typeof(self) weakSelf = self;
+    
+    [eventsDispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+        
+        if (event.eventType == EventLocationManagerGetCurrentLocation) {
+            [weakSelf processAskForLocationEvent:event];
+        }
+        
+        if (event.eventType == EventLocationManagerSetDelegate) {
+            [weakSelf processSetDelegateEvent:event];
+        }
+        
+        SAFECALL(nextHandlerIfAny)
+        
+    }];
+}
+
+-(void)registerNewChangeCallback:(CurrentActiveLocationIndexChangedCallback)callback {
+    if (![self.callbacksToNotifyChange containsObject:callback]) {
+        [self.callbacksToNotifyChange addObject:callback];
+    }
+}
+
+-(void)removeChangeCallback:(CurrentActiveLocationIndexChangedCallback)callback {
+    [self.callbacksToNotifyChange removeObject:callback];
+}
 
 +(LocationInputSwizzler *)sharedInstance {
     static LocationInputSwizzler* _sharedInstance = nil;
@@ -55,39 +81,91 @@
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.delegateHolders = [[NSMutableArray alloc] init];
+        self.delegatePerInstance = [[NSMutableDictionary alloc] init];
     }
-    
+
     return self;
 }
 
--(void)applySettings:(LocationInputSwizzlerSettings *)settings {
+
+-(void)applyNewSettings:(LocationInputSwizzlerSettings *)settings {
     self.currentSettings = settings;
+    [self.timer invalidate];
+    self.indexOfCurrentSentLocation = 0;
+    
+    if (!settings.enabled) {
+        return;
+    }
+    
+    WEAKSELF
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+        weakSelf.indexOfCurrentSentLocation += 1;
+        if (settings.cycle) {
+            weakSelf.indexOfCurrentSentLocation %= settings.locations.count;
+        } else {
+            if (weakSelf.indexOfCurrentSentLocation >= settings.locations.count) {
+                weakSelf.indexOfCurrentSentLocation = settings.locations.count - 1;
+            }
+        }
+        for (CurrentActiveLocationIndexChangedCallback callback in weakSelf.callbacksToNotifyChange) {
+            callback(weakSelf.indexOfCurrentSentLocation);
+        }
+    }];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:settings.changeInterval target:operation selector:@selector(main) userInfo:nil repeats:YES];
+    
 }
 
 -(CLLocation*)locationSubstituteIfAny {
-    if (!self.currentSettings) {
+    if (!(self.currentSettings && self.currentSettings.enabled)) {
         return nil;
     }
     
-    return [[CLLocation alloc] initWithLatitude:self.currentSettings.locationLatitude longitude:self.currentSettings.locationLongitude];
+    if (self.indexOfCurrentSentLocation < 0 || self.indexOfCurrentSentLocation >= self.currentSettings.locations.count) {
+        return nil;
+    }
+    
+    return self.currentSettings.locations[self.indexOfCurrentSentLocation];
 }
 
--(void)didAskToSetDelegate:(id<CLLocationManagerDelegate>)delegate onInstance:(CLLocationManager*)instance {
+
+
+-(void)processAskForLocationEvent:(PPEvent*)event {
+    CLLocation *location = event.eventData[kPPLocationManagerGetCurrentLocationValue];
+    CLLocation *modifiedLocation = [self locationSubstituteIfAny];
     
-    instance.delegate = self;
+    if (!modifiedLocation) {
+        if (location) {
+            SAFECALL(self.whenLocationsAreRequested, @[location])
+        }
+        return;
+    }
     
-    __weak typeof(self) weakSelf = self;
-    WeakDelegateHolder *newHolder = [[WeakDelegateHolder alloc] init];
-    __weak WeakDelegateHolder *weakHolder = newHolder;
+    [event.eventData setObject:modifiedLocation forKey:kPPLocationManagerGetCurrentLocationValue];
     
-    newHolder.delegate = delegate;
-    newHolder.whenDelegateSetToNil = ^{
-        [weakSelf.delegateHolders removeObject:weakHolder];
-    };
-    
-    [self.delegateHolders addObject:newHolder];
+    SAFECALL(self.whenLocationsAreRequested, @[modifiedLocation])
 }
+
+-(void)processSetDelegateEvent:(PPEvent*)event {
+    id<CLLocationManagerDelegate> delegate = event.eventData[kPPLocationManagerDelegate];
+    CLLocationManager *instance = event.eventData[kPPLocationManagerInstance];
+    PPVoidBlock setDelegateConfirmation = event.eventData[kPPLocationManagerSetDelegateConfirmation];
+    
+    if (delegate == nil) {
+        self.delegatePerInstance[@(instance.hash)] = nil;
+        SAFECALL(setDelegateConfirmation)
+        return;
+    }
+    
+    [event.eventData setObject:self forKey:kPPLocationManagerDelegate];
+    
+    WeakDelegateHolder *newHolder = [[WeakDelegateHolder alloc] init];
+    newHolder.delegate = delegate;
+    
+    [self.delegatePerInstance setObject:newHolder forKey:@(instance.hash)];
+    SAFECALL(setDelegateConfirmation)
+}
+
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     NSArray *locationsForDelegates = nil;
@@ -98,38 +176,10 @@
         locationsForDelegates = locations;
     }
     
-    for (WeakDelegateHolder *delegateHolder in self.delegateHolders) {
-        [delegateHolder.delegate locationManager:manager didUpdateLocations:locationsForDelegates];
-    }
+    WeakDelegateHolder *holder = self.delegatePerInstance[@(manager.hash)];
+    [holder.delegate locationManager:manager didUpdateLocations:locationsForDelegates];
+    SAFECALL(self.whenLocationsAreRequested, locationsForDelegates)
 }
 
 @end
 
-
-@interface CLLocationManager(LocationInputSwizzler)
-@end
-
-@implementation CLLocationManager(LocationInputSwizzler)
-
-+(void)load {
-    if (NSClassFromString(@"CLLocationManager")){
-        [self jr_swizzleMethod:@selector(location) withMethod:@selector(ppLocSwizzling_location) error:nil];
-        
-        [self jr_swizzleMethod:@selector(setDelegate:) withMethod:@selector(ppLocSwizzling_setDelegate:) error:nil];
-    }
-}
-
--(void)ppLocSwizzling_setDelegate:(id<CLLocationManagerDelegate>)delegate {
-    [[LocationInputSwizzler sharedInstance] didAskToSetDelegate:delegate onInstance:self];
-}
-
--(CLLocation *)ppLocSwizzling_location {
-    
-    CLLocation *loc = [[LocationInputSwizzler sharedInstance] locationSubstituteIfAny];
-    if (!loc) {
-        return [self ppLocSwizzling_location];
-    }
-    return loc;
-}
-
-@end

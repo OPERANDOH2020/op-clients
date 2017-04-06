@@ -11,4 +11,5 @@
 
 @interface CameraInputSupervisor : NSObject <InputSourceSupervisor>
 -(void)processCameraAccess;
+-(void)processPhotoLibraryAccess;
 @end

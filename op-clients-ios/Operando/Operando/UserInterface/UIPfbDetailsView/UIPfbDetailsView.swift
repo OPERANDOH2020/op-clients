@@ -56,6 +56,10 @@ class UIPfbDetailsView: RSNibDesignableView, UIPfbDisplayingView {
             self.logoImageView.setImageWith(url)
         }
         
+        if let imageName = model.imageName {
+            self.logoImageView.image = UIImage(named: imageName)
+        }
+        
         self.changeSubscribedStatus(to: model.subscribed)
         self.callbacks = cbs
         

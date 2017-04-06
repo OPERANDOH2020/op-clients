@@ -14,38 +14,45 @@
 
 
 @interface PedometerInputSupervisor()
-
-@property (strong, nonatomic) SCDDocument *document;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
+@property (strong, nonatomic) InputSupervisorModel *model;
 @property (weak, nonatomic) AccessedInput *pedoSensor;
 
 @end
 
 @implementation PedometerInputSupervisor
 
-
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    self.pedoSensor = [CommonUtils extractInputOfType: InputType.Pedometer from:model.scdDocument.accessedInputs];
     
-    self.delegate = delegate;
-    self.document = document;
-    self.pedoSensor = [CommonUtils extractInputOfType: InputType.Pedometer from:document.accessedInputs];
+    __weak typeof(self) weakSelf = self;
+    
+    [model.eventsDispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+                
+        if (event.eventType == EventStartPedometerUpdates) {
+            PPUnlistedInputAccessViolation *violationReport = nil;
+            if ((violationReport = [weakSelf detectUnregisteredAccess])) {
+                [weakSelf.model.delegate newUnlistedInputAccessViolationReported:violationReport];
+                return;
+            }
+        }
+        
+        SAFECALL(nextHandlerIfAny)
+    }];
+    
 }
 
--(void)processPedometerStatus {
-    
-    OPMonitorViolationReport *report = nil;
-    if ((report = [self detectUnregisteredAccess])) {
-        [self.delegate newViolationReported:report];
-    }
-}
 
 
--(OPMonitorViolationReport*)detectUnregisteredAccess {
+
+-(PPUnlistedInputAccessViolation*)detectUnregisteredAccess {
     if (self.pedoSensor) {
         return nil;
     }
     
-    return [[OPMonitorViolationReport alloc] initWithDetails:@"The app accesses the pedometer sensor even though it is not specified in the self compliance document" violationType:TypeUnregisteredSensorAccessed];
+    return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Pedometer dateReported:[NSDate date]];
 }
-
+-(void)newURLRequestMade:(NSURLRequest *)request{
+    
+}
 @end

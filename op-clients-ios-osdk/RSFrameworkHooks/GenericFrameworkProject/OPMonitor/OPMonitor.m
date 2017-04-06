@@ -18,15 +18,31 @@
 #import "MagnetometerInputSupervisor.h"
 #import "AccelerometerInputSupervisor.h"
 #import "BarometerInputSupervisor.h"
-#import "InputSupervisorsManager.h"
 #import "PlistReportsStorage.h"
 #import "JRSwizzle.h"
 #import "LocationInputSwizzler.h"
-
+#import "CommonViewUtils.h"
 #import "PPFlowBuilder.h"
+
 
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
 
+@interface NSArray(FindObjectOfClass)
+-(id _Nullable)firstObjectOfClass:(Class)class;
+@end
+
+@implementation NSArray(FindObjectOfClass)
+
+-(id)firstObjectOfClass:(Class)class{
+    for (id obj in self) {
+        if ([obj isKindOfClass:class]) {
+            return obj;
+        }
+    }
+    return nil;
+}
+
+@end
 
 @interface OPMonitor() <InputSupervisorDelegate>
 
@@ -34,22 +50,15 @@
 @property (strong, nonatomic) NSDictionary *scdJson;
 @property (strong, nonatomic) SCDDocument *document;
 @property (strong, nonatomic) UIButton *handle;
-@property (strong, nonatomic) id<OPViolationReportRepository> reportsRepository;
-@property (strong, nonnull) NSArray<id<InputSourceSupervisor>> *supervisorsArray;
+@property (strong, nonatomic) PlistReportsStorage *plistRepository;
+@property (strong, nonatomic) NSArray<id<InputSourceSupervisor>> *supervisorsArray;
+
+
+@property (strong, nonatomic) LocationInputSwizzler *locationInputSwizzler;
 
 @end
 
 @implementation OPMonitor
-
-
-static void displayMessage(NSString* message){
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        
-        [alertView show];
-    });
-}
 
 static void __attribute__((constructor)) initialize(void){
     
@@ -63,7 +72,7 @@ static void __attribute__((constructor)) initialize(void){
         [[OPMonitor sharedInstance] beginMonitoringWithAppDocument:json];
     } else {
         NSString *message = [NSString stringWithFormat:@"Could not find json document at path %@ or fileText is wrong: %@", fileText, path];
-        displayMessage(message);
+        [CommonViewUtils showOkAlertWithMessage:message completion:nil];
     }
     
 }
@@ -86,20 +95,21 @@ static void __attribute__((constructor)) initialize(void){
         
         if (error || !scdDocument) {
             NSString *errorMessage = [error description];
-            displayMessage(errorMessage);
-            [OPMonitor displayNotification:errorMessage];
+            [CommonViewUtils showOkAlertWithMessage:errorMessage completion:nil];
+            [self displayNotificationIfPossible:errorMessage];
             return;
             
         }
         
         self.monitorSettings = [[OPMonitorSettings alloc] initFromDefaults];
         self.scdJson = document;
-        self.reportsRepository = [[PlistReportsStorage alloc] init];
+        self.plistRepository = [[PlistReportsStorage alloc] init];
         self.document = scdDocument;
-        self.supervisorsArray = [self buildSupervisors];
-        [self setupInputSwizzlers];
+        self.supervisorsArray = [self buildSupervisorsWithDocument:scdDocument];
         
-        [InputSupervisorsManager buildSharedInstanceWithSupervisors:self.supervisorsArray];
+        LocationInputSupervisor *locSupervisor = [self.supervisorsArray firstObjectOfClass:[LocationInputSupervisor class]];
+        [self setupLocationInputSwizzlerUsingSupervisor:locSupervisor];
+        
     }];
     
 
@@ -118,61 +128,141 @@ static void __attribute__((constructor)) initialize(void){
 }
 
 -(void)didPressHandle:(id)sender {
+    [self displayFlowIfNecessary];
+}
+
+-(void)displayFlowIfNecessary {
     
+    static BOOL isFlowDisplayed = NO;
+    
+    if (isFlowDisplayed) {
+        return;
+    }
     OneDocumentRepository *repo = [[OneDocumentRepository alloc] initWithDocument:self.document];
     
     __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
-
+    
     __block UIViewController *flowRoot = nil;
+    __weak typeof(self) weakSelf = self;
     
     LocationSettingsModel *locSettingsModel = [[LocationSettingsModel alloc] init];
-    locSettingsModel.currentSettings = [LocationInputSwizzler sharedInstance].currentSettings;
-    locSettingsModel.saveCallback = ^void(LocationInputSwizzlerSettings *settings) {
-        [[LocationInputSwizzler sharedInstance] applySettings:settings];
+    locSettingsModel.getCallback = ^LocationInputSwizzlerSettings * _Nonnull{
+        return weakSelf.locationInputSwizzler.currentSettings;
     };
+    
+    locSettingsModel.saveCallback = ^void(LocationInputSwizzlerSettings *settings) {
+        [weakSelf.locationInputSwizzler applyNewSettings:settings];
+        [settings synchronizeToUserDefaults: [NSUserDefaults standardUserDefaults]];
+        [CommonViewUtils showOkAlertWithMessage:@"Settings saved" completion:nil];
+        
+    };
+    
+    PPReportsSourcesBundle *reportSources = [[PPReportsSourcesBundle alloc] init];
+    reportSources.accessFrequencyReportsSource = self.plistRepository;
+    reportSources.privacyViolationReportsSource = self.plistRepository;
+    reportSources.unlistedHostReportsSource = self.plistRepository;
+    reportSources.unlistedInputReportsSource = self.plistRepository;
     
     PPFlowBuilderModel *flowModel = [[PPFlowBuilderModel alloc] init];
     flowModel.monitoringSettings = self.monitorSettings;
-    flowModel.violationReportsRepository = self.reportsRepository;
+    flowModel.reportSources = reportSources;
     flowModel.scdRepository = repo;
     flowModel.scdJSON = self.scdJson;
-    flowModel.locationSettingsModel = locSettingsModel;
+    
+    PPFlowBuilderLocationModel *locationModel = [[PPFlowBuilderLocationModel alloc] init];
+    locationModel.locationSettingsModel = locSettingsModel;
+    locationModel.getCurrentActiveLocationIndex = ^NSInteger{
+        return 0;
+    };
+    
+    // DEBUG //
+    __block NSTimer *timer;
+    locationModel.registerChangeCallback = ^(CurrentActiveLocationIndexChangedCallback callback) {
+        if (self.locationInputSwizzler.currentSettings.locations.count == 0) {
+            return;
+        }
+        __block NSInteger activeIndex = 0;
+        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+            activeIndex += 1;
+            activeIndex = activeIndex % self.locationInputSwizzler.currentSettings.locations.count;
+            SAFECALL(callback, activeIndex)
+        }];
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval:self.locationInputSwizzler.currentSettings.changeInterval target:operation selector:@selector(main) userInfo:nil repeats:YES];
+    };
+    
+    locationModel.removeChangeCallback = ^(CurrentActiveLocationIndexChangedCallback callback) {
+        [timer invalidate];
+        timer = nil;
+        NSLog(@"Removed callback");
+    };
+    
+    flowModel.eveythingLocationRelated = locationModel;
     
     flowModel.onExitCallback = ^{
         [rootViewController ppRemoveChildContentController:flowRoot];
+        isFlowDisplayed = NO;
     };
     
     PPFlowBuilder *flowBuilder = [[PPFlowBuilder alloc] init];
     flowRoot = [flowBuilder buildFlowWithModel:flowModel];
     
+    isFlowDisplayed = YES;
     [rootViewController ppAddChildContentController:flowRoot];
 }
 
+#pragma mark - Reports from input supervisors
 
-#pragma mark - 
--(void)newViolationReported:(OPMonitorViolationReport *)report {
-    if (self.monitorSettings.allowNotifications) {
-        [OPMonitor displayNotification:report.violationDetails];
-    }
-    
-    [self.reportsRepository addReport:report];
+-(void)newURLHostViolationReported:(PPAccessUnlistedHostReport *)report {
+    [self.plistRepository addUnlistedHostReport:report withCompletion:nil];
+    NSString *notification = [NSString stringWithFormat:@"Accessed unlisted host %@", report.urlHost];
+    [self displayNotificationIfPossible:notification];
 }
+
+-(void)newUnlistedInputAccessViolationReported:(PPUnlistedInputAccessViolation *)report {
+    [self.plistRepository addUnlistedInputReport:report withCompletion:nil];
+    NSString *notification = [NSString stringWithFormat:@"Accessed unlisted input %@", InputType.namesPerInputType[report.inputType]];
+    [self displayNotificationIfPossible:notification];
+
+}
+
+
+-(void)newPrivacyLevelViolationReported:(PPPrivacyLevelViolationReport *)report {
+    // must complete later
+}
+
+-(void)newAccessFrequencyViolationReported:(PPAccessFrequencyViolationReport *)report{
+    // must complete later
+}
+
 
 #pragma mark -
 
-+(void)displayNotification:(NSString*)notification {
+-(void)displayNotificationIfPossible:(NSString*)notification {
+    if (!self.monitorSettings.allowNotifications) {
+        return;
+    }
+    
     __weak UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UINotificationViewController presentBadNotificationMessage:notification inController:rootViewController atDistanceFromTop:22];
+        [UINotificationViewController presentBadNotificationMessage:notification inController:rootViewController atDistanceFromTop:20];
     });
 }
 
--(NSArray<id<InputSourceSupervisor>>*)buildSupervisors {
+-(NSArray<id<InputSourceSupervisor>>*)buildSupervisorsWithDocument:(SCDDocument*)document {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
+    InputSupervisorModel *supervisorsModel = [[InputSupervisorModel alloc] init];
+    supervisorsModel.scdDocument = document;
+    supervisorsModel.delegate = self;
+    supervisorsModel.privacyLevelAbuseDetector = [[PrivacyLevelAbuseDetector alloc] initWithDocument:document];
+    supervisorsModel.httpAnalyzers = [[HTTPAnalyzers alloc] init];
+    supervisorsModel.httpAnalyzers.locationHTTPAnalyzer = [[LocationHTTPAnalyzer alloc] init];
+    supervisorsModel.eventsDispatcher = [PPEventsPipelineFactory eventsDispatcher];
+    
+    
     NSArray *supervisorClasses = @[[LocationInputSupervisor class],
-                                   [NSURLSessionSupervisor class],
                                    [ProximityInputSupervisor class],
                                    [PedometerInputSupervisor class],
                                    [MagnetometerInputSupervisor class],
@@ -181,21 +271,33 @@ static void __attribute__((constructor)) initialize(void){
                                    [TouchIdSupervisor class],
                                    [CameraInputSupervisor class],
                                    [MicrophoneInputSupervisor class],
-                                   [ContactsInputSupervisor class]
+                                   [ContactsInputSupervisor class],
+                                   [NSURLSessionSupervisor class]
                                    ];
     
     for (Class class in supervisorClasses) {
         id supervisor = [[class alloc] init];
-        [supervisor reportToDelegate:self analyzingSCD:self.document];
+        [supervisor setupWithModel:supervisorsModel];
         [result addObject:supervisor];
     }
+    
     
     return  result;
 }
 
--(void)setupInputSwizzlers {
-    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults];
-    [[LocationInputSwizzler sharedInstance] applySettings:defaultLocationSettings];
+-(void)setupLocationInputSwizzlerUsingSupervisor:(LocationInputSupervisor*)supervisor {
+    NSError *error = nil;
+    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults: [NSUserDefaults standardUserDefaults] error:&error];
+    
+    if (error) {
+        //
+        defaultLocationSettings = [LocationInputSwizzlerSettings createWithLocations:@[] enabled:NO cycle:NO changeInterval:1.0 error:nil];
+    }
+    
+    self.locationInputSwizzler = [[LocationInputSwizzler alloc] init];
+    [self.locationInputSwizzler setupWithSettings:defaultLocationSettings eventsDispatcher:[PPEventsPipelineFactory eventsDispatcher] whenLocationsAreRequested:^(NSArray<CLLocation *> * _Nonnull locations) {
+        
+    }];
 }
 
 @end

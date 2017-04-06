@@ -8,44 +8,60 @@
 
 #import "NSURLSessionSupervisor.h"
 #import "JRSwizzle.h"
+#import "PPAccessUnlistedHostReport.h"
+#import <PPApiHooks/PPApiHooks.h>
 
 @interface NSURLSessionSupervisor()
-@property (strong, nonatomic) SCDDocument *document;
-@property (weak, nonatomic) id<InputSupervisorDelegate> delegate;
-
+@property (strong, nonatomic) InputSupervisorModel *model;
+@property (strong, nonatomic) NSString *myHandlerIdentifier;
 @end
 
 @implementation NSURLSessionSupervisor
 
--(void)reportToDelegate:(id<InputSupervisorDelegate>)delegate analyzingSCD:(SCDDocument *)document {
-    self.document = document;
-    self.delegate = delegate;
+-(void)setupWithModel:(InputSupervisorModel *)model {
+    self.model = model;
+    PPEventDispatcher *dispatcher = [PPEventsPipelineFactory eventsDispatcher];
+    if (self.myHandlerIdentifier) {
+        [dispatcher removeHandlerWithIdentifier:self.myHandlerIdentifier];
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [dispatcher insertNewHandlerAtTop:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+        
+        if (event.eventType == EventURLSessionStartDataTaskForRequest) {
+            [weakSelf processRequestEvent:event];
+        } else {
+            SAFECALL(nextHandlerIfAny)
+        }
+        
+    }];
 }
 
 
--(void)processRequest:(NSURLRequest*)request {
-    OPMonitorViolationReport *report;
+-(void)processRequestEvent:(PPEvent*)requestEvent {
+    NSURLRequest *request = requestEvent.eventData[kPPURLSessionDataTaskRequest];
+    PPAccessUnlistedHostReport *report;
     if ((report = [self accessesUnspecifiedLink:request])) {
-        [self.delegate newViolationReported:report];
+        [self.model.delegate newURLHostViolationReported:report];
+        
+        NSString *message = [NSString stringWithFormat:@"Accessed unspecified host. The developer must specifiy in the self compliance document the list of hosts that the app accesses. Host: %@", request.URL.host];
+        NSError *error = [[NSError alloc] initWithDomain:@"com.plusPrivacy" code:-1 userInfo:@{NSLocalizedDescriptionKey: message}];
+        
+        requestEvent.eventData[kPPURLSessionDataTaskError] = error;
     }
 }
 
 
--(OPMonitorViolationReport*)accessesUnspecifiedLink:(NSURLRequest*)request {
-    
-    OPMonitorViolationType violationType = TypeAccessedUnlistedURL;
-    OPMonitorViolationReport *report = nil;
+-(PPAccessUnlistedHostReport*)accessesUnspecifiedLink:(NSURLRequest*)request {
     NSString *host = request.URL.host;
     
-    for (NSString *listedHost in self.document.accessedLinks) {
+    for (NSString *listedHost in self.model.scdDocument.accessedHosts) {
         if ([listedHost isEqualToString:host]) {
             return nil;
         }
     }
     
-    NSString *message = [NSString stringWithFormat:@"The app accesses the host:\n%@\nbut the host isn't specified in the self-compliance document!", host];
-    report = [[OPMonitorViolationReport alloc] initWithDetails:message violationType:violationType];
-    return report;
+    return [[PPAccessUnlistedHostReport alloc] initWithURLHost:host reportedDate:[NSDate date]];
 }
 
 @end

@@ -8,10 +8,12 @@
 
 #import "UIWindow+RSHookHandle.h"
 #import "OPMonitor.h"
-#import "SPUserResizableView.h"
 #import "JRSwizzle.h"
 
 @implementation UIWindow(rsHookHandle)
+
+static UIButton *handle = nil;
+static NSTimer *repositionHandleTimer = nil;
 
 +(void)load {
     [self jr_swizzleMethod:@selector(addSubview:) withMethod:@selector(rsHook_addSubview:) error:nil];
@@ -20,31 +22,36 @@
 
 -(void)rsHook_addSubview:(UIView*)view {
     
-    static UIButton *handle = nil;
-    static SPUserResizableView *resizbleView = nil;
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         handle = [[OPMonitor sharedInstance] getHandle];
-        resizbleView = [[SPUserResizableView alloc] initWithFrame:handle.bounds];
-        resizbleView.frame = handle.frame;
-        handle.frame = resizbleView.bounds;
-        resizbleView.contentView = handle;
-        resizbleView.userInteractionEnabled = YES;
-        resizbleView.keepEditingHandlesHidden = YES;
+        [handle addTarget:self action:@selector(rsHookdragMoving:withEvent:) forControlEvents:UIControlEventTouchDragInside];
         
+        NSBlockOperation *blockOperation = [NSBlockOperation blockOperationWithBlock:^{
+            if ([self.subviews containsObject:handle]) {
+                [self bringSubviewToFront:handle];
+            } else {
+                [self rsHook_addSubview:handle];
+            }
+        }];
         
+
         
+        repositionHandleTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:blockOperation selector:@selector(main) userInfo:nil repeats:YES];
     });
     
     [self rsHook_addSubview:view];
-    
-    if ([self.subviews containsObject:resizbleView]) {
-        [self bringSubviewToFront:resizbleView];
-    } else {
-        [self rsHook_addSubview:resizbleView];
-    }
-    
+}
+
+
+- (void)rsHookdragMoving: (UIControl *) c withEvent:ev
+{
+    c.center = [[[ev allTouches] anyObject] locationInView:self];
+}
+
+- (void)rsHookdragEnded: (UIControl *) c withEvent:ev
+{
+    c.center = [[[ev allTouches] anyObject] locationInView:self];
 }
 
 @end

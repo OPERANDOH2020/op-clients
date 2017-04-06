@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationInputSwizzlerSettings.h"
+#import "CommonLocationViewModels.h"
 
 typedef void(^LocationSettingsChangedCallback)(LocationInputSwizzlerSettings* _Nullable);
 
@@ -15,11 +16,11 @@ typedef void(^LocationSettingsChangedCallback)(LocationInputSwizzlerSettings* _N
 @interface LocationSettingsModel: NSObject
 
 @property (strong, nonatomic) LocationSettingsChangedCallback _Nullable saveCallback;
-@property (strong, nonatomic) LocationInputSwizzlerSettings * _Nullable currentSettings;
+@property (strong, nonatomic) GetCurrentLocationSettingsCallback getCallback;
 
 @end
 
-@interface UILocationSettingsViewController : UITableViewController
+@interface UILocationSettingsViewController : UIViewController
 
 -(void)setupWithModel:(LocationSettingsModel* _Nullable)model onExit:(void(^ _Nullable)())exitCallback;
 

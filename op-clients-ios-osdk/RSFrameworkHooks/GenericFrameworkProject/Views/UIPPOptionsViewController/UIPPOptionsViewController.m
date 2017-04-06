@@ -46,7 +46,10 @@
     }
     
     if (indexPath.section == 2) {
-        return  self.callbacks.whenChoosingOverrideLocation;
+        if (indexPath.row == 0) {
+            return  self.callbacks.whenChoosingOverrideLocation;
+        }
+        return self.callbacks.whenChoosingLocationStatus;
     }
     
     switch (indexPath.row) {
@@ -58,6 +61,9 @@
             break;
         case 2:
             return self.callbacks.whenChoosingReportsInfo;
+            break;
+        case 3:
+            return self.callbacks.whenChoosingUsageGraphs;
         default:
             break;
     }

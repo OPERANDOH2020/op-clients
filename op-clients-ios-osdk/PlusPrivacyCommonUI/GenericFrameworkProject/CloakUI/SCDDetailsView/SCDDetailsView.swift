@@ -27,12 +27,12 @@ fileprivate class UrlListSectionSource: NSObject, SectionSource {
     }
     
     fileprivate func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return scd.accessedLinks.count
+        return scd.accessedHosts.count
     }
     
     fileprivate func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SCDUrlCell.identifierNibName) as! SCDUrlCell
-        cell.setupWith(url: self.scd.accessedLinks[indexPath.row])
+        cell.setupWith(url: self.scd.accessedHosts[indexPath.row])
         return cell
     }
 }
@@ -64,10 +64,8 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
    
     private var sectionSources: [SectionSource] = []
     private var sectionRowsAreVisibleAt: [Bool] = [false, false]
-    private var headerViewsPerSection: [Int: SCDSectionHeader] = [:]
+    private var headerModelsPerSection: [Int: SCDSectionHeaderModel] = [:]
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bundleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     private var scd: SCDDocument?
@@ -81,14 +79,17 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
     func setupWith(scd: SCDDocument){
         self.scd = scd
         
-        self.titleLabel.text = scd.appTitle
-        self.bundleLabel.text = scd.bundleId
-        
-        if scd.accessedLinks.count > 0 {
+        if scd.accessedHosts.count > 0 {
             self.sectionSources.append(UrlListSectionSource(scd: scd))
         }
+        
         if scd.accessedInputs.count > 0 {
             self.sectionSources.append(SensorListSectionSource(scd: scd))
+        }
+        
+        for i in 0..<self.sectionSources.count {
+            let sectionSource = self.sectionSources[i];
+            self.headerModelsPerSection[i] = SCDSectionHeaderModel(name: sectionSource.sectionTitle, expanded: false, enabled: true)
         }
         
         self.tableView.reloadData()
@@ -117,11 +118,14 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return self.headerViewsPerSection[section] ?? self.createSectionHeaderFor(section: section)
+        guard let model = self.headerModelsPerSection[section] else {
+            return nil
+        }
+        return self.createSectionHeaderFor(section: section, withModel: model)
     }
     
     
-    private func createSectionHeaderFor(section: Int) -> SCDSectionHeader {
+    private func createSectionHeaderFor(section: Int, withModel model: SCDSectionHeaderModel) -> SCDSectionHeader {
         let header =  SCDSectionHeader(frame: .zero)
         
         weak var weakSelf = self
@@ -135,20 +139,21 @@ class SCDDetailsView: PPNibDesignableView, UITableViewDelegate, UITableViewDataS
             
             return indexPaths
         }
-                
-        header.setupWith(title: self.sectionSources[section].sectionTitle, callbacks: SCDSectionHeaderCallbacks(
-            callToExpand: { 
+        
+        
+        header.setupWith(model: model, callbacks: SCDSectionHeaderCallbacks(
+            callToExpand: { callbackToConfirm in
                 weakSelf?.sectionRowsAreVisibleAt[section] = true
                 weakSelf?.tableView.insertRows(at: buildIndexPathsForSection(section), with: .automatic)
+                callbackToConfirm(true)
                 
-        }, callToContract: {
+        }, callToContract: { callbackToConfirm in
             weakSelf?.sectionRowsAreVisibleAt[section] = false
             weakSelf?.tableView.deleteRows(at: buildIndexPathsForSection(section), with: .automatic)
+            callbackToConfirm(true)
         }))
         
-        self.headerViewsPerSection[section] = header
         return header
-
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

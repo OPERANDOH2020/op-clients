@@ -11,22 +11,16 @@
 #import "Common.h"
 #import "NSBundle+RSFrameworkHooks.h"
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI.h>
-
+#import "UIPrivacyLevelViolationReportsSection.h"
+#import "UIInputAccessViolationReportsSection.h"
+#import "UIHostAccessViolationReportsSection.h"
+#import "UIAccessFrequencyViolationReportsSection.h"
 
 @interface UIViolationReportsViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) NSDictionary *nameForType;
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableDictionary<NSNumber*,NSArray<OPMonitorViolationReport*> *>* reportsArrayPerType;
-@property (strong, nonatomic) id<OPViolationReportRepository> repository;
-
-@property (strong, nonatomic) NSArray<NSNumber*> *currentReportTypes;
-
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) void (^exitCallback)();
-
-
-
+@property (strong, nonatomic) NSArray<UIViolationReportsSection*> *reportSections;
 @property (weak, nonatomic) IBOutlet UILabel *noReportsLabel;
 
 @end
@@ -35,124 +29,83 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.nameForType = @{
-        @(TypeAccessedUnlistedURL) : @"Access unlisted url",
-        @(TypePrivacyLevelViolation): @"Privacy level violation",
-        @(TypeUnregisteredSensorAccessed): @"Access unlisted input",
-        @(TypePrivacyLevelViolation): @"Privacy level violation"
-        };
-    
-    self.reportsArrayPerType = [[NSMutableDictionary alloc] init];
-    
-    [self setupTableView:self.tableView];
     self.noReportsLabel.hidden = YES;
-    
-    [self.repository getTypesOfReportsIn:^(NSArray<NSNumber *> * _Nullable types, NSError * _Nullable error) {
-        
-        self.currentReportTypes = types;
-        self.noReportsLabel.hidden = self.currentReportTypes.count > 0;
-        [self.tableView reloadData];
-    }];
+    [self setupTableView:self.tableView];
 }
 
 
--(void)setupWithRepository:(id<OPViolationReportRepository>)repository onExit:(void (^)())exitCallback{
-    
-    self.repository = repository;
-    self.exitCallback = exitCallback;
-    
-    
+-(void)setupWithReportSources:(PPReportsSourcesBundle*)reportSources
+                       onExit:(void (^)())exitCallback {
     [self view];
+    self.exitCallback = exitCallback;
+    self.reportSections = [self createReportSectionsWith:reportSources];
+    [self.tableView reloadData];
 }
 
-#pragma mark - 
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+-(NSArray<UIViolationReportsSection*>*)createReportSectionsWith:(PPReportsSourcesBundle*)reportSourcesBundle {
     
-    // meh, later the header will be dequeued
-    NSString *title = self.nameForType[self.currentReportTypes[section]];
-    if (!title) {
-        title = @"Unknown title";
+    NSArray *sectionsArray =  @[
+             [[UIInputAccessViolationReportsSection alloc] initWithSectionIndex:0 tableView:self.tableView inputAccessReportsSource:reportSourcesBundle.unlistedInputReportsSource],
+             
+             [[UIHostAccessViolationReportsSection alloc] initWithSectionIndex:1 tableView:self.tableView reportsSource:reportSourcesBundle.unlistedHostReportsSource],
+             
+             [[UIPrivacyLevelViolationReportsSection alloc] initWithSectionIndex:2 tableView:self.tableView reportsSource:reportSourcesBundle.privacyViolationReportsSource],
+             
+             [[UIAccessFrequencyViolationReportsSection alloc] initWithSectionIndex:3 tableView:self.tableView reportsSource:reportSourcesBundle.accessFrequencyReportsSource]
+             
+             ] ;
+    
+    for (UIViolationReportsSection *section in sectionsArray) {
+        [section prepare];
     }
-    __weak typeof(self) weakSelf = self;
     
-    SCDSectionHeader *header = [[SCDSectionHeader alloc] init];
-    SCDSectionHeaderCallbacks *callbacks = [[SCDSectionHeaderCallbacks alloc] initWithCallToExpand:^{
-        [weakSelf showItemsForSectionAtIndex:section];
-    } callToContract:^{
-        [weakSelf hideItemsForSectionAtIndex:section];
-    }];
-    
-    [header setupWithTitle:title callbacks:callbacks];
-    
-    return header;
+    return sectionsArray;
 }
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.currentReportTypes.count;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.reportsArrayPerType[self.currentReportTypes[section]].count;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 60;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    ViolationReportCell *cell = [tableView dequeueReusableCellWithIdentifier:[ViolationReportCell identifierNibName]];
-    
-    NSArray *reportsArray = self.reportsArrayPerType[self.currentReportTypes[indexPath.section]];
-    [cell setupWithReport:reportsArray[indexPath.row]];
-    
-    return cell;
-}
-
--(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  NO;
-}
-
 
 #pragma mark -
 
--(void)showItemsForSectionAtIndex:(NSInteger)index {
-    OPMonitorViolationType type = self.currentReportTypes[index].integerValue;
-    [self.repository getAllReportsOfType:type in:^(NSArray<OPMonitorViolationReport *> * _Nullable reports, NSError * _Nullable error) {
-        if (reports) {
-            self.reportsArrayPerType[@(type)] = reports;
-        }
-        
-        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-        for(int i=0; i<reports.count; i++) {
-            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:index]];
-        }
-        if (indexPaths.count) {
-            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-    }];
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return  self.reportSections.count;
 }
 
--(void)hideItemsForSectionAtIndex:(NSInteger)index {
-    
-    NSArray *reports = self.reportsArrayPerType[self.currentReportTypes[index]];
-    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-    for(int i=0; i<reports.count; i++) {
-        [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:index]];
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section >= self.reportSections.count) {
+        return 0;
     }
     
-    self.reportsArrayPerType[self.currentReportTypes[index]] = nil;
-    
-    if (indexPaths.count) {
-        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
+    return self.reportSections[section].numberOfRows;
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section >= self.reportSections.count) {
+        return nil;
+    }
+    return self.reportSections[section].sectionHeader;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section >= self.reportSections.count) {
+        return 0;
+    }
+    
+    return self.reportSections[section].headerHeight;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section >= self.reportSections.count) {
+        return [[UITableViewCell alloc] init];
+    }
+    
+    return [self.reportSections[indexPath.section] cellForRowAtIndex:indexPath.row];
+}
+
+#pragma mark -
+
 
 -(void)setupTableView:(UITableView*)tableView {
     
-    NSBundle *bundle = [NSBundle frameworkHooksBundle];
+    NSBundle *bundle = [NSBundle PPCloakBundle];
     UINib *nib = [UINib nibWithNibName:[ViolationReportCell identifierNibName] bundle:
                   bundle];
     

@@ -26,18 +26,21 @@ public class UINotificationViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        self.whenViewWillAppear?();
     }
     
     
     fileprivate func setNotificationMessage(_ message: String, backgroundColor color: UIColor?, atDistanceFromTop distance: CGFloat)
     {
+        let _ = self.view
+        
         if let color = color {
             self.notificationView.backgroundColor = color;
         }
         
         self.notificationLabel.text = message;
-        self.notificationViewTopSpaceCn.constant = distance - 20; // -20 because the constraint is set to the top layout guide
+        self.notificationViewTopSpaceCn.constant = distance
+        self.notificationView.setNeedsLayout()
+        self.notificationLabel.layoutIfNeeded()
     }
     
     fileprivate func fadeOutNotificationViewWithCompletion(_ completion: ((_ finished: Bool) -> ())?)
@@ -57,11 +60,9 @@ public class UINotificationViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Cloak", bundle: Bundle.commonUIBundle)
         let vc = storyboard.instantiateViewController(withIdentifier: UINotificationViewControllerIdentifier) as! UINotificationViewController
-        vc.whenViewWillAppear =
-        {[unowned vc]()-> Void in
-            
-            vc.setNotificationMessage(message, backgroundColor: nil, atDistanceFromTop: topDistance);
-        }
+        
+        // force view to load 
+        vc.setNotificationMessage(message, backgroundColor: nil, atDistanceFromTop: topDistance);
         
         weak var weakVC = vc;
         weak var weakHost = hostController;

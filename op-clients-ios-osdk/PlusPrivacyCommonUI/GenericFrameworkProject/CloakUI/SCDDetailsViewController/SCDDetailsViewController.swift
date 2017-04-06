@@ -14,16 +14,21 @@ public typealias VoidBlock = () -> Void
 class SCDDetailsViewController: UIViewController {
 
     @IBOutlet weak var scdDetailsView: SCDDetailsView!
+    @IBOutlet weak var titleBarHeightConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var appTitleLabel: UILabel!
     private var backCallback: VoidBlock?
     
-    func setupWith(scd: SCDDocument, backCallback: VoidBlock?) {
+    func setupWith(scd: SCDDocument, titleBarHeight: CGFloat, backCallback: VoidBlock?) {
         let _ = self.view
         self.scdDetailsView.setupWith(scd: scd)
         self.backCallback = backCallback
+        self.appTitleLabel.text = scd.appTitle;
+        self.titleBarHeightConstraint.constant = titleBarHeight
     }
     
-    @IBAction func didPressBackButton(_ sender: Any) {
+
+    @IBAction func didPressExitButton(_ sender: Any) {
         self.backCallback?()
     }
 

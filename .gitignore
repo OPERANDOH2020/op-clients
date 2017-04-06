@@ -6009,3 +6009,26 @@ op-clients-android/PlusPrivacy/app/app.iml
 op-clients-android/PlusPrivacy/build/generated/mockable-android-24.jar
 op-clients-android/PlusPrivacy/build/intermediates/dex-cache/cache.xml
 op-clients-android/PlusPrivacy/local.properties
+# osx noise
+.DS_Store
+profile
+*.swp
+
+# xcode noise
+build/*
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+xcuserdata
+
+# svn & cvs
+.svn
+CVS
+
+*.o
+
+*.o
