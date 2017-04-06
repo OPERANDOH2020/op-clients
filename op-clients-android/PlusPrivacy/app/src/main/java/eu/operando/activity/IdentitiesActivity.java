@@ -14,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.adblockplus.libadblockplus.android.webview.BuildConfig;
+
 import java.util.ArrayList;
 
 import eu.operando.R;
@@ -34,7 +36,7 @@ public class IdentitiesActivity extends AppCompatActivity {
     public static void start(Context context) {
         Intent starter = new Intent(context, IdentitiesActivity.class);
         context.startActivity(starter);
-        ((Activity)context).overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        ((Activity) context).overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override
@@ -60,12 +62,16 @@ public class IdentitiesActivity extends AppCompatActivity {
                 CreateIdentityActivity.start(IdentitiesActivity.this);
             }
         });
+        if (BuildConfig.DEBUG)
+            ((TextView) findViewById(R.id.realIdentityTV)).setText("privacy_wizard@rms.ro");
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         getIdentities();
     }
+
     private void getIdentities() {
         SwarmService.getInstance().getIdentitiesList(new SwarmCallback<IdentityListSwarm>() {
             @Override

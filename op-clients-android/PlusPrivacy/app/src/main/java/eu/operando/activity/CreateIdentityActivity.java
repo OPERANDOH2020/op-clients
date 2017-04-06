@@ -15,7 +15,7 @@ import eu.operando.R;
 import eu.operando.adapter.DomainAdapter;
 import eu.operando.models.Domain;
 import eu.operando.models.Identity;
-import eu.operando.swarmService.GetDomainsSwarm;
+import eu.operando.swarmService.models.GetDomainsSwarm;
 import eu.operando.swarmService.models.CreateIdentitySwarm;
 import eu.operando.swarmService.models.GenerateIdentitySwarm;
 import eu.operando.swarmclient.SwarmClient;

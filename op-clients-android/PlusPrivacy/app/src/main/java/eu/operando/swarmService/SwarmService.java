@@ -26,7 +26,7 @@ public class SwarmService {
     private SwarmClient swarmClient;
 
     private SwarmService() {
-        SwarmClient.init(SWARMS_URL);
+        SwarmClient.init(SWARMS_URL_DEBUG);
         swarmClient = SwarmClient.getInstance();
     }
 
