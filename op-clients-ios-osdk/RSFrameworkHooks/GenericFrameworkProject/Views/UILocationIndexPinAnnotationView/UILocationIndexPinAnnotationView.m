@@ -39,9 +39,12 @@
     return self;
 }
 
--(void)setInDragging:(BOOL)inDragging{
+-(void)setVisuallyBigger:(BOOL)visuallyBigger {
+    
+    _visuallyBigger = visuallyBigger;
+    
     CGAffineTransform transform;
-    if (inDragging) {
+    if (visuallyBigger) {
         transform = CGAffineTransformMakeScale(1.2, 1.2);
     } else {
         transform = CGAffineTransformIdentity;
@@ -51,5 +54,7 @@
         self.locationIndexPinView.transform = transform;
     } completion:nil];
 }
+
+
 
 @end

@@ -29,6 +29,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightCn;
 
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end
 
@@ -55,6 +56,7 @@
     self.model = model;
     if (!self.model.editable) {
         self.toolbarHeightCn.constant = 0;
+        self.toolbar.hidden = YES;
         [self setNeedsLayout];
         [self layoutIfNeeded];
         
@@ -91,9 +93,16 @@
 }
 
 -(void)highlightLocationAt:(NSInteger)index {
+    
+    if (self.highlightedIndex >= 0 && self.highlightedIndex < self.allLocations.count) {
+        UILocationListViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.highlightedIndex inSection:0]];
+        [cell setSelected:NO animated:YES];
+    }
+    
     self.highlightedIndex = index;
     UILocationListViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    cell.selected = YES;
+    [cell setSelected:YES animated:YES];
+    
 }
 
 #pragma mark - 
@@ -129,12 +138,7 @@
         }
     };
     
-    if (indexPath.row == self.highlightedIndex) {
-        cell.selected = YES;
-    }
-    else {
-        cell.selected = NO;
-    }
+    
     UILocationListViewCellModel *model = [[UILocationListViewCellModel alloc] init];
     model.latitude = coord.latitude;
     model.longitude = coord.longitude;
@@ -142,6 +146,7 @@
     model.editable = self.model.editable;
     
     [cell setupWithModel:model callbacks:callbacks];
+    [cell setSelected:self.highlightedIndex == indexPath.row animated:NO];
     return cell;
 }
 

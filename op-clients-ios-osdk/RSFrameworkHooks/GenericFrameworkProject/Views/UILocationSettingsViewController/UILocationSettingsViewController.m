@@ -124,20 +124,20 @@
 }
 
 - (IBAction)didPressSave:(id)sender {
-    LocationInputSwizzlerSettings *newSettings = [self compileSettings];
-    if (!newSettings.locations.count && newSettings.enabled) {
-        [CommonViewUtils showOkAlertWithMessage:@"Cannot enable without any location!" completion:nil];
-        return;
-    }
-    
-    SAFECALL(self.model.saveCallback, newSettings)
+    [self compileSettingsAndSave];
 }
 
--(LocationInputSwizzlerSettings*)compileSettings {
+-(void)compileSettingsAndSave {
     UILocationSettingsViewSettings *settings = self.locationSettingsView.currentSettings;
-    LocationInputSwizzlerSettings *swizzlerSettings = [LocationInputSwizzlerSettings createWithLocations:self.locationListView.currentLocations enabled:settings.enabled cycle:settings.cycle changeInterval:settings.changeInterval];
+    NSError *error = nil;
     
-    return swizzlerSettings;
+    LocationInputSwizzlerSettings *swizzlerSettings = [LocationInputSwizzlerSettings createWithLocations:self.locationListView.currentLocations enabled:settings.enabled cycle:settings.cycle changeInterval:settings.changeInterval error:&error];
+    
+    if (error) {
+        [CommonViewUtils showOkAlertWithMessage:error.localizedDescription completion:nil];
+        return;
+    }
+    SAFECALL(self.model.saveCallback, swizzlerSettings);
     
 }
 

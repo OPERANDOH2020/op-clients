@@ -38,15 +38,49 @@ class DummyPfbRepository: PrivacyForBenefitsRepository
     func getCurrentPfbDealsWith(completion: ((_ deals: [PfbDeal], _ error: NSError?) -> Void)?){
         
         var deals: [PfbDeal] = []
-        for i in 1...1 {
-            deals.append(PfbDeal(dict: ["serviceId": i,
-                                        "subscribed": i % 3 == 0,
-                                        "benefit": "\(i) euros",
+        
+        deals.append(PfbDeal(dict: ["serviceId": 1,
+                                        "subscribed": false,
+                                        "benefit": "\(1) euros",
                                          "description": loremIpsum,
-                                         "voucher": "\(i) -------- \(i)",
+                                         "voucher": "\(1) -------- \(1)",
                                          "logo": "https://maxcdn.icons8.com/Share/icon/androidL/Logos//9gag1600.png",
                                          "website": "https://www.9gag.com"])!)
-        }
+        
+        
+        let fbDeal = PfbDeal(dict: ["serviceId": 2,
+                                    "subscribed": true,
+                                    "benefit": "\(2) euros",
+            "description": loremIpsum,
+            "voucher": "\(2) -------- \(1)",
+            "logo": "",
+            "website": "https://www.facebook.com"])!
+        
+        fbDeal.imageName = "fb";
+        deals.append(fbDeal)
+        
+        let googleDeal = PfbDeal(dict: ["serviceId": 3,
+                                    "subscribed": true,
+                                    "benefit": "\(3) euros",
+            "description": loremIpsum,
+            "voucher": "\(2) -------- \(1)",
+            "logo": "",
+            "website": "https://www.google.com"])!
+        
+        googleDeal.imageName = "googlePlus";
+        deals.append(googleDeal)
+        
+        let yt = PfbDeal(dict: ["serviceId": 4,
+                                    "subscribed": true,
+                                    "benefit": "\(2) euros",
+            "description": loremIpsum,
+            "voucher": "\(2) -------- \(1)",
+            "logo": "",
+            "website": "https://www.youtube.com"])!
+       
+        yt.imageName = "youtube"
+        deals.append(yt)
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             completion?(deals, nil)

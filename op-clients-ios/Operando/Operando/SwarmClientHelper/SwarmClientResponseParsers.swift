@@ -42,6 +42,9 @@ class PfbDeal
     private(set) var website: String?
     private(set) var subscribed: Bool
     
+    //
+    var imageName: String? = nil
+    //
     
     init?(dict: [String: Any]){
         guard let serviceId = dict["serviceId"] as? Int,

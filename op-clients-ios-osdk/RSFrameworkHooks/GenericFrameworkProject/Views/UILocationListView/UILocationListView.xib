@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UILocationListView">
             <connections>
                 <outlet property="tableView" destination="1Ke-kr-DWU" id="2ES-06-7UY"/>
+                <outlet property="toolbar" destination="O7v-kS-iHp" id="07V-rf-K2p"/>
                 <outlet property="toolbarHeightCn" destination="dLu-NG-X7v" id="a6x-fQ-bZu"/>
                 <outlet property="tutorialLabel" destination="Mfa-8H-KyQ" id="8bE-bh-Wvp"/>
             </connections>

@@ -178,12 +178,14 @@ static void __attribute__((constructor)) initialize(void){
     // DEBUG //
     __block NSTimer *timer;
     locationModel.registerChangeCallback = ^(CurrentActiveLocationIndexChangedCallback callback) {
+        if (self.locationInputSwizzler.currentSettings.locations.count == 0) {
+            return;
+        }
         __block NSInteger activeIndex = 0;
         NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
             activeIndex += 1;
             activeIndex = activeIndex % self.locationInputSwizzler.currentSettings.locations.count;
             SAFECALL(callback, activeIndex)
-            NSLog(@"Calling callback");
         }];
         
         timer = [NSTimer scheduledTimerWithTimeInterval:self.locationInputSwizzler.currentSettings.changeInterval target:operation selector:@selector(main) userInfo:nil repeats:YES];
@@ -284,7 +286,14 @@ static void __attribute__((constructor)) initialize(void){
 }
 
 -(void)setupLocationInputSwizzlerUsingSupervisor:(LocationInputSupervisor*)supervisor {
-    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults: [NSUserDefaults standardUserDefaults]];
+    NSError *error = nil;
+    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults: [NSUserDefaults standardUserDefaults] error:&error];
+    
+    if (error) {
+        //
+        defaultLocationSettings = [LocationInputSwizzlerSettings createWithLocations:@[] enabled:NO cycle:NO changeInterval:1.0 error:nil];
+    }
+    
     self.locationInputSwizzler = [[LocationInputSwizzler alloc] init];
     [self.locationInputSwizzler setupWithSettings:defaultLocationSettings eventsDispatcher:[PPEventsPipelineFactory eventsDispatcher] whenLocationsAreRequested:^(NSArray<CLLocation *> * _Nonnull locations) {
         

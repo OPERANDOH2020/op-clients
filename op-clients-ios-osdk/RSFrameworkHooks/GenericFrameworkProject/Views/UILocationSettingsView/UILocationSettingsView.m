@@ -51,6 +51,8 @@
 
 -(void)setupWithCurrentSettings:(UILocationSettingsViewSettings *)settings editable:(BOOL)editable callbacks:(UILocationSettingsViewCallbacks *)callbacks {
     
+    self.callbacks = callbacks;
+    
     self.changeIntervalTF.userInteractionEnabled = editable;
     self.enabledSwitch.userInteractionEnabled = editable;
     self.cycleSwitch.userInteractionEnabled = editable;

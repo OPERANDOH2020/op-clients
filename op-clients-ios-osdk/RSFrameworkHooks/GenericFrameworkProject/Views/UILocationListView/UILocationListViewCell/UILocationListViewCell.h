@@ -27,7 +27,6 @@ typedef void(^UILocationListCellUpdateCallback)(double latitude, double longitud
 
 @interface UILocationListViewCell: MGSwipeTableCell
 +(NSString*)identifierNibName;
-
 -(void)setupWithModel:(UILocationListViewCellModel*)model callbacks:(UILocationListViewCellCallbacks*)callbacks;
 
 

@@ -28,8 +28,20 @@
 @implementation UILocationPinningView
 
 -(void)highlightLocationAt:(NSInteger)index {
+    if (index < 0 || index >= self.allLocationsArray.count) {
+        return;
+    }
+    
+    if (self.highlightedLocationIndex >= 0 && self.highlightedLocationIndex < self.allLocationsArray.count) {
+        id<MKAnnotation> currentlyHighlightedAnnotation = self.allAnnotations[self.highlightedLocationIndex];
+        UILocationIndexPinAnnotationView *annotationView =  (UILocationIndexPinAnnotationView*)[self.mapView viewForAnnotation:currentlyHighlightedAnnotation];
+        annotationView.visuallyBigger = NO;
+    }
+    
     self.highlightedLocationIndex = index;
-    [self refreshMapView];
+    id<MKAnnotation> newHighlightedAnnotation = self.allAnnotations[index];
+    UILocationIndexPinAnnotationView *newHighlightedView = (UILocationIndexPinAnnotationView*)[self.mapView viewForAnnotation:newHighlightedAnnotation];
+    newHighlightedView.visuallyBigger = YES;
 }
 
 -(void)deleteLocationAt:(NSInteger)index {
@@ -130,9 +142,9 @@
     pinView.draggable = self.model.editable;
     
     if (index == self.highlightedLocationIndex) {
-        pinView.inDragging = YES;
+        pinView.visuallyBigger = YES;
     } else {
-        pinView.inDragging = NO;
+        pinView.visuallyBigger = NO;
     }
     
     return pinView;
@@ -162,11 +174,11 @@
     UILocationIndexPinAnnotationView *pinView = (UILocationIndexPinAnnotationView*)view;
     if (newState == MKAnnotationViewDragStateStarting) {
         view.dragState = MKAnnotationViewDragStateDragging;
-        pinView.inDragging = YES;
+        pinView.visuallyBigger = YES;
     }
     else if (newState == MKAnnotationViewDragStateEnding || newState == MKAnnotationViewDragStateCanceling) {
         view.dragState = MKAnnotationViewDragStateNone;
-        pinView.inDragging = NO;
+        pinView.visuallyBigger = NO;
     }
 }
 

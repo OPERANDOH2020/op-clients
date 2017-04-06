@@ -46,6 +46,25 @@
     self.contentView.userInteractionEnabled = model.editable;
 }
 
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    if (animated) {
+        [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [self setSelected:selected];
+        } completion:nil];
+    } else {
+        [self setSelected:selected];
+    }
+}
+
+-(void)setSelected:(BOOL)selected {
+    UIColor *color = [UIColor whiteColor];
+    if (selected) {
+        color = [UIColor scrollViewTexturedBackgroundColor];
+    }
+    self.contentView.backgroundColor = color;
+}
+
 -(void)setupWithLatitude:(double)latitude longitude:(double)longitude index:(NSInteger)index callbacks:(UILocationListViewCellCallbacks*)callbacks {
     [self setTextFieldsWithLatitude:latitude longitude:longitude];
     self.callbacks = callbacks;
@@ -73,8 +92,6 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     [self updateTextFieldsAndCall];
-    NSLog(@"text field did end editing");
-    NSLog(@"self. callbacks :%@", self.callbacks);
 }
 
 -(void)updateTextFieldsAndCall {
