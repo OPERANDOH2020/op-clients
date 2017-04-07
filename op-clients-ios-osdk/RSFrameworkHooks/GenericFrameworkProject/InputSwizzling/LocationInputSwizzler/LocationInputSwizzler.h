@@ -10,6 +10,7 @@
 #import "LocationInputSwizzlerSettings.h"
 #import <CoreLocation/CoreLocation.h>
 #import <PPApiHooks/PPApiHooks.h>
+#import "CommonLocationViewModels.h"
 
 typedef void(^LocationsCallback)(NSArray<CLLocation*>* _Nonnull locations);
 
@@ -18,6 +19,9 @@ typedef void(^LocationsCallback)(NSArray<CLLocation*>* _Nonnull locations);
 @property (readonly, nonatomic, nullable) LocationInputSwizzlerSettings *currentSettings;
 
 -(void)setupWithSettings:(LocationInputSwizzlerSettings* _Nullable)settings eventsDispatcher:(PPEventDispatcher* _Nonnull)eventsDispatcher whenLocationsAreRequested:(LocationsCallback _Nonnull)whenLocationsAreRequested;
-
 -(void)applyNewSettings:(LocationInputSwizzlerSettings* _Nonnull)settings;
+
+-(void)registerNewChangeCallback:(CurrentActiveLocationIndexChangedCallback _Nonnull)callback;
+-(void)removeChangeCallback:(CurrentActiveLocationIndexChangedCallback _Nonnull)callback;
+
 @end

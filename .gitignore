@@ -6028,3 +6028,7 @@ xcuserdata
 # svn & cvs
 .svn
 CVS
+
+*.o
+
+*.o

@@ -34,6 +34,10 @@ class UIPfbDealTableViewCell: UITableViewCell, UIPfbDisplayingView {
             self.logoImageView.setImageWith(actualURL)
         }
         
+        if let imageName = model.imageName {
+            self.logoImageView.image = UIImage(named: imageName)
+        }
+        
         self.subscriebdSwitch.isOn = model.subscribed
     }
     

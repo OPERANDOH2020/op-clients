@@ -1,0 +1,162 @@
+package eu.operando.fragment;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.adblockplus.libadblockplus.android.webview.AdblockWebView;
+
+import java.net.URLEncoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.Inflater;
+
+import eu.operando.R;
+
+/**
+ * Created by Edy on 31-Mar-17.
+ */
+
+public class TabFragment extends Fragment {
+    public static TabFragment newInstance(@Nullable String url) {
+
+        Bundle args = new Bundle();
+        args.putString("url",url);
+        TabFragment fragment = new TabFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+    private ImageView goBtn;
+    private ImageView backBtn;
+    private AdblockWebView webView;
+    private EditText urlEt;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_browser_tab,container,false);
+        initUI(rootView);
+        return rootView;
+    }
+
+    public void loadUrl(String url){
+        urlEt.setText(url);
+        go();
+    }
+
+    private void initUI(View rootView) {
+
+
+        goBtn = ((ImageView) rootView.findViewById(R.id.btn_go));
+        backBtn = ((ImageView) rootView.findViewById(R.id.btn_back));
+        urlEt = ((EditText) rootView.findViewById(R.id.urlET));
+
+        initWebView(rootView);
+        initAddressBar();
+
+    }
+
+    private void initAddressBar() {
+        urlEt.setSelectAllOnFocus(true);
+        urlEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_GO) {
+                    go();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        goBtn.setColorFilter(getResources().getColor(R.color.colorAccent));
+        goBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                go();
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBack();
+            }
+        });
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private void initWebView(View rootView) {
+        webView = (AdblockWebView) rootView.findViewById(R.id.webView);
+        webView.setAdblockEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(getWebViewClient());
+//        webView.setInitialScale(1);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.loadUrl(getArguments().getString("url","www.google.ro"));
+
+    }
+
+    private WebViewClient getWebViewClient() {
+        return new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                urlEt.setText(url);
+                urlEt.clearFocus();
+                hideKeyboard();
+            }
+
+        };
+    }
+
+    private void goBack() {
+        onBackPressed();
+    }
+
+    private void go() {
+        String url = urlEt.getText().toString();
+        if(!android.util.Patterns.WEB_URL.matcher(url).matches()){
+            url = "http://www.google.com/search?q="+ URLEncoder.encode(url);
+        }
+        url = url.toLowerCase().startsWith("http://") || url.toLowerCase().startsWith("https://") ? url : ("http://" + url);
+        webView.loadUrl(url);
+        Log.e("url", url);
+    }
+
+
+    public void onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            getActivity().finish();
+        }
+    }
+
+    private void hideKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+}

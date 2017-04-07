@@ -10,21 +10,7 @@
 #import "Common.h"
 #import "UILocationListView.h"
 #import "UILocationPinningView.h"
-
-#pragma mark -
-@interface NSString(UILocationSettingsViewController)
--(NSNumber*)toNumber;
-@end
-
-@implementation NSString(UILocationSettingsViewController)
-
--(NSNumber *)toNumber{
-    NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
-    nf.numberStyle = NSNumberFormatterDecimalStyle;
-    return [nf numberFromString:self];
-}
-
-@end
+#import "UILocationSettingsView.h"
 
 #pragma mark -
 
@@ -37,8 +23,9 @@
 @property (strong, nonatomic) LocationSettingsModel *model;
 
 @property (weak, nonatomic) IBOutlet UILocationListView *locationListView;
-
 @property (weak, nonatomic) IBOutlet UILocationPinningView *locationPinningView;
+@property (weak, nonatomic) IBOutlet UILocationSettingsView *locationSettingsView;
+
 @end
 
 
@@ -56,18 +43,27 @@
     self.model = model;
     self.onExitCallback = exitCallback;
     
-    UILocationPinningViewCallbacks *locationPinningViewCallbacks = [self createLocationPinningViewCallbacks];
-    UILocationListViewCallbacks *locationListViewCallbacks = [self createLocationListCallbacks];
+    CommonLocationViewCallbacks *locationPinningViewCallbacks = [self createLocationPinningViewCallbacks];
+    CommonLocationViewCallbacks *locationListViewCallbacks = [self createLocationListCallbacks];
     
-    [self.locationListView setupWithInitialList:model.currentSettings.locations callbacks:locationListViewCallbacks];
-    [self.locationPinningView setupWithLocations:model.currentSettings.locations callbacks:locationPinningViewCallbacks];
+    LocationInputSwizzlerSettings *currentSettings = model.getCallback();
     
+    CommonLocationViewModel *locationListViewModel = [[CommonLocationViewModel alloc] initWithLocations:currentSettings.locations editable:YES];
+    
+    [self.locationListView setupWithModel:locationListViewModel callbacks:locationListViewCallbacks];
+    [self.locationPinningView setupWithModel:locationListViewModel callbacks:locationPinningViewCallbacks];
+    
+    UILocationSettingsViewSettings *settings = [[UILocationSettingsViewSettings alloc] initWithInterval:currentSettings.changeInterval cycle:currentSettings.cycle enabled:currentSettings.enabled];
+    UILocationSettingsViewCallbacks *locationSettingsViewCallbacks = [self callbacksForLocationSettingsView];
+    [self.locationSettingsView setupWithCurrentSettings:settings editable:YES callbacks:locationSettingsViewCallbacks];
 }
 
 
--(UILocationListViewCallbacks*)createLocationListCallbacks{
+-(CommonLocationViewCallbacks*)createLocationListCallbacks{
     WEAKSELF
-    UILocationListViewCallbacks *callbacks = [[UILocationListViewCallbacks alloc] init];
+    
+    CommonLocationViewCallbacks *callbacks = [[CommonLocationViewCallbacks alloc] init];
+    
     callbacks.onNewLocationAdded = ^void(CLLocation *location){
         [weakSelf.locationPinningView addNewLocation:location];
     };
@@ -86,8 +82,8 @@
     return callbacks;
 }
 
--(UILocationPinningViewCallbacks*)createLocationPinningViewCallbacks{
-    UILocationPinningViewCallbacks *callbacks = [[UILocationPinningViewCallbacks alloc] init];
+-(CommonLocationViewCallbacks*)createLocationPinningViewCallbacks{
+    CommonLocationViewCallbacks *callbacks = [[CommonLocationViewCallbacks alloc] init];
     WEAKSELF
     callbacks.onNewLocationAdded = ^void(CLLocation *location){
         [weakSelf.locationListView addNewLocation:location];
@@ -103,27 +99,46 @@
     return callbacks;
 }
 
-- (IBAction)didPressInsertCoordinatesManually:(id)sender {
-    self.locationPinningView.hidden = YES;
-    self.locationListView.hidden = NO;
+-(UILocationSettingsViewCallbacks*)callbacksForLocationSettingsView {
+    WEAKSELF
+    
+    UILocationSettingsViewCallbacks *callbacks = [[UILocationSettingsViewCallbacks alloc] init];
+    callbacks.onListItemsPress = ^{
+        weakSelf.locationPinningView.hidden = YES;
+        weakSelf.locationListView.hidden = NO;
+    };
+    
+    
+    callbacks.onMapItemsPress = ^{
+        weakSelf.locationPinningView.hidden = NO;
+        weakSelf.locationListView.hidden = YES;
+    };
+    
+    return callbacks;
 }
 
-- (IBAction)didPressToAddOnMap:(id)sender {
-    self.locationPinningView.hidden = NO;
-    self.locationListView.hidden = YES;
-}
+
 
 - (IBAction)didPressBack:(id)sender {
     SAFECALL(self.onExitCallback)
 }
 
 - (IBAction)didPressSave:(id)sender {
-    LocationInputSwizzlerSettings *newSettings = [self compileSettings];
-    SAFECALL(self.model.saveCallback, newSettings)
+    [self compileSettingsAndSave];
 }
 
--(LocationInputSwizzlerSettings*)compileSettings {
-    return [LocationInputSwizzlerSettings createWithLocations:self.locationListView.currentLocations enabled:YES cycle:YES changeInterval:5.0];
+-(void)compileSettingsAndSave {
+    UILocationSettingsViewSettings *settings = self.locationSettingsView.currentSettings;
+    NSError *error = nil;
+    
+    LocationInputSwizzlerSettings *swizzlerSettings = [LocationInputSwizzlerSettings createWithLocations:self.locationListView.currentLocations enabled:settings.enabled cycle:settings.cycle changeInterval:settings.changeInterval error:&error];
+    
+    if (error) {
+        [CommonViewUtils showOkAlertWithMessage:error.localizedDescription completion:nil];
+        return;
+    }
+    SAFECALL(self.model.saveCallback, swizzlerSettings);
+    
 }
 
 @end

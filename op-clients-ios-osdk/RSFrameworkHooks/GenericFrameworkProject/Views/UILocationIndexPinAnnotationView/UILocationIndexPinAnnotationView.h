@@ -11,5 +11,5 @@
 
 @interface UILocationIndexPinAnnotationView : MKAnnotationView
 @property (readonly, nonatomic) UILocationIndexPinView *locationIndexPinView;
-@property (assign, nonatomic) BOOL inDragging;
+@property (assign, nonatomic) BOOL visuallyBigger;
 @end

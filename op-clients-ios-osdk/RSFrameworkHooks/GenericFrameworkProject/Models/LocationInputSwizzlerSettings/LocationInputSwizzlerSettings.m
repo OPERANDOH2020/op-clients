@@ -24,26 +24,43 @@ static NSString *kOverrideLocationChangeInterval = @"kOverrideLocationChangeInte
 @property (readwrite, assign, nonatomic) NSTimeInterval changeInterval;
 @end
 
+static NSString *kErrorDomain = @"com.plusPrivacy.LocationSettings";
+
 @implementation LocationInputSwizzlerSettings
 
-+(LocationInputSwizzlerSettings *)createWithLocations:(NSArray<CLLocation *> *)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval{
++(LocationInputSwizzlerSettings *)createWithLocations:(NSArray<CLLocation *> *)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval error:(NSError *__autoreleasing  _Nullable * _Nullable)error{
+    
+    if (enabled && locations.count == 0) {
+        if (error) {
+            *error = [[NSError alloc] initWithDomain:kErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Cannot enable location override with no locations"}];
+        }
+        return nil;
+    }
+    
+    if (enabled && changeInterval < 1) {
+        if (error) {
+            *error = [NSError errorWithDomain:kErrorDomain code:-2 userInfo:@{NSLocalizedDescriptionKey: @"Cannot set change interval to less than 1 second"}];
+        }
+        return nil;
+    }
     
     LocationInputSwizzlerSettings *settings = [[LocationInputSwizzlerSettings alloc] init];
     settings.enabled = enabled;
     settings.cycle = cycle;
     settings.locations = locations;
-    
+    settings.changeInterval = changeInterval;
     return settings;
     
 }
 
-+(LocationInputSwizzlerSettings *)createFromUserDefaults:(NSUserDefaults*)defaults {
++(LocationInputSwizzlerSettings *)createFromUserDefaults:(NSUserDefaults*)defaults error:(NSError *__autoreleasing  _Nullable * _Nullable)error {
     
     LocationInputSwizzlerSettings *settings = [[LocationInputSwizzlerSettings alloc] init];
     
-    NSArray<NSNumber*> *latitudes = [defaults objectForKey:kOverrideLocationLatitudesKey];
-    NSArray<NSNumber*> *longitudes = [defaults objectForKey:kOverrideLocationLongitudesKey];
+    NSArray<NSNumber*> *latitudes = [defaults valueForKey:kOverrideLocationLatitudesKey];
+    NSArray<NSNumber*> *longitudes = [defaults valueForKey:kOverrideLocationLongitudesKey];
     NSMutableArray<CLLocation*> *locations = [[NSMutableArray alloc] init];
+    
     
     if (latitudes.count == longitudes.count) {
         for (int i=0; i<latitudes.count; i++) {
@@ -56,9 +73,25 @@ static NSString *kOverrideLocationChangeInterval = @"kOverrideLocationChangeInte
         }
     }
     
-    settings.enabled = [[defaults objectForKey:kOverrideLocationEnabledKey] boolValue];
-    settings.changeInterval = [[defaults objectForKey:kOverrideLocationChangeInterval] doubleValue];
-    settings.cycle = [[defaults objectForKey:kOverrideLocationCycleKey] boolValue];
+    settings.enabled = [[defaults valueForKey:kOverrideLocationEnabledKey] boolValue];
+    settings.changeInterval = [[defaults valueForKey:kOverrideLocationChangeInterval] doubleValue];
+    settings.cycle = [[defaults valueForKey:kOverrideLocationCycleKey] boolValue];
+    settings.locations = locations;
+    
+    if (settings.enabled && settings.locations.count == 0) {
+        if (error) {
+            *error = [NSError errorWithDomain:kErrorDomain code:-2 userInfo:@{NSLocalizedDescriptionKey: @"Data corrupted. Cannot enable location override with no locations"}];
+        }
+        
+        return nil;
+    }
+    
+    if (settings.enabled && settings.changeInterval < 1) {
+        if (error) {
+            *error = [NSError errorWithDomain:kErrorDomain code:-2 userInfo:@{NSLocalizedDescriptionKey: @"Data corrupted. Cannot set change interval to less than 1 second"}];
+        }
+        return nil;
+    }
     
     return settings;
 }
@@ -74,13 +107,12 @@ static NSString *kOverrideLocationChangeInterval = @"kOverrideLocationChangeInte
         [longArray addObject:@(location.coordinate.longitude)];
     }
     
-    [defaults setObject:latArray forKey:kOverrideLocationLatitudesKey];
-    [defaults setObject:longArray forKey:kOverrideLocationLongitudesKey];
+    [defaults setValue:latArray forKey:kOverrideLocationLatitudesKey];
+    [defaults setValue:longArray forKey:kOverrideLocationLongitudesKey];
     
-    [defaults setObject:@(self.cycle) forKey:kOverrideLocationCycleKey];
-    [defaults setObject:@(self.changeInterval) forKey:kOverrideLocationChangeInterval];
-    [defaults setObject:@(self.enabled) forKey:kOverrideLocationEnabledKey];
-    [defaults synchronize];
+    [defaults setValue:@(self.cycle) forKey:kOverrideLocationCycleKey];
+    [defaults setValue:@(self.changeInterval) forKey:kOverrideLocationChangeInterval];
+    [defaults setValue:@(self.enabled) forKey:kOverrideLocationEnabledKey];
 }
 
 @end

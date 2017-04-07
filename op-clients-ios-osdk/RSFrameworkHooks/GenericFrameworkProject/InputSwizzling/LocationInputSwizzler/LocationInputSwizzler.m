@@ -26,15 +26,21 @@
 @interface LocationInputSwizzler() <CLLocationManagerDelegate>
 @property (strong, nonatomic) LocationInputSwizzlerSettings *currentSettings;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber*, WeakDelegateHolder*> *delegatePerInstance;
-
+@property (strong, nonatomic) NSMutableArray<CurrentActiveLocationIndexChangedCallback> *callbacksToNotifyChange;
 @property (strong, nonatomic) LocationsCallback whenLocationsAreRequested;
+@property (strong, nonatomic) NSTimer *timer;
+@property (assign, nonatomic) NSInteger indexOfCurrentSentLocation;
 @end
 
 
 @implementation LocationInputSwizzler
 
 -(void)setupWithSettings:(LocationInputSwizzlerSettings *)settings eventsDispatcher:(PPEventDispatcher *)eventsDispatcher whenLocationsAreRequested:(LocationsCallback)whenLocationsAreRequested {
-    self.currentSettings = settings;
+    
+    self.callbacksToNotifyChange = [[NSMutableArray alloc] init];
+    
+    [self applyNewSettings:settings];
+    
     self.whenLocationsAreRequested = whenLocationsAreRequested;
     __weak typeof(self) weakSelf = self;
     
@@ -51,6 +57,16 @@
         SAFECALL(nextHandlerIfAny)
         
     }];
+}
+
+-(void)registerNewChangeCallback:(CurrentActiveLocationIndexChangedCallback)callback {
+    if (![self.callbacksToNotifyChange containsObject:callback]) {
+        [self.callbacksToNotifyChange addObject:callback];
+    }
+}
+
+-(void)removeChangeCallback:(CurrentActiveLocationIndexChangedCallback)callback {
+    [self.callbacksToNotifyChange removeObject:callback];
 }
 
 +(LocationInputSwizzler *)sharedInstance {
@@ -74,6 +90,30 @@
 
 -(void)applyNewSettings:(LocationInputSwizzlerSettings *)settings {
     self.currentSettings = settings;
+    [self.timer invalidate];
+    self.indexOfCurrentSentLocation = 0;
+    
+    if (!settings.enabled) {
+        return;
+    }
+    
+    WEAKSELF
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+        weakSelf.indexOfCurrentSentLocation += 1;
+        if (settings.cycle) {
+            weakSelf.indexOfCurrentSentLocation %= settings.locations.count;
+        } else {
+            if (weakSelf.indexOfCurrentSentLocation >= settings.locations.count) {
+                weakSelf.indexOfCurrentSentLocation = settings.locations.count - 1;
+            }
+        }
+        for (CurrentActiveLocationIndexChangedCallback callback in weakSelf.callbacksToNotifyChange) {
+            callback(weakSelf.indexOfCurrentSentLocation);
+        }
+    }];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:settings.changeInterval target:operation selector:@selector(main) userInfo:nil repeats:YES];
+    
 }
 
 -(CLLocation*)locationSubstituteIfAny {
@@ -81,7 +121,11 @@
         return nil;
     }
     
-    return [[CLLocation alloc] initWithLatitude:0 longitude:0];
+    if (self.indexOfCurrentSentLocation < 0 || self.indexOfCurrentSentLocation >= self.currentSettings.locations.count) {
+        return nil;
+    }
+    
+    return self.currentSettings.locations[self.indexOfCurrentSentLocation];
 }
 
 
@@ -132,7 +176,7 @@
         locationsForDelegates = locations;
     }
     
-    WeakDelegateHolder *holder  = self.delegatePerInstance[@(manager.hash)];
+    WeakDelegateHolder *holder = self.delegatePerInstance[@(manager.hash)];
     [holder.delegate locationManager:manager didUpdateLocations:locationsForDelegates];
     SAFECALL(self.whenLocationsAreRequested, locationsForDelegates)
 }

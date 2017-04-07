@@ -21,7 +21,7 @@
 #import "PlistReportsStorage.h"
 #import "JRSwizzle.h"
 #import "LocationInputSwizzler.h"
-
+#import "CommonViewUtils.h"
 #import "PPFlowBuilder.h"
 
 
@@ -60,16 +60,6 @@
 
 @implementation OPMonitor
 
-
-static void displayMessage(NSString* message){
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        
-        [alertView show];
-    });
-}
-
 static void __attribute__((constructor)) initialize(void){
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"AppSCD" ofType:@"json"];
@@ -82,7 +72,7 @@ static void __attribute__((constructor)) initialize(void){
         [[OPMonitor sharedInstance] beginMonitoringWithAppDocument:json];
     } else {
         NSString *message = [NSString stringWithFormat:@"Could not find json document at path %@ or fileText is wrong: %@", fileText, path];
-        displayMessage(message);
+        [CommonViewUtils showOkAlertWithMessage:message completion:nil];
     }
     
 }
@@ -105,7 +95,7 @@ static void __attribute__((constructor)) initialize(void){
         
         if (error || !scdDocument) {
             NSString *errorMessage = [error description];
-            displayMessage(errorMessage);
+            [CommonViewUtils showOkAlertWithMessage:errorMessage completion:nil];
             [self displayNotificationIfPossible:errorMessage];
             return;
             
@@ -156,10 +146,15 @@ static void __attribute__((constructor)) initialize(void){
     __weak typeof(self) weakSelf = self;
     
     LocationSettingsModel *locSettingsModel = [[LocationSettingsModel alloc] init];
-    locSettingsModel.currentSettings = self.locationInputSwizzler.currentSettings;
+    locSettingsModel.getCallback = ^LocationInputSwizzlerSettings * _Nonnull{
+        return weakSelf.locationInputSwizzler.currentSettings;
+    };
+    
     locSettingsModel.saveCallback = ^void(LocationInputSwizzlerSettings *settings) {
         [weakSelf.locationInputSwizzler applyNewSettings:settings];
         [settings synchronizeToUserDefaults: [NSUserDefaults standardUserDefaults]];
+        [CommonViewUtils showOkAlertWithMessage:@"Settings saved" completion:nil];
+        
     };
     
     PPReportsSourcesBundle *reportSources = [[PPReportsSourcesBundle alloc] init];
@@ -173,7 +168,36 @@ static void __attribute__((constructor)) initialize(void){
     flowModel.reportSources = reportSources;
     flowModel.scdRepository = repo;
     flowModel.scdJSON = self.scdJson;
-    flowModel.locationSettingsModel = locSettingsModel;
+    
+    PPFlowBuilderLocationModel *locationModel = [[PPFlowBuilderLocationModel alloc] init];
+    locationModel.locationSettingsModel = locSettingsModel;
+    locationModel.getCurrentActiveLocationIndex = ^NSInteger{
+        return 0;
+    };
+    
+    // DEBUG //
+    __block NSTimer *timer;
+    locationModel.registerChangeCallback = ^(CurrentActiveLocationIndexChangedCallback callback) {
+        if (self.locationInputSwizzler.currentSettings.locations.count == 0) {
+            return;
+        }
+        __block NSInteger activeIndex = 0;
+        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+            activeIndex += 1;
+            activeIndex = activeIndex % self.locationInputSwizzler.currentSettings.locations.count;
+            SAFECALL(callback, activeIndex)
+        }];
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval:self.locationInputSwizzler.currentSettings.changeInterval target:operation selector:@selector(main) userInfo:nil repeats:YES];
+    };
+    
+    locationModel.removeChangeCallback = ^(CurrentActiveLocationIndexChangedCallback callback) {
+        [timer invalidate];
+        timer = nil;
+        NSLog(@"Removed callback");
+    };
+    
+    flowModel.eveythingLocationRelated = locationModel;
     
     flowModel.onExitCallback = ^{
         [rootViewController ppRemoveChildContentController:flowRoot];
@@ -262,7 +286,14 @@ static void __attribute__((constructor)) initialize(void){
 }
 
 -(void)setupLocationInputSwizzlerUsingSupervisor:(LocationInputSupervisor*)supervisor {
-    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults: [NSUserDefaults standardUserDefaults]];
+    NSError *error = nil;
+    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults: [NSUserDefaults standardUserDefaults] error:&error];
+    
+    if (error) {
+        //
+        defaultLocationSettings = [LocationInputSwizzlerSettings createWithLocations:@[] enabled:NO cycle:NO changeInterval:1.0 error:nil];
+    }
+    
     self.locationInputSwizzler = [[LocationInputSwizzler alloc] init];
     [self.locationInputSwizzler setupWithSettings:defaultLocationSettings eventsDispatcher:[PPEventsPipelineFactory eventsDispatcher] whenLocationsAreRequested:^(NSArray<CLLocation *> * _Nonnull locations) {
         

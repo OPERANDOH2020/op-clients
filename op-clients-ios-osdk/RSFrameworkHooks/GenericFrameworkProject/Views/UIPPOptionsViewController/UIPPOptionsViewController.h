@@ -19,6 +19,7 @@
 @property (strong, nonatomic) void (^whenChoosingUsageGraphs)();
 
 @property (strong, nonatomic) void (^whenChoosingOverrideLocation)();
+@property (strong, nonatomic) void (^whenChoosingLocationStatus)();
 
 @end
 

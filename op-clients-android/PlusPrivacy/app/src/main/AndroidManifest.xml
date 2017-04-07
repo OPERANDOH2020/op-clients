@@ -24,10 +24,11 @@
         <activity android:name=".activity.ScannerActivity"/>
         <activity android:name=".activity.IdentitiesActivity"/>
         <activity android:name=".activity.CreateIdentityActivity"/>
-        <activity android:name=".activity.BrowserActivity"/>
         <activity android:name=".activity.PFBActivity"/>
         <activity android:name=".activity.NotificationsActivity"/>
         <activity android:name=".activity.PermissionsActivity"/>
+        <activity android:name=".activity.KotlinBrowserActivity">
+        </activity>
     </application>
 
 </manifest>

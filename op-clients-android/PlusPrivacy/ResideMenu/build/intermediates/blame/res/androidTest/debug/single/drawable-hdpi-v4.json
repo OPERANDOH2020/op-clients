@@ -4,10 +4,6 @@
         "source": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\operando_logi.png"
     },
     {
-        "merged": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\op_logo.png",
-        "source": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\op_logo.png"
-    },
-    {
         "merged": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\op_logo2.png",
         "source": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\op_logo2.png"
     },
@@ -16,27 +12,11 @@
         "source": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\shadow.png"
     },
     {
-        "merged": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\operando_logi.png",
-        "source": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\operando_logi.png"
-    },
-    {
-        "merged": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\shadow.png",
-        "source": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\shadow.png"
-    },
-    {
         "merged": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
         "source": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
     },
     {
-        "merged": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
-    },
-    {
         "merged": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\op_logo.png",
         "source": "D:\\projects\\OPERANDO\\op-cl\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\op_logo.png"
-    },
-    {
-        "merged": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\op_logo2.png",
-        "source": "D:\\github\\GIT-MOBILE\\op-clients\\op-clients-android\\PlusPrivacy\\ResideMenu\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\op_logo2.png"
     }
 ]

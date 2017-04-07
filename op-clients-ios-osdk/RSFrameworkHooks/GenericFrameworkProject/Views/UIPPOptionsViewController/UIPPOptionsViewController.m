@@ -46,7 +46,10 @@
     }
     
     if (indexPath.section == 2) {
-        return  self.callbacks.whenChoosingOverrideLocation;
+        if (indexPath.row == 0) {
+            return  self.callbacks.whenChoosingOverrideLocation;
+        }
+        return self.callbacks.whenChoosingLocationStatus;
     }
     
     switch (indexPath.row) {

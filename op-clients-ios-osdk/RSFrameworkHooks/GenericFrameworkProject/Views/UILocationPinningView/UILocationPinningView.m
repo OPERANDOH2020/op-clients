@@ -14,17 +14,35 @@
 #import "Common.h"
 
 
-@implementation UILocationPinningViewCallbacks
-@end
+
 
 @interface UILocationPinningView() <MKMapViewDelegate>
 @property (strong, nonatomic) MKMapView *mapView;
 @property (strong, nonatomic) NSMutableArray<CLLocation*> *allLocationsArray;
 @property (strong, nonatomic) NSMutableArray<MKPointAnnotation*> *allAnnotations;
-@property (strong, nonatomic) UILocationPinningViewCallbacks *callbacks;
+@property (strong, nonatomic) CommonLocationViewCallbacks *callbacks;
+@property (strong, nonatomic) CommonLocationViewModel *model;
+@property (assign, nonatomic) NSInteger highlightedLocationIndex;
 @end
 
 @implementation UILocationPinningView
+
+-(void)highlightLocationAt:(NSInteger)index {
+    if (index < 0 || index >= self.allLocationsArray.count) {
+        return;
+    }
+    
+    if (self.highlightedLocationIndex >= 0 && self.highlightedLocationIndex < self.allLocationsArray.count) {
+        id<MKAnnotation> currentlyHighlightedAnnotation = self.allAnnotations[self.highlightedLocationIndex];
+        UILocationIndexPinAnnotationView *annotationView =  (UILocationIndexPinAnnotationView*)[self.mapView viewForAnnotation:currentlyHighlightedAnnotation];
+        annotationView.visuallyBigger = NO;
+    }
+    
+    self.highlightedLocationIndex = index;
+    id<MKAnnotation> newHighlightedAnnotation = self.allAnnotations[index];
+    UILocationIndexPinAnnotationView *newHighlightedView = (UILocationIndexPinAnnotationView*)[self.mapView viewForAnnotation:newHighlightedAnnotation];
+    newHighlightedView.visuallyBigger = YES;
+}
 
 -(void)deleteLocationAt:(NSInteger)index {
     MKPointAnnotation *annotation = self.allAnnotations[index];
@@ -37,11 +55,11 @@
 -(void)modifyLocationAt:(NSInteger)index toLatitude:(double)latitude andLongitude:(double)longitude {
     MKPointAnnotation *annotation = self.allAnnotations[index];
     annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    NSLog(@"should modify location at index: %ld", index);
     [self refreshMapView];
 }
 
 -(void)clearAll {
+    [self.allAnnotations removeAllObjects];
     [self.allLocationsArray removeAllObjects];
     [self.mapView removeAnnotations:self.mapView.annotations];
 }
@@ -50,7 +68,13 @@
     return [NSArray arrayWithArray:self.allLocationsArray];
 }
 
--(void)setupWithLocations:(NSArray<CLLocation *> *)locations callbacks:(UILocationPinningViewCallbacks *)callbacks{
+-(void)setupWithModel:(CommonLocationViewModel *)model callbacks:(CommonLocationViewCallbacks *)callbacks {
+    [self setupWithLocations:model.initialLocations callbacks:callbacks];
+    self.model = model;
+    
+}
+
+-(void)setupWithLocations:(NSArray<CLLocation *> *)locations callbacks:(CommonLocationViewCallbacks *)callbacks{
     for (CLLocation *location in locations) {
         [self addNewLocation:location];
     }
@@ -72,6 +96,10 @@
 
 
 -(void)longPressEvent:(UILongPressGestureRecognizer*)sender {
+    if (!self.model.editable) {
+        return;
+    }
+    
     if (sender.state != UIGestureRecognizerStateBegan) {
         return;
     }
@@ -111,7 +139,13 @@
     pinView.frame = CGRectMake(0, 0, 50, 66);
     [pinView setNeedsLayout];
     [pinView layoutIfNeeded];
-    pinView.draggable = YES;
+    pinView.draggable = self.model.editable;
+    
+    if (index == self.highlightedLocationIndex) {
+        pinView.visuallyBigger = YES;
+    } else {
+        pinView.visuallyBigger = NO;
+    }
     
     return pinView;
 }
@@ -137,14 +171,14 @@
         SAFECALL(self.callbacks.onModifyLocationAtIndex, location, indexOfAnnotation)
     }
     
-    UILocationIndexPinAnnotationView *pinView = view;
+    UILocationIndexPinAnnotationView *pinView = (UILocationIndexPinAnnotationView*)view;
     if (newState == MKAnnotationViewDragStateStarting) {
         view.dragState = MKAnnotationViewDragStateDragging;
-        pinView.inDragging = YES;
+        pinView.visuallyBigger = YES;
     }
     else if (newState == MKAnnotationViewDragStateEnding || newState == MKAnnotationViewDragStateCanceling) {
         view.dragState = MKAnnotationViewDragStateNone;
-        pinView.inDragging = NO;
+        pinView.visuallyBigger = NO;
     }
 }
 

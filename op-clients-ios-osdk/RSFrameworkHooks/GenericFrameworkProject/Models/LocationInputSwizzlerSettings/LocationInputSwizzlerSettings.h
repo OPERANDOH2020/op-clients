@@ -11,14 +11,14 @@
 
 @interface LocationInputSwizzlerSettings : NSObject
 
-@property (readonly, nonatomic) NSArray<CLLocation*> *locations;
+@property (readonly, nonatomic) NSArray<CLLocation*>* _Nonnull locations;
 @property (readonly, nonatomic) BOOL enabled;
 @property (readonly, nonatomic) NSTimeInterval changeInterval;
 @property (readonly, nonatomic) BOOL cycle;
 
--(void)synchronizeToUserDefaults:(NSUserDefaults*)defaults;
+-(void)synchronizeToUserDefaults:(NSUserDefaults* _Nonnull)defaults;
 
-+(LocationInputSwizzlerSettings*)createWithLocations:(NSArray<CLLocation*>*)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval;
++(LocationInputSwizzlerSettings* _Nullable)createWithLocations:(NSArray<CLLocation*>* _Nonnull)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval error:(NSError*_Nullable*_Nullable)error;
 
-+(LocationInputSwizzlerSettings*)createFromUserDefaults:(NSUserDefaults*)defaults;
++(LocationInputSwizzlerSettings* _Nullable)createFromUserDefaults:(NSUserDefaults* _Nonnull)defaults error:(NSError* _Nullable *_Nullable)error;
 @end

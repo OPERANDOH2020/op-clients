@@ -2,6 +2,8 @@ package eu.operando;
 
 import android.app.Application;
 
+import org.adblockplus.libadblockplus.android.AdblockEngine;
+
 import io.paperdb.Paper;
 
 /**
@@ -13,5 +15,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         Paper.init(this);
+
     }
 }

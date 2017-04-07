@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_browser).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BrowserActivity.start(MainActivity.this);
+                KotlinBrowserActivityKt.start(MainActivity.this);
             }
         });
     }
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 PFBActivity.start(this);
                 break;
             case 3: //Browser
-                BrowserActivity.start(this);
+                KotlinBrowserActivityKt.start(this);
                 break;
             case 4: //Scanner
                 ScannerActivity.start(this);
