@@ -88,7 +88,8 @@ http://tobiasahlin.com/spinkit/
 .loader.alert-info,
 #login_error,
 #register_error,
-#register_success{
+#register_success,
+#sent_activate_email{
     margin: 10px 0px 0px 0px;
 }
 

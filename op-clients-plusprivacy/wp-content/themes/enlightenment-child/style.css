@@ -344,3 +344,32 @@ body {
     margin: 0;
     min-height: calc(100% - 80px);
 }
+
+ul.nav.navbar-nav .dropdown-menu li a{
+    line-height:36px;
+    display: block;
+}
+
+ul.dropdown-menu>.active>a,
+ul.dropdown-menu>.active>a:focus,
+ul.dropdown-menu>.active>a:hover{
+    background-color: #FFB400;
+    background-image: none;
+}
+
+ul.dropdown-menu>li>a:focus,
+ul.dropdown-menu>li>a:hover{
+  background-image: none;
+  background-color:#ffebba;
+}
+
+.venobox.video{
+    background: url(images/watch_video.png) no-repeat left 8px;
+    padding-left: 38px;
+    color: #FFF;
+    margin-left: 10px;
+    display: inline-block;
+    text-decoration: underline;
+    font-size: 18px;
+    line-height: 46px;
+}

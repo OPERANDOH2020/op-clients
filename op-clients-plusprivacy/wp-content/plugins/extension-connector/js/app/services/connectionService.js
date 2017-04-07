@@ -147,6 +147,35 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
             });
         };
 
+        ConnectionService.prototype.resendActivationCode = function(email, successCallback, errorCallback){
+
+            swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
+                "plusprivacy-website", "userLogin", function () {
+                    console.log("reconnect cbk");
+                }, function () {
+                    console.log("connect cbk");
+                });
+
+            var guestLoginForUserRegistration = function(swarm){
+                swarmHub.off("login.js", "success_guest",guestLoginForUserRegistration);
+                if(swarm.authenticated){
+                    var resendActivationCodeHandler = swarmHub.startSwarm("register.js", "sendActivationCode", email);
+                    resendActivationCodeHandler.onResponse("success", function(swarm){
+                        successCallback();
+                        swarmService.removeConnection();
+                    });
+
+                    resendActivationCodeHandler.onResponse("failed", function(swarm){
+                        errorCallback(swarm.error);
+                        swarmService.removeConnection();
+                    });
+                }
+            };
+
+            swarmHub.on("login.js", "success_guest",guestLoginForUserRegistration);
+
+        };
+
         ConnectionService.prototype.restoreUserSession = function (successCallback, failCallback) {
             var username = Cookies.get("userId");
             var sessionId = Cookies.get("sessionId");
@@ -164,21 +193,25 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
             }
             else {
                 swarmService.restoreConnection(SERVER_HOST, SERVER_PORT, failCallbackPlaceholder, failCallbackPlaceholder, function () {
-                    console.log("connectionIsDown");
-                    self.restoreUserSession(successCallback, failCallback);
+                    //console.log("connectionIsDown");
+                    //self.restoreUserSession(successCallback, failCallback);
 
                 });
                 swarmHub.on('login.js', "restoreSucceed", function restoredSuccessfully(swarm) {
                     self.getUser(successCallback);
-                    var cookieValidityDays = parseInt(Cookies.get("daysUntilCookieExpire"));
-                    Cookies.set("sessionId", swarm.meta.sessionId,{expires: cookieValidityDays});
-                    Cookies.set("userId", swarm.userId,{expires: cookieValidityDays});
                     swarmHub.off("login.js", "restoreSucceed", restoredSuccessfully);
                 });
 
+                //if server will shutdown
+                swarmHub.on('login.js', "restoreSucceed", function (swarm) {
+                    var cookieValidityDays = parseInt(Cookies.get("daysUntilCookieExpire"));
+                    Cookies.set("sessionId", swarm.meta.sessionId,{expires: cookieValidityDays});
+                    Cookies.set("userId", swarm.userId,{expires: cookieValidityDays});
+                });
+
                 swarmHub.on('login.js', "restoreFailed", function restoredSuccessfully(swarm) {
-                    Cookies.remove("userId");
-                    Cookies.remove("sessionId");
+                    //Cookies.remove("userId");
+                    //Cookies.remove("sessionId");
 
                     failCallback();
                     swarmHub.off("login.js", "restoreSucceed", restoredSuccessfully);

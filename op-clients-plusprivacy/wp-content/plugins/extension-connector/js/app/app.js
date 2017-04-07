@@ -13,8 +13,9 @@ privacyPlusApp.config(function (NotificationProvider) {
 });
 
 privacyPlusApp.filter('timeAgo', [function() {
-    return function(object) {
-        return timeSince(object);
+    return function(object)
+    {
+        return timeSince(new Date(object));
     }
 }]);
 

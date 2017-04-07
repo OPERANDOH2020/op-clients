@@ -6,6 +6,9 @@ menuApp.directive("navigation", function( userService, $window){
             navigationModel:"=",
             location:"="
         },
+        link:function(scope, element){
+            jQuery("#site-navigation ul.navbar-nav").append(element);
+        },
         templateUrl: '/wp-content/plugins/extension-connector/js/app/templates/navigation/navbar.html',
         controller: function ($scope) {
 
@@ -21,7 +24,6 @@ menuApp.directive("navigation", function( userService, $window){
                 $scope.authenticated = true;
                 $scope.user = user;
                 $scope.user['authenticated'] = true;
-                $scope.$apply();
             });
 
             userService.isAuthenticated(function(authenticated){
