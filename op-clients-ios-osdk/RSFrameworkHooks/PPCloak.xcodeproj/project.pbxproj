@@ -75,6 +75,13 @@
 		987083CC1E8E3A9D00D9F8E9 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 987083C31E8E3A9D00D9F8E9 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		987083CD1E8E409800D9F8E9 /* UILocationListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987083AE1E8E36A500D9F8E9 /* UILocationListViewCell.xib */; };
 		987083CE1E8E409D00D9F8E9 /* UILocationListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987083A91E8E34BB00D9F8E9 /* UILocationListView.xib */; };
+		9871E0851E97B27000A43695 /* UIRandomWalkMapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9871E0831E97B27000A43695 /* UIRandomWalkMapView.h */; };
+		9871E0861E97B27000A43695 /* UIRandomWalkMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9871E0841E97B27000A43695 /* UIRandomWalkMapView.m */; };
+		9871E0881E97BCB200A43695 /* UIRandomWalkMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9871E0871E97BCB200A43695 /* UIRandomWalkMapView.xib */; };
+		9871E08C1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9871E08A1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.h */; };
+		9871E08D1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9871E08B1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.m */; };
+		9871E0901E97E1A300A43695 /* RandomWalkSwizzlerSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 9871E08E1E97E1A300A43695 /* RandomWalkSwizzlerSettings.h */; };
+		9871E0911E97E1A300A43695 /* RandomWalkSwizzlerSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9871E08F1E97E1A300A43695 /* RandomWalkSwizzlerSettings.m */; };
 		98797E051E9677E900AB3A0B /* RandomWalkGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 98797E031E9677E900AB3A0B /* RandomWalkGenerator.h */; };
 		98797E061E9677E900AB3A0B /* RandomWalkGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 98797E041E9677E900AB3A0B /* RandomWalkGenerator.m */; };
 		98797E131E96864A00AB3A0B /* DictionaryRepresentableProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 98797E081E96864A00AB3A0B /* DictionaryRepresentableProtocol.h */; };
@@ -128,8 +135,8 @@
 		9895FB2F1E5AED3D00B1F56D /* LocationInputSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB2D1E5AED3D00B1F56D /* LocationInputSwizzler.m */; };
 		9895FB331E5B1A2A00B1F56D /* UILocationSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB311E5B1A2A00B1F56D /* UILocationSettingsViewController.h */; };
 		9895FB341E5B1A2A00B1F56D /* UILocationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB321E5B1A2A00B1F56D /* UILocationSettingsViewController.m */; };
-		9895FB391E5B337A00B1F56D /* LocationInputSwizzlerSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB371E5B337A00B1F56D /* LocationInputSwizzlerSettings.h */; };
-		9895FB3A1E5B337A00B1F56D /* LocationInputSwizzlerSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */; };
+		9895FB391E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB371E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.h */; };
+		9895FB3A1E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB381E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.m */; };
 		9895FB491E5B3CB200B1F56D /* UIWindow+RSHookHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9895FB471E5B3CB200B1F56D /* UIWindow+RSHookHandle.h */; };
 		9895FB4A1E5B3CB200B1F56D /* UIWindow+RSHookHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */; };
 		9896F4521E891F7000BA0D6E /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9896F4511E891F7000BA0D6E /* PPApiHooks.framework */; };
@@ -248,6 +255,13 @@
 		987083C11E8E3A9D00D9F8E9 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		987083C21E8E3A9D00D9F8E9 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		987083C31E8E3A9D00D9F8E9 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		9871E0831E97B27000A43695 /* UIRandomWalkMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIRandomWalkMapView.h; path = Views/UIRandomWalkMapView/UIRandomWalkMapView.h; sourceTree = "<group>"; };
+		9871E0841E97B27000A43695 /* UIRandomWalkMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIRandomWalkMapView.m; path = Views/UIRandomWalkMapView/UIRandomWalkMapView.m; sourceTree = "<group>"; };
+		9871E0871E97BCB200A43695 /* UIRandomWalkMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIRandomWalkMapView.xib; path = Views/UIRandomWalkMapView/UIRandomWalkMapView.xib; sourceTree = "<group>"; };
+		9871E08A1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIRandomWalkLocationSettingsViewController.h; path = Views/UIRandomWalkLocationSettingsViewController/UIRandomWalkLocationSettingsViewController.h; sourceTree = "<group>"; };
+		9871E08B1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIRandomWalkLocationSettingsViewController.m; path = Views/UIRandomWalkLocationSettingsViewController/UIRandomWalkLocationSettingsViewController.m; sourceTree = "<group>"; };
+		9871E08E1E97E1A300A43695 /* RandomWalkSwizzlerSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomWalkSwizzlerSettings.h; path = Models/LocationInputSwizzlerSettings/RandomWalkSwizzlerSettings.h; sourceTree = "<group>"; };
+		9871E08F1E97E1A300A43695 /* RandomWalkSwizzlerSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RandomWalkSwizzlerSettings.m; path = Models/LocationInputSwizzlerSettings/RandomWalkSwizzlerSettings.m; sourceTree = "<group>"; };
 		98797E031E9677E900AB3A0B /* RandomWalkGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomWalkGenerator.h; path = InputSwizzling/LocationInputSwizzler/RandomWalkGenerator/RandomWalkGenerator.h; sourceTree = "<group>"; };
 		98797E041E9677E900AB3A0B /* RandomWalkGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RandomWalkGenerator.m; path = InputSwizzling/LocationInputSwizzler/RandomWalkGenerator/RandomWalkGenerator.m; sourceTree = "<group>"; };
 		98797E081E96864A00AB3A0B /* DictionaryRepresentableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryRepresentableProtocol.h; sourceTree = "<group>"; };
@@ -304,8 +318,8 @@
 		9895FB2D1E5AED3D00B1F56D /* LocationInputSwizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationInputSwizzler.m; path = InputSwizzling/LocationInputSwizzler/LocationInputSwizzler.m; sourceTree = "<group>"; };
 		9895FB311E5B1A2A00B1F56D /* UILocationSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILocationSettingsViewController.h; path = Views/UILocationSettingsViewController/UILocationSettingsViewController.h; sourceTree = "<group>"; };
 		9895FB321E5B1A2A00B1F56D /* UILocationSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILocationSettingsViewController.m; path = Views/UILocationSettingsViewController/UILocationSettingsViewController.m; sourceTree = "<group>"; };
-		9895FB371E5B337A00B1F56D /* LocationInputSwizzlerSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationInputSwizzlerSettings.h; path = Models/LocationInputSwizzlerSettings/LocationInputSwizzlerSettings.h; sourceTree = "<group>"; };
-		9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationInputSwizzlerSettings.m; path = Models/LocationInputSwizzlerSettings/LocationInputSwizzlerSettings.m; sourceTree = "<group>"; };
+		9895FB371E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDefinedLocationsSwizzlerSettings.h; path = Models/LocationInputSwizzlerSettings/UserDefinedLocationsSwizzlerSettings.h; sourceTree = "<group>"; };
+		9895FB381E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserDefinedLocationsSwizzlerSettings.m; path = Models/LocationInputSwizzlerSettings/UserDefinedLocationsSwizzlerSettings.m; sourceTree = "<group>"; };
 		9895FB471E5B3CB200B1F56D /* UIWindow+RSHookHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWindow+RSHookHandle.h"; path = "Views/UIWindow+RSHookHandle/UIWindow+RSHookHandle.h"; sourceTree = "<group>"; };
 		9895FB481E5B3CB200B1F56D /* UIWindow+RSHookHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+RSHookHandle.m"; path = "Views/UIWindow+RSHookHandle/UIWindow+RSHookHandle.m"; sourceTree = "<group>"; };
 		9896F4511E891F7000BA0D6E /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
@@ -437,8 +451,10 @@
 		9825075D1E5DD10C00EDB8A2 /* LocationInputSwizzlerSettings */ = {
 			isa = PBXGroup;
 			children = (
-				9895FB371E5B337A00B1F56D /* LocationInputSwizzlerSettings.h */,
-				9895FB381E5B337A00B1F56D /* LocationInputSwizzlerSettings.m */,
+				9895FB371E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.h */,
+				9895FB381E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.m */,
+				9871E08E1E97E1A300A43695 /* RandomWalkSwizzlerSettings.h */,
+				9871E08F1E97E1A300A43695 /* RandomWalkSwizzlerSettings.m */,
 			);
 			name = LocationInputSwizzlerSettings;
 			sourceTree = "<group>";
@@ -671,6 +687,25 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		9871E0821E97B1E100A43695 /* UIRandomWalkMapView */ = {
+			isa = PBXGroup;
+			children = (
+				9871E0831E97B27000A43695 /* UIRandomWalkMapView.h */,
+				9871E0841E97B27000A43695 /* UIRandomWalkMapView.m */,
+				9871E0871E97BCB200A43695 /* UIRandomWalkMapView.xib */,
+			);
+			name = UIRandomWalkMapView;
+			sourceTree = "<group>";
+		};
+		9871E0891E97DF1700A43695 /* UIRandomWalkLocationSettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9871E08A1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.h */,
+				9871E08B1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.m */,
+			);
+			name = UIRandomWalkLocationSettingsViewController;
+			sourceTree = "<group>";
+		};
 		98797E021E96778200AB3A0B /* RandomWalkGenerator */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,6 +794,8 @@
 		98804EF31E4DE258009E6748 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9871E0891E97DF1700A43695 /* UIRandomWalkLocationSettingsViewController */,
+				9871E0821E97B1E100A43695 /* UIRandomWalkMapView */,
 				985418FD1E9501C20004370F /* UILocationSettingsView */,
 				986AE9B61E93BEA900AF4E0A /* UILocationStatusViewController */,
 				986AE9B41E93BD5C00AF4E0A /* Storyboards */,
@@ -1271,6 +1308,7 @@
 				987F83811E3242BC0058633C /* SupervisorProtocols.h in Headers */,
 				98DF60F81E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h in Headers */,
 				987083C91E8E3A9D00D9F8E9 /* TPKeyboardAvoidingTableView.h in Headers */,
+				9871E08C1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.h in Headers */,
 				9831E29F1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.h in Headers */,
 				988716ED1E6D81CD005FAA45 /* UIViolationReportsSection.h in Headers */,
 				986AE9C51E93DBA800AF4E0A /* CommonLocationViewModels.h in Headers */,
@@ -1303,12 +1341,13 @@
 				9888B1741E6C625900D783AB /* PPReportsSourcesBundle.h in Headers */,
 				98F7A6891E76D0C000FF635A /* PPEvent.h in Headers */,
 				98584F411D3F9E18009FB89F /* PPCloak.h in Headers */,
+				9871E0851E97B27000A43695 /* UIRandomWalkMapView.h in Headers */,
 				98797E1C1E96864A00AB3A0B /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h in Headers */,
 				98ECE47C1E422E720042A262 /* MicrophoneInputSupervisor.h in Headers */,
 				98F7A6931E76E48100FF635A /* PPEventDispatcher+Internal.h in Headers */,
 				98804F131E4E26DB009E6748 /* UIEncapsulatorViewController.h in Headers */,
 				98797E051E9677E900AB3A0B /* RandomWalkGenerator.h in Headers */,
-				9895FB391E5B337A00B1F56D /* LocationInputSwizzlerSettings.h in Headers */,
+				9895FB391E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.h in Headers */,
 				983C3FB41E8D356600014F25 /* UILocationPinningView.h in Headers */,
 				98F1FF671E713B2C00A664AB /* LocationHTTPAnalyzer.h in Headers */,
 				98797E141E96864A00AB3A0B /* PlistReportsStorage.h in Headers */,
@@ -1317,6 +1356,7 @@
 				98DF61021E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.h in Headers */,
 				98ECE4771E421AFD0042A262 /* CameraInputSupervisor.h in Headers */,
 				9831E2A91E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.h in Headers */,
+				9871E0901E97E1A300A43695 /* RandomWalkSwizzlerSettings.h in Headers */,
 				98CEF2691E5EEE84002C2145 /* UIUsageViewController.h in Headers */,
 				9895FB491E5B3CB200B1F56D /* UIWindow+RSHookHandle.h in Headers */,
 				98804F051E4DFD47009E6748 /* PPFlowBuilder.h in Headers */,
@@ -1426,6 +1466,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9871E0881E97BCB200A43695 /* UIRandomWalkMapView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1477,7 +1518,7 @@
 				987083C61E8E3A9D00D9F8E9 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				988716F31E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m in Sources */,
 				9831E2A51E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.m in Sources */,
-				9895FB3A1E5B337A00B1F56D /* LocationInputSwizzlerSettings.m in Sources */,
+				9895FB3A1E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.m in Sources */,
 				98804F0B1E4E0E7C009E6748 /* UIPPOptionsViewController.m in Sources */,
 				986AE9BA1E93BEC700AF4E0A /* UILocationStatusViewController.m in Sources */,
 				98DF60F91E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h.m in Sources */,
@@ -1516,6 +1557,7 @@
 				9831E2AA1E6DA20F00A5FE0A /* UIAccessFrequencyViolationReportsSection.m in Sources */,
 				98ECE47D1E422E720042A262 /* MicrophoneInputSupervisor.m in Sources */,
 				988A15071E40AA7F00AABD43 /* CommonUtils.m in Sources */,
+				9871E0911E97E1A300A43695 /* RandomWalkSwizzlerSettings.m in Sources */,
 				98ECE46E1E41F8150042A262 /* TouchIdSupervisor.m in Sources */,
 				98F1FF701E71508000A664AB /* PrivacyLevelAbuseDetector.m in Sources */,
 				98804F011E4DF1D8009E6748 /* UIViolationReportsViewController.m in Sources */,
@@ -1534,9 +1576,11 @@
 				98331C831E56F0D7005D3A84 /* NSBundle+RSFrameworkHooks.m in Sources */,
 				98FE5C231E92641B00096744 /* UILocationIndexPinView.m in Sources */,
 				9863E8FE1DEC6F0D0095CA30 /* JRSwizzle.m in Sources */,
+				9871E08D1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.m in Sources */,
 				988716EE1E6D81CD005FAA45 /* UIViolationReportsSection.m in Sources */,
 				98F7A68A1E76D0C000FF635A /* PPEvent.m in Sources */,
 				982175CC1E3FA0A700495627 /* ProximityInputSupervisor.m in Sources */,
+				9871E0861E97B27000A43695 /* UIRandomWalkMapView.m in Sources */,
 				98DF60FE1E65D5BB006EF2B3 /* PPPrivacyLevelViolationReport.m in Sources */,
 				98804EFB1E4DEB57009E6748 /* ViolationReportCell.m in Sources */,
 				98281D061E696FD100373369 /* PPAccessFrequencyViolationReport.m in Sources */,

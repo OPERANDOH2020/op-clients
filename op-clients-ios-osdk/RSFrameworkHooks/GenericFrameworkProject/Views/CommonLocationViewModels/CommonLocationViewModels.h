@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "LocationInputSwizzlerSettings.h"
+#import "UserDefinedLocationsSwizzlerSettings.h"
 
 @interface CommonLocationViewCallbacks : NSObject
 @property (strong, nonatomic) void (^ _Nullable onDeleteAll)();
@@ -26,4 +26,4 @@
 typedef void(^CurrentActiveLocationIndexChangedCallback)(NSInteger newIndex);
 typedef void(^ActiveLocationChangeBlockArgument)(CurrentActiveLocationIndexChangedCallback callback);
 
-typedef LocationInputSwizzlerSettings* _Nonnull (^GetCurrentLocationSettingsCallback)();
+typedef UserDefinedLocationsSwizzlerSettings* _Nonnull (^GetCurrentLocationSettingsCallback)();

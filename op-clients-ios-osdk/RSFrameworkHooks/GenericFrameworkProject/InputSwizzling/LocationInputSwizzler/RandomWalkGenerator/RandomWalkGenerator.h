@@ -20,5 +20,6 @@
 
 @interface RandomWalkGenerator : NSObject
 
+-(NSArray<CLLocation*>*)generateRandomWalkInCircle:(RandomWalkBoundCircle*)circle;
 
 @end

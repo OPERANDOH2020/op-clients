@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,13 +27,20 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xvi-65-jC5">
+                        <rect key="frame" x="0.0" y="202" width="195" height="30"/>
+                        <color key="backgroundColor" red="0.16862745098039217" green="0.66274509803921566" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="3i6-4N-LkH"/>
+                        </constraints>
+                    </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftI-cq-eCL">
                         <rect key="frame" x="75.5" y="183" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="PQl-3c-OM1"/>
                             <constraint firstAttribute="height" constant="44" id="Tb0-0A-WWn"/>
                         </constraints>
-                        <state key="normal" image="close"/>
+                        <state key="normal" image="tabCloseButton"/>
                         <connections>
                             <action selector="didPressClose:" destination="gTV-IL-0wX" eventType="touchUpInside" id="bkU-pY-nZn"/>
                         </connections>
@@ -46,10 +52,13 @@
                 <constraint firstItem="GLt-lD-hQF" firstAttribute="top" secondItem="yHE-Ff-EF9" secondAttribute="bottom" constant="5" id="Eq1-W4-cJ2"/>
                 <constraint firstItem="yHE-Ff-EF9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="JpM-Ei-cOs"/>
                 <constraint firstAttribute="bottom" secondItem="ftI-cq-eCL" secondAttribute="bottom" constant="5" id="KYa-Tb-B9Z"/>
+                <constraint firstAttribute="trailing" secondItem="xvi-65-jC5" secondAttribute="trailing" id="P88-IV-yVw"/>
+                <constraint firstItem="xvi-65-jC5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PZo-SL-4vF"/>
                 <constraint firstAttribute="trailing" secondItem="yHE-Ff-EF9" secondAttribute="trailing" constant="5" id="STn-R3-0kt"/>
                 <constraint firstItem="GLt-lD-hQF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="YTV-W0-JQQ"/>
                 <constraint firstAttribute="trailing" secondItem="GLt-lD-hQF" secondAttribute="trailing" id="aLF-UV-wCH"/>
                 <constraint firstAttribute="bottom" secondItem="GLt-lD-hQF" secondAttribute="bottom" id="aVN-xm-5zE"/>
+                <constraint firstAttribute="bottom" secondItem="xvi-65-jC5" secondAttribute="bottom" id="kJr-bd-2JQ"/>
                 <constraint firstItem="yHE-Ff-EF9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yCc-4Y-giv"/>
             </constraints>
             <size key="customSize" width="195" height="232"/>
@@ -61,6 +70,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="close" width="32" height="32"/>
+        <image name="tabCloseButton" width="38" height="38"/>
     </resources>
 </document>

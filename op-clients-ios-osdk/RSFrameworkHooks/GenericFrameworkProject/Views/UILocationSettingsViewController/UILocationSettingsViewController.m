@@ -46,7 +46,7 @@
     CommonLocationViewCallbacks *locationPinningViewCallbacks = [self createLocationPinningViewCallbacks];
     CommonLocationViewCallbacks *locationListViewCallbacks = [self createLocationListCallbacks];
     
-    LocationInputSwizzlerSettings *currentSettings = model.getCallback();
+    UserDefinedLocationsSwizzlerSettings *currentSettings = model.getCallback();
     
     CommonLocationViewModel *locationListViewModel = [[CommonLocationViewModel alloc] initWithLocations:currentSettings.locations editable:YES];
     
@@ -131,7 +131,7 @@
     UILocationSettingsViewSettings *settings = self.locationSettingsView.currentSettings;
     NSError *error = nil;
     
-    LocationInputSwizzlerSettings *swizzlerSettings = [LocationInputSwizzlerSettings createWithLocations:self.locationListView.currentLocations enabled:settings.enabled cycle:settings.cycle changeInterval:settings.changeInterval error:&error];
+    UserDefinedLocationsSwizzlerSettings *swizzlerSettings = [UserDefinedLocationsSwizzlerSettings createWithLocations:self.locationListView.currentLocations enabled:settings.enabled cycle:settings.cycle changeInterval:settings.changeInterval error:&error];
     
     if (error) {
         [CommonViewUtils showOkAlertWithMessage:error.localizedDescription completion:nil];

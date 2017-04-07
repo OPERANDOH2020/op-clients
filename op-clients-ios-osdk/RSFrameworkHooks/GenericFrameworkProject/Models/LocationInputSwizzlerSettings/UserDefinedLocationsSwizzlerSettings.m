@@ -1,12 +1,12 @@
 //
-//  LocationInputSwizzlerSettings.m
+//  UserDefinedLocationsSwizzlerSettings.m
 //  RSFrameworksHook
 //
 //  Created by Costin Andronache on 2/20/17.
 //  Copyright © 2017 RomSoft. All rights reserved.
 //
 
-#import "LocationInputSwizzlerSettings.h"
+#import "UserDefinedLocationsSwizzlerSettings.h"
 
 #pragma mark -
 
@@ -16,7 +16,7 @@ static NSString *kOverrideLocationLongitudesKey = @"kOverrideLocationLongitudesK
 static NSString *kOverrideLocationCycleKey = @"kOverrideLocationCycleKey";
 static NSString *kOverrideLocationChangeInterval = @"kOverrideLocationChangeInterval";
 
-@interface LocationInputSwizzlerSettings()
+@interface UserDefinedLocationsSwizzlerSettings()
 
 @property (readwrite, nonatomic, strong) NSArray<CLLocation*> *locations;
 @property (readwrite, assign, nonatomic) BOOL enabled;
@@ -26,9 +26,9 @@ static NSString *kOverrideLocationChangeInterval = @"kOverrideLocationChangeInte
 
 static NSString *kErrorDomain = @"com.plusPrivacy.LocationSettings";
 
-@implementation LocationInputSwizzlerSettings
+@implementation UserDefinedLocationsSwizzlerSettings
 
-+(LocationInputSwizzlerSettings *)createWithLocations:(NSArray<CLLocation *> *)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval error:(NSError *__autoreleasing  _Nullable * _Nullable)error{
++(UserDefinedLocationsSwizzlerSettings *)createWithLocations:(NSArray<CLLocation *> *)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval error:(NSError *__autoreleasing  _Nullable * _Nullable)error{
     
     if (enabled && locations.count == 0) {
         if (error) {
@@ -44,7 +44,7 @@ static NSString *kErrorDomain = @"com.plusPrivacy.LocationSettings";
         return nil;
     }
     
-    LocationInputSwizzlerSettings *settings = [[LocationInputSwizzlerSettings alloc] init];
+    UserDefinedLocationsSwizzlerSettings *settings = [[UserDefinedLocationsSwizzlerSettings alloc] init];
     settings.enabled = enabled;
     settings.cycle = cycle;
     settings.locations = locations;
@@ -53,9 +53,9 @@ static NSString *kErrorDomain = @"com.plusPrivacy.LocationSettings";
     
 }
 
-+(LocationInputSwizzlerSettings *)createFromUserDefaults:(NSUserDefaults*)defaults error:(NSError *__autoreleasing  _Nullable * _Nullable)error {
++(UserDefinedLocationsSwizzlerSettings *)createFromUserDefaults:(NSUserDefaults*)defaults error:(NSError *__autoreleasing  _Nullable * _Nullable)error {
     
-    LocationInputSwizzlerSettings *settings = [[LocationInputSwizzlerSettings alloc] init];
+    UserDefinedLocationsSwizzlerSettings *settings = [[UserDefinedLocationsSwizzlerSettings alloc] init];
     
     NSArray<NSNumber*> *latitudes = [defaults valueForKey:kOverrideLocationLatitudesKey];
     NSArray<NSNumber*> *longitudes = [defaults valueForKey:kOverrideLocationLongitudesKey];

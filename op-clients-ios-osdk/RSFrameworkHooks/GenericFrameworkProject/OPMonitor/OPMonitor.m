@@ -146,11 +146,11 @@ static void __attribute__((constructor)) initialize(void){
     __weak typeof(self) weakSelf = self;
     
     LocationSettingsModel *locSettingsModel = [[LocationSettingsModel alloc] init];
-    locSettingsModel.getCallback = ^LocationInputSwizzlerSettings * _Nonnull{
+    locSettingsModel.getCallback = ^UserDefinedLocationsSwizzlerSettings * _Nonnull{
         return weakSelf.locationInputSwizzler.currentSettings;
     };
     
-    locSettingsModel.saveCallback = ^void(LocationInputSwizzlerSettings *settings) {
+    locSettingsModel.saveCallback = ^void(UserDefinedLocationsSwizzlerSettings *settings) {
         [weakSelf.locationInputSwizzler applyNewSettings:settings];
         [settings synchronizeToUserDefaults: [NSUserDefaults standardUserDefaults]];
         [CommonViewUtils showOkAlertWithMessage:@"Settings saved" completion:nil];
@@ -287,11 +287,11 @@ static void __attribute__((constructor)) initialize(void){
 
 -(void)setupLocationInputSwizzlerUsingSupervisor:(LocationInputSupervisor*)supervisor {
     NSError *error = nil;
-    LocationInputSwizzlerSettings *defaultLocationSettings = [LocationInputSwizzlerSettings createFromUserDefaults: [NSUserDefaults standardUserDefaults] error:&error];
+    UserDefinedLocationsSwizzlerSettings *defaultLocationSettings = [UserDefinedLocationsSwizzlerSettings createFromUserDefaults: [NSUserDefaults standardUserDefaults] error:&error];
     
     if (error) {
         //
-        defaultLocationSettings = [LocationInputSwizzlerSettings createWithLocations:@[] enabled:NO cycle:NO changeInterval:1.0 error:nil];
+        defaultLocationSettings = [UserDefinedLocationsSwizzlerSettings createWithLocations:@[] enabled:NO cycle:NO changeInterval:1.0 error:nil];
     }
     
     self.locationInputSwizzler = [[LocationInputSwizzler alloc] init];

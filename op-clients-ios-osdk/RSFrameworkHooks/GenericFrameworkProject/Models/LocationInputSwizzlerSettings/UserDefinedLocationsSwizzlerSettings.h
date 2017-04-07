@@ -1,5 +1,5 @@
 //
-//  LocationInputSwizzlerSettings.h
+//  UserDefinedLocationsSwizzlerSettings.h
 //  RSFrameworksHook
 //
 //  Created by Costin Andronache on 2/20/17.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface LocationInputSwizzlerSettings : NSObject
+@interface UserDefinedLocationsSwizzlerSettings : NSObject
 
 @property (readonly, nonatomic) NSArray<CLLocation*>* _Nonnull locations;
 @property (readonly, nonatomic) BOOL enabled;
@@ -18,7 +18,7 @@
 
 -(void)synchronizeToUserDefaults:(NSUserDefaults* _Nonnull)defaults;
 
-+(LocationInputSwizzlerSettings* _Nullable)createWithLocations:(NSArray<CLLocation*>* _Nonnull)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval error:(NSError*_Nullable*_Nullable)error;
++(UserDefinedLocationsSwizzlerSettings* _Nullable)createWithLocations:(NSArray<CLLocation*>* _Nonnull)locations enabled:(BOOL)enabled cycle:(BOOL)cycle changeInterval:(NSTimeInterval)changeInterval error:(NSError*_Nullable*_Nullable)error;
 
-+(LocationInputSwizzlerSettings* _Nullable)createFromUserDefaults:(NSUserDefaults* _Nonnull)defaults error:(NSError* _Nullable *_Nullable)error;
++(UserDefinedLocationsSwizzlerSettings* _Nullable)createFromUserDefaults:(NSUserDefaults* _Nonnull)defaults error:(NSError* _Nullable *_Nullable)error;
 @end

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LocationInputSwizzlerSettings.h"
+#import "UserDefinedLocationsSwizzlerSettings.h"
 #import "CommonLocationViewModels.h"
 
 @interface UILocationStatusModel: NSObject
-@property (strong, nonatomic) LocationInputSwizzlerSettings *currentSettings;
+@property (strong, nonatomic) UserDefinedLocationsSwizzlerSettings *currentSettings;
 @property (assign, nonatomic) NSInteger currentActiveLocationIndex;
 @property (strong, nonatomic) ActiveLocationChangeBlockArgument registerChangeCallback;
 @property (strong, nonatomic) ActiveLocationChangeBlockArgument removeChangeCallback;

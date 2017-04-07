@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LocationInputSwizzlerSettings.h"
+#import "UserDefinedLocationsSwizzlerSettings.h"
 #import "CommonLocationViewModels.h"
 
-typedef void(^LocationSettingsChangedCallback)(LocationInputSwizzlerSettings* _Nullable);
+typedef void(^LocationSettingsChangedCallback)(UserDefinedLocationsSwizzlerSettings* _Nullable);
 
 
 @interface LocationSettingsModel: NSObject

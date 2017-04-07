@@ -24,7 +24,7 @@
 #pragma mark -
 
 @interface LocationInputSwizzler() <CLLocationManagerDelegate>
-@property (strong, nonatomic) LocationInputSwizzlerSettings *currentSettings;
+@property (strong, nonatomic) UserDefinedLocationsSwizzlerSettings *currentSettings;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber*, WeakDelegateHolder*> *delegatePerInstance;
 @property (strong, nonatomic) NSMutableArray<CurrentActiveLocationIndexChangedCallback> *callbacksToNotifyChange;
 @property (strong, nonatomic) LocationsCallback whenLocationsAreRequested;
@@ -35,7 +35,7 @@
 
 @implementation LocationInputSwizzler
 
--(void)setupWithSettings:(LocationInputSwizzlerSettings *)settings eventsDispatcher:(PPEventDispatcher *)eventsDispatcher whenLocationsAreRequested:(LocationsCallback)whenLocationsAreRequested {
+-(void)setupWithSettings:(UserDefinedLocationsSwizzlerSettings *)settings eventsDispatcher:(PPEventDispatcher *)eventsDispatcher whenLocationsAreRequested:(LocationsCallback)whenLocationsAreRequested {
     
     self.callbacksToNotifyChange = [[NSMutableArray alloc] init];
     
@@ -88,7 +88,7 @@
 }
 
 
--(void)applyNewSettings:(LocationInputSwizzlerSettings *)settings {
+-(void)applyNewSettings:(UserDefinedLocationsSwizzlerSettings *)settings {
     self.currentSettings = settings;
     [self.timer invalidate];
     self.indexOfCurrentSentLocation = 0;
