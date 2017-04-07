@@ -64,9 +64,6 @@
 		AD42FB731DF59D2D0034FA99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB6D1DF59D2D0034FA99 /* ViewController.swift */; };
 		AD42FB7C1DF59DCB0034FA99 /* ACSwarmClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB7B1DF59DCB0034FA99 /* ACSwarmClientHelper.swift */; };
 		AD42FB801DF59E920034FA99 /* ACNetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB7F1DF59E920034FA99 /* ACNetworkingConstants.swift */; };
-		AD6CD9021E94C319000BA3B4 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */; };
-		AD6CD9031E94C31F000BA3B4 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */; };
-		AD6CD9041E94C31F000BA3B4 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD709F461E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD709F451E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift */; };
 		AD798BCE1E8B9BCC00EA5226 /* Dosis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD798BCC1E8B9BCC00EA5226 /* Dosis-Medium.otf */; };
 		AD798BCF1E8B9BCC00EA5226 /* Dosis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD798BCD1E8B9BCC00EA5226 /* Dosis-SemiBold.otf */; };
@@ -97,6 +94,9 @@
 		ADB8D0211E93A2A0008926F6 /* linkedin-iOS.js in Resources */ = {isa = PBXBuildFile; fileRef = ADB8D0201E93A2A0008926F6 /* linkedin-iOS.js */; };
 		ADBBCAF91E1BCD35007A7686 /* ACMathOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */; };
 		ADBBCAFD1E1BCD87007A7686 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */; };
+		ADCC1E4E1E97890D00583E5C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */; };
+		ADCC1E4F1E97891F00583E5C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */; };
+		ADCC1E501E97891F00583E5C /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ADE060DC1E1D3A3E00ACC00E /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060DB1E1D3A3E00ACC00E /* UIColor+Utils.swift */; };
 		ADE060E11E1D445700ACC00E /* UIQuestionnaireTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060E01E1D445700ACC00E /* UIQuestionnaireTableViewController.swift */; };
 		ADE060E41E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060E31E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift */; };
@@ -135,7 +135,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AD6CD9041E94C31F000BA3B4 /* SwarmClient.framework in Embed Frameworks */,
+				ADCC1E501E97891F00583E5C /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,7 +207,6 @@
 		AD42FB781DF59D690034FA99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD42FB7B1DF59DCB0034FA99 /* ACSwarmClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSwarmClientHelper.swift; sourceTree = "<group>"; };
 		AD42FB7F1DF59E920034FA99 /* ACNetworkingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNetworkingConstants.swift; sourceTree = "<group>"; };
-		AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		AD709F451E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadialGradientViewPulsarConfiguration.swift; sourceTree = "<group>"; };
 		AD798BCC1E8B9BCC00EA5226 /* Dosis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.otf"; sourceTree = "<group>"; };
 		AD798BCD1E8B9BCC00EA5226 /* Dosis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-SemiBold.otf"; sourceTree = "<group>"; };
@@ -236,6 +235,7 @@
 		ADB8D0201E93A2A0008926F6 /* linkedin-iOS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "linkedin-iOS.js"; sourceTree = "<group>"; };
 		ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACMathOperator.swift; sourceTree = "<group>"; };
 		ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
+		ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		ADE060DB1E1D3A3E00ACC00E /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		ADE060E01E1D445700ACC00E /* UIQuestionnaireTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIQuestionnaireTableViewController.swift; sourceTree = "<group>"; };
 		ADE060E31E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIQuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
@@ -262,9 +262,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD6CD9021E94C319000BA3B4 /* SwarmClient.framework in Frameworks */,
+				ADCC1E4E1E97890D00583E5C /* SwarmClient.framework in Frameworks */,
 				AD291BEA1E5C6E9F00F158E0 /* QuartzCore.framework in Frameworks */,
-				AD6CD9031E94C31F000BA3B4 /* SwarmClient.framework in Frameworks */,
+				ADCC1E4F1E97891F00583E5C /* SwarmClient.framework in Frameworks */,
 				AD1FCD3B1E0801D5001DADD8 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,7 +1029,7 @@
 		ADEDBBE71E5B0F7800C220B0 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */,
+				ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */,
 				AD9A5D671E7BE55600A31865 /* XLActionController */,
 				AD9A5D5D1E79459C00A31865 /* ScrollableOverlay */,
 				AD291BFC1E5DCE9F00F158E0 /* RSFBSecure */,

@@ -24,6 +24,15 @@ class ACSwarmClientHelper: NSObject, SwarmClientProtocol {
     }
     
     // MARK: - Public Methods
+    func closeConnection() {
+        swarmClient.disconnect()
+    }
+    
+    func logout(completionHandler: @escaping (NSError?, [Any]?) -> Void) {
+        setCallbacks(withCompletionHandler: completionHandler)
+        self.swarmClient.startSwarm(ACSwarmName.login.rawValue, phase: ACSwarmPhase.start.rawValue, ctor: ACLoginConstructor.userLogout.rawValue, arguments: [])
+    }
+    
     func loginWithUsername(username: String, password: String, completionHandler: @escaping (NSError?, [Any]?) -> Void) {
         setCallbacks(withCompletionHandler: completionHandler)
         

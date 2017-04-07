@@ -43,14 +43,14 @@ class ACSwarmManager: NSObject {
         return AMRecommendedSettings(dictionary: dictionary)
     }
     
-    // MARK: - Public Methods
-    func retrieveConfiguration(forUser username: String, withPassword password: String, completionHandler: @escaping (NSError?, AMPrivacySettings?, AMRecommendedSettings?) -> Void) {
+    private func getConfiguration(forUser username: String, withPassword password: String, completionHandler: @escaping (NSError?, AMPrivacySettings?, AMRecommendedSettings?) -> Void) {
         loginWithUsername(username: username, password: password) {[weak self] (error, _) in
             guard let strongSelf = self else { completionHandler(error, nil, nil); return }
             if error == nil {
                 strongSelf.getOSPSettings(completionHandler: {(error, settings) in
                     if error == nil {
                         strongSelf.getOSPSettingsRecommendedParameters(completionHandler: { (error, recSettings) in
+                            strongSelf.closeServerConnection()
                             DispatchQueue.main.async {
                                 completionHandler(error, settings, recSettings)
                             }
@@ -62,6 +62,17 @@ class ACSwarmManager: NSObject {
             } else {
                 completionHandler(error, nil, nil)
             }
+        }
+    }
+    
+    // MARK: - Public Methods
+    func retrieveConfiguration(forUser username: String, withPassword password: String, completionHandler: @escaping (NSError?, AMPrivacySettings?, AMRecommendedSettings?) -> Void) {
+        getConfiguration(forUser: username, withPassword: password) { [weak self] (error, privacySettings, recommendedSettings) in
+            DispatchQueue.main.async {
+                completionHandler(error, privacySettings, recommendedSettings)
+            }
+            guard let strongSelf = self else { return }
+            strongSelf.logout()
         }
     }
     
@@ -83,5 +94,16 @@ class ACSwarmManager: NSObject {
             let recommendedParameters = self.extractRecommendedParameters(error: error, data: data)
             completionHandler(error, recommendedParameters)
         }
+    }
+    
+    func logout() {
+        swarmClientHelper.logout { [weak self] (error, data) in
+            guard let strongSelf = self else { return }
+            strongSelf.closeServerConnection()
+        }
+    }
+    
+    func closeServerConnection() {
+        swarmClientHelper.closeConnection()
     }
 }
