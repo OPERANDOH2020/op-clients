@@ -15,12 +15,17 @@ import UIKit
 public let SwarmClientErrorDomain = "operando.error.domain"
 
 public enum SwarmClientErrorCode: Int {
-    case invalidURLError   = 10001
+    case invalidURLError            = 10001
+    case internetConnectionError    = 10002
 }
 
 class SwarmClientErrorGenerator: NSObject {
 
     class func getInvalidURLError() -> NSError {
         return NSError(domain: SwarmClientErrorDomain, code: SwarmClientErrorCode.invalidURLError.rawValue, userInfo: nil)
+    }
+    
+    class func getInternetConnectionError() -> NSError {
+        return NSError(domain: SwarmClientErrorDomain, code: SwarmClientErrorCode.internetConnectionError.rawValue, userInfo: nil)
     }
 }

@@ -86,7 +86,9 @@ open class SwarmClient: NSObject {
     
     fileprivate func createSocket() {
         didConnect = false
-        if let url = URL(string: connectionURL) {
+        if !NetworkReachability.hasInternetConnection() {
+            delegate?.didFailedToCreateSocket(SwarmClientErrorGenerator.getInternetConnectionError())
+        } else if let url = URL(string: connectionURL) {
             initSocket(url)
         } else {
             delegate?.didFailedToCreateSocket(SwarmClientErrorGenerator.getInvalidURLError())
@@ -145,4 +147,8 @@ open class SwarmClient: NSObject {
         self.socketIO?.disconnect()
     }
     
+    public func disconnect() {
+        self.didConnect = false
+        self.socketIO?.disconnect()
+    }
 }
