@@ -72,7 +72,7 @@ class ACSwarmManager: NSObject {
                 completionHandler(error, privacySettings, recommendedSettings)
             }
             guard let strongSelf = self else { return }
-            strongSelf.logout()
+            strongSelf.closeServerConnection()
         }
     }
     

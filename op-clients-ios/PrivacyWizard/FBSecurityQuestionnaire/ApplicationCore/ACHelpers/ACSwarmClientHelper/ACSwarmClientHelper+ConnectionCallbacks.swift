@@ -25,7 +25,7 @@ extension ACSwarmClientHelper {
         removeCallbacksForSwarmCalls()
     }
     
-    public func socketDidDisconnect() {
+    public func socketDidDisconnect(_ data: [Any]) {
         swarmClientActions.whenSocketDidDisconnect?()
     }
 }

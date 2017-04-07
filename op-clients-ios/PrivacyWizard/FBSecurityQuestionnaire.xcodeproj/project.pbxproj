@@ -94,9 +94,9 @@
 		ADB8D0211E93A2A0008926F6 /* linkedin-iOS.js in Resources */ = {isa = PBXBuildFile; fileRef = ADB8D0201E93A2A0008926F6 /* linkedin-iOS.js */; };
 		ADBBCAF91E1BCD35007A7686 /* ACMathOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */; };
 		ADBBCAFD1E1BCD87007A7686 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */; };
-		ADCC1E4E1E97890D00583E5C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */; };
-		ADCC1E4F1E97891F00583E5C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */; };
-		ADCC1E501E97891F00583E5C /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ADCC1E521E97950600583E5C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E511E97950600583E5C /* SwarmClient.framework */; };
+		ADCC1E531E97950F00583E5C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E511E97950600583E5C /* SwarmClient.framework */; };
+		ADCC1E541E97950F00583E5C /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E511E97950600583E5C /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ADE060DC1E1D3A3E00ACC00E /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060DB1E1D3A3E00ACC00E /* UIColor+Utils.swift */; };
 		ADE060E11E1D445700ACC00E /* UIQuestionnaireTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060E01E1D445700ACC00E /* UIQuestionnaireTableViewController.swift */; };
 		ADE060E41E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060E31E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift */; };
@@ -135,7 +135,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ADCC1E501E97891F00583E5C /* SwarmClient.framework in Embed Frameworks */,
+				ADCC1E541E97950F00583E5C /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,7 +235,7 @@
 		ADB8D0201E93A2A0008926F6 /* linkedin-iOS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "linkedin-iOS.js"; sourceTree = "<group>"; };
 		ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACMathOperator.swift; sourceTree = "<group>"; };
 		ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
-		ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
+		ADCC1E511E97950600583E5C /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		ADE060DB1E1D3A3E00ACC00E /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		ADE060E01E1D445700ACC00E /* UIQuestionnaireTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIQuestionnaireTableViewController.swift; sourceTree = "<group>"; };
 		ADE060E31E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIQuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
@@ -262,9 +262,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADCC1E4E1E97890D00583E5C /* SwarmClient.framework in Frameworks */,
+				ADCC1E521E97950600583E5C /* SwarmClient.framework in Frameworks */,
 				AD291BEA1E5C6E9F00F158E0 /* QuartzCore.framework in Frameworks */,
-				ADCC1E4F1E97891F00583E5C /* SwarmClient.framework in Frameworks */,
+				ADCC1E531E97950F00583E5C /* SwarmClient.framework in Frameworks */,
 				AD1FCD3B1E0801D5001DADD8 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,7 +1029,7 @@
 		ADEDBBE71E5B0F7800C220B0 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ADCC1E4D1E97890D00583E5C /* SwarmClient.framework */,
+				ADCC1E511E97950600583E5C /* SwarmClient.framework */,
 				AD9A5D671E7BE55600A31865 /* XLActionController */,
 				AD9A5D5D1E79459C00A31865 /* ScrollableOverlay */,
 				AD291BFC1E5DCE9F00F158E0 /* RSFBSecure */,
