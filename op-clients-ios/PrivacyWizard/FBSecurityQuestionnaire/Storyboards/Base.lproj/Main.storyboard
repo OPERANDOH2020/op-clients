@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="F1T-ei-gBr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="F1T-ei-gBr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -124,12 +124,43 @@
                                 <color key="textColor" red="1" green="0.78402635249296782" blue="0.25714409904469515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s9G-h2-E18">
+                                <rect key="frame" x="0.0" y="569" width="375" height="98"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching Privacy Wizard Configuration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rf9-Ip-gBV">
+                                        <rect key="frame" x="8" y="35" width="359" height="55"/>
+                                        <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4r2-dI-O1M">
+                                        <rect key="frame" x="177" y="14" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="4bo-US-yP9"/>
+                                            <constraint firstAttribute="width" constant="20" id="DC6-0v-4bx"/>
+                                        </constraints>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="rf9-Ip-gBV" secondAttribute="trailing" constant="8" id="4X4-aD-xe6"/>
+                                    <constraint firstAttribute="bottom" secondItem="rf9-Ip-gBV" secondAttribute="bottom" constant="8" id="CkZ-fz-azC"/>
+                                    <constraint firstItem="rf9-Ip-gBV" firstAttribute="leading" secondItem="s9G-h2-E18" secondAttribute="leading" constant="8" id="OVS-Lx-KGi"/>
+                                    <constraint firstAttribute="height" constant="98" id="PUp-Kb-dsp"/>
+                                    <constraint firstItem="rf9-Ip-gBV" firstAttribute="top" secondItem="4r2-dI-O1M" secondAttribute="bottom" constant="1" id="XCT-Rv-FWf"/>
+                                    <constraint firstItem="4r2-dI-O1M" firstAttribute="centerX" secondItem="s9G-h2-E18" secondAttribute="centerX" id="iMF-fS-wD9"/>
+                                    <constraint firstItem="4r2-dI-O1M" firstAttribute="top" secondItem="s9G-h2-E18" secondAttribute="top" constant="14" id="sZX-R9-h6o"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4dY-EY-Tfc" firstAttribute="top" secondItem="W32-3a-gsb" secondAttribute="bottom" constant="9" id="2rz-Kc-9du"/>
+                            <constraint firstItem="PBO-CD-Fkc" firstAttribute="top" secondItem="s9G-h2-E18" secondAttribute="bottom" id="80J-NN-Cdv"/>
+                            <constraint firstItem="s9G-h2-E18" firstAttribute="leading" secondItem="qdE-8O-a1M" secondAttribute="leading" id="A0p-pe-5PL"/>
                             <constraint firstItem="BoG-n0-3bx" firstAttribute="centerX" secondItem="qdE-8O-a1M" secondAttribute="centerX" id="DIU-80-kJL"/>
                             <constraint firstItem="Rri-1b-rfA" firstAttribute="centerX" secondItem="qdE-8O-a1M" secondAttribute="centerX" id="H24-33-Ajq"/>
+                            <constraint firstAttribute="trailing" secondItem="s9G-h2-E18" secondAttribute="trailing" id="PQV-Fq-B6a"/>
                             <constraint firstItem="PwQ-pt-YuF" firstAttribute="top" secondItem="4WD-sB-qAQ" secondAttribute="bottom" constant="8" id="TGp-Tl-Z28"/>
                             <constraint firstItem="oXv-0o-irl" firstAttribute="leading" secondItem="qdE-8O-a1M" secondAttribute="leadingMargin" constant="37" id="VsA-UH-7Ht"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oXv-0o-irl" secondAttribute="trailing" constant="38" id="WW3-dg-DVL"/>
@@ -145,6 +176,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="keA-Oz-ZjT"/>
                     <connections>
+                        <outlet property="activityContainer" destination="s9G-h2-E18" id="Hro-rB-m96"/>
+                        <outlet property="activityIndicator" destination="4r2-dI-O1M" id="NgU-SP-oUo"/>
+                        <outlet property="activityLabel" destination="rf9-Ip-gBV" id="2vb-Th-NX1"/>
                         <outlet property="contentView" destination="qdE-8O-a1M" id="cBC-6f-VSU"/>
                         <outlet property="detailLabel" destination="4dY-EY-Tfc" id="Z8p-MY-uCo"/>
                         <outlet property="infoButton" destination="PwQ-pt-YuF" id="np4-p3-XLW"/>
@@ -185,7 +219,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIQuestionnaireTableViewCellIdentifier" id="q6d-b7-T6x" customClass="UIQuestionnaireTableViewCell" customModule="FBSecurityQuestionnaire" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q6d-b7-T6x" id="THb-m8-xWZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

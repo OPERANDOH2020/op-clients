@@ -23,6 +23,14 @@ class UIMainScreenFlowController: UIFlowController, UIMainScreenVCDelegate, Disc
         childViewController = UINavigationManager.getMainScreenViewController()
         childViewController!.setup(delegate: self)
         configuration.navigationController?.pushViewController(childViewController!, animated: true)
+        setupPrivacyWizard()
+    }
+    
+    private func setupPrivacyWizard() {
+        ACPrivacyWizard.shared.setup { [weak self] (success) in
+            guard let strongSelf = self else { return }
+            strongSelf.childViewController?.canStartWorkflow(allowed: success)
+        }
     }
     
     // Mark: - Main Screen VC Delegate Methods

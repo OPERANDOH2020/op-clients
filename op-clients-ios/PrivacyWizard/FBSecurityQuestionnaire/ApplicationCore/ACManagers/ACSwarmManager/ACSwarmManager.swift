@@ -47,14 +47,21 @@ class ACSwarmManager: NSObject {
     func retrieveConfiguration(forUser username: String, withPassword password: String, completionHandler: @escaping (NSError?, AMPrivacySettings?, AMRecommendedSettings?) -> Void) {
         loginWithUsername(username: username, password: password) {[weak self] (error, _) in
             guard let strongSelf = self else { completionHandler(error, nil, nil); return }
-            
-            strongSelf.getOSPSettings(completionHandler: {(error, settings) in
-                strongSelf.getOSPSettingsRecommendedParameters(completionHandler: { (error, recSettings) in
-                    DispatchQueue.main.async {
-                        completionHandler(error, settings, recSettings)
+            if error == nil {
+                strongSelf.getOSPSettings(completionHandler: {(error, settings) in
+                    if error == nil {
+                        strongSelf.getOSPSettingsRecommendedParameters(completionHandler: { (error, recSettings) in
+                            DispatchQueue.main.async {
+                                completionHandler(error, settings, recSettings)
+                            }
+                        })
+                    } else {
+                        completionHandler(error, nil, nil)
                     }
                 })
-            })
+            } else {
+                completionHandler(error, nil, nil)
+            }
         }
     }
     

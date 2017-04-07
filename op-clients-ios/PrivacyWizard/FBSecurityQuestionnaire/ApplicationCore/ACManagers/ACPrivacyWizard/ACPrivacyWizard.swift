@@ -145,7 +145,7 @@ class ACPrivacyWizard: NSObject {
             DispatchQueue.main.async {
                 strongSelf.privacySettings = privacySettings
                 strongSelf.recommendedParameters = recommendedSettings
-                completion(true)
+                completion(error == nil)
             }
         }
     }
