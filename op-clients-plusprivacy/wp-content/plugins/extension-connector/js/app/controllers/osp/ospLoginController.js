@@ -27,7 +27,6 @@ privacyPlusApp.controller("ospLoginController", function ($scope, connectionServ
                 }else{
                     $scope.errorResponse = "Invalid credentials!";
                 }
-
                 $scope.requestProcessed = false;
                 $scope.$apply();
             });

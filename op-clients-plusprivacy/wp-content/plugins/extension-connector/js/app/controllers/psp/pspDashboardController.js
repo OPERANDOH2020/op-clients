@@ -118,15 +118,19 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
             $scope.$apply();
         };
 
-        connectionService.getOspRequests(function (ospRequests) {
 
-            $scope.ospRequests = ospRequests;
-            $scope.$apply();
 
-        }, function (error) {
-            $scope.error = error;
-            $scope.$apply();
-        });
+        $scope.getOspRequests = function(){
+            connectionService.getOspRequests(function (ospRequests) {
+
+                $scope.ospRequests = ospRequests;
+                $scope.$apply();
+
+            }, function (error) {
+                $scope.error = error;
+                $scope.$apply();
+            });
+        };
 
         $scope.deleteOSPRequest = function(userId){
 
@@ -196,7 +200,7 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
                         controller: ViewOSPOffersDetailsController,
                         inputs: {
                             ospTitleOffer: selectedOsp.name,
-                            offersStats: offersStats,
+                            offersStats: offersStats
                         }
                     }).then(function (modal) {
                         modal.element.modal({backdrop: 'static', keyboard: false});
@@ -208,18 +212,15 @@ privacyPlusApp.controller("pspDashboardController", ["$scope", "connectionServic
             });
         };
 
-        connectionService.listOSPs(function(ospList){
-            $scope.ospList = ospList;
-            $scope.$apply();
-        }, function(error){
-            $scope.error = error;
-            $scope.$apply();
-        });
-
-
-
-
-
+        $scope.listOSPs = function(){
+            connectionService.listOSPs(function(ospList){
+                $scope.ospList = ospList;
+                $scope.$apply();
+            }, function(error){
+                $scope.error = error;
+                $scope.$apply();
+            });
+        };
 
         SharedService.setLocation("pspZone");
     }]);

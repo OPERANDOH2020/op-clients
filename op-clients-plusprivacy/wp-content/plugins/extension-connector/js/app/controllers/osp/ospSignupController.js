@@ -1,3 +1,14 @@
+privacyPlusApp.requires.push('ngIntlTelInput');
+
+privacyPlusApp
+    .config(function (ngIntlTelInputProvider) {
+        ngIntlTelInputProvider.set({
+            initialCountry: 'gb',
+            customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+                return "Phone e.g. " + selectedCountryPlaceholder;
+            }
+        });
+    });
 privacyPlusApp.controller("OSPSignupController", function ($scope, connectionService, SharedService) {
 
     $scope.requestInProgress = false;

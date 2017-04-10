@@ -180,6 +180,10 @@ function ospLoginController()
 
 function ospSignupController()
 {
+    insertScriptIfShortcode("intel-tel-input", 'osp-register', plugins_url('/js/utils/ng-intel-tel-input/js/intlTelInput.min.js', __FILE__));
+    insertScriptIfShortcode("intel-tel-input-utils", 'osp-register', plugins_url('/js/utils/ng-intel-tel-input/js/utils.js', __FILE__));
+    insertScriptIfShortcode("intel-tel-input-directive", 'osp-register', plugins_url('/js/utils/ng-intel-tel-input/ng-intl-tel-input.directive.js', __FILE__));
+    insertStyleIfShortcode("intel-tel-input-style", 'osp-register', plugins_url('/js/utils/ng-intel-tel-input/css/intlTelInput.css', __FILE__));
     insertScriptIfShortcode("ospSignupController", 'osp-register', plugins_url('/js/app/controllers/osp/ospSignupController.js', __FILE__));
 }
 

@@ -373,3 +373,34 @@ ul.dropdown-menu>li>a:hover{
     font-size: 18px;
     line-height: 46px;
 }
+
+.intl-tel-input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.intl-tel-input .selected-flag .iti-flag {
+    top: 40px;
+    left: 15px;
+    cursor: pointer;
+}
+
+.intl-tel-input .country-list {
+    margin-top: 44px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.country-list .country .flag-box{
+    float: left;
+    padding: 7px;
+}
+
+.country-list .country{
+    border:1px solid transparent;
+    cursor: pointer;
+}
+
+.country-list .country.highlight{
+    margin-bottom: 0px;
+}

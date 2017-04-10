@@ -4,8 +4,8 @@
     <div class="container" ng-controller="pspDashboardController">
 
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">OSP Requests</a></li>
-            <li><a data-toggle="tab" href="#menu1">OSP list</a></li>
+            <li class="active"><a data-toggle="tab" href="#home" ng-click="getOspRequests()" ng-init = "getOspRequests()" >OSP Requests</a></li>
+            <li><a data-toggle="tab" href="#menu1" ng-click = "listOSPs()">OSP list</a></li>
         </ul>
 
         <div class="tab-content">
