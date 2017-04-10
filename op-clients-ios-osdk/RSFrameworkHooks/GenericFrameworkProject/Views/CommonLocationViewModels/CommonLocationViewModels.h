@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import "UserDefinedLocationsSwizzlerSettings.h"
+#import "RandomWalkSwizzlerSettings.h"
+#import "RandomWalkGenerator.h"
 
 @interface CommonLocationViewCallbacks : NSObject
 @property (strong, nonatomic) void (^ _Nullable onDeleteAll)();
@@ -26,4 +28,12 @@
 typedef void(^CurrentActiveLocationIndexChangedCallback)(NSInteger newIndex);
 typedef void(^ActiveLocationChangeBlockArgument)(CurrentActiveLocationIndexChangedCallback callback);
 
+@interface RandomWalkLocationSettingsModel : NSObject
+@property (strong, nonatomic) RandomWalkSwizzlerSettings *currentSettings;
+@property (strong, nonatomic) RandomWalkGenerator *randomWalkGenerator;
+@end
+
+
+
 typedef UserDefinedLocationsSwizzlerSettings* _Nonnull (^GetCurrentLocationSettingsCallback)();
+typedef RandomWalkLocationSettingsModel* _Nonnull(^GetCurrentRandomWalkSettingsCallback)();

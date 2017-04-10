@@ -1,7 +1,7 @@
 dependencies: \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.m \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/PlistReportsStorage.m \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/build/PPCloak.build/Release-iphoneos/PPCloak.build/module.modulemap \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/Repositories/PlistStorageRepository/PlistReportsStorage.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/PlistReportsStorage.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/ReportsStorageProtocol.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/PPInputAccessViolation/PPUnlistedInputAccessViolation.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PlusPrivacyCommonTypes.framework/Modules/module.modulemap \
@@ -12,8 +12,8 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/ViolationReports/PPAccessFrequencyViolationReport.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/ViolationReports/PPAccessUnlistedURLReport/PPAccessUnlistedHostReport.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/Common.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessUnlistedHostReport+NSDictionaryRepresentation/PPAccessUnlistedHostReport+NSDictionaryRepresentation.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/DictionaryRepresentableProtocol.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPPrivacyLevelViolationReport+NSDictionaryRepresentation/PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPUnlistedInputAccessViolation+NSDictionaryRepresentation/PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/Repositories/PlistStorageRepository/ModelsDictionaryRepresentations/PPAccessFrequencyViolationReport+NSDictionaryRepresentation/PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/PPAccessUnlistedHostReport+NSDictionaryRepresentation.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/DictionaryRepresentableProtocol.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/PPPrivacyLevelViolationReport+NSDictionaryRepresentation.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/ReportsStorageAndUI/PPAccessFrequencyViolationReport+NSDictionaryRepresentation.h

@@ -14,11 +14,13 @@
 #import "UILocationSettingsViewController.h"
 #import "PPReportsSourcesBundle.h"
 #import "UILocationStatusViewController.h"
-
+#import "CommonLocationViewModels.h"
 
 
 @interface PPFlowBuilderLocationModel : NSObject
-@property (strong, nonatomic) LocationSettingsModel *locationSettingsModel;
+@property (strong, nonatomic) GetCurrentRandomWalkSettingsCallback getCurrentRandomWalkSettingsCallback;
+@property (strong, nonatomic) void (^onSaveCurrentRandomWalkSettings)(RandomWalkSwizzlerSettings* settings);
+
 @property (strong, nonatomic) NSInteger(^getCurrentActiveLocationIndex)();
 @property (strong, nonatomic) ActiveLocationChangeBlockArgument registerChangeCallback;
 @property (strong, nonatomic) ActiveLocationChangeBlockArgument removeChangeCallback;

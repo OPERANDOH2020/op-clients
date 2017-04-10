@@ -77,7 +77,6 @@
 		987083CE1E8E409D00D9F8E9 /* UILocationListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987083A91E8E34BB00D9F8E9 /* UILocationListView.xib */; };
 		9871E0851E97B27000A43695 /* UIRandomWalkMapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9871E0831E97B27000A43695 /* UIRandomWalkMapView.h */; };
 		9871E0861E97B27000A43695 /* UIRandomWalkMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9871E0841E97B27000A43695 /* UIRandomWalkMapView.m */; };
-		9871E0881E97BCB200A43695 /* UIRandomWalkMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9871E0871E97BCB200A43695 /* UIRandomWalkMapView.xib */; };
 		9871E08C1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9871E08A1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.h */; };
 		9871E08D1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9871E08B1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.m */; };
 		9871E0901E97E1A300A43695 /* RandomWalkSwizzlerSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 9871E08E1E97E1A300A43695 /* RandomWalkSwizzlerSettings.h */; };
@@ -96,6 +95,7 @@
 		98797E1C1E96864A00AB3A0B /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 98797E111E96864A00AB3A0B /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.h */; };
 		98797E1D1E96864A00AB3A0B /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 98797E121E96864A00AB3A0B /* PPUnlistedInputAccessViolation+NSDictionaryRepresentation.m */; };
 		98797E1F1E96869900AB3A0B /* ReportsStorageProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 98797E1E1E96869900AB3A0B /* ReportsStorageProtocol.h */; };
+		987F524F1E9B9C22006A2946 /* UIRandomWalkMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9871E0871E97BCB200A43695 /* UIRandomWalkMapView.xib */; };
 		987F83771E3235A20058633C /* OPMonitorInputSourceEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F83751E3235A20058633C /* OPMonitorInputSourceEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 987F83761E3235A20058633C /* OPMonitorInputSourceEvent.m */; };
 		987F837E1E3241930058633C /* LocationInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 987F837C1E3241930058633C /* LocationInputSupervisor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1466,7 +1466,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9871E0881E97BCB200A43695 /* UIRandomWalkMapView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1481,6 +1480,7 @@
 				98FE5C251E9264F100096744 /* UILocationIndexPinView.xib in Resources */,
 				987083CD1E8E409800D9F8E9 /* UILocationListViewCell.xib in Resources */,
 				985419031E9502500004370F /* UILocationSettingsView.xib in Resources */,
+				987F524F1E9B9C22006A2946 /* UIRandomWalkMapView.xib in Resources */,
 				98FE5C271E92657500096744 /* pinIcon.png in Resources */,
 				989DB8E51E77D2CF008F4D02 /* Info.plist in Resources */,
 				9888430A1E94E2920000FB7C /* mapItemsIcon.png in Resources */,

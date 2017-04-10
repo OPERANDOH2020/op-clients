@@ -21,7 +21,7 @@ static NSString *kRandomWalkEnabled = @"kRandomWalkEnabled";
 @property (readonly, nonatomic) NSArray<CLLocation*> *walkPath;
 @property (readonly, nonatomic) BOOL enabled;
 
-+(RandomWalkSwizzlerSettings*)initWithCircle:(RandomWalkBoundCircle*)circle walkPath:(NSArray<CLLocation*>*)walkPath enabled:(BOOL)enabled error:(NSError**)error;
++(RandomWalkSwizzlerSettings*)createWithCircle:(RandomWalkBoundCircle*)circle walkPath:(NSArray<CLLocation*>*)walkPath enabled:(BOOL)enabled error:(NSError**)error;
 
 
 +(RandomWalkSwizzlerSettings*)createFromDefaults:(NSUserDefaults*)defaults error:(NSError**)error;

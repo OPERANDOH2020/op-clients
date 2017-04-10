@@ -15,7 +15,7 @@
 #import "NSBundle+RSFrameworkHooks.h"
 #import "UIUsageViewController.h"
 #import "UIInputGraphViewController.h"
-
+#import "UIRandomWalkLocationSettingsViewController.h"
 
 @implementation PPFlowBuilderLocationModel
 @end
@@ -77,30 +77,45 @@
         [weakNavgController pushViewController:scdVC animated:true];
     };
     
-    
     callbacks.whenChoosingOverrideLocation = ^{
-        UILocationSettingsViewController *locSettingsVC = [storyboard instantiateViewControllerWithIdentifier:@"UILocationSettingsViewController"];
-        [locSettingsVC setupWithModel:model.eveythingLocationRelated.locationSettingsModel onExit:^{
+        UIRandomWalkLocationSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"UIRandomWalkLocationSettingsViewController"];
+        
+        RandomWalkLocationSettingsModel *randomWalkModel = model.eveythingLocationRelated.getCurrentRandomWalkSettingsCallback();
+        
+        UIRandomWalkLocationSettingsVCCallbacks *callbacks = [[UIRandomWalkLocationSettingsVCCallbacks alloc] init];
+        callbacks.onExit = ^{
             [weakNavgController popViewControllerAnimated:YES];
-        }];
-        [weakNavgController pushViewController:locSettingsVC animated:YES];
+        };
+        
+        callbacks.onSettingsSave = model.eveythingLocationRelated.onSaveCurrentRandomWalkSettings;
+        
+        [vc setupWithModel:randomWalkModel callbacks:callbacks];
+        [weakNavgController pushViewController:vc animated:YES];
     };
     
-    callbacks.whenChoosingLocationStatus = ^{
-        UILocationStatusViewController *statusVC = [storyboard instantiateViewControllerWithIdentifier:@"UILocationStatusViewController"];
-        
-        UILocationStatusModel *locStatusModel = [[UILocationStatusModel alloc] init];
-        locStatusModel.removeChangeCallback = model.eveythingLocationRelated.removeChangeCallback;
-        locStatusModel.registerChangeCallback = model.eveythingLocationRelated.registerChangeCallback;
-        locStatusModel.currentActiveLocationIndex = model.eveythingLocationRelated.getCurrentActiveLocationIndex();
-        locStatusModel.currentSettings = model.eveythingLocationRelated.locationSettingsModel.getCallback();
-        
-        [statusVC setupWithModel:locStatusModel onExit:^{
-            [weakNavgController popViewControllerAnimated:YES];
-        }];
-        
-        [weakNavgController pushViewController:statusVC animated:YES];
-    };
+//    callbacks.whenChoosingOverrideLocation = ^{
+//        UILocationSettingsViewController *locSettingsVC = [storyboard instantiateViewControllerWithIdentifier:@"UILocationSettingsViewController"];
+//        [locSettingsVC setupWithModel:model.eveythingLocationRelated.UserDefinedLocationsSettingsModel onExit:^{
+//            [weakNavgController popViewControllerAnimated:YES];
+//        }];
+//        [weakNavgController pushViewController:locSettingsVC animated:YES];
+//    };
+    
+//    callbacks.whenChoosingLocationStatus = ^{
+//        UILocationStatusViewController *statusVC = [storyboard instantiateViewControllerWithIdentifier:@"UILocationStatusViewController"];
+//        
+//        UILocationStatusModel *locStatusModel = [[UILocationStatusModel alloc] init];
+//        locStatusModel.removeChangeCallback = model.eveythingLocationRelated.removeChangeCallback;
+//        locStatusModel.registerChangeCallback = model.eveythingLocationRelated.registerChangeCallback;
+//        locStatusModel.currentActiveLocationIndex = model.eveythingLocationRelated.getCurrentActiveLocationIndex();
+//        locStatusModel.currentSettings = model.eveythingLocationRelated.UserDefinedLocationsSettingsModel.getCallback();
+//        
+//        [statusVC setupWithModel:locStatusModel onExit:^{
+//            [weakNavgController popViewControllerAnimated:YES];
+//        }];
+//        
+//        [weakNavgController pushViewController:statusVC animated:YES];
+//    };
     
     
     callbacks.whenExiting = model.onExitCallback;

@@ -10,16 +10,21 @@
 #import <math.h>
 
 
-#define RANDOM ((float)rand())/RAND_MAX
+
 
 // created with the help of
 // http://gis.stackexchange.com/a/25883
 
 CLLocationCoordinate2D generateRandomLocationPoint(CLLocationCoordinate2D center, double radiusInMeters){
-    srand((unsigned int)time(NULL));
+    static BOOL didSeed = NO;
+    if (!didSeed) {
+        srand48((unsigned int)time(NULL));
+        didSeed = YES;
+    }
     
-    double u = RANDOM;
-    double v = RANDOM;
+    
+    double u = drand48();
+    double v = drand48();
     double radiusInDegrees = radiusInMeters / 111300;
     double w = radiusInDegrees * sqrt(u);
     double t = 2 * M_PI * v;
@@ -68,7 +73,7 @@ double haversine_km(double lat1, double long1, double lat2, double long2)
 
 -(NSArray<CLLocation *> *)generateRandomWalkInCircle:(RandomWalkBoundCircle *)circle {
     
-    double stepInMeters = 5; //
+    double stepInMeters = 100; //
     int maxNumOfTries = 1000; //
     NSMutableArray<CLLocation*> *result = [[NSMutableArray alloc] init];
     CLLocation *location = [[CLLocation alloc] initWithLatitude:circle.center.latitude longitude:circle.center.longitude];
@@ -88,8 +93,8 @@ double haversine_km(double lat1, double long1, double lat2, double long2)
         CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:nextPoint.latitude longitude:nextPoint.longitude];
         [result addObject:newLocation];
         currentSourcePoint = nextPoint;
+        NSLog(@"at try %d", totalTries);
     }
-    
     
     return result;
 }

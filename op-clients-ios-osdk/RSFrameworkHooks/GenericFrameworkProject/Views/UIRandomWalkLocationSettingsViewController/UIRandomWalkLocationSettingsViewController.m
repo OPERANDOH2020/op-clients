@@ -7,31 +7,63 @@
 //
 
 #import "UIRandomWalkLocationSettingsViewController.h"
+#import "UIRandomWalkMapView.h"
+#import "Common.h"
+
+@implementation UIRandomWalkLocationSettingsVCCallbacks
+@end
 
 @interface UIRandomWalkLocationSettingsViewController ()
+@property (strong, nonatomic) UIRandomWalkLocationSettingsVCCallbacks *callbacks;
+@property (weak, nonatomic) IBOutlet UISwitch *enabledSwitch;
+@property (weak, nonatomic) IBOutlet UIRandomWalkMapView *randomWalkMapView;
+@property (strong, nonatomic) RandomWalkGenerator *randomWalkGenerator;
+
+@property (strong, nonatomic) NSArray<CLLocation*> *currentWalk;
+@property (strong, nonatomic) RandomWalkBoundCircle *boundCircle;
 
 @end
 
 @implementation UIRandomWalkLocationSettingsViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+-(void)setupWithModel:(RandomWalkLocationSettingsModel *)model callbacks:(UIRandomWalkLocationSettingsVCCallbacks *)callbacks {
+    [self view];
+    self.randomWalkGenerator = model.randomWalkGenerator;
+    self.currentWalk = model.currentSettings.walkPath;
+    self.boundCircle = model.currentSettings.boundCircle;
+    [self setupWithSettings:model.currentSettings callbacks:callbacks];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)setupWithSettings:(RandomWalkSwizzlerSettings *)settings callbacks:(UIRandomWalkLocationSettingsVCCallbacks *)callbacks{
+    
+    self.enabledSwitch.on = settings.enabled;
+    WEAKSELF
+    UIRandomWalkMapViewModel *model = [[UIRandomWalkMapViewModel alloc] init];
+    model.initialCircle = settings.boundCircle;
+    model.initialLocations = settings.walkPath;
+    model.editable = YES;
+    
+    UIRandomWalkMapViewCallbacks *mapViewCallbacks = [[UIRandomWalkMapViewCallbacks alloc] init];
+    mapViewCallbacks.onBoundCircleChange = ^(RandomWalkBoundCircle *newCircle) {
+        NSArray *newWalk = [weakSelf.randomWalkGenerator generateRandomWalkInCircle:newCircle];
+        weakSelf.currentWalk = newWalk;
+        weakSelf.boundCircle = newCircle;
+        
+        [weakSelf.randomWalkMapView drawNewLocations:newWalk];
+    };
+    
+    [self.randomWalkMapView setupWithModel:model callbacks:mapViewCallbacks];
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)didPressBack:(id)sender {
+    SAFECALL(self.callbacks.onExit)
 }
-*/
+- (IBAction)didPressSave:(id)sender {
+    
+    RandomWalkSwizzlerSettings *compiledSettings = [RandomWalkSwizzlerSettings createWithCircle:self.boundCircle walkPath:self.currentWalk enabled:self.enabledSwitch.on error:nil];
+    
+    SAFECALL(self.callbacks.onSettingsSave, compiledSettings)
+}
 
 @end

@@ -24,7 +24,7 @@
 #pragma mark -
 
 @interface LocationInputSwizzler() <CLLocationManagerDelegate>
-@property (strong, nonatomic) UserDefinedLocationsSwizzlerSettings *currentSettings;
+@property (strong, nonatomic) RandomWalkSwizzlerSettings *currentSettings;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber*, WeakDelegateHolder*> *delegatePerInstance;
 @property (strong, nonatomic) NSMutableArray<CurrentActiveLocationIndexChangedCallback> *callbacksToNotifyChange;
 @property (strong, nonatomic) LocationsCallback whenLocationsAreRequested;
@@ -35,7 +35,7 @@
 
 @implementation LocationInputSwizzler
 
--(void)setupWithSettings:(UserDefinedLocationsSwizzlerSettings *)settings eventsDispatcher:(PPEventDispatcher *)eventsDispatcher whenLocationsAreRequested:(LocationsCallback)whenLocationsAreRequested {
+-(void)setupWithSettings:(RandomWalkSwizzlerSettings *)settings eventsDispatcher:(PPEventDispatcher *)eventsDispatcher whenLocationsAreRequested:(LocationsCallback)whenLocationsAreRequested {
     
     self.callbacksToNotifyChange = [[NSMutableArray alloc] init];
     
@@ -88,7 +88,7 @@
 }
 
 
--(void)applyNewSettings:(UserDefinedLocationsSwizzlerSettings *)settings {
+-(void)applyNewSettings:(RandomWalkSwizzlerSettings *)settings {
     self.currentSettings = settings;
     [self.timer invalidate];
     self.indexOfCurrentSentLocation = 0;
@@ -97,14 +97,18 @@
         return;
     }
     
+    __block NSInteger direction = 1;
     WEAKSELF
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        weakSelf.indexOfCurrentSentLocation += 1;
-        if (settings.cycle) {
-            weakSelf.indexOfCurrentSentLocation %= settings.locations.count;
+        weakSelf.indexOfCurrentSentLocation += direction;
+        if (weakSelf.indexOfCurrentSentLocation < 0) {
+            weakSelf.indexOfCurrentSentLocation = 0;
+            direction = 1;
+            
         } else {
-            if (weakSelf.indexOfCurrentSentLocation >= settings.locations.count) {
-                weakSelf.indexOfCurrentSentLocation = settings.locations.count - 1;
+            if (weakSelf.indexOfCurrentSentLocation >= settings.walkPath.count) {
+                weakSelf.indexOfCurrentSentLocation = settings.walkPath.count - 1;
+                direction = -1;
             }
         }
         for (CurrentActiveLocationIndexChangedCallback callback in weakSelf.callbacksToNotifyChange) {
@@ -112,7 +116,7 @@
         }
     }];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:settings.changeInterval target:operation selector:@selector(main) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:operation selector:@selector(main) userInfo:nil repeats:YES];
     
 }
 
@@ -121,11 +125,11 @@
         return nil;
     }
     
-    if (self.indexOfCurrentSentLocation < 0 || self.indexOfCurrentSentLocation >= self.currentSettings.locations.count) {
+    if (self.indexOfCurrentSentLocation < 0 || self.indexOfCurrentSentLocation >= self.currentSettings.walkPath.count) {
         return nil;
     }
     
-    return self.currentSettings.locations[self.indexOfCurrentSentLocation];
+    return self.currentSettings.walkPath[self.indexOfCurrentSentLocation];
 }
 
 

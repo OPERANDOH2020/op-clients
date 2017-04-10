@@ -14,13 +14,13 @@
 
 #pragma mark -
 
-@implementation LocationSettingsModel
+@implementation UserDefinedLocationsSettingsModel
 @end
 
 @interface UILocationSettingsViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) void(^_Nullable onExitCallback)();
-@property (strong, nonatomic) LocationSettingsModel *model;
+@property (strong, nonatomic) UserDefinedLocationsSettingsModel *model;
 
 @property (weak, nonatomic) IBOutlet UILocationListView *locationListView;
 @property (weak, nonatomic) IBOutlet UILocationPinningView *locationPinningView;
@@ -37,7 +37,7 @@
     self.locationPinningView.hidden = YES;
 }
 
--(void)setupWithModel:(LocationSettingsModel *)model onExit:(void (^)())exitCallback {
+-(void)setupWithModel:(UserDefinedLocationsSettingsModel *)model onExit:(void (^)())exitCallback {
     [self view];
     
     self.model = model;

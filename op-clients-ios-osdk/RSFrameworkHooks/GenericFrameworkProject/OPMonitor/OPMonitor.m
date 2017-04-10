@@ -145,17 +145,7 @@ static void __attribute__((constructor)) initialize(void){
     __block UIViewController *flowRoot = nil;
     __weak typeof(self) weakSelf = self;
     
-    LocationSettingsModel *locSettingsModel = [[LocationSettingsModel alloc] init];
-    locSettingsModel.getCallback = ^UserDefinedLocationsSwizzlerSettings * _Nonnull{
-        return weakSelf.locationInputSwizzler.currentSettings;
-    };
-    
-    locSettingsModel.saveCallback = ^void(UserDefinedLocationsSwizzlerSettings *settings) {
-        [weakSelf.locationInputSwizzler applyNewSettings:settings];
-        [settings synchronizeToUserDefaults: [NSUserDefaults standardUserDefaults]];
-        [CommonViewUtils showOkAlertWithMessage:@"Settings saved" completion:nil];
-        
-    };
+
     
     PPReportsSourcesBundle *reportSources = [[PPReportsSourcesBundle alloc] init];
     reportSources.accessFrequencyReportsSource = self.plistRepository;
@@ -169,35 +159,26 @@ static void __attribute__((constructor)) initialize(void){
     flowModel.scdRepository = repo;
     flowModel.scdJSON = self.scdJson;
     
-    PPFlowBuilderLocationModel *locationModel = [[PPFlowBuilderLocationModel alloc] init];
-    locationModel.locationSettingsModel = locSettingsModel;
-    locationModel.getCurrentActiveLocationIndex = ^NSInteger{
+    PPFlowBuilderLocationModel *locationRelated = [[PPFlowBuilderLocationModel alloc] init];
+    
+    locationRelated.getCurrentActiveLocationIndex = ^NSInteger{
         return 0;
     };
     
-    // DEBUG //
-    __block NSTimer *timer;
-    locationModel.registerChangeCallback = ^(CurrentActiveLocationIndexChangedCallback callback) {
-        if (self.locationInputSwizzler.currentSettings.locations.count == 0) {
-            return;
-        }
-        __block NSInteger activeIndex = 0;
-        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-            activeIndex += 1;
-            activeIndex = activeIndex % self.locationInputSwizzler.currentSettings.locations.count;
-            SAFECALL(callback, activeIndex)
-        }];
-        
-        timer = [NSTimer scheduledTimerWithTimeInterval:self.locationInputSwizzler.currentSettings.changeInterval target:operation selector:@selector(main) userInfo:nil repeats:YES];
+    locationRelated.getCurrentRandomWalkSettingsCallback = ^RandomWalkLocationSettingsModel * _Nonnull{
+        RandomWalkLocationSettingsModel *model = [[RandomWalkLocationSettingsModel alloc] init];
+        model.currentSettings = weakSelf.locationInputSwizzler.currentSettings;
+        model.randomWalkGenerator = [[RandomWalkGenerator alloc] init];
+        return model;
     };
     
-    locationModel.removeChangeCallback = ^(CurrentActiveLocationIndexChangedCallback callback) {
-        [timer invalidate];
-        timer = nil;
-        NSLog(@"Removed callback");
+    locationRelated.onSaveCurrentRandomWalkSettings = ^(RandomWalkSwizzlerSettings *settings) {
+        [weakSelf.locationInputSwizzler applyNewRandomWalkSettings:settings];
+        [settings synchronizeToDefaults:[NSUserDefaults standardUserDefaults]];
+        [CommonViewUtils showOkAlertWithMessage:@"Done" completion:nil];
     };
     
-    flowModel.eveythingLocationRelated = locationModel;
+    flowModel.eveythingLocationRelated = locationRelated;
     
     flowModel.onExitCallback = ^{
         [rootViewController ppRemoveChildContentController:flowRoot];
@@ -287,14 +268,16 @@ static void __attribute__((constructor)) initialize(void){
 
 -(void)setupLocationInputSwizzlerUsingSupervisor:(LocationInputSupervisor*)supervisor {
     NSError *error = nil;
-    UserDefinedLocationsSwizzlerSettings *defaultLocationSettings = [UserDefinedLocationsSwizzlerSettings createFromUserDefaults: [NSUserDefaults standardUserDefaults] error:&error];
+    RandomWalkSwizzlerSettings *defaultLocationSettings = [RandomWalkSwizzlerSettings createFromDefaults: [NSUserDefaults standardUserDefaults] error:&error];
     
     if (error) {
-        //
-        defaultLocationSettings = [UserDefinedLocationsSwizzlerSettings createWithLocations:@[] enabled:NO cycle:NO changeInterval:1.0 error:nil];
+        defaultLocationSettings = [RandomWalkSwizzlerSettings createWithCircle:nil walkPath:@[] enabled:NO error:nil];
     }
     
     self.locationInputSwizzler = [[LocationInputSwizzler alloc] init];
+    
+    
+    
     [self.locationInputSwizzler setupWithSettings:defaultLocationSettings eventsDispatcher:[PPEventsPipelineFactory eventsDispatcher] whenLocationsAreRequested:^(NSArray<CLLocation *> * _Nonnull locations) {
         
     }];

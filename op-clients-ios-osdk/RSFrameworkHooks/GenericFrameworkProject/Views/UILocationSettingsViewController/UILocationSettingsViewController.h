@@ -13,7 +13,7 @@
 typedef void(^LocationSettingsChangedCallback)(UserDefinedLocationsSwizzlerSettings* _Nullable);
 
 
-@interface LocationSettingsModel: NSObject
+@interface UserDefinedLocationsSettingsModel: NSObject
 
 @property (strong, nonatomic) LocationSettingsChangedCallback _Nullable saveCallback;
 @property (strong, nonatomic) GetCurrentLocationSettingsCallback getCallback;
@@ -22,6 +22,6 @@ typedef void(^LocationSettingsChangedCallback)(UserDefinedLocationsSwizzlerSetti
 
 @interface UILocationSettingsViewController : UIViewController
 
--(void)setupWithModel:(LocationSettingsModel* _Nullable)model onExit:(void(^ _Nullable)())exitCallback;
+-(void)setupWithModel:(UserDefinedLocationsSettingsModel* _Nullable)model onExit:(void(^ _Nullable)())exitCallback;
 
 @end
