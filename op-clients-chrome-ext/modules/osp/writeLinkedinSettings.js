@@ -19,7 +19,7 @@ port.onMessage.addListener(function (msg) {
     if (msg.command == "applySettings") {
         privacySettings = msg.settings;
         secureAccount(function () {
-            port.postMessage({status: "settings_applied"});
+            //port.postMessage({status: "settings_applied"});
         });
     }
 });

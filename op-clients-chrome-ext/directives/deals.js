@@ -28,13 +28,7 @@ angular.module('pfbdeals', [])
                 controller: function ($scope) {
                     $scope.deals = [];
                         messengerService.send("getAllPfbDeals", function (response) {
-
-                            var pfbdeals = response.data;
-                            for (var i = 0; i < pfbdeals.length; i++) {
-                                pfbdeals[i].type = "myDeal";
-                            }
-
-                            $scope.deals = pfbdeals;
+                            $scope.deals = response.data;
                             $scope.$apply();
                         });
                 },
