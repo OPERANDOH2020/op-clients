@@ -28,3 +28,6 @@
 
 @implementation RandomWalkLocationSettingsModel
 @end
+
+@implementation RandomWalkLocationStatusModel
+@end

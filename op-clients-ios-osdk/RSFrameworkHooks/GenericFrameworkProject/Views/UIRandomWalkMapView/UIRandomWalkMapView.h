@@ -27,5 +27,8 @@
 
 -(void)drawNewLocations:(NSArray<CLLocation*>*)locations;
 -(void)setupWithModel:(UIRandomWalkMapViewModel*)model callbacks:(UIRandomWalkMapViewCallbacks*)callbacks;
+-(void)displayAsBusy:(BOOL)busy;
+
+-(void)displayPinForLocationAt:(NSInteger)index;
 
 @end

@@ -51,6 +51,8 @@
 		983C3FAC1E8D27ED00014F25 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983C3FAB1E8D27ED00014F25 /* MapKit.framework */; };
 		983C3FB41E8D356600014F25 /* UILocationPinningView.h in Headers */ = {isa = PBXBuildFile; fileRef = 983C3FB21E8D356600014F25 /* UILocationPinningView.h */; };
 		983C3FB51E8D356600014F25 /* UILocationPinningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 983C3FB31E8D356600014F25 /* UILocationPinningView.m */; };
+		9840E4A61E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9840E4A41E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.h */; };
+		9840E4A71E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9840E4A51E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.m */; };
 		985419001E9502390004370F /* UILocationSettingsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 985418FE1E9502390004370F /* UILocationSettingsView.h */; };
 		985419011E9502390004370F /* UILocationSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985418FF1E9502390004370F /* UILocationSettingsView.m */; };
 		985419031E9502500004370F /* UILocationSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 985419021E9502500004370F /* UILocationSettingsView.xib */; };
@@ -226,6 +228,8 @@
 		983C3FAB1E8D27ED00014F25 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		983C3FB21E8D356600014F25 /* UILocationPinningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILocationPinningView.h; path = Views/UILocationPinningView/UILocationPinningView.h; sourceTree = "<group>"; };
 		983C3FB31E8D356600014F25 /* UILocationPinningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILocationPinningView.m; path = Views/UILocationPinningView/UILocationPinningView.m; sourceTree = "<group>"; };
+		9840E4A41E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIRandomWalkLocationStatusViewController.h; path = Views/UIRandomWalkLocationStatusViewController/UIRandomWalkLocationStatusViewController.h; sourceTree = "<group>"; };
+		9840E4A51E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIRandomWalkLocationStatusViewController.m; path = Views/UIRandomWalkLocationStatusViewController/UIRandomWalkLocationStatusViewController.m; sourceTree = "<group>"; };
 		985418FE1E9502390004370F /* UILocationSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILocationSettingsView.h; path = Views/UILocationSettingsView/UILocationSettingsView.h; sourceTree = "<group>"; };
 		985418FF1E9502390004370F /* UILocationSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILocationSettingsView.m; path = Views/UILocationSettingsView/UILocationSettingsView.m; sourceTree = "<group>"; };
 		985419021E9502500004370F /* UILocationSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UILocationSettingsView.xib; path = Views/UILocationSettingsView/UILocationSettingsView.xib; sourceTree = "<group>"; };
@@ -549,6 +553,15 @@
 			name = UILocationPinningView;
 			sourceTree = "<group>";
 		};
+		9840E4A31E9CE04300BB3DB9 /* UIRandomWalkLocationStatusViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9840E4A41E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.h */,
+				9840E4A51E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.m */,
+			);
+			name = UIRandomWalkLocationStatusViewController;
+			sourceTree = "<group>";
+		};
 		985418FD1E9501C20004370F /* UILocationSettingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -794,6 +807,7 @@
 		98804EF31E4DE258009E6748 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9840E4A31E9CE04300BB3DB9 /* UIRandomWalkLocationStatusViewController */,
 				9871E0891E97DF1700A43695 /* UIRandomWalkLocationSettingsViewController */,
 				9871E0821E97B1E100A43695 /* UIRandomWalkMapView */,
 				985418FD1E9501C20004370F /* UILocationSettingsView */,
@@ -1351,6 +1365,7 @@
 				983C3FB41E8D356600014F25 /* UILocationPinningView.h in Headers */,
 				98F1FF671E713B2C00A664AB /* LocationHTTPAnalyzer.h in Headers */,
 				98797E141E96864A00AB3A0B /* PlistReportsStorage.h in Headers */,
+				9840E4A61E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.h in Headers */,
 				983A09051E727A1C00AE2D5E /* PPBasicHttpBodyParser.h in Headers */,
 				982464DE1E8D5F1B004D8534 /* UILocationListView.h in Headers */,
 				98DF61021E65D7C6006EF2B3 /* PPUnlistedInputAccessViolation.h in Headers */,
@@ -1518,6 +1533,7 @@
 				987083C61E8E3A9D00D9F8E9 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				988716F31E6D883A005FAA45 /* UIInputAccessViolationReportsSection.m in Sources */,
 				9831E2A51E6D9ED500A5FE0A /* UIPrivacyLevelViolationReportsSection.m in Sources */,
+				9840E4A71E9CE08600BB3DB9 /* UIRandomWalkLocationStatusViewController.m in Sources */,
 				9895FB3A1E5B337A00B1F56D /* UserDefinedLocationsSwizzlerSettings.m in Sources */,
 				98804F0B1E4E0E7C009E6748 /* UIPPOptionsViewController.m in Sources */,
 				986AE9BA1E93BEC700AF4E0A /* UILocationStatusViewController.m in Sources */,

@@ -16,6 +16,7 @@
 #import "UIUsageViewController.h"
 #import "UIInputGraphViewController.h"
 #import "UIRandomWalkLocationSettingsViewController.h"
+#import "UIRandomWalkLocationStatusViewController.h"
 
 @implementation PPFlowBuilderLocationModel
 @end
@@ -90,6 +91,23 @@
         callbacks.onSettingsSave = model.eveythingLocationRelated.onSaveCurrentRandomWalkSettings;
         
         [vc setupWithModel:randomWalkModel callbacks:callbacks];
+        [weakNavgController pushViewController:vc animated:YES];
+    };
+    
+    
+    callbacks.whenChoosingLocationStatus = ^{
+        UIRandomWalkLocationStatusViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"UIRandomWalkLocationStatusViewController"];
+        
+        RandomWalkLocationStatusModel *statusModel = [[RandomWalkLocationStatusModel alloc] init];
+        statusModel.currentSentLocationIndex = model.eveythingLocationRelated.getCurrentActiveLocationIndex();
+        statusModel.currentSettings = model.eveythingLocationRelated.getCurrentRandomWalkSettingsCallback().currentSettings;
+        statusModel.registerCallbackForChanges = model.eveythingLocationRelated.registerChangeCallback;
+        statusModel.removeCallbackForChanges = model.eveythingLocationRelated.removeChangeCallback;
+        
+        [vc setupWithModel:statusModel onExit:^{
+            [weakNavgController popViewControllerAnimated:YES];
+        }];
+        
         [weakNavgController pushViewController:vc animated:YES];
     };
     

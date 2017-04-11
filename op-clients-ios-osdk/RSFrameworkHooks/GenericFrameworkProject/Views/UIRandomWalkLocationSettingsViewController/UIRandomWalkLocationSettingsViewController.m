@@ -36,6 +36,7 @@
 
 -(void)setupWithSettings:(RandomWalkSwizzlerSettings *)settings callbacks:(UIRandomWalkLocationSettingsVCCallbacks *)callbacks{
     
+    self.callbacks = callbacks;
     self.enabledSwitch.on = settings.enabled;
     WEAKSELF
     UIRandomWalkMapViewModel *model = [[UIRandomWalkMapViewModel alloc] init];
@@ -45,11 +46,15 @@
     
     UIRandomWalkMapViewCallbacks *mapViewCallbacks = [[UIRandomWalkMapViewCallbacks alloc] init];
     mapViewCallbacks.onBoundCircleChange = ^(RandomWalkBoundCircle *newCircle) {
-        NSArray *newWalk = [weakSelf.randomWalkGenerator generateRandomWalkInCircle:newCircle];
-        weakSelf.currentWalk = newWalk;
-        weakSelf.boundCircle = newCircle;
+        [weakSelf.randomWalkMapView displayAsBusy:YES];
+        [weakSelf.randomWalkGenerator generateRandomWalkInCircle:newCircle withCompletion:^(NSArray<CLLocation *> *newWalk) {
+            weakSelf.currentWalk = newWalk;
+            weakSelf.boundCircle = newCircle;
+            [weakSelf.randomWalkMapView drawNewLocations:newWalk];
+            
+            [weakSelf.randomWalkMapView displayAsBusy:NO];
+        }];
         
-        [weakSelf.randomWalkMapView drawNewLocations:newWalk];
     };
     
     [self.randomWalkMapView setupWithModel:model callbacks:mapViewCallbacks];

@@ -9,7 +9,7 @@
 #import "UIRandomWalkMapView.h"
 #import "Common.h"
 
-#define doubleToText(x) [NSString stringWithFormat:@"%.0f KM", x]
+#define numberToText(x) [NSString stringWithFormat:@"%ld KM", x]
 
 @implementation UIRandomWalkMapViewModel
 @end
@@ -18,9 +18,11 @@
 @end
 
 @interface UIRandomWalkMapView() <MKMapViewDelegate>
+
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *kmLabel;
-@property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet UIStepper *stepper;
+@property (weak, nonatomic) IBOutlet UIView *busyView;
 
 @property (weak, nonatomic) IBOutlet UIButton *setCenterButton;
 @property (weak, nonatomic) IBOutlet UIView *toolsView;
@@ -28,14 +30,13 @@
 
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *axes;
 
-
 @property (strong, nonatomic) MKPolyline *currentDrawnPolyline;
-
 @property (strong, nonatomic) MKCircle *currentDrawnCircle;
 @property (strong, nonatomic) UIRandomWalkMapViewCallbacks *callbacks;
-@property (strong, nonatomic) UIRandomWalkMapViewModel *model;
 
+@property (strong, nonatomic) NSArray<CLLocation*> *currentLocations;
 @property (readwrite, strong, nonatomic) RandomWalkBoundCircle *currentCircle;
+@property (strong, nonatomic) MKPointAnnotation *currentAnnotation;
 
 @end
 
@@ -44,20 +45,38 @@
 -(void)commonInit {
     [super commonInit];
     self.mapView.delegate = self;
-    self.slider.minimumValue = 1.0;
-    self.slider.maximumValue = 10.0;
+    self.stepper.minimumValue = 1.0;
+    self.stepper.maximumValue = 10.0;
 }
 
+-(void)displayAsBusy:(BOOL)busy {
+    self.busyView.hidden = !busy;
+}
 
+-(void)displayPinForLocationAt:(NSInteger)index {
+    if (index < 0 || index >= self.currentLocations.count) {
+        return;
+    }
+    
+    if (self.currentAnnotation) {
+        [self.mapView removeAnnotation:self.currentAnnotation];
+    }
+    
+    self.currentAnnotation = [[MKPointAnnotation alloc] init];
+    self.currentAnnotation.coordinate = self.currentLocations[index].coordinate;
+    self.currentAnnotation.title = @"Currently sent location";
+    
+    [self.mapView addAnnotation:self.currentAnnotation];
+}
 
 -(void)setupWithModel:(UIRandomWalkMapViewModel *)model callbacks:(UIRandomWalkMapViewCallbacks *)callbacks {
-    self.model = model;
     self.callbacks = callbacks;
     
     [self drawNewLocations:model.initialLocations];
     [self updateCircleToCenter:model.initialCircle.center radiusInKM:model.initialCircle.radiusInKm];
     self.currentCircle = model.initialCircle;
     
+    self.busyView.hidden = YES;
     
     if (!model.editable) {
         self.toolsViewHeightConstraint.constant = 0;
@@ -67,9 +86,18 @@
         
         self.setCenterButton.hidden = YES;
     }
+    
+    
+    MKCoordinateRegion region = MKCoordinateRegionMake(model.initialCircle.center, MKCoordinateSpanMake(0.2, 0.2));
+    self.mapView.region = region;
 }
 
 -(void)drawNewLocations:(NSArray<CLLocation *> *)locations{
+    
+    if (self.currentAnnotation) {
+        [self.mapView removeAnnotation:self.currentAnnotation];
+    }
+    
     if (self.currentDrawnPolyline) {
         [self.mapView removeOverlay:self.currentDrawnPolyline];
     }
@@ -77,11 +105,9 @@
     [self.mapView removeAnnotations:self.mapView.annotations];
     
     if (!locations.count) {
-        NSLog(@"No locations to draw");
         return;
     }
     
-    NSLog(@"location items count :%@", locations);
     CLLocationCoordinate2D* locationCoordinates = malloc(sizeof(CLLocationCoordinate2D) * locations.count);
     
     for (int i = 0; i<locations.count; i++) {
@@ -92,15 +118,8 @@
     
     free(locationCoordinates);
     
-    NSMutableArray *annotations = [[NSMutableArray alloc] init];
-    for (CLLocation *loc in locations) {
-        MKPointAnnotation *pointAnn = [[MKPointAnnotation alloc] init];
-        pointAnn.coordinate = loc.coordinate;
-        [annotations addObject:pointAnn];
-    }
-    
     [self.mapView addOverlay:self.currentDrawnPolyline];
-//    [self.mapView addAnnotations:annotations];
+    self.currentLocations = locations;
 }
 
 
@@ -122,12 +141,13 @@
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     
     NSString *identifier = @"pinView";
-    MKPinAnnotationView *pinView = [mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
     if (!pinView) {
-        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinView];
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
     }
     
     pinView.animatesDrop = YES;
+    pinView.canShowCallout = YES;
     return pinView;
 }
 
@@ -162,15 +182,14 @@
 }
 
 
--(void)setRadiusValue:(double)value {
-    self.slider.value = value;
-    self.kmLabel.text = doubleToText(value);
+-(void)setRadiusValue:(NSInteger)value {
+    self.stepper.value = value;
+    self.kmLabel.text = numberToText((int)value);
 }
+
 #pragma mark - IBActions
 
-
-
-- (IBAction)sliderDidChangeValue:(UISlider *)sender {
+- (IBAction)stepperDidChangeValue:(UIStepper *)sender {
     if (fabs(sender.value - self.currentCircle.radiusInKm) < 1.0) {
         return;
     }
@@ -179,9 +198,7 @@
 }
 
 - (IBAction)didPressSetCenter:(id)sender {
-    
-    NSLog(@"mapView center coordinate: %f - %f", self.mapView.centerCoordinate.latitude, self.mapView.centerCoordinate.longitude);
-    
+
     [self updateCircleToCenter:self.mapView.centerCoordinate radiusInKM:self.currentCircle.radiusInKm];
     SAFECALL(self.callbacks.onBoundCircleChange, self.currentCircle)
 }

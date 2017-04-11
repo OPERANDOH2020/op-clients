@@ -71,7 +71,7 @@
 }
 
 
-+(RandomWalkSwizzlerSettings *)createWithCircleWithCircle:(RandomWalkBoundCircle *)circle walkPath:(NSArray<CLLocation *> *)walkPath enabled:(BOOL)enabled error:(NSError *__autoreleasing *)error {
++(RandomWalkSwizzlerSettings *)createWithCircle:(RandomWalkBoundCircle *)circle walkPath:(NSArray<CLLocation *> *)walkPath enabled:(BOOL)enabled error:(NSError *__autoreleasing *)error {
     
     RandomWalkSwizzlerSettings *settings = [[RandomWalkSwizzlerSettings alloc] init];
     settings.enabled = enabled;

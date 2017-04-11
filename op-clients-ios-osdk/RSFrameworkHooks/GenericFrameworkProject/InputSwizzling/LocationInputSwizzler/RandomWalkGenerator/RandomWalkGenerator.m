@@ -8,7 +8,7 @@
 
 #import "RandomWalkGenerator.h"
 #import <math.h>
-
+#import "Common.h"
 
 
 
@@ -71,9 +71,19 @@ double haversine_km(double lat1, double long1, double lat2, double long2)
 @implementation RandomWalkGenerator
 
 
+-(void)generateRandomWalkInCircle:(RandomWalkBoundCircle *)circle withCompletion:(void (^)(NSArray<CLLocation *> *))completion {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *locations = [self generateRandomWalkInCircle:circle];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            SAFECALL(completion, locations)
+        });
+    });
+}
+
 -(NSArray<CLLocation *> *)generateRandomWalkInCircle:(RandomWalkBoundCircle *)circle {
     
-    double stepInMeters = 100; //
+    double stepInMeters = 25; //
     int maxNumOfTries = 1000; //
     NSMutableArray<CLLocation*> *result = [[NSMutableArray alloc] init];
     CLLocation *location = [[CLLocation alloc] initWithLatitude:circle.center.latitude longitude:circle.center.longitude];
@@ -93,7 +103,6 @@ double haversine_km(double lat1, double long1, double lat2, double long2)
         CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:nextPoint.latitude longitude:nextPoint.longitude];
         [result addObject:newLocation];
         currentSourcePoint = nextPoint;
-        NSLog(@"at try %d", totalTries);
     }
     
     return result;

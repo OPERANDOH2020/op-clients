@@ -29,4 +29,5 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/NSBundle+RSFrameworkHooks/NSBundle+RSFrameworkHooks.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIInputUsageGraphsViewController/UIUsageViewController.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIInputGraphViewController/UIInputGraphViewController.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIRandomWalkLocationSettingsViewController/UIRandomWalkLocationSettingsViewController.h
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIRandomWalkLocationSettingsViewController/UIRandomWalkLocationSettingsViewController.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/UIRandomWalkLocationStatusViewController/UIRandomWalkLocationStatusViewController.h

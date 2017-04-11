@@ -162,7 +162,15 @@ static void __attribute__((constructor)) initialize(void){
     PPFlowBuilderLocationModel *locationRelated = [[PPFlowBuilderLocationModel alloc] init];
     
     locationRelated.getCurrentActiveLocationIndex = ^NSInteger{
-        return 0;
+        return weakSelf.locationInputSwizzler.indexOfCurrentSentLocation;
+    };
+    
+    locationRelated.registerChangeCallback = ^(CurrentActiveLocationIndexChangedCallback  _Nullable callback) {
+        [weakSelf.locationInputSwizzler registerNewChangeCallback:callback];
+    };
+    
+    locationRelated.removeChangeCallback = ^(CurrentActiveLocationIndexChangedCallback  _Nullable callback) {
+        [weakSelf.locationInputSwizzler removeChangeCallback:callback];
     };
     
     locationRelated.getCurrentRandomWalkSettingsCallback = ^RandomWalkLocationSettingsModel * _Nonnull{
@@ -271,11 +279,12 @@ static void __attribute__((constructor)) initialize(void){
     RandomWalkSwizzlerSettings *defaultLocationSettings = [RandomWalkSwizzlerSettings createFromDefaults: [NSUserDefaults standardUserDefaults] error:&error];
     
     if (error) {
-        defaultLocationSettings = [RandomWalkSwizzlerSettings createWithCircle:nil walkPath:@[] enabled:NO error:nil];
+        RandomWalkBoundCircle *circle = [[RandomWalkBoundCircle alloc] initWithCenter:CLLocationCoordinate2DMake(90, 90) radiusInKm:1];
+        defaultLocationSettings = [RandomWalkSwizzlerSettings createWithCircle:circle walkPath:@[] enabled:NO error:nil];
     }
     
     self.locationInputSwizzler = [[LocationInputSwizzler alloc] init];
-    
+    [self.locationInputSwizzler applyNewRandomWalkSettings:defaultLocationSettings];
     
     
     [self.locationInputSwizzler setupWithSettings:defaultLocationSettings eventsDispatcher:[PPEventsPipelineFactory eventsDispatcher] whenLocationsAreRequested:^(NSArray<CLLocation *> * _Nonnull locations) {
