@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "LocationInputSwizzlerSettings.h"
+#import "UserDefinedLocationsSwizzlerSettings.h"
+#import "RandomWalkSwizzlerSettings.h"
+#import "RandomWalkGenerator.h"
 
 @interface CommonLocationViewCallbacks : NSObject
 @property (strong, nonatomic) void (^ _Nullable onDeleteAll)();
@@ -24,6 +26,20 @@
 @end
 
 typedef void(^CurrentActiveLocationIndexChangedCallback)(NSInteger newIndex);
-typedef void(^ActiveLocationChangeBlockArgument)(CurrentActiveLocationIndexChangedCallback callback);
+typedef void(^ActiveLocationChangeBlockArgument)(CurrentActiveLocationIndexChangedCallback _Nullable callback);
 
-typedef LocationInputSwizzlerSettings* _Nonnull (^GetCurrentLocationSettingsCallback)();
+@interface RandomWalkLocationSettingsModel : NSObject
+@property (strong, nonatomic) RandomWalkSwizzlerSettings* _Nullable currentSettings;
+@property (strong, nonatomic) RandomWalkGenerator* _Nullable randomWalkGenerator;
+@end
+
+@interface RandomWalkLocationStatusModel : NSObject
+@property (strong, nonatomic) RandomWalkSwizzlerSettings* _Nullable currentSettings;
+@property (assign, nonatomic) NSInteger currentSentLocationIndex;
+@property (strong, nonatomic) ActiveLocationChangeBlockArgument _Nullable registerCallbackForChanges;
+@property (strong, nonatomic) ActiveLocationChangeBlockArgument _Nullable removeCallbackForChanges;
+
+@end
+
+typedef UserDefinedLocationsSwizzlerSettings* _Nonnull (^GetCurrentLocationSettingsCallback)();
+typedef RandomWalkLocationSettingsModel* _Nonnull(^GetCurrentRandomWalkSettingsCallback)();

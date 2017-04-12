@@ -25,3 +25,9 @@
 
 @implementation CommonLocationViewCallbacks
 @end
+
+@implementation RandomWalkLocationSettingsModel
+@end
+
+@implementation RandomWalkLocationStatusModel
+@end
