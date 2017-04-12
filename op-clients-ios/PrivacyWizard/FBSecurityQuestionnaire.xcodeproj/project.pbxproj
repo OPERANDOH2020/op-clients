@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		98B396021E9E731500A1FB9D /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B396011E9E731500A1FB9D /* SwarmClient.framework */; };
+		98B396041E9E731D00A1FB9D /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98B396011E9E731500A1FB9D /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD15663E1E095F8700036616 /* PrivacyWizardResources.js in Resources */ = {isa = PBXBuildFile; fileRef = AD15663D1E095F8700036616 /* PrivacyWizardResources.js */; };
 		AD1CC5C01DF812800013FE77 /* ACSwarmCallbackContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1CC5BF1DF812800013FE77 /* ACSwarmCallbackContainer.swift */; };
 		AD1CC5C31DF812CE0013FE77 /* ACTypeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1CC5C21DF812CE0013FE77 /* ACTypeConstants.swift */; };
@@ -88,9 +90,6 @@
 		AD9A5D771E7BE6E400A31865 /* ActionControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D701E7BE6E400A31865 /* ActionControllerSettings.swift */; };
 		AD9A5D781E7BE6E400A31865 /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D711E7BE6E400A31865 /* ActionData.swift */; };
 		AD9A5D791E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D721E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift */; };
-		AD9C15CC1E9CAA7000EE4307 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */; };
-		AD9C15CD1E9CAA7800EE4307 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */; };
-		AD9C15CE1E9CAA7800EE4307 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ADAF999D1E2E32E700E9A18D /* UILabel+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */; };
 		ADB8D01D1E936C8D008926F6 /* UITutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8D01C1E936C8D008926F6 /* UITutorialView.swift */; };
 		ADB8D01F1E936E36008926F6 /* UITutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB8D01E1E936E36008926F6 /* UITutorialView.xib */; };
@@ -135,7 +134,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AD9C15CE1E9CAA7800EE4307 /* SwarmClient.framework in Embed Frameworks */,
+				98B396041E9E731D00A1FB9D /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +142,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		98B396011E9E731500A1FB9D /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		AD15663D1E095F8700036616 /* PrivacyWizardResources.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PrivacyWizardResources.js; sourceTree = "<group>"; };
 		AD1CC5BF1DF812800013FE77 /* ACSwarmCallbackContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSwarmCallbackContainer.swift; sourceTree = "<group>"; };
 		AD1CC5C21DF812CE0013FE77 /* ACTypeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTypeConstants.swift; sourceTree = "<group>"; };
@@ -229,7 +229,6 @@
 		AD9A5D701E7BE6E400A31865 /* ActionControllerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionControllerSettings.swift; sourceTree = "<group>"; };
 		AD9A5D711E7BE6E400A31865 /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionData.swift; sourceTree = "<group>"; };
 		AD9A5D721E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Utils.swift"; sourceTree = "<group>"; };
 		ADB8D01C1E936C8D008926F6 /* UITutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITutorialView.swift; sourceTree = "<group>"; };
 		ADB8D01E1E936E36008926F6 /* UITutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UITutorialView.xib; sourceTree = "<group>"; };
@@ -262,9 +261,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD9C15CC1E9CAA7000EE4307 /* SwarmClient.framework in Frameworks */,
+				98B396021E9E731500A1FB9D /* SwarmClient.framework in Frameworks */,
 				AD291BEA1E5C6E9F00F158E0 /* QuartzCore.framework in Frameworks */,
-				AD9C15CD1E9CAA7800EE4307 /* SwarmClient.framework in Frameworks */,
 				AD1FCD3B1E0801D5001DADD8 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,7 +1027,7 @@
 		ADEDBBE71E5B0F7800C220B0 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */,
+				98B396011E9E731500A1FB9D /* SwarmClient.framework */,
 				AD9A5D671E7BE55600A31865 /* XLActionController */,
 				AD9A5D5D1E79459C00A31865 /* ScrollableOverlay */,
 				AD291BFC1E5DCE9F00F158E0 /* RSFBSecure */,
@@ -1049,6 +1047,7 @@
 				AD42FB311DF598130034FA99 /* Frameworks */,
 				AD42FB321DF598130034FA99 /* Resources */,
 				AD6CD9051E94C31F000BA3B4 /* Embed Frameworks */,
+				98B395F81E9E70C100A1FB9D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1162,6 +1161,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		98B395F81E9E70C100A1FB9D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD42FB301DF598130034FA99 /* Sources */ = {
@@ -1309,6 +1324,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1358,6 +1374,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
