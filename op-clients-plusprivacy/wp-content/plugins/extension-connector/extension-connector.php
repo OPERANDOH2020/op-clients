@@ -207,6 +207,20 @@ function ospOffersController()
 
 function ospDealsController()
 {
+    insertScriptIfShortcode("chart.js", 'osp-dashboard-deals', plugins_url('/js/utils/angular-chart/chart.js', __FILE__));
+    insertScriptIfShortcode("angular-chart.js", 'osp-dashboard-deals', plugins_url('/js/utils/angular-chart/angular-chart.min.js', __FILE__));
+
+    insertScriptIfShortcode("jquery.dataTables.min", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
+    insertScriptIfShortcode("jquery.dataTables.min", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/jquery.dataTables.min.js', __FILE__));
+    insertScriptIfShortcode("angular-datatables.min.js", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/angular-datatables.min.js', __FILE__));
+    insertScriptIfShortcode("angular-datatables.bootstrap.min", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/angular-datatables.bootstrap.min.js', __FILE__));
+    insertScriptIfShortcode("dataTables.buttons.min.js", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/exports/dataTables.buttons.min.js', __FILE__));
+    insertScriptIfShortcode("jszip.min.js", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/exports/jszip.min.js', __FILE__));
+    insertScriptIfShortcode("pdfmake.min.js", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/exports/pdfmake.min.js', __FILE__));
+    insertScriptIfShortcode("vfs_fonts.js", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/exports/vfs_fonts.js', __FILE__));
+    insertScriptIfShortcode("buttons.html5.min.js", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/exports/buttons.html5.min.js', __FILE__));
+
+    insertStyleIfShortcode("datatables.bootstrap", 'osp-dashboard-deals', plugins_url('/js/utils/angular-datatables/datatables.bootstrap.min.css', __FILE__));
     insertScriptIfShortcode("ospDealsController", 'osp-dashboard-deals', plugins_url('/js/app/controllers/osp/ospDealsController.js', __FILE__));
 }
 

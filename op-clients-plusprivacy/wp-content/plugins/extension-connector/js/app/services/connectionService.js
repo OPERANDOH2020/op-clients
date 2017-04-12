@@ -344,6 +344,31 @@ angular.module('sharedService').factory("connectionService",function(swarmServic
             });
         };
 
+
+        ConnectionService.prototype.getMyOffersDetails = function(successCallback, failCallback){
+            var listOspOffersHandler = swarmHub.startSwarm("osp.js", "getCurrentUserOffers");
+            listOspOffersHandler.onResponse("success", function (swarm) {
+                successCallback(swarm.offersStats);
+            });
+
+            listOspOffersHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
+
+        ConnectionService.prototype.getOfferStatistics = function(offerId,successCallback, failCallback){
+            var listOspOffersHandler = swarmHub.startSwarm("osp.js", "getOfferStatistics",offerId);
+            listOspOffersHandler.onResponse("success", function (swarm) {
+                successCallback(swarm.offerStats);
+            });
+
+            listOspOffersHandler.onResponse("failed", function (swarm) {
+                failCallback(swarm.error);
+            });
+        };
+
+
+
         return ConnectionService;
 
     })();
