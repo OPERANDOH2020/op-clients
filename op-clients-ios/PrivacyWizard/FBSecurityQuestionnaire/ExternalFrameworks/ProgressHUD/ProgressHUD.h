@@ -12,15 +12,15 @@
 #import <UIKit/UIKit.h>
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-#define HUD_STATUS_FONT			[UIFont fontWithName:@"Gesta-Regular" size:17.0f]
+#define HUD_STATUS_FONT			[UIFont fontWithName:@"Dosis-Medium" size:17.0f]
 //#define HUD_STATUS_COLOR		[UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0]
 #define HUD_STATUS_COLOR		[UIColor whiteColor]
 
 //define HUD_SPINNER_COLOR		[UIColor colorWithRed:0.0/255.0 green:145.0/255.0 blue:210.0/255.0 alpha:1.0]
-#define HUD_SPINNER_COLOR		[UIColor colorWithRed:44.0/255.0 green:99.0/255.0 blue:210.0/255.0 alpha:1.0]
+#define HUD_SPINNER_COLOR		[UIColor whiteColor]
 #define HUD_Error_COLOR	        [UIColor colorWithRed:221.0/255.0 green:68.0/255.0 blue:24.0/255.0 alpha:1.0]
 
-#define HUD_BACKGROUND_COLOR	[UIColor colorWithWhite:0.0 alpha:0.6]
+#define HUD_BACKGROUND_COLOR	[UIColor colorWithRed:3.0 green:12.0 blue:36.0 alpha:0.4]
 #define HUD_WINDOW_COLOR		[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4]
 
 #define HUD_IMAGE_SUCCESS		[UIImage imageNamed:@"graphic_fax-sent_"]

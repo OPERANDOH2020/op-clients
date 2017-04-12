@@ -88,15 +88,15 @@
 		AD9A5D771E7BE6E400A31865 /* ActionControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D701E7BE6E400A31865 /* ActionControllerSettings.swift */; };
 		AD9A5D781E7BE6E400A31865 /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D711E7BE6E400A31865 /* ActionData.swift */; };
 		AD9A5D791E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A5D721E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift */; };
+		AD9C15CC1E9CAA7000EE4307 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */; };
+		AD9C15CD1E9CAA7800EE4307 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */; };
+		AD9C15CE1E9CAA7800EE4307 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ADAF999D1E2E32E700E9A18D /* UILabel+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */; };
 		ADB8D01D1E936C8D008926F6 /* UITutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8D01C1E936C8D008926F6 /* UITutorialView.swift */; };
 		ADB8D01F1E936E36008926F6 /* UITutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB8D01E1E936E36008926F6 /* UITutorialView.xib */; };
 		ADB8D0211E93A2A0008926F6 /* linkedin-iOS.js in Resources */ = {isa = PBXBuildFile; fileRef = ADB8D0201E93A2A0008926F6 /* linkedin-iOS.js */; };
 		ADBBCAF91E1BCD35007A7686 /* ACMathOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */; };
 		ADBBCAFD1E1BCD87007A7686 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */; };
-		ADCC1E521E97950600583E5C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E511E97950600583E5C /* SwarmClient.framework */; };
-		ADCC1E531E97950F00583E5C /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E511E97950600583E5C /* SwarmClient.framework */; };
-		ADCC1E541E97950F00583E5C /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ADCC1E511E97950600583E5C /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ADE060DC1E1D3A3E00ACC00E /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060DB1E1D3A3E00ACC00E /* UIColor+Utils.swift */; };
 		ADE060E11E1D445700ACC00E /* UIQuestionnaireTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060E01E1D445700ACC00E /* UIQuestionnaireTableViewController.swift */; };
 		ADE060E41E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE060E31E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift */; };
@@ -135,7 +135,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ADCC1E541E97950F00583E5C /* SwarmClient.framework in Embed Frameworks */,
+				AD9C15CE1E9CAA7800EE4307 /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,13 +229,13 @@
 		AD9A5D701E7BE6E400A31865 /* ActionControllerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionControllerSettings.swift; sourceTree = "<group>"; };
 		AD9A5D711E7BE6E400A31865 /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionData.swift; sourceTree = "<group>"; };
 		AD9A5D721E7BE6E400A31865 /* DynamicCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		ADAF999C1E2E32E700E9A18D /* UILabel+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Utils.swift"; sourceTree = "<group>"; };
 		ADB8D01C1E936C8D008926F6 /* UITutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITutorialView.swift; sourceTree = "<group>"; };
 		ADB8D01E1E936E36008926F6 /* UITutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UITutorialView.xib; sourceTree = "<group>"; };
 		ADB8D0201E93A2A0008926F6 /* linkedin-iOS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "linkedin-iOS.js"; sourceTree = "<group>"; };
 		ADBBCAF81E1BCD35007A7686 /* ACMathOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACMathOperator.swift; sourceTree = "<group>"; };
 		ADBBCAFC1E1BCD87007A7686 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
-		ADCC1E511E97950600583E5C /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		ADE060DB1E1D3A3E00ACC00E /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		ADE060E01E1D445700ACC00E /* UIQuestionnaireTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIQuestionnaireTableViewController.swift; sourceTree = "<group>"; };
 		ADE060E31E1D449500ACC00E /* UIQuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIQuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
@@ -262,9 +262,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADCC1E521E97950600583E5C /* SwarmClient.framework in Frameworks */,
+				AD9C15CC1E9CAA7000EE4307 /* SwarmClient.framework in Frameworks */,
 				AD291BEA1E5C6E9F00F158E0 /* QuartzCore.framework in Frameworks */,
-				ADCC1E531E97950F00583E5C /* SwarmClient.framework in Frameworks */,
+				AD9C15CD1E9CAA7800EE4307 /* SwarmClient.framework in Frameworks */,
 				AD1FCD3B1E0801D5001DADD8 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,7 +1029,7 @@
 		ADEDBBE71E5B0F7800C220B0 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ADCC1E511E97950600583E5C /* SwarmClient.framework */,
+				AD9C15CB1E9CAA7000EE4307 /* SwarmClient.framework */,
 				AD9A5D671E7BE55600A31865 /* XLActionController */,
 				AD9A5D5D1E79459C00A31865 /* ScrollableOverlay */,
 				AD291BFC1E5DCE9F00F158E0 /* RSFBSecure */,
@@ -1089,9 +1089,9 @@
 				TargetAttributes = {
 					AD42FB331DF598130034FA99 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = JK2EHVVGUU;
+						DevelopmentTeam = N3W2GJCUF8;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					AD42FB471DF598130034FA99 = {
 						CreatedOnToolsVersion = 8.1;
@@ -1381,9 +1381,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aurelian Ursache (4AB5P586S4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aurelian Ursache (4AB5P586S4)";
-				DEVELOPMENT_TEAM = JK2EHVVGUU;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = N3W2GJCUF8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FBSecurityQuestionnaire/ExternalFrameworks",
@@ -1391,10 +1391,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/FBSecurityQuestionnaire/BundleFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.romsoft.PrivacyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "54d01d4c-05f2-4121-b64a-933ee590d231";
-				PROVISIONING_PROFILE_SPECIFIER = "TS Development Provisioning Profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos10.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "FBSecurityQuestionnaire/BridgingHeaders/FBSecurityQuestionnaire-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1407,8 +1407,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = JK2EHVVGUU;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = N3W2GJCUF8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FBSecurityQuestionnaire/ExternalFrameworks",
@@ -1416,10 +1417,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/FBSecurityQuestionnaire/BundleFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.romsoft.PrivacyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eac8d46d-141a-49f4-b45c-c7fee8aa045f";
-				PROVISIONING_PROFILE_SPECIFIER = "TS Distribution Provisioning Profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos10.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "FBSecurityQuestionnaire/BridgingHeaders/FBSecurityQuestionnaire-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

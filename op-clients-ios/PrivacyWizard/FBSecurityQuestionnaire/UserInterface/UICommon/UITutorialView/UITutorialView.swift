@@ -44,9 +44,10 @@ class UITutorialView: UIView {
     static func create(withTitle title: String, frame: CGRect, backgroundColor: UIColor, croppingConfiguration cropConfig: UITutorialViewCroppingConfiguration, delegate: UITutorialViewDelegate) -> UITutorialView {
         let tutorialView = UINib(nibName: "UITutorialView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UITutorialView
         
-
+        
         tutorialView.titleLabel.text = title
-        tutorialView.addSubview(withBackgroundColor: backgroundColor, alpha: 0.9, cropRectFrom: cropConfig.origin, width: cropConfig.width, height: cropConfig.height)
+        let overlay = UIView.getCroppedOverlay(withBackgroundColor: backgroundColor, alpha: 0.9, bounds: frame, cropRectFrom: cropConfig.origin, width: cropConfig.width, height: cropConfig.height)
+        tutorialView.insertSubview(overlay, at: 0)
         tutorialView.addPointingImage(at: CGPoint(x: cropConfig.origin.x, y: cropConfig.origin.y + cropConfig.height))
         tutorialView.delegate = delegate
         tutorialView.croppingCenter = cropConfig.origin

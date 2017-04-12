@@ -70,16 +70,15 @@ class FbWebKitSecurityEnforcer: NSObject, WKNavigationDelegate, WKUIDelegate
     }
     
     
-    private func loginIsDoneInitiateNextStep()
-    {
+    private func loginIsDoneInitiateNextStep() {
         let resource = ACPrivacyWizard.shared.selectedScope.getWizardResourceName()
-        self.webView.loadAndExecuteScriptNamed(scriptName: resource) { (result, error) in
-            print(error)
-        }
+        
+        self.webView.loadJQueryIfNeededWithCompletion(completion: {
+            self.webView.loadAndExecuteScriptNamed(scriptName: resource) { (result, error) in
+                print(error)
+            }
+        })
     }
-    
-    
-
     
     private func loadJSFileInWebView()
     {

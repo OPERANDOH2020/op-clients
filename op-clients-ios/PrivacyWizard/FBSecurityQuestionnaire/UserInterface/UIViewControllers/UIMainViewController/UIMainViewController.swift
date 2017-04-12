@@ -95,7 +95,7 @@ class UIMainViewController: UIViewController {
         if allowed {
             self.setupPrivacyButton.isEnabled = true
         } else {
-            UIAlertViewController.presentOkAlert(from: self, title: "Information", message: "Could not fetching Privacy Wizard configuration. Please come back later.")
+            UIAlertViewController.presentOkAlert(from: self, title: "Information", message: "Could not fetch Privacy Wizard configuration. Please come back later.")
         }
     }
 }

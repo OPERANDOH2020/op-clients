@@ -15,12 +15,19 @@ class AMAvailableWriteSetting: NSObject {
     private(set) var parameters: [AMWriteSettingParameter]
     private(set) var data: Dictionary<String, Any>
     
+    private(set) var dataDictionary: NSDictionary?
+    private(set) var paramsDictionary: NSDictionary?
+    
     init?(key: String, dictionary: [String: Any]?) {
         guard let dictionary = dictionary else { return nil }
         self.key = key
         name = dictionary["name"] as? String
         parameters = []
         data = Dictionary<String, Any>()
+        
+        dataDictionary = dictionary["data"] as? NSDictionary
+        paramsDictionary = dictionary["params"] as? NSDictionary
+        
         super.init()
         parameters = get(parametersFrom: dictionary["params"] as? NSDictionary)
         extract(dataParameterFrom: dictionary["data"] as? NSDictionary)

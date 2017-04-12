@@ -28,8 +28,18 @@ class ACPrivacyWriter: NSObject {
         var array = [Dictionary<String, Any>]()
         
         for setting in settings {
-            if let mappedSetting = map(privacySetting: setting) {
-                array.append(mappedSetting)
+            
+            switch ACPrivacyWizard.shared.selectedScope {
+            case .facebook:
+                if let mappedSetting = map(facebookPrivacySetting: setting) {
+                    array.append(mappedSetting)
+                }
+            case .linkedIn:
+                if let mappedSetting = map(linkedinPrivacySetting: setting) {
+                    array.append(mappedSetting)
+                }
+            default:
+                continue;
             }
         }
         
@@ -42,21 +52,66 @@ class ACPrivacyWriter: NSObject {
         }
     }
     
-    static func map(privacySetting setting: AMPrivacySetting) -> Dictionary<String, Any>? {
+    static func map(facebookPrivacySetting setting: AMPrivacySetting) -> Dictionary<String, Any>? {
+//        guard let read = setting.read,
+//            let selectedSettingName = read.getSelectedReadSettingName(),
+//            let write = setting.write,
+//            let settingTitle = write.name,
+//            let page = write.page,
+//            let urlTemplate = write.getCompletedUrlTemplate(forSettingNamed: selectedSettingName)
+//        else { return nil }
+//        
+//        var result = Dictionary<String, Any>()
+//        
+//        result["name"] = settingTitle
+//        result["page"] = page
+//        result["url"] = urlTemplate
+//        result["data"] = write.data
+//        
+//        return result
         guard let read = setting.read,
             let selectedSettingName = read.getSelectedReadSettingName(),
             let write = setting.write,
+            let settingTitle = write.name,
             let page = write.page,
             let urlTemplate = write.getCompletedUrlTemplate(forSettingNamed: selectedSettingName)
-        else { return nil }
+            else { return nil }
         
         var result = Dictionary<String, Any>()
         
-        result["name"] = selectedSettingName
+        let parameters = write.getParams(forSettingNamed: selectedSettingName)
+        
+        result["name"] = settingTitle.replacingOccurrences(of: "\"", with: "")
         result["page"] = page
         result["url"] = urlTemplate
-        result["data"] = write.data
+        result["data"] = parameters.data
+        result["params"] = parameters.params
+        result["type"] = write.type
         
         return result
     }
+    
+    static func map(linkedinPrivacySetting setting: AMPrivacySetting) -> Dictionary<String, Any>? {
+        guard let read = setting.read,
+            let selectedSettingName = read.getSelectedReadSettingName(),
+            let write = setting.write,
+            let settingTitle = write.name,
+            let page = write.page,
+            let urlTemplate = write.urlTemplate
+            else { return nil }
+        
+        var result = Dictionary<String, Any>()
+        
+        let parameters = write.getParams(forSettingNamed: selectedSettingName)
+        
+        result["name"] = settingTitle.replacingOccurrences(of: "\"", with: "")
+        result["page"] = page
+        result["url"] = urlTemplate
+        result["data"] = parameters.data
+        result["params"] = parameters.params
+        result["type"] = write.type
+        
+        return result
+    }
+
 }
