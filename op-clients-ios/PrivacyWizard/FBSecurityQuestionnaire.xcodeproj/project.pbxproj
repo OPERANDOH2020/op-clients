@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		98B396021E9E731500A1FB9D /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B396011E9E731500A1FB9D /* SwarmClient.framework */; };
+		98B396041E9E731D00A1FB9D /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98B396011E9E731500A1FB9D /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD15663E1E095F8700036616 /* PrivacyWizardResources.js in Resources */ = {isa = PBXBuildFile; fileRef = AD15663D1E095F8700036616 /* PrivacyWizardResources.js */; };
 		AD1CC5C01DF812800013FE77 /* ACSwarmCallbackContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1CC5BF1DF812800013FE77 /* ACSwarmCallbackContainer.swift */; };
 		AD1CC5C31DF812CE0013FE77 /* ACTypeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1CC5C21DF812CE0013FE77 /* ACTypeConstants.swift */; };
@@ -64,9 +66,6 @@
 		AD42FB731DF59D2D0034FA99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB6D1DF59D2D0034FA99 /* ViewController.swift */; };
 		AD42FB7C1DF59DCB0034FA99 /* ACSwarmClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB7B1DF59DCB0034FA99 /* ACSwarmClientHelper.swift */; };
 		AD42FB801DF59E920034FA99 /* ACNetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42FB7F1DF59E920034FA99 /* ACNetworkingConstants.swift */; };
-		AD6CD9021E94C319000BA3B4 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */; };
-		AD6CD9031E94C31F000BA3B4 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */; };
-		AD6CD9041E94C31F000BA3B4 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD709F461E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD709F451E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift */; };
 		AD798BCE1E8B9BCC00EA5226 /* Dosis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD798BCC1E8B9BCC00EA5226 /* Dosis-Medium.otf */; };
 		AD798BCF1E8B9BCC00EA5226 /* Dosis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD798BCD1E8B9BCC00EA5226 /* Dosis-SemiBold.otf */; };
@@ -135,7 +134,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AD6CD9041E94C31F000BA3B4 /* SwarmClient.framework in Embed Frameworks */,
+				98B396041E9E731D00A1FB9D /* SwarmClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +142,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		98B396011E9E731500A1FB9D /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		AD15663D1E095F8700036616 /* PrivacyWizardResources.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PrivacyWizardResources.js; sourceTree = "<group>"; };
 		AD1CC5BF1DF812800013FE77 /* ACSwarmCallbackContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSwarmCallbackContainer.swift; sourceTree = "<group>"; };
 		AD1CC5C21DF812CE0013FE77 /* ACTypeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTypeConstants.swift; sourceTree = "<group>"; };
@@ -207,7 +207,6 @@
 		AD42FB781DF59D690034FA99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD42FB7B1DF59DCB0034FA99 /* ACSwarmClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSwarmClientHelper.swift; sourceTree = "<group>"; };
 		AD42FB7F1DF59E920034FA99 /* ACNetworkingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNetworkingConstants.swift; sourceTree = "<group>"; };
-		AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		AD709F451E8E6AEF00FEC553 /* UIRadialGradientViewPulsarConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadialGradientViewPulsarConfiguration.swift; sourceTree = "<group>"; };
 		AD798BCC1E8B9BCC00EA5226 /* Dosis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.otf"; sourceTree = "<group>"; };
 		AD798BCD1E8B9BCC00EA5226 /* Dosis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-SemiBold.otf"; sourceTree = "<group>"; };
@@ -262,9 +261,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD6CD9021E94C319000BA3B4 /* SwarmClient.framework in Frameworks */,
+				98B396021E9E731500A1FB9D /* SwarmClient.framework in Frameworks */,
 				AD291BEA1E5C6E9F00F158E0 /* QuartzCore.framework in Frameworks */,
-				AD6CD9031E94C31F000BA3B4 /* SwarmClient.framework in Frameworks */,
 				AD1FCD3B1E0801D5001DADD8 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,7 +1027,7 @@
 		ADEDBBE71E5B0F7800C220B0 /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AD6CD9011E94C319000BA3B4 /* SwarmClient.framework */,
+				98B396011E9E731500A1FB9D /* SwarmClient.framework */,
 				AD9A5D671E7BE55600A31865 /* XLActionController */,
 				AD9A5D5D1E79459C00A31865 /* ScrollableOverlay */,
 				AD291BFC1E5DCE9F00F158E0 /* RSFBSecure */,
@@ -1049,6 +1047,7 @@
 				AD42FB311DF598130034FA99 /* Frameworks */,
 				AD42FB321DF598130034FA99 /* Resources */,
 				AD6CD9051E94C31F000BA3B4 /* Embed Frameworks */,
+				98B395F81E9E70C100A1FB9D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1089,9 +1088,9 @@
 				TargetAttributes = {
 					AD42FB331DF598130034FA99 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = JK2EHVVGUU;
+						DevelopmentTeam = N3W2GJCUF8;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					AD42FB471DF598130034FA99 = {
 						CreatedOnToolsVersion = 8.1;
@@ -1162,6 +1161,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		98B395F81E9E70C100A1FB9D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD42FB301DF598130034FA99 /* Sources */ = {
@@ -1309,6 +1324,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1358,6 +1374,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1381,9 +1398,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aurelian Ursache (4AB5P586S4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aurelian Ursache (4AB5P586S4)";
-				DEVELOPMENT_TEAM = JK2EHVVGUU;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = N3W2GJCUF8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FBSecurityQuestionnaire/ExternalFrameworks",
@@ -1391,10 +1408,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/FBSecurityQuestionnaire/BundleFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.romsoft.PrivacyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "54d01d4c-05f2-4121-b64a-933ee590d231";
-				PROVISIONING_PROFILE_SPECIFIER = "TS Development Provisioning Profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos10.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "FBSecurityQuestionnaire/BridgingHeaders/FBSecurityQuestionnaire-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1407,8 +1424,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = JK2EHVVGUU;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = N3W2GJCUF8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FBSecurityQuestionnaire/ExternalFrameworks",
@@ -1416,10 +1434,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/FBSecurityQuestionnaire/BundleFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.quantarium.TrustedSigning;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.romsoft.PrivacyWizard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eac8d46d-141a-49f4-b45c-c7fee8aa045f";
-				PROVISIONING_PROFILE_SPECIFIER = "TS Distribution Provisioning Profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos10.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "FBSecurityQuestionnaire/BridgingHeaders/FBSecurityQuestionnaire-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

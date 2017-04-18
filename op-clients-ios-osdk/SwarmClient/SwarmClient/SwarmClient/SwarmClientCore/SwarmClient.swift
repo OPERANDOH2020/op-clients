@@ -29,7 +29,7 @@ open class SwarmClient: NSObject {
     fileprivate var emitsArray: [NSDictionary]
     
     private var onReconnectIfAny: (() -> Void)?
-    private var onDisconnect: (() -> Void)?
+    private var onDisconnect: ((_ data: [Any]) -> Void)?
     private var onErrorWithReason: ((_ reason: String) -> Void)?
     
     open var delegate: SwarmClientProtocol?
@@ -43,8 +43,8 @@ open class SwarmClient: NSObject {
         super.init()
         
         weak var weakSel = self
-        self.onDisconnect = {
-            weakSel?.delegate?.socketDidDisconnect()
+        self.onDisconnect = { data in
+            weakSel?.delegate?.socketDidDisconnect(data)
         }
         
         self.onErrorWithReason = { reason in
@@ -63,7 +63,7 @@ open class SwarmClient: NSObject {
         }
         
         socketIO.on(SocketIOEventsNames.disconnect.rawValue) { (data, emitterSocket) in
-            self.onDisconnect?()
+            self.onDisconnect?(data)
         }
         
         socketIO.on(SocketIOEventsNames.error.rawValue) { (data, emitter) in
@@ -86,7 +86,9 @@ open class SwarmClient: NSObject {
     
     fileprivate func createSocket() {
         didConnect = false
-        if let url = URL(string: connectionURL) {
+        if !NetworkReachability.hasInternetConnection() {
+            delegate?.didFailedToCreateSocket(SwarmClientErrorGenerator.getInternetConnectionError())
+        } else if let url = URL(string: connectionURL) {
             initSocket(url)
         } else {
             delegate?.didFailedToCreateSocket(SwarmClientErrorGenerator.getInvalidURLError())
@@ -126,9 +128,10 @@ open class SwarmClient: NSObject {
         
         weak var weakSelf = self
         
-        self.onDisconnect = {
+        self.onDisconnect = { data in
             print("Swarm client did disconnect. Will re-create socket")
             weakSelf?.createSocket()
+            weakSelf?.delegate?.socketDidDisconnect(data)
         }
 
         self.onErrorWithReason = { reason in
@@ -145,4 +148,8 @@ open class SwarmClient: NSObject {
         self.socketIO?.disconnect()
     }
     
+    public func disconnect() {
+        self.didConnect = false
+        self.socketIO?.disconnect()
+    }
 }

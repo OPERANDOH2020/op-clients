@@ -23,7 +23,10 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/PPApiHooks.framework/Headers/PPApiHooks.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Common/Common.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/InputSwizzling/LocationInputSwizzler/LocationInputSwizzler.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/LocationInputSwizzlerSettings/LocationInputSwizzlerSettings.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/LocationInputSwizzlerSettings/UserDefinedLocationsSwizzlerSettings.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Views/CommonLocationViewModels/CommonLocationViewModels.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/LocationInputSwizzlerSettings/RandomWalkSwizzlerSettings.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/InputSwizzling/LocationInputSwizzler/RandomWalkGenerator/RandomWalkGenerator.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/CommonUtils/CommonUtils.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/JRSwizzle/JRSwizzle.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/RSFrameworkHooks/GenericFrameworkProject/Models/Utilities/PPCircularArray/PPCircularArray.h

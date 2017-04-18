@@ -74,4 +74,25 @@ class AMWrite: NSObject {
         
         return url
     }
+    
+    func getParams(forSettingNamed settingName: String) -> (data: NSDictionary?, params: NSDictionary?) {
+        var writeSetting: AMAvailableWriteSetting? = nil
+        
+        for setting in availableSettings ?? [] {
+            if let name = setting.name {
+                if name == settingName {
+                    writeSetting = setting
+                }
+            }
+        }
+        
+        let dataDict: NSMutableDictionary = NSMutableDictionary(dictionary: self.data)
+        if let selectedOptDataDict = writeSetting?.data {
+            for (key, value) in selectedOptDataDict {
+                dataDict.setValue(value, forKey: key)
+            }
+        }
+        
+        return (data: dataDict, params: writeSetting?.paramsDictionary)
+    }
 }

@@ -27,8 +27,6 @@
  webkitSendMessage(JSON.stringify(webkitMessage));
  };
  
- sendStatusMessage("Did begin privacy setting!");
- 
 var privacySettings = JSON.parse(privacySettingsJsonString);
 
 function postToLinkedIn(settings, item, total) {
@@ -42,14 +40,14 @@ function postToLinkedIn(settings, item, total) {
                        doGET(settings.page, function (response) {
                              
                              var headers = extractHeaders(response);
-                             
                              var data = {};
                              
-                             
-                             
+                             if(!data.hasOwnProperty("topLevelNodeId")) {
+                                data["topLevelNodeId"] = "root";
+                             }
                              
                              for (var prop in settings.data) {
-                                data[prop] = settings.data[prop];
+                             data[prop] = settings.data[prop];
                              }
                              
                              
@@ -84,12 +82,15 @@ function postToLinkedIn(settings, item, total) {
                                     success: function (result) {
                                     resolve(result);
                                     },
+                                    statusCode:{
+                                    500: function(){
+                                    console.log("Sunt in 500");
+                                    }
+                                    },
                                     error: function (a, b, c) {
-                                    console.log(a, b, c);
                                     reject(b);
                                     },
                                     complete: function (request, status) {
-                                    console.log("Request completed...");
                                     }
                                     
                                     });
@@ -112,13 +113,6 @@ function postToLinkedIn(settings, item, total) {
                                     processData: false,
                                     
                                     beforeSend: function (request) {
-                                    
-                                    if (settings.headers) {
-                                    for (var i = 0; i < settings.headers.length; i++) {
-                                    var header = settings.headers[i];
-                                    request.setRequestHeader(header.name, header.value);
-                                    }
-                                    }
                                     request.setRequestHeader("accept", "*/*");
                                     request.setRequestHeader("accept-language", "en-US,en;q=0.8");
                                     request.setRequestHeader("X-Alt-Referer", settings.page);
@@ -131,14 +125,16 @@ function postToLinkedIn(settings, item, total) {
                                     statusCode:{
                                     500: function(){
                                     console.log("Sunt in 500");
+                                    },
+                                    400: function(a, b) {
+                                    console.log(a.responseText);
                                     }
                                     },
                                     error: function (a, b, c) {
-                                    console.log(a, b, c);
-                                    reject(b);
+                                    reject(c);
                                     },
                                     complete: function (request, status) {
-                                    console.log("Request completed...");
+                                    console.log(request.responseText);
                                     }
                                     
                                     });
@@ -158,20 +154,13 @@ function secureAccount(callback) {
                             sequence = sequence.then(function () {
                                                      return postToLinkedIn(settings, index, total);
                                                      }).then(function (result) {
-                                                             /////////////////////
-                                                             ////////////Progress////////
-                                                             /////////////////////
-                                                             sendStatusMessage(result)
                                                              }).catch(function (err) {
-                                                                      sendStatusMessage(err)
+                                                                      console.log(err);
                                                                       });
                             });
     
     sequence = sequence.then(function (result) {
-                             //////////////////////
-                             //////////Finish//////////
-                             /////////////////////
-                             sendStatusMessage("Finished!")
+                             sendStatusMessage("Done")
                              });
     
     sequence = sequence.then(function (result) {
@@ -204,4 +193,7 @@ function extractHeaders(content) {
     return data;
     
 }
+  secureAccount(function() {
+                console.log("finished");
+                });
   })(RS_PARAM_PLACEHOLDER)

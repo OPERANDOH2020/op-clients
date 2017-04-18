@@ -12,7 +12,7 @@ import SwarmClient
 class ACSwarmClientHelper: NSObject, SwarmClientProtocol {
     
     // MARK: - Properties
-    static let ServerURL = "http://192.168.100.86:8080";
+    static let ServerURL = "https://plusprivacy.com:8080";
     private let swarmClient = SwarmClient(connectionURL: ACSwarmClientHelper.ServerURL);
     private let workingQueue: DispatchQueue = DispatchQueue.main
     internal let swarmClientActions = ACSwarmCallbackContainer()
@@ -24,6 +24,15 @@ class ACSwarmClientHelper: NSObject, SwarmClientProtocol {
     }
     
     // MARK: - Public Methods
+    func closeConnection() {
+        swarmClient.disconnect()
+    }
+    
+    func logout(completionHandler: @escaping (NSError?, [Any]?) -> Void) {
+        setCallbacks(withCompletionHandler: completionHandler)
+        self.swarmClient.startSwarm(ACSwarmName.login.rawValue, phase: ACSwarmPhase.start.rawValue, ctor: ACLoginConstructor.userLogout.rawValue, arguments: [])
+    }
+    
     func loginWithUsername(username: String, password: String, completionHandler: @escaping (NSError?, [Any]?) -> Void) {
         setCallbacks(withCompletionHandler: completionHandler)
         

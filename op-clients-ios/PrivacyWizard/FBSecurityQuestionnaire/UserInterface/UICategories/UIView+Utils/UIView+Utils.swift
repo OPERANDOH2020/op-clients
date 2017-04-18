@@ -15,10 +15,10 @@ enum UIGradientType {
 
 extension UIView {
     
-    func addSubview(withBackgroundColor bgColor: UIColor, alpha: CGFloat, cropRectFrom start: CGPoint, width: CGFloat, height: CGFloat) {
+    static func getCroppedOverlay(withBackgroundColor bgColor: UIColor, alpha: CGFloat, bounds: CGRect, cropRectFrom start: CGPoint, width: CGFloat, height: CGFloat) -> UIView {
         let maskLayer = CAShapeLayer()
         
-        let path = UIBezierPath(rect: self.bounds)
+        let path = UIBezierPath(rect: bounds)
         path.move(to: start)
         path.addLine(to: CGPoint(x: start.x + width, y: start.y ))
         path.addLine(to: CGPoint(x: start.x + width, y: start.y + height))
@@ -28,14 +28,14 @@ extension UIView {
         maskLayer.path = path.cgPath
         maskLayer.fillRule = kCAFillRuleEvenOdd
         
-        let overlay = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+        let overlay = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         overlay.layer.mask = maskLayer
         overlay.clipsToBounds = true
         
         overlay.alpha = alpha
         overlay.backgroundColor = bgColor
         
-        insertSubview(overlay, at: 0)
+        return overlay
     }
     
     func getPointingImage(at point: CGPoint) -> UIImageView {

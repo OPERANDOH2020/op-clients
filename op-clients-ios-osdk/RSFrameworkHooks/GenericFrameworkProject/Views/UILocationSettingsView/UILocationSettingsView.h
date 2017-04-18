@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CloakNibView.h"
-#import "LocationInputSwizzlerSettings.h"
+#import "UserDefinedLocationsSwizzlerSettings.h"
 
 @interface UILocationSettingsViewCallbacks : NSObject
 @property (strong, nonatomic) void(^onMapItemsPress)();

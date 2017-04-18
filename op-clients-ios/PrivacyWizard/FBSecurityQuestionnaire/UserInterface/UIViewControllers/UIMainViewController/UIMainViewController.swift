@@ -28,6 +28,9 @@ class UIMainViewController: UIViewController {
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var separatorLabel: UILabel!
     @IBOutlet var contentView: UIRadialGradientView!
+    @IBOutlet weak var activityContainer: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var activityLabel: UILabel!
     
     // MARK: - @IBActions
     @IBAction func didTapSetupPrivacyButton(_ sender: Any) {
@@ -41,10 +44,13 @@ class UIMainViewController: UIViewController {
     // MARK: - Private Methods
     private func setupControls() {
         self.navigationController?.navigationBar.barTintColor = .appDarkBlue
+        activityIndicator.startAnimating()
         setupPrivacyButton.layer.borderWidth = 1
         setupPrivacyButton.layer.borderColor = UIColor.appYellow.cgColor
         setupPrivacyButton.layer.cornerRadius = 5.0
         setupPrivacyButton.backgroundColor = .appDarkBlue
+        setupPrivacyButton.isEnabled = false
+        activityLabel.textColor = .white
         contentView.backgroundColor = .appDarkBlue
         separatorLabel.textColor = .appYellow
         contentView.setup(center: logoImageView.center,
@@ -77,5 +83,19 @@ class UIMainViewController: UIViewController {
     // MARK: - Public Methods
     func setup(delegate: UIMainScreenVCDelegate) {
         self.delegate = delegate
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    
+    func canStartWorkflow(allowed: Bool) {
+        self.activityIndicator.stopAnimating()
+        self.activityContainer.isHidden = true
+        if allowed {
+            self.setupPrivacyButton.isEnabled = true
+        } else {
+            UIAlertViewController.presentOkAlert(from: self, title: "Information", message: "Could not fetch Privacy Wizard configuration. Please come back later.")
+        }
     }
 }

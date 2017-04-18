@@ -41,7 +41,7 @@
  {
  if(!(this instanceof String))
  {
- console.log('typeof this is not a string, its ' + (typeof this) + ' and its ');
+ console.log('typeof this is not a string, its ' + (JSON.stringify(this)) + ' and its ');
  var fakeData = {};
  return fakeData;
  }
@@ -88,7 +88,7 @@
  }
  }
  
- console.log('Returning form string ' + formString);
+ 
  
  return formString;
  };
@@ -96,7 +96,7 @@
  
  function hijackNextPOSTRequestWithTemplate(template, callback)
  {
- console.log('will hijack next POST request');
+ 
  (function(open, send)
   {
   var unalteredOpen = open;
@@ -111,12 +111,15 @@
   
   XMLHttpRequest.prototype.send = function(body)
   {
-  console.log('hijacked a send request with body ' + body);
-  if(this.lastRequestMethod === "POST")
+  
+  console.log("FOR LAST REQUEST METHOD " + this.lastRequestMethod);
+  console.log("BODY IS " + body);
+  
+  if(this.lastRequestMethod === "POST" || this.lastRequestMethod === "post")
   {
   if(body)
   {
-  console.log('hijacked a send call with body ' + JSON.stringify(body));
+  
   var formData = body.formStringToObject();
   var atLeastOneFound = false;
   for (var prop in template)
@@ -138,7 +141,7 @@
   
   if(atLeastOneFound)
   {
-  console.log('Found a template with data ' + JSON.stringify(template));
+  
   XMLHttpRequest.prototype.open = unalteredOpen;
   XMLHttpRequest.prototype.send = unalteredSend;
   callback(template);
@@ -152,122 +155,7 @@
   
   })(XMLHttpRequest.prototype.open, XMLHttpRequest.prototype.send);
  }
- 
- 
- var privacySettingsUnused =
- [
-  {
-  name: "Who can see your future posts?",
-  page: "https://www.facebook.com/settings?tab=privacy&section=composer&view",
-  url: "https://www.facebook.com/privacy/selector/update/?privacy_fbid=0&post_param=291667064279714&render_location=22&is_saved_on_select=true&should_return_tooltip=true&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&tag_expansion_button=friends_of_tagged&__pc=EXP1%3ADEFAULT",
-  data:{
-  
-  }
-  },
-  {
-  name:"Who can contact me?",
-  page:"https://www.facebook.com/settings?tab=privacy&section=canfriend&view",
-  url:"https://www.facebook.com/privacy/selector/update/?privacy_fbid=8787540733&post_param=275425949243301&render_location=11&is_saved_on_select=true&should_return_tooltip=false&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&tag_expansion_button=friends_of_tagged&__pc=EXP1%3ADEFAULT",
-  data:{
-  
-  }
-  
-  },
-  {
-  name:"Who can look me up by email address",
-  page:"https://www.facebook.com/settings?tab=privacy&section=findemail&view",
-  url:"https://www.facebook.com/privacy/selector/update/?privacy_fbid=8787820733&post_param=291667064279714&render_location=11&is_saved_on_select=true&should_return_tooltip=false&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&tag_expansion_button=friends_of_tagged&__pc=EXP1%3ADEFAULT",
-  data:{
-  
-  }
-  },
-  {
-  name:"Who can look me up by phone",
-  page:"https://www.facebook.com/settings?tab=privacy&section=findphone&view",
-  url:"https://www.facebook.com/privacy/selector/update/?privacy_fbid=8787815733&post_param=291667064279714&render_location=11&is_saved_on_select=true&should_return_tooltip=false&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&tag_expansion_button=friends_of_tagged&__pc=EXP1%3ADEFAULT",
-  data:{
-  
-  }
-  },
-  {
-  name:"Who can look me up by search engines",
-  page:"https://www.facebook.com/settings?tab=privacy&section=search&view",
-  url:"https://www.facebook.com/ajax/settings_page/search_filters.php?__pc=EXP1%3ADEFAULT",
-  data:{
-  "el":"search_filter_public",
-  "public":0,
-  }
-  },
-  {
-  name:"Who can post on my timeline",
-  page:"https://www.facebook.com/settings?tab=timeline&section=posting&view",
-  url:"https://www.facebook.com/ajax/settings/timeline/posting.php?__pc=EXP1%3ADEFAULT",
-  data:{
-  audience:10,
-  }
-  },
-  {
-  name:"Who can see posts you've been tagged in on your timeline",
-  page:"https://www.facebook.com/settings?tab=timeline&section=tagging&view",
-  url:"https://www.facebook.com/privacy/selector/update/?privacy_fbid=8787530733&post_param=286958161406148&render_location=11&is_saved_on_select=true&should_return_tooltip=false&prefix_tooltip_with_app_privacy=false&replace_on_select=false&ent_id=0&tag_expansion_button=friends_of_tagged&__pc=EXP1%3ADEFAULT",
-  data:{
-  
-  }
-  },
-  {   name:"Review tags people add to your own posts before the tags appear on Facebook",
-  page:"https://www.facebook.com/settings?tab=timeline&section=tagreview&view",
-  url:"https://www.facebook.com/ajax/settings/tagging/review.php?__pc=EXP1%3ADEFAULT",
-  data:{
-  tag_review_enabled:1,
-  }
-  },
-  {   name:"Who can follow me",
-  page:"https://www.facebook.com/settings?tab=followers",
-  url:"https://www.facebook.com/ajax/follow/enable_follow.php?__pc=EXP1%3ADEFAULT",
-  data:{
-  location:44,
-  hideable_ids:["#following_plugin_item","#following_editor_item"],
-  should_inject:'',
-  allow_subscribers:"disallow"
-  }
-  },
-  {
-  name:"Apps Others Use",
-  page:"https://www.facebook.com/settings?tab=applications",
-  url:"https://www.facebook.com/settings/applications/platform_friends_share/submit/?__pc=EXP1%3ADEFAULT",
-  data:{
-  fields:''
-  }
-  },
-  {
-  name:"Old Versions of Facebook for Mobile",
-  page:"https://www.facebook.com/settings?tab=applications",
-  url:"https://www.facebook.com/ajax/privacy/simple_save.php?__pc=EXP1%3ADEFAULT",
-  data:{
-  id:8787700733,
-  audience_json:JSON.stringify({"8787700733":{"value":10}}),
-  source:'privacy_settings_page'
-  }
-  },
-  {
-  name:"Interest-based ads from Facebook",
-  page:"https://www.facebook.com/settings?tab=ads&section=oba&view",
-  url:"https://www.facebook.com/ads/preferences/oba/?__pc=EXP1%3ADEFAULT",
-  data:{
-  is_opted_out:1
-  }
-  },
-  {
-  name:"Ads with my social actions",
-  page:"https://www.facebook.com/settings?tab=ads&section=socialcontext&view",
-  url:"https://www.facebook.com/ajax/settings/ads/socialcontext.php?__pc=EXP1%3ADEFAULT",
-  data:{
-  opt_out:1
-  }
-  }
-  
-  ];
- 
+
  function postToFacebook(settings, item, total) {
  
  return new Promise(function (resolve, reject) {
@@ -284,11 +172,9 @@
                                          data[prop] = settings.data[prop];
                                          }
                                          
-                                         
+                                         console.log( "WE ARE SECURING FOR URL " + settings.url + JSON.stringify(data));
                                          makePOSTRequest(settings.url, settings.page, data, function()
                                                          {
-                                                         
-                                                         sendStatusMessage('Did secure \'' + settings.name + '\'');
                                                          
                                                          resolve("Done");
                                                          }, function(){
@@ -297,6 +183,38 @@
                                                          });
                                          
                                          return;
+
+                                         jQuery.ajax({
+                                                type: "POST",
+                                                url: settings.url,
+                                                data: data,
+                                                dataType: "text",
+                                                beforeSend: function (request) {
+                                                console.log("BEFORE SEND IN AJAX");
+                                                if (settings.headers) {
+                                                for (var i = 0; i < settings.headers.length; i++) {
+                                                var header = settings.headers[i];
+                                                request.setRequestHeader(header.name, header.value);
+                                                }
+                                                }
+                                                request.setRequestHeader("accept", "*/*");
+                                                request.setRequestHeader("accept-language", "en-US,en;q=0.8");
+                                                request.setRequestHeader("content-type", "application/x-javascript; charset=utf-8");
+                                                request.setRequestHeader("X-Alt-Referer", settings.page);
+                                                
+                                                },
+                                                success: function (result) {
+                                                resolve(result);
+                                                },
+                                                error: function (a, b, c) {
+                                                console.log(a,b,c);
+                                                reject(b);
+                                                },
+                                                complete: function (request, status) {
+                                                console.log("Request completed...");
+                                                }
+                                                
+                                                });
                                          });
                           });
                     }
@@ -316,9 +234,14 @@
  case 0: // UNINITIALIZED
  case 1: // LOADING
  case 2: // LOADED
- case 3: // INTERACTIVE
  break;
+ case 3: {// INTERACTIVE
+ console.log("CASA 3");
+ console.log(xmlHttp.status);
+ console.log(xmlHttp.responseText);
+ }
  case 4:        { // COMPLETED
+  console.log("CASA 4");
  console.log(xmlHttp.status);
  console.log(xmlHttp.responseText);
  onSuccess();
@@ -377,6 +300,7 @@
  
  secureAccount(function(){
                console.log('Done securing account!');
+               sendStatusMessage("Done");
                });
  
  
@@ -392,9 +316,7 @@
  }
  
  
- function extractHeaders(content, callback)
- {
- 
+ function extractHeaders(content, callback) {
  var csrfToken = /\[\"DTSGInitialData\",\[\],\{"token":"([a-zA-Z0-9]*)"\},[0-9]*\]/;
                     var revisionReg = /\{\"revision\":([0-9]*),/;
                     var userIdReg = /\{\"USER_ID\":\"([0-9]*)\"/;
@@ -424,8 +346,8 @@
                     data["ttstamp"] = '2' + x;
                     }
                     else{
-                    data["fb_dtsg"] = window.fbdata.fb_dtsg;
-                    data["ttstamp"] = window.fbdata.ttstamp;
+                    data["fb_dtsg"] = fbdata.fb_dtsg;
+                    data["ttstamp"] = fbdata.ttstamp;
                     }
                     
                     //__rev
@@ -435,7 +357,7 @@
                     }
                     }
                     
-                    if(match[1]){
+                    if(match && match[1]){
                     data['__rev'] = match[1];
                     }
                     //__user
@@ -445,17 +367,15 @@
                     }
                     }
                     
-                    if(match[1]){
+                    if(match && match[1]){
                     data['__user'] = match[1];
                     }
                     
                     data['__a']=1;
-                    data['__dyn'] = window.fbdata.__dyn;
-                    data['__req'] = (++ window.fbdata.__req).toString(36);
+                    data['__dyn'] = fbdata.__dyn;
+                    data['__req'] = (++ fbdata.__req).toString(36);
                     
                     callback(data);
                     }
-                    
-                    }
-                    
+ }
                     )(RS_PARAM_PLACEHOLDER);
