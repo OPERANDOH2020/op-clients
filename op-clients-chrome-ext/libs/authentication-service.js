@@ -46,6 +46,8 @@ var authenticationService = exports.authenticationService = {
             Cookies.set("sessionId", swarm.meta.sessionId,  { expires: daysUntilCookieExpire });
             Cookies.set("userId", swarm.userId,{ expires: daysUntilCookieExpire });
             swarmHub.off("login.js", "success",loginSuccessfully);
+            swarmHub.startSwarm("notification.js","registerInZone", "Extension");
+
         };
 
         swarmHub.on('login.js', "success", loginSuccessfully);

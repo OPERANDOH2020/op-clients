@@ -31,7 +31,7 @@ function SwarmClient(host, port, userId, authToken, tenantId, loginCtor, securit
     } else {
         protocol = "ws";
     }
-    connectionString = protocol+"://"+host + ":" + port;
+    connectionString = ExtensionConfig.SERVER_HOST_PROTOCOL+"://"+host + ":" + port;
     var requestHandleCount = {};
 
 
