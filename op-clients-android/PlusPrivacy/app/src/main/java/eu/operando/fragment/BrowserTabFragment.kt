@@ -23,15 +23,18 @@ import java.net.URLEncoder
  * Created by Edy on 05-Apr-17.
  */
 
-fun newInstance(@Nullable url: String): BrowserTabFragment {
-    val fragment = BrowserTabFragment()
-    val args = Bundle()
-    args.putString("url", url)
-    fragment.arguments = args
-    return fragment
-}
 
 class BrowserTabFragment : Fragment() {
+    companion object {
+        fun newInstance(@Nullable url: String): BrowserTabFragment {
+            val fragment = BrowserTabFragment()
+            val args = Bundle()
+            args.putString("url", url)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     private lateinit var goBtn: ImageView
     private lateinit var backBtn: ImageView
     private lateinit var webView: AdblockWebView
@@ -57,9 +60,13 @@ class BrowserTabFragment : Fragment() {
             settings.javaScriptEnabled = true
             setWebChromeClient(WebChromeClient())
             setWebViewClient(getWebViewClient())
+            settings.builtInZoomControls = true
+            settings.useWideViewPort = true
+            settings.domStorageEnabled = true
+            settings.loadWithOverviewMode = true
             setInitialScale(1)
-            loadUrl(arguments.getString("url", "www.google.ro"))
         }
+        loadUrl(arguments.getString("url", "www.google.ro"))
 
         initAddressBar()
     }
@@ -108,13 +115,13 @@ class BrowserTabFragment : Fragment() {
         var url = urlEt.text.toString()
         if (!Patterns.WEB_URL.matcher(url).matches()) {
             url = "http://www.google.com/search?q=" + URLEncoder.encode(url, "UTF-8")
-            url = when {
-                url.startsWith("http://") || url.startsWith("https://") -> url
-                else -> "http://" + url
-            }
 
-            webView.loadUrl(url)
         }
+        url = when {
+            url.startsWith("http://") || url.startsWith("https://") -> url
+            else -> "http://" + url
+        }
+        webView.loadUrl(url)
     }
 
 

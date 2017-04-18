@@ -93,10 +93,10 @@ public class SignUpActivity extends AppCompatActivity {
                         dialog.dismiss();
 
                         if (result.getStatus() != null && result.getStatus().equals("error")) {
-                            Toast.makeText(SignUpActivity.this, result.getError(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, result.getError(), Toast.LENGTH_LONG).show();
                         } else {
                             Storage.saveRegisterCredentials(email,password);
-                            Toast.makeText(SignUpActivity.this, "Registration success. Please check your e-mail to activate the account", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "Registration success. Please check your e-mail to activate the account", Toast.LENGTH_LONG).show();
                             onBackPressed();
                         }
                     }
