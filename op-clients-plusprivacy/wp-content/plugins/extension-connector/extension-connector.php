@@ -22,6 +22,7 @@ add_shortcode('user-dashboard', 'user_dashboard');
 //OSP
 add_shortcode('osp-login', 'osp_login');
 add_shortcode('osp-register', 'osp_register_account');
+add_shortcode('osp-confirm-account', 'osp_confirm_account');
 add_shortcode('osp-dashboard-offers', 'osp_dashboard_offers');
 add_shortcode('osp-dashboard-deals', 'osp_dashboard_deals');
 add_shortcode('osp-certifications', 'osp_certifications');
@@ -36,6 +37,7 @@ add_action('wp_enqueue_scripts', 'confirmUserController');
 add_action('wp_enqueue_scripts', 'loginController');
 add_action('wp_enqueue_scripts', 'signupController');
 add_action('wp_enqueue_scripts', 'userDashboardController');
+add_action('wp_enqueue_scripts', 'confirmOSPController');
 add_action('wp_enqueue_scripts', 'ospLoginController');
 add_action('wp_enqueue_scripts', 'ospSignupController');
 add_action('wp_enqueue_scripts', 'ospOffersController');
@@ -57,8 +59,6 @@ function load_swarm_resources()
     wp_enqueue_script('angular-animate', plugins_url('/js/utils/angular-animate/angular-animate.js', __FILE__));
     wp_enqueue_script('angular-strap', plugins_url('/js/utils/angular-strap/angular-strap.min.js', __FILE__));
     wp_enqueue_script('angular-strap-tpl', plugins_url('/js/utils/angular-strap/angular-strap.tpl.js', __FILE__));
-
-
 
     wp_enqueue_script('modal-service', plugins_url('/js/utils/angular-modal/angular-modal-service.js', __FILE__));
     wp_enqueue_script('notification-service', plugins_url('/js/utils/angular-ui-notification/angular-ui-notification.min.js', __FILE__));
@@ -119,6 +119,13 @@ function osp_register_account()
 
 function osp_login(){
     echo file_get_contents(plugins_url('/html/osp/login_osp.html', __FILE__));
+}
+
+function osp_confirm_account()
+{
+    if (isset ($_GET['confirmation_code']) && $_GET['confirmation_code']) {
+        echo file_get_contents(plugins_url('/html/osp/osp_confirm_account.html', __FILE__));
+    }
 }
 
 function osp_dashboard_offers()
@@ -185,6 +192,10 @@ function ospSignupController()
     insertScriptIfShortcode("intel-tel-input-directive", 'osp-register', plugins_url('/js/utils/ng-intel-tel-input/ng-intl-tel-input.directive.js', __FILE__));
     insertStyleIfShortcode("intel-tel-input-style", 'osp-register', plugins_url('/js/utils/ng-intel-tel-input/css/intlTelInput.css', __FILE__));
     insertScriptIfShortcode("ospSignupController", 'osp-register', plugins_url('/js/app/controllers/osp/ospSignupController.js', __FILE__));
+}
+
+function confirmOSPController(){
+    insertScriptIfShortcode("confirmUserController", 'osp-confirm-account', plugins_url('/js/app/controllers/osp/confirmOSPController.js', __FILE__));
 }
 
 function ospOffersController()

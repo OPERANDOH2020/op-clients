@@ -10,7 +10,6 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-
 privacyPlusApp.controller("confirmUserController", function ($scope, $location, connectionService,$window) {
 
     $scope.loadingData = true;

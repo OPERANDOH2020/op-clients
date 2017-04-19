@@ -16,7 +16,6 @@
 
 			<div class="container">
 				<?php enlightenment_header(); ?>
-				<?php do_action("plusprivacy_head");?>
 			</div>
 		</header>
 		<?php enlightenment_after_header(); ?>

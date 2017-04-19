@@ -65,7 +65,6 @@ var dealsController = function ($scope, connectionService, messengerService, $wi
         ]
     };
 
-
     connectionService.getMyOffersDetails(function (offersStats) {
         $scope.offersStats = offersStats;
         $scope.$apply();
