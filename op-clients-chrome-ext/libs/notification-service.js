@@ -23,7 +23,7 @@ var notificationService = exports.notificationService = {
     },
 
     dismissNotification:function(notificationData, callback){
-        var dismissNotificationHandler = swarmHub.startSwarm("notification.js", "dismissNotification", notificationData.notificationId, notificationData.dismissed);
+        var dismissNotificationHandler = swarmHub.startSwarm("notification.js", "dismissNotification", notificationData.notificationId);
         dismissNotificationHandler.onResponse("notificationDismissed", function(){
             callback();
         })

@@ -14,8 +14,8 @@ angular.module('notifications', ['ui-notification'])
 
        var notifications = [];
 
-        var dismissNotification = function (notificationId, dismissed, callback) {
-            messengerService.send("dismissNotification", {notificationId:notificationId, dismissed:dismissed}, function(data){
+        var dismissNotification = function (notificationId, callback) {
+            messengerService.send("dismissNotification", {notificationId:notificationId}, function(data){
 
                 notifications = notifications.filter(function( notification ) {
                     console.log(notification);
@@ -132,17 +132,21 @@ angular.module('notifications').
                     $scope.dismissed = false;
                     $scope.doNotShowNexTime = function () {
 
-                        notificationService.dismissNotification($scope.notification.notificationId, $scope.dismissed, function(){
+                        notificationService.dismissNotification($scope.notification.notificationId, function(){
+                            setTimeout(function(){
+                                $scope.dismissed = true;
+                                $scope.$apply();
+                            },500);
 
                         });
                 };
-                $scope.takeAction = function(action){
+                $scope.takeAction = function(actionName){
 
-                    switch (action.key){
+                    switch (actionName){
                         case "identity": $state.go('identityManagement'); break;
                         case "privacy-for-benefits": $state.go('deals'); break;
                         case "social-network-privacy":
-                            notificationService.dismissNotification($scope.notification.notificationId, true,function(){
+                            notificationService.dismissNotification($scope.notification.notificationId, function(){
                                 $state.go('socialNetworks');
                             });
                             break;
