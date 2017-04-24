@@ -11,8 +11,9 @@
 
 @interface PPEventDispatcher(Internal)
 -(void)fireEvent:(PPEvent* _Nonnull)event;
+-(void)fireEventWithOneTimeExecution:(PPEventIdentifier)identifier executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey;
 
+-(id _Nullable)resultForEventValue:(id _Nonnull)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
 
--(void)fireSafeEventForType:(PPEventType)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey;
-
+-(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
 @end

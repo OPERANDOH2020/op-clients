@@ -28,8 +28,7 @@
 		984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */; };
 		98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9869FA581E7A7C19001A8218 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8EC1E77DE61008F4D02 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		989DB8F51E78144F008F4D02 /* PPEventsPipelineFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */; };
+		9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */; };
 		98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */; };
 		98F7A6A31E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */; };
 		98F7A6A41E76ECB200FF635A /* CLLocationManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */; };
@@ -60,9 +59,9 @@
 		98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPApiHooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PPApiHooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPApiHooks.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9899DF081EADDE8600CB9ED8 /* PPEventIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PPEventIdentifier.h; path = PPEventIdentifier/PPEventIdentifier.h; sourceTree = "<group>"; };
+		9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEventIdentifier.m; path = PPEventIdentifier/PPEventIdentifier.m; sourceTree = "<group>"; };
 		989DB8EC1E77DE61008F4D02 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPEventsPipelineFactory.h; path = PPEventsPipelineFactory/PPEventsPipelineFactory.h; sourceTree = "<group>"; };
-		989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEventsPipelineFactory.m; path = PPEventsPipelineFactory/PPEventsPipelineFactory.m; sourceTree = "<group>"; };
 		98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookCamera.m"; sourceTree = "<group>"; };
 		98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookingMicrophone.m"; sourceTree = "<group>"; };
 		98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+rsHook.m"; sourceTree = "<group>"; };
@@ -151,13 +150,13 @@
 			path = GenericFrameworkProject;
 			sourceTree = "<group>";
 		};
-		989DB8F11E781428008F4D02 /* PPEventsPipelineFactory */ = {
+		9899DF071EADDE6100CB9ED8 /* PPEventIdentifier */ = {
 			isa = PBXGroup;
 			children = (
-				989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */,
-				989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */,
+				9899DF081EADDE8600CB9ED8 /* PPEventIdentifier.h */,
+				9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */,
 			);
-			name = PPEventsPipelineFactory;
+			name = PPEventIdentifier;
 			sourceTree = "<group>";
 		};
 		98F7A6951E76ECB200FF635A /* HookingCategories */ = {
@@ -191,7 +190,6 @@
 		98F7A6B31E76F16200FF635A /* EventsPipeline */ = {
 			isa = PBXGroup;
 			children = (
-				989DB8F11E781428008F4D02 /* PPEventsPipelineFactory */,
 				98F7A6B41E76F16200FF635A /* PPEvent */,
 				98F7A6B71E76F16200FF635A /* PPEventDispatcher */,
 			);
@@ -201,6 +199,7 @@
 		98F7A6B41E76F16200FF635A /* PPEvent */ = {
 			isa = PBXGroup;
 			children = (
+				9899DF071EADDE6100CB9ED8 /* PPEventIdentifier */,
 				984C38601E7937D300F5AEF5 /* PPEvent+Private */,
 				98F7A6B51E76F16200FF635A /* PPEvent.h */,
 				98F7A6B61E76F16200FF635A /* PPEvent.m */,
@@ -235,7 +234,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */,
-				989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */,
 				98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */,
 				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
 				984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */,
@@ -334,8 +332,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
+				9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */,
 				98F7A6A31E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m in Sources */,
-				989DB8F51E78144F008F4D02 /* PPEventsPipelineFactory.m in Sources */,
 				98F7A6AB1E76ECB200FF635A /* NSURLSession+rsHook.m in Sources */,
 				982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */,
 				98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */,

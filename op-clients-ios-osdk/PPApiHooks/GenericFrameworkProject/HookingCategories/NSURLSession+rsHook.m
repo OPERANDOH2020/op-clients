@@ -9,8 +9,8 @@
 #import "JRSwizzle.h"
 #import "PPEvent.h"
 #import "Common.h"
-#import "PPEventsPipelineFactory.h"
 #import "PPEventDispatcher+Internal.h"
+
 
 @interface NullUrlSessionDataTask : NSURLSessionDataTask
 @property (weak, nonatomic) NSURLSession *weakSession;
@@ -65,9 +65,9 @@
     NSMutableDictionary *eventData = [@{} mutableCopy];
     SAFEADD(eventData, kPPURLSessionDataTaskRequest, request)
     
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventURLSessionStartDataTaskForRequest eventData:eventData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPURLSessionEvent, EventURLSessionStartDataTaskForRequest) eventData:eventData whenNoHandlerAvailable:nil];
     
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     
     NSURLResponse *response = eventData[kPPURLSessionDataTaskResponse];
     NSData *data = eventData[kPPURLSessionDatTaskResponseData];

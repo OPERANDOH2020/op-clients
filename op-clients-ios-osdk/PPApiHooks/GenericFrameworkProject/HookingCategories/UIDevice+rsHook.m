@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "JRSwizzle.h"
 #import "PPEvent.h"
-#import "PPEventsPipelineFactory.h"
 #import "Common.h"
 #import "PPEventDispatcher+Internal.h"
 
@@ -30,14 +29,15 @@
 
 -(void)rsHook_setProximityMonitoringEnabled:(BOOL)enabled {
     
-    PPEventType eventType = EventSetDeviceProximityMonitoringEnabled;
+    PPEventIdentifier eventType = PPEventIdentifierMake(PPDeviceProximityEvent, EventSetDeviceProximityMonitoringEnabled);
+    
     NSMutableDictionary *evData = [@{
                                      kPPDeviceProximityMonitoringEnabledValue: @(enabled)
                                      } mutableCopy];
     
-    PPEvent *event = [[PPEvent alloc] initWithEventType:eventType eventData:evData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:eventType eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     
     NSNumber *possiblyModifiedValue = evData[kPPDeviceProximityMonitoringEnabledValue];
     if (!(possiblyModifiedValue && [possiblyModifiedValue isKindOfClass:[NSNumber class]])){
@@ -49,14 +49,15 @@
 
 -(void)rsHook_setProximitySensingEnabled:(BOOL)enabled {
     
-    PPEventType eventType = EventSetDeviceProximitySensingEnabled;
+    PPEventIdentifier eventType = PPEventIdentifierMake(PPDeviceProximityEvent, EventSetDeviceProximitySensingEnabled);
+    
     NSMutableDictionary *evData = [@{
                                      kPPDeviceProximitySensingEnabledValue: @(enabled)
                                      } mutableCopy];
     
-    PPEvent *event = [[PPEvent alloc] initWithEventType:eventType eventData:evData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:eventType eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     
     NSNumber *possiblyModifiedValue = evData[kPPDeviceProximitySensingEnabledValue];
     if (!(possiblyModifiedValue && [possiblyModifiedValue isKindOfClass:[NSNumber class]])){
@@ -72,9 +73,9 @@
     BOOL actualProximityState = [self rsHook_proximityState];
     NSMutableDictionary *dict = [@{kPPDeviceProxmityStateValue: @(actualProximityState)} mutableCopy];
     
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventGetDeviceProximityState eventData:dict whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPDeviceProximityEvent, EventGetDeviceProximityState) eventData:dict whenNoHandlerAvailable:nil];
     
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     
     NSNumber *possiblyModifiedValue = dict[kPPDeviceProxmityStateValue];
     if (!(possiblyModifiedValue && [possiblyModifiedValue isKindOfClass:[NSNumber class]])){

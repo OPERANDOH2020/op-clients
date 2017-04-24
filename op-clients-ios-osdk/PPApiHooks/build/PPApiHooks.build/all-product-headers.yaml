@@ -4,7 +4,7 @@
   'roots': [
     {
       'type': 'directory',
-      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/Release-iphonesimulator/PPApiHooks.framework/Headers",
+      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/Release-iphoneos/PPApiHooks.framework/Headers",
       'contents': [
         {
           'type': 'file',
@@ -14,7 +14,7 @@
         {
           'type': 'file',
           'name': "PPApiHooks-Swift.h",
-          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/Release-iphonesimulator/PPApiHooks.framework/Headers/PPApiHooks-Swift.h"
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/Release-iphoneos/PPApiHooks.framework/Headers/PPApiHooks-Swift.h"
         },
         {
           'type': 'file',
@@ -40,12 +40,12 @@
     },
     {
       'type': 'directory',
-      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/Release-iphonesimulator/PPApiHooks.framework/Modules",
+      'name': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/Release-iphoneos/PPApiHooks.framework/Modules",
       'contents': [
         {
           'type': 'file',
           'name': "module.modulemap",
-          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/module.modulemap"
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphoneos/PPApiHooks.build/module.modulemap"
         }
       ]
     }

@@ -108,7 +108,7 @@
     [self internalFireEvent:event];
 }
 
--(void)fireSafeEventForType:(PPEventType)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey {
+-(void)fireEventWithOneTimeExecution:(PPEventIdentifier)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey {
     
     
     __block BOOL didExecute = NO;
@@ -124,10 +124,25 @@
                                    executionBlockKey: confirmation
                                    } mutableCopy];
     
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventLocationManagerRequestWhenInUseAuthorization eventData:dict whenNoHandlerAvailable:executionBlock];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:type eventData:dict whenNoHandlerAvailable:executionBlock];
     
     [self fireEvent:event];
 }
 
+-(id)resultForEventValue:(id)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key{
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:value forKey:key];
+    
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:identifier eventData:dict whenNoHandlerAvailable:nil];
+    [self fireEvent:event];
+    
+    return [event.eventData objectForKey:key] ;
+}
+
+-(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key{
+    
+    return [[self resultForEventValue:@(value) ofIdentifier:identifier atKey:key] boolValue];
+}
 
 @end

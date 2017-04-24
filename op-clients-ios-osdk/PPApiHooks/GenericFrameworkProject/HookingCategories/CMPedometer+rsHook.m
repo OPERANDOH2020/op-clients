@@ -10,8 +10,6 @@
 #import "JRSwizzle.h"
 #import "Common.h"
 #import "PPEventDispatcher+Internal.h"
-#import "PPEventsPipelineFactory.h"
-
 
 @interface CMPedometer(rsHook)
 
@@ -48,9 +46,9 @@
     };
     [evData setObject:confirmation forKey:kPPStartPedometerUpdatesConfirmation];
     
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventStartPedometerUpdates eventData:evData whenNoHandlerAvailable:confirmation];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventStartPedometerUpdates) eventData:evData whenNoHandlerAvailable:confirmation];
     
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     
 }
 

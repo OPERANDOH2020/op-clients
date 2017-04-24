@@ -10,7 +10,6 @@
 #import "JRSwizzle.h"
 #import "PPEventDispatcher+Internal.h"
 #import "PPEvent.h"
-#import "PPEventsPipelineFactory.h"
 
 @interface CLLocationManager(Hook)
 
@@ -38,7 +37,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [[PPEventsPipelineFactory eventsDispatcher] fireSafeEventForType:EventLocationManagerStartLocationUpdates executionBlock:^{
+    [[PPEventDispatcher sharedInstance] fireEventWithOneTimeExecution:PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerStartLocationUpdates) executionBlock:^{
         [weakSelf rsHook_startUpdatingLocation];
     } executionBlockKey:kPPStartLocationUpdatesConfirmation];
 }
@@ -46,7 +45,9 @@
 -(void)rsHook_requestAlwaysAuthorization {
     
     __weak typeof(self) weakSelf = self;
-    [[PPEventsPipelineFactory eventsDispatcher] fireSafeEventForType:EventLocationManagerRequestAlwaysAuthorization executionBlock:^{
+    PPEventIdentifier identifier = PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerRequestAlwaysAuthorization);
+    
+    [[PPEventDispatcher sharedInstance] fireEventWithOneTimeExecution:identifier executionBlock:^{
         [weakSelf rsHook_requestWhenInUseAuthorization];
     } executionBlockKey:kPPRequestAlwaysAuthorizationConfirmation];
 }
@@ -55,7 +56,7 @@
 -(void)rsHook_requestWhenInUseAuthorization {
     
     __weak typeof(self) weakSelf = self;
-    [[PPEventsPipelineFactory eventsDispatcher] fireSafeEventForType:EventLocationManagerRequestWhenInUseAuthorization executionBlock:^{
+    [[PPEventDispatcher sharedInstance] fireEventWithOneTimeExecution: PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerRequestWhenInUseAuthorization) executionBlock:^{
         [weakSelf rsHook_requestWhenInUseAuthorization];
     } executionBlockKey:kPPRequestWhenInUseAuthorizationConfirmation];
 }
@@ -85,9 +86,9 @@
                                         kPPLocationManagerSetDelegateConfirmation: setDelegateConfirmation
                                        }];
     
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventLocationManagerSetDelegate eventData:evData whenNoHandlerAvailable:setDelegateConfirmation];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerSetDelegate) eventData:evData whenNoHandlerAvailable:setDelegateConfirmation];
     
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
 }
 
 -(CLLocation *)rsHook_location {
@@ -98,9 +99,9 @@
     }
     
     [evData setObject:self forKey:kPPLocationManagerInstance];
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventLocationManagerGetCurrentLocation eventData:evData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerGetCurrentLocation) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     
     CLLocation *possiblyModifiedLocation = evData[kPPLocationManagerGetCurrentLocationValue];
     
