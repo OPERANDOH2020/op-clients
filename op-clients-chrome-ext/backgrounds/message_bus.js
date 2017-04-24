@@ -94,8 +94,15 @@ var busActions = {
 
 chrome.runtime.onConnect.addListener(function (_port) {
     (function(clientPort){
+
         portObserversPool.registerPortObserver(clientPort);
-        if (clientPort.name === "OPERANDO_MESSAGER" || clientPort.name === "INPUT_TRACKER" ) {
+        clientPort.onDisconnect.addListener(function(){
+            portObserversPool.unregisterPortObserver(clientPort);
+            clientPort = null;
+        });
+
+
+        if (clientPort.name === "OPERANDO_MESSAGER" || clientPort.name === "INPUT_TRACKER") {
 
             /**
              * Listen for swarm connection events
@@ -129,6 +136,15 @@ chrome.runtime.onConnect.addListener(function (_port) {
              * Listen for commands
              **/
             clientPort.onMessage.addListener(function (request) {
+
+                if(request.message && request.message.sendToPort){
+                    var desiredPort = portObserversPool.findPortByName(request.message.sendToPort);
+                    if(desiredPort){
+                        desiredPort.postMessage(request.message);
+                    }
+                    return;
+                }
+
                 if(busActions[request.action]){
                         var handleResponse = function(message){
                             if(clientPort){
@@ -139,7 +155,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
                                 chrome.runtime.sendMessage(message,function(response){
                                 });
                             }
-                        }
+                        };
 
                     var action = busActions[request.action];
                         action(request, handleResponse);
@@ -211,24 +227,22 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     action.apply(action, args);
                 }
 
-                clientPort.onDisconnect.addListener(function(){
-                    portObserversPool.unregisterPortObserver(clientPort);
-                    clientPort = null;
-                })
-
             });
         }
-        else if(clientPort.name === "EVENT-DISPATCHER"){
+        else if(clientPort.name === "applyFacebookSettings" || clientPort.name === "applyLinkedinSettings"){
             clientPort.onMessage.addListener(function(request){
-                portObserversPool.addPortRequestSubscriber(clientPort, request.action, function(){
-                    clientPort.postMessage({
-                        action: request.action
-                    })
-                })
 
+                console.log(request);
+                if (bus.hasAction(request.action)) {
+                    var action = bus.getAction(request.action);
+                    var args = [];
+                    if (request.data) {
+                        args.push(request.data);
+                    }
+                    action.apply(action, args);
+                }
             });
         }
-
     }(_port));
 
 });

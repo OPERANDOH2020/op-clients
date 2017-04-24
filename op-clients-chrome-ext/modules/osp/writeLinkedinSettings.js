@@ -13,13 +13,13 @@
 
 var privacySettings = [];
 var port = chrome.runtime.connect({name: "applyLinkedinSettings"});
-port.postMessage({status: "waitingCommand"});
+port.postMessage({action: "waitingLinkedinCommand", data: {status:"waitingLinkedinCommand"}});
 
 port.onMessage.addListener(function (msg) {
     if (msg.command == "applySettings") {
         privacySettings = msg.settings;
         secureAccount(function () {
-           port.postMessage({status: "settings_applied"});
+            port.postMessage({action: "waitingLinkedinCommand", data:{status:"settings_applied"}});
         });
     }
 });
@@ -160,7 +160,7 @@ function secureAccount(callback) {
         sequence = sequence.then(function () {
             return postToLinkedIn(settings, index, total);
         }).then(function (result) {
-            port.postMessage({status: "progress", progress: (index + 1)});
+            port.postMessage({action: "waitingLinkedinCommand", data:{status:"progress", progress:(index+1)}});
         }).catch(function (err) {
             console.log(err)
         });

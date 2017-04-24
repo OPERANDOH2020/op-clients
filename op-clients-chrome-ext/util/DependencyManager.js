@@ -31,10 +31,6 @@ var DependencyManager = exports.DependencyManager = {
         {
             name:"DOMElementProvider",
             path:"/operando/modules/DOMElementProvider.js"
-        },
-        {
-            name:"EventDispatcher",
-            path:"/operando/modules/communication/event-dispatcher.js"
         }
     ],
 

@@ -59,7 +59,7 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
                             current: current,
                             total: total,
                             status: current < total ? "pending" : "completed"
-                        }
+                        };
                         $scope.$apply();
                     }, function(){
                         $scope.completedFeedback = socialNetwork + " privacy settings were updated!";

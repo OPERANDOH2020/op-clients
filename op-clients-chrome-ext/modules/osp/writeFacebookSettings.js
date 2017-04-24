@@ -15,18 +15,17 @@ fbdata.__req = parseInt(fbdata.__req, 36);
 
 var privacySettings = [];
 var port = chrome.runtime.connect({name: "applyFacebookSettings"});
-port.postMessage({status: "waitingCommand"});
+port.postMessage({action: "waitingFacebookCommand", data: {status:"waitingFacebookCommand"}});
 
 port.onMessage.addListener(function (msg) {
     if (msg.command == "applySettings") {
         privacySettings = msg.settings;
         secureAccount(function(){
-            port.postMessage({status:"settings_applied"});
+            port.postMessage({action: "waitingFacebookCommand", data:{status:"settings_applied"}});
             port.disconnect();
         });
     }
 });
-
 
 
 function postToFacebook(settings, item, total) {
@@ -103,7 +102,7 @@ function secureAccount(callback) {
         sequence = sequence.then(function () {
             return postToFacebook(settings, index, total);
         }).then(function (result) {
-            port.postMessage({status:"progress", progress:(index+1)});
+            port.postMessage({action: "waitingFacebookCommand", data:{status:"progress", progress:(index+1)}});
         }).catch(function (err) {
             console.log(err)
         });

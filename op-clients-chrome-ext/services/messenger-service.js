@@ -48,7 +48,16 @@ operandoCore
             }
             events[event].push(callback);
             port.postMessage({action: event, message:{messageType:"SUBSCRIBER"}});
-        }
+        };
+
+        var off = function (event, callback) {
+            if (events[event]) {
+                var idx = events[event].indexOf(callback);
+                if (idx != -1) {
+                    events[event].splice(idx, 1);
+                }
+            }
+        };
 
         var send = function (){
             var action = arguments[0];
@@ -83,7 +92,8 @@ operandoCore
 
         return {
             send: send,
-            on: on
+            on: on,
+            off:off
         }
 
     });

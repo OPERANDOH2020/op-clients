@@ -65,6 +65,15 @@ PortsObserversPool.prototype = {
         this.observersPool.forEach(function (observer) {
             observer.fire(request, "success", message);
         });
+    },
+
+    findPortByName: function (name) {
+        for(var i=0; i< this.observersPool.length; i++){
+            var portObserver =  this.observersPool[i];
+            if (portObserver.port.name === name) {
+                return portObserver.port;
+            }
+        }
     }
 }
 

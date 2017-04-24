@@ -41,53 +41,27 @@ operandoCore
                     });
                 });
             });
+            var handleFacebookMessages = function(msg){
+                if (msg.data.status == "waitingFacebookCommand") {
+                    messengerService.send("sendMessageToFacebook",{sendToPort:"applyFacebookSettings",command: "applySettings", settings: settings});
 
-            var portListener = function (port, jobFinished, callback, settings) {
-                if (port.name == "applyFacebookSettings") {
-                    port.onMessage.addListener(function (msg) {
-                        if (msg.status == "waitingCommand") {
-                            port.postMessage({command: "applySettings", settings: settings});
-
-                        } else {
-                            if (msg.status == "settings_applied") {
-                                jobFinished();
-                                chrome.tabs.remove(facebookTabId);
-                                port.disconnect();
-                                port = null;
-                            }
-                            else {
-                                if (msg.status == "progress") {
-                                    console.log(msg.progress);
-                                    callback("facebook", msg.progress, settings.length);
-                                }
-                            }
+                } else {
+                    if (msg.data.status == "settings_applied") {
+                        jobFinished();
+                        messengerService.off("facebookMessage",handleFacebookMessages);
+                        chrome.tabs.remove(facebookTabId);
+                    }
+                    else {
+                        if (msg.data.status == "progress") {
+                            console.log(msg.data.progress);
+                            callback("facebook", msg.data.progress, settings.length);
                         }
-                    });
+                    }
                 }
-            }
+            };
 
+            messengerService.on("facebookMessage", handleFacebookMessages);
 
-            this.fb_jobFinished = jobFinished;
-            this.fb_callback = callback;
-            this.fb_settings = settings;
-
-            var self = this;
-
-            var getCurrentState = function () {
-                return (function (_port) {
-                    facebookPort = _port;
-                    var jobFinished = self.fb_jobFinished;
-                    var callback = self.fb_callback;
-                    var settings = self.fb_settings;
-                    portListener(facebookPort, jobFinished, callback, settings);
-
-                });
-            }
-
-            if (facebookPort === null) {
-                chrome.runtime.onConnect.addListener(getCurrentState());
-
-            }
         }
 
         function  increaseLinkedInPrivacy(settings, callback, jobFinished) {
@@ -111,47 +85,27 @@ operandoCore
                 });
             });
 
-            var portListener =  function(port, jobFinished, callback, settings){
-                if (port.name == "applyLinkedinSettings") {
-                    port.onMessage.addListener(function (msg) {
-                        if (msg.status == "waitingCommand") {
-                            port.postMessage({command: "applySettings", settings: settings});
-                        } else {
-                            if (msg.status == "settings_applied") {
-                                jobFinished();
-                                chrome.tabs.remove(linkedinTabId);
-                            }
-                            else {
-                                if (msg.status == "progress") {
-                                    callback("linkedin",msg.progress, settings.length);
+            var handleLinkedinMessages = function(msg){
+                if (msg.data.status == "waitingLinkedinCommand") {
+                    messengerService.send("sendMessageToLinkedin",{sendToPort:"applyLinkedinSettings",command: "applySettings", settings: settings});
 
-                                }
-                            }
+                } else {
+                    if (msg.data.status == "settings_applied") {
+                        jobFinished();
+                        messengerService.off("linkedinMessage",handleLinkedinMessages);
+                        chrome.tabs.remove(linkedinTabId);
+                    }
+                    else {
+                        if (msg.data.status == "progress") {
+                            console.log(msg.data.progress);
+                            callback("linkedin", msg.data.progress, settings.length);
                         }
-                    });
+                    }
                 }
             };
 
-            this.linkedin_jobFinished = jobFinished;
-            this.linkedin_callback = callback;
-            this.linkedin_settings = settings;
+            messengerService.on("linkedinMessage", handleLinkedinMessages);
 
-            var self = this;
-            var getCurrentState = function () {
-                return (function (_port) {
-                    linkedInPort = _port;
-                    var jobFinished = self.linkedin_jobFinished;
-                    var callback = self.linkedin_callback;
-                    var settings = self.linkedin_settings;
-                    portListener(linkedInPort, jobFinished, callback, settings);
-
-                });
-            }
-
-            if (linkedInPort === null) {
-                chrome.runtime.onConnect.addListener(getCurrentState());
-
-            }
         }
 
 
