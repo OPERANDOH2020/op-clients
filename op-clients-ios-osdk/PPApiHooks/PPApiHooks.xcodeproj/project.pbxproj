@@ -24,6 +24,8 @@
 		982FB4171E83FE0000D1AAEC /* HookURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */; };
 		982FB41C1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 982FB41A1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h */; };
 		982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */; };
+		98408E901EAFA0260002635D /* NSObject+AutoSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */; };
+		98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */; };
 		984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */; };
 		984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */; };
 		98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -54,6 +56,8 @@
 		982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HookURLProtocol.m; sourceTree = "<group>"; };
 		982FB41A1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebViewSupport.h"; sourceTree = "<group>"; };
 		982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebViewSupport.m"; sourceTree = "<group>"; };
+		98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AutoSwizzle.h"; path = "NSObject+SwizzleMethods/NSObject+AutoSwizzle.h"; sourceTree = "<group>"; };
+		98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AutoSwizzle.m"; path = "NSObject+SwizzleMethods/NSObject+AutoSwizzle.m"; sourceTree = "<group>"; };
 		984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPEvent+FrameworkPrivate.h"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.h"; sourceTree = "<group>"; };
 		984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPEvent+FrameworkPrivate.m"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.m"; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPApiHooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +101,7 @@
 		982FB4181E83FE1B00D1AAEC /* ExternalLibraries */ = {
 			isa = PBXGroup;
 			children = (
+				98408E8D1EAF9FF70002635D /* NSObject+SwizzleMethods */,
 				982FB4191E83FE5900D1AAEC /* WKWebViewWithURLProtocol */,
 				98F7A6AE1E76ECF000FF635A /* JRSwizzle */,
 			);
@@ -110,6 +115,15 @@
 				982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */,
 			);
 			path = WKWebViewWithURLProtocol;
+			sourceTree = "<group>";
+		};
+		98408E8D1EAF9FF70002635D /* NSObject+SwizzleMethods */ = {
+			isa = PBXGroup;
+			children = (
+				98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */,
+				98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */,
+			);
+			name = "NSObject+SwizzleMethods";
 			sourceTree = "<group>";
 		};
 		984C38601E7937D300F5AEF5 /* PPEvent+Private */ = {
@@ -238,6 +252,7 @@
 				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
 				984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */,
 				98F7A6B11E76ECF000FF635A /* JRSwizzle.h in Headers */,
+				98408E901EAFA0260002635D /* NSObject+AutoSwizzle.h in Headers */,
 				982FB41C1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h in Headers */,
 				98F7A6BF1E76F16200FF635A /* PPEventDispatcher+Internal.h in Headers */,
 				9869FA581E7A7C19001A8218 /* Common.h in Headers */,
@@ -342,6 +357,7 @@
 				98F7A6A41E76ECB200FF635A /* CLLocationManager+rsHook.m in Sources */,
 				98F7A6C21E76F16200FF635A /* PPEventDispatcher.m in Sources */,
 				98F7A6AA1E76ECB200FF635A /* LAContext+rsHook.m in Sources */,
+				98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */,
 				98F7A6BE1E76F16200FF635A /* PPEvent.m in Sources */,
 				98F7A6B21E76ECF000FF635A /* JRSwizzle.m in Sources */,
 				982FB4171E83FE0000D1AAEC /* HookURLProtocol.m in Sources */,

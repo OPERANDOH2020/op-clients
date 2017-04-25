@@ -7,6 +7,7 @@
 //
 
 #import "PPEvent.h"
+#import "PPEvent+FrameworkPrivate.h"
 #import "Common.h"
 
 @interface PPEvent()

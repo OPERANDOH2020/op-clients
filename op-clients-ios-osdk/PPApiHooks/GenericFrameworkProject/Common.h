@@ -40,22 +40,34 @@ typedef NS_ENUM(NSInteger, PPMotionManagerEventType){
     EventMotionManagerStartAccelerometerUpdatesToQueueUsingHandler,
     
     EventMotionManagerStartGyroUpdates,
+    EventMotionManagerStartGyroUpdatesToQueueUsingHandler,
+    
     EventMotionManagerStartMagnetometerUpdates,
+    EventMotionManagerStartMagnetometerUpdatesToQueueUsingHandler,
+    
     EventMotionManagerStartDeviceMotionUpdates,
+    EventMotionManagerStartDeviceMotionUpdatesUsingReferenceFrame,
+    EventMotionManagerStartDeviceMotionUpdatesUsingReferenceFrameToQueueUsingHandler,
     
     EventMotionManagerIsGyroAvailable,
     EventMotionManagerIsAccelerometerAvailable,
     EventMotionManagerIsMagnetometerAvailable,
     EventMotionManagerIsDeviceMotionAvailable,
+    
+    EventMotionManagerIsGyroActive,
     EventMotionManagerIsAccelerometerActive,
     EventMotionManagerIsMagnetometerActive,
-    EventMotionManagerIsGyroActive,
     EventMotionManagerIsDeviceMotionActive,
     
-    EventMotionManagerGetCurrentAccelerometerData,
     EventMotionManagerGetCurrentGyroData,
+    EventMotionManagerGetCurrentAccelerometerData,
     EventMotionManagerGetCurrentMagnetometerData,
-    EventMotionManagerGetCurrentDeviceMotion
+    EventMotionManagerGetCurrentDeviceMotionData,
+    
+    EventMotionManagerSetGyroUpdateInterval,
+    EventMotionManagerSetAccelerometerUpdateInterval,
+    EventMotionManagerSetMagnetometerUpdateInterval,
+    EventMotionManagerSetDeviceMotionUpdateInterval
 };
 
 typedef NS_ENUM(NSInteger, PPURLSessionEventType){
@@ -77,12 +89,14 @@ typedef NS_ENUM(NSInteger, PPWKWebViewEventType){
 };
 
 
+#define kConfirmationCallbackBlock @"kCommonConfirmationVoidBlock"
+
 #pragma mark - 
 
 #define kPPWebViewRequest @"kPPWebViewRequest"
 #define kPPAllowWebViewRequestValue @"kPPAllowWebViewRequestValue"
 
-// - NSURLSession related keys
+#pragma mark - NSURLSession related keys
 
 #define kPPURLSessionDataTask @"kURLSessionDataTask"
 #define kPPURLSessionDataTaskRequest @"kPPURLSessionDataTaskRequest"
@@ -93,9 +107,9 @@ typedef NS_ENUM(NSInteger, PPWKWebViewEventType){
 #pragma mark - 
 // - CLLocationManager related keys
 
-#define kPPStartLocationUpdatesConfirmation @"kPPStartLocationUpdatesConfirmationKey"
-#define kPPRequestAlwaysAuthorizationConfirmation @"kPPRequestAlwaysAuthorizationConfirmation"
-#define kPPRequestWhenInUseAuthorizationConfirmation @"kPPRequestWhenInUseAuthorizationConfirmation"
+//#define kPPStartLocationUpdatesConfirmation @"kPPStartLocationUpdatesConfirmationKey"
+//#define kPPRequestAlwaysAuthorizationConfirmation @"kPPRequestAlwaysAuthorizationConfirmation"
+//#define kPPRequestWhenInUseAuthorizationConfirmation @"kPPRequestWhenInUseAuthorizationConfirmation"
 
 
 #define kPPLocationManagerDelegate @"kPPLocationManagerDelegate"
@@ -107,10 +121,7 @@ typedef NS_ENUM(NSInteger, PPWKWebViewEventType){
 #pragma mark - CMMotionManager related keys
 // - CMMotionManager related keys
 
-#define kPPStartAccelerometerUpdatesConfirmation @"kPPStartAccelerometerUpdatesConfirmation"
-#define kPPStartDeviceMotionUpdatesConfirmation @"kPPStartDeviceMotionUpdatesConfirmation"
-#define kPPStartMagnetometerUpdatesConfirmation @"kPPStartMagnetometerUpdatesConfirmation"
-#define kPPStartGyroUpdatesConfirmation @"kPPStartGyroUpdatesConfirmation"
+
 
 #define kPPMotionManagerIsGyroAvailableValue @"kPPMotionManagerIsGyroAvailableValue"
 
@@ -131,10 +142,18 @@ typedef NS_ENUM(NSInteger, PPWKWebViewEventType){
 #define kPPMotionManagerGetCurrentMagnetometerDataValue @"kPPMotionManagerGetCurrentMagnetometerDataValue"
 #define kPPMotionManagerGetCurrentDeviceMotionValue @"kPPMotionManagerGetCurrentDeviceMotionValue"
 
+#define kPPDeviceMotionReferenceFrameValue @"kPPDeviceMotionReferenceFrameValue"
 
 #define kPPMotionManagerUpdatesQueue @"kPPMotionManagerUpdatesQueue"
 #define kPPMotionManagerAccelerometerHandler @"kPPMotionManagerAccelerometerHandler"
+#define kPPMotionManagerMagnetometerHandler @"kPPMotionManagerMagnetometerHandler"
+#define kPPMotionManagerGyroHandler @"kPPMotionManagerGyroHandler"
+#define kPPMotionManagerDeviceMotionHandler @"kPPMotionManagerDeviceMotionHandler"
 
+#define kPPMotionManagerAccelerometerUpdateIntervalValue @"kPPMotionManagerAccelerometerUpdateIntervalValue"
+#define kPPMotionManagerGyroUpdateIntervalValue @"kPPMotionManagerGyroUpdateIntervalValue"
+#define kPPMotionManagerMagnetometerUpdateIntervalValue @"kPPMotionManagerMagnetometerUpdateIntervalValue"
+#define kPPMotionManagerDeviceMotionUpdateIntervalValue @"kPPMotionManagerDevieMotionUpdateIntervalValue"
 
 #pragma mark - UIDevice & proximity related keys
 // - UIDevice & proximity related keys
@@ -151,10 +170,5 @@ typedef NS_ENUM(NSInteger, PPWKWebViewEventType){
 #define kPPPedometerUpdatesDateValue @"kPPPedometerUpdateDateValue"
 #define kPPPedometerUpdatesHandler @"kPPPedometerUpdatesHandler"
 #define kPPStartPedometerUpdatesConfirmation @"kPPStartPedometerUpdatesConfirmation"
-
-
-
-
-
 
 #endif /* PPEventKeys_h */

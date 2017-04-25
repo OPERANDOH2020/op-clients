@@ -39,7 +39,7 @@
     
     [[PPEventDispatcher sharedInstance] fireEventWithOneTimeExecution:PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerStartLocationUpdates) executionBlock:^{
         [weakSelf rsHook_startUpdatingLocation];
-    } executionBlockKey:kPPStartLocationUpdatesConfirmation];
+    } executionBlockKey:kConfirmationCallbackBlock];
 }
 
 -(void)rsHook_requestAlwaysAuthorization {
@@ -49,7 +49,7 @@
     
     [[PPEventDispatcher sharedInstance] fireEventWithOneTimeExecution:identifier executionBlock:^{
         [weakSelf rsHook_requestWhenInUseAuthorization];
-    } executionBlockKey:kPPRequestAlwaysAuthorizationConfirmation];
+    } executionBlockKey:kConfirmationCallbackBlock];
 }
 
 
@@ -58,7 +58,7 @@
     __weak typeof(self) weakSelf = self;
     [[PPEventDispatcher sharedInstance] fireEventWithOneTimeExecution: PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerRequestWhenInUseAuthorization) executionBlock:^{
         [weakSelf rsHook_requestWhenInUseAuthorization];
-    } executionBlockKey:kPPRequestWhenInUseAuthorizationConfirmation];
+    } executionBlockKey:kConfirmationCallbackBlock];
 }
 
 
