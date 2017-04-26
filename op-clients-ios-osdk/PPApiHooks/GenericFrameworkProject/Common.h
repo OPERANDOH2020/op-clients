@@ -12,6 +12,12 @@
 #ifndef PPEventKeys_h
 #define PPEventKeys_h
 
+
+#define PPHOOKPREFIX @"__PP_HOOKED__"
+#define HOOKEDInstanceMethod(retType, call) -(retType)__PP_HOOKED__##call
+#define HOOKEDClassMethod(retType, call) +(retType)__PP_HOOKED__##call
+#define CALL_ORIGINAL_METHOD(callee, call) [callee __PP_HOOKED__##call]
+
 #define SAFECALL(x, ...) if(x){x(__VA_ARGS__);}
 #define SAFEADD(dict, key, value) if(value){[dict setObject:value forKey:key];}
 
@@ -21,9 +27,10 @@ typedef NS_ENUM(NSInteger, PPEventType) {
     PPLocationManagerEvent,
     PPMotionManagerEvent,
     PPURLSessionEvent,
-    PPDeviceProximityEvent,
+    PPUIDeviceEvent,
     PPPedometerEvent,
     PPWKWebViewEvent,
+    PPLAContextEvent,
 };
 
 typedef NS_ENUM(NSInteger, PPLocationManagerEventType){
@@ -74,10 +81,16 @@ typedef NS_ENUM(NSInteger, PPURLSessionEventType){
     EventURLSessionStartDataTaskForRequest
 };
 
-typedef NS_ENUM(NSInteger, PPDeviceProximityEventType){
-    EventSetDeviceProximityMonitoringEnabled,
-    EventSetDeviceProximitySensingEnabled,
-    EventGetDeviceProximityState
+typedef NS_ENUM(NSInteger, PPUIDeviceEventType){
+    EventDeviceSetProximityMonitoringEnabled,
+    EventDeviceSetProximitySensingEnabled,
+    EventDeviceGetProximityState,
+    EventDeviceGetName,
+    EventDeviceGetModel,
+    EventDeviceGetLocalizedModel,
+    EventDeviceGetSystemName,
+    EventDeviceGetSystemVersion,
+    EventDeviceGetIdentifierForVendor
 };
 
 typedef NS_ENUM(NSInteger, PPPedometerEventType){
@@ -88,8 +101,13 @@ typedef NS_ENUM(NSInteger, PPWKWebViewEventType){
     EventAllowWebViewRequest
 };
 
+typedef NS_ENUM(NSInteger, PPLAContextEventType) {
+    EventContextCanEvaluatePolicy,
+    EventContextEvaluatePolicy
+};
 
-#define kConfirmationCallbackBlock @"kCommonConfirmationVoidBlock"
+
+#define kPPConfirmationCallbackBlock @"kCommonConfirmationVoidBlock"
 
 #pragma mark - 
 
@@ -161,14 +179,27 @@ typedef NS_ENUM(NSInteger, PPWKWebViewEventType){
 #define kPPDeviceProximityMonitoringEnabledValue @"kPPDeviceProximityMonitoringEnabledValue"
 #define kPPDeviceProximitySensingEnabledValue @"kPPDeviceProximitySensingEnabledValue"
 #define kPPDeviceProxmityStateValue @"kPPDeviceProxmityStateValue"
+#define kPPDeviceNameValue @"kPPDeviceNameValue"
+#define kPPDeviceModelValue @"kPPDeviceNameValue"
+#define kPPDeviceLocalizedModelValue @"kPPDeviceLocalizedModelValue"
+#define kPPDeviceUUIDValue @"kPPDeviceUUIDValue"
+#define kPPDeviceSystemNameValue @"kPPDeviceSystemNameValue"
+#define kPPDeviceSystemVersionValue @"kPPDeviceSystemVersionValue"
 
 
-
-#pragma mark - 
+#pragma mark - CMPedometer related keys
 // -
-
 #define kPPPedometerUpdatesDateValue @"kPPPedometerUpdateDateValue"
 #define kPPPedometerUpdatesHandler @"kPPPedometerUpdatesHandler"
 #define kPPStartPedometerUpdatesConfirmation @"kPPStartPedometerUpdatesConfirmation"
+
+
+
+#pragma mark - LAContext related keys
+
+#define kPPContextPolicyValue @"kPPContextPolicyValue"
+#define kPPContextErrorValue @"kPPContextErrorValue"
+#define kPPContextCanEvaluateContextPolicyValue @"kPPContextCanEvaluateContextPolicyValue"
+
 
 #endif /* PPEventKeys_h */

@@ -10,7 +10,7 @@
 #import "PPEvent.h"
 #import "Common.h"
 #import "PPEventDispatcher+Internal.h"
-
+#import "NSObject+AutoSwizzle.h"
 
 @interface NullUrlSessionDataTask : NSURLSessionDataTask
 @property (weak, nonatomic) NSURLSession *weakSession;
@@ -48,7 +48,7 @@
 @implementation NSURLSession(rsHook)
 
 +(void)load {
-    [self jr_swizzleMethod:@selector(dataTaskWithRequest:completionHandler:) withMethod:@selector(rsHook__dataTaskWithRequest:completionHandler:) error:nil];
+    [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
 }
 
 
@@ -60,7 +60,9 @@
   - Upon returning, the code checks for the existence of a NSURLResponse or a NSError and optionally a NSData object. If these are present, then an empty dataTask is returned followed by calling the completion handler (in an async block) with the provided objects. Else, the default behaviour is invoked.
  */
 
--(NSURLSessionDataTask *)rsHook__dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completionHandler {
+
+
+HOOKEDInstanceMethod(NSURLSessionDataTask*, dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completionHandler) {
     
     NSMutableDictionary *eventData = [@{} mutableCopy];
     SAFEADD(eventData, kPPURLSessionDataTaskRequest, request)
@@ -80,7 +82,7 @@
         return [[NullUrlSessionDataTask alloc] init];
     }
     
-    return [self rsHook__dataTaskWithRequest:request completionHandler:completionHandler];
+    return CALL_ORIGINAL_METHOD(self, dataTaskWithRequest:request completionHandler:completionHandler);
 }
 
 @end

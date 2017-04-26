@@ -108,7 +108,7 @@
     [self internalFireEvent:event];
 }
 
--(void)fireEventWithOneTimeExecution:(PPEventIdentifier)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey {
+-(void)fireEventWithMaxOneTimeExecution:(PPEventIdentifier)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey {
     
     
     __block BOOL didExecute = NO;
@@ -132,7 +132,7 @@
 -(id)resultForEventValue:(id)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key{
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:value forKey:key];
+    SAFEADD(dict, key, value)
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:identifier eventData:dict whenNoHandlerAvailable:nil];
     [self fireEvent:event];

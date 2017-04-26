@@ -8,9 +8,8 @@
 
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "JRSwizzle.h"
-
-typedef void(^TouchIdCallback)();
-TouchIdCallback _globalTouchIdCallback;
+#import "NSObject+AutoSwizzle.h"
+#import "PPEventDispatcher+Internal.h"
 
 @interface LAContext(rs_Hook)
 
@@ -20,18 +19,33 @@ TouchIdCallback _globalTouchIdCallback;
 
 +(void)load {
     if (NSClassFromString(@"LAContext")) {
-        [self jr_swizzleMethod:@selector(evaluatePolicy:localizedReason:reply:) withMethod:@selector(rsHook_evaluatePolicy:localizedReason:reply:) error:nil];
+        [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
     }
 }
 
--(void)rsHook_evaluatePolicy:(LAPolicy)policy localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply {
+HOOKEDInstanceMethod(BOOL, canEvaluatePolicy:(LAPolicy)policy error:(NSError * _Nullable __autoreleasing *)error){
     
-    if (policy == LAPolicyDeviceOwnerAuthenticationWithBiometrics) {
-    }
+    NSError *actualError = nil;
+    BOOL actualValue = CALL_ORIGINAL_METHOD(self, canEvaluatePolicy:policy error:&actualError);
     
-    [self rsHook_evaluatePolicy:policy localizedReason:localizedReason reply:reply];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    SAFEADD(dict, kPPContextErrorValue, actualError)
+    dict[kPPContextPolicyValue] = @(policy);
+    dict[kPPContextCanEvaluateContextPolicyValue] = @(actualValue);
     
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPLAContextEvent, EventContextCanEvaluatePolicy) eventData:dict whenNoHandlerAvailable:nil];
+    
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    *error = dict[kPPContextErrorValue];
+    return [dict[kPPContextCanEvaluateContextPolicyValue] boolValue];
 }
+
+HOOKEDInstanceMethod(void, evaluatePolicy:(LAPolicy)policy localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply) {
+    
+    CALL_ORIGINAL_METHOD(self, evaluatePolicy:policy localizedReason:localizedReason reply:reply);
+}
+
+
 
 
 @end
