@@ -7,10 +7,11 @@
 //
 
 #import "PPEvent.h"
+#import "PPEvent+FrameworkPrivate.h"
 #import "Common.h"
 
 @interface PPEvent()
-@property (readwrite, assign, nonatomic) PPEventType eventType;
+@property (readwrite, assign, nonatomic) PPEventIdentifier eventIdentifier;
 @property (readwrite, strong, nonatomic, nullable) NSMutableDictionary *eventData;
 @property (strong, nonatomic) PPVoidBlock whenNoHandlerAvailable;
 
@@ -18,10 +19,10 @@
 
 @implementation PPEvent
 
--(instancetype)initWithEventType:(PPEventType)eventType eventData:(NSMutableDictionary *)eventData whenNoHandlerAvailable:(PPVoidBlock _Nullable)whenNoHandlerAvailable {
+-(instancetype)initWithEventIdentifier:(PPEventIdentifier)eventIdentifier eventData:(NSMutableDictionary *)eventData whenNoHandlerAvailable:(PPVoidBlock _Nullable)whenNoHandlerAvailable {
     if (self = [super init]) {
         self.eventData = eventData;
-        self.eventType = eventType;
+        self.eventIdentifier = eventIdentifier;
         self.whenNoHandlerAvailable = whenNoHandlerAvailable;
     }
     

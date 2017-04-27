@@ -9,5 +9,4 @@
 #import "PPEvent+FrameworkPrivate.h"
 
 @implementation PPEvent(FrameworkPrivate)
-
 @end

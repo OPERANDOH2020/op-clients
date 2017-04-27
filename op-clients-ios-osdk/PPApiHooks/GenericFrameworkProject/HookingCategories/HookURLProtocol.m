@@ -10,7 +10,6 @@
 #import <WebKit/WebKit.h>
 #import "NSURLProtocol+WKWebViewSupport.h"
 
-#import "PPEventsPipelineFactory.h"
 #import "Common.h"
 #import "PPEventDispatcher+Internal.h"
 
@@ -39,9 +38,9 @@
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPWebViewRequest, request)
-    PPEvent *event = [[PPEvent alloc] initWithEventType:EventAllowWebViewRequest eventData:evData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPWKWebViewEvent, EventAllowWebViewRequest) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventsPipelineFactory eventsDispatcher] fireEvent:event];
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     
     // this method returning YES means that the request will be blocked
     // 

@@ -1,6 +1,6 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/UIVIewController+rsHookUIImagePickerController.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/PPEventIdentifier.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/AVCaptureDevice+rsHookingMicrophone.o
-/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/PPEventsPipelineFactory.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/NSURLSession+rsHook.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/NSURLProtocol+WKWebViewSupport.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/AVCaptureDevice+rsHookCamera.o
@@ -9,6 +9,7 @@
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/CLLocationManager+rsHook.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/PPEventDispatcher.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/LAContext+rsHook.o
+/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/NSObject+AutoSwizzle.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/PPEvent.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/JRSwizzle.o
 /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooks.build/Release-iphonesimulator/PPApiHooks.build/Objects-normal/x86_64/HookURLProtocol.o

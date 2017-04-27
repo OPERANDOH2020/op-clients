@@ -24,12 +24,13 @@
 		982FB4171E83FE0000D1AAEC /* HookURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */; };
 		982FB41C1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 982FB41A1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h */; };
 		982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */; };
+		98408E901EAFA0260002635D /* NSObject+AutoSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */; };
+		98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */; };
 		984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */; };
 		984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */; };
 		98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9869FA581E7A7C19001A8218 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8EC1E77DE61008F4D02 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		989DB8F51E78144F008F4D02 /* PPEventsPipelineFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */; };
+		9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */; };
 		98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */; };
 		98F7A6A31E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */; };
 		98F7A6A41E76ECB200FF635A /* CLLocationManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */; };
@@ -55,14 +56,16 @@
 		982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HookURLProtocol.m; sourceTree = "<group>"; };
 		982FB41A1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebViewSupport.h"; sourceTree = "<group>"; };
 		982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebViewSupport.m"; sourceTree = "<group>"; };
+		98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AutoSwizzle.h"; path = "NSObject+SwizzleMethods/NSObject+AutoSwizzle.h"; sourceTree = "<group>"; };
+		98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AutoSwizzle.m"; path = "NSObject+SwizzleMethods/NSObject+AutoSwizzle.m"; sourceTree = "<group>"; };
 		984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPEvent+FrameworkPrivate.h"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.h"; sourceTree = "<group>"; };
 		984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPEvent+FrameworkPrivate.m"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.m"; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPApiHooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PPApiHooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPApiHooks.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9899DF081EADDE8600CB9ED8 /* PPEventIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PPEventIdentifier.h; path = PPEventIdentifier/PPEventIdentifier.h; sourceTree = "<group>"; };
+		9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEventIdentifier.m; path = PPEventIdentifier/PPEventIdentifier.m; sourceTree = "<group>"; };
 		989DB8EC1E77DE61008F4D02 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPEventsPipelineFactory.h; path = PPEventsPipelineFactory/PPEventsPipelineFactory.h; sourceTree = "<group>"; };
-		989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEventsPipelineFactory.m; path = PPEventsPipelineFactory/PPEventsPipelineFactory.m; sourceTree = "<group>"; };
 		98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookCamera.m"; sourceTree = "<group>"; };
 		98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookingMicrophone.m"; sourceTree = "<group>"; };
 		98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+rsHook.m"; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		982FB4181E83FE1B00D1AAEC /* ExternalLibraries */ = {
 			isa = PBXGroup;
 			children = (
+				98408E8D1EAF9FF70002635D /* NSObject+SwizzleMethods */,
 				982FB4191E83FE5900D1AAEC /* WKWebViewWithURLProtocol */,
 				98F7A6AE1E76ECF000FF635A /* JRSwizzle */,
 			);
@@ -111,6 +115,15 @@
 				982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */,
 			);
 			path = WKWebViewWithURLProtocol;
+			sourceTree = "<group>";
+		};
+		98408E8D1EAF9FF70002635D /* NSObject+SwizzleMethods */ = {
+			isa = PBXGroup;
+			children = (
+				98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */,
+				98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */,
+			);
+			name = "NSObject+SwizzleMethods";
 			sourceTree = "<group>";
 		};
 		984C38601E7937D300F5AEF5 /* PPEvent+Private */ = {
@@ -151,13 +164,13 @@
 			path = GenericFrameworkProject;
 			sourceTree = "<group>";
 		};
-		989DB8F11E781428008F4D02 /* PPEventsPipelineFactory */ = {
+		9899DF071EADDE6100CB9ED8 /* PPEventIdentifier */ = {
 			isa = PBXGroup;
 			children = (
-				989DB8F21E78144F008F4D02 /* PPEventsPipelineFactory.h */,
-				989DB8F31E78144F008F4D02 /* PPEventsPipelineFactory.m */,
+				9899DF081EADDE8600CB9ED8 /* PPEventIdentifier.h */,
+				9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */,
 			);
-			name = PPEventsPipelineFactory;
+			name = PPEventIdentifier;
 			sourceTree = "<group>";
 		};
 		98F7A6951E76ECB200FF635A /* HookingCategories */ = {
@@ -191,7 +204,6 @@
 		98F7A6B31E76F16200FF635A /* EventsPipeline */ = {
 			isa = PBXGroup;
 			children = (
-				989DB8F11E781428008F4D02 /* PPEventsPipelineFactory */,
 				98F7A6B41E76F16200FF635A /* PPEvent */,
 				98F7A6B71E76F16200FF635A /* PPEventDispatcher */,
 			);
@@ -201,6 +213,7 @@
 		98F7A6B41E76F16200FF635A /* PPEvent */ = {
 			isa = PBXGroup;
 			children = (
+				9899DF071EADDE6100CB9ED8 /* PPEventIdentifier */,
 				984C38601E7937D300F5AEF5 /* PPEvent+Private */,
 				98F7A6B51E76F16200FF635A /* PPEvent.h */,
 				98F7A6B61E76F16200FF635A /* PPEvent.m */,
@@ -235,11 +248,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */,
-				989DB8F41E78144F008F4D02 /* PPEventsPipelineFactory.h in Headers */,
 				98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */,
 				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
 				984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */,
 				98F7A6B11E76ECF000FF635A /* JRSwizzle.h in Headers */,
+				98408E901EAFA0260002635D /* NSObject+AutoSwizzle.h in Headers */,
 				982FB41C1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h in Headers */,
 				98F7A6BF1E76F16200FF635A /* PPEventDispatcher+Internal.h in Headers */,
 				9869FA581E7A7C19001A8218 /* Common.h in Headers */,
@@ -334,8 +347,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
+				9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */,
 				98F7A6A31E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m in Sources */,
-				989DB8F51E78144F008F4D02 /* PPEventsPipelineFactory.m in Sources */,
 				98F7A6AB1E76ECB200FF635A /* NSURLSession+rsHook.m in Sources */,
 				982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */,
 				98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */,
@@ -344,6 +357,7 @@
 				98F7A6A41E76ECB200FF635A /* CLLocationManager+rsHook.m in Sources */,
 				98F7A6C21E76F16200FF635A /* PPEventDispatcher.m in Sources */,
 				98F7A6AA1E76ECB200FF635A /* LAContext+rsHook.m in Sources */,
+				98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */,
 				98F7A6BE1E76F16200FF635A /* PPEvent.m in Sources */,
 				98F7A6B21E76ECF000FF635A /* JRSwizzle.m in Sources */,
 				982FB4171E83FE0000D1AAEC /* HookURLProtocol.m in Sources */,

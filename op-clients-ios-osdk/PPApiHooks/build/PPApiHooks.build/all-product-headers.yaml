@@ -30,11 +30,6 @@
           'type': 'file',
           'name': "PPEventDispatcher.h",
           'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventDispatcher/PPEventDispatcher.h"
-        },
-        {
-          'type': 'file',
-          'name': "PPEventsPipelineFactory.h",
-          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventsPipelineFactory/PPEventsPipelineFactory.h"
         }
       ]
     },

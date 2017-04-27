@@ -68,27 +68,27 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
         self.model = model
         let _ = self.view
         
-        var imageName = imageNameForType[model.displayModel.exitButtonType]
+        let imageName = imageNameForType[model.displayModel.exitButtonType]
         let image = UIImage(named: imageName ?? "close", in: Bundle.commonUIBundle, compatibleWith: nil)
         self.exitButton.setImage(image, for: .normal)
         if model.displayModel.exitButtonType == .NoneInvisible {
             self.exitButton.isHidden = true
         }
         
+        URLSession.shared
+        
+        weak var weakSelf = self
         self.titleBarHeightConstraint.constant = model.displayModel.titleBarHeight
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.model?.repository.retrieveAllDocuments(with: { documents, error  in
+        model.repository.retrieveAllDocuments(with: { documents, error  in
             if let documents = documents {
-                self.documentsFromRepository = documents
-                self.cellAtIndexNeedsFullSize = Array<Bool>(repeating: false, count: self.documentsFromRepository.count)
-                self.tableView?.reloadData()
+                weakSelf?.documentsFromRepository = documents
+                weakSelf?.cellAtIndexNeedsFullSize = Array<Bool>(repeating: false, count: self.documentsFromRepository.count)
+                weakSelf?.tableView?.reloadData()
             }
         })
     }
     
+
     private func setup(tableView: UITableView?){
         let nib = UINib(nibName: SCDDocumentCell.identifierNibName, bundle: Bundle.commonUIBundle)
         tableView?.register(nib, forCellReuseIdentifier: SCDDocumentCell.identifierNibName)
@@ -103,11 +103,13 @@ class UISCDDocumentsViewController: UIViewController, UITableViewDelegate, UITab
     
     //MARK: TableView related
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1;
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.documentsFromRepository.count
     }
-    
-    
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false

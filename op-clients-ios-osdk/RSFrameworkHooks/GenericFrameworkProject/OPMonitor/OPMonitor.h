@@ -12,9 +12,6 @@
 
 @interface OPMonitor : NSObject
 +(instancetype __nonnull)sharedInstance;
-
--(void)beginMonitoringWithAppDocument:(NSDictionary* __nonnull)document;
-
 -(UIButton* _Nullable)getHandle;
 
 @end

@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Common.h"
+#import "PPEventIdentifier.h"
+
 
 @interface PPEvent: NSObject
-@property (readonly, nonatomic) PPEventType eventType;
+@property (readonly, nonatomic) PPEventIdentifier eventIdentifier;
 @property (readonly, nonatomic, nullable) NSMutableDictionary *eventData;
 
--(instancetype _Nonnull)initWithEventType:(PPEventType)eventType eventData:(NSMutableDictionary* _Nullable)eventData whenNoHandlerAvailable:(PPVoidBlock _Nullable)whenNoHandlerAvailable;
+-(instancetype _Nonnull)initWithEventIdentifier:(PPEventIdentifier)eventIdentifier eventData:(NSMutableDictionary* _Nullable)eventData whenNoHandlerAvailable:(PPVoidBlock _Nullable)whenNoHandlerAvailable;
 
 @end

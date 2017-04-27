@@ -20,6 +20,4 @@ typedef void(^EventHandler)(PPEvent* _Nonnull event, NextHandlerConfirmation _Nu
 -(NSString* _Nonnull)insertNewHandlerAtTop:(EventHandler _Nonnull)eventHandler;
 -(void)removeHandlerWithIdentifier:(NSString* _Nonnull)identifier;
 
-
-
 @end
