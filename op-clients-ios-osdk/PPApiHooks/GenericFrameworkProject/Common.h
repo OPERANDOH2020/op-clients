@@ -21,6 +21,8 @@
 #define SAFECALL(x, ...) if(x){x(__VA_ARGS__);}
 #define SAFEADD(dict, key, value) if(value){[dict setObject:value forKey:key];}
 
+typedef void(^PPBoolErrorBlock)(BOOL, NSError* _Nullable);
+
 typedef void(^PPVoidBlock)();
 
 typedef NS_ENUM(NSInteger, PPEventType) {
@@ -31,6 +33,7 @@ typedef NS_ENUM(NSInteger, PPEventType) {
     PPPedometerEvent,
     PPWKWebViewEvent,
     PPLAContextEvent,
+    PPCNContactStoreEvent
 };
 
 typedef NS_ENUM(NSInteger, PPLocationManagerEventType){
@@ -103,9 +106,22 @@ typedef NS_ENUM(NSInteger, PPWKWebViewEventType){
 
 typedef NS_ENUM(NSInteger, PPLAContextEventType) {
     EventContextCanEvaluatePolicy,
-    EventContextEvaluatePolicy
+    EventContextEvaluatePolicy,
+    EventContextEvaluateAccessControlForOperation,
 };
 
+typedef NS_ENUM(NSInteger, PPCNContactStoreEventType){
+    EventContactStoreGetAuthorizationStatusForEntityType,
+    EventContactStoreRequestAccessForEntityType,
+    EventContactStoreGetUnifiedContactsMatchingPredicate,
+    EventContactStoreGetUnifiedContactWithIdentifier,
+    EventContactStoreGetUnifiedMeContact,
+    EventContactStoreEnumerateContactsWithFetchRequest,
+    EventContactStoreGetGroupsMatchingPredicate,
+    EventContactStoreGetContainersMatchingPredicate,
+    EventContactsStoreGetDefaultContainerIdentifier,
+    EventContactsStoreExecuteSaveRequest
+};
 
 #define kPPConfirmationCallbackBlock @"kCommonConfirmationVoidBlock"
 
@@ -193,13 +209,37 @@ typedef NS_ENUM(NSInteger, PPLAContextEventType) {
 #define kPPPedometerUpdatesHandler @"kPPPedometerUpdatesHandler"
 #define kPPStartPedometerUpdatesConfirmation @"kPPStartPedometerUpdatesConfirmation"
 
-
-
 #pragma mark - LAContext related keys
 
 #define kPPContextPolicyValue @"kPPContextPolicyValue"
 #define kPPContextErrorValue @"kPPContextErrorValue"
 #define kPPContextCanEvaluateContextPolicyValue @"kPPContextCanEvaluateContextPolicyValue"
+#define kPPContextBOOLErrorReplyBlock @"kPPContextBOOLErrorReplyBlock"
+#define kPPContextSecAccessControlRefValue @"kPPContextSecAccessControlRefValue"
+#define kPPContextAccessControlOperationValue @"kPPContextAccessControlOperationValue"
+
+#pragma mark - CNContactStore related keys
+
+#define kPPContactStoreAuthorizationStatusValue @"kPPContactStoreAuthorizationStatusValue"
+#define kPPContactStoreEntityTypeValue @"kPPContactStoreEntityTypeValue"
+#define kPPContactStoreDefaultIdentifierValue @"kPPContactStoreDefaultIdentifierValue"
+#define kPPContactStoreSaveRequestValue @"kPPContactStoreSaveRequestValue"
+#define kPPContactStorePredicateValue @"kPPContactStorePredicateValue"
+#define kPPContactStoreErrorValue @"kPPContactStoreErrorValue"
+#define kPPContactStoreContactsArrayValue @"kPPContactStoreContactsArrayValue"
+#define kPPContactStoreContactValue @"kPPContactStoreContactValue"
+
+#define kPPContactStoreEnumerateContactsBoolReturnValue @"kPPContactStoreEnumerateContactsBoolReturnValue"
+#define kPPContactStoreContainersArrayValue @"kPPContactStoreContainersArrayValue"
+#define kPPContactStoreGroupsArrayValue @"kPPContactStoreGroupsArrayValue"
+#define kPPContactStoreFetchRequestValue @"kPPContactStoreFetchRequestValue"
+#define kPPContactStoreBOOLErrorBlock @"kPPContactStoreBOOLErrorBlock"
+#define kPPContactStoreKeyDescriptorsArrayValue @"kPPContactStoreKeyDescriptorsArrayValue"
+#define kPPContactStoreUnifiedContactIdentifierValue @"kPPContactStoreUnifiedContactIdentifierValue"
+
+#define kPPContactStoreContactEnumerationBlock @"kPPContactStoreContactEnumerationBlock"
+#define kPPContactStoreBOOLReturnValue @"kPPContactStoreBOOLReturnValue"
+#define kPPContactStoreAllowExecuteSaveRequest @"kPPContactStoreAllowExecuteSaveRequest"
 
 
 #endif /* PPEventKeys_h */

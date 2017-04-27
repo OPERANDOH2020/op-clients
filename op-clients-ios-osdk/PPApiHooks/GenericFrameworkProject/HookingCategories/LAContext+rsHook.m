@@ -41,11 +41,39 @@ HOOKEDInstanceMethod(BOOL, canEvaluatePolicy:(LAPolicy)policy error:(NSError * _
 }
 
 HOOKEDInstanceMethod(void, evaluatePolicy:(LAPolicy)policy localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply) {
+    __weak typeof(self) weakSelf = self;
     
-    CALL_ORIGINAL_METHOD(self, evaluatePolicy:policy localizedReason:localizedReason reply:reply);
+    NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
+    evData[kPPContextPolicyValue] = @(policy);
+    evData[kPPContextBOOLErrorReplyBlock] = reply;
+    
+    PPVoidBlock confirmationOrDefault = ^{
+        CALL_ORIGINAL_METHOD(weakSelf, evaluatePolicy:policy localizedReason:localizedReason reply: reply);
+    };
+    evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
+    
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPLAContextEvent, EventContextEvaluatePolicy) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
+    
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
 }
 
-
+HOOKEDInstanceMethod(void, evaluateAccessControl:(SecAccessControlRef)accessControl operation:(LAAccessControlOperation)operation localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply) {
+    
+    __weak typeof(self) weakSelf = self;
+    NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
+    evData[kPPContextBOOLErrorReplyBlock] = reply;
+    evData[kPPContextSecAccessControlRefValue] = [NSValue valueWithPointer:accessControl];
+    evData[kPPContextAccessControlOperationValue] = @(operation);
+    
+    PPVoidBlock confirmationOrDefault = ^{
+        CALL_ORIGINAL_METHOD(weakSelf, evaluateAccessControl: accessControl operation: operation localizedReason: localizedReason reply: reply);
+    };
+    evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
+    
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPLAContextEvent, EventContextEvaluateAccessControlForOperation) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
+    
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
+}
 
 
 @end
