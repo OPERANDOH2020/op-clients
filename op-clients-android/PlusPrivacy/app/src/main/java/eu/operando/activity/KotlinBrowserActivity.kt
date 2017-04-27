@@ -85,6 +85,7 @@ class KotlinBrowserActivity : AppCompatActivity() {
         findViewById(R.id.fab_close_tab).setOnClickListener {
             (viewPager.adapter as TabPagerAdapter).removeTab()
         }
+        viewPager.offscreenPageLimit = 3
     }
 
 

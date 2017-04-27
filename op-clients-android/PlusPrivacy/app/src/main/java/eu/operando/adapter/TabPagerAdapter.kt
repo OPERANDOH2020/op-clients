@@ -15,6 +15,7 @@ import it.neokree.materialtabs.MaterialTabHost
  * Created by Edy on 04-Apr-17.
  */
 class TabPagerAdapter(fm: FragmentManager, val context: Context, val tabHost: TabLayout) : FragmentStatePagerAdapter(fm) {
+    private val MAX_PAGE_LIMIT = 3
     private var fragments: ArrayList<TabFragment> = ArrayList()
     private var tabs: ArrayList<TabLayout.Tab> = ArrayList()
     private var urls: ArrayList<String> = ArrayList()
@@ -44,11 +45,18 @@ class TabPagerAdapter(fm: FragmentManager, val context: Context, val tabHost: Ta
     }
 
     fun addTab(url: String) {
+        if (count > MAX_PAGE_LIMIT) {
+            fragments.removeAt(0)
+            tabs.removeAt(0)
+            tabHost.removeTabAt(0)
+            urls.removeAt(0)
+        }
         fragments.add(TabFragment.newInstance(url))
         tabs.add(tabHost.newTab())
         tabHost.addTab(tabs[tabs.size - 1])
         urls.add(url)
         notifyDataSetChanged()
+
 
     }
 

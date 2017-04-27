@@ -28,6 +28,7 @@
         <activity android:name=".activity.PFBActivity"/>
         <activity android:name=".activity.NotificationsActivity"/>
         <activity android:name=".activity.PermissionsActivity"/>
+        <activity android:name=".activity.BrowserActivity"/>
         <activity android:name=".activity.KotlinBrowserActivity">
         </activity>
     </application>

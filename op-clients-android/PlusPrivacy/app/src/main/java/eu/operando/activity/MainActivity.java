@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 KotlinBrowserActivityKt.start(MainActivity.this);
+//                BrowserActivity.start(MainActivity.this);
             }
         });
     }
@@ -193,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 3: //Browser
                 KotlinBrowserActivityKt.start(this);
+//                BrowserActivity.start(MainActivity.this);
                 break;
             case 4: //Scanner
                 ScannerActivity.start(this);
