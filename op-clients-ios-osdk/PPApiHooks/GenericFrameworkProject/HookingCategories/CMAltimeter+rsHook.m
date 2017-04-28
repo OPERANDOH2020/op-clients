@@ -7,10 +7,8 @@
 //
 
 #import <CoreMotion/CoreMotion.h>
-
-typedef void(^AltimeterCallback)();
-AltimeterCallback _globalAltimeterCallback;
-
+#import "NSObject+AutoSwizzle.h"
+#import "PPEventDispatcher+Internal.h"
 
 @interface CMAltimeter(rsHook_Altimeter)
 
@@ -18,12 +16,35 @@ AltimeterCallback _globalAltimeterCallback;
 
 @implementation CMAltimeter(rsHook_Altimeter)
 
-
--(void)rsHook_startRelativeAltitudeUpdatesToQueue:(NSOperationQueue *)queue withHandler:(CMAltitudeHandler)handler {
-    
-    [self rsHook_startRelativeAltitudeUpdatesToQueue:queue withHandler:handler];
-    
++(void)load{
+    if (NSClassFromString(@"CMAltimeter")) {
+        [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
+    }
 }
 
+HOOKEDClassMethod(BOOL, isRelativeAltitudeAvailable){
+    BOOL result = CALL_ORIGINAL_METHOD(self, isRelativeAltitudeAvailable);
+    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterGetRelativeAltitudeAvailableValue) atKey:kPPAltimeterIsRelativeAltitudeVailableValue];
+}
+
+
+HOOKEDInstanceMethod(void, startRelativeAltitudeUpdatesToQueue:(NSOperationQueue *)queue withHandler:(CMAltitudeHandler)handler) {
+    
+    NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
+    SAFEADD(evData, kPPAltimeterUpdatesQueue, queue)
+    SAFEADD(evData, kPPAltimeterUpdatesHandler, handler)
+    
+    __Weak(self);
+    __Weak(evData);
+    PPVoidBlock confirmationOrDefault = ^{
+        CALL_ORIGINAL_METHOD(weakself, startRelativeAltitudeUpdatesToQueue: weakevData[kPPAltimeterUpdatesQueue] withHandler: weakevData[kPPAltimeterUpdatesHandler]);
+    };
+    
+    evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
+    
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterStartRelativeAltitudeUpdates) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
+    
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
+}
 
 @end

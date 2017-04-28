@@ -33,8 +33,10 @@ HOOKEDInstanceMethod(void, setProximityMonitoringEnabled:(BOOL)enabled) {
                                      kPPDeviceProximityMonitoringEnabledValue: @(enabled)
                                      } mutableCopy];
     
+    __Weak(evData);
+    
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_ORIGINAL_METHOD(weakSelf, setProximityMonitoringEnabled:[evData[kPPDeviceProximityMonitoringEnabledValue] boolValue]);
+        CALL_ORIGINAL_METHOD(weakSelf, setProximityMonitoringEnabled:[weakevData[kPPDeviceProximityMonitoringEnabledValue] boolValue]);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
@@ -51,8 +53,10 @@ HOOKEDInstanceMethod(void, setProximitySensingEnabled:(BOOL)enabled) {
     NSMutableDictionary *evData = [@{
                                      kPPDeviceProximitySensingEnabledValue: @(enabled)
                                      } mutableCopy];
+    
+    __Weak(evData);
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_ORIGINAL_METHOD(weakSelf, setProximitySensingEnabled:[evData[kPPDeviceProximitySensingEnabledValue] boolValue]);
+        CALL_ORIGINAL_METHOD(weakSelf, setProximitySensingEnabled:[weakevData[kPPDeviceProximitySensingEnabledValue] boolValue]);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     

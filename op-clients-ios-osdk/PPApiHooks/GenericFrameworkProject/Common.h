@@ -21,6 +21,8 @@
 #define SAFECALL(x, ...) if(x){x(__VA_ARGS__);}
 #define SAFEADD(dict, key, value) if(value){[dict setObject:value forKey:key];}
 
+#define __Weak(x) __weak typeof(x) weak##x = x
+
 typedef void(^PPBoolErrorBlock)(BOOL, NSError* _Nullable);
 
 typedef void(^PPVoidBlock)();
@@ -33,7 +35,9 @@ typedef NS_ENUM(NSInteger, PPEventType) {
     PPPedometerEvent,
     PPWKWebViewEvent,
     PPLAContextEvent,
-    PPCNContactStoreEvent
+    PPCNContactStoreEvent,
+    PPCMAltimeterEvent,
+    PPAVCaptureDeviceEvent
 };
 
 typedef NS_ENUM(NSInteger, PPLocationManagerEventType){
@@ -97,7 +101,17 @@ typedef NS_ENUM(NSInteger, PPUIDeviceEventType){
 };
 
 typedef NS_ENUM(NSInteger, PPPedometerEventType){
-    EventStartPedometerUpdates
+    EventPedometerStartUpdatesFromDate,
+    EventPedometerGetStepCountingAvailable,
+    EventPedometerGetDistanceAvailable,
+    EventPedometerGetFloorCountingAvailable,
+    EventPedometerGetPaceAvailable,
+    EventPedometerGetCadenceAvailable,
+    EventPedometerGetTrackingAvailable,
+    EventPedometerQueryDataFromDate,
+    EventPedometerStartEventUpdatesWithHandler,
+    EventPedometerGetEventTrackingAvailable
+    
 };
 
 typedef NS_ENUM(NSInteger, PPWKWebViewEventType){
@@ -121,6 +135,39 @@ typedef NS_ENUM(NSInteger, PPCNContactStoreEventType){
     EventContactStoreGetContainersMatchingPredicate,
     EventContactsStoreGetDefaultContainerIdentifier,
     EventContactsStoreExecuteSaveRequest
+};
+
+typedef NS_ENUM(NSInteger, PPCMAltimeterEventType) {
+    EventAltimeterGetRelativeAltitudeAvailableValue,
+    EventAltimeterStartRelativeAltitudeUpdates,
+};
+
+typedef NS_ENUM(NSInteger, PPAVCaptureDeviceEventType) {
+    EventCaptureDeviceGetDefaultDeviceWithMediaType,
+    EventCaptureDeviceGetDeviceWithUniqueId,
+    EventCaptureDeviceGetUniqueId,
+    EventCaptureDeviceGetModelId,
+    EventCaptureDeviceHasMediaType,
+    EventCaptureDeviceLockForConfiguration,
+    EventCaptureDeviceSupportsSessionPreset,
+    EventCaptureDeviceGetIsConnected,
+    EventCaptureDeviceGetFormats,
+    EventCaptureDeviceGetActiveFormat,
+    EventCaptureDeviceGetActiveVideoMinFrameDuration,
+    EventCaptureDeviceGetActiveVideoMaxFrameDuration,
+    EventCaptureDeviceGetPosition,
+    EventCaptureDeviceGetDeviceType,
+    EventCaptureDeviceGetDefaultDeviceWithType,
+    EventCaptureDeviceGetHasFlash,
+    EventCaptureDeviceGetIsFlashAvailable,
+    EventCaptureDeviceGetHasTorch,
+    EventCaptureDeviceGetTorchAvailable,
+    EventCaptureDeviceGetTorchActive,
+    EventCaptureDeviceGetTorchLevel,
+    EventCaptureDeviceIsTorchModeSupported,
+    EventCaptureDeviceGetTorchMode,
+    EventCaptureDeviceSetTorchModeWithLevel
+    
 };
 
 #define kPPConfirmationCallbackBlock @"kCommonConfirmationVoidBlock"
@@ -206,8 +253,16 @@ typedef NS_ENUM(NSInteger, PPCNContactStoreEventType){
 #pragma mark - CMPedometer related keys
 // -
 #define kPPPedometerUpdatesDateValue @"kPPPedometerUpdateDateValue"
-#define kPPPedometerUpdatesHandler @"kPPPedometerUpdatesHandler"
-#define kPPStartPedometerUpdatesConfirmation @"kPPStartPedometerUpdatesConfirmation"
+#define kPPPedometerHandlerValue @"kPPPedometerHandlerValue"
+#define kPPPedometerIsStepCountingAvailableValue @"kPPPedometerIsStepCountingAvailable"
+#define kPPPedometerIsDistanceAvailableValue @"kPPPedometerIsDistanceAvailableValue"
+#define kPPPedometerIsFloorCountingAvailableValue @"kPPPedometerIsFloorCountingAvailableValue"
+#define kPPPedometerIsPaceAvailableValue @"kPPPedometerIsPaceAvailableValue"
+#define kPPPedometerIsCadenceAvailableValue @"kPPPedometerIsCadenceAvailableValue"
+#define kPPPedometerIsEventTrackingAvailableValue @"kPPPedometerIsEventTrackingAvailableValue"
+#define kPPPedometerEventUpdatesHandler @"kPPPedometerEventUpdatesHandler"
+#define kPPPedometerStartDateValue @"kPPPedometerStartDateValue"
+#define kPPPedometerEndDateValue @"kPPPedometerEndDateValue"
 
 #pragma mark - LAContext related keys
 
@@ -241,5 +296,10 @@ typedef NS_ENUM(NSInteger, PPCNContactStoreEventType){
 #define kPPContactStoreBOOLReturnValue @"kPPContactStoreBOOLReturnValue"
 #define kPPContactStoreAllowExecuteSaveRequest @"kPPContactStoreAllowExecuteSaveRequest"
 
+#pragma mark - CMAltimeter related keys
+
+#define kPPAltimeterIsRelativeAltitudeVailableValue @"kPPAltimeterIsRelativeAltitudeVailableValue"
+#define kPPAltimeterUpdatesQueue @"kPPAltimeterUpdatesQueue"
+#define kPPAltimeterUpdatesHandler @"kPPAltimeterUpdatesHandler"
 
 #endif /* PPEventKeys_h */

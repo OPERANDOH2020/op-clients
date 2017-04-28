@@ -139,6 +139,7 @@ HOOKEDInstanceMethod(NSArray<CNGroup*>*, groupsMatchingPredicate:(NSPredicate *)
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetGroupsMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
     
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     *error = evData[kPPContactStoreErrorValue];
     return evData[kPPContactStoreGroupsArrayValue];
 }
@@ -158,6 +159,7 @@ HOOKEDInstanceMethod(NSArray<CNContainer*>*, containersMatchingPredicate:(NSPred
     SAFEADD(evData, kPPContactStoreContainersArrayValue, containers)
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetContainersMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
     
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     *error = evData[kPPContactStoreErrorValue];
     return evData[kPPContactStoreContainersArrayValue];
 }
@@ -169,6 +171,8 @@ HOOKEDInstanceMethod(BOOL, executeSaveRequest:(CNSaveRequest *)saveRequest error
     SAFEADD(evData, kPPContactStoreSaveRequestValue, saveRequest)
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactsStoreExecuteSaveRequest) eventData:evData whenNoHandlerAvailable:nil];
+    
+    [[PPEventDispatcher sharedInstance] fireEvent:event];
     
     *error = evData[kPPContactStoreErrorValue];
     BOOL allow = [evData[kPPContactStoreAllowExecuteSaveRequest] boolValue];

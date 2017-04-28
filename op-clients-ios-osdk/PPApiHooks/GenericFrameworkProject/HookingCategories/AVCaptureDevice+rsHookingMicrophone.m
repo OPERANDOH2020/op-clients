@@ -8,7 +8,8 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "JRSwizzle.h"
-
+#import "NSObject+AutoSwizzle.h"
+#import "PPEventDispatcher+Internal.h"
 
 @interface AVCaptureDevice(rsHook_Microphone)
 
@@ -18,16 +19,9 @@
 
 +(void)load {
     if (NSClassFromString(@"AVCaptureDevice")) {
-        [self jr_swizzleClassMethod:@selector(defaultDeviceWithMediaType:) withClassMethod:@selector(rsHook_Microphone_defaultDeviceWithMediaType:) error:nil];
+        [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
     }
 }
 
-+(AVCaptureDevice*)rsHook_Microphone_defaultDeviceWithMediaType:(NSString *)mediaType{
-    
-    if (mediaType == AVCaptureDeviceTypeBuiltInMicrophone) {
-    }
-    
-    return [self rsHook_Microphone_defaultDeviceWithMediaType:mediaType];
-}
 
 @end
