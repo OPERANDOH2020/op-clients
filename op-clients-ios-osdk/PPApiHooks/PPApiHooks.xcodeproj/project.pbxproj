@@ -32,7 +32,6 @@
 		9869FA581E7A7C19001A8218 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8EC1E77DE61008F4D02 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */; };
 		98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */; };
-		98F7A6A31E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */; };
 		98F7A6A41E76ECB200FF635A /* CLLocationManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */; };
 		98F7A6A51E76ECB200FF635A /* CMAltimeter+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6991E76ECB200FF635A /* CMAltimeter+rsHook.m */; };
 		98F7A6A71E76ECB200FF635A /* CMMotionManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69B1E76ECB200FF635A /* CMMotionManager+rsHook.m */; };
@@ -67,7 +66,6 @@
 		9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEventIdentifier.m; path = PPEventIdentifier/PPEventIdentifier.m; sourceTree = "<group>"; };
 		989DB8EC1E77DE61008F4D02 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookCamera.m"; sourceTree = "<group>"; };
-		98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookingMicrophone.m"; sourceTree = "<group>"; };
 		98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+rsHook.m"; sourceTree = "<group>"; };
 		98F7A6991E76ECB200FF635A /* CMAltimeter+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMAltimeter+rsHook.m"; sourceTree = "<group>"; };
 		98F7A69B1E76ECB200FF635A /* CMMotionManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+rsHook.m"; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */,
-				98F7A6971E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m */,
 				98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */,
 				98F7A6991E76ECB200FF635A /* CMAltimeter+rsHook.m */,
 				98F7A69B1E76ECB200FF635A /* CMMotionManager+rsHook.m */,
@@ -348,7 +345,6 @@
 			files = (
 				98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
 				9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */,
-				98F7A6A31E76ECB200FF635A /* AVCaptureDevice+rsHookingMicrophone.m in Sources */,
 				98F7A6AB1E76ECB200FF635A /* NSURLSession+rsHook.m in Sources */,
 				982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */,
 				98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */,

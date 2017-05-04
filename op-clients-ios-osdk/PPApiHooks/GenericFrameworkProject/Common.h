@@ -144,6 +144,7 @@ typedef NS_ENUM(NSInteger, PPCMAltimeterEventType) {
 
 typedef NS_ENUM(NSInteger, PPAVCaptureDeviceEventType) {
     EventCaptureDeviceGetDefaultDeviceWithMediaType,
+    EventCaptureDeviceGetDefaultDeviceWithTypeMediaTypeAndPosition,
     EventCaptureDeviceGetDeviceWithUniqueId,
     EventCaptureDeviceGetUniqueId,
     EventCaptureDeviceGetModelId,
@@ -166,7 +167,78 @@ typedef NS_ENUM(NSInteger, PPAVCaptureDeviceEventType) {
     EventCaptureDeviceGetTorchLevel,
     EventCaptureDeviceIsTorchModeSupported,
     EventCaptureDeviceGetTorchMode,
-    EventCaptureDeviceSetTorchModeWithLevel
+    EventCaptureDeviceSetTorchModeWithLevel,
+    EventCaptureDeviceGetFocusModeSupported,
+    EventCaptureDeviceGetLockingFocusWithCustomLensPositionSupported,
+    EventCaptureDeviceGetFocusMode,
+    EventCaptureDeviceSetFocusMode,
+    EventCaptureDeviceGetFocusPointOfInterestSupported,
+    EventCaptureDeviceGetFocusPointOfInterest,
+    EventCaptureDeviceSetFocusPointOfInterest,
+    EventCaptureDeviceGetAdjustingFocus,
+    EventCaptureDeviceGetAutoFocusRangeRestrictionSupported,
+    EventCaptureDeviceGetAutoFocusRangeRestriction,
+    EventCaptureDeviceSetAutoFocusRangeRestriction,
+    EventCaptureDeviceGetSmoothAutoFocusSupported,
+    EventCaptureDeviceGetSmoothAutoFocusEnabled,
+    EventCaptureDeviceSetSmoothAutoFocusEnabled,
+    EventCaptureDeviceGetLensPosition,
+    EventCaptureDeviceSetFocusModeLockedWithLensPosition,
+    EventCaptueDeviceIsExposureModeSupported,
+    EventCaptureDeviceSetExposureMode,
+    EventCaptureDeviceGetExposureMode,
+    EventCaptureDeviceGetExposurePointOfInterestSupported,
+    EventCaptureDeviceGetExposurePointOfInterest,
+    EventCaptureDeviceSetExposurePointOfInterest,
+    EventCaptureDeviceGetAdjustingExposure,
+    EventCaptureDeviceGetLensAperture,
+    EventCaptureDeviceGetExposureDuration,
+    EventCaptureDeviceGetISO,
+    EventCaptureDeviceSetExposureModeCustomWithDuration,
+    EventCaptureDeviceGetExposureTargetOffset,
+    EventCaptureDeviceGetExposureTargetBias,
+    EventCaptureDeviceGetMinExposureTargetBias,
+    EventCaptureDeviceGetMaxExposureTargetBias,
+    EventCaptureDeviceSetExposureTargetBias,
+    EventCaptureDeviceIsWhiteBalanceSupported,
+    EventCaptureDeviceGetLockingWhiteBalanceWithCustomDeviceGainsSupported,
+    EventCaptureDeviceGetWhiteBalanceMode,
+    EventCaptureDeviceSetWhiteBalanceMode,
+    EventCaptureDeviceGetAdjustingWhiteBalance,
+    EventCaptureDeviceGetWhiteBalanceGains,
+    EventCaptureDeviceGetGrayWorldWhiteBalanceGains,
+    EventCaptureDeviceGetMaxWhiteBalanceGain,
+    EventCaptureDeviceSetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains,
+    EventCaptureDeviceGetChromaticityValuesForDeviceWhiteBalanceGains,
+    EventCaptureDeviceGetDeviceWhiteBalanceGainsForChromaticityValues,
+    EventCaptureDeviceGetTemperatureAndTintValuesForDeviceWhiteBalanceGains,
+    EventCaptureDeviceGetDeviceWhiteBalanceGainsForTemperatureAndTintValues,
+    
+    // Area monitoring
+    EventCaptureDeviceGetSubjectAreaChangeMonitoringEnabled,
+    
+    //Low light boost
+    EventCaptureDeviceGetLowLightBoostSupported,
+    EventCaptureDeviceGetLowLightBoostEnabled,
+    EventCaptureDeviceGetAutomaticallyEnablesLowLightBoostWhenAvailable,
+    EventCaptureDeviceSetAutomaticallyEnablesLowLightBoostWhenAvailable,
+    
+    //Video Zoom
+    EventCaptureDeviceGetVideoZoomFactor,
+    EventCaptureDeviceSetVideoZoomFactor,
+    EventCaptureDeviceRampToVideoZoomFactorWithRate,
+    EventCaptureDeviceGetRampingVideoZoom,
+    EventCaptureDeviceCancelVideoZoomRamp,
+    
+    //Authorization
+    EventCaptureDeviceGetAuthorizationStatusForMediaType,
+    EventCaptureDeviceRequestAccessForMediaType,
+    
+    // HDRSupport
+    EventCaptureDeviceGetAutomaticallyAdjustsVideoHDREnabled,
+    EventCaptureDeviceSetAutomaticallyAdjustsVideoHDREnabled,
+    EventCaptureDeviceGetVideoHDREnabled,
+    EventCaptureDeviceSetVideoHDREnabled,
     
 };
 
@@ -297,9 +369,25 @@ typedef NS_ENUM(NSInteger, PPAVCaptureDeviceEventType) {
 #define kPPContactStoreAllowExecuteSaveRequest @"kPPContactStoreAllowExecuteSaveRequest"
 
 #pragma mark - CMAltimeter related keys
-
 #define kPPAltimeterIsRelativeAltitudeVailableValue @"kPPAltimeterIsRelativeAltitudeVailableValue"
 #define kPPAltimeterUpdatesQueue @"kPPAltimeterUpdatesQueue"
 #define kPPAltimeterUpdatesHandler @"kPPAltimeterUpdatesHandler"
+
+
+
+
+#pragma mark - AVCaptureDevice related keys
+#define kPPCaptureDeviceDefaultDeviceValue @"kPPCaptureDeviceDefaultDeviceValue"
+#define kPPCaptureDeviceMediaTypeValue @"kPPCaptureDeviceMediaTypeValue"
+#define kPPCaptureDevicePositionValue @"kPPCaptureDevicePositionValue"
+#define kPPCaptureDeviceUniqueIdValue @"kPPCaptureDeviceUniqueIdValue"
+#define kPPCaptureDeviceModelIdValue @"kPPCaptureDeviceModelIdValue"
+#define kPPCaptureDeviceHasMediaTypeResult @"kPPCaptureDeviceHasMediaTypeResult"
+#define kPPCaptureDeviceErrorValue @"kPPCaptureDeviceErrorValue"
+#define kPPCaptureDeviceConfirmationBool @"kPPCaptureDeviceConfirmationBool"
+#define kPPAVPresetValue @"kPPAVPresetValue"
+#define kPPCaptureDeviceFormatsArrayValue @"kPPCaptureDeviceFormatsArrayValue"
+#define kPPCaptureDeviceActiveFormatValue @"kPPCaptureDeviceActiveFormatValue"
+
 
 #endif /* PPEventKeys_h */
