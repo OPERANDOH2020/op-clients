@@ -7,6 +7,7 @@ var BrowserTab = function (tab){
     this.tab = tab;
     this.isActive = false;
     this.notificationId = null;
+    this.hasOffers = false;
 };
 
 BrowserTab.prototype = {
@@ -21,6 +22,7 @@ BrowserTab.prototype = {
     activate: function () {
         this.isActive = true;
     },
+
     deactivate: function () {
         this.isActive = false;
     },
@@ -30,6 +32,9 @@ BrowserTab.prototype = {
     },
     removeNotification:function(){
         delete this.notificationId;
+    },
+    setWebsiteOffers:function(value){
+        this.hasOffers = value;
     }
 };
 
@@ -66,9 +71,19 @@ var TabsManager = function(){
         self.browserTabs[tab.id]= new BrowserTab(tab);
     });
 
+    chrome.webNavigation.onCreatedNavigationTarget.addListener(function (details){
+        var parentTab = self.getTab(details.sourceTabId);
+            if(parentTab){
+                self.getTab(details.tabId).setWebsiteOffers(parentTab.hasOffers);
+            }
+    });
+
     chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
         onUpdatedListener(tabId,changeInfo,tab);
-        checkConnectWithSNApisUrls(tabId,changeInfo,tab);
+
+        if(self.getTab(tabId).hasOffers === false){
+            checkConnectWithSNApisUrls(tabId,changeInfo,tab);
+        }
 
         if (tab.url) {
             if (changeInfo.status === "complete" && tab.url.indexOf(ExtensionConfig.WEBSITE_HOST) != -1) {
@@ -130,11 +145,12 @@ TabsManager.prototype.suggestSubstituteIdentities=function(tabId){
 
 TabsManager.prototype.suggestPrivacyForBenefits = function (tab) {
 
-
+    var self = this;
     var pfbHandler = swarmHub.startSwarm("pfb.js", "getWebsiteOffer", tab.url);
     pfbHandler.onResponse("success", function (swarm) {
 
         var offer = swarm.offers[0];
+        self.getTab(tab.id).setWebsiteOffers(true);
 
         SyncPersistence.exists("PfbNotificationsDismissed", "offerId", offer.offerId, function (existence) {
             if (existence === false) {
@@ -181,7 +197,7 @@ TabsManager.prototype.suggestPrivacyForBenefits = function (tab) {
     });
 
     pfbHandler.onResponse("no_pfb", function (swarm) {
-
+        self.getTab(tab.id).setWebsiteOffers(false);
     });
 
 }
