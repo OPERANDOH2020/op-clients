@@ -12,10 +12,9 @@
                 <tr>
                     <th>Logo</th>
                     <th>Name</th>
-                    <th>Description</th>
+                    <th style="width:40%">Description</th>
                     <th>Start date</th>
                     <th>End date</th>
-                    <th style="width:130px">Nr. of contracts</th>
                     <th style="width:190px">Actions</th>
                 </tr>
                 </thead>
@@ -26,7 +25,6 @@
                     <td>{{offer.description}}</td>
                     <td>{{offer.start_date|timestampToDateFormat}}</td>
                     <td>{{offer.end_date|timestampToDateFormat}}</td>
-                    <td>{{offer.impact_score}}</td>
                     <td>
                         <button class="btn btn-primary" ng-click="modifyOffer(offer.offerId)">Modify</button>
                         <button class="btn btn-primary-black" ng-click="deleteOspOffer(offer.offerId)">Delete offer</button>
