@@ -229,7 +229,7 @@ chrome.runtime.onConnect.addListener(function (_port) {
 
             });
         }
-        else if(clientPort.name === "applyFacebookSettings" || clientPort.name === "applyLinkedinSettings"){
+        else if(clientPort.name === "applyFacebookSettings" || clientPort.name === "applyLinkedinSettings" || clientPort.name === "allowSocialNetworkPopup"){
             clientPort.onMessage.addListener(function(request){
 
                 console.log(request);

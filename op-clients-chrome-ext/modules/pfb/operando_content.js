@@ -58,8 +58,7 @@
                 }
             }
         });
-
-    }
+    };
 
 
     function createPfBPopup(element) {
@@ -78,7 +77,7 @@
         console.log(pfbDeal);
         var settings = {
             trigger: 'sticky',
-            title: 'Rivacy for Benefits ',
+            title: 'Privacy for Benefits ',
             content: "<div><h5>"+ pfbDeal.benefit+ "</h5><p>"
             + pfbDeal.description
             + '</p>'

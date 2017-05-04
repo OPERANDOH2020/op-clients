@@ -37,6 +37,6 @@ all:initial;
 color:#FFF;
 background: url('chrome-extension://__MSG_@@extension_id__/operando/assets/images/icons/abp-19.png') no-repeat left center transparent;
 padding-left: 24px!important;
-font-size: 15px!important;
+font-size: 13px!important;
 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
 }

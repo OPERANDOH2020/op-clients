@@ -16,7 +16,7 @@ function sendMessage(message) {
 }
 
 var tooltipTemplate = "<div class='pp_identity_popup'>"
-    + "<div class='pp-popup-header'>Whould you like to use a substitute identity?</div><br/>"
+    + "<div class='pp-popup-header'>Would you like to use a substitute identity?</div><br/>"
     + "<select class='pp_select' id='pp_identities'>"
     + "</select>"
     + "<button id='accept_identity_substitution' class='pp_button'>Yes</button>"
