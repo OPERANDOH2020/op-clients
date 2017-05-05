@@ -266,10 +266,10 @@ function init() {
 
 function urlIsApiUrl(url){
 
-    var facebookPattern = new RegExp("facebook.com\/v[0-9]{1,2}\.[0-9]{1,2}");
+    var facebookPattern = new RegExp("facebook.com\/((v[0-9]{1,2}\.[0-9]{1,2})|(dialog\/oauth))");
     switch(true){
         case url.indexOf("api.twitter.com/oauth/")>=0: return true; break;
-        case url.indexOf("accounts.google.com/o/oauth2/")>=0: return true; break;
+        case url.indexOf("accounts.google.com/signin/oauth")>=0: return true; break;
         case facebookPattern.test(url): return true; break;
         default: return false;
     }

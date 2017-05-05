@@ -7,6 +7,7 @@
     display: inline-block;
     clear: both;
     float: left;
+    overflow: hidden;
 }
 button.pp_button{
     background: #FFB400!important;
@@ -27,6 +28,11 @@ select.pp_select{
     padding: 0px!important;
     border: none!important;
     box-shadow: none!important;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0px;
+    border-radius: 0px;
+    font-family: sans-serif;
 }
 select.pp_select option{
     font-size: 12px!important;
@@ -39,4 +45,20 @@ background: url('chrome-extension://__MSG_@@extension_id__/operando/assets/image
 padding-left: 24px!important;
 font-size: 13px!important;
 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
+}
+
+.tooltipster-content{
+ padding: 8px!important;
+}
+#pp_identities{
+    display: inline-block;
+    font-size: 12px;
+    margin: 0px;
+    border-radius: 0px;
+    font-family: sans-serif;
+}
+#accept_identity_substitution,
+#deny_identity_substitution{
+    font-size:12px!important;
+    font-family: sans-serif;
 }

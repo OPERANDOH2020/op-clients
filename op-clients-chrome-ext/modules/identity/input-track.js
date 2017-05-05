@@ -2,6 +2,7 @@ var port = chrome.runtime.connect({name: "INPUT_TRACKER"});
 var Preferences = UserPreferences.getInstance();
 var myIdentities = [];
 var myRealIdentity = null;
+var elementsProvider = ElementsProvider.getInstance();
 
 port.onMessage.addListener(function (response) {
     myIdentities = response.message.data;
@@ -49,92 +50,96 @@ Preferences.getPreferences("websitePreferences", {
     accept: false
 }, function (preferences) {
     if (Object.keys(preferences).length === 0) {
-        var inputsPool = new ElementsPool("input[type=text], input[type=email]", checkElement);
+        elementsProvider.addSelector("input[type=email], input[name=email], input[id=user_login]",checkElement);
+        //var inputsPool = new ElementsPool("input[type=email], input[name=email], input[id=user_login], input:not([type=email]):not([name=email]):not([id=user_login])[type=text]", checkElement);
     }
 });
 
 
-var checkElement = function (element) {
+var checkElement = function (element, whenEmailCompleted) {
+    console.log(whenEmailCompleted);
     (function (element) {
-
-        element.on("sleepAll", function(){
+        element.on("sleepAll", function () {
             element.off("keyup paste focus", checkIfEmailIsValid);
             element.off("blur", handleTooltipsOnBlur);
-        })
+        });
 
         var checkIfEmailIsValid = function () {
-            if (validateEmail(element.val())) {
-                 element
-                    .tooltipster({
-                        contentAsHTML: true,
-                        content: jQuery(jQuery.parseHTML(tooltipTemplate)),
-                        theme: ['tooltipster-plus-privacy'],
-                        trigger: "custom",
-                        interactive: true,
-                        animationDuration:200,
-                        zIndex:2147483647,
-                        functionInit: function (instance, helper) {
+            if ($(element).is(":focus")) {
+                if (whenEmailCompleted == false || validateEmail(element.val())) {
+                    element
+                        .tooltipster({
+                            contentAsHTML: true,
+                            content: jQuery(jQuery.parseHTML(tooltipTemplate)),
+                            theme: ['tooltipster-plus-privacy'],
+                            trigger: "custom",
+                            interactive: true,
+                            animationDuration: 200,
+                            zIndex: 2147483647,
+                            functionInit: function (instance, helper) {
 
-                            var content = instance.content();
-                            var identities = myIdentities;
+                                var content = instance.content();
+                                var identities = myIdentities;
 
-                            var identitiesSelect = content.find("select")[0];
-                            identities.forEach(function (identity) {
-                                var opt = document.createElement('option');
-                                opt.value = identity.email;
-                                opt.innerHTML = identity.email;
-                                if (identity.isDefault === true) {
-                                    opt.setAttribute("selected", "selected");
-                                }
-                                identitiesSelect.appendChild(opt);
-                            });
+                                var identitiesSelect = content.find("select")[0];
+                                identities.forEach(function (identity) {
+                                    var opt = document.createElement('option');
+                                    opt.value = identity.email;
+                                    opt.innerHTML = identity.email;
+                                    if (identity.isDefault === true) {
+                                        opt.setAttribute("selected", "selected");
+                                    }
+                                    identitiesSelect.appendChild(opt);
+                                });
 
-                            $(identitiesSelect).on("click", function(){
-                                console.log(element.tooltipster("status"));
-                                element.tooltipster('open');
-                            });
+                                $(identitiesSelect).on("click", function () {
+                                    console.log(element.tooltipster("status"));
+                                    element.tooltipster('open');
+                                });
 
-                            $(content).on("click", function(event){
-                                event.stopPropagation();
-                            })
+                                $(content).on("click", function (event) {
+                                    event.stopPropagation();
+                                });
 
-                            instance.content(content);
+                                instance.content(content);
 
-                        },
-                        functionReady: function () {
-                            $("#accept_identity_substitution").on("click", function () {
-                                element.val($("#pp_identities").val());
-                                element.tooltipster('close');
-                                element.hasTooltip = false;
-                            });
-                            $("#deny_identity_substitution").on("click", function () {
-                                denySubstituteIdentity(element);
-                                element.tooltipster('close');
-                                element.hasTooltip = false;
-                                element.trigger("sleepAll");
-                            });
-                        }
-                    })
-                    .tooltipster('open');
+                            },
+                            functionReady: function () {
+                                $("#accept_identity_substitution").on("click", function () {
+                                    element.val($("#pp_identities").val());
+                                    element.tooltipster('close');
+                                    element.hasTooltip = false;
+                                });
+                                $("#deny_identity_substitution").on("click", function () {
+                                    denySubstituteIdentity(element);
+                                    element.tooltipster('close');
+                                    element.hasTooltip = false;
+                                    element.trigger("sleepAll");
+                                });
+                            }
+                        })
+                        .tooltipster('open');
 
-                element.hasTooltip = true;
-            } else {
-                if (element.hasTooltip === true) {
-                    element.tooltipster('close');
-                    element.hasTooltip = false;
+                    element.hasTooltip = true;
+                } else {
+                    if (element.hasTooltip === true) {
+                        element.tooltipster('close');
+                        element.hasTooltip = false;
+                    }
                 }
             }
         };
 
         var handleTooltipsOnBlur = function (event) {
-                if (element.hasTooltip) {
-                    element.tooltipster('close');
-                    element.hasTooltip = false;
-                }
+            if (element.hasTooltip) {
+                element.tooltipster('close');
+                element.hasTooltip = false;
+            }
         };
 
         element.on("keyup paste focus", checkIfEmailIsValid);
         element.on("blur", handleTooltipsOnBlur);
+        checkIfEmailIsValid();
     })($(element))
 }
 
