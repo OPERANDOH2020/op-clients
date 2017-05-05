@@ -6,16 +6,13 @@
 //  Copyright © 2017 RomSoft. All rights reserved.
 //
 
-#import <LocalAuthentication/LocalAuthentication.h>
 #import "JRSwizzle.h"
 #import "NSObject+AutoSwizzle.h"
-#import "PPEventDispatcher+Internal.h"
+#import "LAContext+PPHOOK.h"
 
-@interface LAContext(rs_Hook)
+PPEventDispatcher *_laDispatcher;
 
-@end
-
-@implementation LAContext(rs_Hook)
+@implementation LAContext(PPHOOK)
 
 +(void)load {
     if (NSClassFromString(@"LAContext")) {
@@ -23,10 +20,15 @@
     }
 }
 
-HOOKEDInstanceMethod(BOOL, canEvaluatePolicy:(LAPolicy)policy error:(NSError * _Nullable __autoreleasing *)error){
+
+HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
+    _laDispatcher = dispatcher;
+}
+
+HOOKPrefixInstance(BOOL, canEvaluatePolicy:(LAPolicy)policy error:(NSError * _Nullable __autoreleasing *)error){
     
     NSError *actualError = nil;
-    BOOL actualValue = CALL_ORIGINAL_METHOD(self, canEvaluatePolicy:policy error:&actualError);
+    BOOL actualValue = CALL_PREFIXED(self, canEvaluatePolicy:policy error:&actualError);
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     SAFEADD(dict, kPPContextErrorValue, actualError)
@@ -40,7 +42,7 @@ HOOKEDInstanceMethod(BOOL, canEvaluatePolicy:(LAPolicy)policy error:(NSError * _
     return [dict[kPPContextCanEvaluateContextPolicyValue] boolValue];
 }
 
-HOOKEDInstanceMethod(void, evaluatePolicy:(LAPolicy)policy localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply) {
+HOOKPrefixInstance(void, evaluatePolicy:(LAPolicy)policy localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply) {
     __weak typeof(self) weakSelf = self;
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
@@ -48,7 +50,7 @@ HOOKEDInstanceMethod(void, evaluatePolicy:(LAPolicy)policy localizedReason:(NSSt
     evData[kPPContextBOOLErrorReplyBlock] = reply;
     
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_ORIGINAL_METHOD(weakSelf, evaluatePolicy:policy localizedReason:localizedReason reply: reply);
+        CALL_PREFIXED(weakSelf, evaluatePolicy:policy localizedReason:localizedReason reply: reply);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
@@ -57,7 +59,7 @@ HOOKEDInstanceMethod(void, evaluatePolicy:(LAPolicy)policy localizedReason:(NSSt
     [[PPEventDispatcher sharedInstance] fireEvent:event];
 }
 
-HOOKEDInstanceMethod(void, evaluateAccessControl:(SecAccessControlRef)accessControl operation:(LAAccessControlOperation)operation localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply) {
+HOOKPrefixInstance(void, evaluateAccessControl:(SecAccessControlRef)accessControl operation:(LAAccessControlOperation)operation localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply) {
     
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
@@ -66,7 +68,7 @@ HOOKEDInstanceMethod(void, evaluateAccessControl:(SecAccessControlRef)accessCont
     evData[kPPContextAccessControlOperationValue] = @(operation);
     
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_ORIGINAL_METHOD(weakSelf, evaluateAccessControl: accessControl operation: operation localizedReason: localizedReason reply: reply);
+        CALL_PREFIXED(weakSelf, evaluateAccessControl: accessControl operation: operation localizedReason: localizedReason reply: reply);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     

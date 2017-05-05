@@ -23,7 +23,7 @@
     [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
 }
 
-HOOKEDInstanceMethod(void, setProximityMonitoringEnabled:(BOOL)enabled) {
+HOOKPrefixInstance(void, setProximityMonitoringEnabled:(BOOL)enabled) {
     
     __weak typeof(self) weakSelf = self;
     
@@ -36,7 +36,7 @@ HOOKEDInstanceMethod(void, setProximityMonitoringEnabled:(BOOL)enabled) {
     __Weak(evData);
     
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_ORIGINAL_METHOD(weakSelf, setProximityMonitoringEnabled:[weakevData[kPPDeviceProximityMonitoringEnabledValue] boolValue]);
+        CALL_PREFIXED(weakSelf, setProximityMonitoringEnabled:[weakevData[kPPDeviceProximityMonitoringEnabledValue] boolValue]);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
@@ -45,7 +45,7 @@ HOOKEDInstanceMethod(void, setProximityMonitoringEnabled:(BOOL)enabled) {
     [[PPEventDispatcher sharedInstance] fireEvent:event];
 }
 
-HOOKEDInstanceMethod(void, setProximitySensingEnabled:(BOOL)enabled) {
+HOOKPrefixInstance(void, setProximitySensingEnabled:(BOOL)enabled) {
     
     __weak typeof(self) weakSelf = self;
     PPEventIdentifier eventType = PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceSetProximitySensingEnabled);
@@ -56,7 +56,7 @@ HOOKEDInstanceMethod(void, setProximitySensingEnabled:(BOOL)enabled) {
     
     __Weak(evData);
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_ORIGINAL_METHOD(weakSelf, setProximitySensingEnabled:[weakevData[kPPDeviceProximitySensingEnabledValue] boolValue]);
+        CALL_PREFIXED(weakSelf, setProximitySensingEnabled:[weakevData[kPPDeviceProximitySensingEnabledValue] boolValue]);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
@@ -66,9 +66,9 @@ HOOKEDInstanceMethod(void, setProximitySensingEnabled:(BOOL)enabled) {
     
 }
 
-HOOKEDInstanceMethod(BOOL, proximityState) {
+HOOKPrefixInstance(BOOL, proximityState) {
     
-    BOOL actualProximityState = CALL_ORIGINAL_METHOD(self, proximityState);
+    BOOL actualProximityState = CALL_PREFIXED(self, proximityState);
     NSMutableDictionary *dict = [@{kPPDeviceProxmityStateValue: @(actualProximityState)} mutableCopy];
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetProximityState) eventData:dict whenNoHandlerAvailable:nil];
@@ -83,33 +83,33 @@ HOOKEDInstanceMethod(BOOL, proximityState) {
     return [possiblyModifiedValue boolValue];
 }
 
-HOOKEDInstanceMethod(NSString*, name){
-    NSString *actualName = CALL_ORIGINAL_METHOD(self, name);
+HOOKPrefixInstance(NSString*, name){
+    NSString *actualName = CALL_PREFIXED(self, name);
     return [[PPEventDispatcher sharedInstance] resultForEventValue:actualName ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetName) atKey:kPPDeviceNameValue];
 }
 
-HOOKEDInstanceMethod(NSString*, model){
-    NSString *actualModel = CALL_ORIGINAL_METHOD(self, model);
+HOOKPrefixInstance(NSString*, model){
+    NSString *actualModel = CALL_PREFIXED(self, model);
     return [[PPEventDispatcher sharedInstance] resultForEventValue:actualModel ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetModel) atKey:kPPDeviceModelValue];
 }
 
-HOOKEDInstanceMethod(NSString*, localizedModel){
-    NSString *actualLocalizedModel = CALL_ORIGINAL_METHOD(self, localizedModel);
+HOOKPrefixInstance(NSString*, localizedModel){
+    NSString *actualLocalizedModel = CALL_PREFIXED(self, localizedModel);
     return [[PPEventDispatcher sharedInstance] resultForEventValue:actualLocalizedModel ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetLocalizedModel) atKey:kPPDeviceLocalizedModelValue];
 }
 
-HOOKEDInstanceMethod(NSString*, systemName){
-    NSString *actualSystemName = CALL_ORIGINAL_METHOD(self, systemName);
+HOOKPrefixInstance(NSString*, systemName){
+    NSString *actualSystemName = CALL_PREFIXED(self, systemName);
     return [[PPEventDispatcher sharedInstance] resultForEventValue:actualSystemName ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetSystemName) atKey:kPPDeviceSystemNameValue];
 }
 
-HOOKEDInstanceMethod(NSString*, systemVersion){
-    NSString *actualSystemVersion = CALL_ORIGINAL_METHOD(self, systemVersion);
+HOOKPrefixInstance(NSString*, systemVersion){
+    NSString *actualSystemVersion = CALL_PREFIXED(self, systemVersion);
     return [[PPEventDispatcher sharedInstance] resultForEventValue:actualSystemVersion ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetSystemVersion) atKey:kPPDeviceSystemVersionValue];
 }
 
-HOOKEDInstanceMethod(NSString*, identifierForVendor) {
-    NSString *actualUUID = CALL_ORIGINAL_METHOD(self, identifierForVendor);
+HOOKPrefixInstance(NSString*, identifierForVendor) {
+    NSString *actualUUID = CALL_PREFIXED(self, identifierForVendor);
     return [[PPEventDispatcher sharedInstance] resultForEventValue:actualUUID ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetIdentifierForVendor) atKey:kPPDeviceUUIDValue];
 }
 

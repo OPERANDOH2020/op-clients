@@ -31,15 +31,15 @@
 		98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9869FA581E7A7C19001A8218 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8EC1E77DE61008F4D02 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */; };
-		98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */; };
-		98F7A6A41E76ECB200FF635A /* CLLocationManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */; };
-		98F7A6A51E76ECB200FF635A /* CMAltimeter+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6991E76ECB200FF635A /* CMAltimeter+rsHook.m */; };
-		98F7A6A71E76ECB200FF635A /* CMMotionManager+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69B1E76ECB200FF635A /* CMMotionManager+rsHook.m */; };
-		98F7A6A81E76ECB200FF635A /* CMPedometer+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69C1E76ECB200FF635A /* CMPedometer+rsHook.m */; };
-		98F7A6A91E76ECB200FF635A /* CNContactStore+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69D1E76ECB200FF635A /* CNContactStore+rsHook.m */; };
-		98F7A6AA1E76ECB200FF635A /* LAContext+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69E1E76ECB200FF635A /* LAContext+rsHook.m */; };
-		98F7A6AB1E76ECB200FF635A /* NSURLSession+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69F1E76ECB200FF635A /* NSURLSession+rsHook.m */; };
-		98F7A6AC1E76ECB200FF635A /* UIDevice+rsHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6A01E76ECB200FF635A /* UIDevice+rsHook.m */; };
+		98F7A6A21E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6961E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m */; };
+		98F7A6A41E76ECB200FF635A /* CLLocationManager+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6981E76ECB200FF635A /* CLLocationManager+PPHOOK.m */; };
+		98F7A6A51E76ECB200FF635A /* CMAltimeter+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6991E76ECB200FF635A /* CMAltimeter+PPHOOK.m */; };
+		98F7A6A71E76ECB200FF635A /* CMMotionManager+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69B1E76ECB200FF635A /* CMMotionManager+PPHOOK.m */; };
+		98F7A6A81E76ECB200FF635A /* CMPedometer+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69C1E76ECB200FF635A /* CMPedometer+PPHOOK.m */; };
+		98F7A6A91E76ECB200FF635A /* CNContactStore+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69D1E76ECB200FF635A /* CNContactStore+PPHOOK.m */; };
+		98F7A6AA1E76ECB200FF635A /* LAContext+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69E1E76ECB200FF635A /* LAContext+PPHOOK.m */; };
+		98F7A6AB1E76ECB200FF635A /* NSURLSession+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69F1E76ECB200FF635A /* NSURLSession+PPHOOK.m */; };
+		98F7A6AC1E76ECB200FF635A /* UIDevice+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6A01E76ECB200FF635A /* UIDevice+PPHOOK.m */; };
 		98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6A11E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m */; };
 		98F7A6B11E76ECF000FF635A /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6AF1E76ECF000FF635A /* JRSwizzle.h */; };
 		98F7A6B21E76ECF000FF635A /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6B01E76ECF000FF635A /* JRSwizzle.m */; };
@@ -65,15 +65,23 @@
 		9899DF081EADDE8600CB9ED8 /* PPEventIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PPEventIdentifier.h; path = PPEventIdentifier/PPEventIdentifier.h; sourceTree = "<group>"; };
 		9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEventIdentifier.m; path = PPEventIdentifier/PPEventIdentifier.m; sourceTree = "<group>"; };
 		989DB8EC1E77DE61008F4D02 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+rsHookCamera.m"; sourceTree = "<group>"; };
-		98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+rsHook.m"; sourceTree = "<group>"; };
-		98F7A6991E76ECB200FF635A /* CMAltimeter+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMAltimeter+rsHook.m"; sourceTree = "<group>"; };
-		98F7A69B1E76ECB200FF635A /* CMMotionManager+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+rsHook.m"; sourceTree = "<group>"; };
-		98F7A69C1E76ECB200FF635A /* CMPedometer+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMPedometer+rsHook.m"; sourceTree = "<group>"; };
-		98F7A69D1E76ECB200FF635A /* CNContactStore+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContactStore+rsHook.m"; sourceTree = "<group>"; };
-		98F7A69E1E76ECB200FF635A /* LAContext+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LAContext+rsHook.m"; sourceTree = "<group>"; };
-		98F7A69F1E76ECB200FF635A /* NSURLSession+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+rsHook.m"; sourceTree = "<group>"; };
-		98F7A6A01E76ECB200FF635A /* UIDevice+rsHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+rsHook.m"; sourceTree = "<group>"; };
+		98A927861EBC5DAD00E17219 /* AVCaptureDevice+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVCaptureDevice+PPHOOK.h"; sourceTree = "<group>"; };
+		98A927881EBC693B00E17219 /* CLLocationManager+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocationManager+PPHOOK.h"; sourceTree = "<group>"; };
+		98A9278A1EBC6FDA00E17219 /* CMAltimeter+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMAltimeter+PPHOOK.h"; sourceTree = "<group>"; };
+		98A9278C1EBC7DF200E17219 /* CMMotionManager+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMMotionManager+PPHOOK.h"; sourceTree = "<group>"; };
+		98A9278E1EBC82AA00E17219 /* CMPedometer+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMPedometer+PPHOOK.h"; sourceTree = "<group>"; };
+		98A927901EBC892500E17219 /* CNContactStore+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CNContactStore+PPHOOK.h"; sourceTree = "<group>"; };
+		98A927921EBC8F0B00E17219 /* LAContext+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LAContext+PPHOOK.h"; sourceTree = "<group>"; };
+		98A927941EBC91E000E17219 /* NSURLSession+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+PPHOOK.h"; sourceTree = "<group>"; };
+		98F7A6961E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+PPHOOK.m"; sourceTree = "<group>"; };
+		98F7A6981E76ECB200FF635A /* CLLocationManager+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+PPHOOK.m"; sourceTree = "<group>"; };
+		98F7A6991E76ECB200FF635A /* CMAltimeter+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMAltimeter+PPHOOK.m"; sourceTree = "<group>"; };
+		98F7A69B1E76ECB200FF635A /* CMMotionManager+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+PPHOOK.m"; sourceTree = "<group>"; };
+		98F7A69C1E76ECB200FF635A /* CMPedometer+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMPedometer+PPHOOK.m"; sourceTree = "<group>"; };
+		98F7A69D1E76ECB200FF635A /* CNContactStore+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContactStore+PPHOOK.m"; sourceTree = "<group>"; };
+		98F7A69E1E76ECB200FF635A /* LAContext+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LAContext+PPHOOK.m"; sourceTree = "<group>"; };
+		98F7A69F1E76ECB200FF635A /* NSURLSession+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+PPHOOK.m"; sourceTree = "<group>"; };
+		98F7A6A01E76ECB200FF635A /* UIDevice+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+PPHOOK.m"; sourceTree = "<group>"; };
 		98F7A6A11E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVIewController+rsHookUIImagePickerController.m"; sourceTree = "<group>"; };
 		98F7A6AF1E76ECF000FF635A /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		98F7A6B01E76ECF000FF635A /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
@@ -171,18 +179,98 @@
 			name = PPEventIdentifier;
 			sourceTree = "<group>";
 		};
+		98A927851EBC5D8B00E17219 /* AVCaptureDevice+PPHOOK */ = {
+			isa = PBXGroup;
+			children = (
+				98F7A6961E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m */,
+				98A927861EBC5DAD00E17219 /* AVCaptureDevice+PPHOOK.h */,
+			);
+			name = "AVCaptureDevice+PPHOOK";
+			sourceTree = "<group>";
+		};
+		98A927871EBC692800E17219 /* CLLocationManager+PPHOOK */ = {
+			isa = PBXGroup;
+			children = (
+				98F7A6981E76ECB200FF635A /* CLLocationManager+PPHOOK.m */,
+				98A927881EBC693B00E17219 /* CLLocationManager+PPHOOK.h */,
+			);
+			name = "CLLocationManager+PPHOOK";
+			sourceTree = "<group>";
+		};
+		98A927891EBC6F7600E17219 /* CMAltimeter+PPHOOK */ = {
+			isa = PBXGroup;
+			children = (
+				98F7A6991E76ECB200FF635A /* CMAltimeter+PPHOOK.m */,
+				98A9278A1EBC6FDA00E17219 /* CMAltimeter+PPHOOK.h */,
+			);
+			name = "CMAltimeter+PPHOOK";
+			sourceTree = "<group>";
+		};
+		98A9278B1EBC7DDF00E17219 /* CMMotionManager+PPHOOK */ = {
+			isa = PBXGroup;
+			children = (
+				98F7A69B1E76ECB200FF635A /* CMMotionManager+PPHOOK.m */,
+				98A9278C1EBC7DF200E17219 /* CMMotionManager+PPHOOK.h */,
+			);
+			name = "CMMotionManager+PPHOOK";
+			sourceTree = "<group>";
+		};
+		98A9278D1EBC820A00E17219 /* CMPedometer+PPHOOK */ = {
+			isa = PBXGroup;
+			children = (
+				98F7A69C1E76ECB200FF635A /* CMPedometer+PPHOOK.m */,
+				98A9278E1EBC82AA00E17219 /* CMPedometer+PPHOOK.h */,
+			);
+			name = "CMPedometer+PPHOOK";
+			sourceTree = "<group>";
+		};
+		98A9278F1EBC88E600E17219 /* CNContactStore+PPHOOK */ = {
+			isa = PBXGroup;
+			children = (
+				98F7A69D1E76ECB200FF635A /* CNContactStore+PPHOOK.m */,
+				98A927901EBC892500E17219 /* CNContactStore+PPHOOK.h */,
+			);
+			name = "CNContactStore+PPHOOK";
+			sourceTree = "<group>";
+		};
+		98A927911EBC8EFD00E17219 /* LAContext+PPHOOK */ = {
+			isa = PBXGroup;
+			children = (
+				98A927921EBC8F0B00E17219 /* LAContext+PPHOOK.h */,
+				98F7A69E1E76ECB200FF635A /* LAContext+PPHOOK.m */,
+			);
+			name = "LAContext+PPHOOK";
+			sourceTree = "<group>";
+		};
+		98A927931EBC910F00E17219 /* NSURLSession+PPHOOK */ = {
+			isa = PBXGroup;
+			children = (
+				98F7A69F1E76ECB200FF635A /* NSURLSession+PPHOOK.m */,
+				98A927941EBC91E000E17219 /* NSURLSession+PPHOOK.h */,
+			);
+			name = "NSURLSession+PPHOOK";
+			sourceTree = "<group>";
+		};
+		98A927951EBC946100E17219 /* UIDevice+PPHOOK */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "UIDevice+PPHOOK";
+			sourceTree = "<group>";
+		};
 		98F7A6951E76ECB200FF635A /* HookingCategories */ = {
 			isa = PBXGroup;
 			children = (
-				98F7A6961E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m */,
-				98F7A6981E76ECB200FF635A /* CLLocationManager+rsHook.m */,
-				98F7A6991E76ECB200FF635A /* CMAltimeter+rsHook.m */,
-				98F7A69B1E76ECB200FF635A /* CMMotionManager+rsHook.m */,
-				98F7A69C1E76ECB200FF635A /* CMPedometer+rsHook.m */,
-				98F7A69D1E76ECB200FF635A /* CNContactStore+rsHook.m */,
-				98F7A69E1E76ECB200FF635A /* LAContext+rsHook.m */,
-				98F7A69F1E76ECB200FF635A /* NSURLSession+rsHook.m */,
-				98F7A6A01E76ECB200FF635A /* UIDevice+rsHook.m */,
+				98A927951EBC946100E17219 /* UIDevice+PPHOOK */,
+				98A927931EBC910F00E17219 /* NSURLSession+PPHOOK */,
+				98A927911EBC8EFD00E17219 /* LAContext+PPHOOK */,
+				98A9278F1EBC88E600E17219 /* CNContactStore+PPHOOK */,
+				98A9278D1EBC820A00E17219 /* CMPedometer+PPHOOK */,
+				98A9278B1EBC7DDF00E17219 /* CMMotionManager+PPHOOK */,
+				98A927891EBC6F7600E17219 /* CMAltimeter+PPHOOK */,
+				98A927871EBC692800E17219 /* CLLocationManager+PPHOOK */,
+				98A927851EBC5D8B00E17219 /* AVCaptureDevice+PPHOOK */,
+				98F7A6A01E76ECB200FF635A /* UIDevice+PPHOOK.m */,
 				98F7A6A11E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m */,
 				982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */,
 			);
@@ -345,23 +433,23 @@
 			files = (
 				98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
 				9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */,
-				98F7A6AB1E76ECB200FF635A /* NSURLSession+rsHook.m in Sources */,
+				98F7A6AB1E76ECB200FF635A /* NSURLSession+PPHOOK.m in Sources */,
 				982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */,
-				98F7A6A21E76ECB200FF635A /* AVCaptureDevice+rsHookCamera.m in Sources */,
-				98F7A6A81E76ECB200FF635A /* CMPedometer+rsHook.m in Sources */,
-				98F7A6AC1E76ECB200FF635A /* UIDevice+rsHook.m in Sources */,
-				98F7A6A41E76ECB200FF635A /* CLLocationManager+rsHook.m in Sources */,
+				98F7A6A21E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m in Sources */,
+				98F7A6A81E76ECB200FF635A /* CMPedometer+PPHOOK.m in Sources */,
+				98F7A6AC1E76ECB200FF635A /* UIDevice+PPHOOK.m in Sources */,
+				98F7A6A41E76ECB200FF635A /* CLLocationManager+PPHOOK.m in Sources */,
 				98F7A6C21E76F16200FF635A /* PPEventDispatcher.m in Sources */,
-				98F7A6AA1E76ECB200FF635A /* LAContext+rsHook.m in Sources */,
+				98F7A6AA1E76ECB200FF635A /* LAContext+PPHOOK.m in Sources */,
 				98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */,
 				98F7A6BE1E76F16200FF635A /* PPEvent.m in Sources */,
 				98F7A6B21E76ECF000FF635A /* JRSwizzle.m in Sources */,
 				982FB4171E83FE0000D1AAEC /* HookURLProtocol.m in Sources */,
-				98F7A6A51E76ECB200FF635A /* CMAltimeter+rsHook.m in Sources */,
+				98F7A6A51E76ECB200FF635A /* CMAltimeter+PPHOOK.m in Sources */,
 				98F7A6C01E76F16200FF635A /* PPEventDispatcher+Internal.m in Sources */,
-				98F7A6A91E76ECB200FF635A /* CNContactStore+rsHook.m in Sources */,
+				98F7A6A91E76ECB200FF635A /* CNContactStore+PPHOOK.m in Sources */,
 				984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */,
-				98F7A6A71E76ECB200FF635A /* CMMotionManager+rsHook.m in Sources */,
+				98F7A6A71E76ECB200FF635A /* CMMotionManager+PPHOOK.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,15 +6,11 @@
 //  Copyright © 2017 RomSoft. All rights reserved.
 //
 
-#import <CoreMotion/CoreMotion.h>
-#import "NSObject+AutoSwizzle.h"
-#import "PPEventDispatcher+Internal.h"
+#import "CMAltimeter+PPHOOK.h"
 
-@interface CMAltimeter(rsHook_Altimeter)
+PPEventDispatcher *_altDispatcher;
 
-@end
-
-@implementation CMAltimeter(rsHook_Altimeter)
+@implementation CMAltimeter(PPHOOK)
 
 +(void)load{
     if (NSClassFromString(@"CMAltimeter")) {
@@ -22,13 +18,17 @@
     }
 }
 
-HOOKEDClassMethod(BOOL, isRelativeAltitudeAvailable){
-    BOOL result = CALL_ORIGINAL_METHOD(self, isRelativeAltitudeAvailable);
+HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
+    _altDispatcher = dispatcher;
+}
+
+HOOKPrefixClass(BOOL, isRelativeAltitudeAvailable){
+    BOOL result = CALL_PREFIXED(self, isRelativeAltitudeAvailable);
     return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterGetRelativeAltitudeAvailableValue) atKey:kPPAltimeterIsRelativeAltitudeVailableValue];
 }
 
 
-HOOKEDInstanceMethod(void, startRelativeAltitudeUpdatesToQueue:(NSOperationQueue *)queue withHandler:(CMAltitudeHandler)handler) {
+HOOKPrefixInstance(void, startRelativeAltitudeUpdatesToQueue:(NSOperationQueue *)queue withHandler:(CMAltitudeHandler)handler) {
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPAltimeterUpdatesQueue, queue)
@@ -37,7 +37,7 @@ HOOKEDInstanceMethod(void, startRelativeAltitudeUpdatesToQueue:(NSOperationQueue
     __Weak(self);
     __Weak(evData);
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_ORIGINAL_METHOD(weakself, startRelativeAltitudeUpdatesToQueue: weakevData[kPPAltimeterUpdatesQueue] withHandler: weakevData[kPPAltimeterUpdatesHandler]);
+        CALL_PREFIXED(weakself, startRelativeAltitudeUpdatesToQueue: weakevData[kPPAltimeterUpdatesQueue] withHandler: weakevData[kPPAltimeterUpdatesHandler]);
     };
     
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;

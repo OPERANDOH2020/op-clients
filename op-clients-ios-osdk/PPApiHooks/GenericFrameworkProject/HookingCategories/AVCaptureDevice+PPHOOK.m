@@ -7,16 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 #import "Common.h"
 #import "NSObject+AutoSwizzle.h"
 #import "PPEventDispatcher+Internal.h"
+#import "AVCaptureDevice+PPHOOK.h"
 
-@interface AVCaptureDevice(rsHook)
+PPEventDispatcher *_avDispatcher;
 
-@end
+@implementation AVCaptureDevice(PPHOOK)
 
-@implementation AVCaptureDevice(rsHook)
 
 +(void)load {
     if (NSClassFromString(@"AVCaptureDevice")) {
@@ -24,9 +23,13 @@
     }
 }
 
+HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
+    _avDispatcher = dispatcher;
+}
 
-HOOKEDClassMethod(AVCaptureDevice*, defaultDeviceWithMediaType:(NSString *)mediaType){
-    AVCaptureDevice *defaultDevice = CALL_ORIGINAL_METHOD(self, defaultDeviceWithMediaType:mediaType);
+
+HOOKPrefixClass(AVCaptureDevice*, defaultDeviceWithMediaType:(NSString *)mediaType){
+    AVCaptureDevice *defaultDevice = CALL_PREFIXED(self, defaultDeviceWithMediaType:mediaType);
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPCaptureDeviceMediaTypeValue, defaultDevice)
@@ -39,8 +42,8 @@ HOOKEDClassMethod(AVCaptureDevice*, defaultDeviceWithMediaType:(NSString *)media
     return evData[kPPCaptureDeviceDefaultDeviceValue];
 }
 
-HOOKEDClassMethod(AVCaptureDevice*, defaultDeviceWithDeviceType:(AVCaptureDeviceType)deviceType mediaType:(NSString *)mediaType position:(AVCaptureDevicePosition)position){
-    AVCaptureDevice *def = CALL_ORIGINAL_METHOD(self, defaultDeviceWithDeviceType:deviceType mediaType:mediaType position:position);
+HOOKPrefixClass(AVCaptureDevice*, defaultDeviceWithDeviceType:(AVCaptureDeviceType)deviceType mediaType:(NSString *)mediaType position:(AVCaptureDevicePosition)position){
+    AVCaptureDevice *def = CALL_PREFIXED(self, defaultDeviceWithDeviceType:deviceType mediaType:mediaType position:position);
     
     NSMutableDictionary *eventData = [[NSMutableDictionary alloc] init];
     SAFEADD(eventData, kPPCaptureDeviceDefaultDeviceValue, def)
@@ -56,19 +59,19 @@ HOOKEDClassMethod(AVCaptureDevice*, defaultDeviceWithDeviceType:(AVCaptureDevice
 }
 
 
-HOOKEDInstanceMethod(NSString*, uniqueID){
-    NSString *result = CALL_ORIGINAL_METHOD(self, uniqueID);
+HOOKPrefixInstance(NSString*, uniqueID){
+    NSString *result = CALL_PREFIXED(self, uniqueID);
     return [[PPEventDispatcher sharedInstance] resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetUniqueId) atKey:kPPCaptureDeviceUniqueIdValue];
 }
 
 
-HOOKEDInstanceMethod(NSString*, modelID){
-    NSString *result = CALL_ORIGINAL_METHOD(self, modelID);
+HOOKPrefixInstance(NSString*, modelID){
+    NSString *result = CALL_PREFIXED(self, modelID);
         return [[PPEventDispatcher sharedInstance] resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetModelId) atKey:kPPCaptureDeviceModelIdValue];
 }
 
-HOOKEDInstanceMethod(BOOL, hasMediaType:(NSString *)mediaType){
-    BOOL result = CALL_ORIGINAL_METHOD(self, hasMediaType: mediaType);
+HOOKPrefixInstance(BOOL, hasMediaType:(NSString *)mediaType){
+    BOOL result = CALL_PREFIXED(self, hasMediaType: mediaType);
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPCaptureDeviceMediaTypeValue, mediaType)
     evData[kPPCaptureDeviceHasMediaTypeResult] = @(result);
@@ -80,7 +83,7 @@ HOOKEDInstanceMethod(BOOL, hasMediaType:(NSString *)mediaType){
 }
 
 
-HOOKEDInstanceMethod(BOOL, lockForConfiguration:(NSError *__autoreleasing *)outError){
+HOOKPrefixInstance(BOOL, lockForConfiguration:(NSError *__autoreleasing *)outError){
     
     NSMutableDictionary *eventData = [[NSMutableDictionary alloc] init];
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceLockForConfiguration) eventData:eventData whenNoHandlerAvailable:nil];
@@ -88,14 +91,14 @@ HOOKEDInstanceMethod(BOOL, lockForConfiguration:(NSError *__autoreleasing *)outE
     [[PPEventDispatcher sharedInstance] fireEvent:event];
     
     if ([eventData[kPPCaptureDeviceConfirmationBool] boolValue]) {
-        return CALL_ORIGINAL_METHOD(self, lockForConfiguration: outError);
+        return CALL_PREFIXED(self, lockForConfiguration: outError);
     }
     
     *outError = eventData[kPPCaptureDeviceErrorValue];
     return NO;
 }
 
-HOOKEDClassMethod(BOOL, supportsAVCaptureSessionPreset:(NSString *)preset){
+HOOKPrefixClass(BOOL, supportsAVCaptureSessionPreset:(NSString *)preset){
     NSMutableDictionary *eventData = [[NSMutableDictionary alloc] init];
     SAFEADD(eventData, kPPAVPresetValue, preset)
     
@@ -104,25 +107,25 @@ HOOKEDClassMethod(BOOL, supportsAVCaptureSessionPreset:(NSString *)preset){
     [[PPEventDispatcher sharedInstance] fireEvent:event];
     
     if ([eventData[kPPCaptureDeviceConfirmationBool] boolValue]) {
-        return CALL_ORIGINAL_METHOD(self, supportsAVCaptureSessionPreset: preset);
+        return CALL_PREFIXED(self, supportsAVCaptureSessionPreset: preset);
     }
     
     return NO;
 }
 
 
-HOOKEDInstanceMethod(BOOL, isConnected){
-    BOOL connected = CALL_ORIGINAL_METHOD(self, isConnected);
+HOOKPrefixInstance(BOOL, isConnected){
+    BOOL connected = CALL_PREFIXED(self, isConnected);
     return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:connected ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetIsConnected) atKey:kPPCaptureDeviceConfirmationBool];
 }
 
-HOOKEDInstanceMethod(NSArray*, formats){
-    NSArray *formats = CALL_ORIGINAL_METHOD(self, formats);
+HOOKPrefixInstance(NSArray*, formats){
+    NSArray *formats = CALL_PREFIXED(self, formats);
     return [[PPEventDispatcher sharedInstance] resultForEventValue:formats ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetFormats) atKey:kPPCaptureDeviceFormatsArrayValue];
 }
 
-HOOKEDInstanceMethod(AVCaptureDeviceFormat*, activeFormat){
-    AVCaptureDeviceFormat *format = CALL_ORIGINAL_METHOD(self, activeFormat);
+HOOKPrefixInstance(AVCaptureDeviceFormat*, activeFormat){
+    AVCaptureDeviceFormat *format = CALL_PREFIXED(self, activeFormat);
     return [[PPEventDispatcher sharedInstance] resultForEventValue:format ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetActiveFormat) atKey:kPPCaptureDeviceActiveFormatValue];
 }
 

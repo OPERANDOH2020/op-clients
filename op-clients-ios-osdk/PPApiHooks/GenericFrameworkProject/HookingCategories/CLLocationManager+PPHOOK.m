@@ -6,18 +6,15 @@
 //  Copyright © 2017 RomSoft. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
+#import "CLLocationManager+PPHOOK.h"
 #import "JRSwizzle.h"
-#import "PPEventDispatcher+Internal.h"
 #import "PPEvent.h"
 #import "NSObject+AutoSwizzle.h"
 
-@interface CLLocationManager(Hook)
 
-@end
+PPEventDispatcher *_locDispatcher;
 
-
-@implementation CLLocationManager(Hook)
+@implementation CLLocationManager(PPHOOK)
 
 +(void)load {
     if (NSClassFromString(@"CLLocationManager")) {
@@ -25,37 +22,41 @@
     }
 }
 
-HOOKEDInstanceMethod(void, startUpdatingLocation){
+HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
+    _locDispatcher = dispatcher;
+}
+
+HOOKPrefixInstance(void, startUpdatingLocation){
     __weak typeof(self) weakSelf = self;
     
     [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerStartLocationUpdates) executionBlock:^{
-        CALL_ORIGINAL_METHOD(weakSelf, startUpdatingLocation);
+        CALL_PREFIXED(weakSelf, startUpdatingLocation);
     } executionBlockKey:kPPConfirmationCallbackBlock];
 }
 
-HOOKEDInstanceMethod(void, requestAlwaysAuthorization) {
+HOOKPrefixInstance(void, requestAlwaysAuthorization) {
     
     __weak typeof(self) weakSelf = self;
     PPEventIdentifier identifier = PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerRequestAlwaysAuthorization);
     
     [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution:identifier executionBlock:^{
-        CALL_ORIGINAL_METHOD(weakSelf, requestAlwaysAuthorization);
+        CALL_PREFIXED(weakSelf, requestAlwaysAuthorization);
     } executionBlockKey:kPPConfirmationCallbackBlock];
 }
 
 
-HOOKEDInstanceMethod(void, requestWhenInUseAuthorization) {
+HOOKPrefixInstance(void, requestWhenInUseAuthorization) {
     
     __weak typeof(self) weakSelf = self;
     [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution: PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerRequestWhenInUseAuthorization) executionBlock:^{
-        CALL_ORIGINAL_METHOD(weakSelf, requestWhenInUseAuthorization);
+        CALL_PREFIXED(weakSelf, requestWhenInUseAuthorization);
     } executionBlockKey:kPPConfirmationCallbackBlock];
 }
 
 
-HOOKEDInstanceMethod(void, setDelegate:(id<CLLocationManagerDelegate>)delegate) {
+HOOKPrefixInstance(void, setDelegate:(id<CLLocationManagerDelegate>)delegate) {
     if (!delegate) {
-        CALL_ORIGINAL_METHOD(self, setDelegate:(id<CLLocationManagerDelegate>)delegate);
+        CALL_PREFIXED(self, setDelegate:(id<CLLocationManagerDelegate>)delegate);
         return;
     }
     
@@ -69,7 +70,7 @@ HOOKEDInstanceMethod(void, setDelegate:(id<CLLocationManagerDelegate>)delegate) 
         if (![possiblyModifiedDelegate conformsToProtocol:@protocol(CLLocationManagerDelegate)]) {
             return;
         }
-        CALL_ORIGINAL_METHOD(weakSelf, setDelegate:possiblyModifiedDelegate);
+        CALL_PREFIXED(weakSelf, setDelegate:possiblyModifiedDelegate);
     };
     
     [evData addEntriesFromDictionary:@{ kPPLocationManagerDelegate: delegate,
@@ -82,9 +83,9 @@ HOOKEDInstanceMethod(void, setDelegate:(id<CLLocationManagerDelegate>)delegate) 
     [[PPEventDispatcher sharedInstance] fireEvent:event];
 }
 
-HOOKEDInstanceMethod(CLLocation*, location) {
+HOOKPrefixInstance(CLLocation*, location) {
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
-    CLLocation *actualLocation = CALL_ORIGINAL_METHOD(self, location);
+    CLLocation *actualLocation = CALL_PREFIXED(self, location);
     if (actualLocation) {
         [evData setObject:actualLocation forKey:kPPLocationManagerGetCurrentLocationValue];
     }

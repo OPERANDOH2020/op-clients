@@ -14,6 +14,7 @@ fileprivate let kIconsMessageHandler = "iconsMessageHandler"
 class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var addressBarView: UIView!
+    @IBOutlet weak var goButton: UIButton!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var webToolbarView: UIWebToolbarView!
@@ -36,8 +37,12 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UIT
         super.commonInit()
         self.activityIndicator.isHidden = true
         self.addressTF.delegate = self
+        self.styleGoButton()
+        
+        
     }
     
+
     func setupWith(model: UIWebViewTabNewWebViewModel, callbacks: UIWebViewTabCallbacks?) {
         self.callbacks = callbacks
         
@@ -51,6 +56,25 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UIT
         self.callbacks = callbacks
         self.commonSetupWith(webView: model.webView, navigationModel: nil)
     }
+    
+    
+    func changeNumberOfItems(to numOfItems: Int){
+        self.webToolbarView.changeNumberOfItems(to: numOfItems)
+    }
+    
+    private func styleGoButton(){
+        let title: NSMutableAttributedString = NSMutableAttributedString(string: "Go")
+        let range: NSRange = NSMakeRange(0, 2);
+        let color: UIColor = UIColor(colorLiteralRed: 0, green: 169.0/255.0, blue: 160.0/255.0, alpha: 1.0)
+        
+        title.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 18), range: range)
+        title.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
+        title.addAttribute(NSUnderlineColorAttributeName, value: color, range: range)
+        title.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+        
+        self.goButton.setAttributedTitle(title, for: UIControlState.normal)
+    }
+    
     
     private func commonSetupWith(webView: WKWebView, navigationModel: UIWebViewTabNavigationModel?){
         

@@ -84,6 +84,7 @@ class WebTabsControllerLogic: NSObject {
     
         if let existingWV = self.webViewAssociatedWithTab(at: index) {
            self.model.webPool.markWebViewTab(existingWV)
+           existingWV.changeNumberOfItems(to: self.webTabs.count)
            callback(existingWV)
             return
         }
@@ -94,6 +95,8 @@ class WebTabsControllerLogic: NSObject {
             
             webViewTab.setupWith(model: webViewTabModel, callbacks: self.callbacksForWebView())
             self.model.webPool.addNew(webViewTab: webViewTab)
+            
+            webViewTab.changeNumberOfItems(to: self.webTabs.count)
             callback(webViewTab)
             return
         }
@@ -102,6 +105,7 @@ class WebTabsControllerLogic: NSObject {
             let reusedWebView = self.model.webPool.oldestWebViewTab {
             self.model.webPool.markWebViewTab(reusedWebView)
             reusedWebView.changeNavigationModel(to: navigationModel, callback: {
+                reusedWebView.changeNumberOfItems(to: self.webTabs.count)
                 callback(reusedWebView)
             })
             return

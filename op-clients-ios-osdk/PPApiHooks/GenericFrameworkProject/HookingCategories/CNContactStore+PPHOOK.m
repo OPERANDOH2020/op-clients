@@ -7,17 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Contacts/Contacts.h>
 #import "JRSwizzle.h"
-#import "NSObject+AutoSwizzle.h"
-#import "PPEventDispatcher+Internal.h"
+#import "CNContactStore+PPHOOK.h"
 
-@interface CNContactStore(rsHook)
+PPEventDispatcher *_cnDispatcher;
 
-@end
-
-
-@implementation CNContactStore(rsHook)
+@implementation CNContactStore(PPHOOK)
 
 
 +(void)load {
@@ -26,7 +21,12 @@
     }
 }
 
-HOOKEDInstanceMethod(void, requestAccessForEntityType:(CNEntityType)entityType completionHandler:(void (^)(BOOL, NSError * _Nullable))completionHandler) {
+HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
+    _cnDispatcher = dispatcher;
+}
+
+
+HOOKPrefixInstance(void, requestAccessForEntityType:(CNEntityType)entityType completionHandler:(void (^)(BOOL, NSError * _Nullable))completionHandler) {
     
     __weak typeof(self) weakSelf = self;
     
@@ -34,7 +34,7 @@ HOOKEDInstanceMethod(void, requestAccessForEntityType:(CNEntityType)entityType c
     evData[kPPContactStoreEntityTypeValue] = @(entityType);
     evData[kPPContactStoreBOOLErrorBlock] = completionHandler;
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_ORIGINAL_METHOD(weakSelf, requestAccessForEntityType: entityType completionHandler:completionHandler);
+        CALL_PREFIXED(weakSelf, requestAccessForEntityType: entityType completionHandler:completionHandler);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
@@ -43,8 +43,8 @@ HOOKEDInstanceMethod(void, requestAccessForEntityType:(CNEntityType)entityType c
     [[PPEventDispatcher sharedInstance] fireEvent:event];
 }
 
-HOOKEDClassMethod(CNAuthorizationStatus, authorizationStatusForEntityType:(CNEntityType)entityType){
-    CNAuthorizationStatus actualStatus = CALL_ORIGINAL_METHOD(self, authorizationStatusForEntityType:entityType);
+HOOKPrefixClass(CNAuthorizationStatus, authorizationStatusForEntityType:(CNEntityType)entityType){
+    CNAuthorizationStatus actualStatus = CALL_PREFIXED(self, authorizationStatusForEntityType:entityType);
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     evData[kPPContactStoreEntityTypeValue] = @(entityType);
@@ -57,10 +57,10 @@ HOOKEDClassMethod(CNAuthorizationStatus, authorizationStatusForEntityType:(CNEnt
     return [evData[kPPContactStoreAuthorizationStatusValue] integerValue];
 }
 
-HOOKEDInstanceMethod(NSArray<CNContact *> *,unifiedContactsMatchingPredicate:(NSPredicate *)predicate keysToFetch:(NSArray<id<CNKeyDescriptor>> *)keys error:(NSError *__autoreleasing  _Nullable *)error){
+HOOKPrefixInstance(NSArray<CNContact *> *,unifiedContactsMatchingPredicate:(NSPredicate *)predicate keysToFetch:(NSArray<id<CNKeyDescriptor>> *)keys error:(NSError *__autoreleasing  _Nullable *)error){
     
     NSError *localError = nil;
-    NSArray<CNContact*> *contactsArray = CALL_ORIGINAL_METHOD(self, unifiedContactsMatchingPredicate:predicate keysToFetch: keys error: &localError);
+    NSArray<CNContact*> *contactsArray = CALL_PREFIXED(self, unifiedContactsMatchingPredicate:predicate keysToFetch: keys error: &localError);
     
     if (localError) {
         *error = localError;
@@ -81,10 +81,10 @@ HOOKEDInstanceMethod(NSArray<CNContact *> *,unifiedContactsMatchingPredicate:(NS
 }
 
 
-HOOKEDInstanceMethod(CNContact*, unifiedContactWithIdentifier:(NSString *)identifier keysToFetch:(NSArray<id<CNKeyDescriptor>> *)keys error:(NSError *__nullable *__nullable)error) {
+HOOKPrefixInstance(CNContact*, unifiedContactWithIdentifier:(NSString *)identifier keysToFetch:(NSArray<id<CNKeyDescriptor>> *)keys error:(NSError *__nullable *__nullable)error) {
     
     NSError *localError = nil;
-    CNContact *localContact = CALL_ORIGINAL_METHOD(self, unifiedContactWithIdentifier:identifier keysToFetch: keys error: &localError);
+    CNContact *localContact = CALL_PREFIXED(self, unifiedContactWithIdentifier:identifier keysToFetch: keys error: &localError);
     
     if (localError) {
         *error = localError;
@@ -102,7 +102,7 @@ HOOKEDInstanceMethod(CNContact*, unifiedContactWithIdentifier:(NSString *)identi
     
 }
 
-HOOKEDInstanceMethod(BOOL, enumerateContactsWithFetchRequest:(CNContactFetchRequest *)fetchRequest error:(NSError *__autoreleasing  _Nullable *)error usingBlock:(void (^)(CNContact * _Nonnull, BOOL * _Nonnull))block){
+HOOKPrefixInstance(BOOL, enumerateContactsWithFetchRequest:(CNContactFetchRequest *)fetchRequest error:(NSError *__autoreleasing  _Nullable *)error usingBlock:(void (^)(CNContact * _Nonnull, BOOL * _Nonnull))block){
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPContactStoreFetchRequestValue, fetchRequest)
@@ -121,13 +121,13 @@ HOOKEDInstanceMethod(BOOL, enumerateContactsWithFetchRequest:(CNContactFetchRequ
     void(^possiblyOtherBlock)(CNContact*, BOOL*) = evData[kPPContactStoreContactEnumerationBlock];
     CNContactFetchRequest *possiblyModifiedFR = evData[kPPContactStoreFetchRequestValue];
     
-    return CALL_ORIGINAL_METHOD(self, enumerateContactsWithFetchRequest:possiblyModifiedFR error: error usingBlock: possiblyOtherBlock);
+    return CALL_PREFIXED(self, enumerateContactsWithFetchRequest:possiblyModifiedFR error: error usingBlock: possiblyOtherBlock);
 }
 
-HOOKEDInstanceMethod(NSArray<CNGroup*>*, groupsMatchingPredicate:(NSPredicate *)predicate error:(NSError *__autoreleasing  _Nullable *)error){
+HOOKPrefixInstance(NSArray<CNGroup*>*, groupsMatchingPredicate:(NSPredicate *)predicate error:(NSError *__autoreleasing  _Nullable *)error){
     
     NSError *localError = nil;
-    NSArray<CNGroup*> *groups = CALL_ORIGINAL_METHOD(self, groupsMatchingPredicate:predicate error:&localError);
+    NSArray<CNGroup*> *groups = CALL_PREFIXED(self, groupsMatchingPredicate:predicate error:&localError);
     if (localError) {
         *error = localError;
         return nil;
@@ -145,10 +145,10 @@ HOOKEDInstanceMethod(NSArray<CNGroup*>*, groupsMatchingPredicate:(NSPredicate *)
 }
 
 
-HOOKEDInstanceMethod(NSArray<CNContainer*>*, containersMatchingPredicate:(NSPredicate *)predicate error:(NSError *__autoreleasing  _Nullable *)error){
+HOOKPrefixInstance(NSArray<CNContainer*>*, containersMatchingPredicate:(NSPredicate *)predicate error:(NSError *__autoreleasing  _Nullable *)error){
     
     NSError *localError = nil;
-    NSArray<CNContainer*> *containers = CALL_ORIGINAL_METHOD(self, containersMatchingPredicate:predicate error:&localError);
+    NSArray<CNContainer*> *containers = CALL_PREFIXED(self, containersMatchingPredicate:predicate error:&localError);
     
     if (localError) {
         *error = localError;
@@ -165,7 +165,7 @@ HOOKEDInstanceMethod(NSArray<CNContainer*>*, containersMatchingPredicate:(NSPred
 }
 
 
-HOOKEDInstanceMethod(BOOL, executeSaveRequest:(CNSaveRequest *)saveRequest error:(NSError *__autoreleasing  _Nullable *)error){
+HOOKPrefixInstance(BOOL, executeSaveRequest:(CNSaveRequest *)saveRequest error:(NSError *__autoreleasing  _Nullable *)error){
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPContactStoreSaveRequestValue, saveRequest)
@@ -177,7 +177,7 @@ HOOKEDInstanceMethod(BOOL, executeSaveRequest:(CNSaveRequest *)saveRequest error
     *error = evData[kPPContactStoreErrorValue];
     BOOL allow = [evData[kPPContactStoreAllowExecuteSaveRequest] boolValue];
     if (allow) {
-        return CALL_ORIGINAL_METHOD(self, executeSaveRequest: saveRequest error: error);
+        return CALL_PREFIXED(self, executeSaveRequest: saveRequest error: error);
     }
     
     return NO;

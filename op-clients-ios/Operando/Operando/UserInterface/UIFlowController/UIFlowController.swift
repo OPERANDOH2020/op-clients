@@ -10,7 +10,7 @@ import UIKit
 import PlusPrivacyCommonTypes
 import PlusPrivacyCommonUI
 
-typealias NotificationActionCallback = (_ action: String, _ notification: OPNotification) -> Void
+typealias NotificationActionCallback = (_ action: NotificationAction, _ notification: OPNotification) -> Void
 typealias ForgotPasswordCallback = ((_ email: String) -> Void)
 typealias NumberOfNotificationsCompletion = (_ num: Int) -> Void
 typealias NumOfNotificationsRequestCallback = (_ callback: NumberOfNotificationsCompletion?) -> Void

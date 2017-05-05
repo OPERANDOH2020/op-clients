@@ -6,18 +6,13 @@
 //  Copyright © 2017 RomSoft. All rights reserved.
 //
 
-#import <CoreMotion/CoreMotion.h>
 #import "JRSwizzle.h"
-#import "Common.h"
-#import "PPEventDispatcher+Internal.h"
 #import "NSObject+AutoSwizzle.h"
+#import "CMPedometer+PPHOOK.h"
 
-@interface CMPedometer(rsHook)
+PPEventDispatcher *_pedDispatcher;
 
-@end
-
-
-@implementation CMPedometer(rsHook)
+@implementation CMPedometer(PPHOOK)
 
 +(void)load {
     
@@ -27,38 +22,42 @@
     
 }
 
-HOOKEDClassMethod(BOOL, isStepCountingAvailable){
-    BOOL result = CALL_ORIGINAL_METHOD(self, isStepCountingAvailable);
+HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
+    _pedDispatcher = dispatcher;
+}
+
+HOOKPrefixClass(BOOL, isStepCountingAvailable){
+    BOOL result = CALL_PREFIXED(self, isStepCountingAvailable);
     return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetStepCountingAvailable) atKey:kPPPedometerIsStepCountingAvailableValue];
 }
 
-HOOKEDClassMethod(BOOL, isDistanceAvailable){
-    BOOL result = CALL_ORIGINAL_METHOD(self, isDistanceAvailable);
+HOOKPrefixClass(BOOL, isDistanceAvailable){
+    BOOL result = CALL_PREFIXED(self, isDistanceAvailable);
     return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetDistanceAvailable) atKey:kPPPedometerIsDistanceAvailableValue];
 }
 
-HOOKEDClassMethod(BOOL, isFloorCountingAvailable) {
-    BOOL result = CALL_ORIGINAL_METHOD(self, isFloorCountingAvailable);
+HOOKPrefixClass(BOOL, isFloorCountingAvailable) {
+    BOOL result = CALL_PREFIXED(self, isFloorCountingAvailable);
     return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetFloorCountingAvailable) atKey:kPPPedometerIsFloorCountingAvailableValue];
 }
 
-HOOKEDClassMethod(BOOL, isPaceAvailable){
-    BOOL paceAv = CALL_ORIGINAL_METHOD(self, isPaceAvailable);
+HOOKPrefixClass(BOOL, isPaceAvailable){
+    BOOL paceAv = CALL_PREFIXED(self, isPaceAvailable);
     return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:paceAv ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetPaceAvailable) atKey:kPPPedometerIsPaceAvailableValue];
 }
 
 
-HOOKEDClassMethod(BOOL, isCadenceAvailable){
-    BOOL result = CALL_ORIGINAL_METHOD(self, isCadenceAvailable);
+HOOKPrefixClass(BOOL, isCadenceAvailable){
+    BOOL result = CALL_PREFIXED(self, isCadenceAvailable);
     return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetCadenceAvailable) atKey:kPPPedometerIsCadenceAvailableValue];
 }
 
-HOOKEDClassMethod(BOOL, isPedometerEventTrackingAvailable){
-    BOOL result = CALL_ORIGINAL_METHOD(self, isPedometerEventTrackingAvailable);
+HOOKPrefixClass(BOOL, isPedometerEventTrackingAvailable){
+    BOOL result = CALL_PREFIXED(self, isPedometerEventTrackingAvailable);
     return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetEventTrackingAvailable) atKey:kPPPedometerIsEventTrackingAvailableValue];
 }
 
-HOOKEDInstanceMethod(void, queryPedometerDataFromDate:(NSDate *)start toDate:(NSDate *)end withHandler:(CMPedometerHandler)handler){
+HOOKPrefixInstance(void, queryPedometerDataFromDate:(NSDate *)start toDate:(NSDate *)end withHandler:(CMPedometerHandler)handler){
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPPedometerStartDateValue, start)
@@ -71,7 +70,7 @@ HOOKEDInstanceMethod(void, queryPedometerDataFromDate:(NSDate *)start toDate:(NS
         NSDate *evStartDate = weakevData[kPPPedometerStartDateValue];
         NSDate *evEndDate = weakevData[kPPPedometerEndDateValue];
         CMPedometerHandler evHandler = weakevData[kPPPedometerHandlerValue];
-        CALL_ORIGINAL_METHOD(weakself, queryPedometerDataFromDate:evStartDate toDate:evEndDate withHandler:evHandler);
+        CALL_PREFIXED(weakself, queryPedometerDataFromDate:evStartDate toDate:evEndDate withHandler:evHandler);
     };
     
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
@@ -82,7 +81,7 @@ HOOKEDInstanceMethod(void, queryPedometerDataFromDate:(NSDate *)start toDate:(NS
     
 }
 
-HOOKEDInstanceMethod(void, startPedometerUpdatesFromDate:(NSDate *)start withHandler:(CMPedometerHandler)handler) {
+HOOKPrefixInstance(void, startPedometerUpdatesFromDate:(NSDate *)start withHandler:(CMPedometerHandler)handler) {
     
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
@@ -97,7 +96,7 @@ HOOKEDInstanceMethod(void, startPedometerUpdatesFromDate:(NSDate *)start withHan
             return;
         }
         
-        CALL_ORIGINAL_METHOD(weakSelf, startPedometerUpdatesFromDate:possiblyModifiedDate withHandler:possiblyModifiedHandler);
+        CALL_PREFIXED(weakSelf, startPedometerUpdatesFromDate:possiblyModifiedDate withHandler:possiblyModifiedHandler);
         
     };
     [evData setObject:confirmation forKey:kPPConfirmationCallbackBlock];
@@ -107,14 +106,14 @@ HOOKEDInstanceMethod(void, startPedometerUpdatesFromDate:(NSDate *)start withHan
     [[PPEventDispatcher sharedInstance] fireEvent:event];
 }
 
-HOOKEDInstanceMethod(void, startPedometerEventUpdatesWithHandler:(CMPedometerEventHandler)handler){
+HOOKPrefixInstance(void, startPedometerEventUpdatesWithHandler:(CMPedometerEventHandler)handler){
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPPedometerEventUpdatesHandler, handler)
     __Weak(evData);
     __Weak(self);
     
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_ORIGINAL_METHOD(weakself, startPedometerEventUpdatesWithHandler:weakevData[kPPPedometerEventUpdatesHandler]);
+        CALL_PREFIXED(weakself, startPedometerEventUpdatesWithHandler:weakevData[kPPPedometerEventUpdatesHandler]);
     };
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerStartEventUpdatesWithHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];

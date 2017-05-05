@@ -13,10 +13,11 @@
 #define PPEventKeys_h
 
 
+#define PPHOOK __PP_HOOKED__
 #define PPHOOKPREFIX @"__PP_HOOKED__"
-#define HOOKEDInstanceMethod(retType, call) -(retType)__PP_HOOKED__##call
-#define HOOKEDClassMethod(retType, call) +(retType)__PP_HOOKED__##call
-#define CALL_ORIGINAL_METHOD(callee, call) [callee __PP_HOOKED__##call]
+#define HOOKPrefixInstance(retType, call) -(retType)__PP_HOOKED__##call
+#define HOOKPrefixClass(retType, call) +(retType)__PP_HOOKED__##call
+#define CALL_PREFIXED(callee, call) [callee __PP_HOOKED__##call]
 
 #define SAFECALL(x, ...) if(x){x(__VA_ARGS__);}
 #define SAFEADD(dict, key, value) if(value){[dict setObject:value forKey:key];}

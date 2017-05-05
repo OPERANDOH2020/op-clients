@@ -17,6 +17,13 @@ struct UIWebToolbarViewCallbacks {
 class UIWebToolbarView: RSNibDesignableView {
     
     private var callbacks: UIWebToolbarViewCallbacks?
+    
+    @IBOutlet weak var numOfItemsLabel: UILabel!
+    
+    func changeNumberOfItems(to numOfItems: Int){
+        self.numOfItemsLabel.text = "\(numOfItems)"
+    }
+    
     func setupWith(callbacks: UIWebToolbarViewCallbacks?) {
         self.callbacks = callbacks;
     }

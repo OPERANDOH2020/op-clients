@@ -76,17 +76,27 @@ class PfbDeal
     
 }
 
+enum NotificationAction: String {
+    case identitiesMangament = "identity"
+    case privacyForBenefits = "privacy-for-benefits"
+    case privateBrowsing = "privateBrowsing"
+    case socialNetworkPrivacy = "social-network-privacy"
+}
+
 struct OPNotification{
     
+    static let actionTitlePerType: [NotificationAction: String] = [NotificationAction.identitiesMangament: "Go to Identities",
+                                                       NotificationAction.privacyForBenefits: "Go to Privacy For Benefits",
+                                                       NotificationAction.privateBrowsing: "Go to Private Browsing"]
+    
     struct Action {
-        let title: String
-        let actionKey: String
+        let title: String?
+        let actionKey: NotificationAction
     }
     
     let id: String
     let title: String
     let description: String
-    let dismissed: Bool
     
     let actions: [Action]
     
@@ -95,8 +105,7 @@ struct OPNotification{
         
         guard let id = notificationsSwarmReplyDict["notificationId"] as? String,
               let title = notificationsSwarmReplyDict["title"] as? String,
-              let description = notificationsSwarmReplyDict["description"] as? String,
-              let dismissed = notificationsSwarmReplyDict["dismissed"] as? Bool
+              let description = notificationsSwarmReplyDict["description"] as? String
             else {
                 return nil
         }
@@ -104,30 +113,20 @@ struct OPNotification{
         self.id = id
         self.title = title
         self.description = description
-        self.dismissed = dismissed
-        let actionsAsDicts = notificationsSwarmReplyDict["actions"] as? [[String: String]] ?? []
-        self.actions = OPNotification.parseActions(from: actionsAsDicts)
         
-        if self.actions.first(where: { action -> Bool in
-            return action.actionKey == "social-network-privacy"
-        }) != nil {
-            return nil // social network privacy functionality is not implemented in this app as of 5-Jan-2017 
-        }
-    }
-    
-    
-    private static func parseActions(from array: [[String: String]]) -> [Action] {
-        
-        var actions: [Action] = []
-        
-        for dict in array {
-            if let title = dict["title"], let actionType = dict["key"] {
-                actions.append(Action(title: title, actionKey: actionType))
+        if let actionName = notificationsSwarmReplyDict["action_name"] as? String,
+            let validActionName = NotificationAction(rawValue: actionName) {
+            
+            if validActionName == .socialNetworkPrivacy {
+                return nil // SNP is not implemented yet
             }
+            
+            self.actions = [Action(title: OPNotification.actionTitlePerType[validActionName], actionKey: validActionName)]
+        } else {
+            self.actions = []
         }
-        
-        return actions
     }
+    
 }
 
 
@@ -268,8 +267,7 @@ class SwarmClientResponseParsers
         
         var notifications: [OPNotification] = []
         for notificationDict in notificationsArray {
-            if let notification = OPNotification(notificationsSwarmReplyDict: notificationDict),
-                notification.dismissed == false {
+            if let notification = OPNotification(notificationsSwarmReplyDict: notificationDict) {
                 notifications.append(notification)
             }
         }
