@@ -24,7 +24,7 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
 
 HOOKPrefixClass(BOOL, isRelativeAltitudeAvailable){
     BOOL result = CALL_PREFIXED(self, isRelativeAltitudeAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterGetRelativeAltitudeAvailableValue) atKey:kPPAltimeterIsRelativeAltitudeVailableValue];
+    return [_altDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterGetRelativeAltitudeAvailableValue) atKey:kPPAltimeterIsRelativeAltitudeVailableValue];
 }
 
 
@@ -44,7 +44,7 @@ HOOKPrefixInstance(void, startRelativeAltitudeUpdatesToQueue:(NSOperationQueue *
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterStartRelativeAltitudeUpdates) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_altDispatcher fireEvent:event];
 }
 
 @end

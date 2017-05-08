@@ -28,33 +28,33 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
 
 HOOKPrefixClass(BOOL, isStepCountingAvailable){
     BOOL result = CALL_PREFIXED(self, isStepCountingAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetStepCountingAvailable) atKey:kPPPedometerIsStepCountingAvailableValue];
+    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetStepCountingAvailable) atKey:kPPPedometerIsStepCountingAvailableValue];
 }
 
 HOOKPrefixClass(BOOL, isDistanceAvailable){
     BOOL result = CALL_PREFIXED(self, isDistanceAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetDistanceAvailable) atKey:kPPPedometerIsDistanceAvailableValue];
+    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetDistanceAvailable) atKey:kPPPedometerIsDistanceAvailableValue];
 }
 
 HOOKPrefixClass(BOOL, isFloorCountingAvailable) {
     BOOL result = CALL_PREFIXED(self, isFloorCountingAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetFloorCountingAvailable) atKey:kPPPedometerIsFloorCountingAvailableValue];
+    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetFloorCountingAvailable) atKey:kPPPedometerIsFloorCountingAvailableValue];
 }
 
 HOOKPrefixClass(BOOL, isPaceAvailable){
     BOOL paceAv = CALL_PREFIXED(self, isPaceAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:paceAv ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetPaceAvailable) atKey:kPPPedometerIsPaceAvailableValue];
+    return [_pedDispatcher resultForBoolEventValue:paceAv ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetPaceAvailable) atKey:kPPPedometerIsPaceAvailableValue];
 }
 
 
 HOOKPrefixClass(BOOL, isCadenceAvailable){
     BOOL result = CALL_PREFIXED(self, isCadenceAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetCadenceAvailable) atKey:kPPPedometerIsCadenceAvailableValue];
+    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetCadenceAvailable) atKey:kPPPedometerIsCadenceAvailableValue];
 }
 
 HOOKPrefixClass(BOOL, isPedometerEventTrackingAvailable){
     BOOL result = CALL_PREFIXED(self, isPedometerEventTrackingAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetEventTrackingAvailable) atKey:kPPPedometerIsEventTrackingAvailableValue];
+    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetEventTrackingAvailable) atKey:kPPPedometerIsEventTrackingAvailableValue];
 }
 
 HOOKPrefixInstance(void, queryPedometerDataFromDate:(NSDate *)start toDate:(NSDate *)end withHandler:(CMPedometerHandler)handler){
@@ -77,7 +77,7 @@ HOOKPrefixInstance(void, queryPedometerDataFromDate:(NSDate *)start toDate:(NSDa
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerQueryDataFromDate) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_pedDispatcher fireEvent:event];
     
 }
 
@@ -103,7 +103,7 @@ HOOKPrefixInstance(void, startPedometerUpdatesFromDate:(NSDate *)start withHandl
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerStartUpdatesFromDate) eventData:evData whenNoHandlerAvailable:confirmation];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_pedDispatcher fireEvent:event];
 }
 
 HOOKPrefixInstance(void, startPedometerEventUpdatesWithHandler:(CMPedometerEventHandler)handler){
@@ -118,7 +118,7 @@ HOOKPrefixInstance(void, startPedometerEventUpdatesWithHandler:(CMPedometerEvent
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerStartEventUpdatesWithHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_pedDispatcher fireEvent:event];
 }
 
 

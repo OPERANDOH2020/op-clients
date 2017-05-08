@@ -37,7 +37,7 @@ HOOKPrefixClass(AVCaptureDevice*, defaultDeviceWithMediaType:(NSString *)mediaTy
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetDefaultDeviceWithMediaType) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_avDispatcher fireEvent:event];
     
     return evData[kPPCaptureDeviceDefaultDeviceValue];
 }
@@ -52,7 +52,7 @@ HOOKPrefixClass(AVCaptureDevice*, defaultDeviceWithDeviceType:(AVCaptureDeviceTy
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetDefaultDeviceWithTypeMediaTypeAndPosition) eventData:eventData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_avDispatcher fireEvent:event];
     
     return eventData[kPPCaptureDeviceDefaultDeviceValue];
     
@@ -61,13 +61,13 @@ HOOKPrefixClass(AVCaptureDevice*, defaultDeviceWithDeviceType:(AVCaptureDeviceTy
 
 HOOKPrefixInstance(NSString*, uniqueID){
     NSString *result = CALL_PREFIXED(self, uniqueID);
-    return [[PPEventDispatcher sharedInstance] resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetUniqueId) atKey:kPPCaptureDeviceUniqueIdValue];
+    return [_avDispatcher resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetUniqueId) atKey:kPPCaptureDeviceUniqueIdValue];
 }
 
 
 HOOKPrefixInstance(NSString*, modelID){
     NSString *result = CALL_PREFIXED(self, modelID);
-        return [[PPEventDispatcher sharedInstance] resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetModelId) atKey:kPPCaptureDeviceModelIdValue];
+        return [_avDispatcher resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetModelId) atKey:kPPCaptureDeviceModelIdValue];
 }
 
 HOOKPrefixInstance(BOOL, hasMediaType:(NSString *)mediaType){
@@ -78,7 +78,7 @@ HOOKPrefixInstance(BOOL, hasMediaType:(NSString *)mediaType){
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceHasMediaType) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_avDispatcher fireEvent:event];
     return [evData[kPPCaptureDeviceHasMediaTypeResult] boolValue];
 }
 
@@ -88,7 +88,7 @@ HOOKPrefixInstance(BOOL, lockForConfiguration:(NSError *__autoreleasing *)outErr
     NSMutableDictionary *eventData = [[NSMutableDictionary alloc] init];
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceLockForConfiguration) eventData:eventData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_avDispatcher fireEvent:event];
     
     if ([eventData[kPPCaptureDeviceConfirmationBool] boolValue]) {
         return CALL_PREFIXED(self, lockForConfiguration: outError);
@@ -104,7 +104,7 @@ HOOKPrefixClass(BOOL, supportsAVCaptureSessionPreset:(NSString *)preset){
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceSupportsSessionPreset) eventData:eventData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_avDispatcher fireEvent:event];
     
     if ([eventData[kPPCaptureDeviceConfirmationBool] boolValue]) {
         return CALL_PREFIXED(self, supportsAVCaptureSessionPreset: preset);
@@ -116,17 +116,17 @@ HOOKPrefixClass(BOOL, supportsAVCaptureSessionPreset:(NSString *)preset){
 
 HOOKPrefixInstance(BOOL, isConnected){
     BOOL connected = CALL_PREFIXED(self, isConnected);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:connected ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetIsConnected) atKey:kPPCaptureDeviceConfirmationBool];
+    return [_avDispatcher resultForBoolEventValue:connected ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetIsConnected) atKey:kPPCaptureDeviceConfirmationBool];
 }
 
 HOOKPrefixInstance(NSArray*, formats){
     NSArray *formats = CALL_PREFIXED(self, formats);
-    return [[PPEventDispatcher sharedInstance] resultForEventValue:formats ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetFormats) atKey:kPPCaptureDeviceFormatsArrayValue];
+    return [_avDispatcher resultForEventValue:formats ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetFormats) atKey:kPPCaptureDeviceFormatsArrayValue];
 }
 
 HOOKPrefixInstance(AVCaptureDeviceFormat*, activeFormat){
     AVCaptureDeviceFormat *format = CALL_PREFIXED(self, activeFormat);
-    return [[PPEventDispatcher sharedInstance] resultForEventValue:format ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetActiveFormat) atKey:kPPCaptureDeviceActiveFormatValue];
+    return [_avDispatcher resultForEventValue:format ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetActiveFormat) atKey:kPPCaptureDeviceActiveFormatValue];
 }
 
 @end

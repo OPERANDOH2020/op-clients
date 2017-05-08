@@ -1,15 +1,15 @@
 //
-//  CMMotionManager+PPHOOK.h
+//  HookURLProtocol.h
 //  PPApiHooks
 //
-//  Created by Costin Andronache on 5/5/17.
+//  Created by Costin Andronache on 5/8/17.
 //  Copyright © 2017 RomSoft. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
+#import "Common.h"
 #import "PPEventDispatcher+Internal.h"
-#import <CoreMotion/CoreMotion.h>
 
-@interface CMMotionManager(PPHOOK)
+@interface HookURLProtocol : NSURLProtocol
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher);
+
 @end

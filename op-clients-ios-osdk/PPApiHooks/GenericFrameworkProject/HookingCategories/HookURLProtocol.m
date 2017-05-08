@@ -10,11 +10,9 @@
 #import <WebKit/WebKit.h>
 #import "NSURLProtocol+WKWebViewSupport.h"
 
-#import "Common.h"
-#import "PPEventDispatcher+Internal.h"
+#import "HookURLProtocol.h"
 
-@interface HookURLProtocol : NSURLProtocol
-@end
+PPEventDispatcher *_urlDispatcher;
 
 
 @implementation HookURLProtocol
@@ -29,6 +27,9 @@
     
 }
 
+HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){
+    _urlDispatcher = dispatcher;
+}
 
 +(BOOL)canInitWithTask:(NSURLSessionTask *)task {
     return NO;
@@ -40,7 +41,7 @@
     SAFEADD(evData, kPPWebViewRequest, request)
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPWKWebViewEvent, EventAllowWebViewRequest) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_urlDispatcher fireEvent:event];
     
     // this method returning YES means that the request will be blocked
     // 

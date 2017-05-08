@@ -9,8 +9,9 @@
 #import "JRSwizzle.h"
 #import "PPEvent.h"
 #import "NSObject+AutoSwizzle.h"
+#import "NSURLSession+PPHOOK.h"
 
-PPEventDispatcher *_urlDispatcher;
+PPEventDispatcher *_urlSessionDispatcher;
 
 @interface NullUrlSessionDataTask : NSURLSessionDataTask
 @property (weak, nonatomic) NSURLSession *weakSession;
@@ -60,7 +61,7 @@ PPEventDispatcher *_urlDispatcher;
  */
 
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
-    _urlDispatcher;
+    _urlSessionDispatcher = dispatcher;
 }
 
 HOOKPrefixInstance(NSURLSessionDataTask*, dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable))completionHandler) {
@@ -70,7 +71,7 @@ HOOKPrefixInstance(NSURLSessionDataTask*, dataTaskWithRequest:(NSURLRequest *)re
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPURLSessionEvent, EventURLSessionStartDataTaskForRequest) eventData:eventData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_urlSessionDispatcher fireEvent:event];
     
     NSURLResponse *response = eventData[kPPURLSessionDataTaskResponse];
     NSData *data = eventData[kPPURLSessionDatTaskResponseData];

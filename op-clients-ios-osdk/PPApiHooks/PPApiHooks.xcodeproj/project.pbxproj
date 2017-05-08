@@ -26,11 +26,19 @@
 		982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */; };
 		98408E901EAFA0260002635D /* NSObject+AutoSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */; };
 		98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */; };
+		9845D9521EC05E680057CC9B /* CMMotionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845D9511EC05E680057CC9B /* CMMotionManagerTests.m */; };
+		9845D9531EC05F2E0057CC9B /* PPEventIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9899DF081EADDE8600CB9ED8 /* PPEventIdentifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9845D95A1EC06C190057CC9B /* PPApiHooksStart.h in Headers */ = {isa = PBXBuildFile; fileRef = 9845D9581EC06C190057CC9B /* PPApiHooksStart.h */; };
+		9845D95B1EC06C190057CC9B /* PPApiHooksStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845D9591EC06C190057CC9B /* PPApiHooksStart.m */; };
+		9845D95F1EC085030057CC9B /* TestDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845D95E1EC085030057CC9B /* TestDispatcher.m */; };
+		9845D9661EC09CB70057CC9B /* CommonBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845D9651EC09CB70057CC9B /* CommonBaseTest.m */; };
 		984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */; };
 		984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */; };
 		98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9869FA581E7A7C19001A8218 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8EC1E77DE61008F4D02 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */; };
+		98AFA75B1EC0535D00D1D2CB /* PPApiHooksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AFA75A1EC0535D00D1D2CB /* PPApiHooksTests.m */; };
+		98AFA75D1EC0535D00D1D2CB /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */; };
 		98F7A6A21E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6961E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m */; };
 		98F7A6A41E76ECB200FF635A /* CLLocationManager+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6981E76ECB200FF635A /* CLLocationManager+PPHOOK.m */; };
 		98F7A6A51E76ECB200FF635A /* CMAltimeter+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6991E76ECB200FF635A /* CMAltimeter+PPHOOK.m */; };
@@ -51,12 +59,31 @@
 		98F7A6C21E76F16200FF635A /* PPEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6BC1E76F16200FF635A /* PPEventDispatcher.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		98AFA75E1EC0535D00D1D2CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98584F341D3F9E18009FB89F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 98584F3C1D3F9E18009FB89F;
+			remoteInfo = PPApiHooks;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HookURLProtocol.m; sourceTree = "<group>"; };
 		982FB41A1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebViewSupport.h"; sourceTree = "<group>"; };
 		982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebViewSupport.m"; sourceTree = "<group>"; };
 		98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AutoSwizzle.h"; path = "NSObject+SwizzleMethods/NSObject+AutoSwizzle.h"; sourceTree = "<group>"; };
 		98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AutoSwizzle.m"; path = "NSObject+SwizzleMethods/NSObject+AutoSwizzle.m"; sourceTree = "<group>"; };
+		9845D9511EC05E680057CC9B /* CMMotionManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMMotionManagerTests.m; sourceTree = "<group>"; };
+		9845D9541EC066160057CC9B /* UIDevice+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+PPHOOK.h"; sourceTree = "<group>"; };
+		9845D9561EC068DA0057CC9B /* HookURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HookURLProtocol.h; sourceTree = "<group>"; };
+		9845D9581EC06C190057CC9B /* PPApiHooksStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPApiHooksStart.h; path = PPApiHooksStart/PPApiHooksStart.h; sourceTree = "<group>"; };
+		9845D9591EC06C190057CC9B /* PPApiHooksStart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPApiHooksStart.m; path = PPApiHooksStart/PPApiHooksStart.m; sourceTree = "<group>"; };
+		9845D95D1EC085030057CC9B /* TestDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDispatcher.h; path = TestDispatcher/TestDispatcher.h; sourceTree = "<group>"; };
+		9845D95E1EC085030057CC9B /* TestDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDispatcher.m; path = TestDispatcher/TestDispatcher.m; sourceTree = "<group>"; };
+		9845D9641EC09CB70057CC9B /* CommonBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonBaseTest.h; path = CommonBaseTest/CommonBaseTest.h; sourceTree = "<group>"; };
+		9845D9651EC09CB70057CC9B /* CommonBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonBaseTest.m; path = CommonBaseTest/CommonBaseTest.m; sourceTree = "<group>"; };
 		984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPEvent+FrameworkPrivate.h"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.h"; sourceTree = "<group>"; };
 		984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPEvent+FrameworkPrivate.m"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.m"; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPApiHooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +100,9 @@
 		98A927901EBC892500E17219 /* CNContactStore+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CNContactStore+PPHOOK.h"; sourceTree = "<group>"; };
 		98A927921EBC8F0B00E17219 /* LAContext+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LAContext+PPHOOK.h"; sourceTree = "<group>"; };
 		98A927941EBC91E000E17219 /* NSURLSession+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+PPHOOK.h"; sourceTree = "<group>"; };
+		98AFA7581EC0535C00D1D2CB /* PPApiHooksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPApiHooksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98AFA75A1EC0535D00D1D2CB /* PPApiHooksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPApiHooksTests.m; sourceTree = "<group>"; };
+		98AFA75C1EC0535D00D1D2CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98F7A6961E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+PPHOOK.m"; sourceTree = "<group>"; };
 		98F7A6981E76ECB200FF635A /* CLLocationManager+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+PPHOOK.m"; sourceTree = "<group>"; };
 		98F7A6991E76ECB200FF635A /* CMAltimeter+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMAltimeter+PPHOOK.m"; sourceTree = "<group>"; };
@@ -98,6 +128,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98AFA7551EC0535C00D1D2CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98AFA75D1EC0535D00D1D2CB /* PPApiHooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +170,42 @@
 			name = "NSObject+SwizzleMethods";
 			sourceTree = "<group>";
 		};
+		9845D9551EC068C90057CC9B /* HookURLProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */,
+				9845D9561EC068DA0057CC9B /* HookURLProtocol.h */,
+			);
+			name = HookURLProtocol;
+			sourceTree = "<group>";
+		};
+		9845D9571EC06C010057CC9B /* PPApiHooksStart */ = {
+			isa = PBXGroup;
+			children = (
+				9845D9581EC06C190057CC9B /* PPApiHooksStart.h */,
+				9845D9591EC06C190057CC9B /* PPApiHooksStart.m */,
+			);
+			name = PPApiHooksStart;
+			sourceTree = "<group>";
+		};
+		9845D95C1EC084EA0057CC9B /* TestDispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				9845D95D1EC085030057CC9B /* TestDispatcher.h */,
+				9845D95E1EC085030057CC9B /* TestDispatcher.m */,
+			);
+			name = TestDispatcher;
+			sourceTree = "<group>";
+		};
+		9845D9631EC09C9E0057CC9B /* CommonBaseTest */ = {
+			isa = PBXGroup;
+			children = (
+				9845D9641EC09CB70057CC9B /* CommonBaseTest.h */,
+				9845D9651EC09CB70057CC9B /* CommonBaseTest.m */,
+			);
+			name = CommonBaseTest;
+			sourceTree = "<group>";
+		};
 		984C38601E7937D300F5AEF5 /* PPEvent+Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */,
+				98AFA7591EC0535D00D1D2CB /* PPApiHooksTests */,
 				98584F3E1D3F9E18009FB89F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */,
+				98AFA7581EC0535C00D1D2CB /* PPApiHooksTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +236,7 @@
 		98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */ = {
 			isa = PBXGroup;
 			children = (
+				9845D9571EC06C010057CC9B /* PPApiHooksStart */,
 				982FB4181E83FE1B00D1AAEC /* ExternalLibraries */,
 				98F7A6B31E76F16200FF635A /* EventsPipeline */,
 				98F7A6951E76ECB200FF635A /* HookingCategories */,
@@ -254,13 +331,28 @@
 		98A927951EBC946100E17219 /* UIDevice+PPHOOK */ = {
 			isa = PBXGroup;
 			children = (
+				98F7A6A01E76ECB200FF635A /* UIDevice+PPHOOK.m */,
+				9845D9541EC066160057CC9B /* UIDevice+PPHOOK.h */,
 			);
 			name = "UIDevice+PPHOOK";
+			sourceTree = "<group>";
+		};
+		98AFA7591EC0535D00D1D2CB /* PPApiHooksTests */ = {
+			isa = PBXGroup;
+			children = (
+				9845D9631EC09C9E0057CC9B /* CommonBaseTest */,
+				9845D95C1EC084EA0057CC9B /* TestDispatcher */,
+				98AFA75A1EC0535D00D1D2CB /* PPApiHooksTests.m */,
+				98AFA75C1EC0535D00D1D2CB /* Info.plist */,
+				9845D9511EC05E680057CC9B /* CMMotionManagerTests.m */,
+			);
+			path = PPApiHooksTests;
 			sourceTree = "<group>";
 		};
 		98F7A6951E76ECB200FF635A /* HookingCategories */ = {
 			isa = PBXGroup;
 			children = (
+				9845D9551EC068C90057CC9B /* HookURLProtocol */,
 				98A927951EBC946100E17219 /* UIDevice+PPHOOK */,
 				98A927931EBC910F00E17219 /* NSURLSession+PPHOOK */,
 				98A927911EBC8EFD00E17219 /* LAContext+PPHOOK */,
@@ -270,9 +362,7 @@
 				98A927891EBC6F7600E17219 /* CMAltimeter+PPHOOK */,
 				98A927871EBC692800E17219 /* CLLocationManager+PPHOOK */,
 				98A927851EBC5D8B00E17219 /* AVCaptureDevice+PPHOOK */,
-				98F7A6A01E76ECB200FF635A /* UIDevice+PPHOOK.m */,
 				98F7A6A11E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m */,
-				982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */,
 			);
 			path = HookingCategories;
 			sourceTree = "<group>";
@@ -332,6 +422,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9845D95A1EC06C190057CC9B /* PPApiHooksStart.h in Headers */,
+				9845D9531EC05F2E0057CC9B /* PPEventIdentifier.h in Headers */,
 				98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */,
 				98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */,
 				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
@@ -365,12 +457,31 @@
 			productReference = 98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		98AFA7571EC0535C00D1D2CB /* PPApiHooksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98AFA7601EC0535D00D1D2CB /* Build configuration list for PBXNativeTarget "PPApiHooksTests" */;
+			buildPhases = (
+				98AFA7541EC0535C00D1D2CB /* Sources */,
+				98AFA7551EC0535C00D1D2CB /* Frameworks */,
+				98AFA7561EC0535C00D1D2CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				98AFA75F1EC0535D00D1D2CB /* PBXTargetDependency */,
+			);
+			name = PPApiHooksTests;
+			productName = PPApiHooksTests;
+			productReference = 98AFA7581EC0535C00D1D2CB /* PPApiHooksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		98584F341D3F9E18009FB89F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = RomSoft;
 				TargetAttributes = {
@@ -379,6 +490,11 @@
 					};
 					98584F481D3F9E43009FB89F = {
 						CreatedOnToolsVersion = 7.3;
+					};
+					98AFA7571EC0535C00D1D2CB = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = MTQBH47X23;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -396,12 +512,20 @@
 			targets = (
 				98584F3C1D3F9E18009FB89F /* PPApiHooks */,
 				98584F481D3F9E43009FB89F /* AggregateUniversal */,
+				98AFA7571EC0535C00D1D2CB /* PPApiHooksTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		98584F3B1D3F9E18009FB89F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98AFA7561EC0535C00D1D2CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -443,6 +567,7 @@
 				98F7A6AA1E76ECB200FF635A /* LAContext+PPHOOK.m in Sources */,
 				98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */,
 				98F7A6BE1E76F16200FF635A /* PPEvent.m in Sources */,
+				9845D95B1EC06C190057CC9B /* PPApiHooksStart.m in Sources */,
 				98F7A6B21E76ECF000FF635A /* JRSwizzle.m in Sources */,
 				982FB4171E83FE0000D1AAEC /* HookURLProtocol.m in Sources */,
 				98F7A6A51E76ECB200FF635A /* CMAltimeter+PPHOOK.m in Sources */,
@@ -453,7 +578,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		98AFA7541EC0535C00D1D2CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98AFA75B1EC0535D00D1D2CB /* PPApiHooksTests.m in Sources */,
+				9845D95F1EC085030057CC9B /* TestDispatcher.m in Sources */,
+				9845D9521EC05E680057CC9B /* CMMotionManagerTests.m in Sources */,
+				9845D9661EC09CB70057CC9B /* CommonBaseTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		98AFA75F1EC0535D00D1D2CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 98584F3C1D3F9E18009FB89F /* PPApiHooks */;
+			targetProxy = 98AFA75E1EC0535D00D1D2CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		98584F431D3F9E18009FB89F /* Debug */ = {
@@ -595,6 +739,38 @@
 			};
 			name = Release;
 		};
+		98AFA7611EC0535D00D1D2CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = MTQBH47X23;
+				INFOPLIST_FILE = PPApiHooksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.costinAndronache.PPApiHooksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		98AFA7621EC0535D00D1D2CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = MTQBH47X23;
+				INFOPLIST_FILE = PPApiHooksTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.costinAndronache.PPApiHooksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -621,6 +797,15 @@
 			buildConfigurations = (
 				98584F4A1D3F9E43009FB89F /* Debug */,
 				98584F4B1D3F9E43009FB89F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98AFA7601EC0535D00D1D2CB /* Build configuration list for PBXNativeTarget "PPApiHooksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98AFA7611EC0535D00D1D2CB /* Debug */,
+				98AFA7621EC0535D00D1D2CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,15 +1,16 @@
 //
-//  CMMotionManager+PPHOOK.h
+//  UIDevice+PPHOOK.h
 //  PPApiHooks
 //
-//  Created by Costin Andronache on 5/5/17.
+//  Created by Costin Andronache on 5/8/17.
 //  Copyright © 2017 RomSoft. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
+#import "PPEvent.h"
+#import "Common.h"
 #import "PPEventDispatcher+Internal.h"
-#import <CoreMotion/CoreMotion.h>
+#import <UIKit/UIKit.h>
 
-@interface CMMotionManager(PPHOOK)
+@interface UIDevice(PPHOOK)
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher);
 @end

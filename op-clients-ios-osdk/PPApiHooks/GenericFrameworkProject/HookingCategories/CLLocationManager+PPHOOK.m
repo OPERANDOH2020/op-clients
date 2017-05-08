@@ -29,7 +29,7 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
 HOOKPrefixInstance(void, startUpdatingLocation){
     __weak typeof(self) weakSelf = self;
     
-    [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerStartLocationUpdates) executionBlock:^{
+    [_locDispatcher fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerStartLocationUpdates) executionBlock:^{
         CALL_PREFIXED(weakSelf, startUpdatingLocation);
     } executionBlockKey:kPPConfirmationCallbackBlock];
 }
@@ -39,7 +39,7 @@ HOOKPrefixInstance(void, requestAlwaysAuthorization) {
     __weak typeof(self) weakSelf = self;
     PPEventIdentifier identifier = PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerRequestAlwaysAuthorization);
     
-    [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution:identifier executionBlock:^{
+    [_locDispatcher fireEventWithMaxOneTimeExecution:identifier executionBlock:^{
         CALL_PREFIXED(weakSelf, requestAlwaysAuthorization);
     } executionBlockKey:kPPConfirmationCallbackBlock];
 }
@@ -48,7 +48,7 @@ HOOKPrefixInstance(void, requestAlwaysAuthorization) {
 HOOKPrefixInstance(void, requestWhenInUseAuthorization) {
     
     __weak typeof(self) weakSelf = self;
-    [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution: PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerRequestWhenInUseAuthorization) executionBlock:^{
+    [_locDispatcher fireEventWithMaxOneTimeExecution: PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerRequestWhenInUseAuthorization) executionBlock:^{
         CALL_PREFIXED(weakSelf, requestWhenInUseAuthorization);
     } executionBlockKey:kPPConfirmationCallbackBlock];
 }
@@ -80,7 +80,7 @@ HOOKPrefixInstance(void, setDelegate:(id<CLLocationManagerDelegate>)delegate) {
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerSetDelegate) eventData:evData whenNoHandlerAvailable:setDelegateConfirmation];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_locDispatcher fireEvent:event];
 }
 
 HOOKPrefixInstance(CLLocation*, location) {
@@ -93,7 +93,7 @@ HOOKPrefixInstance(CLLocation*, location) {
     [evData setObject:self forKey:kPPLocationManagerInstance];
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPLocationManagerEvent, EventLocationManagerGetCurrentLocation) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_locDispatcher fireEvent:event];
     
     CLLocation *possiblyModifiedLocation = evData[kPPLocationManagerGetCurrentLocationValue];
     

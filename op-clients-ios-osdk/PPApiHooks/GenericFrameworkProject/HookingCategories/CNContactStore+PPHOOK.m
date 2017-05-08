@@ -40,7 +40,7 @@ HOOKPrefixInstance(void, requestAccessForEntityType:(CNEntityType)entityType com
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreRequestAccessForEntityType) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_cnDispatcher fireEvent:event];
 }
 
 HOOKPrefixClass(CNAuthorizationStatus, authorizationStatusForEntityType:(CNEntityType)entityType){
@@ -53,7 +53,7 @@ HOOKPrefixClass(CNAuthorizationStatus, authorizationStatusForEntityType:(CNEntit
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetAuthorizationStatusForEntityType) eventData:evData whenNoHandlerAvailable:nil];
     
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_cnDispatcher fireEvent:event];
     return [evData[kPPContactStoreAuthorizationStatusValue] integerValue];
 }
 
@@ -74,7 +74,7 @@ HOOKPrefixInstance(NSArray<CNContact *> *,unifiedContactsMatchingPredicate:(NSPr
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetUnifiedContactsMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_cnDispatcher fireEvent:event];
     
     *error = evData[kPPContactStoreErrorValue];
     return evData[kPPContactStoreContactsArrayValue];
@@ -96,7 +96,7 @@ HOOKPrefixInstance(CNContact*, unifiedContactWithIdentifier:(NSString *)identifi
     SAFEADD(evData, kPPContactStoreUnifiedContactIdentifierValue, identifier)
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetUnifiedContactWithIdentifier) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_cnDispatcher fireEvent:event];
     *error = evData[kPPContactStoreErrorValue];
     return evData[kPPContactStoreContactValue];
     
@@ -110,7 +110,7 @@ HOOKPrefixInstance(BOOL, enumerateContactsWithFetchRequest:(CNContactFetchReques
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreEnumerateContactsWithFetchRequest) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_cnDispatcher fireEvent:event];
     
     BOOL evReturnValue = [evData[kPPContactStoreBOOLReturnValue] boolValue];
     if (!evReturnValue) {
@@ -139,7 +139,7 @@ HOOKPrefixInstance(NSArray<CNGroup*>*, groupsMatchingPredicate:(NSPredicate *)pr
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetGroupsMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_cnDispatcher fireEvent:event];
     *error = evData[kPPContactStoreErrorValue];
     return evData[kPPContactStoreGroupsArrayValue];
 }
@@ -159,7 +159,7 @@ HOOKPrefixInstance(NSArray<CNContainer*>*, containersMatchingPredicate:(NSPredic
     SAFEADD(evData, kPPContactStoreContainersArrayValue, containers)
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetContainersMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_cnDispatcher fireEvent:event];
     *error = evData[kPPContactStoreErrorValue];
     return evData[kPPContactStoreContainersArrayValue];
 }
@@ -172,7 +172,7 @@ HOOKPrefixInstance(BOOL, executeSaveRequest:(CNSaveRequest *)saveRequest error:(
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactsStoreExecuteSaveRequest) eventData:evData whenNoHandlerAvailable:nil];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_cnDispatcher fireEvent:event];
     
     *error = evData[kPPContactStoreErrorValue];
     BOOL allow = [evData[kPPContactStoreAllowExecuteSaveRequest] boolValue];

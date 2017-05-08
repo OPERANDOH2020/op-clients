@@ -36,7 +36,7 @@ HOOKPrefixInstance(void, setAccelerometerUpdateInterval:(NSTimeInterval)accelero
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetAccelerometerUpdateInterval) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_mmDispatcher fireEvent:event];
 }
 
 
@@ -53,7 +53,7 @@ HOOKPrefixInstance(void, setGyroUpdateInterval:(NSTimeInterval)gyroUpdateInterva
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetGyroUpdateInterval) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_mmDispatcher fireEvent:event];
 }
 
 HOOKPrefixInstance(void, setDeviceMotionUpdateInterval:(NSTimeInterval)deviceMotionUpdateInterval) {
@@ -68,7 +68,7 @@ HOOKPrefixInstance(void, setDeviceMotionUpdateInterval:(NSTimeInterval)deviceMot
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetDeviceMotionUpdateInterval) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_mmDispatcher fireEvent:event];
 }
 
 
@@ -84,13 +84,13 @@ HOOKPrefixInstance(void, setMagnetometerUpdateInterval:(NSTimeInterval)magnetome
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetMagnetometerUpdateInterval) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_mmDispatcher fireEvent:event];
 }
 
 HOOKPrefixInstance(void, startMagnetometerUpdates){
     __weak typeof(self) weakSelf = self;
     
-    [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartMagnetometerUpdates) executionBlock:^{
+    [_mmDispatcher fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartMagnetometerUpdates) executionBlock:^{
         CALL_PREFIXED(weakSelf, startMagnetometerUpdates);
         
     } executionBlockKey:kPPConfirmationCallbackBlock];
@@ -112,13 +112,13 @@ HOOKPrefixInstance(void, startMagnetometerUpdates){
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartMagnetometerUpdatesToQueueUsingHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_mmDispatcher fireEvent:event];
 }
 
 HOOKPrefixInstance(void, startAccelerometerUpdates) {
     __weak typeof(self) weakSelf = self;
     
-    [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartAccelerometerUpdates) executionBlock:^{
+    [_mmDispatcher fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartAccelerometerUpdates) executionBlock:^{
         CALL_PREFIXED(weakSelf, startAccelerometerUpdates);
     } executionBlockKey:kPPConfirmationCallbackBlock];
 }
@@ -140,7 +140,7 @@ HOOKPrefixInstance(void, startAccelerometerUpdatesToQueue:(NSOperationQueue *)qu
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartAccelerometerUpdatesToQueueUsingHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_mmDispatcher fireEvent:event];
 }
 
 
@@ -148,7 +148,7 @@ HOOKPrefixInstance(void, startAccelerometerUpdatesToQueue:(NSOperationQueue *)qu
 
 HOOKPrefixInstance(void, startGyroUpdates) {
     __weak typeof(self) weakSelf = self;
-    [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartGyroUpdates) executionBlock:^{
+    [_mmDispatcher fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartGyroUpdates) executionBlock:^{
         CALL_PREFIXED(weakSelf, startGyroUpdates);
         
     } executionBlockKey:kPPConfirmationCallbackBlock];
@@ -170,12 +170,12 @@ HOOKPrefixInstance(void, startGyroUpdatesToQueue:(NSOperationQueue *)queue withH
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartGyroUpdatesToQueueUsingHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_mmDispatcher fireEvent:event];
 }
 
 HOOKPrefixInstance(void, startDeviceMotionUpdates) {
     __weak typeof(self) weakSelf = self;
-    [[PPEventDispatcher sharedInstance] fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdates) executionBlock:^{
+    [_mmDispatcher fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdates) executionBlock:^{
         CALL_PREFIXED(weakSelf, startDeviceMotionUpdates);
     } executionBlockKey:kPPConfirmationCallbackBlock];
 }
@@ -192,7 +192,7 @@ HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitude
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdatesUsingReferenceFrame) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_mmDispatcher fireEvent:event];
 }
 
 HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitudeReferenceFrame)referenceFrame toQueue:(NSOperationQueue *)queue withHandler:(CMDeviceMotionHandler)handler) {
@@ -213,72 +213,72 @@ HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitude
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdatesUsingReferenceFrameToQueueUsingHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [[PPEventDispatcher sharedInstance] fireEvent:event];
+    [_mmDispatcher fireEvent:event];
 }
 
 
 HOOKPrefixInstance(BOOL, isGyroAvailable){
     BOOL actualValue = CALL_PREFIXED(self, isGyroAvailable);
     
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroAvailable) atKey:kPPMotionManagerIsGyroAvailableValue];
+    return [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroAvailable) atKey:kPPMotionManagerIsGyroAvailableValue];
 }
 
 
 
 HOOKPrefixInstance(BOOL, isAccelerometerAvailable) {
     BOOL actualValue = CALL_PREFIXED(self, isAccelerometerAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsAccelerometerAvailable) atKey:kPPMotionManagerIsAccelerometerAvailableValue];
+    return [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsAccelerometerAvailable) atKey:kPPMotionManagerIsAccelerometerAvailableValue];
 }
 
 HOOKPrefixInstance(BOOL, isMagnetometerAvailable) {
     BOOL actualValue = CALL_PREFIXED(self, isMagnetometerAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerAvailable) atKey:kPPMotionManagerIsMagnetometerAvailableValue];
+    return [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerAvailable) atKey:kPPMotionManagerIsMagnetometerAvailableValue];
 }
 
 HOOKPrefixInstance(BOOL, isDeviceMotionAvailable) {
     BOOL actualValue = CALL_PREFIXED(self, isDeviceMotionAvailable);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionAvailable) atKey:kPPMotionManagerIsDeviceMotionAvailableValue];
+    return [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionAvailable) atKey:kPPMotionManagerIsDeviceMotionAvailableValue];
 }
 
 
 HOOKPrefixInstance(BOOL, isGyroActive){
     BOOL actualValue = CALL_PREFIXED(self, isGyroActive);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsGyroActiveValue];
+    return [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsGyroActiveValue];
 }
 
 HOOKPrefixInstance(BOOL, isAccelerometerActive) {
     BOOL actualValue = CALL_PREFIXED(self, isAccelerometerActive);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsAccelerometerActiveValue];
+    return [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsAccelerometerActiveValue];
 }
 
 HOOKPrefixInstance(BOOL, isMagnetometerActive) {
     BOOL actualValue = CALL_PREFIXED(self, isMagnetometerActive);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerActive) atKey:kPPMotionManagerIsMagnetometerActiveValue];
+    return [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerActive) atKey:kPPMotionManagerIsMagnetometerActiveValue];
 }
 
 HOOKPrefixInstance(BOOL, isDeviceMotionActive) {
     BOOL actualValue = CALL_PREFIXED(self, isDeviceMotionActive);
-    return [[PPEventDispatcher sharedInstance] resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionActive) atKey:kPPMotionManagerIsDeviceMotionActiveValue];
+    return [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionActive) atKey:kPPMotionManagerIsDeviceMotionActiveValue];
 }
 
 HOOKPrefixInstance(CMAccelerometerData *, accelerometerData){
     CMAccelerometerData *data = CALL_PREFIXED(self, accelerometerData);
-    return [[PPEventDispatcher sharedInstance] resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentAccelerometerData) atKey:kPPMotionManagerGetCurrentAccelerometerDataValue];
+    return [_mmDispatcher resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentAccelerometerData) atKey:kPPMotionManagerGetCurrentAccelerometerDataValue];
 }
 
 HOOKPrefixInstance(CMGyroData*, gyroData) {
     CMGyroData *data = CALL_PREFIXED(self, gyroData);
-    return [[PPEventDispatcher sharedInstance] resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentGyroData) atKey:kPPMotionManagerGetCurrentGyroDataValue];
+    return [_mmDispatcher resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentGyroData) atKey:kPPMotionManagerGetCurrentGyroDataValue];
 }
 
 HOOKPrefixInstance(CMMagnetometerData*, magnetometerData){
     CMMagnetometerData *data = CALL_PREFIXED(self, magnetometerData);
-    return [[PPEventDispatcher sharedInstance] resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentMagnetometerData) atKey:kPPMotionManagerGetCurrentMagnetometerDataValue];
+    return [_mmDispatcher resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentMagnetometerData) atKey:kPPMotionManagerGetCurrentMagnetometerDataValue];
 }
 
 HOOKPrefixInstance(CMDeviceMotion*, deviceMotion) {
     CMDeviceMotion *motion = CALL_PREFIXED(self, deviceMotion);
-    return [[PPEventDispatcher sharedInstance] resultForEventValue:motion ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentDeviceMotionData) atKey:kPPMotionManagerGetCurrentDeviceMotionValue];
+    return [_mmDispatcher resultForEventValue:motion ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentDeviceMotionData) atKey:kPPMotionManagerGetCurrentDeviceMotionValue];
 }
 
 @end

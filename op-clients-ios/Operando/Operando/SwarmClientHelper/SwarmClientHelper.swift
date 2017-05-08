@@ -50,6 +50,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     
     func loginWith(email: String, password: String, withCompletion completion: UserOperationCallback?)
     {
+
         workingQueue.async {
             self.whenThereWasAnError = { error in
                 completion?(error, .empty)
