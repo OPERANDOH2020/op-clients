@@ -43,26 +43,18 @@ var ElementsPool = function(){
 
 ElementsPool.prototype = {
 
-    addSelector: function (selector, task) {
-        var self = this;
-        this.inputElements = [];
+
+    addJob : function(task){
         this.task = task;
+    },
+
+    addSelector: function (selector) {
+        var self = this;
         var scanInterval = null;
 
         var scanDocument = function () {
             jQuery(selector).each(function (index, element) {
-
-                /*if (element.hasAttribute("type") && element.getAttribute("type") == "text") {
-                    var prev = $(element).prev("label")[0];
-                    if (prev && labels.indexOf($(prev).text()) >= 0) {
-                        self.addInputElement(element);
-                    } else {
-                        self.addInputElement(element, true);
-                    }
-                }
-                else {*/
-                    self.addInputElement(element);
-                //}
+                 self.addInputElement(element);
             });
         };
 
@@ -76,6 +68,39 @@ ElementsPool.prototype = {
             }
         }
 
+        document.addEventListener("visibilitychange", handleVisibilityChange, false);
+        handleVisibilityChange();
+        setTimeout(scanDocument, 100);
+    },
+
+    searchTextInputSelector: function (selector) {
+        var self = this;
+        var scanInterval = null;
+
+        var scanDocument = function () {
+            jQuery(selector).each(function (index, element) {
+
+                if (element.hasAttribute("type") && element.getAttribute("type") == "text") {
+                    var prev = $(element).prev("label")[0];
+                    if (prev && labels.indexOf($(prev).text()) >= 0) {
+                        self.addInputElement(element);
+                    } else {
+                        console.log("aici");
+                        self.addInputElement(element, true);
+                    }
+                }
+            });
+        };
+
+        function handleVisibilityChange() {
+            if (document.hidden) {
+                if (scanInterval) {
+                    clearInterval(scanInterval);
+                }
+            } else {
+                scanInterval = setInterval(scanDocument, 1000);
+            }
+        }
         document.addEventListener("visibilitychange", handleVisibilityChange, false);
         handleVisibilityChange();
         setTimeout(scanDocument, 100);
@@ -106,7 +131,7 @@ ElementsPool.prototype = {
 
     setFieldTasks: function (taskFn) {
     }
-}
+};
 
 var ElementsProvider = (function(){
     var instance;

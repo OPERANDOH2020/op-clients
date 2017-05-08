@@ -50,8 +50,9 @@ Preferences.getPreferences("websitePreferences", {
     accept: false
 }, function (preferences) {
     if (Object.keys(preferences).length === 0) {
-        elementsProvider.addSelector("input[type=email], input[name=email], input[id=user_login]",checkElement);
-        //var inputsPool = new ElementsPool("input[type=email], input[name=email], input[id=user_login], input:not([type=email]):not([name=email]):not([id=user_login])[type=text]", checkElement);
+        elementsProvider.addJob(checkElement);
+        elementsProvider.addSelector("input[type=email], input[name=email], input[id=user_login]");
+        elementsProvider.searchTextInputSelector("input[type=text]");
     }
 });
 

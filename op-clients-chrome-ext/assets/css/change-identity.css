@@ -1,13 +1,13 @@
 .pp_identity_popup{
     all:initial;
-    height: 80px;
-    padding: 10px;
+    height: auto!important;
+    padding: 10px!important;
     color:#FFF;
     position: relative;
     display: inline-block;
     clear: both;
-    float: left;
     overflow: hidden;
+    width:320px;
 }
 button.pp_button{
     background: #FFB400!important;
@@ -61,4 +61,5 @@ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
 #deny_identity_substitution{
     font-size:12px!important;
     font-family: sans-serif;
+    display: inline-block;
 }
