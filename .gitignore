@@ -6038,3 +6038,16 @@ CVS
 *.o
 
 *.o
+op-clients-android/PlusPrivacy/.gradle/2.14.1/tasks/_ResideMenu_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock
+op-clients-android/PlusPrivacy/.gradle/2.14.1/tasks/_ResideMenu_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock
+op-clients-android/PlusPrivacy/.gradle/2.14.1/tasks/_libadblockplus-android-webview_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock
+op-clients-android/PlusPrivacy/.gradle/2.14.1/tasks/_libadblockplus-android-webview_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock
+op-clients-android/PlusPrivacy/.gradle/2.14.1/tasks/_libadblockplus-android_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock
+op-clients-android/PlusPrivacy/.gradle/2.14.1/tasks/_libadblockplus-android_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock
+op-clients-android/PlusPrivacy/.idea/inspectionProfiles/Project_Default.xml
+op-clients-android/PlusPrivacy/ResideMenu/build/outputs/aar/ResideMenu-debug.aar
+op-clients-android/PlusPrivacy/build/kotlin-build/caches/artifact-difference.tab.values
+op-clients-android/PlusPrivacy/build/kotlin-build/caches/artifact-difference.tab.values.at
+op-clients-android/PlusPrivacy/build/kotlin-build/caches/artifact-difference.tab.values.s
+op-clients-android/PlusPrivacy/libadblockplus-android-webview/build/outputs/aar/libadblockplus-android-webview-debug.aar
+op-clients-android/PlusPrivacy/libadblockplus-android/build/outputs/aar/libadblockplus-android-debug.aar

@@ -61,13 +61,12 @@ public class NotificationsActivity extends AppCompatActivity {
                                         ((TextView) convertView.findViewById(R.id.tv_description)).setText(
                                                 result.getNotifications().get(position).getDescription()
                                         );
-                                        ((TextView) convertView.findViewById(R.id.btn_action)).setText(
-                                                result.getNotifications().get(position).getActions().get(0).getTitle()
+                                        ((TextView) convertView.findViewById(R.id.btn_action)).setText("OK"
                                         );
                                         convertView.findViewById(R.id.btn_action).setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                String action = result.getNotifications().get(position).getActions().get(0).getKey();
+                                                String action = result.getNotifications().get(position).getAction_name();
                                                 onNotificationTapped(action, result.getNotifications().get(position).getNotificationId());
                                                 result.getNotifications().remove(position);
                                                 notifyDataSetChanged();

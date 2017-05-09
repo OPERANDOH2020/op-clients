@@ -9,12 +9,10 @@ import java.util.ArrayList;
 public class Notification {
     private String notificationId;
     private String sender;
-    private String type;
-    private String category;
     private String title;
     private String description;
-    private boolean dismissed;
-    private ArrayList<Action> actions;
+    private String zone;
+    private String action_name;
 
     public String getNotificationId() {
         return notificationId;
@@ -22,14 +20,6 @@ public class Notification {
 
     public String getSender() {
         return sender;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getCategory() {
-        return category;
     }
 
     public String getTitle() {
@@ -40,24 +30,11 @@ public class Notification {
         return description;
     }
 
-    public boolean isDismissed() {
-        return dismissed;
+    public String getZone() {
+        return zone;
     }
 
-    public ArrayList<Action> getActions() {
-        return actions;
-    }
-
-    public class Action{
-        String key;
-        String title;
-
-        public String getKey() {
-            return key;
-        }
-
-        public String getTitle() {
-            return title;
-        }
+    public String getAction_name() {
+        return action_name;
     }
 }

@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <org.adblockplus.libadblockplus.android.webview.AdblockWebView
+    <eu.operando.adblock.AdBlockWebView
         android:id="@+id/webView"
         android:layout_width="0dp"
         android:layout_height="0dp"

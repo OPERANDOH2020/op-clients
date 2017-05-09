@@ -8,7 +8,6 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AlertDialog
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.*
 import com.github.clans.fab.FloatingActionMenu
@@ -55,37 +54,41 @@ class KotlinBrowserActivity : AppCompatActivity() {
         })
         val fab_new_tab = findViewById(R.id.fab_new_tab)
         fab_new_tab.setOnClickListener({
-            val dialogLayout = LinearLayout(this@KotlinBrowserActivity)
-            val dialog = AlertDialog.Builder(this@KotlinBrowserActivity).create()
-            dialog.setView(dialogLayout)
-            val params = ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
-            dialogLayout.weightSum = 4f
-            dialogLayout.layoutParams = params
-            dialogLayout.apply {
 
-                val et = EditText(this@KotlinBrowserActivity).apply {
-                    hint = "URL"
-                    layoutParams = TableRow.LayoutParams(0, WRAP_CONTENT, 3f)
-                }
-                addView(et)
-                addView(Button(this@KotlinBrowserActivity).apply {
-                    setOnClickListener {
-                        (viewPager.adapter as TabPagerAdapter).addTab(et.text.toString())
-                        viewPager.setCurrentItem(viewPager.adapter.count - 1, true)
-                        dialog.dismiss()
-                        (this@KotlinBrowserActivity.findViewById(R.id.fab_menu) as FloatingActionMenu).close(true)
-                    }
-                    text = "OK"
-                    layoutParams = TableRow.LayoutParams(0, WRAP_CONTENT, 1f)
-                })
-
-            }
-            dialog.show()
+            (viewPager.adapter as TabPagerAdapter).addTab("www.google.ro")
+            viewPager.setCurrentItem(viewPager.adapter.count - 1, true)
+            (this@KotlinBrowserActivity.findViewById(R.id.fab_menu) as FloatingActionMenu).close(true)
+//            val dialogLayout = LinearLayout(this@KotlinBrowserActivity)
+//            val dialog = AlertDialog.Builder(this@KotlinBrowserActivity).create()
+//            dialog.setView(dialogLayout)
+//            val params = ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+//            dialogLayout.weightSum = 4f
+//            dialogLayout.layoutParams = params
+//            dialogLayout.apply {
+//
+//                val et = EditText(this@KotlinBrowserActivity).apply {
+//                    hint = "URL"
+//                    layoutParams = TableRow.LayoutParams(0, WRAP_CONTENT, 3f)
+//                }
+//                addView(et)
+//                addView(Button(this@KotlinBrowserActivity).apply {
+//                    setOnClickListener {
+//                        (viewPager.adapter as TabPagerAdapter).addTab(et.text.toString())
+//                        viewPager.setCurrentItem(viewPager.adapter.count - 1, true)
+//                        dialog.dismiss()
+//                        (this@KotlinBrowserActivity.findViewById(R.id.fab_menu) as FloatingActionMenu).close(true)
+//                    }
+//                    text = "OK"
+//                    layoutParams = TableRow.LayoutParams(0, WRAP_CONTENT, 1f)
+//                })
+//
+//            }
+//            dialog.show()
         })
         findViewById(R.id.fab_close_tab).setOnClickListener {
             (viewPager.adapter as TabPagerAdapter).removeTab()
         }
-        viewPager.offscreenPageLimit = 3
+        viewPager.offscreenPageLimit = 0
     }
 
 

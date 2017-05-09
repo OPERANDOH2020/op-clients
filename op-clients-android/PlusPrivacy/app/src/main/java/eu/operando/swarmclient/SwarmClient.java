@@ -115,6 +115,7 @@ public class SwarmClient {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.d("swclient EMIT", "startSwarm() called with: swarm = [" + swarm + "], callback = [" + callback + "]");
     }
 
     public void restartSocket() {

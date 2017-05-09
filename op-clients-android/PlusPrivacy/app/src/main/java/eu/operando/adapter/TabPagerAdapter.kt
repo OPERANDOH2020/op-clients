@@ -15,7 +15,7 @@ import it.neokree.materialtabs.MaterialTabHost
  * Created by Edy on 04-Apr-17.
  */
 class TabPagerAdapter(fm: FragmentManager, val context: Context, val tabHost: TabLayout) : FragmentStatePagerAdapter(fm) {
-    private val MAX_PAGE_LIMIT = 3
+    private val MAX_PAGE_LIMIT = 6
     private var fragments: ArrayList<TabFragment> = ArrayList()
     private var tabs: ArrayList<TabLayout.Tab> = ArrayList()
     private var urls: ArrayList<String> = ArrayList()

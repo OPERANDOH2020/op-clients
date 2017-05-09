@@ -13,12 +13,15 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.adblockplus.libadblockplus.android.AdblockEngine;
 import org.adblockplus.libadblockplus.android.webview.AdblockWebView;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +31,8 @@ import java.util.regex.Pattern;
 import java.util.zip.Inflater;
 
 import eu.operando.R;
+import eu.operando.adblock.AdBlockClient;
+import eu.operando.adblock.AdBlockWebView;
 
 /**
  * Created by Edy on 31-Mar-17.
@@ -45,7 +50,7 @@ public class TabFragment extends Fragment {
 
     private ImageView goBtn;
     private ImageView backBtn;
-    private AdblockWebView webView;
+    private AdBlockWebView webView;
     private EditText urlEt;
     private UrlLoadListener urlLoadListener;
 
@@ -106,27 +111,11 @@ public class TabFragment extends Fragment {
         });
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     private void initWebView(View rootView) {
-        webView = (AdblockWebView) rootView.findViewById(R.id.webView);
-        webView.setAdblockEnabled(false);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.setWebViewClient(getWebViewClient());
-//        webView.setInitialScale(1);
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        loadUrl(getArguments().getString("url", "www.google.ro"));
-
-    }
-
-    private WebViewClient getWebViewClient() {
-        return new WebViewClient() {
+        webView = (AdBlockWebView) rootView.findViewById(R.id.webView);
+        webView.setOnPageFinishedListener(new AdBlockWebView.OnPageFinishedListener() {
             @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
+            public void onPageFinished(String url) {
                 urlEt.setText(url);
                 urlEt.clearFocus();
                 hideKeyboard();
@@ -136,9 +125,12 @@ public class TabFragment extends Fragment {
                 Bundle b = new Bundle();
                 b.putString("url",url);
             }
+        });
+        loadUrl(getArguments().getString("url", "www.google.ro"));
 
-        };
     }
+
+
 
     private void goBack() {
         onBackPressed();

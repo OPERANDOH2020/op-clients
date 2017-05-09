@@ -33,7 +33,7 @@ public abstract class SwarmCallback<T extends Swarm> {
     public abstract void call(final T result);
 
     public void result(JSONObject result) {
-        Log.e("Swarms: ", "result: " + result.toString() );
+        Log.e("swclient Swarms: ", "result: " + result.toString() );
         T t = new Gson().fromJson(result.toString(),type);
         call(t);
     }
