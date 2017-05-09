@@ -28,9 +28,11 @@ HOOKPrefixInstance(void, setAccelerometerUpdateInterval:(NSTimeInterval)accelero
     
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
+    
+    __Weak(evData);
     evData[kPPMotionManagerAccelerometerUpdateIntervalValue] = @(accelerometerUpdateInterval);
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_PREFIXED(weakSelf, setAccelerometerUpdateInterval:[evData[kPPMotionManagerAccelerometerUpdateIntervalValue] doubleValue]);
+        CALL_PREFIXED(weakSelf, setAccelerometerUpdateInterval:[weakevData[kPPMotionManagerAccelerometerUpdateIntervalValue] doubleValue]);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
@@ -46,8 +48,10 @@ HOOKPrefixInstance(void, setGyroUpdateInterval:(NSTimeInterval)gyroUpdateInterva
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     evData[kPPMotionManagerGyroUpdateIntervalValue] = @(gyroUpdateInterval);
+    
+    __Weak(evData);
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_PREFIXED(weakSelf, setGyroUpdateInterval:[evData[kPPMotionManagerGyroUpdateIntervalValue] doubleValue]);
+        CALL_PREFIXED(weakSelf, setGyroUpdateInterval:[weakevData[kPPMotionManagerGyroUpdateIntervalValue] doubleValue]);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
@@ -62,8 +66,9 @@ HOOKPrefixInstance(void, setDeviceMotionUpdateInterval:(NSTimeInterval)deviceMot
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     evData[kPPMotionManagerDeviceMotionUpdateIntervalValue] = @(deviceMotionUpdateInterval);
     
+    __Weak(evData);
     PPVoidBlock confirmationOrDefault = ^{
-        CALL_PREFIXED(weakSelf, setDeviceMotionUpdateInterval:[evData[kPPMotionManagerDeviceMotionUpdateIntervalValue] doubleValue]);
+        CALL_PREFIXED(weakSelf, setDeviceMotionUpdateInterval:[weakevData[kPPMotionManagerDeviceMotionUpdateIntervalValue] doubleValue]);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
@@ -103,9 +108,11 @@ HOOKPrefixInstance(void, startMagnetometerUpdates){
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPMotionManagerUpdatesQueue, queue)
     SAFEADD(evData, kPPMotionManagerMagnetometerHandler, handler)
+    
+    __Weak(evData);
     PPVoidBlock confirmationOrDefault = ^{
-        NSOperationQueue *evQueue = evData[kPPMotionManagerUpdatesQueue];
-        CMMagnetometerHandler evHandler = evData[kPPMotionManagerMagnetometerHandler];
+        NSOperationQueue *evQueue = weakevData[kPPMotionManagerUpdatesQueue];
+        CMMagnetometerHandler evHandler = weakevData[kPPMotionManagerMagnetometerHandler];
         [weakSelf rsHook_startMagnetometerUpdatesToQueue:evQueue withHandler:evHandler];
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
@@ -131,9 +138,11 @@ HOOKPrefixInstance(void, startAccelerometerUpdatesToQueue:(NSOperationQueue *)qu
     SAFEADD(evData, kPPMotionManagerUpdatesQueue, queue)
     SAFEADD(evData, kPPMotionManagerAccelerometerHandler, handler);
     
+    __Weak(evData);
+    
     PPVoidBlock confirmationOrDefault = ^{
-        NSOperationQueue *opQueue = evData[kPPMotionManagerUpdatesQueue];
-        CMAccelerometerHandler accHandler = evData[kPPMotionManagerAccelerometerHandler];
+        NSOperationQueue *opQueue = weakevData[kPPMotionManagerUpdatesQueue];
+        CMAccelerometerHandler accHandler = weakevData[kPPMotionManagerAccelerometerHandler];
         CALL_PREFIXED(weakSelf, startAccelerometerUpdatesToQueue:opQueue withHandler:accHandler);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
@@ -160,9 +169,11 @@ HOOKPrefixInstance(void, startGyroUpdatesToQueue:(NSOperationQueue *)queue withH
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPMotionManagerUpdatesQueue, queue)
     SAFEADD(evData, kPPMotionManagerGyroHandler, handler)
+    __Weak(evData);
+    
     PPVoidBlock confirmationOrDefault = ^{
-        NSOperationQueue *evQueue = evData[kPPMotionManagerUpdatesQueue];
-        CMGyroHandler evHandler = evData[kPPMotionManagerGyroHandler];
+        NSOperationQueue *evQueue = weakevData[kPPMotionManagerUpdatesQueue];
+        CMGyroHandler evHandler = weakevData[kPPMotionManagerGyroHandler];
         CALL_PREFIXED(weakSelf, startGyroUpdatesToQueue:evQueue withHandler:evHandler);
         
     };
@@ -184,8 +195,10 @@ HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitude
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     evData[kPPDeviceMotionReferenceFrameValue] = @(referenceFrame);
+    
+    __Weak(evData);
     PPVoidBlock confirmationOrDefault = ^{
-        CMAttitudeReferenceFrame refFrame = [evData[kPPDeviceMotionReferenceFrameValue] integerValue];
+        CMAttitudeReferenceFrame refFrame = [weakevData[kPPDeviceMotionReferenceFrameValue] integerValue];
         CALL_PREFIXED(weakSelf, startDeviceMotionUpdatesUsingReferenceFrame:refFrame);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
@@ -202,11 +215,12 @@ HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitude
     SAFEADD(evData, kPPMotionManagerUpdatesQueue, queue)
     SAFEADD(evData, kPPMotionManagerDeviceMotionHandler, handler)
     evData[kPPDeviceMotionReferenceFrameValue] = @(referenceFrame);
+    __Weak(evData);
     
     PPVoidBlock confirmationOrDefault = ^{
-        NSOperationQueue *evQueue = evData[kPPMotionManagerUpdatesQueue];
-        CMDeviceMotionHandler evHandler = evData[kPPMotionManagerDeviceMotionHandler];
-        CMAttitudeReferenceFrame evFrame = [evData[kPPDeviceMotionReferenceFrameValue] integerValue];
+        NSOperationQueue *evQueue = weakevData[kPPMotionManagerUpdatesQueue];
+        CMDeviceMotionHandler evHandler = weakevData[kPPMotionManagerDeviceMotionHandler];
+        CMAttitudeReferenceFrame evFrame = [weakevData[kPPDeviceMotionReferenceFrameValue] integerValue];
         CALL_PREFIXED(weakSelf, startDeviceMotionUpdatesUsingReferenceFrame:evFrame toQueue:evQueue withHandler:evHandler);
     };
     

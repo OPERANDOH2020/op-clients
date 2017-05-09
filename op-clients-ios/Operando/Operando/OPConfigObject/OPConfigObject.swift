@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import PlusPrivacyCommonUI
 import WebKit
+import PlusPrivacyCommonUI
+import PlusPrivacyCommonTypes
 
 let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
 let kPleaseCheckEmailResetLocalizableKey = "kPleaseCheckEmailResetLocalizableKey"
@@ -38,14 +39,13 @@ class OPConfigObject: NSObject
         weak var weakSelf = self
         
         let plistRepositoryPath = OPConfigObject.pathForFile(named: "SCDRepository")
-        let scdRepository = PlistSCDRepository(plistFilePath: plistRepositoryPath)
+//        let scdRepository = PlistSCDRepository(plistFilePath: plistRepositoryPath)
 
         
         let dependencies = Dependencies(identityManagementRepo:  self.swarmClientHelper,
                                          privacyForBenefitsRepo:  self.swarmClientHelper,
                                          userInfoRepo:            self.swarmClientHelper,
                                          notificationsRepository: self.notificationsRepository,
-                                         scdDocumentsRepository: scdRepository,
                                          accountCallbacks: self.createAccountCallbacks(),
             whenTakingActionForNotification: { weakSelf?.dismiss(notification: $1, andTakeAction: $0) },
             whenRequestingNumOfNotifications: { callback in
@@ -74,6 +74,17 @@ class OPConfigObject: NSObject
     
     func applicationDidStartInWindow(window: UIWindow)
     {
+        
+        class DumSCDRepository: SCDRepository {
+            func retrieveAllDocuments(with callback: (([SCDDocument]?, NSError?) -> Void)?) {
+                
+            }
+        }
+        let vc = CommonUIBUilder.buildFlow(for: DumSCDRepository(), displayModel: CommonUIDisplayModel(), whenExiting: nil)
+        
+        window.rootViewController = vc;
+        return;
+        
         self.initPropertiesOnAppStart()
         self.eraseCredentialsIfFreshAppReinstall()
         self.flowController?.setupBaseHierarchyInWindow(window)

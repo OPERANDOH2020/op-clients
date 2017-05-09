@@ -11,7 +11,8 @@ import WebKit
 
 fileprivate let kIconsMessageHandler = "iconsMessageHandler"
 
-class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UITextFieldDelegate {
+class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UITextFieldDelegate,
+LongPressGestureDelegate {
     
     @IBOutlet weak var addressBarView: UIView!
     @IBOutlet weak var goButton: UIButton!
@@ -26,6 +27,7 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UIT
     private var urlHistory: [URL] = []
     private var currentURLIndex: Int = 0;
     private var whenWebviewFinishesLoading: VoidBlock?
+    private var longPressRecognizer: LongPressGestureRecognizer?
     
     var currentNavigationModel: UIWebViewTabNavigationModel? {
         return UIWebViewTabNavigationModel(urlList: self.urlHistory, currentURLIndex: self.currentURLIndex)
@@ -49,6 +51,8 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UIT
         let configuration = self.createConfigurationWith(processPool: model.processPool)
         let webView = WKWebView(frame: .zero, configuration: configuration)
         self.commonSetupWith(webView: webView, navigationModel: model.navigationModel)
+        self.longPressRecognizer = LongPressGestureRecognizer(webView: webView)
+        self.longPressRecognizer?.longPressGestureDelegate = self
     }
     
     
@@ -357,5 +361,31 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UIT
     
     func pageTitleScript() -> String {
         return "(function(){return document.title;})()"
+    }
+    
+    //MARK: LongPressRecognizer delegate
+    
+    func longPressRecognizer(longPressRecognizer: LongPressGestureRecognizer, didLongPressElements elements: [LongPressElementType : NSURL]) {
+        guard let linkURL = elements[.Link] else {
+            return
+        }
+        
+        let alertController = UIAlertController(title: linkURL.absoluteString ?? "", message: nil, preferredStyle: .actionSheet)
+        
+        let openInNewTabAction: UIAlertAction = UIAlertAction(title: "Open in new tab", style: .default) { [unowned self] action in
+            self.callbacks?.whenUserOpensInNewTab?(linkURL as URL)
+        }
+        
+        let copyAction: UIAlertAction = UIAlertAction(title: "Copy URL", style: .default) { _ in
+            UIPasteboard.general.string = linkURL.absoluteString
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        alertController.addAction(openInNewTabAction)
+        alertController.addAction(copyAction)
+        alertController.addAction(cancelAction)
+        
+        self.callbacks?.whenPresentingAlertController?(alertController)
     }
 }

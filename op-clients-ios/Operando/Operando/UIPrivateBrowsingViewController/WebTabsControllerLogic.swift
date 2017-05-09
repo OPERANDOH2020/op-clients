@@ -56,7 +56,7 @@ class WebTabsControllerLogic: NSObject {
         super.init()
         
         
-        self.addNewDefaultTab()
+        self.addNewTab()
         self.activeTabIndex = 0;
         
         if let webViewTab = callbacks.addNewWebViewTabCallback?() {
@@ -114,19 +114,20 @@ class WebTabsControllerLogic: NSObject {
         callback(nil)
     }
     
-    private func createDefaultWebTab() -> WebTab {
+    private func createNewWebTab(url: URL? = nil) -> WebTab {
         let wt = WebTab()
-        if let url = URL(string: kSearchEngineURL){
-            let nm = UIWebViewTabNavigationModel(urlList: [url], currentURLIndex: 0)
-            wt.navigationModel = nm
-        }
+        
+        let finalURL = url ?? URL(string: kSearchEngineURL)!
+        let nm = UIWebViewTabNavigationModel(urlList: [finalURL], currentURLIndex: 0)
+        wt.navigationModel = nm
+        
         return wt
     }
     
     //MARK:
     
-    private func addNewDefaultTab() {
-        let newTab = self.createDefaultWebTab()
+    private func addNewTab(url: URL? = nil) {
+        let newTab = self.createNewWebTab(url: url)
         self.webTabs.append(newTab)
     }
     
@@ -172,7 +173,7 @@ class WebTabsControllerLogic: NSObject {
         }
         
         if self.webTabs.count == 0 {
-            self.addNewDefaultTab()
+            self.addNewTab()
         }
         
         if activeIndexBeforeChange != self.activeTabIndex ||
@@ -217,7 +218,7 @@ class WebTabsControllerLogic: NSObject {
         }, whenPresentingAlertController: self.callbacks.presentAlertController,
            whenCreatingExternalWebView: { configuration, action in
             guard let tabView = weakSelf?.callbacks.addNewWebViewTabCallback?(),
-                  let newWebTab = weakSelf?.createDefaultWebTab() else {
+                  let newWebTab = weakSelf?.createNewWebTab() else {
                 return nil
             }
             
@@ -242,6 +243,12 @@ class WebTabsControllerLogic: NSObject {
             })
             
             return webView
+        }, whenUserOpensInNewTab: { [unowned self] url in
+
+            self.addNewTab(url: url)
+            self.saveCurrentTabStateWithCompletion {
+                weakSelf?.changeToTab(atIndex: self.webTabs.count - 1, callback: nil)
+            }
         });
     }
     
@@ -281,7 +288,7 @@ class WebTabsControllerLogic: NSObject {
             weakTabsView?.inBusyState = true
             
             weakSelf?.saveCurrentTabStateWithCompletion {
-                weakSelf?.addNewDefaultTab()
+                weakSelf?.addNewTab()
                 weakSelf?.changeToTab(atIndex: (weakSelf?.webTabs.count ?? 0) - 1, callback: closeWebTabsView)
             }
         }

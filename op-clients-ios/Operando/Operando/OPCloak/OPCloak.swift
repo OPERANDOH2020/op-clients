@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import PlusPrivacyCommonTypes
+import PlusPrivacyCommonUI
 
 let kURLSchema = "operando"
 
@@ -74,13 +76,13 @@ class OPCloak {
                 return
             }
             
-            self.scdRepository.registerSCDJson(scdDocument) {
-                if let error = $0 {
-                    OPErrorContainer.displayError(error: error)
-                    return
-                }
-                 OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "Done");
-            }
+//            self.scdRepository.registerSCDJson(scdDocument) {
+//                if let error = $0 {
+//                    OPErrorContainer.displayError(error: error)
+//                    return
+//                }
+//                 OPViewUtils.showOkAlertWithTitle(title: "", andMessage: "Done");
+//            }
            
         }
     }

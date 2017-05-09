@@ -29,25 +29,29 @@
 
 -(void)testSetAccelerometerUpdateInterval_keepsCorrectValueAndIdentifiers {
     
-    const NSTimeInterval updateInterval = 5;
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Expected values to be present on the event"];
-    
-    __Weak(self);
-    
-    self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+    void(^execution)(NSTimeInterval) = ^void(NSTimeInterval updateInterval){
+        XCTestExpectation *expectation = [self expectationWithDescription:@"Expected values to be present on the event"];
         
-        [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock, kPPMotionManagerAccelerometerUpdateIntervalValue]];
+        __Weak(self);
         
-        [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetAccelerometerUpdateInterval)];
+        self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+            
+            [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock, kPPMotionManagerAccelerometerUpdateIntervalValue]];
+            
+            [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetAccelerometerUpdateInterval)];
+            
+            weak_XCTAssert(doublesApproximatelyEqual(updateInterval, [event.eventData[kPPMotionManagerAccelerometerUpdateIntervalValue] doubleValue]), @"Expected update value from event data to be the same as updateInterval!");
+            
+            
+            [expectation fulfill];
+        };
         
-        weak_XCTAssert(doublesApproximatelyEqual(updateInterval, [event.eventData[kPPMotionManagerAccelerometerUpdateIntervalValue] doubleValue]), @"Expected update value from event data to be the same as updateInterval!");
-        
-        
-        [expectation fulfill];
+        self.motionManager.accelerometerUpdateInterval = updateInterval;
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
     };
-    
-    self.motionManager.accelerometerUpdateInterval = updateInterval;
-    [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    execution(1);
+    execution(8);
+    execution(1003);
 }
 
 -(void)testSetAccelerometerUpdateInterval_setsModifiedValue {    
@@ -113,25 +117,45 @@
 
 
 -(void)testSetMagnetometerDeviceUpdateInterval_keepsCorrectValueAndIdentifier {
-    const NSTimeInterval updateInterval = 5.0;
-    __Weak(self);
     
-    XCTestExpectation *expectation = [self expectationWithDescription:@""];
-    self.testDispatcher.testEventHandler = ^void(PPEvent *event){
-        [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetMagnetometerUpdateInterval)];
-        [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock, kPPMotionManagerMagnetometerUpdateIntervalValue]];
+    void(^execution)(NSTimeInterval) = ^void(NSTimeInterval updateInterval){
+        __Weak(self);
         
-        weak_XCTAssert(doublesApproximatelyEqual(updateInterval, [event.eventData[kPPMotionManagerMagnetometerUpdateIntervalValue] doubleValue]));
+        XCTestExpectation *expectation = [self expectationWithDescription:@""];
+        self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+            [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetMagnetometerUpdateInterval)];
+            [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock, kPPMotionManagerMagnetometerUpdateIntervalValue]];
+            
+            weak_XCTAssert(doublesApproximatelyEqual(updateInterval, [event.eventData[kPPMotionManagerMagnetometerUpdateIntervalValue] doubleValue]));
+            
+            [expectation fulfill];
+        };
         
-        [expectation fulfill];
+        self.motionManager.magnetometerUpdateInterval = updateInterval;
+        [self waitForExpectationsWithTimeout:4.0 handler:nil];
     };
     
-    self.motionManager.magnetometerUpdateInterval = updateInterval;
-    [self waitForExpectationsWithTimeout:4.0 handler:nil];
+    execution(4);
+    execution(1003);
+    execution(20);
 }
 
 -(void)testSetMagnetometerDeviceUpdateInterval_setsModifiedValue{
-    const NSTimeInterval initialValue = 1.0;
+    
+    void(^execution)(NSTimeInterval, NSTimeInterval) = ^void(NSTimeInterval initialValue, NSTimeInterval modifiedValue) {
+        self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+            event.eventData[kPPMotionManagerMagnetometerUpdateIntervalValue] = @(modifiedValue);
+            void(^confBlock)() = event.eventData[kPPConfirmationCallbackBlock];
+            confBlock();
+        };
+        
+        self.motionManager.magnetometerUpdateInterval = initialValue;
+        XCTAssert(doublesApproximatelyEqual(modifiedValue, self.motionManager.magnetometerUpdateInterval));
+    };
+    
+    execution(1, 5);
+    execution(100, 3);
+    execution(77, 5445);
 }
 
 @end

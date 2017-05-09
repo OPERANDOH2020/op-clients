@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import PlusPrivacyCommonTypes
-import PlusPrivacyCommonUI
 
 typealias NotificationActionCallback = (_ action: NotificationAction, _ notification: OPNotification) -> Void
 typealias ForgotPasswordCallback = ((_ email: String) -> Void)
@@ -20,7 +18,7 @@ struct Dependencies{
     let privacyForBenefitsRepo: PrivacyForBenefitsRepository?
     let userInfoRepo: UserInfoRepository?
     let notificationsRepository: NotificationsRepository?
-    let scdDocumentsRepository: PlusPrivacyCommonUI.SCDRepository?
+//    let scdDocumentsRepository: PlusPrivacyCommonUI.SCDRepository?
     let accountCallbacks: AccountCallbacks?
     let whenTakingActionForNotification: NotificationActionCallback?
     let whenRequestingNumOfNotifications: NumOfNotificationsRequestCallback?
@@ -39,6 +37,8 @@ class UIFlowController: SSASideMenuDelegate
 {
     let dependencies: Dependencies
     let rootController: UIRootViewController
+    
+    let sharedBrowserController: UIPrivateBrowsingViewController = UINavigationManager.privateBrowsingViewController
     private var sideMenu: SSASideMenu?
     
     init(dependencies: Dependencies)
@@ -139,8 +139,7 @@ class UIFlowController: SSASideMenuDelegate
     }
     
     func displayPrivateBrowsing() {
-        let vc = UINavigationManager.privateBrowsingViewController
-        self.rootController.setMainControllerTo(newController: vc)
+        self.rootController.setMainControllerTo(newController: self.sharedBrowserController)
     }
     
     
@@ -210,15 +209,15 @@ class UIFlowController: SSASideMenuDelegate
     
     
     private func displaySCDDocumentsViewController() {
-        let displayModel = CommonUIDisplayModel()
-        displayModel.exitButtonType = .NoneInvisible
-        displayModel.titleBarHeight = 50
-        guard let repository = self.dependencies.scdDocumentsRepository,
-            let controller = CommonUIBUilder.buildFlow(for: repository, displayModel: displayModel, whenExiting: nil) else {
-            return
-        }
-        
-        self.rootController.setMainControllerTo(newController: controller)
+//        let displayModel = CommonUIDisplayModel()
+//        displayModel.exitButtonType = .NoneInvisible
+//        displayModel.titleBarHeight = 50
+//        guard let repository = self.dependencies.scdDocumentsRepository,
+//            let controller = CommonUIBUilder.buildFlow(for: repository, displayModel: displayModel, whenExiting: nil) else {
+//            return
+//        }
+//        
+//        self.rootController.setMainControllerTo(newController: controller)
         
     }
     

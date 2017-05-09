@@ -59,6 +59,7 @@ struct UIWebViewTabCallbacks {
     let whenCreatingExternalWebView: ((_ configuration: WKWebViewConfiguration,
     _ navigationAction: WKNavigationAction) -> WKWebView?)?
     
+    let whenUserOpensInNewTab: ((_ link: URL) -> Void)?
 }
 
 struct WebTabDescription {
