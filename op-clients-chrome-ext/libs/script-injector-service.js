@@ -1,7 +1,7 @@
 var bus = require("bus-service").bus;
-var portObserversPool = require("observers-pool").portObserversPool;
 var facebookCallback = null;
 var linkedinCallback = null;
+var twitterCallback = null;
 var scriptInjectorService = exports.scriptInjectorService = {
 
     insertFacebookIncreasePrivacyScript: function (data) {
@@ -19,12 +19,21 @@ var scriptInjectorService = exports.scriptInjectorService = {
         });
     },
 
+    insertTwitterIncreasePrivacyScript:function(data){
+        injectScript(data.tabId, "operando/modules/osp/writeTwitterSettings.js", ["FeedbackProgress", "jQuery"], function(){
+            insertCSS(data.tabId, "operando/assets/css/feedback.css");
+        });
+    },
+
     facebookMessage : function (callback){
         facebookCallback = callback;
     },
 
     linkedinMessage:function(callback){
         linkedinCallback = callback;
+    },
+    twitterMessage: function(callback){
+        twitterCallback = callback;
     },
 
     waitingFacebookCommand:function(instructions){
@@ -33,6 +42,9 @@ var scriptInjectorService = exports.scriptInjectorService = {
 
     waitingLinkedinCommand:function(instructions){
         linkedinCallback (instructions);
+    },
+    waitingTwitterCommand:function(instructions){
+        twitterCallback(instructions);
     }
 
 };

@@ -3292,12 +3292,52 @@ var ospSettingsConfigPreferences = {
     },
 
     "twitter": {
-        allow_login_verification:{
+        protect_tweets:{
             read:{
-                name: "Allow/disallow Login verification (a phone must be added first).",
-                url: "https://twitter.com/settings/security",
+                name: "Protect my Tweets?",
+                url: "https://twitter.com/settings/safety",
                 jquery_selector:{
-                    element:"input[id='login_verification']",
+                    element:"input[id='user_protected']",
+                    valueType:"checkbox"
+                },
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+
+                    No:{
+                        name:"No"
+                    }
+                }
+            },
+            write:{
+                name: "Protect my Tweets?",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    Yes: {
+                        data: {
+                            "user[protected]":1,
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        data: {
+                            "user[protected]":0,
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"Yes"
+            }
+        },
+      tweet_location:{
+            read:{
+                name: "Add a location to my Tweets",
+                url: "https://twitter.com/settings/safety",
+                jquery_selector:{
+                    element:"input[name='user[geo_enabled]']",
                     valueType:"checkbox"
                 },
                 availableSettings:{
@@ -3311,58 +3351,32 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                recommended:"allow"
-            }
-        },
-        allow_password_reset:{
-            read:{
-                name: "Allow/disallow further personal information for Password reset.",
-                url: "https://twitter.com/settings/security",
-                jquery_selector:{
-                    element:"input[id='user_no_username_only_password_reset']",
-                    valueType:"checkbox"
-                },
+                name: "Add a location to my Tweets",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
                 availableSettings:{
-                    true:{
-                        name:"Allow"
+                    allow: {
+                        data: {
+                            "user[geo_enabled]":1
+                        },
+                        name: "Yes"
                     },
-
-                    false:{
-                        name:"Disallow"
+                    disallow:{
+                        data: {
+                            "user[geo_enabled]":0
+                        },
+                        name:"No"
                     }
-                }
-            },
-            write:{
-                recommended:true
-            }
-        },
-        allow_login_with_code:{
-            read:{
-                name: "Allow/disallow login to your account with either a password or login code.",
-                url: "https://twitter.com/settings/security",
-                jquery_selector:{
-                    element:"input[name='user[one_factor_optout_settings]']",
-                    valueType:"radio"
                 },
-                availableSettings:{
-                    on:{
-                        name:"Allow my account to log in with either a password or login code"
-                    },
-
-                    off:{
-                        name:"Always require a password to log in to my account"
-                    }
-                }
-            },
-            write:{
-                recommended:"off"
+                data: {},
+                recommended:"disallow"
             }
         },
 
-        allow_photo_tag: {
+       allow_photo_tag: {
             read: {
                 name: "Allow/disallow anyone to tag you in photos.",
-                url: "https://twitter.com/settings/security",
+                url: "https://twitter.com/settings/safety",
                 jquery_selector: {
                     element: "input[name='user[allow_media_tagging]']",
                     valueType: "radio"
@@ -3380,9 +3394,34 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write: {
+                name: "Add a location to my Tweets",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings: {
+                    all: {
+                        data: {
+                            "user[allow_media_tagging]": "all"
+                        },
+                        name: "All"
+                    },
+                    following: {
+                        data: {
+                            "user[allow_media_tagging]": "following"
+                        },
+                        name: "Following"
+                    },
+                    none: {
+                        data: {
+                            "user[allow_media_tagging]": "none"
+                        },
+                        name: "None"
+                    }
+                },
+                data: {},
                 recommended: "none"
             }
         },
+        /*
         tweet_privacy:{
             read:{
                 name: "Allow/disallow only those you approve to receive your Tweets.",
@@ -3425,18 +3464,6 @@ var ospSettingsConfigPreferences = {
                 recommended:"0"
             }
         },
-        /*delete_locations:{
-         read:{
-         name: "Delete all location information from past Tweets.",
-         url: "https://twitter.com/settings/security",
-         jquery_selector:{
-         //TODO: angular press button method.
-         }
-         },
-         write:{
-         recommended:"Yes"
-         }
-         },*/
         allow_email_search:{
             read:{
                 name: "Allow/disallow others find you by your email address",
@@ -3607,8 +3634,8 @@ var ospSettingsConfigPreferences = {
 }
 
 
-var fs = require('fs');
-fs.writeFileSync(process.env.SWARM_PATH+"/operando/adapters/PSW/resources/OSP.settings4.json",JSON.stringify(ospSettingsConfigPreferences,null,4));
+//var fs = require('fs');
+//fs.writeFileSync(process.env.SWARM_PATH+"/operando/adapters/PSW/resources/OSP.settings4.json",JSON.stringify(ospSettingsConfigPreferences,null,4));
 
 
 

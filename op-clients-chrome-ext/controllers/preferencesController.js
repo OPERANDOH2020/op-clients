@@ -33,6 +33,7 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
                     switch (socialNetwork){
                         case "Facebook": url="https://facebook.com"; cookieName = "c_user"; break;
                         case "LinkedIn": url="https://www.linkedin.com"; cookieName = "li_at"; break;
+                        case "Twitter": url="https://www.twitter.com"; cookieName = "auth_token"; break;
                     }
 
 
@@ -132,6 +133,7 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
 
                         case "facebook" : showModalProgress("Facebook",settings, watchDogService.applyFacebookSettings);break;
                         case "linkedin" : showModalProgress("LinkedIn",settings, watchDogService.applyLinkedInSettings);break;
+                        case "twitter" : showModalProgress("Twitter",settings, watchDogService.applyTwitterSettings);break;
 
                     }
 
