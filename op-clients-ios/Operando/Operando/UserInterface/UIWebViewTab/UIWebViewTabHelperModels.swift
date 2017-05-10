@@ -42,14 +42,16 @@ struct UIWebViewTabNavigationModel {
     }
 }
 
-struct UIWebViewTabNewWebViewModel {
-    let navigationModel: UIWebViewTabNavigationModel?
-    let processPool: WKProcessPool
+enum WebViewSetupParameter {
+    case fullConfiguration(WKWebViewConfiguration)
+    case processPool(WKProcessPool)
 }
 
-struct UIWebViewTabExistingWebViewModel {
-    let webView: WKWebView
+struct UIWebViewTabNewWebViewModel {
+    let navigationModel: UIWebViewTabNavigationModel?
+    let setupParameter: WebViewSetupParameter
 }
+
 
 struct UIWebViewTabCallbacks {
     let whenUserChoosesToViewTabs: VoidBlock?

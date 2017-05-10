@@ -11,6 +11,7 @@
 #import "TestDispatcher.h"
 #import "CommonBaseTest.h"
 
+
 @interface CMMotionManagerTests : CommonBaseTest
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @end
@@ -56,6 +57,8 @@
 
 -(void)testSetAccelerometerUpdateInterval_setsModifiedValue {    
     void(^execution)(NSTimeInterval, NSTimeInterval) = ^void(NSTimeInterval firstUpdateInterval, NSTimeInterval modifiedValue){
+        
+        XCTAssert(!doublesApproximatelyEqual(firstUpdateInterval, modifiedValue));
         self.testDispatcher.testEventHandler = ^void(PPEvent *event){
             event.eventData[kPPMotionManagerAccelerometerUpdateIntervalValue] = @(modifiedValue);
             void(^confirmation)()  = event.eventData[kPPConfirmationCallbackBlock];
@@ -100,6 +103,8 @@
 -(void)testSetGyroUpdateInterval_setsModifiedValue{
     
     void (^execution)(NSTimeInterval initialInterval, NSTimeInterval modifiedInterval) = ^void(NSTimeInterval initialInterval, NSTimeInterval modifiedInterval){
+        
+        XCTAssert(!doublesApproximatelyEqual(initialInterval, modifiedInterval));
         self.testDispatcher.testEventHandler = ^void(PPEvent *event){
             event.eventData[kPPMotionManagerGyroUpdateIntervalValue] = @(modifiedInterval);
             void (^confirmation)() = event.eventData[kPPConfirmationCallbackBlock];
@@ -143,6 +148,8 @@
 -(void)testSetMagnetometerDeviceUpdateInterval_setsModifiedValue{
     
     void(^execution)(NSTimeInterval, NSTimeInterval) = ^void(NSTimeInterval initialValue, NSTimeInterval modifiedValue) {
+        XCTAssert(!doublesApproximatelyEqual(initialValue, modifiedValue));
+        
         self.testDispatcher.testEventHandler = ^void(PPEvent *event){
             event.eventData[kPPMotionManagerMagnetometerUpdateIntervalValue] = @(modifiedValue);
             void(^confBlock)() = event.eventData[kPPConfirmationCallbackBlock];
@@ -157,5 +164,63 @@
     execution(100, 3);
     execution(77, 5445);
 }
+
+
+-(void)testSetDeviceMotionUpdateInterval_keepsCorrectValueAndIdentifier{
+    void(^execution)(NSTimeInterval) = ^void(NSTimeInterval updateInterval){
+        __Weak(self);
+        XCTestExpectation *expectaction = [self expectationWithDescription:@""];
+        self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+            [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetDeviceMotionUpdateInterval)];
+            [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock,
+                                                                               kPPMotionManagerDeviceMotionUpdateIntervalValue]];
+            
+            weak_XCTAssert(doublesApproximatelyEqual(updateInterval, [event.eventData[kPPMotionManagerDeviceMotionUpdateIntervalValue] doubleValue]));
+            
+            [expectaction fulfill];
+        };
+        
+        self.motionManager.deviceMotionUpdateInterval = updateInterval;
+        [self waitForExpectationsWithTimeout:1.0 handler:nil];
+    };
+    
+    execution(5);
+    execution(20);
+    execution(14);
+}
+
+-(void)testSetDeviceMotionInterval_setsModifiedValue{
+    void(^execution)(NSTimeInterval, NSTimeInterval) = ^void(NSTimeInterval initialValue, NSTimeInterval modifiedValue){
+        XCTAssert(!doublesApproximatelyEqual(initialValue, modifiedValue));
+        self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+            event.eventData[kPPMotionManagerDeviceMotionUpdateIntervalValue] = @(modifiedValue);
+            void(^confBlock)() = event.eventData[kPPConfirmationCallbackBlock];
+            confBlock();
+        };
+        
+        self.motionManager.deviceMotionUpdateInterval = initialValue;
+        XCTAssert(doublesApproximatelyEqual(self.motionManager.deviceMotionUpdateInterval, modifiedValue));
+    };
+    
+    execution(10, 44);
+    execution(54, 71);
+    execution(1.3, 5.5);
+}
+
+-(void)testStartMagnetometerUpdates_keepsCorrectIdentifier{
+    __Weak(self);
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
+    self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+        [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartMagnetometerUpdates)];
+        [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock]];
+        [expectation fulfill];
+    };
+    
+    [self.motionManager startMagnetometerUpdates];
+    [self waitForExpectationsWithTimeout:1.0 handler:nil];
+}
+
+
 
 @end

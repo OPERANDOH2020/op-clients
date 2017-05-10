@@ -75,16 +75,6 @@ class OPConfigObject: NSObject
     func applicationDidStartInWindow(window: UIWindow)
     {
         
-        class DumSCDRepository: SCDRepository {
-            func retrieveAllDocuments(with callback: (([SCDDocument]?, NSError?) -> Void)?) {
-                
-            }
-        }
-        let vc = CommonUIBUilder.buildFlow(for: DumSCDRepository(), displayModel: CommonUIDisplayModel(), whenExiting: nil)
-        
-        window.rootViewController = vc;
-        return;
-        
         self.initPropertiesOnAppStart()
         self.eraseCredentialsIfFreshAppReinstall()
         self.flowController?.setupBaseHierarchyInWindow(window)

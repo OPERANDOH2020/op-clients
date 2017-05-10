@@ -21,7 +21,7 @@ LongPressGestureDelegate {
     @IBOutlet weak var webToolbarView: UIWebToolbarView!
     @IBOutlet weak var addressTF: UITextField!
     
-    private var webView: WKWebView?
+    private(set) var webView: WKWebView?
     
     private var callbacks: UIWebViewTabCallbacks?
     private var urlHistory: [URL] = []
@@ -48,18 +48,24 @@ LongPressGestureDelegate {
     func setupWith(model: UIWebViewTabNewWebViewModel, callbacks: UIWebViewTabCallbacks?) {
         self.callbacks = callbacks
         
-        let configuration = self.createConfigurationWith(processPool: model.processPool)
-        let webView = WKWebView(frame: .zero, configuration: configuration)
+        let webView = self.buildWebView(with: model.setupParameter)
         self.commonSetupWith(webView: webView, navigationModel: model.navigationModel)
         self.longPressRecognizer = LongPressGestureRecognizer(webView: webView)
         self.longPressRecognizer?.longPressGestureDelegate = self
+        
     }
     
-    
-    func setupWith(model: UIWebViewTabExistingWebViewModel, callbacks: UIWebViewTabCallbacks?){
-        self.callbacks = callbacks
-        self.commonSetupWith(webView: model.webView, navigationModel: nil)
+    private func buildWebView(with param: WebViewSetupParameter) -> WKWebView {
+        switch param {
+        case .fullConfiguration(let configuration):
+            return WKWebView(frame: .zero, configuration: configuration)
+            
+        case .processPool(let processPool):
+            let conf = self.createConfigurationWith(processPool: processPool)
+            return WKWebView(frame: .zero, configuration: conf)
+        }
     }
+    
     
     
     func changeNumberOfItems(to numOfItems: Int){
