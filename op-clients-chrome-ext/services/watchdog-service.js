@@ -109,33 +109,44 @@ operandoCore
         }
 
         function increaseTwitterPrivacy(settings, callback, jobFinished) {
-            chrome.tabs.create({url: TWITTER_PRIVACY_URL, "selected": false}, function (tab) {
-                twitterTabId = tab.id;
-                messengerService.send("insertTwitterIncreasePrivacyScript", {tabId:twitterTabId});
-            });
 
-            var handleTwitterMessages = function(msg){
-                if (msg.data.status == "waitingTwitterCommand") {
-                    messengerService.send("sendMessageToTwitter",{sendToPort:"applyTwitterSettings",command: "applySettings", settings: settings});
+            chrome.tabs.getCurrent(function(currentTab){
 
-                } else {
-                    if (msg.data.status == "settings_applied") {
-                        jobFinished();
-                        messengerService.off("twitterMessage",handleTwitterMessages);
-                        //chrome.tabs.remove(twitterTabId);
-                    }
-                    else {
-                        if (msg.data.status == "progress") {
-                            console.log(msg.data.progress);
-                            callback("twitter", msg.data.progress, settings.length);
-                        } else {
-                            chrome.tabs.update(twitterTabId, {active: true});
+
+                chrome.tabs.create({url: TWITTER_PRIVACY_URL, "selected": false}, function (tab) {
+                    twitterTabId = tab.id;
+                    messengerService.send("insertTwitterIncreasePrivacyScript", {tabId:twitterTabId});
+                });
+
+                var handleTwitterMessages = function(msg){
+                    if (msg.data.status == "waitingTwitterCommand") {
+                        messengerService.send("sendMessageToTwitter",{sendToPort:"applyTwitterSettings",command: "applySettings", settings: settings});
+
+                    } else {
+                        if (msg.data.status == "settings_applied") {
+                            jobFinished();
+                            messengerService.off("twitterMessage",handleTwitterMessages);
+                            chrome.tabs.remove(twitterTabId);
+                        }
+                        else {
+                            if (msg.data.status == "progress") {
+                                console.log(msg.data.progress);
+                                callback("twitter", msg.data.progress, settings.length);
+                            } else if(msg.data.status == "giveMeCredentials") {
+                                chrome.tabs.update(twitterTabId, {active: true});
+                            } else if(msg.data.status=="takeMeBackInExtension"){
+                                chrome.tabs.update(currentTab.id, {active: true});
+                            }
                         }
                     }
-                }
-            };
+                };
 
-            messengerService.on("twitterMessage", handleTwitterMessages);
+                messengerService.on("twitterMessage", handleTwitterMessages);
+
+
+            });
+
+
 
         }
 
@@ -195,7 +206,7 @@ operandoCore
 
             var jobFinished = function(){
                 jobsNumber --;
-                if(jobsNumber ===0){
+                if(jobsNumber === 0){
                     completedCallback();
                 }
             }

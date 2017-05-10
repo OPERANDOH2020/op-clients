@@ -40,6 +40,7 @@ permissions = http://*/* https://*/*
 
 webAccessible = operando/assets/images/icons/operando_24.png
   operando/assets/images/icons/abp-19.png
+  operando/assets/images/icons/operando/operando.png
   operando/modules/pfb/modal/allow_social_network_modal.html
 
 [contentScripts]

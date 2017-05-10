@@ -44,6 +44,7 @@ var scriptInjectorService = exports.scriptInjectorService = {
         linkedinCallback (instructions);
     },
     waitingTwitterCommand:function(instructions){
+        console.log(instructions);
         twitterCallback(instructions);
     }
 

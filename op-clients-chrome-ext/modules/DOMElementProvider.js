@@ -85,7 +85,6 @@ ElementsPool.prototype = {
                     if (prev && labels.indexOf($(prev).text()) >= 0) {
                         self.addInputElement(element);
                     } else {
-                        console.log("aici");
                         self.addInputElement(element, true);
                     }
                 }

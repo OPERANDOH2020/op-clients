@@ -9,6 +9,9 @@ port.onMessage.addListener(function (response) {
     myRealIdentity = myIdentities.find(function (identity) {
         return identity.isReal;
     });
+    if(myRealIdentity == undefined){
+        myRealIdentity = myIdentities[0];
+    }
 
 });
 
@@ -27,7 +30,7 @@ var tooltipTemplate = "<div class='pp_identity_popup'>"
 
 function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (myRealIdentity === null) {
+    if (myRealIdentity === null || myRealIdentity == undefined) {
         return re.test(email);
     }
     else {
@@ -58,7 +61,6 @@ Preferences.getPreferences("websitePreferences", {
 
 
 var checkElement = function (element, whenEmailCompleted) {
-    console.log(whenEmailCompleted);
     (function (element) {
         element.on("sleepAll", function () {
             element.off("keyup paste focus", checkIfEmailIsValid);
@@ -94,7 +96,6 @@ var checkElement = function (element, whenEmailCompleted) {
                                 });
 
                                 $(identitiesSelect).on("click", function () {
-                                    console.log(element.tooltipster("status"));
                                     element.tooltipster('open');
                                 });
 

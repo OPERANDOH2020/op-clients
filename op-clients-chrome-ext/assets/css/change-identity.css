@@ -1,4 +1,5 @@
-.pp_identity_popup{
+.pp_identity_popup,
+.pp_twitter_popup{
     all:initial;
     height: auto!important;
     padding: 10px!important;
@@ -9,6 +10,11 @@
     overflow: hidden;
     width:320px;
 }
+.pp_twitter_popup{
+    width:480px;
+    padding: 10px!important;
+}
+.pp_twitter_popup
 button.pp_button{
     background: #FFB400!important;
     margin: 10px 0px 10px 10px!important;
@@ -46,6 +52,16 @@ padding-left: 24px!important;
 font-size: 13px!important;
 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
 }
+
+div.pp-twitter-header{
+    all:initial;
+    color:#FFF;
+    background: url('chrome-extension://__MSG_@@extension_id__/operando/assets/images/icons/operando/operando.png') no-repeat left center transparent;
+    padding-left: 32px!important;
+    font-size: 15px!important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
+}
+
 
 .tooltipster-content{
  padding: 8px!important;
