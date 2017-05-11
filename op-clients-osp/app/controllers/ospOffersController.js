@@ -1,7 +1,7 @@
-privacyPlusApp.requires.push('ngMaterial');
-privacyPlusApp.requires.push('ngMessages');
-privacyPlusApp.requires.push('mdPickers');
-privacyPlusApp.requires.push('datatables');
+ospApp.requires.push('ngMaterial');
+ospApp.requires.push('ngMessages');
+ospApp.requires.push('mdPickers');
+ospApp.requires.push('datatables');
 
 function AddOspOfferController($scope, $element, $rootScope, close, connectionService, Notification, offer, modalTitle, saveBtn) {
 
@@ -221,7 +221,7 @@ function OspOffersController($scope, $rootScope, connectionService, DTColumnDefB
     SharedService.setLocation("ospZone");
 };
 
-privacyPlusApp.controller("ospOffersController", OspOffersController);
+ospApp.controller("ospOffersController", OspOffersController);
 
 angular.element(document).ready(function () {
     angular.bootstrap(document.getElementById('osp-offers'), ['plusprivacy']);

@@ -1,4 +1,4 @@
-privacyPlusApp.controller("ospLoginController", function ($scope, connectionService, messengerService, userService,SharedService,$window) {
+angular.module("ospApp").controller("ospLoginController", function ($scope, connectionService, messengerService, userService,SharedService,$window) {
 
     $scope.requestProcessed = false;
     $scope.user = {

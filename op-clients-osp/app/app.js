@@ -1,6 +1,6 @@
 var ospApp =  angular.module("ospApp", ['angularModalService', 'ui-notification',
-    'sharedService','mgcrea.ngStrap','ngRoute']);
-privacyPlusApp.config(function (NotificationProvider) {
+    /*'sharedService','mgcrea.ngStrap',*/'ngRoute','oc.lazyLoad']);
+ospApp.config(function (NotificationProvider) {
     NotificationProvider.setOptions({
         delay: 10000,
         startTop: 20,
@@ -34,11 +34,16 @@ ospApp.filter('isEmpty', [function() {
         return angular.equals({}, object);
     }
 }]);
-
-ospApp.config(function($routeProvider){
+ospApp.config(function ($routeProvider) {
    $routeProvider.
        when("/",{
-           templateUrl:"../assets/templates/login_osp.html"
+           templateUrl:"../assets/templates/login_osp.html",
+           controller: 'ospLoginController',
+           resolve: {
+               loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                   return $ocLazyLoad.load('/app/controllers/ospLoginController.js');
+               }]
+           }
        }).
        when("/login",{
            templateUrl:"../assets/templates/login_osp.html"

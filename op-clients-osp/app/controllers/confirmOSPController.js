@@ -10,7 +10,7 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-privacyPlusApp.controller("confirmOSPController", function ($scope, $location, connectionService,$window) {
+ospApp.controller("confirmOSPController", function ($scope, $location, connectionService,$window) {
 
     $scope.loadingData = true;
     var confirmationCode = getParameterByName("confirmation_code");

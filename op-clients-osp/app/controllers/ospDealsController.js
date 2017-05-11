@@ -1,5 +1,5 @@
-privacyPlusApp.requires.push('datatables');
-privacyPlusApp.requires.push('chart.js');
+ospApp.requires.push('datatables');
+ospApp.requires.push('chart.js');
 
 var dealsController = function ($scope, connectionService, messengerService, $window, DTColumnDefBuilder, ModalService, Notification, SharedService) {
 
@@ -129,7 +129,7 @@ var dealsController = function ($scope, connectionService, messengerService, $wi
 };
 
 
-privacyPlusApp.controller("ospDashboardController", dealsController);
+ospApp.controller("ospDashboardController", dealsController);
 
 
 angular.element(document).ready(function() {

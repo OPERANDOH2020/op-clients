@@ -1,4 +1,4 @@
-privacyPlusApp.directive("uiLoader", function () {
+ospApp.directive("uiLoader", function () {
     return {
         restrict: 'E',
         replace: true,

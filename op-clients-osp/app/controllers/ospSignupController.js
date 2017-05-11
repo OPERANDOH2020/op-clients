@@ -1,6 +1,6 @@
-privacyPlusApp.requires.push('ngIntlTelInput');
+ospApp.requires.push('ngIntlTelInput');
 
-privacyPlusApp
+ospApp
     .config(function (ngIntlTelInputProvider) {
         ngIntlTelInputProvider.set({
             initialCountry: 'gb',
@@ -9,7 +9,7 @@ privacyPlusApp
             }
         });
     });
-privacyPlusApp.controller("OSPSignupController", function ($scope, connectionService, SharedService) {
+ospApp.controller("OSPSignupController", function ($scope, connectionService, SharedService) {
 
     $scope.requestInProgress = false;
     $scope.user = {};

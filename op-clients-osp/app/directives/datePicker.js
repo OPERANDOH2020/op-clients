@@ -1,4 +1,4 @@
-privacyPlusApp.controller('DatePickerCtrl', ['$scope', '$mdDialog', 'currentDate', '$mdMedia', function($scope, $mdDialog, currentDate, $mdMedia) {
+ospApp.controller('DatePickerCtrl', ['$scope', '$mdDialog', 'currentDate', '$mdMedia', function($scope, $mdDialog, currentDate, $mdMedia) {
     var self = this;
     this.currentDate = currentDate;
     this.currentMoment = moment(self.currentDate);
@@ -49,7 +49,7 @@ privacyPlusApp.controller('DatePickerCtrl', ['$scope', '$mdDialog', 'currentDate
     };
 }]);
 
-privacyPlusApp.factory("$mdDatePicker", ["$mdDialog", function($mdDialog) {
+ospApp.factory("$mdDatePicker", ["$mdDialog", function($mdDialog) {
     var datePicker = function(targetEvent, currentDate) {
         if (!angular.isDate(currentDate)) currentDate = Date.now();
 
@@ -66,7 +66,7 @@ privacyPlusApp.factory("$mdDatePicker", ["$mdDialog", function($mdDialog) {
     return datePicker;
 }]);
 
-privacyPlusApp.directive("input", ["$mdDatePicker", "$timeout", function($mdDatePicker, $timeout) {
+ospApp.directive("input", ["$mdDatePicker", "$timeout", function($mdDatePicker, $timeout) {
     return {
         restrict: 'E',
         require: '?ngModel',
