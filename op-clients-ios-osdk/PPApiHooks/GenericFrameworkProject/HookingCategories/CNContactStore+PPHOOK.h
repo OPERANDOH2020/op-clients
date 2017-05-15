@@ -8,8 +8,10 @@
 
 #import <Contacts/Contacts.h>
 #import "NSObject+AutoSwizzle.h"
-#import "PPEventDispatcher+Internal.h"
+
+ #import "PPEventDispatcher+Internal.h"
 
 @interface CNContactStore(PPHOOK)
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher);
 @end
+

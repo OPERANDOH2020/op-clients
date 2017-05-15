@@ -16,9 +16,9 @@ import SwarmClient
 
 typealias ServerResponseHandler = (_ data: [Any]) -> Void
 
-func print(_ items: Any ...){
-    
-}
+//func print(_ items: Any ...){
+//    
+//}
 
 class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         IdentitiesManagementRepository,
@@ -506,6 +506,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     return
                 }
                 
+                print(dataArray)
                 guard let pfbDeals = SwarmClientResponseParsers.parsePfbDeals(from: dataDict) else{
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
                     completion?([], error)

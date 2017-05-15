@@ -32,15 +32,15 @@ class WebAdBlocker: NSObject {
         
         let blockIfEngineInitialized: VoidBlock = {
             if let identifier = self.identifier {
-                PPEventsPipelineFactory.eventsDispatcher().removeHandler(withIdentifier: identifier)
+                PPEventDispatcher.sharedInstance().removeHandler(withIdentifier: identifier)
             }
             
-            self.identifier = PPEventsPipelineFactory.eventsDispatcher().insertNewHandler(atTop: { (event, next) in
+            self.identifier = PPEventDispatcher.sharedInstance().insertNewHandler(atTop: { (event, next) in
                 defer {
                     next?()
                 }
                 
-                guard event.eventType == PPEventType.EventAllowWebViewRequest,
+                guard event.eventIdentifier.eventType == PPEventType.PPWKWebViewEvent,
                     let request = event.eventData?[kPPWebViewRequest] as? URLRequest else {
                         return
                 }
@@ -66,7 +66,7 @@ class WebAdBlocker: NSObject {
     
     func endBlocking() {
         if let identifier = self.identifier {
-            PPEventsPipelineFactory.eventsDispatcher().removeHandler(withIdentifier: identifier)
+            PPEventDispatcher.sharedInstance().removeHandler(withIdentifier: identifier)
         }
     }
 }

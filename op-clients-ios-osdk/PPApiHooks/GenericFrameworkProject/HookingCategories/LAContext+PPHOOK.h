@@ -8,8 +8,10 @@
 
 
 #import "PPEventDispatcher+Internal.h"
+/*
 #import <LocalAuthentication/LocalAuthentication.h>
 
 @interface LAContext(PPHOOK)
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher);
 @end
+*/

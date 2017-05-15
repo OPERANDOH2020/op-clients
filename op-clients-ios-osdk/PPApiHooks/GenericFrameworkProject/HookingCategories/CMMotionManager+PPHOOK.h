@@ -6,7 +6,7 @@
 //  Copyright © 2017 RomSoft. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
+//#import <CoreLocation/CoreLocation.h>
 #import "PPEventDispatcher+Internal.h"
 #import <CoreMotion/CoreMotion.h>
 

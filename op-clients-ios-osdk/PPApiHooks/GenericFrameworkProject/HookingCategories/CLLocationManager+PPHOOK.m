@@ -12,7 +12,7 @@
 #import "NSObject+AutoSwizzle.h"
 
 
-PPEventDispatcher *_locDispatcher;
+/*PPEventDispatcher *_locDispatcher;
 
 @implementation CLLocationManager(PPHOOK)
 
@@ -106,4 +106,5 @@ HOOKPrefixInstance(CLLocation*, location) {
 
 
 
-@end
+@end */
+

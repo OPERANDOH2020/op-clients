@@ -221,6 +221,183 @@
     [self waitForExpectationsWithTimeout:1.0 handler:nil];
 }
 
+-(void)testStartMagnetometerUpdatesToQueue_keepsCorrectValuesAndIdentifier {
+    __Weak(self);
+    XCTestExpectation *expectaction = [self expectationWithDescription:@""];
+    
+    NSOperationQueue *opQueue = [[NSOperationQueue alloc] init];
+    void(^handler)(CMMagnetometerData*, NSError*) = ^void(CMMagnetometerData* data, NSError* error){
+        
+    };
+    
+    self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+        [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartMagnetometerUpdatesToQueueUsingHandler)];
+        
+        [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPMotionManagerMagnetometerHandler,
+                                                                           kPPMotionManagerUpdatesQueue,
+                                                                           kPPConfirmationCallbackBlock]];
+        void(^evHandler)(CMMagnetometerData*, NSError*) = event.eventData[kPPMotionManagerMagnetometerHandler];
+        NSOperationQueue *evQueue = event.eventData[kPPMotionManagerUpdatesQueue];
+        weak_XCTAssert(evHandler == handler);
+        weak_XCTAssert(evQueue == opQueue);
+        [expectaction fulfill];
+    };
+    
+    [self.motionManager startMagnetometerUpdatesToQueue:opQueue withHandler:handler];
+    [self waitForExpectationsWithTimeout:1.0 handler:nil];
+}
+
+
+-(void)testStartAccelerometerUpdates_keepsCorrectIdentifier {
+    __Weak(self);
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
+    
+    self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+        [weakself assertIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartAccelerometerUpdates) equals:event.eventIdentifier];
+        
+        [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock]];
+        [expectation fulfill];
+    };
+    
+    [self.motionManager startAccelerometerUpdates];
+    [self waitForExpectationsWithTimeout:1.0 handler:nil];
+}
+
+
+-(void)testStartAccelerometerUpdatesToQueue_keepsCorrectValuesAndIdentifier {
+    __Weak(self);
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    CMAccelerometerHandler handler = ^void(CMAccelerometerData* data, NSError *error){
+        
+    };
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
+    self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+        [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartAccelerometerUpdatesToQueueUsingHandler)];
+        
+        CMAccelerometerHandler evHandler = event.eventData[kPPMotionManagerAccelerometerHandler];
+        NSOperationQueue *evQueue = event.eventData[kPPMotionManagerUpdatesQueue];
+        weak_XCTAssert(evHandler == handler);
+        weak_XCTAssert(queue == evQueue);
+        [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock]];
+        [expectation fulfill];
+    };
+    
+    [self.motionManager startAccelerometerUpdatesToQueue:queue withHandler:handler];
+    [self waitForExpectationsWithTimeout:1.0 handler:nil];
+}
+
+
+-(void)testStartGyroUpdates_keepsCorrectIdentifierAndValues{
+    __Weak(self);
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
+    self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+        [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock]];
+        [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartGyroUpdates)];
+        [expectation fulfill];
+    };
+    
+    [self.motionManager startGyroUpdates];
+    [self waitForExpectationsWithTimeout:1.0 handler:nil];
+}
+
+
+-(void)testStartGyroUpdatesToQueue_keepsCorrectIdentifierAndValues{
+    __Weak(self);
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    CMGyroHandler handler = ^void(CMGyroData *data, NSError *error){
+        
+    };
+    
+    self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+        [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartGyroUpdatesToQueueUsingHandler)];
+        
+        [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock,
+                                                                           kPPMotionManagerUpdatesQueue,
+                                                                           kPPMotionManagerGyroHandler]];
+        NSOperationQueue *evQueue = event.eventData[kPPMotionManagerUpdatesQueue];
+        CMGyroHandler evHandler = event.eventData[kPPMotionManagerGyroHandler];
+        weak_XCTAssert(evQueue == queue);
+        weak_XCTAssert(handler == evHandler);
+        [expectation fulfill];
+    };
+    
+    [self.motionManager startGyroUpdatesToQueue:queue withHandler:handler];
+    [self waitForExpectationsWithTimeout:1.0 handler:nil];
+}
+
+
+-(void)testStartDeviceMotionUpdates_keepsCorrectIdentifierAndValues{
+    __Weak(self);
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
+    self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+        [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdates)];
+        [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock]];
+        [expectation fulfill];
+    };
+    
+    [self.motionManager startDeviceMotionUpdates];
+    [self waitForExpectationsWithTimeout:1.0 handler:nil];
+}
+
+-(void)testStartDeviceMotionUpdatesWithReferenceFrame_keepsCorrectIdentifierAndValues{
+    __Weak(self);
+    void(^execution)(CMAttitudeReferenceFrame) = ^void(CMAttitudeReferenceFrame frame){
+        XCTestExpectation *expectation = [self expectationWithDescription:@""];
+        self.testDispatcher.testEventHandler = ^void(PPEvent *e){
+            [weakself assertIdentifier:e.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdatesUsingReferenceFrame)];
+            [weakself assertDictionary:e.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock,
+                                                                           kPPDeviceMotionReferenceFrameValue]];
+            CMAttitudeReferenceFrame evFrame = [e.eventData[kPPDeviceMotionReferenceFrameValue] integerValue];
+            weak_XCTAssert(evFrame == frame);
+            [expectation fulfill];
+        };
+        [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:frame];
+        [self waitForExpectationsWithTimeout:1.0 handler:nil];
+    };
+    
+    execution(CMAttitudeReferenceFrameXMagneticNorthZVertical);
+    execution(CMAttitudeReferenceFrameXArbitraryZVertical);
+}
+
+-(void)testStartDeviceMotionUpdatesToQueue_keepsCorrectIdentifierAndValues{
+    __Weak(self);
+    
+    void(^execution)(CMAttitudeReferenceFrame) = ^void(CMAttitudeReferenceFrame frame){
+        XCTestExpectation *expectation = [self expectationWithDescription:@""];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        CMDeviceMotionHandler handler = ^void(CMDeviceMotion *dm, NSError *error){
+            
+        };
+        
+        self.testDispatcher.testEventHandler = ^void(PPEvent *event){
+            [weakself assertIdentifier:event.eventIdentifier equals:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdatesUsingReferenceFrameToQueueUsingHandler)];
+            
+            [weakself assertDictionary:event.eventData containsValuesForKeys:@[kPPConfirmationCallbackBlock,
+                                                                               kPPMotionManagerUpdatesQueue,
+                                                                               kPPMotionManagerDeviceMotionHandler,
+                                                                               kPPDeviceMotionReferenceFrameValue]];
+            CMDeviceMotionHandler evHandler = event.eventData[kPPMotionManagerDeviceMotionHandler];
+            NSOperationQueue *evQueue = event.eventData[kPPMotionManagerUpdatesQueue];
+            CMAttitudeReferenceFrame evFrame = [event.eventData[kPPDeviceMotionReferenceFrameValue] integerValue];
+            
+            weak_XCTAssert(evFrame == frame);
+            weak_XCTAssert(evQueue == queue);
+            weak_XCTAssert(evHandler == handler);
+            
+            [expectation fulfill];
+        };
+        
+        [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:frame toQueue:queue withHandler:handler];
+        [self waitForExpectationsWithTimeout:1.0 handler:nil];
+    };
+    
+    execution(CMAttitudeReferenceFrameXArbitraryZVertical);
+    execution(CMAttitudeReferenceFrameXArbitraryCorrectedZVertical);
+    execution(CMAttitudeReferenceFrameXMagneticNorthZVertical);
+}
 
 
 @end

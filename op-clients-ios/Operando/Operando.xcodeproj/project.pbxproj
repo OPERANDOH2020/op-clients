@@ -118,8 +118,8 @@
 		987E71811E8BB94F0006B240 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987E717B1E8BB90C0006B240 /* SwarmClient.framework */; };
 		987E71821E8BB94F0006B240 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987E717B1E8BB90C0006B240 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		987E71881E8BC8D40006B240 /* UIWebViewTabHelperModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E71871E8BC8D40006B240 /* UIWebViewTabHelperModels.swift */; };
-		987E718B1E8BDD480006B240 /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71891E8BDD260006B240 /* PPApiHooks.framework */; };
-		987E718C1E8BDD480006B240 /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71891E8BDD260006B240 /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9881567A1EC9783B0009FBB1 /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 988156781EC978110009FBB1 /* PPApiHooks.framework */; };
+		9881567B1EC9783B0009FBB1 /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 988156781EC978110009FBB1 /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
@@ -186,9 +186,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				987E718C1E8BDD480006B240 /* PPApiHooks.framework in Embed Frameworks */,
 				9859186E1EC2138C00877E67 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */,
 				987E71821E8BB94F0006B240 /* SwarmClient.framework in Embed Frameworks */,
+				9881567B1EC9783B0009FBB1 /* PPApiHooks.framework in Embed Frameworks */,
 				985918681EC210BD00877E67 /* PlusPrivacyCommonUI.framework in Embed Frameworks */,
 				98D045DD1E8AA81100D97E56 /* PPWebContentBlocker.framework in Embed Frameworks */,
 			);
@@ -337,7 +337,7 @@
 		9870840A1E8E938E00D9F8E9 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		987E717B1E8BB90C0006B240 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		987E71871E8BC8D40006B240 /* UIWebViewTabHelperModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewTabHelperModels.swift; path = UserInterface/UIWebViewTab/UIWebViewTabHelperModels.swift; sourceTree = "<group>"; };
-		987E71891E8BDD260006B240 /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
+		988156781EC978110009FBB1 /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
@@ -399,10 +399,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9881567A1EC9783B0009FBB1 /* PPApiHooks.framework in Frameworks */,
 				9859186D1EC2138C00877E67 /* PlusPrivacyCommonTypes.framework in Frameworks */,
 				98D045DB1E8AA80300D97E56 /* PPWebContentBlocker.framework in Frameworks */,
 				985918661EC210B400877E67 /* PlusPrivacyCommonUI.framework in Frameworks */,
-				987E718B1E8BDD480006B240 /* PPApiHooks.framework in Frameworks */,
 				987E71811E8BB94F0006B240 /* SwarmClient.framework in Frameworks */,
 				985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */,
 			);
@@ -501,9 +501,9 @@
 		982D31601E84252F00FE2FB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				988156781EC978110009FBB1 /* PPApiHooks.framework */,
 				9859186B1EC2137500877E67 /* PlusPrivacyCommonTypes.framework */,
 				985918651EC210B400877E67 /* PlusPrivacyCommonUI.framework */,
-				987E71891E8BDD260006B240 /* PPApiHooks.framework */,
 				98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */,
 			);
 			name = Frameworks;

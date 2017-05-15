@@ -27,12 +27,12 @@
     NSArray *classList = @[ [NSURLSession class],
                             [UIDevice class],
                             [HookURLProtocol class],
-                            [LAContext class],
-                            [CNContactStore class],
+//                            [LAContext class],
+//                            [CNContactStore class],
                             [CMPedometer class],
                             [CMMotionManager class],
                             [CMAltimeter class],
-                            [CLLocationManager class],
+//                            [CLLocationManager class],
                             [AVCaptureDevice class]];
     
     

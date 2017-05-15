@@ -102,7 +102,7 @@ HOOKPrefixInstance(void, startMagnetometerUpdates){
 }
 
 
--(void)rsHook_startMagnetometerUpdatesToQueue:(NSOperationQueue *)queue withHandler:(CMMagnetometerHandler)handler {
+HOOKPrefixInstance(void, startMagnetometerUpdatesToQueue:(NSOperationQueue *)queue withHandler:(CMMagnetometerHandler)handler) {
     
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
@@ -113,7 +113,7 @@ HOOKPrefixInstance(void, startMagnetometerUpdates){
     PPVoidBlock confirmationOrDefault = ^{
         NSOperationQueue *evQueue = weakevData[kPPMotionManagerUpdatesQueue];
         CMMagnetometerHandler evHandler = weakevData[kPPMotionManagerMagnetometerHandler];
-        [weakSelf rsHook_startMagnetometerUpdatesToQueue:evQueue withHandler:evHandler];
+        CALL_PREFIXED(weakSelf, startMagnetometerUpdatesToQueue:evQueue withHandler:evHandler);
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     

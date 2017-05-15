@@ -10,7 +10,8 @@
 #import "JRSwizzle.h"
 #import "CNContactStore+PPHOOK.h"
 
-PPEventDispatcher *_cnDispatcher;
+
+ PPEventDispatcher *_cnDispatcher;
 
 @implementation CNContactStore(PPHOOK)
 
@@ -184,3 +185,5 @@ HOOKPrefixInstance(BOOL, executeSaveRequest:(CNSaveRequest *)saveRequest error:(
 }
 
 @end
+
+

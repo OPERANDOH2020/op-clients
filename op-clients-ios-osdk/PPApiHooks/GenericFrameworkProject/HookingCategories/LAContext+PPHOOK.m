@@ -10,7 +10,8 @@
 #import "NSObject+AutoSwizzle.h"
 #import "LAContext+PPHOOK.h"
 
-PPEventDispatcher *_laDispatcher;
+/*
+ PPEventDispatcher *_laDispatcher;
 
 @implementation LAContext(PPHOOK)
 
@@ -79,3 +80,5 @@ HOOKPrefixInstance(void, evaluateAccessControl:(SecAccessControlRef)accessContro
 
 
 @end
+ */
+

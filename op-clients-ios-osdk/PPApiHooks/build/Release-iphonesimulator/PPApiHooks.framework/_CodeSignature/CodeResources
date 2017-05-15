@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/Common.h</key>
 		<data>
-		Ncwgr9Okim6As6fUpmz5GMXDSdE=
+		dmfWpYZ5vAEGp5CKMkVF84arPzk=
 		</data>
 		<key>Headers/PPApiHooks.h</key>
 		<data>
-		W0ZiiG0pRp/7+NOl98ATeqbdBHA=
+		5IpZBIKweZ8Qaq7EUu0ip4IXXmM=
 		</data>
 		<key>Headers/PPEvent.h</key>
 		<data>
@@ -20,9 +20,13 @@
 		<data>
 		ctYOdk0QGFFZBCK9lrKCcjoo5c8=
 		</data>
+		<key>Headers/PPEventIdentifier.h</key>
+		<data>
+		wC2egLFnPu7MNcm0xR/sNiG+J7U=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		Mg8Jr7md0lp1C6qgYPaMpFa+4cc=
+		MHyXfe4ZxB7X7qHQ6uRRJPP11C4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -35,22 +39,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Ncwgr9Okim6As6fUpmz5GMXDSdE=
+			dmfWpYZ5vAEGp5CKMkVF84arPzk=
 			</data>
 			<key>hash2</key>
 			<data>
-			GS4BlV6eYMJ4piMnsEI9c073MJsZAC4rsxCx8WOs1iA=
+			BmK55YgmrfpB8AyUC1HEGd8r9eK04e6mMDFcxoaDI/U=
 			</data>
 		</dict>
 		<key>Headers/PPApiHooks.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			W0ZiiG0pRp/7+NOl98ATeqbdBHA=
+			5IpZBIKweZ8Qaq7EUu0ip4IXXmM=
 			</data>
 			<key>hash2</key>
 			<data>
-			lWrz8GuW5Ik+20rGLtig5RlK31C72GTxFGA5iiwAm3Y=
+			dnK1GLhqOs2t31eBvQgrcuPSiZu5zxVtmAxULL4LV7g=
 			</data>
 		</dict>
 		<key>Headers/PPEvent.h</key>
@@ -73,6 +77,17 @@
 			<key>hash2</key>
 			<data>
 			pidptiXbZNbPTCgAsY5Xb0hgXSfz/1QWf7qu162INOs=
+			</data>
+		</dict>
+		<key>Headers/PPEventIdentifier.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wC2egLFnPu7MNcm0xR/sNiG+J7U=
+			</data>
+			<key>hash2</key>
+			<data>
+			bK+kpkuyzS67BgRFhXPjvtN/4YKpNpj3iCvUfUm5ZLc=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
