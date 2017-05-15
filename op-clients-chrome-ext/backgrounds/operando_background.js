@@ -17,7 +17,6 @@ var HEADERS_TO_STRIP_LOWERCASE = [
 ];
 
 var DependencyManager = require("DependencyManager").DependencyManager;
-//var TabsManager = require("TabsManager").TabsManager;
 
 webRequest.onHeadersReceived.addListener(
     function (details) {

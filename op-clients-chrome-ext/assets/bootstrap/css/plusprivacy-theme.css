@@ -2274,6 +2274,10 @@ padding-left: 5px;
     background: url("/operando/assets/images/linkedin32.png") no-repeat left center;
 }
 
+#sn_preferences h2.twitter_icon{
+    background: url("/operando/assets/images/twitter32.png") no-repeat left center;
+}
+
 .anti-tracking-settings{
  margin-top: 10px;
  float:right;

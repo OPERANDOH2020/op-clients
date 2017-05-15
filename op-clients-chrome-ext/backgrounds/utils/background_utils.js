@@ -48,3 +48,7 @@ function injectScript(id, file, dependencies, callback) {
         insertJavascriptFile(id, file, callback);
     }
 }
+
+function getDomainFromUrl(url){
+    return new URL(url).hostname;
+}

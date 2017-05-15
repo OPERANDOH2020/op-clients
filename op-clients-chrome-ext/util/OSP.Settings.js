@@ -3292,12 +3292,52 @@ var ospSettingsConfigPreferences = {
     },
 
     "twitter": {
-        allow_login_verification:{
+        protect_tweets:{
             read:{
-                name: "Allow/disallow Login verification (a phone must be added first).",
-                url: "https://twitter.com/settings/security",
+                name: "Protect my Tweets?",
+                url: "https://twitter.com/settings/safety",
                 jquery_selector:{
-                    element:"input[id='login_verification']",
+                    element:"input[id='user_protected']",
+                    valueType:"checkbox"
+                },
+                availableSettings:{
+                    Yes:{
+                        name:"Yes"
+                    },
+
+                    No:{
+                        name:"No"
+                    }
+                }
+            },
+            write:{
+                name: "Protect my Tweets?",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    Yes: {
+                        data: {
+                            "user[protected]":1,
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        data: {
+                            "user[protected]":0,
+                        },
+                        name:"No"
+                    }
+                },
+                data: {},
+                recommended:"Yes"
+            }
+        },
+      tweet_location:{
+            read:{
+                name: "Add a location to my Tweets",
+                url: "https://twitter.com/settings/safety",
+                jquery_selector:{
+                    element:"input[name='user[geo_enabled]']",
                     valueType:"checkbox"
                 },
                 availableSettings:{
@@ -3311,58 +3351,32 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                recommended:"allow"
-            }
-        },
-        allow_password_reset:{
-            read:{
-                name: "Allow/disallow further personal information for Password reset.",
-                url: "https://twitter.com/settings/security",
-                jquery_selector:{
-                    element:"input[id='user_no_username_only_password_reset']",
-                    valueType:"checkbox"
-                },
+                name: "Add a location to my Tweets",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
                 availableSettings:{
-                    true:{
-                        name:"Allow"
+                    allow: {
+                        data: {
+                            "user[geo_enabled]":1
+                        },
+                        name: "Yes"
                     },
-
-                    false:{
-                        name:"Disallow"
+                    disallow:{
+                        data: {
+                            "user[geo_enabled]":0
+                        },
+                        name:"No"
                     }
-                }
-            },
-            write:{
-                recommended:true
-            }
-        },
-        allow_login_with_code:{
-            read:{
-                name: "Allow/disallow login to your account with either a password or login code.",
-                url: "https://twitter.com/settings/security",
-                jquery_selector:{
-                    element:"input[name='user[one_factor_optout_settings]']",
-                    valueType:"radio"
                 },
-                availableSettings:{
-                    on:{
-                        name:"Allow my account to log in with either a password or login code"
-                    },
-
-                    off:{
-                        name:"Always require a password to log in to my account"
-                    }
-                }
-            },
-            write:{
-                recommended:"off"
+                data: {},
+                recommended:"disallow"
             }
         },
 
-        allow_photo_tag: {
+       allow_photo_tag: {
             read: {
                 name: "Allow/disallow anyone to tag you in photos.",
-                url: "https://twitter.com/settings/security",
+                url: "https://twitter.com/settings/safety",
                 jquery_selector: {
                     element: "input[name='user[allow_media_tagging]']",
                     valueType: "radio"
@@ -3380,136 +3394,154 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write: {
+                name: "Allow/disallow anyone to tag you in photos.",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings: {
+                    all: {
+                        data: {
+                            "user[allow_media_tagging]": "all"
+                        },
+                        name: "All"
+                    },
+                    following: {
+                        data: {
+                            "user[allow_media_tagging]": "following"
+                        },
+                        name: "Following"
+                    },
+                    none: {
+                        data: {
+                            "user[allow_media_tagging]": "none"
+                        },
+                        name: "None"
+                    }
+                },
+                data: {},
                 recommended: "none"
             }
         },
-        tweet_privacy:{
-            read:{
-                name: "Allow/disallow only those you approve to receive your Tweets.",
-                url: "https://twitter.com/settings/security",
-                jquery_selector:{
-                    element:"input[id='user_protected']",
-                    valueType:"checkbox"
-                },
-                availableSettings: {
-                    1: {
-                        name: "On"
-                    },
-                    0: {
-                        name: "Off"
-                    }
-                }
-            },
-            write:{
-                recommended:"0"
-            }
-        },
-        allow_location:{
-            read:{
-                name: "Enable Twitter to add your location to your tweets.",
-                url: "https://twitter.com/settings/security",
-                jquery_selector:{
-                    element:"input[id='user_geo_enabled']",
-                    valueType:"checkbox"
-                },
-                availableSettings: {
-                    1: {
-                        name: "On"
-                    },
-                    0: {
-                        name: "Off"
-                    }
-                }
-            },
-            write:{
-                recommended:"0"
-            }
-        },
-        /*delete_locations:{
-         read:{
-         name: "Delete all location information from past Tweets.",
-         url: "https://twitter.com/settings/security",
-         jquery_selector:{
-         //TODO: angular press button method.
-         }
-         },
-         write:{
-         recommended:"Yes"
-         }
-         },*/
         allow_email_search:{
             read:{
                 name: "Allow/disallow others find you by your email address",
-                url: "https://twitter.com/settings/security",
+                url: "https://twitter.com/settings/safety",
                 jquery_selector:{
                     element:"input[id='user_discoverable_by_email']",
                     valueType:"checkbox"
                 },
                 availableSettings: {
-                    1: {
-                        name: "On"
+                    allow: {
+                        name: "Allow"
                     },
-                    0: {
-                        name: "Off"
+                    disallow: {
+                        name: "Disallow"
                     }
                 }
             },
             write:{
-                recommended:0
+                name: "Allow/disallow others find you by your email address",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    allow: {
+                        data: {
+                            "user[discoverable_by_email]":1
+                        },
+                        name: "Allow"
+                    },
+                    disallow:{
+                        data: {
+                            "user[discoverable_by_email]":0
+                        },
+                        name:"Disallow"
+                    }
+                },
+                recommended:"disallow"
             }
         },
         allow_phone_search:{
             read:{
-                name: "Allow/disallow others find you by your phone number",
-                url: "https://twitter.com/settings/security",
+                name: "Allow/disallow others find you by your mobile phone number",
+                url: "https://twitter.com/settings/safety",
                 jquery_selector:{
                     element:"input[id='user_mobile_discoverable']",
                     valueType:"checkbox"
                 },
                 availableSettings: {
-                    1: {
-                        name: "On"
+                    allow: {
+                        name: "Allow"
                     },
-                    0: {
-                        name: "Off"
+                    disallow: {
+                        name: "Disallow"
                     }
                 }
             },
             write:{
-                recommended:0
+                name: "Allow/disallow others find you by your mobile phone number",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    allow: {
+                        data: {
+                            "user[discoverable_by_mobile_phone]":1
+                        },
+                        name: "Allow"
+                    },
+                    disallow:{
+                        data: {
+                            "user[discoverable_by_mobile_phone]":0
+                        },
+                        name:"Disallow"
+                    }
+                },
+                recommended:"disallow"
             }
         },
         allow_promoted_content:{
             read:{
                 name: "Allow/disallow Twitter to display ads about things you've already shown " +
                 "interest in (aka \"promoted content\"",
-                url: "https://twitter.com/settings/security",
+                url: "https://twitter.com/settings/safety",
                 jquery_selector:{
                     element:"input[id='allow_ads_personalization']",
                     valueType:"checkbox"
                 },
                 availableSettings: {
-                    1: {
-                        name: "On"
+                    allow: {
+                        name: "Allow"
                     },
-                    0: {
-                        name: "Off"
+                    disallow: {
+                        name: "Disallow"
                     }
                 }
             },
             write:{
-                recommended:0
+                name: "Allow/disallow Twitter to display ads about things you've already shown " +
+                "interest in (aka \"promoted content\"",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    allow: {
+                        data: {
+                            "user[allow_ads_personalization]":1
+                        },
+                        name: "Allow"
+                    },
+                    disallow:{
+                        data: {
+                            "user[allow_ads_personalization]":0
+                        },
+                        name:"Disallow"
+                    }
+                },
+                recommended:"disallow"
             }
         },
-        //=============================================================================================================
-        //=============================================================================================================
-        //=============================================================================================================
-        //TODO: Find a better way of reading this setting.
         allow_tweetdeck:{
             read:{
                 name: "Allow/disallow organizations to invite anyone to tweet from their account using " +
                 "the teams feature in TweetDeck ?",
-                url: "https://twitter.com/settings/security",
+                url: "https://twitter.com/settings/safety",
                 jquery_selector:{
                     element:"input[name='user[allow_contributor_request]']",
                     valueType:"radio"
@@ -3527,7 +3559,32 @@ var ospSettingsConfigPreferences = {
                 }
             },
             write:{
-                recommended:"none"
+                name: "Allow/disallow organizations to invite anyone to tweet from their account using " +
+                "the teams feature in TweetDeck ?",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings: {
+                    all: {
+                        data: {
+                            "user[allow_contributor_request]": "all"
+                        },
+                        name: "All"
+                    },
+                    following: {
+                        data: {
+                            "user[allow_contributor_request]": "following"
+                        },
+                        name: "Following"
+                    },
+                    none: {
+                        data: {
+                            "user[allow_contributor_request]": "none"
+                        },
+                        name: "None"
+                    }
+                },
+                data: {},
+                recommended: "none"
             }
         },
 
@@ -3537,78 +3594,201 @@ var ospSettingsConfigPreferences = {
         allow_direct_message:{
             read:{
                 name: "Allow/disallow any Twitter user to send you a direct message even if you do not follow them",
-                url: "https://twitter.com/settings/security",
+                url: "https://twitter.com/settings/safety",
                 jquery_selector:{
                     element:"input[id='allow_dms_from_anyone']",
                     valueType:"checkbox"
                 },
                 availableSettings: {
-                    1: {
-                        name: "On"
+                    allow: {
+                        name: "Allow"
                     },
-                    0: {
-                        name: "Off"
+                    disallow: {
+                        name: "Disallow"
                     }
                 }
             },
             write:{
-                recommended:"0"
+                name: "Allow/disallow any Twitter user to send you a direct message even if you do not follow them",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    allow: {
+                        data: {
+                            "user[allow_dms_from_anyone]":1
+                        },
+                        name: "Allow"
+                    },
+                    disallow:{
+                        data: {
+                            "user[allow_dms_from_anyone]":0
+                        },
+                        name:"Disallow"
+                    }
+                },
+                recommended:"disallow"
+            }
+        },
+
+        send_read_receipts:{
+            read:{
+                name: "Allow/Disallow that when someone sends you a message, people in the conversation will know when you have seen it.",
+                page: "https://twitter.com/settings/safety",
+                jquery_selector:{
+                    element:"input[id='allow_dm_receipts']",
+                    valueType:"checkbox"
+                },
+                availableSettings: {
+                    allow: {
+                        name: "Allow"
+                    },
+                    disallow: {
+                        name: "Disallow"
+                    }
+                }
+            },
+            write:{
+                name: "Allow/Disallow that when someone sends you a message, people in the conversation will know when you have seen it.",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    allow: {
+                        data: {
+                            "user[allow_dm_receipts]":1
+                        },
+                        name: "Allow"
+                    },
+                    disallow:{
+                        data: {
+                            "user[allow_dm_receipts]":0
+                        },
+                        name:"Disallow"
+                    }
+                },
+                recommended:"disallow"
+            }
+        },
+
+        send_read_receipts:{
+            read:{
+                name: "Allow/Disallow that when someone sends you a message, people in the conversation will know when you have seen it.",
+                page: "https://twitter.com/settings/safety",
+                jquery_selector:{
+                    element:"input[id='allow_dm_receipts']",
+                    valueType:"checkbox"
+                },
+                availableSettings: {
+                    allow: {
+                        name: "Allow"
+                    },
+                    disallow: {
+                        name: "Disallow"
+                    }
+                }
+            },
+            write:{
+                name: "Allow/Disallow that when someone sends you a message, people in the conversation will know when you have seen it.",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    allow: {
+                        data: {
+                            "user[allow_dm_receipts]":1
+                        },
+                        name: "Allow"
+                    },
+                    disallow:{
+                        data: {
+                            "user[allow_dm_receipts]":0
+                        },
+                        name:"Disallow"
+                    }
+                },
+                recommended:"disallow"
+            }
+        },
+        display_sensitive_content:{
+            read:{
+                name: "Allow/Disallow to display media that may contain sensitive content",
+                page: "https://twitter.com/settings/safety",
+                jquery_selector:{
+                    element:"input[name='user[nsfw_view]']",
+                    valueType:"checkbox"
+                },
+                availableSettings: {
+                    allow: {
+                        name: "Allow"
+                    },
+                    disallow: {
+                        name: "Disallow"
+                    }
+                }
+            },
+            write:{
+                name: "Allow/Disallow to display media that may contain sensitive content",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    allow: {
+                        data: {
+                            "user[nsfw_view]":1
+                        },
+                        name: "Allow"
+                    },
+                    disallow:{
+                        data: {
+                            "user[nsfw_view]":0
+                        },
+                        name:"Disallow"
+                    }
+                },
+                recommended:"disallow"
+            }
+        },
+        mark_tweeted_media_sensitive_content:{
+            read:{
+                name: "Mark media I Tweet as containing material that may be sensitive",
+                page: "https://twitter.com/settings/safety",
+                jquery_selector:{
+                    element:"input[name='user[nsfw_user]']",
+                    valueType:"checkbox"
+                },
+                availableSettings: {
+                    Yes: {
+                        name: "Yes"
+                    },
+                    No: {
+                        name: "No"
+                    }
+                }
+            },
+            write:{
+                name: "Mark media I Tweet as containing material that may be sensitive",
+                page: "https://twitter.com/settings/safety",
+                url_template: "https://twitter.com/settings/safety/update",
+                availableSettings:{
+                    Yes: {
+                        data: {
+                            "user[nsfw_user]":1
+                        },
+                        name: "Yes"
+                    },
+                    No:{
+                        data: {
+                            "user[nsfw_user]":0
+                        },
+                        name:"No"
+                    }
+                },
+                recommended:"No"
             }
         }
-        /*manage_contacts:{
-         read:{
-         name: "Manage contacts you have uploaded from your address book in twitter",
-         url: "https://twitter.com/settings/security",
-         jquery_selector:{
-         //TODO: interesting setting. Suggestion to include it.
-         }
-         },
-         write:{
-         recommended:"Delete them all"
-         }
-         },*/
-        /*allow_tracking:{
-         read:{
-         name: "Allow/disallow Twitter to tailor suggestions in your timeline (such as who to follow) based on your recent website visits",
-         url: "",
-         jquery_selector:{
-         //TODO: N/A feature in my settings. Must see if this is available to others.
-         }
-         },
-         write:{
-         recommended:"Disallow"
-         }
-         },*/
-        /*allow_follow:{
-         read:{
-         name: "Allow anybody to follow yous",
-         url: "",
-         jquery_selector:{
-         //TODO: N/A feature in my settings. Must see if this is available to others.
-         }
-         },
-         write:{
-         recommended:"Allow"
-         }
-         },*/
-        /*add_phone:{
-         read:{
-         name: "Add/do not add your phone number to Twitter",
-         url: "https://twitter.com/settings/add_phone",
-         jquery_selector:{
-         //TODO: N/A feature in my settings. Must see if this is available to others.
-         }
-         },
-         write:{
-         recommended:"Do not add"
-         }
-         }*/
     }
 }
 
 
-var fs = require('fs');
-fs.writeFileSync(process.env.SWARM_PATH+"/operando/adapters/PSW/resources/OSP.settings4.json",JSON.stringify(ospSettingsConfigPreferences,null,4));
+//var fs = require('fs');
+//fs.writeFileSync(process.env.SWARM_PATH+"/operando/adapters/PSW/resources/OSP.settings_with_twitter.json",JSON.stringify(ospSettingsConfigPreferences,null,4));
 
 
 

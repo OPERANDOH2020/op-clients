@@ -44,6 +44,10 @@ angular.module("singleClickPrivacy",[])
                                                 linkedin:{
                                                     url:"https://www.linkedin.com",
                                                     cookie_name:"li_at"
+                                                },
+                                                twitter:{
+                                                    url:"https://www.twitter.com",
+                                                    cookie_name:"auth_token"
                                                 }
                                             }
 
