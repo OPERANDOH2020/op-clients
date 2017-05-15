@@ -20,6 +20,7 @@ operandoCore
 
 
         var responseHandler = function (response) {
+            console.log(response);
             if (response.type === "SOLVED_REQUEST") {
                 if (response.action && callbacks[response.action]) {
                     while (callbacks[response.action].length > 0) {

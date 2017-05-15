@@ -26,10 +26,8 @@ angular.module('notifications', ['ui-notification'])
                 callback();
             });
         };
-
-
+        
         var notifyUserNow = function(){
-
             var sequence = Promise.resolve();
             notifications.filter(function(notification){
                 return notification.type == "info-notification";
@@ -56,16 +54,54 @@ angular.module('notifications', ['ui-notification'])
             });
         };
 
+        function registerForPushNotifications(callback) {
+            /*
+                This function does the following things:
+
+                1. Generates a device id if the device does not have one.
+                2. Performs the association betwen the current user and the device id.
+                3. Requests a notification token from gcm.
+                4. Registers the notification token with the plusprivacy server.
+             */
+            messengerService.send("associateUserWithDevice", function (response) {
+                messengerService.send("registerForPushNotifications", function (notification) {
+                    messengerService.on("notificationReceived",treatPushNotification);
+                    messengerService.send("notifyWhenLogout", stopPushNotifications);
+                })
+            })
+        }
+
+        function treatPushNotification (notification,callback) {
+            Notification(
+                {
+                    title: notification.data.data.title,
+                    message: notification.data.data.description,
+                    positionY: "top",
+                    positionX: "right",
+                    delay: "60000",
+                    templateUrl: "tpl/notifications/user-notification.html"
+                }, 'warning');
+            callback(notification.data.data);
+        }
+
+        function stopPushNotifications(){
+            messengerService.off("notificationReceived",treatPushNotification);
+            messengerService.send("disassociateUserWithDevice", function () {
+                alert("User was disassociated");
+            });
+        }
+        
          function loadUserNotifications(callback) {
-             var deferred = $q.defer();
-             messengerService.send("getNotifications", function (response) {
-                 notifications = response.data;
-                 deferred.resolve(notifications);
-                 callback(notifications);
+             registerForPushNotifications(function(){
+                 var deferred = $q.defer();
+                 messengerService.send("getNotifications", function (response) {
+                     notifications = response.data;
+                     deferred.resolve(notifications);
+                     callback(notifications);
+                 });
 
-             });
-
-             return deferred.promise;
+                 return deferred.promise;
+             })
         }
 
         var getUserNotifications = function(callback){
@@ -77,7 +113,6 @@ angular.module('notifications', ['ui-notification'])
             notifyUserNow:notifyUserNow,
             getUserNotifications:getUserNotifications
         }
-
     });
 
 
@@ -124,7 +159,6 @@ angular.module('notifications').
     })
     .directive('notification', function () {
         return {
-
             restrict: 'E',
             replace: true,
             scope: {notification: "="},
