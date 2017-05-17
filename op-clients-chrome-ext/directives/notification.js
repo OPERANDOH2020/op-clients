@@ -67,6 +67,7 @@ angular.module('notifications', ['ui-notification'])
                 messengerService.send("registerForPushNotifications", function (notification) {
                     messengerService.on("notificationReceived",treatPushNotification);
                     messengerService.send("notifyWhenLogout", stopPushNotifications);
+                    callback();
                 })
             })
         }
