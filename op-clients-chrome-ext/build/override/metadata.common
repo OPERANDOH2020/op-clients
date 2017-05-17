@@ -109,6 +109,7 @@ lib/adblockplus.js = adblockpluscore/lib/events.js
   lib/subscriptionInit.js
   lib/requestBlocker.js
   lib/popupBlocker.js
+  operando/util/RegexUtils.js
   operando/util/LocalRepo.js
   operando/libs/observers-pool.js
   operando/libs/bus-service.js
@@ -135,6 +136,7 @@ operando/swarms.js = operando/services/swarm-services/socket.io-1.0.6.js
                   operando/util/Config.js
 operando/directives.js = operando/directives/deals.js
                   operando/directives/extensions.js
+                  operando/directives/social-apps.js
                   operando/directives/identities.js
                   operando/directives/notification.js
                   operando/directives/osp-settings.js

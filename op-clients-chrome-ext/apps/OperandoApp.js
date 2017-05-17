@@ -11,7 +11,7 @@
  */
 
 angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClickPrivacy',
-    'notifications', 'osp', 'angularModalService', 'operandoCore', 'schemaForm', 'abp',
+    'notifications','socialApps', 'osp', 'angularModalService', 'operandoCore', 'schemaForm', 'abp',
     'settingEditor','angular-loading-bar','UIComponent','login','ui.select',
     'ngAnimate','ngMessages','datatables','ngResource'])
     .config([
@@ -142,7 +142,59 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                     $scope.sn = $stateParams.sn;
                 }]
             })
+            .state('network', {
+                url: "/network",
+                abstract: true,
+                templateUrl: "views/network.html",
+                resolve:{
+                    loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load('/operando/controllers/socialAppsController.js');
+                    }]
+                }
+            })
+            .state('network.apps', {
+                url: "/apps/:sn",
+                params: {
+                    sn: "facebook"
+                },
+                resolve: {
+                    sn:['$stateParams', function ($stateParams) {
+                        return $stateParams.sn;
+                    }],
+                    settings:['ospService', function (ospService) {
+                        return ospService.loadOSPs();
+                    }]
+                },
+                templateUrl:"views/apps/social_apps.html",
+                controller:["$scope","$stateParams","settings", function($scope, $stateParams, settings) {
 
+                    var socialNetworks = {
+                        facebook : "Facebook",
+                        linkedin: "LinkedIn",
+                        twitter: "Twitter",
+                        google: "Google"
+
+                    };
+
+                    if (!$stateParams.sn) {
+                        $scope.osp = {
+                            key: 'facebook',
+                            title: socialNetworks['facebook'],
+                            settings: settings['facebook']
+                        }
+
+                    }
+                    else {
+                        $scope.osp = {
+                            key: $stateParams.sn,
+                            title: socialNetworks[$stateParams.sn.toLowerCase()],
+                            settings: settings[$stateParams.sn]
+                        }
+                    }
+
+                    $scope.sn = $stateParams.sn;
+                }]
+            })
             .state('abp', {
                 url: "/ad-blocking",
                 templateUrl: "views/preferences/abp.html",
@@ -178,7 +230,12 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             })
             .state('extensions', {
                 url: "/extensions",
-                templateUrl: "views/extensions.html"
+                templateUrl: "views/apps/extensions.html",
+                resolve:{
+                    loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load('/operando/controllers/socialAppsController.js');
+                    }]
+                }
             })
             .state('admin', {
                 url: "/admin",
