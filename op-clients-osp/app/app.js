@@ -1,5 +1,5 @@
 var ospApp =  angular.module("ospApp", ['angularModalService', 'ui-notification','ngIntlTelInput',
-    /*'sharedService','mgcrea.ngStrap',*/'ngRoute','oc.lazyLoad']);
+    'ngMaterial','ngMessages','mdPickers','datatables','ngRoute','oc.lazyLoad']);
 ospApp.config(function (NotificationProvider) {
     NotificationProvider.setOptions({
         delay: 10000,
@@ -38,12 +38,6 @@ ospApp.config(function ($routeProvider) {
    $routeProvider.
        when("/",{
            templateUrl:"../assets/templates/login_osp.html",
-           controller: 'ospLoginController',
-           resolve: {
-               loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
-                   return $ocLazyLoad.load(['/app/controllers/ospLoginController.js']);
-               }]
-           }
        }).
        when("/login",{
            templateUrl:"../assets/templates/login_osp.html"
@@ -51,9 +45,13 @@ ospApp.config(function ($routeProvider) {
        when("/register",{
            templateUrl:"../assets/templates/register_osp.html"
        }).
-       when("/dashboard",{
-           templateUrl:"../assets/templates/dashboard.html"
-       });
+       when("/offers",{
+           templateUrl:"../assets/templates/dashboard/offers.html"
+       }).
+       when("/deals",{
+           templateUrl:"../assets/templates/dashboard/deals.html"
+       }).
+       otherwise({redirectTo: '/login'});;
 
 });
 ospApp
@@ -64,5 +62,8 @@ ospApp
                 return "Phone e.g. " + selectedCountryPlaceholder;
             }
         });
-    });
+    }).
+config(['$locationProvider', function ($locationProvider) {
+    $locationProvider.hashPrefix('');
+}]);
 

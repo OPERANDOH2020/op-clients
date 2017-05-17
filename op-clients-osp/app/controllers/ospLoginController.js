@@ -1,4 +1,4 @@
-angular.module("ospApp").controller("ospLoginController", function ($scope, connectionService, messengerService, userService,SharedService,$window) {
+angular.module("ospApp").controller("ospLoginController", function ($scope, connectionService, messengerService, userService,$window) {
 
     $scope.requestProcessed = false;
     $scope.user = {
@@ -48,8 +48,6 @@ angular.module("ospApp").controller("ospLoginController", function ($scope, conn
             $scope.$apply();
         })
     };
-
-    SharedService.setLocation("ospLogin");
 
 });
 
