@@ -9,14 +9,14 @@ controller("socialAppsController", ["$scope", "$state",  function ($scope, $stat
             url:"https://facebook.com",
             cookie_name:"c_user"
         },
-        linkedin:{
+        /*linkedin:{
             url:"https://www.linkedin.com",
             cookie_name:"li_at"
         },
         twitter:{
             url:"https://www.twitter.com",
             cookie_name:"auth_token"
-        }
+        }*/
     }
 
 

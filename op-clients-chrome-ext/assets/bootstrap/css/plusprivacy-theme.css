@@ -2310,3 +2310,58 @@ table.table thead th.sorting
     padding: 15px 0px 15px 25px;
     position: relative;
 }
+
+.social_app{
+    padding: 10px;
+    border-bottom: 1px solid #F5A43C;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sn_app_icon{
+    width:32px;
+}
+td.app_icon,
+td.app_name,
+td.app_visibility,
+td.app_actions,
+td.app_permissions{
+    vertical-align: middle!important;
+    text-align: center;
+}
+
+td.publicprofilerequired{
+    background: greenyellow;
+}
+td.emailaddress{
+    background: gold;
+}
+td.friendlist{
+    background: orange;
+}
+
+td.birthday,
+td.personaldescription{
+    background: orangered;
+    color:#FFF;
+}
+td.currentcity,
+td.postonyourbehalf{
+    background: red;
+    color:#FFF;
+}
+
+#network_tab h2{
+    text-transform: capitalize;
+}
+h4.modal-title.plusprivacy{
+    background: url("/operando/assets/images/icons/operando_48.png") no-repeat left center;
+    padding-left: 60px;
+    font-size: 21px;
+}
+.modal-body.plusprivacy{
+    font-size: 17px;
+}

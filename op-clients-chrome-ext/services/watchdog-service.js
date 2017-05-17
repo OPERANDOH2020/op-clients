@@ -112,7 +112,6 @@ operandoCore
 
             chrome.tabs.getCurrent(function(currentTab){
 
-
                 chrome.tabs.create({url: TWITTER_PRIVACY_URL, "selected": false}, function (tab) {
                     twitterTabId = tab.id;
                     messengerService.send("insertTwitterIncreasePrivacyScript", {tabId:twitterTabId});
@@ -143,20 +142,14 @@ operandoCore
 
                 messengerService.on("twitterMessage", handleTwitterMessages);
 
-
             });
-
-
-
         }
-
 
         var secureAccount = function (desiredSettings, callback, completedCallback) {
 
             var desiredSettings = desiredSettings.sort(function (a, b) {
                 return a - b
             });
-
 
             ospService.getOSPSettings(function (settings) {
 

@@ -40,6 +40,15 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
             return angular.equals({}, object);
         }
     }])
+    .filter("removeWhiteSpace", [function() {
+        return function(text){
+            console.log(text);
+            var w = text.replace(/[^A-Za-z0-9]/g, "");
+            w = w.toLowerCase();
+            w = w.replace(/\s/g,'');
+            return w;
+        }
+    }])
     .run(['$rootScope', '$state', '$stateParams',
         function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;

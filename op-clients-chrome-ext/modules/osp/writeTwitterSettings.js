@@ -41,11 +41,7 @@ function secureAccount(callback){
         for (var key in setting["data"]) {
             SafetyForm[key] = setting["data"][key];
         }
-
     });
-
-
-
 
     var customSubmit = function(event){
         event.preventDefault();
@@ -63,8 +59,7 @@ function secureAccount(callback){
         });
 
         port.postMessage({action: "waitingTwitterCommand", data:{status:"takeMeBackInExtension"}});
-    }
-
+    };
 
     setTimeout(function(){
         $("#settings_save").removeAttr("disabled");
