@@ -1,4 +1,4 @@
-angular.module('sharedService').factory("accessService", ["userService", function (userService) {
+angular.module('ospApp').factory("accessService", ["userService", function (userService) {
 
     var accessRules = {
         ospZone: ['OSP'],

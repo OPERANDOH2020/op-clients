@@ -53,6 +53,3 @@ angular.module("ospApp").controller("ospLoginController", function ($scope, conn
 
 });
 
-angular.element(document).ready(function() {
-    angular.bootstrap(document.getElementById('osp_login'), ['plusprivacy']);
-});

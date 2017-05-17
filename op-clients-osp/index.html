@@ -4,7 +4,14 @@
 
 
     <link rel="stylesheet" href="imports/angular-ui-notification/angular-ui-notification.min.css"/>
-
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.vertical-tabs.min.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap/plusprivacy-theme.css"/>
+    <link rel="stylesheet" href="assets/css/app.css"/>
+    <link rel="stylesheet" href="assets/css/page.css"/>
+    <link rel="stylesheet" href="assets/css/custom_page.css"/>
+    <link rel="stylesheet" href="imports/ng-intel-tel-input/css/intlTelInput.css"/>
     <script type="text/javascript" src="imports/jQuery/jquery.js"></script>
     <script type="text/javascript" src="imports/js.cookie.js"></script>
     <script type="text/javascript" src="assets/js/globals.js"></script>
@@ -26,15 +33,83 @@
     <script type="text/javascript" src="imports/angular-ui-notification/angular-ui-notification.min.js"></script>
     <script type="text/javascript" src="imports/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="imports/oc-lazy-load/ocLazyLoad.min.js"></script>
+    <script type="text/javascript" src="imports/ng-intel-tel-input/js/intlTelInput.min.js"></script>
+    <script type="text/javascript" src="imports/ng-intel-tel-input/js/utils.js"></script>
+    <script type="text/javascript" src="imports/ng-intel-tel-input/ng-intl-tel-input.directive.js"></script>
+
 
 
     <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/services/connectionService.js"></script>
+    <script type="text/javascript" src="app/services/messengerService.js"></script>
+    <script type="text/javascript" src="app/services/swarm-service.js"></script>
+    <script type="text/javascript" src="app/services/user-service.js"></script>
+    <script type="text/javascript" src="app/services/access-service.js"></script>
+
+
+    <script type="text/javascript" src="/app/controllers/ospSignupController.js"></script>
 </head>
 
-<body ng-app="ospApp">
 
-<div ng-view></div>
+<body ng-app="ospApp" class="design-full-screen navbar-large-offset navbar-offset layout-full-width">
 
+<div id="content" class="site-content">
+    <div class="container">
+        <div class="content-sidebar-wrapper">
+            <div class="row">
+                <main id="primary" class="content-area hfeed col-md-12" role="main" itemscope="" itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+                    <div class="content-wrapper">
+                        <div ng-view></div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="sidebar-footer-secondary" class="widget-area sidebar sidebar-footer-secondary custom-sidebar custom-sidebar-8" role="complementary" itemscope="" itemtype="http://schema.org/WPSideBar">
+    <div class="container">
+        <div>
+            <aside id="enlightenment-custom-query-7" class="widget widget_enlightenment-custom-query">
+                <div class="custom-query-list custom-query-page">
+                    <article class="custom-entry  custom-post-type-page custom-entry-lead">
+                        <div class="entry-content" itemprop="text">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="footer-legal-nav-list">
+                                        <li><a href="http:plusprivacy.com/privacy-policy">Privacy Policy</a>|</li>
+                                        <li><a href="http:plusprivacy.com/legal">Legal</a>|</li>
+                                        <li>© 2016 PlusPrivacy. All Rights Reserved</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="footer-social-list">
+                                        <li><img class="alignnone size-full wp-image-163" src="http://localhost/wp-content/uploads/2016/12/1481328631_twitter.png" alt="1481328631_twitter" width="32" height="32"></li>
+                                        <li><img class="alignnone size-full wp-image-168" src="http://localhost/wp-content/uploads/2016/12/1481328863_reddit.png" alt="1481328863_reddit" width="32" height="32"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </article>
+                    <div class="clearfix"></div>
+                </div>
+            </aside></div>
+
+    </div>
+</div>
+<div id="sidebar-footer" class="widget-area sidebar sidebar-footer custom-sidebar custom-sidebar-7" role="complementary" itemscope="" itemtype="http://schema.org/WPSideBar">
+    <div class="container">
+        <div>
+            <aside id="text-2" class="widget widget_text">
+                <div class="textwidget">This work was supported by the European Commission under the Horizon 2020 Programme (H2020), as part of the OPERANDO project (GA no. 653704).</div>
+            </aside></div>
+
+    </div>
+</div>
 </body>
 
 </html>

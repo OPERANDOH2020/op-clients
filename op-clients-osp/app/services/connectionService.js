@@ -4,7 +4,7 @@ var SERVER_PORT = "8080";
 var GUEST_EMAIL = "guest@operando.eu";
 var GUEST_PASSWORD = "guest";
 
-angular.module('sharedService').factory("connectionService",function(swarmService, messengerService) {
+angular.module('ospApp').factory("connectionService",function(swarmService, messengerService) {
 
     var ConnectionService;
     ConnectionService = (function () {

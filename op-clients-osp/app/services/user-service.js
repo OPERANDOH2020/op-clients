@@ -1,4 +1,4 @@
-angular.module('sharedService').factory("userService", ["connectionService", function (connectionService){
+angular.module('ospApp').factory("userService", ["connectionService", function (connectionService){
     var UserService;
     UserService = (function () {
 

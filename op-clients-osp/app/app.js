@@ -1,4 +1,4 @@
-var ospApp =  angular.module("ospApp", ['angularModalService', 'ui-notification',
+var ospApp =  angular.module("ospApp", ['angularModalService', 'ui-notification','ngIntlTelInput',
     /*'sharedService','mgcrea.ngStrap',*/'ngRoute','oc.lazyLoad']);
 ospApp.config(function (NotificationProvider) {
     NotificationProvider.setOptions({
@@ -41,7 +41,7 @@ ospApp.config(function ($routeProvider) {
            controller: 'ospLoginController',
            resolve: {
                loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
-                   return $ocLazyLoad.load('/app/controllers/ospLoginController.js');
+                   return $ocLazyLoad.load(['/app/controllers/ospLoginController.js']);
                }]
            }
        }).
@@ -56,4 +56,13 @@ ospApp.config(function ($routeProvider) {
        });
 
 });
+ospApp
+    .config(function (ngIntlTelInputProvider) {
+        ngIntlTelInputProvider.set({
+            initialCountry: 'gb',
+            customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+                return "Phone e.g. " + selectedCountryPlaceholder;
+            }
+        });
+    });
 

@@ -1,4 +1,4 @@
-angular.module('sharedService').factory("messengerService", function () {
+angular.module('ospApp').factory("messengerService", function () {
 
     var MessengerService = (function () {
 
