@@ -71,7 +71,7 @@ angular.module('notifications', ['ui-notification'])
             })
         }
 
-        function treatPushNotification (notification,callback) {
+        function treatPushNotification (notification) {
             Notification(
                 {
                     title: notification.data.data.title,
@@ -81,7 +81,6 @@ angular.module('notifications', ['ui-notification'])
                     delay: "60000",
                     templateUrl: "tpl/notifications/user-notification.html"
                 }, 'warning');
-            callback(notification.data.data);
         }
 
         function stopPushNotifications(){
@@ -115,7 +114,6 @@ angular.module('notifications', ['ui-notification'])
         }
     });
 
-
 angular.module('notifications')
     .directive('notificationCounter', function () {
         return {
@@ -138,7 +136,6 @@ angular.module('notifications')
         }
     });
 
-
 angular.module('notifications').
     directive('notifications', function () {
         return {
@@ -152,7 +149,6 @@ angular.module('notifications').
                     $scope.notifications = notifications;
                     $rootScope.$broadcast('notificationCounterUpdate', notifications);
                 });
-
             },
             templateUrl: '/operando/tpl/notifications/notifications.html'
         }
