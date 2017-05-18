@@ -1,8 +1,3 @@
-/*ospApp.requires.push('ngMaterial');
-ospApp.requires.push('ngMessages');
-ospApp.requires.push('mdPickers');
-ospApp.requires.push('datatables');*/
-
 function AddOspOfferController($scope, $element, $rootScope, close, connectionService, Notification, offer, modalTitle, saveBtn) {
 
     $scope.offer = offer;

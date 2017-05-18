@@ -74,6 +74,9 @@ ospApp.config(function ($routeProvider) {
     when("/billing", {
         templateUrl: "../assets/templates/dashboard/billing.html"
     }).
+    when("/verify/:verifyCode", {
+        templateUrl: "../assets/templates/verify.html"
+    }).
     otherwise({redirectTo: '/'});
 
 });
@@ -86,7 +89,8 @@ ospApp.run(['$rootScope', '$location', 'userService', function ($rootScope, $loc
             console.log(next, current);
 
             if (isAuthenticated === false) {
-                if (next.$$route.originalPath != "/register" && next.$$route.originalPath != "/login") {
+                if (next.$$route.originalPath != "/register" && next.$$route.originalPath != "/login" &&
+                    next.$$route.originalPath!='/verify/:verifyCode') {
                     $location.path('/');
                 }
             }
