@@ -1,4 +1,4 @@
-angular.module("ospApp").controller("ospLoginController", function ($scope, connectionService, messengerService, userService,$window) {
+angular.module("ospApp").controller("ospLoginController", function ($scope, connectionService, messengerService, userService, Notification, $location,$window) {
 
     $scope.requestProcessed = false;
     $scope.user = {
@@ -12,7 +12,15 @@ angular.module("ospApp").controller("ospLoginController", function ($scope, conn
         $scope.accountNotActivated = false;
         connectionService.loginUser($scope.user, "OSP", function (user) {
 
-                $window.location="/osp-offers";
+                userService.setUser(user);
+                Notification.success({
+                    message: 'Logged in!',
+                    positionY: 'bottom',
+                    positionX: 'center',
+                    delay: 2000
+                });
+
+                window.location.assign("/#offers");
 
             },
             function (error) {

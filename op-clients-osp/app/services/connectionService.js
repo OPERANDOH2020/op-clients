@@ -1,5 +1,5 @@
-var SERVER_HOST = "plusprivacy.com";
-//var SERVER_HOST = "localhost";
+//var SERVER_HOST = "plusprivacy.com";
+var SERVER_HOST = "localhost";
 var SERVER_PORT = "8080";
 var GUEST_EMAIL = "guest@operando.eu";
 var GUEST_PASSWORD = "guest";
@@ -55,7 +55,7 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             var self = this;
 
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, user.email, user.password,
-                "plusprivacy-website", loginCtor, function (error) {
+                "OSP-APP", loginCtor, function (error) {
                 });
 
             var userLoginSuccess = function (swarm) {
@@ -367,6 +367,26 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             });
         };
 
+        ConnectionService.prototype.updateUserInfo = function (user_details, success_callback, error_callback) {
+            var updateUserInfoHandler = swarmHub.startSwarm('UserInfo.js', 'updateUserInfo', user_details);
+            updateUserInfoHandler.onResponse("updatedUserInfo", function(swarm){
+                success_callback(swarm.updatedInfo);
+            });
+            updateUserInfoHandler.onResponse("userUpdateFailed", function(response){
+                error_callback(response.error);
+            })
+        };
+
+            ConnectionService.prototype.changePassword = function(changePasswordData, success_callback, error_callback){
+            var changePasswordHandler = swarmHub.startSwarm('UserInfo.js', 'changePassword', changePasswordData.currentPassword, changePasswordData.newPassword);
+            changePasswordHandler.onResponse("passwordSuccessfullyChanged", function(response){
+                success_callback();
+            });
+
+            changePasswordHandler.onResponse("passwordChangeFailure", function(response){
+                error_callback(response.error);
+            });
+        };
 
 
         return ConnectionService;

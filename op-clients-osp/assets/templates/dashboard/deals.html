@@ -1,5 +1,5 @@
+<h2>Deals</h2>
 <div id="osp_dashboard">
-
     <div class="container" ng-controller="ospDashboardController">
 
         <table class="table table-bordered" id="osp_offers_table" datatable="ng" dt-column-defs="offerStatsColumnDefs"
@@ -11,15 +11,15 @@
                 <th>Description</th>
                 <th style="width:120px">Start date</th>
                 <th style="width:120px">End date</th>
-                <th style="width:140px">Nr. of contracts</th>
+                <th style="width:140px">Contracts</th>
                 <th style="width:110px">Distribution</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="offer in offersStats" ng-cloak>
-                <td><img width="16px" ng-cloak data-ng-src="data:image/png;base64,{{offer.logo}}"></td>
+                <td class="offers_logo"><img width="16px" ng-cloak data-ng-src="data:image/png;base64,{{offer.logo}}"></td>
                 <td>{{offer.name}}</td>
-                <td>{{offer.description}}</td>
+                <td class="offers_description">{{offer.description}}</td>
                 <td>{{offer.start_date|timestampToDateFormat}}</td>
                 <td>{{offer.end_date|timestampToDateFormat}}</td>
                 <td>{{offer.deals_number}}</td>

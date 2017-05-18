@@ -216,8 +216,7 @@ table td {
 }
 
 fieldset {
-    border: solid 1px #eee;
-    padding: 30px;
+
 }
 
 legend {
@@ -666,7 +665,7 @@ audio {
 }
 
 .navbar-default {
-    background: #fff;
+    background: #ffebba;
     box-shadow: 0 0 1px rgba(0, 0, 0, .15);
 }
 

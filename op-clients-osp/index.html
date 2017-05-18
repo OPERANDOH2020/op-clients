@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="imports/mdPickers/mdPickers.min.css"/>
     <link rel="stylesheet" href="imports/angular-datatables/datatables.bootstrap.min.css"/>
 
-
-
     <script type="text/javascript" src="imports/jQuery/jquery.js"></script>
     <script type="text/javascript" src="imports/js.cookie.js"></script>
     <script type="text/javascript" src="assets/js/globals.js"></script>
@@ -55,8 +53,14 @@
     <script type="text/javascript" src="imports/angular-datatables/exports/buttons.html5.min.js"></script>
 
 
-
     <script type="text/javascript" src="app/app.js"></script>
+
+
+    <script type="text/javascript" src="app/directives/datePicker.js"></script>
+    <script type="text/javascript" src="app/directives/loader.js"></script>
+    <script type="text/javascript" src="app/directives/navigation-menu.js"></script>
+
+
     <script type="text/javascript" src="app/services/connectionService.js"></script>
     <script type="text/javascript" src="app/services/messengerService.js"></script>
     <script type="text/javascript" src="app/services/swarm-service.js"></script>
@@ -67,14 +71,41 @@
     <script type="text/javascript" src="/app/controllers/ospSignupController.js"></script>
     <script type="text/javascript" src="/app/controllers/ospOffersController.js"></script>
     <script type="text/javascript" src="/app/controllers/ospDealsController.js"></script>
+    <script type="text/javascript" src="/app/controllers/layoutController.js"></script>
+    <script type="text/javascript" src="/app/controllers/ospAccountController.js"></script>
 </head>
 
 
 <body ng-app="ospApp" class="design-full-screen navbar-large-offset navbar-offset layout-full-width">
+<header id="masthdead" class="site-hedader navbar-large navbar navbar-fixed-top navbar-default" role="banner">
 
-<div id="content" class="site-content">
     <div class="container">
-        <div class="content-sidebar-wrapper">
+        <div class="branding navbar-header" itemscope="" itemtype="http://schema.org/WPHeader">
+            <button class="navicon navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span><span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" rel="home">
+                <img width="250" height="75" src="/assets/css/images/plus_privacy_logo-250x75.png" class="site-logo" alt="PlusPrivacy" > <span class="site-title-text hidden">PlusPrivacy</span></a>
+        </div>
+        <nav id="site-navigation" class="menu-container navbar-collapse collapse" role="navigation" itemscope="" itemtype="http://schema.org/SiteNavigationElement"><h2 class="screen-reader-text sr-only" role="navigation" itemscope="" itemtype="http://schema.org/SiteNavigationElement">Menu</h2>
+            <navigation-menu></navigation-menu>
+        </nav>
+
+    </div>
+</header>
+
+
+
+<div id="content" class="site-content" ng-controller="layoutController" ng-switch on="pagename()">
+
+    <div class="full-width" ng-switch-when="/">
+        <div ng-view></div>
+    </div>
+
+    <div class="container" ng-switch-default >
+        <div class="content-sidebar-wrapper" >
             <div class="row">
                 <main id="primary" class="content-area hfeed col-md-12" role="main" itemscope="" itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
                     <div class="content-wrapper">
@@ -83,44 +114,12 @@
                 </main>
             </div>
         </div>
-    </div>
-</div>
-
-
-<div id="sidebar-footer-secondary" class="widget-area sidebar sidebar-footer-secondary custom-sidebar custom-sidebar-8" role="complementary" itemscope="" itemtype="http://schema.org/WPSideBar">
-    <div class="container">
-        <div>
-            <aside id="enlightenment-custom-query-7" class="widget widget_enlightenment-custom-query">
-                <div class="custom-query-list custom-query-page">
-                    <article class="custom-entry  custom-post-type-page custom-entry-lead">
-                        <div class="entry-content" itemprop="text">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ul class="footer-legal-nav-list">
-                                        <li><a href="http:plusprivacy.com/privacy-policy">Privacy Policy</a>|</li>
-                                        <li><a href="http:plusprivacy.com/legal">Legal</a>|</li>
-                                        <li>© 2016 PlusPrivacy. All Rights Reserved</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <ul class="footer-social-list">
-                                        <li><img class="alignnone size-full wp-image-163" src="http://localhost/wp-content/uploads/2016/12/1481328631_twitter.png" alt="1481328631_twitter" width="32" height="32"></li>
-                                        <li><img class="alignnone size-full wp-image-168" src="http://localhost/wp-content/uploads/2016/12/1481328863_reddit.png" alt="1481328863_reddit" width="32" height="32"></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="clearfix"></div>
-                    </article>
-                    <div class="clearfix"></div>
-                </div>
-            </aside></div>
 
     </div>
 </div>
-<div id="sidebar-footer" class="widget-area sidebar sidebar-footer custom-sidebar custom-sidebar-7" role="complementary" itemscope="" itemtype="http://schema.org/WPSideBar">
+
+
+<div id="sidebar-footer" class="widget-area sidebar sidebar-footer custom-sidebar custom-sidebar-7" role="complementary" >
     <div class="container">
         <div>
             <aside id="text-2" class="widget widget_text">

@@ -55,7 +55,7 @@ function AddOspOfferController($scope, $element, $rootScope, close, connectionSe
             $rootScope.$broadcast("newOfferAdded", offer);
 
             Notification.success({
-                message: 'OSP request approved!',
+                message: 'Offer updated!',
                 positionY: 'bottom',
                 positionX: 'center',
                 delay: 2000
