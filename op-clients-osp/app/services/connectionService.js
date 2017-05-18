@@ -1,8 +1,9 @@
-var SERVER_HOST = "plusprivacy.com";
-//var SERVER_HOST = "localhost";
-var SERVER_PORT = "8080";
-var GUEST_EMAIL = "guest@operando.eu";
-var GUEST_PASSWORD = "guest";
+var Config = new Config();
+var SERVER_HOST = Config.swarmClient.host;
+var SERVER_PORT = Config.swarmClient.port;
+var TENANT = Config.swarmClient.tenant;
+var GUEST_EMAIL = Config.guest.email;
+var GUEST_PASSWORD = Config.guest.password;
 
 angular.module('ospApp').factory("connectionService",function(swarmService, messengerService) {
 
@@ -15,7 +16,7 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
 
         ConnectionService.prototype.activateUser = function (activationCode, successCallback, failCallback) {
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-                "plusprivacy-website", "userLogin", function () {
+                TENANT, "userLogin", function () {
                     console.log("reconnect cbk");
                 }, function () {
                     console.log("connect cbk");
@@ -55,7 +56,7 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             var self = this;
 
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, user.email, user.password,
-                "OSP-APP", loginCtor, function (error) {
+                TENANT, loginCtor, function (error) {
                 });
 
             var userLoginSuccess = function (swarm) {
@@ -124,7 +125,7 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
 
         ConnectionService.prototype.registerNewUser = function (user, successCallback, failCallback) {
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-                "plusprivacy-website", "userLogin", function () {
+                TENANT, "userLogin", function () {
                     console.log("reconnect cbk");
                 }, function () {
                     console.log("connect cbk");
@@ -150,7 +151,7 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
         ConnectionService.prototype.resendActivationCode = function(email, successCallback, errorCallback){
 
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-                "plusprivacy-website", "userLogin", function () {
+                TENANT, "userLogin", function () {
                     console.log("reconnect cbk");
                 }, function () {
                     console.log("connect cbk");
@@ -234,7 +235,7 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
 
         ConnectionService.prototype.registerNewOSPOrganisation = function (user, successCallback, failCallback) {
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-                "plusprivacy-website", "userLogin", function () {
+                TENANT, "userLogin", function () {
                     console.log("reconnect cbk");
                 }, function () {
                     console.log("connect cbk");
