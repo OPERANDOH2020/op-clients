@@ -67,22 +67,7 @@ operandoCore
         function  increaseLinkedInPrivacy(settings, callback, jobFinished) {
             chrome.tabs.create({url: LINKEDIN_PRIVACY_URL, "selected": false}, function (tab) {
                 linkedinTabId = tab.id;
-                chrome.runtime.sendMessage({
-                    message: "waitForAPost",
-                    template: {
-                        "__req": null,
-                        "__dyn": null,
-                        "__a": null,
-                        "fb_dtsg": null,
-                        "__user": null,
-                        "ttstamp": null,
-                        "__rev": null
-                    }
-                }, function (response) {
-
-                    messengerService.send("insertLinkedinIncreasePrivacyScript", {tabId:linkedinTabId});
-
-                });
+                messengerService.send("insertLinkedinIncreasePrivacyScript", {tabId:linkedinTabId});
             });
 
             var handleLinkedinMessages = function(msg){
