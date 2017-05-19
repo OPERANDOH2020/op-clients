@@ -1,7 +1,7 @@
 function Config(){
     return {
         swarmClient: {
-            host: "plusprivacy.com",
+            host: "localhost",
             port: 8080,
             tenant: "OSP-APP"
         },

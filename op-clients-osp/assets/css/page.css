@@ -24,9 +24,23 @@ Any style attributes declared there will override the ones in this file and will
  * Bootstrap
  */
 
+@media (max-width: 992px) {
+    .branding.navbar-header{
+        position: absolute;
+        width:300px;
+    }
+}
+
+@media (max-width: 767px) {
+    .branding.navbar-header{
+        position: relative;
+        width:100%;
+    }
+}
+
 @media (min-width: 768px) {
     .container {
-        width: 720px;
+        width: 840px;
     }
 }
 
@@ -665,7 +679,7 @@ audio {
 }
 
 .navbar-default {
-    background: #ffebba;
+    background: #41575c;
     box-shadow: 0 0 1px rgba(0, 0, 0, .15);
 }
 
@@ -701,7 +715,7 @@ audio {
 
 @media (min-width: 768px) {
     .navbar a.navbar-brand {
-        padding: 14px 15px;
+        padding: 20px 15px;;
         height: 60px;
     }
 }
@@ -713,7 +727,7 @@ audio {
 
 @media (min-width: 992px) {
     .navbar-large a.navbar-brand {
-        padding: 16px 15px;
+        padding: 30px 15px;
         line-height: 48px;
         height: 80px;
     }
@@ -876,7 +890,7 @@ audio {
 .navbar .nav li.dropdown.open > .dropdown-toggle,
 .navbar .nav li.dropdown.open > .dropdown-toggle .menu-item-description,
 .navbar .nav li.dropdown:target > .dropdown-toggle {
-    color: #428bca;
+    color: #ffb400;
 }
 
 .navbar-default .navbar-nav > .open > a,

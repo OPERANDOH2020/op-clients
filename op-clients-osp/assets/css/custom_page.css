@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .navbar .nav > li > a {
-    color: #31454a;
+    color: #FFF;
     -webkit-transition: all .25s ease;
     -moz-transition: all .25s ease;
     -ms-transition: all .25s ease;
@@ -391,4 +391,17 @@ ul.dropdown-menu>li>a:hover{
 
 .country-list .country.highlight{
     margin-bottom: 0px;
+}
+
+input[type="date"]{
+    height: 40px;
+    padding: 6px 10px;
+}
+
+input::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
+input[type="date"]::-webkit-input-placeholder{
+    visibility: hidden !important;
 }

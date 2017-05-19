@@ -1,10 +1,6 @@
 <h2>Offers</h2>
-<div ng-app="plusprivacy" id="osp-offers">
+<div id="osp-offers">
     <div ng-controller="ospOffersController as ctrl">
-
-        <div ng-cloak class="user_logged_in" ng-if="userIsLoggedIn === false">
-            <h3> You don't have enough privileges to access this content</b>!</h3>
-        </div>
 
         <div ng-cloak class="user_logged_in" ng-if="offers">
             <table class="table table-bordered" id="osp_offers_table" datatable="ng" dt-column-defs="dtColumnDefs"
