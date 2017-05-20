@@ -51,8 +51,13 @@ function secureAccount(callback){
             url: "https://twitter.com/settings/safety/update",
             data: SafetyForm,
             success: function(data){
-
-                callback();
+                if(data.indexOf("Incorrect password! Please enter your current password to change your settings.")>0){
+                    $("#auth_password").val("");
+                    alert("Please enter your valid password!");
+                }
+                else{
+                    callback();
+                }
 
             },
             dataType: "html"
