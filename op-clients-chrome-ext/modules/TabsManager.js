@@ -86,15 +86,15 @@ var TabsManager = function(){
         }
 
         if (tab.url) {
-            if (changeInfo.status === "complete" && tab.url.indexOf(ExtensionConfig.WEBSITE_HOST) != -1) {
-                establishPlusPrivacyWebsiteCommunication(tabId);
-            }
-            if (authenticationService.isLoggedIn()) {
-                if (changeInfo.status === "complete" && tab.url.indexOf("http") != -1) {
-                    self.suggestSubstituteIdentities(tab.id);
-                    self.suggestPrivacyForBenefits(tab);
-                }
 
+            if (changeInfo.status === "complete" && isAllowedToInsertScripts(tab.url)) {
+                if (tab.url.indexOf(ExtensionConfig.WEBSITE_HOST) != -1) {
+                    establishPlusPrivacyWebsiteCommunication(tabId);
+                }
+                if (authenticationService.isLoggedIn()) {
+                        self.suggestSubstituteIdentities(tab.id);
+                        self.suggestPrivacyForBenefits(tab);
+                }
             }
         }
     });
@@ -136,7 +136,7 @@ TabsManager.prototype.allowSocialNetworkPopup = function (data) {
 }
 
 TabsManager.prototype.suggestSubstituteIdentities=function(tabId){
-    injectScript(tabId, "operando/modules/identity/input-track.js", ["jQuery","Tooltipster","UserPrefs","DOMElementProvider"], function(){
+    injectScript(tabId, "operando/modules/identity/input-track.js", ["jQuery","UserPrefs","DOMElementProvider","Tooltipster"], function(){
         insertCSS(tabId,"operando/assets/css/change-identity.css");
         insertCSS(tabId,"operando/utils/tooltipster/tooltipster.bundle.min.css");
         insertCSS(tabId,"operando/utils/tooltipster/tooltipster-plus-privacy.css");

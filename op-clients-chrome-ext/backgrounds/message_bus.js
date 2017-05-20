@@ -141,6 +141,8 @@ chrome.runtime.onConnect.addListener(function (_port) {
                     var desiredPort = portObserversPool.findPortByName(request.message.sendToPort);
                     if(desiredPort){
                         desiredPort.postMessage(request.message);
+                    }else{
+                        console.log("PORT negasit");
                     }
                     return;
                 }
@@ -234,7 +236,6 @@ chrome.runtime.onConnect.addListener(function (_port) {
             || clientPort.name === "allowSocialNetworkPopup"){
             clientPort.onMessage.addListener(function(request){
 
-                console.log(request);
                 if (bus.hasAction(request.action)) {
                     var action = bus.getAction(request.action);
                     var args = [];
