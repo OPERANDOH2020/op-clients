@@ -52,6 +52,16 @@ font-size: 13px!important;
 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
 }
 
+div.pp-popup-close{
+    right:5px;
+    top:5px;
+    background: url('chrome-extension://__MSG_@@extension_id__/operando/assets/images/close_popup.png') no-repeat left center transparent;
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    cursor: pointer;
+}
+
 div.pp-twitter-header{
     all:initial;
     color:#FFF;
