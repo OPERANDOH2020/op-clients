@@ -404,3 +404,24 @@ ul.dropdown-menu>li>a:hover{
 .country-list .country.highlight{
     margin-bottom: 0px;
 }
+
+#newsletter_container span{
+    color: #908363;
+}
+
+#newsletter_container .es_shortcode_form input[type="text"]{
+    border-color: #908363;
+}
+#newsletter_container .es_shortcode_form input[type="button"]{
+    border-left: 0px;
+    padding: 9px;
+    border-radius: 0px 5px 5px 0px;
+    background: #FFB400;
+    color: #FFF;
+    border-color: #908363;
+}
+
+#newsletter_container{
+    width: 95%;
+    margin: 60px auto;
+}
