@@ -1,5 +1,5 @@
 var ospApp = angular.module("ospApp", ['angularModalService', 'ui-notification', 'ngIntlTelInput',
-    'ngMaterial', 'ngMessages', 'mdPickers', 'datatables', 'ngRoute', 'oc.lazyLoad',"chart.js"]);
+    'ngMaterial', 'ngMessages', 'mdPickers', 'datatables', 'ngRoute', 'oc.lazyLoad',"chart.js","mgcrea.ngStrap"]);
 ospApp.config(function (NotificationProvider) {
     NotificationProvider.setOptions({
         delay: 10000,
