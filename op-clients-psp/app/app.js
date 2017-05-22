@@ -1,5 +1,5 @@
 var pspApp = angular.module("pspApp", ['angularModalService', 'ui-notification', 'ngIntlTelInput',
-    'ngMaterial', 'ngMessages', 'mdPickers', 'datatables', 'ngRoute', 'oc.lazyLoad',"chart.js"]);
+    'ngMaterial', 'ngMessages', 'mdPickers', 'datatables', 'ngRoute', 'oc.lazyLoad',"chart.js","mgcrea.ngStrap"]);
 pspApp.config(function (NotificationProvider) {
     NotificationProvider.setOptions({
         delay: 10000,
