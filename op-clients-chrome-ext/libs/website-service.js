@@ -177,25 +177,12 @@ var websiteService = exports.websiteService = {
                     'permissions': permissions
                 };
             });
-            console.log(twitterApps);
             callback(twitterApps);
-
         }
-
         doGetRequest("https://twitter.com/settings/applications?lang=en", getApps)
-
     },
 
     removeSocialApp:function(data, callback){
-
-        /*function extractData(content, callback) {
-            var data = {};
-            var gfidRegex = 'appID\=([0-9]+)&gfid=(.*?)"]';
-            var userIdRegex = '"userid":(.*?)}';
-            data['gfid'] = RegexUtis.findValueByRegex(self.key, 'GfiD', gfidRegex, 2, content, true);
-            data['userid'] = RegexUtis.findValueByRegex(self.key, 'userid', userIdRegex, 1, content, true);
-            callback(data);
-        }*/
 
         function extractFBToken(content, callback) {
             var dtsgOption1 = 'DTSGInitialData.*?"token"\\s?:\\s?"(.*?)"';
@@ -246,7 +233,6 @@ var websiteService = exports.websiteService = {
         function removeTwitterApp(appId){
             doGetRequest("https://twitter.com/settings/applications?lang=en", function(content){
                 extractTwitterToken(content, function(data){
-                    console.log(appId);
                     var _body = "token=" + appId + "&" + encodeURIComponent("scribeContext[component]")
                         + "=oauth_app&twttr=true&authenticity_token=" + data.token;
                     doPOSTRequest("https://twitter.com/oauth/revoke",_body, function(response){
