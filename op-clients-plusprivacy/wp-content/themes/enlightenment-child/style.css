@@ -425,3 +425,8 @@ ul.dropdown-menu>li>a:hover{
     width: 95%;
     margin: 60px auto;
 }
+a.social_network_link img{
+    background: none;
+    border: none!important;
+    box-shadow: none;
+}

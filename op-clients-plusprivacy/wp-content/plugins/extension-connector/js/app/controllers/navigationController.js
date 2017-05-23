@@ -2,7 +2,7 @@ menuApp.controller("navigationController", function ($scope, SharedService, user
 
 
     $scope.menuItems = [
-        {
+       /* {
             name: "OSP",
             zone:"ospZone",
             subItems: [{
@@ -60,7 +60,7 @@ menuApp.controller("navigationController", function ($scope, SharedService, user
                     path: "/psp-dashboard"
                 }
             ]
-        },
+        },*/
         {
             name: "User",
             zone:"userZone",
