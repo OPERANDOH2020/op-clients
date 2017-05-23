@@ -87,13 +87,15 @@ var TabsManager = function(){
 
         if (tab.url) {
 
-            if (changeInfo.status === "complete" && isAllowedToInsertScripts(tab.url)) {
+            if (changeInfo.status === "complete") {
                 if (tab.url.indexOf(ExtensionConfig.WEBSITE_HOST) != -1) {
                     establishPlusPrivacyWebsiteCommunication(tabId);
                 }
-                if (authenticationService.isLoggedIn()) {
+                else if (isAllowedToInsertScripts(tab.url)) {
+                    if (authenticationService.isLoggedIn()) {
                         self.suggestSubstituteIdentities(tab.id);
                         self.suggestPrivacyForBenefits(tab);
+                    }
                 }
             }
         }
