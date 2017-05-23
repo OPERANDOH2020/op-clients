@@ -12,12 +12,12 @@ controller("socialAppsController", ["$scope", "$state",  function ($scope, $stat
         /*linkedin:{
             url:"https://www.linkedin.com",
             cookie_name:"li_at"
-        },
+        },*/
         twitter:{
             url:"https://www.twitter.com",
             cookie_name:"auth_token"
-        }*/
-    }
+        }
+    };
 
 
     var readCookie  = function(ospKey,conf){

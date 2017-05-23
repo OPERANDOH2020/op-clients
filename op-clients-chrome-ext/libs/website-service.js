@@ -137,18 +137,67 @@ var websiteService = exports.websiteService = {
 
     },
 
+    getTwitterApps:function(callback){
+        var twitterApps = [];
+
+        function getAppData(url){
+            return new Promise(function (resolve, reject){
+                doGetRequest(url, function(data){
+                    resolve(data);
+                })
+            })
+        }
+
+        function getApps(res){
+
+            var rawAppsRegex = '<div\\s?id=\"oauth(?:.+)\"(?:.|\n)*?</div>(?:.|\n)*?</div>(?:.|\n)*?</div>(?:.|\n)*?</div>';
+            var rawAppsList = RegexUtis.findAllOccurrencesByRegex(self.key, 'List of Raw Apps', rawAppsRegex, 0, res);
+
+            var appNameRegex = 'strong>(.*?)\\s?</strong';
+            var appIdRegex = 'id="oauth_application_(.*?)"\\s?class';
+
+            var iconRegex = '<img\\s+class="app-img"\\s+src="(.*?)"';
+            var permissionsRegex = '<p\\s+class="description">.+?\\n.+?<small\\s+class="metadata">(?:.+\\:\\s?)?(.+?)</small></p>';
+
+            twitterApps = rawAppsList.map(function(rawAppData) {
+                var appName = RegexUtis.findValueByRegex_Pretty(self.key, 'App Name+Id', appNameRegex, 1, rawAppData, true);
+                var appId = RegexUtis.findValueByRegex(self.key, 'Revokde-Id', appIdRegex, 1, rawAppData, true);
+
+                var iconURL = RegexUtis.findValueByRegex(self.key, 'App Icon', iconRegex, 1, rawAppData, true)
+                    .unescapeHtmlChars();
+
+                var permissions = RegexUtis.findAllOccurrencesByRegex(self.key, "Extracting Permissions", permissionsRegex, 1, rawAppData, function(value) {
+                    return value.unescapeHtmlChars();
+                });
+
+                return {
+                    'appId': appId,
+                    'iconUrl': iconURL,
+                    'name': appName,
+                    'permissions': permissions
+                };
+            });
+            console.log(twitterApps);
+            callback(twitterApps);
+
+        }
+
+        doGetRequest("https://twitter.com/settings/applications?lang=en", getApps)
+
+    },
+
     removeSocialApp:function(data, callback){
 
-        function extractData(content, callback) {
+        /*function extractData(content, callback) {
             var data = {};
             var gfidRegex = 'appID\=([0-9]+)&gfid=(.*?)"]';
-            var userIdRegex = '"userid":(.*?)}'
+            var userIdRegex = '"userid":(.*?)}';
             data['gfid'] = RegexUtis.findValueByRegex(self.key, 'GfiD', gfidRegex, 2, content, true);
             data['userid'] = RegexUtis.findValueByRegex(self.key, 'userid', userIdRegex, 1, content, true);
             callback(data);
-        }
+        }*/
 
-        function extractToken(content, callback) {
+        function extractFBToken(content, callback) {
             var dtsgOption1 = 'DTSGInitialData.*?"token"\\s?:\\s?"(.*?)"';
             var dtsgOption2 = 'name=\\\\?"fb_dtsg\\\\?"\\svalue=\\\\?"(.*?)\\\\?"';
             var dtsgOption3 = 'dtsg"\\s?:\\s?\{"token"\\s?:\\s?"(.*?)';
@@ -170,12 +219,17 @@ var websiteService = exports.websiteService = {
             callback(data);
         }
 
+        function extractTwitterToken(content, callback){
+            var tokenOption1 = 'value="(.*?)" name="authenticity_token"';
+            var token = RegexUtis.findValueByRegex(self.key, 'authenticity_token', tokenOption1, 1, content, true);
+            callback({token:token});
+        }
 
 
         function removeFbApp(appId){
 
                     doGetRequest("https://www.facebook.com/settings?tab=applications",function(content){
-                       extractToken(content,function(data){
+                       extractFBToken(content,function(data){
 
                            var _body = "_asyncDialog=1&__user=" + data['userId'] + "&__a=1&__req=o&__rev=1562552&app_id=" + appId
                                + "&legacy=false&dialog=true&confirmed=true&ban_user=0&fb_dtsg=" + data['fb_dtsg'];
@@ -189,9 +243,23 @@ var websiteService = exports.websiteService = {
 
         }
 
+        function removeTwitterApp(appId){
+            doGetRequest("https://twitter.com/settings/applications?lang=en", function(content){
+                extractTwitterToken(content, function(data){
+                    console.log(appId);
+                    var _body = "token=" + appId + "&" + encodeURIComponent("scribeContext[component]")
+                        + "=oauth_app&twttr=true&authenticity_token=" + data.token;
+                    doPOSTRequest("https://twitter.com/oauth/revoke",_body, function(response){
+                        callback();
+                    })
+                });
+            })
+        }
+
 
         switch(data.sn){
-            case "facebook" : removeFbApp(data.appId)
+            case "facebook" : removeFbApp(data.appId); break;
+            case "twitter" : removeTwitterApp(data.appId);
         }
 
     }

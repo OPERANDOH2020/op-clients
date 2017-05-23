@@ -54,13 +54,21 @@ angular.module('socialApps',['cfp.loadingBar'])
                     });
                 };
 
-                messengerService.send("getFacebookApps", function(response){
+
+                var action = undefined;
+                switch($scope.sn){
+                    case "facebook": action = "getFacebookApps"; break;
+                    case "twitter": action = "getTwitterApps"; break;
+                }
+
+                messengerService.send(action, function(response){
                     if(response.status == "success"){
                         $scope.apps = response.data;
                         $scope.requestIsMade = true;
                         $scope.$apply();
                     }
                 });
+
             },
             templateUrl:"/operando/tpl/apps/sn_apps.html"
         }

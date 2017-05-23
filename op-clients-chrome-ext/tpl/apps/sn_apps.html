@@ -3,7 +3,7 @@
     <tr>
         <th>Logo</th>
         <th>App name</th>
-        <th>Visibility</th>
+        <th ng-if="sn=='facebook'">Visibility</th>
         <th>Permissions</th>
         <th>Actions</th>
     </tr>
@@ -11,7 +11,7 @@
 <tr ng-repeat="app in apps">
         <td class="app_icon"><img  class="sn_app_icon" ng-src="{{app.iconUrl}}"/></td>
         <td class="app_name"><h4>{{app.name}}</h4></td>
-        <td class="app_visibility">{{app.visibility}}</td>
+        <td ng-if="sn=='facebook'" class="app_visibility">{{app.visibility}}</td>
         <td class="app_permissions">
             <table class="table table-bordered">
             <tr ng-repeat="permission in app.permissions">
@@ -27,7 +27,7 @@
     <td colspan="5">
         <ui-loader ng-if="requestIsMade==false"></ui-loader>
         <div ng-if="requestIsMade==true">
-            <p>No facebook apps installed</p>
+            <p>No {{sn}} apps installed</p>
         </div>
     </td>
 </tr>

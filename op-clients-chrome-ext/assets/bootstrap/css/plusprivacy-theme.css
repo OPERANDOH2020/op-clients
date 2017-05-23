@@ -2333,23 +2333,32 @@ td.app_permissions{
     text-align: center;
 }
 
-td.publicprofilerequired{
+td.readonly{
+    background: green;
+    color:#FFF;
+}
+
+td.publicprofilerequired,
+td.sendfacebooknotifications{
     background: greenyellow;
 }
 td.emailaddress{
     background: gold;
 }
-td.friendlist{
+td.friendlist
+{
     background: orange;
 }
 
 td.birthday,
-td.personaldescription{
+td.personaldescription,
+td.readandwrite{
     background: orangered;
     color:#FFF;
 }
 td.currentcity,
-td.postonyourbehalf{
+td.postonyourbehalf,
+td.readwriteanddirectmessages{
     background: red;
     color:#FFF;
 }
