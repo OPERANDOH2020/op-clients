@@ -10,7 +10,7 @@
 #import "CMMotionManager+PPHOOK.h"
 #import "TestDispatcher.h"
 #import "CommonBaseTest.h"
-
+#import <objc/runtime.h>
 
 @interface CMMotionManagerTests : CommonBaseTest
 @property (strong, nonatomic) CMMotionManager *motionManager;
@@ -20,6 +20,13 @@
 
 - (void)setUp {
     [super setUp];
+    
+    Method *methodListIterator = class_copyMethodList([PPEventDispatcher class], NULL);
+    while (*methodListIterator != NULL) {
+        NSLog(@"%s", sel_getName(method_getName(*methodListIterator)));
+        methodListIterator += 1;
+    }
+    
     if (!self.motionManager) {
         self.motionManager = [[CMMotionManager alloc] init];
         id motionManagerClass = [CMMotionManager class];

@@ -212,52 +212,59 @@ class WebTabsControllerLogic: NSObject {
         
     }
     
+    private func createExternalWebViewWith(configuration: WKWebViewConfiguration, action: WKNavigationAction) -> WKWebView? {
+        guard let tabView = self.callbacks.addNewWebViewTabCallback?(),
+            let actionURL = action.request.url   else {
+                return nil
+        }
+        let newWebTab = self.createNewWebTab(url: actionURL)
+        
+        self.activeWebViewTab?.activityIndicator.isHidden = false
+        
+        self.activeWebViewTab?.createDescriptionWithCompletionHandler({ description in
+            self.webTabs[self.activeTabIndex].webTabDescription = description
+            
+            self.activeWebViewTab?.activityIndicator.isHidden = true
+            
+            self.webTabs.append(newWebTab)
+            
+            let model: UIWebViewTabNewWebViewModel = UIWebViewTabNewWebViewModel(navigationModel: newWebTab.navigationModel, setupParameter: .fullConfiguration(configuration))
+            
+            tabView.setupWith(model: model, callbacks: self.callbacksForWebView())
+            tabView.changeNumberOfItems(to: self.webTabs.count)
+            
+            self.model.webPool.addNew(webViewTab: tabView)
+            
+            let index = self.webTabs.count - 1
+            self.activeTabIndex = index
+            self.indexOfTabAssociatedWithWebView[tabView] = index
+            self.callbacks.showWebViewTabCallback?(tabView, false, nil)
+        })
+        
+        return tabView.webView
+
+    }
+    
     //MARK:
     
     private func callbacksForWebView() -> UIWebViewTabCallbacks? {
-        weak var weakSelf = self
-        return UIWebViewTabCallbacks(whenUserChoosesToViewTabs: {
-            weakSelf?.bringToFrontWebViewTabs()
-        }, urlForUserInput: { string in
+        return UIWebViewTabCallbacks(whenUserChoosesToViewTabs: { [unowned self] in
+            self.bringToFrontWebViewTabs()
+        },
+            urlForUserInput: { string in
             let searchURL = queryURLPart + (string.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics) ?? "")
             return URL(string: searchURL)!
-        }, whenPresentingAlertController: self.callbacks.presentAlertController,
-           whenCreatingExternalWebView: { configuration, action in
-            guard let tabView = weakSelf?.callbacks.addNewWebViewTabCallback?(),
-                  let actionURL = action.request.url,
-                let newWebTab = weakSelf?.createNewWebTab(url: actionURL)
-                   else {
-                return nil
-            }
-            
-            weakSelf?.activeWebViewTab?.activityIndicator.isHidden = false
-            
-            weakSelf?.activeWebViewTab?.createDescriptionWithCompletionHandler({ description in
-                weakSelf?.webTabs[weakSelf?.activeTabIndex ?? 0].webTabDescription = description
-                
-                weakSelf?.activeWebViewTab?.activityIndicator.isHidden = true 
-                
-                weakSelf?.webTabs.append(newWebTab)
-                
-                let model: UIWebViewTabNewWebViewModel = UIWebViewTabNewWebViewModel(navigationModel: newWebTab.navigationModel, setupParameter: .fullConfiguration(configuration))
-                
-                tabView.setupWith(model: model, callbacks: self.callbacksForWebView())
-                tabView.changeNumberOfItems(to: self.webTabs.count)
-                
-                weakSelf?.model.webPool.addNew(webViewTab: tabView)
-                
-                let index = (weakSelf?.webTabs.count ?? 0) - 1
-                weakSelf?.activeTabIndex = index
-                weakSelf?.indexOfTabAssociatedWithWebView[tabView] = index
-                weakSelf?.callbacks.showWebViewTabCallback?(tabView, false, nil)
-            })
-            
-            return tabView.webView
-        }, whenUserOpensInNewTab: { [unowned self] url in
+        },
+           whenPresentingAlertController: self.callbacks.presentAlertController,
+           
+           whenCreatingExternalWebView: { [unowned self] configuration, action in
+            return self.createExternalWebViewWith(configuration: configuration, action: action)
+            },
+           whenUserOpensInNewTab: { [unowned self] url in
 
             self.addNewTab(url: url)
             self.saveCurrentTabStateWithCompletion {
-                weakSelf?.changeToTab(atIndex: self.webTabs.count - 1, callback: nil)
+                self.changeToTab(atIndex: self.webTabs.count - 1, callback: nil)
             }
         });
     }
@@ -280,7 +287,6 @@ class WebTabsControllerLogic: NSObject {
         
     }
     
-
     
     private func callbacksForWebTabsView(_ webTabsView: UIWebTabsListView) -> UIWebTabsViewCallbacks? {
         weak var weakSelf = self

@@ -8,16 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "PPEvent.h"
+#import "IdentifiedHandler.h"
 
+@interface PPEventDispatcher: NSObject
 
-typedef void(^NextHandlerConfirmation)();
-typedef void(^EventHandler)(PPEvent* _Nonnull event, NextHandlerConfirmation _Nullable nextHandlerIfAny);
-
-
-@interface PPEventDispatcher : NSObject
 +(PPEventDispatcher* _Nonnull) sharedInstance;
+-(NSString* _Nonnull)insertAtTopNewHandler:(EventHandler _Nonnull)eventHandler;
 
--(NSString* _Nonnull)insertNewHandlerAtTop:(EventHandler _Nonnull)eventHandler;
 -(void)removeHandlerWithIdentifier:(NSString* _Nonnull)identifier;
 
 @end

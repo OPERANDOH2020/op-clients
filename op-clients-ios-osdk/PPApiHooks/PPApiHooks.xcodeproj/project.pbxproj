@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		980B7FC41ED3461D00570DF0 /* PPEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6BC1E76F16200FF635A /* PPEventDispatcher.m */; };
 		982FB4171E83FE0000D1AAEC /* HookURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */; };
 		982FB41C1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 982FB41A1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h */; };
 		982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */; };
@@ -34,6 +35,8 @@
 		9845D9661EC09CB70057CC9B /* CommonBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845D9651EC09CB70057CC9B /* CommonBaseTest.m */; };
 		984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */; };
 		984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */; };
+		9850234C1ED333F90074221C /* IdentifiedHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9850234A1ED333F90074221C /* IdentifiedHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9850234D1ED333F90074221C /* IdentifiedHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9850234B1ED333F90074221C /* IdentifiedHandler.m */; };
 		98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9869FA581E7A7C19001A8218 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 989DB8EC1E77DE61008F4D02 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */; };
@@ -56,7 +59,6 @@
 		98F7A6BF1E76F16200FF635A /* PPEventDispatcher+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6B91E76F16200FF635A /* PPEventDispatcher+Internal.h */; };
 		98F7A6C01E76F16200FF635A /* PPEventDispatcher+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6BA1E76F16200FF635A /* PPEventDispatcher+Internal.m */; };
 		98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6BB1E76F16200FF635A /* PPEventDispatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		98F7A6C21E76F16200FF635A /* PPEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6BC1E76F16200FF635A /* PPEventDispatcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		9845D9651EC09CB70057CC9B /* CommonBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonBaseTest.m; path = CommonBaseTest/CommonBaseTest.m; sourceTree = "<group>"; };
 		984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPEvent+FrameworkPrivate.h"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.h"; sourceTree = "<group>"; };
 		984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPEvent+FrameworkPrivate.m"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.m"; sourceTree = "<group>"; };
+		9850234A1ED333F90074221C /* IdentifiedHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IdentifiedHandler.h; path = IdentifiedHandler/IdentifiedHandler.h; sourceTree = "<group>"; };
+		9850234B1ED333F90074221C /* IdentifiedHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IdentifiedHandler.m; path = IdentifiedHandler/IdentifiedHandler.m; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PPApiHooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPApiHooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PPApiHooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPApiHooks.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -213,6 +217,15 @@
 				984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */,
 			);
 			name = "PPEvent+Private";
+			sourceTree = "<group>";
+		};
+		985023491ED333DA0074221C /* IdentifiedHandler */ = {
+			isa = PBXGroup;
+			children = (
+				9850234A1ED333F90074221C /* IdentifiedHandler.h */,
+				9850234B1ED333F90074221C /* IdentifiedHandler.m */,
+			);
+			name = IdentifiedHandler;
 			sourceTree = "<group>";
 		};
 		98584F331D3F9E18009FB89F = {
@@ -399,6 +412,7 @@
 		98F7A6B71E76F16200FF635A /* PPEventDispatcher */ = {
 			isa = PBXGroup;
 			children = (
+				985023491ED333DA0074221C /* IdentifiedHandler */,
 				98F7A6B81E76F16200FF635A /* PPEventDispatcher+Internal */,
 				98F7A6BB1E76F16200FF635A /* PPEventDispatcher.h */,
 				98F7A6BC1E76F16200FF635A /* PPEventDispatcher.m */,
@@ -424,6 +438,7 @@
 			files = (
 				9845D95A1EC06C190057CC9B /* PPApiHooksStart.h in Headers */,
 				9845D9531EC05F2E0057CC9B /* PPEventIdentifier.h in Headers */,
+				9850234C1ED333F90074221C /* IdentifiedHandler.h in Headers */,
 				98584F411D3F9E18009FB89F /* PPApiHooks.h in Headers */,
 				98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */,
 				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
@@ -555,15 +570,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				980B7FC41ED3461D00570DF0 /* PPEventDispatcher.m in Sources */,
 				98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
 				9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */,
 				98F7A6AB1E76ECB200FF635A /* NSURLSession+PPHOOK.m in Sources */,
 				982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */,
 				98F7A6A21E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m in Sources */,
+				9850234D1ED333F90074221C /* IdentifiedHandler.m in Sources */,
 				98F7A6A81E76ECB200FF635A /* CMPedometer+PPHOOK.m in Sources */,
 				98F7A6AC1E76ECB200FF635A /* UIDevice+PPHOOK.m in Sources */,
 				98F7A6A41E76ECB200FF635A /* CLLocationManager+PPHOOK.m in Sources */,
-				98F7A6C21E76F16200FF635A /* PPEventDispatcher.m in Sources */,
 				98F7A6AA1E76ECB200FF635A /* LAContext+PPHOOK.m in Sources */,
 				98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */,
 				98F7A6BE1E76F16200FF635A /* PPEvent.m in Sources */,
@@ -642,6 +658,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -685,6 +702,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -702,7 +720,8 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks @executable_path/Frameworks $(inherited)";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.PPApiHooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -718,7 +737,8 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GenericFrameworkProject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks @executable_path/Frameworks $(inherited)";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plusprivacy.PPApiHooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

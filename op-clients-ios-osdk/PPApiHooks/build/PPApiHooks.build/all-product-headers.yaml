@@ -13,6 +13,11 @@
         },
         {
           'type': 'file',
+          'name': "IdentifiedHandler.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventDispatcher/IdentifiedHandler/IdentifiedHandler.h"
+        },
+        {
+          'type': 'file',
           'name': "PPApiHooks-Swift.h",
           'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/Release-iphonesimulator/PPApiHooks.framework/Headers/PPApiHooks-Swift.h"
         },

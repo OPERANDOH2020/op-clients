@@ -8,6 +8,10 @@
 		<data>
 		dmfWpYZ5vAEGp5CKMkVF84arPzk=
 		</data>
+		<key>Headers/IdentifiedHandler.h</key>
+		<data>
+		m+UdWePB2HZppsv93Idl2sjINFg=
+		</data>
 		<key>Headers/PPApiHooks.h</key>
 		<data>
 		5IpZBIKweZ8Qaq7EUu0ip4IXXmM=
@@ -18,7 +22,7 @@
 		</data>
 		<key>Headers/PPEventDispatcher.h</key>
 		<data>
-		ctYOdk0QGFFZBCK9lrKCcjoo5c8=
+		5sMkkpmahVyq8nPh7+1lqj6sxx8=
 		</data>
 		<key>Headers/PPEventIdentifier.h</key>
 		<data>
@@ -44,6 +48,17 @@
 			<key>hash2</key>
 			<data>
 			BmK55YgmrfpB8AyUC1HEGd8r9eK04e6mMDFcxoaDI/U=
+			</data>
+		</dict>
+		<key>Headers/IdentifiedHandler.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			m+UdWePB2HZppsv93Idl2sjINFg=
+			</data>
+			<key>hash2</key>
+			<data>
+			kGadosmRjCjfrxU7dDWSjtX2/cdY5etX0aIRHU4wY58=
 			</data>
 		</dict>
 		<key>Headers/PPApiHooks.h</key>
@@ -72,11 +87,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ctYOdk0QGFFZBCK9lrKCcjoo5c8=
+			5sMkkpmahVyq8nPh7+1lqj6sxx8=
 			</data>
 			<key>hash2</key>
 			<data>
-			pidptiXbZNbPTCgAsY5Xb0hgXSfz/1QWf7qu162INOs=
+			gqu+lav7W8Xt22hVqZVSoqFWgyxa2UQBPr55OrHvakk=
 			</data>
 		</dict>
 		<key>Headers/PPEventIdentifier.h</key>

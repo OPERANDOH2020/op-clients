@@ -16,9 +16,9 @@ import SwarmClient
 
 typealias ServerResponseHandler = (_ data: [Any]) -> Void
 
-//func print(_ items: Any ...){
-//    
-//}
+func print(_ items: Any ...){
+    
+}
 
 class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         IdentitiesManagementRepository,
@@ -663,7 +663,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     }
     
     func didReceiveData(_ data: [Any]){
-        print(data.first)
         guard let swarmName = SwarmClientHelper.swarmingNameIfAny(from: data) else {
             return
         }

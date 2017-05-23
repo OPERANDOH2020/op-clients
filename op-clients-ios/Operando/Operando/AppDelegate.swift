@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import PPCloak
+import PPApiHooks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OPConfigObject.sharedInstance.applicationDidStartInWindow(window: window)
         self.window = window
         window.makeKeyAndVisible()
+        
+        
+        OPMonitor.initializeMonitoring()
         return true
         
     }

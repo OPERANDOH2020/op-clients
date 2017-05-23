@@ -11,24 +11,6 @@
 #import "Common.h"
 #import "PPEvent+FrameworkPrivate.h"
 
-@interface IdentifiedHandler : NSObject
-@property (strong, nonatomic) NSString *identifier;
-@property (strong, nonatomic) EventHandler handler;
-@end
-
-@implementation IdentifiedHandler
--(instancetype)initWithIdentifier:(NSString*)identifier handler:(EventHandler)handler {
-    if (self = [super init]) {
-        self.identifier = identifier;
-        self.handler = handler;
-    }
-    
-    return self;
-}
-@end
-
-
-
 @interface PPEventDispatcher()
 @property (strong, nonatomic) NSMutableArray<IdentifiedHandler*> *handlersArray;
 @end
@@ -52,13 +34,11 @@
     return sharedInstance;
 }
 
--(NSString *)insertNewHandlerAtTop:(EventHandler)eventHandler {
+-(NSString*)insertAtTopNewHandler:(EventHandler _Nonnull)eventHandler {
     NSString *identifier = [NSString stringWithFormat:@"%ld", (unsigned long)self.handlersArray.count];
     IdentifiedHandler *ih = [[IdentifiedHandler alloc] initWithIdentifier:identifier handler:eventHandler];
-    
     [self.handlersArray addObject:ih];
     return identifier;
-    
 }
 
 -(void)removeHandlerWithIdentifier:(NSString *)identifier {

@@ -7,5 +7,6 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEvent/PPEvent.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/Common.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEvent/PPEventIdentifier/PPEventIdentifier.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventDispatcher/IdentifiedHandler/IdentifiedHandler.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/JRSwizzle/JRSwizzle.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/NSObject+SwizzleMethods/NSObject+AutoSwizzle.h

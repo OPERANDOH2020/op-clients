@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import PPApiHooks
 import PPWebContentBlocker
+import PPCloak
+import PPApiHooks
 
 class WebAdBlocker: NSObject {
     
@@ -35,7 +36,7 @@ class WebAdBlocker: NSObject {
                 PPEventDispatcher.sharedInstance().removeHandler(withIdentifier: identifier)
             }
             
-            self.identifier = PPEventDispatcher.sharedInstance().insertNewHandler(atTop: { (event, next) in
+            PPEventDispatcher.sharedInstance().insert(atTopNewHandler: { (event, next) in
                 defer {
                     next?()
                 }
