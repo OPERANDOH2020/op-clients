@@ -1822,6 +1822,14 @@ visibility: visible;
     background-image:url("/operando/assets/images/menu_icons/extensions_selected.png");
 }
 
+.menu_icon.plugin_icon{
+    background-image:url("/operando/assets/images/menu_icons/plugin.png");
+}
+
+.active.menu_icon.plugin_icon{
+    background-image:url("/operando/assets/images/menu_icons/plugin_selected.png");
+}
+
 .menu_icon.dashboard_icon{
     background-image:url("/operando/assets/images/menu_icons/dashboard.png");
 }

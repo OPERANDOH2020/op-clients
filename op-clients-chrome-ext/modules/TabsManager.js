@@ -208,10 +208,9 @@ function establishPlusPrivacyWebsiteCommunication(tabId){
     insertJavascriptFile(tabId, "operando/modules/communication/message-relay.js");
 }
 
-
 function checkConnectWithSNApisUrls(tabId, changeInfo, tab){
-
-    if(changeInfo.url && urlIsApiUrl(changeInfo.url)){
+    var possibleSocialNetwork = urlIsApiUrl(changeInfo.url);
+    if(changeInfo.url && possibleSocialNetwork!==false){
         chrome.tabs.insertCSS(tabId, {file: "operando/modules/pfb/css/style.css", runAt:"document_start"},function(){
             var notificationId = new Date().getTime();
             var extensionId = chrome.runtime.id;
@@ -270,10 +269,10 @@ function urlIsApiUrl(url){
 
     var facebookPattern = new RegExp("facebook.com\/((v[0-9]{1,2}\.[0-9]{1,2})|(dialog\/oauth))");
     switch(true){
-        case url.indexOf("api.twitter.com/oauth/")>=0: return true; break;
-        case url.indexOf("accounts.google.com/signin/oauth/")>=0: return true; break;
-        case url.indexOf("linkedin.com/uas/oauth2/")>=0: return true; break;
-        case facebookPattern.test(url): return true; break;
+        case url.indexOf("api.twitter.com/oauth/")>=0: return 'twitter'; break;
+        case url.indexOf("accounts.google.com/signin/oauth/")>=0: return 'google'; break;
+        case url.indexOf("linkedin.com/uas/oauth2/")>=0: return 'linkedin'; break;
+        case facebookPattern.test(url): return 'facebook'; break;
         default: return false;
     }
 }

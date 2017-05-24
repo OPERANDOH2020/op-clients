@@ -51,7 +51,6 @@ var websiteService = exports.websiteService = {
         else{
             portObserversPool.trigger("goToDashboard","sendMeAuthenticationToken");
         }
-
     },
 
     logout:function(){
@@ -65,7 +64,6 @@ var websiteService = exports.websiteService = {
             function(message){
                 portObserversPool.trigger("loggedIn",message);
             }
-
         );
     },
 

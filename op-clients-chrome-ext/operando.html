@@ -150,10 +150,14 @@
 
 
 
-                    <li ui-sref-active="active" class="no-sub-menu">
+                    <li  class="no-sub-menu">
                         <a class="menu_icon extensions_icon" ui-sref="extensions">Extensions & Apps</a>
                     <ul class="panel-group nav nav-tabs tabs-left sub-menu pq_social_network" id="apps_content" ng-if="$state.includes('extensions') || $state.includes('network') "
                         ng-controller="socialAppsController">
+                        <li>
+                            <a ui-sref="extensions" ui-sref-active="active" class="menu_icon plugin_icon">
+                                Extensions</a>
+                        </li>
                         <li ng-repeat="sn in sns">
                             <a
                                     class="menu_icon" ng-class="sn+'_icon'"
