@@ -6,6 +6,7 @@ var base64data = window.location.href.substring(window.location.href.indexOf("#"
 var data = JSON.parse(atob(base64data));
 console.log(data);
 var offer;
+var parentTab;
 document.body.innerHTML = document.body.innerHTML.split("{{SOCIAL_NETWORK}}").join(data.socialNetwork);
 
 var port = chrome.runtime.connect({name: "allowSocialNetworkPopup"});
@@ -28,7 +29,7 @@ loginWithSocialNetwork.addEventListener("click", function () {
         action: "allowSocialNetworkPopup", data: {
             status: "allow",
             notificationId: data.notificationId,
-            offerId: offer.offerId
+            offerId: offer?offer.offerId:parentTab
         }
     });
     port.postMessage({action: "acceptPfbDeal", data: offer.offerId});
@@ -38,6 +39,7 @@ port.postMessage({action: "getLastVisitedUrl", data: data.notificationId});
 
 
 function checkForOffers(message) {
+    parentTab = message.data;
     port.postMessage({action: "getWebsiteDeal", data: {tabUrl: message.data}});
 }
 
@@ -48,6 +50,7 @@ function getWebsiteDeal(message) {
         checkOffer(offer.offerId);
     }
     else {
+        $("#loginWithSocialNetwork").removeAttr("disabled");
         $("#info_noOffers").show();
     }
 }
