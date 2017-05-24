@@ -2,14 +2,15 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/plusprivacy-theme.css">
     <script type="text/javascript" src="/operando/assets/bootstrap/js/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="/operando/assets/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/operando/assets/bootstrap/css/plusprivacy-theme.css">
+    <!--<script type="text/javascript" src="/operando/modules/communication/popup-relay.js"></script>-->
 </head>
 <body>
 
 <!-- Modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+<div class="modal fade operando" tabindex="-1" role="dialog" id="myModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,11 +18,35 @@
                 <h4 class="modal-title plusprivacy">Register with plus privacy identities</h4>
             </div>
             <div class="modal-body plusprivacy">
-                <p>By connecting with social networks, sensitive data will be provided to 3rd parts. You could use a substitute identity instead. </p>
+                <p id="info_noOffers" style="display: none">If you login with {{SOCIAL_NETWORK}} you will be providing your private data to third parties.  Consider using your PlusPrivacy substitute identity instead. </p>
+                <p id="info_hasOffers" style="display: none">Signup with {{SOCIAL_NETWORK}} and get this deal.</p>
+                <div id="offerDetails" style="display:none;">
+
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <img id="offer_logo" width="48px"/>
+                        </div>
+                        <div class="col-md-4">
+                            <offerName></offerName>
+                        </div>
+                        <div class="col-md-7">
+                            <offerDescription></offerDescription>
+                        </div>
+                    </div>
+                    <br/>
+
+
+                    <label>
+                        <input type="checkbox" value="accept_offer" id="accept_offer"/><span>Accept offer</span>
+                    </label>
+
+                </div >
             </div>
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary"  id="loginWithSocialNetwork"> Login with social network</button>
-                <button type="button" class="btn btn-default"  id="registerWithSid">Cancel</button>
+                <button type="button" class="btn btn-primary"  id="loginWithSocialNetwork" disabled="disabled"> Login with {{SOCIAL_NETWORK}}</button>
+                <button type="button" class="btn btn-primary-black"  id="registerWithSid">Use substitute identity </button>
 
             </div>
         </div><!-- /.modal-content -->

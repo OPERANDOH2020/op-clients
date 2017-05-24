@@ -2382,3 +2382,17 @@ h4.modal-title.plusprivacy{
 .modal-body.plusprivacy{
     font-size: 17px;
 }
+
+
+#offerDetails div.row{
+    padding: 10px 0px;
+    background: #ffe8b2;
+}
+
+#offerDetails div.row .col-md-4{
+    margin-top: 10px;
+    padding-left: 20px;
+}
+#offerDetails div.row .col-md-7{
+    margin-top: 10px;
+}
