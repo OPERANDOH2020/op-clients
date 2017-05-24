@@ -71,16 +71,8 @@ angular.module('pspApp').factory("connectionService",function(swarmService, mess
                     Cookies.set("daysUntilCookieExpire",daysUntilCookieExpire,{expires:3650});
                     Cookies.set("sessionId", swarm.meta.sessionId, {expires: daysUntilCookieExpire});
                     Cookies.set("userId", swarm.userId, {expires: daysUntilCookieExpire});
-
                     self.getUser(successCallback);
 
-                    messengerService.send("authenticateUserInExtension", {
-                        userId: swarm.userId,
-                        authenticationToken: swarm.authenticationToken,
-                     remember: user.remember
-                     }, function (status) {
-                        successCallback({status: "success"});
-                     });
                 }
             };
 
