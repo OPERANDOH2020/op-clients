@@ -7,6 +7,7 @@ var data = JSON.parse(atob(base64data));
 console.log(data);
 var offer;
 var parentTab;
+var cancelShowOffer = false;
 document.body.innerHTML = document.body.innerHTML.split("{{SOCIAL_NETWORK}}").join(data.socialNetwork);
 
 var port = chrome.runtime.connect({name: "allowSocialNetworkPopup"});
@@ -51,12 +52,22 @@ function getWebsiteDeal(message) {
     }
     else {
         $("#loginWithSocialNetwork").removeAttr("disabled");
-        $("#info_noOffers").show();
+
+        setTimeout(function(){
+            if(offer === undefined){
+                cancelShowOffer = true;
+                $("#loader").hide();
+                $("#info_noOffers").show();
+                $("#loginWithSocialNetwork").removeAttr("disabled");
+            }
+        },2000);
+
     }
 }
 
 function showOffer(offer) {
 
+    $("#loader").hide();
     $($("offerName")[0]).text(offer.name);
     $($("offerDescription")[0]).text(offer.description);
     $("#offer_logo").attr("src", "data:image/png;base64," + offer.logo);
@@ -89,7 +100,11 @@ function checkOfferResponse(response) {
         });
     }
     else {
-        showOffer(offer);
+
+        if(cancelShowOffer === false){
+            showOffer(offer);
+        }
+
     }
 }
 
