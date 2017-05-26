@@ -86,13 +86,14 @@ ospApp.run(['$rootScope', '$location', 'userService', function ($rootScope, $loc
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
         userService.isAuthenticated(function (isAuthenticated) {
-            console.log(next, current);
 
             if (isAuthenticated === false) {
                 if (next.$$route.originalPath != "/register" && next.$$route.originalPath != "/login" &&
                     next.$$route.originalPath!='/verify/:verifyCode') {
                     $location.path('/');
                 }
+            } else if(next.$$route.originalPath === "/login" || next.$$route.originalPath === "/register"){
+                $location.path('/');
             }
 
         });

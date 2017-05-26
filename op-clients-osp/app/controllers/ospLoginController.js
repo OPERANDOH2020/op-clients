@@ -1,4 +1,4 @@
-angular.module("ospApp").controller("ospLoginController", function ($scope, connectionService, messengerService, userService, Notification, $location,$window) {
+angular.module("ospApp").controller("ospLoginController", function ($scope, connectionService, userService, Notification) {
 
     $scope.requestProcessed = false;
     $scope.user = {

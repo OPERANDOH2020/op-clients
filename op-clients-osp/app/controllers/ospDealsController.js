@@ -1,4 +1,4 @@
-var dealsController = function ($scope, connectionService, messengerService, $window, DTColumnDefBuilder, ModalService) {
+var dealsController = function ($scope, connectionService, $window, DTColumnDefBuilder, ModalService) {
     $scope.offerStatsInstance = {};
     $scope.offerStatsColumnDefs = [
         DTColumnDefBuilder.newColumnDef(0).notSortable(),

@@ -5,7 +5,7 @@ var TENANT = Config.swarmClient.tenant;
 var GUEST_EMAIL = Config.guest.email;
 var GUEST_PASSWORD = Config.guest.password;
 
-angular.module('ospApp').factory("connectionService",function(swarmService, messengerService) {
+angular.module('ospApp').factory("connectionService", function (swarmService) {
 
     var ConnectionService;
     ConnectionService = (function () {
@@ -30,8 +30,8 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
                         swarmService.removeConnection();
 
                         var cookieValidityDays = parseInt(Cookies.get("daysUntilCookieExpire"));
-                        Cookies.set("sessionId", swarm.validatedUserSession.sessionId,{expires:cookieValidityDays});
-                        Cookies.set("userId", swarm.validatedUserSession.userId,{expires:cookieValidityDays});
+                        Cookies.set("sessionId", swarm.validatedUserSession.sessionId, {expires: cookieValidityDays});
+                        Cookies.set("userId", swarm.validatedUserSession.userId, {expires: cookieValidityDays});
                         successCallback(swarm.validatedUserSession);
 
                     });
@@ -47,10 +47,16 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
         ConnectionService.prototype.loginUser = function (user, userType, successCallback, failCallback) {
 
             var loginCtor;
-            switch (userType){
-                case "Public" : loginCtor = "userLogin"; break;
-                case "OSP": loginCtor = "ospLogin"; break;
-                case "PSP": loginCtor ="pspLogin"; break;
+            switch (userType) {
+                case "Public" :
+                    loginCtor = "userLogin";
+                    break;
+                case "OSP":
+                    loginCtor = "ospLogin";
+                    break;
+                case "PSP":
+                    loginCtor = "pspLogin";
+                    break;
             }
 
             var self = this;
@@ -64,11 +70,11 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
                 if (swarm.authenticated) {
 
                     var daysUntilCookieExpire = 1;
-                    if(user.remember){
+                    if (user.remember) {
                         daysUntilCookieExpire = 365;
                     }
 
-                    Cookies.set("daysUntilCookieExpire",daysUntilCookieExpire,{expires:3650});
+                    Cookies.set("daysUntilCookieExpire", daysUntilCookieExpire, {expires: 3650});
                     Cookies.set("sessionId", swarm.meta.sessionId, {expires: daysUntilCookieExpire});
                     Cookies.set("userId", swarm.userId, {expires: daysUntilCookieExpire});
                     self.getUser(successCallback);
@@ -86,17 +92,6 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             swarmHub.on('login.js', "failed", loginFailed);
         };
 
-
-        ConnectionService.prototype.generateAuthenticationToken = function (successCallback, failCallback) {
-            var generateAuthenticationTokenHandler =  swarmHub.startSwarm('UserInfo.js', 'generateAnAuthenticationToken');
-            generateAuthenticationTokenHandler.onResponse("generateAuthenticationTokenSuccess", function(response){
-               successCallback(response.meta.userId,response.authenticationToken);
-            });
-            generateAuthenticationTokenHandler.onResponse("generateAuthenticationTokenFailed", function(response){
-                failCallback(response.error);
-            });
-        };
-
         ConnectionService.prototype.getUser = function (callback) {
             var getUserHandler = swarmHub.startSwarm('UserInfo.js', 'info');
             getUserHandler.onResponse("result", function (swarm) {
@@ -108,12 +103,6 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             });
         };
 
-        /*used for getting authenticated user in extension*/
-        ConnectionService.prototype.getCurrentUser = function (successCbk) {
-            messengerService.send("getCurrentUserLoggedInInExtension", function (data) {
-                successCbk(data);
-            });
-        };
 
         ConnectionService.prototype.registerNewUser = function (user, successCallback, failCallback) {
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
@@ -140,7 +129,7 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             });
         };
 
-        ConnectionService.prototype.resendActivationCode = function(email, successCallback, errorCallback){
+        ConnectionService.prototype.resendActivationCode = function (email, successCallback, errorCallback) {
 
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
                 TENANT, "userLogin", function () {
@@ -149,23 +138,23 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
                     console.log("connect cbk");
                 });
 
-            var guestLoginForUserRegistration = function(swarm){
-                swarmHub.off("login.js", "success_guest",guestLoginForUserRegistration);
-                if(swarm.authenticated){
+            var guestLoginForUserRegistration = function (swarm) {
+                swarmHub.off("login.js", "success_guest", guestLoginForUserRegistration);
+                if (swarm.authenticated) {
                     var resendActivationCodeHandler = swarmHub.startSwarm("register.js", "sendActivationCode", email);
-                    resendActivationCodeHandler.onResponse("success", function(swarm){
+                    resendActivationCodeHandler.onResponse("success", function (swarm) {
                         successCallback();
                         swarmService.removeConnection();
                     });
 
-                    resendActivationCodeHandler.onResponse("failed", function(swarm){
+                    resendActivationCodeHandler.onResponse("failed", function (swarm) {
                         errorCallback(swarm.error);
                         swarmService.removeConnection();
                     });
                 }
             };
 
-            swarmHub.on("login.js", "success_guest",guestLoginForUserRegistration);
+            swarmHub.on("login.js", "success_guest", guestLoginForUserRegistration);
 
         };
 
@@ -175,11 +164,12 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             var self = this;
 
             /*
-            TODO
-            I could send the failCallback function, but the SwarmClient should be modified in the future
+             TODO
+             I could send the failCallback function, but the SwarmClient should be modified in the future
              */
 
-            var failCallbackPlaceholder = function(){};
+            var failCallbackPlaceholder = function () {
+            };
 
             if (!username || !sessionId) {
                 failCallback();
@@ -198,8 +188,8 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
                 //if server will shutdown
                 swarmHub.on('login.js', "restoreSucceed", function (swarm) {
                     var cookieValidityDays = parseInt(Cookies.get("daysUntilCookieExpire"));
-                    Cookies.set("sessionId", swarm.meta.sessionId,{expires: cookieValidityDays});
-                    Cookies.set("userId", swarm.userId,{expires: cookieValidityDays});
+                    Cookies.set("sessionId", swarm.meta.sessionId, {expires: cookieValidityDays});
+                    Cookies.set("userId", swarm.userId, {expires: cookieValidityDays});
                 });
 
                 swarmHub.on('login.js', "restoreFailed", function restoredSuccessfully(swarm) {
@@ -251,49 +241,6 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             });
         };
 
-        ConnectionService.prototype.getOspRequests = function (successCallback, failCallback) {
-            var getRequestsHandler = swarmHub.startSwarm("osp.js", "getRequests");
-            getRequestsHandler.onResponse("success", function (swarm) {
-                successCallback(swarm.ospRequests);
-            });
-
-            getRequestsHandler.onResponse("failed", function (swarm) {
-                failCallback(swarm.error);
-            });
-        };
-
-        ConnectionService.prototype.deleteOSPRequest = function (userId, dismissFeedback, successCallback, failCallback) {
-            var getDeleteRequestHandler = swarmHub.startSwarm("osp.js", "removeOSPRequest", userId, dismissFeedback);
-            getDeleteRequestHandler.onResponse("success", function (swarm) {
-                successCallback();
-            });
-
-            getDeleteRequestHandler.onResponse("failed", function (swarm) {
-                failCallback(swarm.error);
-            });
-        };
-
-        ConnectionService.prototype.acceptOSPRequest = function (userId, successCallback, failCallback) {
-            var acceptRequestHandler = swarmHub.startSwarm("osp.js", "acceptOSPRequest", userId);
-            acceptRequestHandler.onResponse("success", function (swarm) {
-                successCallback();
-            });
-
-            acceptRequestHandler.onResponse("failed", function (swarm) {
-                failCallback(swarm.error);
-            });
-        };
-
-        ConnectionService.prototype.listOSPs = function (successCallback, failCallback) {
-            var listOSPsHandler = swarmHub.startSwarm("osp.js", "listOSPs");
-            listOSPsHandler.onResponse("success", function (swarm) {
-                successCallback(swarm.ospList);
-            });
-
-            listOSPsHandler.onResponse("failed", function (swarm) {
-                failCallback(swarm.error);
-            });
-        };
         ConnectionService.prototype.addOspOffer = function (offerDetails, successCallback, failCallback) {
             var addOspOfferHandler = swarmHub.startSwarm("osp.js", "addOspOffer", offerDetails);
             addOspOfferHandler.onResponse("success", function (swarm) {
@@ -326,19 +273,7 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             });
         };
 
-        ConnectionService.prototype.getOffersStats = function(ospId, successCallback, failCallback){
-            var listOspOffersHandler = swarmHub.startSwarm("osp.js", "getOffersStats",ospId);
-            listOspOffersHandler.onResponse("success", function (swarm) {
-                successCallback(swarm.offersStats);
-            });
-
-            listOspOffersHandler.onResponse("failed", function (swarm) {
-                failCallback(swarm.error);
-            });
-        };
-
-
-        ConnectionService.prototype.getMyOffersDetails = function(successCallback, failCallback){
+        ConnectionService.prototype.getMyOffersDetails = function (successCallback, failCallback) {
             var listOspOffersHandler = swarmHub.startSwarm("osp.js", "getCurrentUserOffers");
             listOspOffersHandler.onResponse("success", function (swarm) {
                 successCallback(swarm.offersStats);
@@ -349,8 +284,8 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
             });
         };
 
-        ConnectionService.prototype.getOfferStatistics = function(offerId,successCallback, failCallback){
-            var listOspOffersHandler = swarmHub.startSwarm("osp.js", "getOfferStatistics",offerId);
+        ConnectionService.prototype.getOfferStatistics = function (offerId, successCallback, failCallback) {
+            var listOspOffersHandler = swarmHub.startSwarm("osp.js", "getOfferStatistics", offerId);
             listOspOffersHandler.onResponse("success", function (swarm) {
                 successCallback(swarm.offerStats);
             });
@@ -362,25 +297,24 @@ angular.module('ospApp').factory("connectionService",function(swarmService, mess
 
         ConnectionService.prototype.updateUserInfo = function (user_details, success_callback, error_callback) {
             var updateUserInfoHandler = swarmHub.startSwarm('UserInfo.js', 'updateUserInfo', user_details);
-            updateUserInfoHandler.onResponse("updatedUserInfo", function(swarm){
+            updateUserInfoHandler.onResponse("updatedUserInfo", function (swarm) {
                 success_callback(swarm.updatedInfo);
             });
-            updateUserInfoHandler.onResponse("userUpdateFailed", function(response){
+            updateUserInfoHandler.onResponse("userUpdateFailed", function (response) {
                 error_callback(response.error);
             })
         };
 
-            ConnectionService.prototype.changePassword = function(changePasswordData, success_callback, error_callback){
+        ConnectionService.prototype.changePassword = function (changePasswordData, success_callback, error_callback) {
             var changePasswordHandler = swarmHub.startSwarm('UserInfo.js', 'changePassword', changePasswordData.currentPassword, changePasswordData.newPassword);
-            changePasswordHandler.onResponse("passwordSuccessfullyChanged", function(response){
+            changePasswordHandler.onResponse("passwordSuccessfullyChanged", function (response) {
                 success_callback();
             });
 
-            changePasswordHandler.onResponse("passwordChangeFailure", function(response){
+            changePasswordHandler.onResponse("passwordChangeFailure", function (response) {
                 error_callback(response.error);
             });
         };
-
 
         return ConnectionService;
 
