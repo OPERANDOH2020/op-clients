@@ -7,7 +7,8 @@ function Config(){
         },
         guest:{
             email:"guest@operando.eu",
-            password:"guest"
+            password:"guest",
+            tenant:"GUEST"
         }
     };
 };

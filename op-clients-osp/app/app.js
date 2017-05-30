@@ -98,11 +98,17 @@ ospApp.config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider)
         })
         .state("account", {
             url: "/account",
-            templateUrl: "../assets/templates/dashboard/account.html"
+            templateUrl: "../assets/templates/dashboard/account.html",
+            resolve:{
+                loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('/app/controllers/ospAccountController.js');
+                }]
+            }
         })
         .state("certifications", {
             url: "/certifications",
             templateUrl: "../assets/templates/dashboard/certifications.html"
+
         })
         .state("billing", {
             url: "/billing",
@@ -110,7 +116,13 @@ ospApp.config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider)
         })
         .state("verify", {
             url: "/verify/:verifyCode",
-            templateUrl: "../assets/templates/verify.html"
+            templateUrl: "../assets/templates/verify.html",
+            resolve:{
+                loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('/app/controllers/confirmOSPController.js');
+                }]
+            }
+
         });
 
     $urlRouterProvider.otherwise("/");

@@ -4,6 +4,7 @@ var SERVER_PORT = Config.swarmClient.port;
 var TENANT = Config.swarmClient.tenant;
 var GUEST_EMAIL = Config.guest.email;
 var GUEST_PASSWORD = Config.guest.password;
+var GUEST_TENANT = Config.guest.tenant;
 
 angular.module('ospApp').factory("connectionService", function (swarmService) {
 
@@ -16,7 +17,7 @@ angular.module('ospApp').factory("connectionService", function (swarmService) {
 
         ConnectionService.prototype.activateUser = function (activationCode, successCallback, failCallback) {
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-                TENANT, "userLogin", function () {
+                GUEST_TENANT, "userLogin", function () {
                     console.log("reconnect cbk");
                 }, function () {
                     console.log("connect cbk");
@@ -90,35 +91,10 @@ angular.module('ospApp').factory("connectionService", function (swarmService) {
         };
 
 
-        ConnectionService.prototype.registerNewUser = function (user, successCallback, failCallback) {
-            swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-                TENANT, "userLogin", function () {
-                    console.log("reconnect cbk");
-                }, function () {
-                    console.log("connect cbk");
-                });
-
-            swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
-                swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
-                if (swarm.authenticated) {
-                    var registerHandler = swarmHub.startSwarm("register.js", "registerNewUser", user);
-                    registerHandler.onResponse("success", function (swarm) {
-                        successCallback("success");
-                        swarmService.removeConnection();
-                    });
-
-                    registerHandler.onResponse("error", function (swarm) {
-                        failCallback(swarm.error);
-                        swarmService.removeConnection();
-                    });
-                }
-            });
-        };
-
         ConnectionService.prototype.resendActivationCode = function (email, successCallback, errorCallback) {
 
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-                TENANT, "userLogin", function () {
+                GUEST_TENANT, "userLogin", function () {
                     console.log("reconnect cbk");
                 }, function () {
                     console.log("connect cbk");
@@ -203,7 +179,7 @@ angular.module('ospApp').factory("connectionService", function (swarmService) {
 
         ConnectionService.prototype.registerNewOSPOrganisation = function (user, successCallback, failCallback) {
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-                TENANT, "userLogin", function () {
+                GUEST_TENANT, "userLogin", function () {
                     console.log("reconnect cbk");
                 }, function () {
                     console.log("connect cbk");

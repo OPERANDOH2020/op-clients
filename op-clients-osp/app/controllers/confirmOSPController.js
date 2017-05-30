@@ -1,6 +1,7 @@
-ospApp.controller("confirmOSPController", function ($scope, $location, connectionService,$routeParams,$window) {
+angular.module("ospApp").controller("confirmOSPController", function ($scope, $location, connectionService,$stateParams,$window) {
+
     $scope.loadingData = true;
-    var confirmationCode = $routeParams['verifyCode'];
+    var confirmationCode = $stateParams['verifyCode'];
 
     if(confirmationCode){
         connectionService.activateUser(confirmationCode, function (validatedUserSession) {
