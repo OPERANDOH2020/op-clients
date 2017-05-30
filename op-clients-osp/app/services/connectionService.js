@@ -44,25 +44,11 @@ angular.module('ospApp').factory("connectionService", function (swarmService) {
             });
         };
 
-        ConnectionService.prototype.loginUser = function (user, userType, successCallback, failCallback) {
-
-            var loginCtor;
-            switch (userType) {
-                case "Public" :
-                    loginCtor = "userLogin";
-                    break;
-                case "OSP":
-                    loginCtor = "ospLogin";
-                    break;
-                case "PSP":
-                    loginCtor = "pspLogin";
-                    break;
-            }
+        ConnectionService.prototype.loginUser = function (user, successCallback, failCallback) {
 
             var self = this;
-
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, user.email, user.password,
-                TENANT, loginCtor, function (error) {
+                TENANT, "userLogin", function (error) {
                 });
 
             var userLoginSuccess = function (swarm) {
