@@ -124,5 +124,5 @@ var dealsController = function ($scope, connectionService, $window, DTColumnDefB
 };
 
 
-ospApp.controller("ospDashboardController", dealsController);
+angular.module("ospApp").controller("ospDashboardController", dealsController);
 

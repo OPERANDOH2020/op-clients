@@ -568,13 +568,17 @@ ul.nav-tabs>li.active>a, ul.nav-tabs>li.active>a:focus, ul.nav-tabs>li.active>a:
     vertical-align: middle;
 }
 
-#landing_page{
-    background: url(/assets/css/images/osp_background.jpg) no-repeat center 40%;
+#landing_page {
+    background: url(/assets/css/images/osp_background.jpg) no-repeat center 0%;
     height: 100%;
     display: block;
     overflow: visible;
     background-size: cover;
+    position: fixed;
     left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
 }
 
 .table-bordered {

@@ -176,7 +176,7 @@ angular.module('ospApp').factory("connectionService", function (swarmService) {
             }
             else {
                 swarmService.restoreConnection(SERVER_HOST, SERVER_PORT, failCallbackPlaceholder, failCallbackPlaceholder, function () {
-                    //console.log("connectionIsDown");
+                    //console.log("reconnected");
                     //self.restoreUserSession(successCallback, failCallback);
 
                 });
@@ -274,23 +274,23 @@ angular.module('ospApp').factory("connectionService", function (swarmService) {
         };
 
         ConnectionService.prototype.getMyOffersDetails = function (successCallback, failCallback) {
-            var listOspOffersHandler = swarmHub.startSwarm("osp.js", "getCurrentUserOffers");
-            listOspOffersHandler.onResponse("success", function (swarm) {
+            var getMyOffersDetailsHandler = swarmHub.startSwarm("osp.js", "getCurrentUserOffers");
+            getMyOffersDetailsHandler.onResponse("success", function (swarm) {
                 successCallback(swarm.offersStats);
             });
 
-            listOspOffersHandler.onResponse("failed", function (swarm) {
+            getMyOffersDetailsHandler.onResponse("failed", function (swarm) {
                 failCallback(swarm.error);
             });
         };
 
         ConnectionService.prototype.getOfferStatistics = function (offerId, successCallback, failCallback) {
-            var listOspOffersHandler = swarmHub.startSwarm("osp.js", "getOfferStatistics", offerId);
-            listOspOffersHandler.onResponse("success", function (swarm) {
+            var getOfferStatisticsHandler = swarmHub.startSwarm("osp.js", "getOfferStatistics", offerId);
+            getOfferStatisticsHandler.onResponse("success", function (swarm) {
                 successCallback(swarm.offerStats);
             });
 
-            listOspOffersHandler.onResponse("failed", function (swarm) {
+            getOfferStatisticsHandler.onResponse("failed", function (swarm) {
                 failCallback(swarm.error);
             });
         };

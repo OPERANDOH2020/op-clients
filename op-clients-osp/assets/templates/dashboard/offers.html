@@ -23,7 +23,7 @@
                     <td>{{offer.start_date|timestampToDateFormat}}</td>
                     <td>{{offer.end_date|timestampToDateFormat}}</td>
                     <td>
-                        <button class="btn btn-primary" ng-click="modifyOffer(offer.offerId)">Modify</button>
+                        <button class="btn btn-primary" ng-disabled="offer.isModifiable == false" ng-click="modifyOffer(offer.offerId)">Modify</button>
                         <button class="btn btn-primary-black" ng-click="deleteOspOffer(offer.offerId)">Delete offer</button>
                     </td>
                 </tr>

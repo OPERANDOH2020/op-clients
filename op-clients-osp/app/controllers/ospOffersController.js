@@ -56,6 +56,7 @@ function AddOspOfferController($scope, $element, $rootScope, close, connectionSe
                 delay: 2000
             });
         }, function (error) {
+            $scope.closeModal();
             Notification.error({
                 message: 'An error occurred! Please try again or refresh this page!',
                 positionY: 'bottom',
@@ -215,4 +216,4 @@ function OspOffersController($scope, $rootScope, connectionService, DTColumnDefB
     userService.getUser(listOffers);
 };
 
-ospApp.controller("ospOffersController", OspOffersController);
+angular.module("ospApp").controller("ospOffersController", OspOffersController);

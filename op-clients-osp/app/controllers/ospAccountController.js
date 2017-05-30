@@ -1,6 +1,4 @@
-
 ospApp.controller("accountCtrl", ["$scope","connectionService","Notification","userService","$timeout", function($scope, connectionService, Notification, userService,$timeout){
-
     $scope.user = {
         password: "",
         confirmPassword: ""

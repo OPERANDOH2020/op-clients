@@ -1,5 +1,5 @@
 var ospApp = angular.module("ospApp", ['angularModalService', 'ui-notification', 'ngIntlTelInput',
-    'ngMaterial', 'ngMessages', 'mdPickers', 'datatables', 'ngRoute', 'oc.lazyLoad',"chart.js","mgcrea.ngStrap"]);
+    'ngMaterial', 'ngMessages', 'mdPickers', 'datatables', 'ui.router','oc.lazyLoad',"chart.js","mgcrea.ngStrap"]);
 ospApp.config(function (NotificationProvider) {
     NotificationProvider.setOptions({
         delay: 10000,
@@ -48,60 +48,113 @@ config(['$locationProvider', function ($locationProvider) {
 }]);
 
 
-ospApp.config(function ($routeProvider) {
-    $routeProvider.
-    when("/", {
-        templateUrl: "../assets/templates/landing_page.html"
-    }).
-    when("/login", {
-        templateUrl: "../assets/templates/login_osp.html"
-    }).
-    when("/register", {
-        templateUrl: "../assets/templates/register_osp.html"
-    }).
-    when("/offers", {
-        templateUrl: "../assets/templates/dashboard/offers.html"
-    }).
-    when("/deals", {
-        templateUrl: "../assets/templates/dashboard/deals.html"
-    }).
-    when("/account", {
-        templateUrl: "../assets/templates/dashboard/account.html"
-    }).
-    when("/certifications", {
-        templateUrl: "../assets/templates/dashboard/certifications.html"
-    }).
-    when("/billing", {
-        templateUrl: "../assets/templates/dashboard/billing.html"
-    }).
-    when("/verify/:verifyCode", {
-        templateUrl: "../assets/templates/verify.html"
-    }).
-    otherwise({redirectTo: '/'});
+ospApp.config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+
+    $ocLazyLoadProvider.config({
+        debug: false,
+        serie: true,
+        cache: false
+    });
+
+    $stateProvider.state('landing', {
+            url: "/",
+            templateUrl: "../assets/templates/landing_page.html"
+        })
+        .state("login", {
+            url: "/login",
+            templateUrl: "../assets/templates/login_osp.html",
+            resolve:{
+                loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('/app/controllers/ospLoginController.js');
+                }]
+            }
+        })
+        .state("register", {
+            url: "/register",
+            templateUrl: "../assets/templates/register_osp.html",
+            resolve:{
+                loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('/app/controllers/ospSignupController.js');
+                }]
+            }
+        })
+        .state("offers", {
+            url: "/offers",
+            templateUrl: "../assets/templates/dashboard/offers.html",
+            resolve:{
+                loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('/app/controllers/ospOffersController.js');
+                }]
+            }
+        })
+        .state("deals", {
+            url: "/deals",
+            templateUrl: "../assets/templates/dashboard/deals.html",
+            resolve:{
+                loadController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('/app/controllers/ospDealsController.js');
+                }]
+            }
+        })
+        .state("account", {
+            url: "/account",
+            templateUrl: "../assets/templates/dashboard/account.html"
+        })
+        .state("certifications", {
+            url: "/certifications",
+            templateUrl: "../assets/templates/dashboard/certifications.html"
+        })
+        .state("billing", {
+            url: "/billing",
+            templateUrl: "../assets/templates/dashboard/billing.html"
+        })
+        .state("verify", {
+            url: "/verify/:verifyCode",
+            templateUrl: "../assets/templates/verify.html"
+        });
+
+    $urlRouterProvider.otherwise("/");
+
 
 });
 
+ospApp.run(function ($rootScope, $transitions, $state, $location, $state, userService) {
 
-ospApp.run(['$rootScope', '$location', 'userService', function ($rootScope, $location, userService) {
+    $transitions.onBefore({}, function (trans) {
 
-    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        var toState = trans.$to();
+        var sequence = Promise.resolve();
         userService.isAuthenticated(function (isAuthenticated) {
 
             if (isAuthenticated === false) {
-                if (next.$$route.originalPath != "/register" && next.$$route.originalPath != "/login" &&
-                    next.$$route.originalPath!='/verify/:verifyCode') {
-                    $location.path('/');
+
+                if (toState.name != "register" && toState.name != "login" &&
+                    toState.name != 'verify') {
+
+                    sequence = sequence.then(function () {
+                        return new Promise(function (resolve, reject) {
+                            resolve($state.target('login', undefined, {location: true}));
+                        })
+                    });
+
+                } else {
+
                 }
-            } else if(next.$$route.originalPath === "/login" || next.$$route.originalPath === "/register"){
-                $location.path('/');
+            } else if (toState.name === "login" || toState.name === "register") {
+
+                sequence = sequence.then(function () {
+                    return new Promise(function (resolve, reject) {
+                        resolve($state.target('landing', undefined, {location: true}));
+                    })
+                });
             }
+        });
+        sequence.then(function(){
 
         });
-
+        return sequence;
     });
-
-
-}]);
+});
 
 
 

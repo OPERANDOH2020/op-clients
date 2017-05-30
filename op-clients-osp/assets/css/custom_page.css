@@ -335,6 +335,10 @@ ul.nav.navbar-nav .dropdown-menu li a{
     display: block;
 }
 
+a.user_logout{
+    cursor: pointer;
+}
+
 ul.dropdown-menu>.active>a,
 ul.dropdown-menu>.active>a:focus,
 ul.dropdown-menu>.active>a:hover{
