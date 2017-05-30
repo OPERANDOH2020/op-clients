@@ -14,49 +14,12 @@ angular.module('pspApp').factory("connectionService",function(swarmService, mess
 
         }
 
-        ConnectionService.prototype.activateUser = function (activationCode, successCallback, failCallback) {
-            swarmService.initConnection(SERVER_HOST, SERVER_PORT, GUEST_EMAIL, GUEST_PASSWORD,
-                TENANT, "userLogin", function () {
-                    console.log("reconnect cbk");
-                }, function () {
-                    console.log("connect cbk");
-                });
-
-            swarmHub.on("login.js", "success_guest", function guestLoginForUserVerification(swarm) {
-                swarmHub.off("login.js", "success_guest", guestLoginForUserVerification);
-                if (swarm.authenticated) {
-                    var verifyAccountHandler = swarmHub.startSwarm("register.js", "verifyValidationCode", activationCode);
-                    verifyAccountHandler.onResponse("success", function (swarm) {
-                        swarmService.removeConnection();
-
-                        var cookieValidityDays = parseInt(Cookies.get("daysUntilCookieExpire"));
-                        Cookies.set("sessionId", swarm.validatedUserSession.sessionId,{expires:cookieValidityDays});
-                        Cookies.set("userId", swarm.validatedUserSession.userId,{expires:cookieValidityDays});
-                        successCallback(swarm.validatedUserSession);
-
-                    });
-
-                    verifyAccountHandler.onResponse("failed", function (swarm) {
-                        swarmService.removeConnection();
-                        failCallback(swarm.error);
-                    });
-                }
-            });
-        };
-
-        ConnectionService.prototype.loginUser = function (user, userType, successCallback, failCallback) {
-
-            var loginCtor;
-            switch (userType){
-                case "Public" : loginCtor = "userLogin"; break;
-                case "OSP": loginCtor = "ospLogin"; break;
-                case "PSP": loginCtor ="pspLogin"; break;
-            }
+        ConnectionService.prototype.loginUser = function (user, successCallback, failCallback) {
 
             var self = this;
 
             swarmService.initConnection(SERVER_HOST, SERVER_PORT, user.email, user.password,
-                TENANT, loginCtor, function (error) {
+                TENANT, "userLogin", function (error) {
                 });
 
             var userLoginSuccess = function (swarm) {

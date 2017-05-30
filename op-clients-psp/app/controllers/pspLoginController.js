@@ -9,7 +9,7 @@ pspApp.controller("pspLoginController", function ($scope, connectionService, mes
     $scope.submitLoginForm = function () {
         $scope.requestProcessed = true;
         $scope.authenticationError = false;
-        connectionService.loginUser($scope.user, "PSP", function (user) {
+        connectionService.loginUser($scope.user,  function (user) {
 
                 userService.setUser(user);
                 Notification.success({

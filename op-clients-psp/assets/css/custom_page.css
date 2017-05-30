@@ -333,6 +333,7 @@ body {
 ul.nav.navbar-nav .dropdown-menu li a{
     line-height:36px;
     display: block;
+    cursor: pointer;
 }
 
 ul.dropdown-menu>.active>a,
