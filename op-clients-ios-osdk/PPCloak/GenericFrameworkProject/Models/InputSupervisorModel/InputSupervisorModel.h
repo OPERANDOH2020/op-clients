@@ -10,7 +10,7 @@
 #import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
 #import "PrivacyLevelAbuseDetector.h"
 #import "LocationHTTPAnalyzer.h"
-#import <PPApiHooks/PPApiHooks.h>
+#import <PPApiHooksCore/PPApiHooksCore.h>
 
 @protocol InputSupervisorDelegate;
 

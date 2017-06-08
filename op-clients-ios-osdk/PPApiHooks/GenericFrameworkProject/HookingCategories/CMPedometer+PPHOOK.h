@@ -9,7 +9,7 @@
 
 #import <CoreMotion/CoreMotion.h>
 #import "Common.h"
-#import "PPEventDispatcher+Internal.h"
+#import "PPEventDispatcher.h"
 
 @interface CMPedometer(PPHOOK)
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher);

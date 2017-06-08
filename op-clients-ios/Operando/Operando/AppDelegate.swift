@@ -8,7 +8,7 @@
 
 import UIKit
 import PPCloak
-import PPApiHooks
+import PPApiHooksCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         OPMonitor.initializeMonitoring()
+        
+        print(Bundle(for: PPEvent.self))
+        
+        print(Bundle.main.privateFrameworksPath)
+        
         return true
         
     }

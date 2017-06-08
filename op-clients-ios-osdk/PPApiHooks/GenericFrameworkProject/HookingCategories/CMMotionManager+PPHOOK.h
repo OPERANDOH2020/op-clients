@@ -7,7 +7,7 @@
 //
 
 //#import <CoreLocation/CoreLocation.h>
-#import "PPEventDispatcher+Internal.h"
+#import "PPEventDispatcher.h"
 #import <CoreMotion/CoreMotion.h>
 
 @interface CMMotionManager(PPHOOK)

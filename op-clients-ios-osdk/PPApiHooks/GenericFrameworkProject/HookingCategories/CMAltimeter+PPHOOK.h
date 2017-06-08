@@ -8,7 +8,7 @@
 
 #import <CoreMotion/CoreMotion.h>
 #import "NSObject+AutoSwizzle.h"
-#import "PPEventDispatcher+Internal.h"
+#import "PPEventDispatcher.h"
 
 @interface CMAltimeter(PPHOOK)
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher);

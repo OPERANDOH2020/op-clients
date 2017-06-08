@@ -8,7 +8,6 @@
 
 
 //#import <CoreLocation/CoreLocation.h>
-#import "PPEventDispatcher+Internal.h"
 
 /*@interface CLLocationManager(PPHOOK)
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher);

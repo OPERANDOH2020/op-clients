@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "JRSwizzle.h"
 #import "Common.h"
-#import <PPApiHooks/PPApiHooks.h>
+#import <PPApiHooksCore/PPApiHooksCore.h>
 
 #pragma mark - Helper class
 

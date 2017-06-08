@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		980CB3711EE7EFB400921048 /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980CB36F1EE7EEF100921048 /* PPApiHooksCore.framework */; };
+		980CB3721EE7EFB400921048 /* PPApiHooksCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 980CB36F1EE7EEF100921048 /* PPApiHooksCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		980CB3801EE8145A00921048 /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980CB37E1EE8145400921048 /* PPCloak.framework */; };
+		980CB3811EE8145A00921048 /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 980CB37E1EE8145400921048 /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		980CB38C1EE81BD800921048 /* SwizzleTestFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980CB38A1EE81BB400921048 /* SwizzleTestFramework.framework */; };
+		980CB38D1EE81BD800921048 /* SwizzleTestFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 980CB38A1EE81BB400921048 /* SwizzleTestFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */; };
 		9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */; };
 		982227551DC8EBD40053B993 /* UILocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982227541DC8EBD40053B993 /* UILocalizable.swift */; };
@@ -160,10 +166,6 @@
 		98F6B12B1E7BFD9300D193FF /* UIWebViewTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F6B12A1E7BFD9300D193FF /* UIWebViewTab.xib */; };
 		98F9D2401E82CD0300D013B4 /* WebTabsControllerLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9D23F1E82CD0300D013B4 /* WebTabsControllerLogicTests.swift */; };
 		98F9D2421E82CE0B00D013B4 /* CommonDummyClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9D2411E82CE0B00D013B4 /* CommonDummyClasses.swift */; };
-		98FDE99F1ED421FA002DBAEB /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FDE9991ED421D0002DBAEB /* PPApiHooks.framework */; };
-		98FDE9A01ED421FA002DBAEB /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98FDE9991ED421D0002DBAEB /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		98FDE9AB1ED42F9E002DBAEB /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FDE9A91ED42F96002DBAEB /* PPCloak.framework */; };
-		98FDE9AC1ED42F9E002DBAEB /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98FDE9A91ED42F96002DBAEB /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ADB2AD4E1DB7FC85003E3AC1 /* SSASideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */; };
 		ADB2AD501DB80474003E3AC1 /* LeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */; };
 		ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */; };
@@ -189,10 +191,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				98FDE9A01ED421FA002DBAEB /* PPApiHooks.framework in Embed Frameworks */,
-				98FDE9AC1ED42F9E002DBAEB /* PPCloak.framework in Embed Frameworks */,
+				980CB3721EE7EFB400921048 /* PPApiHooksCore.framework in Embed Frameworks */,
+				980CB3811EE8145A00921048 /* PPCloak.framework in Embed Frameworks */,
 				98F647541ED3064D008EB91E /* PlusPrivacyCommonTypes.framework in Embed Frameworks */,
 				987E71821E8BB94F0006B240 /* SwarmClient.framework in Embed Frameworks */,
+				980CB38D1EE81BD800921048 /* SwizzleTestFramework.framework in Embed Frameworks */,
 				98F647521ED3064D008EB91E /* PlusPrivacyCommonUI.framework in Embed Frameworks */,
 				98F6475E1ED306DF008EB91E /* PPWebContentBlocker.framework in Embed Frameworks */,
 			);
@@ -202,6 +205,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		980CB36F1EE7EEF100921048 /* PPApiHooksCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooksCore.framework; sourceTree = "<group>"; };
+		980CB37E1EE8145400921048 /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
+		980CB38A1EE81BB400921048 /* SwizzleTestFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwizzleTestFramework.framework; sourceTree = "<group>"; };
 		9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAddIdentityAlertViewController.swift; path = UserInterface/UIAddIdentityAlertViewController/UIAddIdentityAlertViewController.swift; sourceTree = "<group>"; };
 		9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UtilityControllers.storyboard; sourceTree = "<group>"; };
 		982227541DC8EBD40053B993 /* UILocalizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILocalizable.swift; path = UserInterface/UILocalizableLabel/UILocalizable.swift; sourceTree = "<group>"; };
@@ -390,8 +396,6 @@
 		98F6B12A1E7BFD9300D193FF /* UIWebViewTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebViewTab.xib; path = UserInterface/UIWebViewTab/UIWebViewTab.xib; sourceTree = "<group>"; };
 		98F9D23F1E82CD0300D013B4 /* WebTabsControllerLogicTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTabsControllerLogicTests.swift; sourceTree = "<group>"; };
 		98F9D2411E82CE0B00D013B4 /* CommonDummyClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDummyClasses.swift; sourceTree = "<group>"; };
-		98FDE9991ED421D0002DBAEB /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
-		98FDE9A91ED42F96002DBAEB /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
 		ADB2AD4D1DB7FC85003E3AC1 /* SSASideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSASideMenu.swift; sourceTree = "<group>"; };
 		ADB2AD4F1DB80474003E3AC1 /* LeftMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LeftMenu.storyboard; sourceTree = "<group>"; };
 		ADF3CA641DB892F900BD2B7A /* SideMenu.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SideMenu.xcassets; sourceTree = "<group>"; };
@@ -405,12 +409,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				980CB38C1EE81BD800921048 /* SwizzleTestFramework.framework in Frameworks */,
 				98F647531ED3064D008EB91E /* PlusPrivacyCommonTypes.framework in Frameworks */,
-				98FDE99F1ED421FA002DBAEB /* PPApiHooks.framework in Frameworks */,
+				980CB3711EE7EFB400921048 /* PPApiHooksCore.framework in Frameworks */,
 				987E71811E8BB94F0006B240 /* SwarmClient.framework in Frameworks */,
 				98F6475D1ED306DF008EB91E /* PPWebContentBlocker.framework in Frameworks */,
 				98F647511ED3064D008EB91E /* PlusPrivacyCommonUI.framework in Frameworks */,
-				98FDE9AB1ED42F9E002DBAEB /* PPCloak.framework in Frameworks */,
+				980CB3801EE8145A00921048 /* PPCloak.framework in Frameworks */,
 				985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +430,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		980CB3751EE7F25F00921048 /* NSBundle+TestSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "NSBundle+TestSwizzle";
+			sourceTree = "<group>";
+		};
 		9812DB591DB52B94009DD50A /* UIAddIdentityAlertViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,8 +520,9 @@
 		982D31601E84252F00FE2FB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				98FDE9A91ED42F96002DBAEB /* PPCloak.framework */,
-				98FDE9991ED421D0002DBAEB /* PPApiHooks.framework */,
+				980CB38A1EE81BB400921048 /* SwizzleTestFramework.framework */,
+				980CB37E1EE8145400921048 /* PPCloak.framework */,
+				980CB36F1EE7EEF100921048 /* PPApiHooksCore.framework */,
 				98F6475B1ED306D7008EB91E /* PPWebContentBlocker.framework */,
 				98F647471ED3060E008EB91E /* PlusPrivacyCommonUI.framework */,
 				98F647481ED3060E008EB91E /* PlusPrivacyCommonTypes.framework */,
@@ -641,6 +654,7 @@
 		98516FCD1E040903007428F3 /* OPCloak */ = {
 			isa = PBXGroup;
 			children = (
+				980CB3751EE7F25F00921048 /* NSBundle+TestSwizzle */,
 				982D31691E84254000FE2FB7 /* Bundles */,
 				982D31601E84252F00FE2FB7 /* Frameworks */,
 				9840B24A1E2664F300C4FC86 /* SwiftJSONSchema */,

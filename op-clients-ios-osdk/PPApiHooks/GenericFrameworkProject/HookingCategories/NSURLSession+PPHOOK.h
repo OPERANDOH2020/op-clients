@@ -7,7 +7,7 @@
 //
 
 #import "Common.h"
-#import "PPEventDispatcher+Internal.h"
+#import "PPEventDispatcher.h"
 
 @interface NSURLSession(PPHOOK)
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher);

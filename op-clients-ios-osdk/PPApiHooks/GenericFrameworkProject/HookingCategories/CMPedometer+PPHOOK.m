@@ -9,6 +9,7 @@
 #import "JRSwizzle.h"
 #import "NSObject+AutoSwizzle.h"
 #import "CMPedometer+PPHOOK.h"
+#import "AuthenticationKeyGenerator.h"
 
 PPEventDispatcher *_pedDispatcher;
 
@@ -28,33 +29,75 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
 
 HOOKPrefixClass(BOOL, isStepCountingAvailable){
     BOOL result = CALL_PREFIXED(self, isStepCountingAvailable);
-    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetStepCountingAvailable) atKey:kPPPedometerIsStepCountingAvailableValue];
+    
+    
+    __block BOOL value = NO;
+    
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetStepCountingAvailable) atKey:kPPPedometerIsStepCountingAvailableValue authentication:authenticationKey];
+    });
+    
+    return value;
 }
 
 HOOKPrefixClass(BOOL, isDistanceAvailable){
     BOOL result = CALL_PREFIXED(self, isDistanceAvailable);
-    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetDistanceAvailable) atKey:kPPPedometerIsDistanceAvailableValue];
+    __block BOOL value = NO;
+    
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetDistanceAvailable) atKey:kPPPedometerIsDistanceAvailableValue authentication:authenticationKey];
+    });
+    
+    return value;
 }
 
 HOOKPrefixClass(BOOL, isFloorCountingAvailable) {
     BOOL result = CALL_PREFIXED(self, isFloorCountingAvailable);
-    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetFloorCountingAvailable) atKey:kPPPedometerIsFloorCountingAvailableValue];
+    
+    __block BOOL value = NO;
+    
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetFloorCountingAvailable) atKey:kPPPedometerIsFloorCountingAvailableValue authentication:authenticationKey];
+    });
+    
+    return value;
 }
 
 HOOKPrefixClass(BOOL, isPaceAvailable){
     BOOL paceAv = CALL_PREFIXED(self, isPaceAvailable);
-    return [_pedDispatcher resultForBoolEventValue:paceAv ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetPaceAvailable) atKey:kPPPedometerIsPaceAvailableValue];
+    
+    __block BOOL value = NO;
+    
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+                value =  [_pedDispatcher resultForBoolEventValue:paceAv ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetPaceAvailable) atKey:kPPPedometerIsPaceAvailableValue authentication:authenticationKey];
+    });
+    
+    return value;
 }
 
 
 HOOKPrefixClass(BOOL, isCadenceAvailable){
     BOOL result = CALL_PREFIXED(self, isCadenceAvailable);
-    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetCadenceAvailable) atKey:kPPPedometerIsCadenceAvailableValue];
+    
+    __block BOOL value = NO;
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetCadenceAvailable) atKey:kPPPedometerIsCadenceAvailableValue authentication:authenticationKey];
+    });
+    
+    return value;
 }
 
 HOOKPrefixClass(BOOL, isPedometerEventTrackingAvailable){
     BOOL result = CALL_PREFIXED(self, isPedometerEventTrackingAvailable);
-    return [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetEventTrackingAvailable) atKey:kPPPedometerIsEventTrackingAvailableValue];
+    
+    __block BOOL value = NO;
+    
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetEventTrackingAvailable) atKey:kPPPedometerIsEventTrackingAvailableValue authentication:authenticationKey];
+    });
+
+    
+    return value;
 }
 
 HOOKPrefixInstance(void, queryPedometerDataFromDate:(NSDate *)start toDate:(NSDate *)end withHandler:(CMPedometerHandler)handler){
@@ -77,7 +120,9 @@ HOOKPrefixInstance(void, queryPedometerDataFromDate:(NSDate *)start toDate:(NSDa
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerQueryDataFromDate) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [_pedDispatcher fireEvent:event];
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        [_pedDispatcher fireEvent:event authentication:authenticationKey];
+    });
     
 }
 
@@ -103,7 +148,9 @@ HOOKPrefixInstance(void, startPedometerUpdatesFromDate:(NSDate *)start withHandl
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerStartUpdatesFromDate) eventData:evData whenNoHandlerAvailable:confirmation];
     
-    [_pedDispatcher fireEvent:event];
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        [_pedDispatcher fireEvent:event authentication:authenticationKey];
+    });
 }
 
 HOOKPrefixInstance(void, startPedometerEventUpdatesWithHandler:(CMPedometerEventHandler)handler){
@@ -118,7 +165,10 @@ HOOKPrefixInstance(void, startPedometerEventUpdatesWithHandler:(CMPedometerEvent
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerStartEventUpdatesWithHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    [_pedDispatcher fireEvent:event];
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        [_pedDispatcher fireEvent:event authentication:authenticationKey];
+    });
+    
 }
 
 

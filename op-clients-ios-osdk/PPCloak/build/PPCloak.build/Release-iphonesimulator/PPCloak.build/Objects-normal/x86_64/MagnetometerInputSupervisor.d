@@ -15,13 +15,13 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/Models/PrivacyLevelAbuseDetector/PrivacyLevelAbuseDetector.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/Models/HTTPRequestAnalyzers/LocationHTTPAnalyzer/LocationHTTPAnalyzer.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/Models/HTTPRequestAnalyzers/URLFormParsers/URLFormParsersProtocols.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooks.framework/Modules/module.modulemap \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooks.framework/Headers/IdentifiedHandler.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooks.framework/Headers/PPEventIdentifier.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooks.framework/Headers/Common.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooks.framework/Headers/PPEvent.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooks.framework/Headers/PPEventDispatcher.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooks.framework/Headers/PPApiHooks.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooksCore.framework/Modules/module.modulemap \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooksCore.framework/Headers/IdentifiedHandler.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooksCore.framework/Headers/PPEventIdentifier.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooksCore.framework/Headers/Common.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooksCore.framework/Headers/PPEvent.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooksCore.framework/Headers/PPEventDispatcher.h \
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/PPApiHooksCore.framework/Headers/PPApiHooksCore.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/CommonUtils/CommonUtils.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/Common/Common.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPCloak/GenericFrameworkProject/JRSwizzle/JRSwizzle.h

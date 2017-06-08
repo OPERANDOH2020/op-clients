@@ -7,18 +7,18 @@
 //
 
 #import "PPApiHooksStart.h"
-#import "PPEventDispatcher+Internal.h"
 #import "NSURLSession+PPHOOK.h"
 #import "UIDevice+PPHOOK.h"
 #import "HookURLProtocol.h"
 #import "LAContext+PPHOOK.h"
-#import "CNContactStore+PPHOOK.h"
 #import "CMPedometer+PPHOOK.h"
 #import "CMMotionManager+PPHOOK.h"
 #import "CMAltimeter+PPHOOK.h"
 #import "CLLocationManager+PPHOOK.h"
 #import "AVCaptureDevice+PPHOOK.h"
 #import "UIDevice+PPHOOK.h"
+
+#import "AuthenticationKeyGenerator.h"
 
 @implementation PPApiHooksStart
 
@@ -36,7 +36,7 @@
                             [AVCaptureDevice class]];
     
     
-    PPEventDispatcher *sharedDispatcher = [PPEventDispatcher sharedInstance];
+    PPEventDispatcher *sharedDispatcher = [PPEventDispatcher sharedInstanceWithAuthentication:keyGenerator()];
     for (id class in classList) {
         CALL_PREFIXED(class, setEventsDispatcher: sharedDispatcher);
     }

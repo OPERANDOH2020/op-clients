@@ -7,7 +7,8 @@
 //
 
 #import "Common.h"
-#import "PPEventDispatcher+Internal.h"
+#import "PPEventDispatcher.h"
+
 
 @interface HookURLProtocol : NSURLProtocol
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher);

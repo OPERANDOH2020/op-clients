@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UserDefinedLocationsSwizzlerSettings.h"
 #import <CoreLocation/CoreLocation.h>
-#import <PPApiHooks/PPApiHooks.h>
+#import <PPApiHooksCore/PPApiHooksCore.h>
 #import "CommonLocationViewModels.h"
 
 typedef void(^LocationsCallback)(NSArray<CLLocation*>* _Nonnull locations);

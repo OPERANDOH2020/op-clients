@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 #import "NSURLProtocol+WKWebViewSupport.h"
-
+#import "AuthenticationKeyGenerator.h"
 #import "HookURLProtocol.h"
 
 PPEventDispatcher *_urlDispatcher;
@@ -41,7 +41,10 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){
     SAFEADD(evData, kPPWebViewRequest, request)
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPWKWebViewEvent, EventAllowWebViewRequest) eventData:evData whenNoHandlerAvailable:nil];
     
-    [_urlDispatcher fireEvent:event];
+    
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        [_urlDispatcher fireEvent:event authentication:authenticationKey];
+    });
     
     // this method returning YES means that the request will be blocked
     // 

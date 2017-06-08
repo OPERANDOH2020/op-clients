@@ -9,7 +9,7 @@
 #import "NSURLSessionSupervisor.h"
 #import "JRSwizzle.h"
 #import "PPAccessUnlistedHostReport.h"
-#import <PPApiHooks/PPApiHooks.h>
+#import <PPApiHooksCore/PPApiHooksCore.h>
 
 @interface NSURLSessionSupervisor()
 @property (strong, nonatomic) InputSupervisorModel *model;

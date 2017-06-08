@@ -7,9 +7,29 @@
 //
 
 #import "PPEventDispatcher.h"
-#import "PPEventDispatcher+Internal.h"
 #import "Common.h"
 #import "PPEvent+FrameworkPrivate.h"
+#import "AuthenticationKeyGenerator.h"
+
+#define authenticate(x) \
+char *myKey = keyGenerator();\
+if(strcmp(myKey, x) != 0){ \
+ScKHlqaeqE();\
+} else {\
+  free(myKey);\
+}
+
+
+
+
+void ScKHlqaeqE() {
+    
+    int a = 10;
+    int b = (int)&a;
+    int *p = 0x0;
+    
+    assert((int)p == b || a == b);
+}
 
 @interface PPEventDispatcher()
 @property (strong, nonatomic) NSMutableArray<IdentifiedHandler*> *handlersArray;
@@ -24,7 +44,10 @@
     return self;
 }
 
-+(PPEventDispatcher *)sharedInstance {
++(PPEventDispatcher *)sharedInstanceWithAuthentication:(char *)unownedAuthenticationString {
+    
+    authenticate(unownedAuthenticationString)
+    
     static PPEventDispatcher *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -34,14 +57,19 @@
     return sharedInstance;
 }
 
--(NSString*)insertAtTopNewHandler:(EventHandler _Nonnull)eventHandler {
+-(NSString*)insertAtTopNewHandler:(EventHandler _Nonnull)eventHandler authentication:(char * _Nonnull)unownedAuthenticationString {
+    authenticate(unownedAuthenticationString)
+    
     NSString *identifier = [NSString stringWithFormat:@"%ld", (unsigned long)self.handlersArray.count];
     IdentifiedHandler *ih = [[IdentifiedHandler alloc] initWithIdentifier:identifier handler:eventHandler];
     [self.handlersArray addObject:ih];
     return identifier;
 }
 
--(void)removeHandlerWithIdentifier:(NSString *)identifier {
+-(void)removeHandlerWithIdentifier:(NSString *)identifier authentication:(char * _Nonnull)unownedAuthenticationString {
+    
+    authenticate(unownedAuthenticationString)
+    
     NSInteger index = [self.handlersArray indexOfObjectPassingTest:^BOOL(IdentifiedHandler * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         IdentifiedHandler *ih = obj;
         return [ih.identifier isEqualToString:identifier];
@@ -80,16 +108,16 @@
     SAFECALL(ih.handler, event, confirmation)
 }
 
-@end
 
-
-@implementation PPEventDispatcher(Internal)
--(void)fireEvent:(PPEvent *)event {
+-(void)fireEvent:(PPEvent *)event authentication:(char * _Nonnull)unownedAuthenticationString {
+    
+    authenticate(unownedAuthenticationString)
     [self internalFireEvent:event];
 }
 
--(void)fireEventWithMaxOneTimeExecution:(PPEventIdentifier)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey {
+-(void)fireEventWithMaxOneTimeExecution:(PPEventIdentifier)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey authentication:(char * _Nonnull)unownedAuthenticationString {
     
+    authenticate(unownedAuthenticationString)
     
     __block BOOL didExecute = NO;
     PPVoidBlock confirmation =  ^{
@@ -106,23 +134,30 @@
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:type eventData:dict whenNoHandlerAvailable:executionBlock];
     
-    [self fireEvent:event];
+    char *authenticationKey = keyGenerator();
+    [self fireEvent:event authentication:authenticationKey];
+    free(authenticationKey);
 }
 
--(id)resultForEventValue:(id)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key{
+-(id)resultForEventValue:(id)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key authentication:(char * _Nonnull)unownedAuthenticationString{
     
+    authenticate(unownedAuthenticationString)
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     SAFEADD(dict, key, value)
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:identifier eventData:dict whenNoHandlerAvailable:nil];
-    [self fireEvent:event];
+    
+    char *authenticationKey = keyGenerator();
+    [self fireEvent:event authentication:authenticationKey];
+    free(authenticationKey);
     
     return [event.eventData objectForKey:key] ;
 }
 
--(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key{
+-(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key authentication:(char * _Nonnull)unownedAuthenticationString{
     
-    return [[self resultForEventValue:@(value) ofIdentifier:identifier atKey:key] boolValue];
+    authenticate(unownedAuthenticationString)
+    return [[self resultForEventValue:@(value) ofIdentifier:identifier atKey:key authentication:unownedAuthenticationString] boolValue];
 }
 
 @end

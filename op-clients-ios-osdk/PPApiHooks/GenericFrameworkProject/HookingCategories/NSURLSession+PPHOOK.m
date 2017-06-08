@@ -10,6 +10,7 @@
 #import "PPEvent.h"
 #import "NSObject+AutoSwizzle.h"
 #import "NSURLSession+PPHOOK.h"
+#import "AuthenticationKeyGenerator.h"
 
 PPEventDispatcher *_urlSessionDispatcher;
 
@@ -71,7 +72,9 @@ HOOKPrefixInstance(NSURLSessionDataTask*, dataTaskWithRequest:(NSURLRequest *)re
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPURLSessionEvent, EventURLSessionStartDataTaskForRequest) eventData:eventData whenNoHandlerAvailable:nil];
     
-    [_urlSessionDispatcher fireEvent:event];
+    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+        [_urlSessionDispatcher fireEvent:event authentication:authenticationKey];
+    });
     
     NSURLResponse *response = eventData[kPPURLSessionDataTaskResponse];
     NSData *data = eventData[kPPURLSessionDatTaskResponseData];

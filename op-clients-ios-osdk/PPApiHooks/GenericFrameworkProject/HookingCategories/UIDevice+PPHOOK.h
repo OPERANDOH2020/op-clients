@@ -8,7 +8,7 @@
 
 #import "PPEvent.h"
 #import "Common.h"
-#import "PPEventDispatcher+Internal.h"
+#import "PPEventDispatcher.h"
 #import <UIKit/UIKit.h>
 
 @interface UIDevice(PPHOOK)

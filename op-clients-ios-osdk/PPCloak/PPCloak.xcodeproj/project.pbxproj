@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		980CB36C1EE7ED3100921048 /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980CB36B1EE7ED3100921048 /* PPApiHooksCore.framework */; };
+		980CB37C1EE811AA00921048 /* NSBundle+TestSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 980CB37A1EE811AA00921048 /* NSBundle+TestSwizzle.h */; };
+		980CB37D1EE811AA00921048 /* NSBundle+TestSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 980CB37B1EE811AA00921048 /* NSBundle+TestSwizzle.m */; };
 		981A4A6B1E58ABFE002C4876 /* OPMonitorSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 981A4A691E58ABFE002C4876 /* OPMonitorSettings.h */; };
 		981A4A6C1E58ABFE002C4876 /* OPMonitorSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 981A4A6A1E58ABFE002C4876 /* OPMonitorSettings.m */; };
 		982175CB1E3FA0A700495627 /* ProximityInputSupervisor.h in Headers */ = {isa = PBXBuildFile; fileRef = 982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */; };
@@ -175,7 +178,6 @@
 		98F1FF751E71555900A664AB /* InputSupervisorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F1FF731E71555900A664AB /* InputSupervisorModel.m */; };
 		98F1FF821E71980A00A664AB /* GCDWebServerFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F1FF801E71980A00A664AB /* GCDWebServerFunctions.h */; };
 		98F1FF831E71980A00A664AB /* GCDWebServerFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F1FF811E71980A00A664AB /* GCDWebServerFunctions.m */; };
-		98FDE9981ED41D8C002DBAEB /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FDE9971ED41D8C002DBAEB /* PPApiHooks.framework */; };
 		98FE5C151E9241C000096744 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 98FE5C111E9241C000096744 /* MGSwipeButton.h */; };
 		98FE5C161E9241C000096744 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 98FE5C121E9241C000096744 /* MGSwipeButton.m */; };
 		98FE5C171E9241C000096744 /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 98FE5C131E9241C000096744 /* MGSwipeTableCell.h */; };
@@ -191,6 +193,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		980CB36B1EE7ED3100921048 /* PPApiHooksCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooksCore.framework; sourceTree = "<group>"; };
+		980CB37A1EE811AA00921048 /* NSBundle+TestSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TestSwizzle.h"; sourceTree = "<group>"; };
+		980CB37B1EE811AA00921048 /* NSBundle+TestSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TestSwizzle.m"; sourceTree = "<group>"; };
 		981A4A691E58ABFE002C4876 /* OPMonitorSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPMonitorSettings.h; path = OPMonitorSettings/OPMonitorSettings.h; sourceTree = "<group>"; };
 		981A4A6A1E58ABFE002C4876 /* OPMonitorSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPMonitorSettings.m; path = OPMonitorSettings/OPMonitorSettings.m; sourceTree = "<group>"; };
 		982175C91E3FA0A700495627 /* ProximityInputSupervisor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProximityInputSupervisor.h; path = ProximityInputSupervisor/ProximityInputSupervisor.h; sourceTree = "<group>"; };
@@ -354,7 +359,6 @@
 		98F1FF811E71980A00A664AB /* GCDWebServerFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFunctions.m; sourceTree = "<group>"; };
 		98F6473F1ED302C8008EB91E /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
 		98F647411ED302C8008EB91E /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
-		98FDE9971ED41D8C002DBAEB /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		98FE5C111E9241C000096744 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		98FE5C121E9241C000096744 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
 		98FE5C131E9241C000096744 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
@@ -374,8 +378,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98FDE9981ED41D8C002DBAEB /* PPApiHooks.framework in Frameworks */,
 				983C3FAC1E8D27ED00014F25 /* MapKit.framework in Frameworks */,
+				980CB36C1EE7ED3100921048 /* PPApiHooksCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +400,15 @@
 				9863E9011DEC70E60095CA30 /* NSURLSessionSupervisor.m */,
 			);
 			name = NetworkSupervisor;
+			sourceTree = "<group>";
+		};
+		980CB3791EE8119900921048 /* NSBundle+TestSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				980CB37A1EE811AA00921048 /* NSBundle+TestSwizzle.h */,
+				980CB37B1EE811AA00921048 /* NSBundle+TestSwizzle.m */,
+			);
+			name = "NSBundle+TestSwizzle";
 			sourceTree = "<group>";
 		};
 		981A4A681E58ABCC002C4876 /* OPMonitorSettings */ = {
@@ -578,6 +591,7 @@
 		98584F3F1D3F9E18009FB89F /* RSFrameworksHook */ = {
 			isa = PBXGroup;
 			children = (
+				980CB3791EE8119900921048 /* NSBundle+TestSwizzle */,
 				987083E31E8E704400D9F8E9 /* Resources */,
 				987083B21E8E398500D9F8E9 /* ExternalLibraries */,
 				9895FB361E5B332A00B1F56D /* Frameworks */,
@@ -992,7 +1006,7 @@
 		9895FB361E5B332A00B1F56D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				98FDE9971ED41D8C002DBAEB /* PPApiHooks.framework */,
+				980CB36B1EE7ED3100921048 /* PPApiHooksCore.framework */,
 				98F6473F1ED302C8008EB91E /* PlusPrivacyCommonUI.framework */,
 				98F647411ED302C8008EB91E /* PlusPrivacyCommonTypes.framework */,
 			);
@@ -1269,6 +1283,7 @@
 				98DF60F81E65C73C006EF2B3 /* PPAccessUnlistedHostReport.h in Headers */,
 				987083C91E8E3A9D00D9F8E9 /* TPKeyboardAvoidingTableView.h in Headers */,
 				9871E08C1E97DF3D00A43695 /* UIRandomWalkLocationSettingsViewController.h in Headers */,
+				980CB37C1EE811AA00921048 /* NSBundle+TestSwizzle.h in Headers */,
 				9831E29F1E6D976B00A5FE0A /* UIHostAccessViolationReportsSection.h in Headers */,
 				988716ED1E6D81CD005FAA45 /* UIViolationReportsSection.h in Headers */,
 				986AE9C51E93DBA800AF4E0A /* CommonLocationViewModels.h in Headers */,
@@ -1504,6 +1519,7 @@
 				983A09061E727A1C00AE2D5E /* PPBasicHttpBodyParser.m in Sources */,
 				987F83781E3235A20058633C /* OPMonitorInputSourceEvent.m in Sources */,
 				988A15161E40D1B400AABD43 /* MagnetometerInputSupervisor.m in Sources */,
+				980CB37D1EE811AA00921048 /* NSBundle+TestSwizzle.m in Sources */,
 				987083CA1E8E3A9D00D9F8E9 /* TPKeyboardAvoidingTableView.m in Sources */,
 				988A15201E40E2DD00AABD43 /* BarometerInputSupervisor.m in Sources */,
 				986AE9C61E93DBA800AF4E0A /* CommonLocationViewModels.m in Sources */,
