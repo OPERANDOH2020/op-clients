@@ -4,6 +4,7 @@ var myIdentities = [];
 var myRealIdentity = null;
 var elementsProvider = ElementsProvider.getInstance();
 port.onMessage.addListener(function (response) {
+
     myIdentities = response.message.data;
     myRealIdentity = myIdentities.find(function (identity) {
         return identity.isReal;
@@ -11,6 +12,17 @@ port.onMessage.addListener(function (response) {
     if (myRealIdentity == undefined) {
         myRealIdentity = myIdentities[0];
     }
+
+    Preferences.getPreferences("websitePreferences", {
+        url: window.location.hostname,
+        accept: false
+    }, function (preferences) {
+        if (Object.keys(preferences).length === 0) {
+            elementsProvider.addJob(checkElement);
+            elementsProvider.addSelector("input[type=email], input[name=email], input[id=user_login]");
+            elementsProvider.searchTextInputSelector("input[type=text]");
+        }
+    });
 
 });
 
@@ -47,17 +59,6 @@ getMyIdentities();
 function denySubstituteIdentity(element) {
     Preferences.addPreference("websitePreferences", {url: window.location.hostname, accept: false});
 }
-
-Preferences.getPreferences("websitePreferences", {
-    url: window.location.hostname,
-    accept: false
-}, function (preferences) {
-    if (Object.keys(preferences).length === 0) {
-        elementsProvider.addJob(checkElement);
-        elementsProvider.addSelector("input[type=email], input[name=email], input[id=user_login]");
-        elementsProvider.searchTextInputSelector("input[type=text]");
-    }
-});
 
 
 var checkElement = function (element, whenEmailCompleted) {
