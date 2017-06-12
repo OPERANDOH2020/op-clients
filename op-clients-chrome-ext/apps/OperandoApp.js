@@ -42,7 +42,6 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
     }])
     .filter("removeWhiteSpace", [function() {
         return function(text){
-            console.log(text);
             var w = text.replace(/[^A-Za-z0-9]/g, "");
             w = w.toLowerCase();
             w = w.replace(/\s/g,'');

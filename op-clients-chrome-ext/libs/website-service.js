@@ -94,7 +94,6 @@ var websiteService = exports.websiteService = {
             var iconUrl = RegexUtis.findValueByRegex(self.key, 'App Icon', appIconRegex, 1, crawledPage, true);
             var permissions = RegexUtis.findAllOccurrencesByRegex(self.key, "Permissions Title", permissionsRegex, 1, crawledPage, RegexUtis.cleanAndPretty);
             var visibility = RegexUtis.findValueByRegex_CleanAndPretty(self.key, 'Visibility', appVisibility, 1, crawledPage, true);
-
             var app = {
                 appId:appId,
                 iconUrl: iconUrl,

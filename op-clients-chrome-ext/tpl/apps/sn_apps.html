@@ -9,7 +9,10 @@
     </tr>
     </thead>
 <tr ng-repeat="app in apps">
-        <td class="app_icon"><img  class="sn_app_icon" ng-src="{{app.iconUrl}}"/></td>
+        <td class="app_icon">
+            <img ng-if="sn!='facebook'" class="sn_app_icon" ng-src="{{app.iconUrl}}"/>
+            <i ng-if="sn=='facebook'" class="sn_app_icon" style="background-image: url('{{app.iconUrl}}');background-repeat:no-repeat;background-size:100% 100%;-webkit-background-size:100% 100%;width:32px;height:32px; display: inline-block;"></i>
+        </td>
         <td class="app_name"><h4>{{app.name}}</h4></td>
         <td ng-if="sn=='facebook'" class="app_visibility">{{app.visibility}}</td>
         <td class="app_permissions">
