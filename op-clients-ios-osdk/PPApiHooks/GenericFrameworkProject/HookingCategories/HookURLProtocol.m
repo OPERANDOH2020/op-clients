@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 #import "NSURLProtocol+WKWebViewSupport.h"
-#import "AuthenticationKeyGenerator.h"
 #import "HookURLProtocol.h"
 
 PPEventDispatcher *_urlDispatcher;
@@ -31,20 +30,20 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){
     _urlDispatcher = dispatcher;
 }
 
-+(BOOL)canInitWithTask:(NSURLSessionTask *)task {
++(char)canInitWithTask:(NSURLSessionTask *)task {
     return NO;
 }
 
-+(BOOL)canInitWithRequest:(NSURLRequest *)request {
++(char)canInitWithRequest:(NSURLRequest *)request {
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPWebViewRequest, request)
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPWKWebViewEvent, EventAllowWebViewRequest) eventData:evData whenNoHandlerAvailable:nil];
     
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_urlDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_urlDispatcher fireEvent:event  ];
+       
     
     // this method returning YES means that the request will be blocked
     // 
@@ -52,7 +51,7 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){
 }
 
 -(void)startLoading {
-    NSError *error = [[NSError alloc] initWithDomain:@"com.plusprivacy.ApiHooks" code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Request blocked"}];
+    NSError *error = [[NSError alloc] initWithDomain:@"com.plusprivacy.ApiHooks "code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Request blocked"}];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.client URLProtocol:self didFailWithError:error];
     });

@@ -18,6 +18,11 @@
         },
         {
           'type': 'file',
+          'name': "NSObject+AutoSwizzle.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/NSObject+SwizzleMethods/NSObject+AutoSwizzle.h"
+        },
+        {
+          'type': 'file',
           'name': "PPApiHooksCore-Swift.h",
           'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/Release-iphonesimulator/PPApiHooksCore.framework/Headers/PPApiHooksCore-Swift.h"
         },
@@ -25,6 +30,11 @@
           'type': 'file',
           'name': "PPApiHooksCore.h",
           'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/PPApiHooksCore.h"
+        },
+        {
+          'type': 'file',
+          'name': "PPApiHooksStart.h",
+          'external-contents': "/Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/PPApiHooksStart/PPApiHooksStart.h"
         },
         {
           'type': 'file',

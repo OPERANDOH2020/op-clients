@@ -12,18 +12,18 @@
 
 @interface PPEventDispatcher: NSObject
 
-+(PPEventDispatcher* _Nonnull) sharedInstanceWithAuthentication:(char*_Nonnull)unownedAuthenticationString;
++(PPEventDispatcher* _Nonnull) sharedInstance;
 
--(NSString* _Nonnull)insertAtTopNewHandler:(EventHandler _Nonnull)eventHandler authentication:(char* _Nonnull)unownedAuthenticationString;
+-(NSString* _Nonnull)insertAtTopNewHandler:(EventHandler _Nonnull)eventHandler;
 
--(void)removeHandlerWithIdentifier:(NSString* _Nonnull)identifier authentication:(char* _Nonnull)unownedAuthenticationString;
+-(void)removeHandlerWithIdentifier:(NSString* _Nonnull)identifier;
 
--(void)fireEvent:(PPEvent* _Nonnull)event authentication:(char* _Nonnull)unownedAuthenticationString;
+-(void)fireEvent:(PPEvent* _Nonnull)event;
 
--(void)fireEventWithMaxOneTimeExecution:(PPEventIdentifier)identifier executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey authentication:(char* _Nonnull)unownedAuthenticationString;
+-(void)fireEventWithMaxOneTimeExecution:(PPEventIdentifier)identifier executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey;
 
--(id _Nullable)resultForEventValue:(id _Nonnull)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key authentication:(char* _Nonnull)unownedAuthenticationString;
+-(id _Nullable)resultForEventValue:(id _Nonnull)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
 
--(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key authentication:(char* _Nonnull)unownedAuthenticationString;
+-(char)resultForBoolEventValue:(char)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
 
 @end

@@ -26,6 +26,8 @@ Method findMethodInList(const char *methodName, Method *methodListHead){
     return NULL;
 }
 
+typedef void(^BlockApplySelectors)(SEL originalSelector, SEL selectorWithPrefix);
+
 
 
 @implementation NSObject(AutoSwizzle)

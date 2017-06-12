@@ -10,7 +10,6 @@
 #import <CoreMotion/CoreMotion.h>
 #import "NSObject+AutoSwizzle.h"
 #import "CMMotionManager+PPHOOK.h"
-#import "AuthenticationKeyGenerator.h"
 
 PPEventDispatcher *_mmDispatcher;
 
@@ -39,9 +38,9 @@ HOOKPrefixInstance(void, setAccelerometerUpdateInterval:(NSTimeInterval)accelero
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetAccelerometerUpdateInterval) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_mmDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_mmDispatcher fireEvent:event  ];
+       
 }
 
 
@@ -60,9 +59,9 @@ HOOKPrefixInstance(void, setGyroUpdateInterval:(NSTimeInterval)gyroUpdateInterva
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetGyroUpdateInterval) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_mmDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_mmDispatcher fireEvent:event  ];
+       
 }
 
 HOOKPrefixInstance(void, setDeviceMotionUpdateInterval:(NSTimeInterval)deviceMotionUpdateInterval) {
@@ -79,9 +78,9 @@ HOOKPrefixInstance(void, setDeviceMotionUpdateInterval:(NSTimeInterval)deviceMot
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetDeviceMotionUpdateInterval) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_mmDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_mmDispatcher fireEvent:event  ];
+       
 }
 
 
@@ -97,20 +96,20 @@ HOOKPrefixInstance(void, setMagnetometerUpdateInterval:(NSTimeInterval)magnetome
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerSetMagnetometerUpdateInterval) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_mmDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_mmDispatcher fireEvent:event  ];
+       
 }
 
 HOOKPrefixInstance(void, startMagnetometerUpdates){
     __weak typeof(self) weakSelf = self;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+      
         [_mmDispatcher fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartMagnetometerUpdates) executionBlock:^{
             CALL_PREFIXED(weakSelf, startMagnetometerUpdates);
             
-        } executionBlockKey:kPPConfirmationCallbackBlock authentication:authenticationKey];
-    });
+        } executionBlockKey:kPPConfirmationCallbackBlock  ];
+       
 }
 
 
@@ -131,19 +130,19 @@ HOOKPrefixInstance(void, startMagnetometerUpdatesToQueue:(NSOperationQueue *)que
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartMagnetometerUpdatesToQueueUsingHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_mmDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_mmDispatcher fireEvent:event  ];
+       
 }
 
 HOOKPrefixInstance(void, startAccelerometerUpdates) {
     __weak typeof(self) weakSelf = self;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+      
         [_mmDispatcher fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartAccelerometerUpdates) executionBlock:^{
             CALL_PREFIXED(weakSelf, startAccelerometerUpdates);
-        } executionBlockKey:kPPConfirmationCallbackBlock authentication:authenticationKey];
-    });
+        } executionBlockKey:kPPConfirmationCallbackBlock  ];
+       
 }
 
 HOOKPrefixInstance(void, startAccelerometerUpdatesToQueue:(NSOperationQueue *)queue withHandler:(CMAccelerometerHandler)handler) {
@@ -166,9 +165,9 @@ HOOKPrefixInstance(void, startAccelerometerUpdatesToQueue:(NSOperationQueue *)qu
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartAccelerometerUpdatesToQueueUsingHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_mmDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_mmDispatcher fireEvent:event  ];
+       
 }
 
 
@@ -177,12 +176,12 @@ HOOKPrefixInstance(void, startAccelerometerUpdatesToQueue:(NSOperationQueue *)qu
 HOOKPrefixInstance(void, startGyroUpdates) {
     __weak typeof(self) weakSelf = self;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+      
         [_mmDispatcher fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartGyroUpdates) executionBlock:^{
             CALL_PREFIXED(weakSelf, startGyroUpdates);
             
-        } executionBlockKey:kPPConfirmationCallbackBlock authentication:authenticationKey];
-    });
+        } executionBlockKey:kPPConfirmationCallbackBlock  ];
+       
 }
 
 HOOKPrefixInstance(void, startGyroUpdatesToQueue:(NSOperationQueue *)queue withHandler:(CMGyroHandler)handler) {
@@ -203,18 +202,18 @@ HOOKPrefixInstance(void, startGyroUpdatesToQueue:(NSOperationQueue *)queue withH
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartGyroUpdatesToQueueUsingHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_mmDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_mmDispatcher fireEvent:event  ];
+       
 }
 
 HOOKPrefixInstance(void, startDeviceMotionUpdates) {
     __weak typeof(self) weakSelf = self;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
+      
         [_mmDispatcher fireEventWithMaxOneTimeExecution:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdates) executionBlock:^{
             CALL_PREFIXED(weakSelf, startDeviceMotionUpdates);
-        } executionBlockKey:kPPConfirmationCallbackBlock authentication:authenticationKey];
-    });
+        } executionBlockKey:kPPConfirmationCallbackBlock  ];
+       
 }
 
 HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitudeReferenceFrame)referenceFrame){
@@ -231,9 +230,9 @@ HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitude
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdatesUsingReferenceFrame) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_mmDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_mmDispatcher fireEvent:event  ];
+       
 }
 
 HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitudeReferenceFrame)referenceFrame toQueue:(NSOperationQueue *)queue withHandler:(CMDeviceMotionHandler)handler) {
@@ -255,102 +254,102 @@ HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitude
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerStartDeviceMotionUpdatesUsingReferenceFrameToQueueUsingHandler) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_mmDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_mmDispatcher fireEvent:event  ];
+       
 }
 
 
-HOOKPrefixInstance(BOOL, isGyroAvailable){
-    BOOL actualValue = CALL_PREFIXED(self, isGyroAvailable);
+HOOKPrefixInstance(char, isGyroAvailable){
+    char actualValue = CALL_PREFIXED(self, isGyroAvailable);
     
-    __block BOOL value = NO;
+    __block char value = NO;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroAvailable) atKey:kPPMotionManagerIsGyroAvailableValue authentication:authenticationKey];
-    });
+      
+        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroAvailable) atKey:kPPMotionManagerIsGyroAvailableValue  ];
+       
     
     return value;
 }
 
 
 
-HOOKPrefixInstance(BOOL, isAccelerometerAvailable) {
-    BOOL actualValue = CALL_PREFIXED(self, isAccelerometerAvailable);
+HOOKPrefixInstance(char, isAccelerometerAvailable) {
+    char actualValue = CALL_PREFIXED(self, isAccelerometerAvailable);
     
-    __block BOOL value = NO;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsAccelerometerAvailable) atKey:kPPMotionManagerIsAccelerometerAvailableValue authentication:authenticationKey];
-    });
-    
-    return value;
-}
-
-HOOKPrefixInstance(BOOL, isMagnetometerAvailable) {
-    BOOL actualValue = CALL_PREFIXED(self, isMagnetometerAvailable);
-    
-    __block BOOL value = NO;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerAvailable) atKey:kPPMotionManagerIsMagnetometerAvailableValue authentication:authenticationKey];
-    });
+    __block char value = NO;
+      
+        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsAccelerometerAvailable) atKey:kPPMotionManagerIsAccelerometerAvailableValue  ];
+       
     
     return value;
 }
 
-HOOKPrefixInstance(BOOL, isDeviceMotionAvailable) {
-    BOOL actualValue = CALL_PREFIXED(self, isDeviceMotionAvailable);
+HOOKPrefixInstance(char, isMagnetometerAvailable) {
+    char actualValue = CALL_PREFIXED(self, isMagnetometerAvailable);
     
-    __block BOOL value = NO;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionAvailable) atKey:kPPMotionManagerIsDeviceMotionAvailableValue authentication:authenticationKey];
-    });
+    __block char value = NO;
+      
+        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerAvailable) atKey:kPPMotionManagerIsMagnetometerAvailableValue  ];
+       
+    
+    return value;
+}
+
+HOOKPrefixInstance(char, isDeviceMotionAvailable) {
+    char actualValue = CALL_PREFIXED(self, isDeviceMotionAvailable);
+    
+    __block char value = NO;
+      
+        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionAvailable) atKey:kPPMotionManagerIsDeviceMotionAvailableValue  ];
+       
     
     return value;
 }
 
 
-HOOKPrefixInstance(BOOL, isGyroActive){
-    BOOL actualValue = CALL_PREFIXED(self, isGyroActive);
+HOOKPrefixInstance(char, isGyroActive){
+    char actualValue = CALL_PREFIXED(self, isGyroActive);
     
-    __block BOOL value = NO;
+    __block char value = NO;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsGyroActiveValue authentication:authenticationKey];
-    });
-    
-    return value;
-}
-
-HOOKPrefixInstance(BOOL, isAccelerometerActive) {
-    BOOL actualValue = CALL_PREFIXED(self, isAccelerometerActive);
-    
-    __block BOOL value = NO;
-    
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsAccelerometerActiveValue authentication:authenticationKey];
-    });
+      
+        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsGyroActiveValue  ];
+       
     
     return value;
 }
 
-HOOKPrefixInstance(BOOL, isMagnetometerActive) {
-    BOOL actualValue = CALL_PREFIXED(self, isMagnetometerActive);
+HOOKPrefixInstance(char, isAccelerometerActive) {
+    char actualValue = CALL_PREFIXED(self, isAccelerometerActive);
     
-    __block BOOL value = NO;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-            value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerActive) atKey:kPPMotionManagerIsMagnetometerActiveValue authentication:authenticationKey];
-    });
+    __block char value = NO;
+    
+      
+        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsAccelerometerActiveValue  ];
+       
     
     return value;
 }
 
-HOOKPrefixInstance(BOOL, isDeviceMotionActive) {
-    BOOL actualValue = CALL_PREFIXED(self, isDeviceMotionActive);
-    __block BOOL value = NO;
+HOOKPrefixInstance(char, isMagnetometerActive) {
+    char actualValue = CALL_PREFIXED(self, isMagnetometerActive);
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-            value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionActive) atKey:kPPMotionManagerIsDeviceMotionActiveValue authentication:authenticationKey];
-    });
+    __block char value = NO;
+      
+            value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerActive) atKey:kPPMotionManagerIsMagnetometerActiveValue  ];
+       
+    
+    return value;
+}
+
+HOOKPrefixInstance(char, isDeviceMotionActive) {
+    char actualValue = CALL_PREFIXED(self, isDeviceMotionActive);
+    __block char value = NO;
+    
+      
+            value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionActive) atKey:kPPMotionManagerIsDeviceMotionActiveValue  ];
+       
     return value;
 }
 
@@ -359,9 +358,9 @@ HOOKPrefixInstance(CMAccelerometerData *, accelerometerData){
     
     __block CMAccelerometerData* value = nil;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentAccelerometerData) atKey:kPPMotionManagerGetCurrentAccelerometerDataValue authentication:authenticationKey];
-    });
+      
+        value = [_mmDispatcher resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentAccelerometerData) atKey:kPPMotionManagerGetCurrentAccelerometerDataValue  ];
+       
     
     return value;
 }
@@ -370,9 +369,9 @@ HOOKPrefixInstance(CMGyroData*, gyroData) {
     CMGyroData *data = CALL_PREFIXED(self, gyroData);
     
     __block CMGyroData* value = nil;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentGyroData) atKey:kPPMotionManagerGetCurrentGyroDataValue authentication:authenticationKey];
-    });
+      
+        value = [_mmDispatcher resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentGyroData) atKey:kPPMotionManagerGetCurrentGyroDataValue  ];
+       
     
     return value;
 }
@@ -381,9 +380,9 @@ HOOKPrefixInstance(CMMagnetometerData*, magnetometerData){
     CMMagnetometerData *data = CALL_PREFIXED(self, magnetometerData);
     
     __block CMMagnetometerData* value = nil;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentMagnetometerData) atKey:kPPMotionManagerGetCurrentMagnetometerDataValue authentication:authenticationKey];
-    });
+      
+        value = [_mmDispatcher resultForEventValue:data ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentMagnetometerData) atKey:kPPMotionManagerGetCurrentMagnetometerDataValue  ];
+       
     return value;
 }
 
@@ -391,9 +390,9 @@ HOOKPrefixInstance(CMDeviceMotion*, deviceMotion) {
     CMDeviceMotion *motion = CALL_PREFIXED(self, deviceMotion);
     __block CMDeviceMotion *value = nil;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_mmDispatcher resultForEventValue:motion ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentDeviceMotionData) atKey:kPPMotionManagerGetCurrentDeviceMotionValue authentication:authenticationKey];
-    });
+      
+        value = [_mmDispatcher resultForEventValue:motion ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerGetCurrentDeviceMotionData) atKey:kPPMotionManagerGetCurrentDeviceMotionValue  ];
+       
     
     return value;
 }

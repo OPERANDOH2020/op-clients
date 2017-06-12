@@ -14,11 +14,9 @@
 #import "CMPedometer+PPHOOK.h"
 #import "CMMotionManager+PPHOOK.h"
 #import "CMAltimeter+PPHOOK.h"
-#import "CLLocationManager+PPHOOK.h"
 #import "AVCaptureDevice+PPHOOK.h"
 #import "UIDevice+PPHOOK.h"
 
-#import "AuthenticationKeyGenerator.h"
 
 @implementation PPApiHooksStart
 
@@ -27,20 +25,22 @@
     NSArray *classList = @[ [NSURLSession class],
                             [UIDevice class],
                             [HookURLProtocol class],
-//                            [LAContext class],
-//                            [CNContactStore class],
                             [CMPedometer class],
                             [CMMotionManager class],
                             [CMAltimeter class],
-//                            [CLLocationManager class],
                             [AVCaptureDevice class]];
     
     
-    PPEventDispatcher *sharedDispatcher = [PPEventDispatcher sharedInstanceWithAuthentication:keyGenerator()];
+    
     for (id class in classList) {
-        CALL_PREFIXED(class, setEventsDispatcher: sharedDispatcher);
+        [self registerHookedClass:class];
     }
     
+}
+
++(void)registerHookedClass:(Class)class{
+    PPEventDispatcher *sharedDispatcher = [PPEventDispatcher sharedInstance];
+    CALL_PREFIXED(class, setEventsDispatcher: sharedDispatcher);
 }
 
 @end

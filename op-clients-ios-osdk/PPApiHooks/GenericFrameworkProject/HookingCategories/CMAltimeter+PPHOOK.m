@@ -7,7 +7,6 @@
 //
 
 #import "CMAltimeter+PPHOOK.h"
-#import "AuthenticationKeyGenerator.h"
 
 PPEventDispatcher *_altDispatcher;
 
@@ -23,14 +22,14 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
     _altDispatcher = dispatcher;
 }
 
-HOOKPrefixClass(BOOL, isRelativeAltitudeAvailable){
-    BOOL result = CALL_PREFIXED(self, isRelativeAltitudeAvailable);
+HOOKPrefixClass(char, isRelativeAltitudeAvailable){
+    char result = CALL_PREFIXED(self, isRelativeAltitudeAvailable);
     
-    __block BOOL value = NO;
+    __block char value = NO;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value =  [_altDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterGetRelativeAltitudeAvailableValue) atKey:kPPAltimeterIsRelativeAltitudeVailableValue authentication:authenticationKey];
-    });
+      
+        value =  [_altDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterGetRelativeAltitudeAvailableValue) atKey:kPPAltimeterIsRelativeAltitudeVailableValue  ];
+       
     
     return value;
 }
@@ -52,9 +51,9 @@ HOOKPrefixInstance(void, startRelativeAltitudeUpdatesToQueue:(NSOperationQueue *
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterStartRelativeAltitudeUpdates) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_altDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_altDispatcher fireEvent:event  ];
+       
 }
 
 @end

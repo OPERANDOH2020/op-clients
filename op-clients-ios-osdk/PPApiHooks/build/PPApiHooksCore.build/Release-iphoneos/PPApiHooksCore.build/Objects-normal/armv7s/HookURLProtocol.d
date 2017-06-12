@@ -2,7 +2,6 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/HookingCategories/HookURLProtocol.m \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/build/PPApiHooksCore.build/Release-iphoneos/PPApiHooksCore.build/module.modulemap \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/WKWebViewWithURLProtocol/NSURLProtocol+WKWebViewSupport.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/AuthenticationKeyGenerator/AuthenticationKeyGenerator.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/HookingCategories/HookURLProtocol.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/Common.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventDispatcher/PPEventDispatcher.h \

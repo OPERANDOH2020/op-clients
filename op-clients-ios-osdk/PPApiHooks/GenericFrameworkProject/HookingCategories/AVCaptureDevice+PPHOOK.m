@@ -11,7 +11,6 @@
 #import "NSObject+AutoSwizzle.h"
 #import "AVCaptureDevice+PPHOOK.h"
 #import "PPEventDispatcher.h"
-#import "AuthenticationKeyGenerator.h"
 
 PPEventDispatcher *_avDispatcher;
 
@@ -38,9 +37,9 @@ HOOKPrefixClass(AVCaptureDevice*, defaultDeviceWithMediaType:(NSString *)mediaTy
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetDefaultDeviceWithMediaType) eventData:evData whenNoHandlerAvailable:nil];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_avDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_avDispatcher fireEvent:event  ];
+       
     
     return evData[kPPCaptureDeviceDefaultDeviceValue];
 }
@@ -55,9 +54,9 @@ HOOKPrefixClass(AVCaptureDevice*, defaultDeviceWithDeviceType:(AVCaptureDeviceTy
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetDefaultDeviceWithTypeMediaTypeAndPosition) eventData:eventData whenNoHandlerAvailable:nil];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_avDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_avDispatcher fireEvent:event  ];
+       
     
     return eventData[kPPCaptureDeviceDefaultDeviceValue];
     
@@ -68,9 +67,9 @@ HOOKPrefixInstance(NSString*, uniqueID){
     NSString *result = CALL_PREFIXED(self, uniqueID);
     
     __block NSString *value = nil;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_avDispatcher resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetUniqueId) atKey:kPPCaptureDeviceUniqueIdValue authentication:authenticationKey];
-    });
+      
+        value = [_avDispatcher resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetUniqueId) atKey:kPPCaptureDeviceUniqueIdValue  ];
+       
     
     return value;
 }
@@ -80,37 +79,37 @@ HOOKPrefixInstance(NSString*, modelID){
     NSString *result = CALL_PREFIXED(self, modelID);
     
     __block NSString *value = nil;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_avDispatcher resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetModelId) atKey:kPPCaptureDeviceModelIdValue authentication:authenticationKey];
-    });
+      
+        value = [_avDispatcher resultForEventValue:result ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetModelId) atKey:kPPCaptureDeviceModelIdValue  ];
+       
     
     return value;
 }
 
-HOOKPrefixInstance(BOOL, hasMediaType:(NSString *)mediaType){
-    BOOL result = CALL_PREFIXED(self, hasMediaType: mediaType);
+HOOKPrefixInstance(char, hasMediaType:(NSString *)mediaType){
+    char result = CALL_PREFIXED(self, hasMediaType: mediaType);
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPCaptureDeviceMediaTypeValue, mediaType)
     evData[kPPCaptureDeviceHasMediaTypeResult] = @(result);
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceHasMediaType) eventData:evData whenNoHandlerAvailable:nil];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-            [_avDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+            [_avDispatcher fireEvent:event  ];
+       
     
     return [evData[kPPCaptureDeviceHasMediaTypeResult] boolValue];
 }
 
 
-HOOKPrefixInstance(BOOL, lockForConfiguration:(NSError *__autoreleasing *)outError){
+HOOKPrefixInstance(char, lockForConfiguration:(NSError *__autoreleasing *)outError){
     
     NSMutableDictionary *eventData = [[NSMutableDictionary alloc] init];
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceLockForConfiguration) eventData:eventData whenNoHandlerAvailable:nil];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_avDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_avDispatcher fireEvent:event  ];
+       
     
     if ([eventData[kPPCaptureDeviceConfirmationBool] boolValue]) {
         return CALL_PREFIXED(self, lockForConfiguration: outError);
@@ -120,15 +119,15 @@ HOOKPrefixInstance(BOOL, lockForConfiguration:(NSError *__autoreleasing *)outErr
     return NO;
 }
 
-HOOKPrefixClass(BOOL, supportsAVCaptureSessionPreset:(NSString *)preset){
+HOOKPrefixClass(char, supportsAVCaptureSessionPreset:(NSString *)preset){
     NSMutableDictionary *eventData = [[NSMutableDictionary alloc] init];
     SAFEADD(eventData, kPPAVPresetValue, preset)
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceSupportsSessionPreset) eventData:eventData whenNoHandlerAvailable:nil];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_avDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_avDispatcher fireEvent:event  ];
+       
     
     if ([eventData[kPPCaptureDeviceConfirmationBool] boolValue]) {
         return CALL_PREFIXED(self, supportsAVCaptureSessionPreset: preset);
@@ -138,13 +137,13 @@ HOOKPrefixClass(BOOL, supportsAVCaptureSessionPreset:(NSString *)preset){
 }
 
 
-HOOKPrefixInstance(BOOL, isConnected){
-    BOOL connected = CALL_PREFIXED(self, isConnected);
+HOOKPrefixInstance(char, isConnected){
+    char connected = CALL_PREFIXED(self, isConnected);
     
-    __block BOOL value = NO;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_avDispatcher resultForBoolEventValue:connected ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetIsConnected) atKey:kPPCaptureDeviceConfirmationBool authentication:authenticationKey];
-    });
+    __block char value = NO;
+      
+        value = [_avDispatcher resultForBoolEventValue:connected ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetIsConnected) atKey:kPPCaptureDeviceConfirmationBool  ];
+       
     
     return value;
 }
@@ -153,9 +152,9 @@ HOOKPrefixInstance(NSArray*, formats){
     NSArray *formats = CALL_PREFIXED(self, formats);
     
     __block NSArray *value = nil;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-            value = [_avDispatcher resultForEventValue:formats ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetFormats) atKey:kPPCaptureDeviceFormatsArrayValue authentication:authenticationKey];
-    });
+      
+            value = [_avDispatcher resultForEventValue:formats ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetFormats) atKey:kPPCaptureDeviceFormatsArrayValue  ];
+       
     return value;
 }
 
@@ -163,9 +162,9 @@ HOOKPrefixInstance(AVCaptureDeviceFormat*, activeFormat){
     AVCaptureDeviceFormat *format = CALL_PREFIXED(self, activeFormat);
     __block AVCaptureDeviceFormat *value = nil;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_avDispatcher resultForEventValue:format ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetActiveFormat) atKey:kPPCaptureDeviceActiveFormatValue authentication:authenticationKey];
-    });
+      
+        value = [_avDispatcher resultForEventValue:format ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetActiveFormat) atKey:kPPCaptureDeviceActiveFormatValue  ];
+       
     
     return value;
 }

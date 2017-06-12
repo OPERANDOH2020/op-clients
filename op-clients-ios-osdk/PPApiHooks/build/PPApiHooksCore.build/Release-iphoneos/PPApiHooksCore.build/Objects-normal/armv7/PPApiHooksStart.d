@@ -15,6 +15,4 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/HookingCategories/CMMotionManager+PPHOOK.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/HookingCategories/CMAltimeter+PPHOOK.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/NSObject+SwizzleMethods/NSObject+AutoSwizzle.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/HookingCategories/CLLocationManager+PPHOOK.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/HookingCategories/AVCaptureDevice+PPHOOK.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/AuthenticationKeyGenerator/AuthenticationKeyGenerator.h
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/HookingCategories/AVCaptureDevice+PPHOOK.h

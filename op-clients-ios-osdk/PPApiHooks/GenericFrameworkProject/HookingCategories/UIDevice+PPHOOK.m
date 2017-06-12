@@ -10,7 +10,6 @@
 #import "JRSwizzle.h"
 #import "UIDevice+PPHOOK.h"
 #import "NSObject+AutoSwizzle.h"
-#import "AuthenticationKeyGenerator.h"
 
 PPEventDispatcher *_devDispatcher;
 
@@ -27,7 +26,7 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){
     _devDispatcher = dispatcher;
 }
 
-HOOKPrefixInstance(void, setProximityMonitoringEnabled:(BOOL)enabled) {
+HOOKPrefixInstance(void, setProximityMonitoringEnabled:(char)enabled) {
     
     __weak typeof(self) weakSelf = self;
     
@@ -47,12 +46,12 @@ HOOKPrefixInstance(void, setProximityMonitoringEnabled:(BOOL)enabled) {
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:eventType eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_devDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_devDispatcher fireEvent:event  ];
+       
 }
 
-HOOKPrefixInstance(void, setProximitySensingEnabled:(BOOL)enabled) {
+HOOKPrefixInstance(void, setProximitySensingEnabled:(char)enabled) {
     
     __weak typeof(self) weakSelf = self;
     PPEventIdentifier eventType = PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceSetProximitySensingEnabled);
@@ -69,23 +68,23 @@ HOOKPrefixInstance(void, setProximitySensingEnabled:(BOOL)enabled) {
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:eventType eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_devDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_devDispatcher fireEvent:event  ];
+       
     
 }
 
-HOOKPrefixInstance(BOOL, proximityState) {
+HOOKPrefixInstance(char, proximityState) {
     
-    BOOL actualProximityState = CALL_PREFIXED(self, proximityState);
+    char actualProximityState = CALL_PREFIXED(self, proximityState);
     NSMutableDictionary *dict = [@{kPPDeviceProxmityStateValue: @(actualProximityState)} mutableCopy];
     
 
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetProximityState) eventData:dict whenNoHandlerAvailable:nil];
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        [_devDispatcher fireEvent:event authentication:authenticationKey];
-    });
+      
+        [_devDispatcher fireEvent:event  ];
+       
     
     NSNumber *possiblyModifiedValue = dict[kPPDeviceProxmityStateValue];
     if (!(possiblyModifiedValue && [possiblyModifiedValue isKindOfClass:[NSNumber class]])){
@@ -101,9 +100,9 @@ HOOKPrefixInstance(NSString*, name){
     __block NSString *result = nil;
     
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        result =  [_devDispatcher resultForEventValue:actualName ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetName) atKey:kPPDeviceNameValue authentication:authenticationKey];
-    });
+      
+        result =  [_devDispatcher resultForEventValue:actualName ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetName) atKey:kPPDeviceNameValue  ];
+       
 
     return  result;
 }
@@ -112,9 +111,9 @@ HOOKPrefixInstance(NSString*, model){
     NSString *actualModel = CALL_PREFIXED(self, model);
 
     __block NSString *result;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        result =  [_devDispatcher resultForEventValue:actualModel ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetModel) atKey:kPPDeviceModelValue authentication:authenticationKey];
-    });
+      
+        result =  [_devDispatcher resultForEventValue:actualModel ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetModel) atKey:kPPDeviceModelValue  ];
+       
     
     return result;
 }
@@ -125,9 +124,9 @@ HOOKPrefixInstance(NSString*, localizedModel){
     
     __block NSString *value = nil;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value = [_devDispatcher resultForEventValue:actualLocalizedModel ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetLocalizedModel) atKey:kPPDeviceLocalizedModelValue authentication:authenticationKey];
-    });
+      
+        value = [_devDispatcher resultForEventValue:actualLocalizedModel ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetLocalizedModel) atKey:kPPDeviceLocalizedModelValue  ];
+       
     
     return value;
 }
@@ -136,9 +135,9 @@ HOOKPrefixInstance(NSString*, systemName){
     NSString *actualSystemName = CALL_PREFIXED(self, systemName);
     __block NSString *value = nil;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        value =  [_devDispatcher resultForEventValue:actualSystemName ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetSystemName) atKey:kPPDeviceSystemNameValue authentication:authenticationKey];
-    });
+      
+        value =  [_devDispatcher resultForEventValue:actualSystemName ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetSystemName) atKey:kPPDeviceSystemNameValue  ];
+       
     return value;
 }
 
@@ -146,9 +145,9 @@ HOOKPrefixInstance(NSString*, systemVersion){
     NSString *actualSystemVersion = CALL_PREFIXED(self, systemVersion);
     
     __block NSString *result = nil;
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-        result = [_devDispatcher resultForEventValue:actualSystemVersion ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetSystemVersion) atKey:kPPDeviceSystemVersionValue authentication:authenticationKey];
-    });
+      
+        result = [_devDispatcher resultForEventValue:actualSystemVersion ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetSystemVersion) atKey:kPPDeviceSystemVersionValue  ];
+       
     return result;
 }
 
@@ -157,9 +156,9 @@ HOOKPrefixInstance(NSString*, identifierForVendor) {
     
     __block NSString *result = nil;
     
-    apiHooksCore_withSafelyManagedKey(^void(char *authenticationKey){
-            result =  [_devDispatcher resultForEventValue:actualUUID ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetIdentifierForVendor) atKey:kPPDeviceUUIDValue authentication:authenticationKey];
-    });
+      
+            result =  [_devDispatcher resultForEventValue:actualUUID ofIdentifier:PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceGetIdentifierForVendor) atKey:kPPDeviceUUIDValue  ];
+       
     
     return result;
 }

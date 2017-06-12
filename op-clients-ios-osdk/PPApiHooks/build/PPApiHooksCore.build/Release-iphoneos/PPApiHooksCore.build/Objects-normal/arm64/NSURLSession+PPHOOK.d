@@ -8,5 +8,4 @@ dependencies: \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/NSObject+SwizzleMethods/NSObject+AutoSwizzle.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/HookingCategories/NSURLSession+PPHOOK.h \
   /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventDispatcher/PPEventDispatcher.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventDispatcher/IdentifiedHandler/IdentifiedHandler.h \
-  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/AuthenticationKeyGenerator/AuthenticationKeyGenerator.h
+  /Users/Costin/Desktop/Projects/Official/op-clients/op-clients-ios-osdk/PPApiHooks/GenericFrameworkProject/EventsPipeline/PPEventDispatcher/IdentifiedHandler/IdentifiedHandler.h

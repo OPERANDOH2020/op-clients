@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "CNContactStore+PPHOOK.h"
+#import <PPApiHooksCore/PPApiHooksCore.h>
 
-extern PPEvent* createEvent();
 
 PPEventDispatcher *_cnDispatcher;
 
@@ -19,6 +19,7 @@ PPEventDispatcher *_cnDispatcher;
 +(void)load {
     if (NSClassFromString(@"CNContactStore")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
+        [PPApiHooksStart registerHookedClass:self];
     }
 }
 
@@ -39,8 +40,8 @@ HOOKPrefixInstance(void, requestAccessForEntityType:(CNEntityType)entityType com
     };
     evData[kPPConfirmationCallbackBlock] = confirmationOrDefault;
     
-//    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreRequestAccessForEntityType) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
-    PPEvent *event = createEvent();
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreRequestAccessForEntityType) eventData:evData whenNoHandlerAvailable:confirmationOrDefault];
+
     
     [_cnDispatcher fireEvent:event];
 }
@@ -52,9 +53,8 @@ HOOKPrefixClass(CNAuthorizationStatus, authorizationStatusForEntityType:(CNEntit
     evData[kPPContactStoreEntityTypeValue] = @(entityType);
     evData[kPPContactStoreAuthorizationStatusValue] = @(actualStatus);
     
-//    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetAuthorizationStatusForEntityType) eventData:evData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetAuthorizationStatusForEntityType) eventData:evData whenNoHandlerAvailable:nil];
     
-    PPEvent *event = createEvent();
 
     
     
@@ -77,9 +77,8 @@ HOOKPrefixInstance(NSArray<CNContact *> *,unifiedContactsMatchingPredicate:(NSPr
     SAFEADD(evData, kPPContactStoreKeyDescriptorsArrayValue, keys)
     SAFEADD(evData, kPPContactStoreContactsArrayValue, contactsArray)
     
-//    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetUnifiedContactsMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetUnifiedContactsMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
     
-    PPEvent *event = createEvent();
 
     
     [_cnDispatcher fireEvent:event];
@@ -102,10 +101,8 @@ HOOKPrefixInstance(CNContact*, unifiedContactWithIdentifier:(NSString *)identifi
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPContactStoreContactValue, localContact)
     SAFEADD(evData, kPPContactStoreUnifiedContactIdentifierValue, identifier)
-//    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetUnifiedContactWithIdentifier) eventData:evData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetUnifiedContactWithIdentifier) eventData:evData whenNoHandlerAvailable:nil];
     
-    PPEvent *event = createEvent();
-
     
     [_cnDispatcher fireEvent:event];
     *error = evData[kPPContactStoreErrorValue];
@@ -119,10 +116,8 @@ HOOKPrefixInstance(BOOL, enumerateContactsWithFetchRequest:(CNContactFetchReques
     SAFEADD(evData, kPPContactStoreFetchRequestValue, fetchRequest)
     SAFEADD(evData, kPPContactStoreContactEnumerationBlock, block)
     
-//    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreEnumerateContactsWithFetchRequest) eventData:evData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreEnumerateContactsWithFetchRequest) eventData:evData whenNoHandlerAvailable:nil];
     
-    PPEvent *event = createEvent();
-
     
     [_cnDispatcher fireEvent:event];
     
@@ -151,11 +146,9 @@ HOOKPrefixInstance(NSArray<CNGroup*>*, groupsMatchingPredicate:(NSPredicate *)pr
     SAFEADD(evData, kPPContactStorePredicateValue, predicate)
     SAFEADD(evData, kPPContactStoreGroupsArrayValue, groups)
     
-//    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetGroupsMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetGroupsMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
     
-    PPEvent *event = createEvent();
 
-    
     [_cnDispatcher fireEvent:event];
     *error = evData[kPPContactStoreErrorValue];
     return evData[kPPContactStoreGroupsArrayValue];
@@ -174,10 +167,7 @@ HOOKPrefixInstance(NSArray<CNContainer*>*, containersMatchingPredicate:(NSPredic
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPContactStorePredicateValue, predicate)
     SAFEADD(evData, kPPContactStoreContainersArrayValue, containers)
-//    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetContainersMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
-    
-    PPEvent *event = createEvent();
-
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactStoreGetContainersMatchingPredicate) eventData:evData whenNoHandlerAvailable:nil];
     
     [_cnDispatcher fireEvent:event];
     *error = evData[kPPContactStoreErrorValue];
@@ -190,10 +180,7 @@ HOOKPrefixInstance(BOOL, executeSaveRequest:(CNSaveRequest *)saveRequest error:(
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPContactStoreSaveRequestValue, saveRequest)
     
-//    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactsStoreExecuteSaveRequest) eventData:evData whenNoHandlerAvailable:nil];
-    
-    PPEvent *event = createEvent();
-
+    PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPCNContactStoreEvent, EventContactsStoreExecuteSaveRequest) eventData:evData whenNoHandlerAvailable:nil];
     
     [_cnDispatcher fireEvent:event];
     

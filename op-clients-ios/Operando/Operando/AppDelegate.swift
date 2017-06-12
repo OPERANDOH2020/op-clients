@@ -27,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(Bundle(for: PPEvent.self))
         
-        print(Bundle.main.privateFrameworksPath)
+        let address: String = "\(Bundle.main.privateFrameworksPath!)/PPApiHooksCore.framework/PPApiHooksCore"
+        
+        nmFile(address)
         
         return true
         

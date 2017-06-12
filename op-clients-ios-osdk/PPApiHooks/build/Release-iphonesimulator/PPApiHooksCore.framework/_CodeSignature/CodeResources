@@ -6,15 +6,23 @@
 	<dict>
 		<key>Headers/Common.h</key>
 		<data>
-		dmfWpYZ5vAEGp5CKMkVF84arPzk=
+		8poltOE56auE24PuITynH7cxaHA=
 		</data>
 		<key>Headers/IdentifiedHandler.h</key>
 		<data>
 		m+UdWePB2HZppsv93Idl2sjINFg=
 		</data>
+		<key>Headers/NSObject+AutoSwizzle.h</key>
+		<data>
+		t7kQhHGfBWS13OALOZZqHiqInMw=
+		</data>
 		<key>Headers/PPApiHooksCore.h</key>
 		<data>
-		jbJK9z+MPQ44BrZ7l+NCU0K14ek=
+		Rza8r0axgGWRwqbgPOrkoBKT37w=
+		</data>
+		<key>Headers/PPApiHooksStart.h</key>
+		<data>
+		yeB1ZcCxTGA1wD5DIKtQ0U0iVh8=
 		</data>
 		<key>Headers/PPEvent.h</key>
 		<data>
@@ -22,7 +30,7 @@
 		</data>
 		<key>Headers/PPEventDispatcher.h</key>
 		<data>
-		JeQyGBN/3vpjl8vpPbY53+Pf5jI=
+		dmvmtCwSzYmWWPexd8k/iTl6huA=
 		</data>
 		<key>Headers/PPEventIdentifier.h</key>
 		<data>
@@ -43,11 +51,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			dmfWpYZ5vAEGp5CKMkVF84arPzk=
+			8poltOE56auE24PuITynH7cxaHA=
 			</data>
 			<key>hash2</key>
 			<data>
-			BmK55YgmrfpB8AyUC1HEGd8r9eK04e6mMDFcxoaDI/U=
+			WFkGffA1FGJFDLFRSKIpAgTGKZMaUkO7oro97VTPvys=
 			</data>
 		</dict>
 		<key>Headers/IdentifiedHandler.h</key>
@@ -61,15 +69,37 @@
 			kGadosmRjCjfrxU7dDWSjtX2/cdY5etX0aIRHU4wY58=
 			</data>
 		</dict>
+		<key>Headers/NSObject+AutoSwizzle.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			t7kQhHGfBWS13OALOZZqHiqInMw=
+			</data>
+			<key>hash2</key>
+			<data>
+			ul40DDaRUENhus3GyeafW9bRGw4hHjJmU8ZL/kpMIMg=
+			</data>
+		</dict>
 		<key>Headers/PPApiHooksCore.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			jbJK9z+MPQ44BrZ7l+NCU0K14ek=
+			Rza8r0axgGWRwqbgPOrkoBKT37w=
 			</data>
 			<key>hash2</key>
 			<data>
-			DZpL45V0Ay07ycIXzKdXc74nCjuA7W775Ur7DmqNr6c=
+			Pf0BRxa2uP1yE0wvLw4DNZA4BxKD447eQkADmB3zpVE=
+			</data>
+		</dict>
+		<key>Headers/PPApiHooksStart.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			yeB1ZcCxTGA1wD5DIKtQ0U0iVh8=
+			</data>
+			<key>hash2</key>
+			<data>
+			528N/8gt1pbwanPa9HFcVGyRS1189FMb01bkGHxe5cY=
 			</data>
 		</dict>
 		<key>Headers/PPEvent.h</key>
@@ -87,11 +117,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			JeQyGBN/3vpjl8vpPbY53+Pf5jI=
+			dmvmtCwSzYmWWPexd8k/iTl6huA=
 			</data>
 			<key>hash2</key>
 			<data>
-			t28EviRXo/BAEUU649w3Eh751ItXjSV2tDW7HxZ4II8=
+			bFr8j0n5udceX3b798QyefVXgUevVB8oHcgBjUXvjZ0=
 			</data>
 		</dict>
 		<key>Headers/PPEventIdentifier.h</key>

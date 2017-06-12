@@ -21,21 +21,19 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		98034A091EEA980C00F99FF9 /* PPEvent+FrameworkPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 98034A081EEA980C00F99FF9 /* PPEvent+FrameworkPrivate.h */; };
 		980B7FC41ED3461D00570DF0 /* PPEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6BC1E76F16200FF635A /* PPEventDispatcher.m */; };
 		982FB4171E83FE0000D1AAEC /* HookURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */; };
 		982FB41C1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 982FB41A1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h */; };
 		982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */; };
-		98408E901EAFA0260002635D /* NSObject+AutoSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */; };
+		98408E901EAFA0260002635D /* NSObject+AutoSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */; };
-		984261451EE935F900F9A884 /* AuthenticationKeyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 984261431EE935F900F9A884 /* AuthenticationKeyGenerator.m */; };
-		984261461EE935F900F9A884 /* AuthenticationKeyGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 984261441EE935F900F9A884 /* AuthenticationKeyGenerator.h */; };
 		9845D9521EC05E680057CC9B /* CMMotionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845D9511EC05E680057CC9B /* CMMotionManagerTests.m */; };
 		9845D9531EC05F2E0057CC9B /* PPEventIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9899DF081EADDE8600CB9ED8 /* PPEventIdentifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9845D95A1EC06C190057CC9B /* PPApiHooksStart.h in Headers */ = {isa = PBXBuildFile; fileRef = 9845D9581EC06C190057CC9B /* PPApiHooksStart.h */; };
+		9845D95A1EC06C190057CC9B /* PPApiHooksStart.h in Headers */ = {isa = PBXBuildFile; fileRef = 9845D9581EC06C190057CC9B /* PPApiHooksStart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9845D95B1EC06C190057CC9B /* PPApiHooksStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845D9591EC06C190057CC9B /* PPApiHooksStart.m */; };
 		9845D95F1EC085030057CC9B /* TestDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845D95E1EC085030057CC9B /* TestDispatcher.m */; };
 		9845D9661EC09CB70057CC9B /* CommonBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845D9651EC09CB70057CC9B /* CommonBaseTest.m */; };
-		984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */; };
 		984C38641E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */; };
 		9850234C1ED333F90074221C /* IdentifiedHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9850234A1ED333F90074221C /* IdentifiedHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9850234D1ED333F90074221C /* IdentifiedHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9850234B1ED333F90074221C /* IdentifiedHandler.m */; };
@@ -45,7 +43,6 @@
 		98AFA75B1EC0535D00D1D2CB /* PPApiHooksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AFA75A1EC0535D00D1D2CB /* PPApiHooksTests.m */; };
 		98AFA75D1EC0535D00D1D2CB /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98584F3D1D3F9E18009FB89F /* PPApiHooksCore.framework */; };
 		98F7A6A21E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6961E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m */; };
-		98F7A6A41E76ECB200FF635A /* CLLocationManager+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6981E76ECB200FF635A /* CLLocationManager+PPHOOK.m */; };
 		98F7A6A51E76ECB200FF635A /* CMAltimeter+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6991E76ECB200FF635A /* CMAltimeter+PPHOOK.m */; };
 		98F7A6A71E76ECB200FF635A /* CMMotionManager+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69B1E76ECB200FF635A /* CMMotionManager+PPHOOK.m */; };
 		98F7A6A81E76ECB200FF635A /* CMPedometer+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69C1E76ECB200FF635A /* CMPedometer+PPHOOK.m */; };
@@ -71,13 +68,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		98034A081EEA980C00F99FF9 /* PPEvent+FrameworkPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PPEvent+FrameworkPrivate.h"; sourceTree = "<group>"; };
 		982FB4161E83FE0000D1AAEC /* HookURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HookURLProtocol.m; sourceTree = "<group>"; };
 		982FB41A1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebViewSupport.h"; sourceTree = "<group>"; };
 		982FB41B1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebViewSupport.m"; sourceTree = "<group>"; };
 		98408E8E1EAFA0260002635D /* NSObject+AutoSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AutoSwizzle.h"; path = "NSObject+SwizzleMethods/NSObject+AutoSwizzle.h"; sourceTree = "<group>"; };
 		98408E8F1EAFA0260002635D /* NSObject+AutoSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AutoSwizzle.m"; path = "NSObject+SwizzleMethods/NSObject+AutoSwizzle.m"; sourceTree = "<group>"; };
-		984261431EE935F900F9A884 /* AuthenticationKeyGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticationKeyGenerator.m; path = AuthenticationKeyGenerator/AuthenticationKeyGenerator.m; sourceTree = "<group>"; };
-		984261441EE935F900F9A884 /* AuthenticationKeyGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticationKeyGenerator.h; path = AuthenticationKeyGenerator/AuthenticationKeyGenerator.h; sourceTree = "<group>"; };
 		9845D9511EC05E680057CC9B /* CMMotionManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMMotionManagerTests.m; sourceTree = "<group>"; };
 		9845D9541EC066160057CC9B /* UIDevice+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+PPHOOK.h"; sourceTree = "<group>"; };
 		9845D9561EC068DA0057CC9B /* HookURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HookURLProtocol.h; sourceTree = "<group>"; };
@@ -87,7 +83,6 @@
 		9845D95E1EC085030057CC9B /* TestDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDispatcher.m; path = TestDispatcher/TestDispatcher.m; sourceTree = "<group>"; };
 		9845D9641EC09CB70057CC9B /* CommonBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonBaseTest.h; path = CommonBaseTest/CommonBaseTest.h; sourceTree = "<group>"; };
 		9845D9651EC09CB70057CC9B /* CommonBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonBaseTest.m; path = CommonBaseTest/CommonBaseTest.m; sourceTree = "<group>"; };
-		984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PPEvent+FrameworkPrivate.h"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.h"; sourceTree = "<group>"; };
 		984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PPEvent+FrameworkPrivate.m"; path = "PPEvent+FrameworkPrivate/PPEvent+FrameworkPrivate.m"; sourceTree = "<group>"; };
 		9850234A1ED333F90074221C /* IdentifiedHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IdentifiedHandler.h; path = IdentifiedHandler/IdentifiedHandler.h; sourceTree = "<group>"; };
 		9850234B1ED333F90074221C /* IdentifiedHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IdentifiedHandler.m; path = IdentifiedHandler/IdentifiedHandler.m; sourceTree = "<group>"; };
@@ -98,7 +93,6 @@
 		9899DF091EADE1D200CB9ED8 /* PPEventIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEventIdentifier.m; path = PPEventIdentifier/PPEventIdentifier.m; sourceTree = "<group>"; };
 		989DB8EC1E77DE61008F4D02 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		98A927861EBC5DAD00E17219 /* AVCaptureDevice+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVCaptureDevice+PPHOOK.h"; sourceTree = "<group>"; };
-		98A927881EBC693B00E17219 /* CLLocationManager+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocationManager+PPHOOK.h"; sourceTree = "<group>"; };
 		98A9278A1EBC6FDA00E17219 /* CMAltimeter+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMAltimeter+PPHOOK.h"; sourceTree = "<group>"; };
 		98A9278C1EBC7DF200E17219 /* CMMotionManager+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMMotionManager+PPHOOK.h"; sourceTree = "<group>"; };
 		98A9278E1EBC82AA00E17219 /* CMPedometer+PPHOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMPedometer+PPHOOK.h"; sourceTree = "<group>"; };
@@ -108,7 +102,6 @@
 		98AFA75A1EC0535D00D1D2CB /* PPApiHooksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPApiHooksTests.m; sourceTree = "<group>"; };
 		98AFA75C1EC0535D00D1D2CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98F7A6961E76ECB200FF635A /* AVCaptureDevice+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+PPHOOK.m"; sourceTree = "<group>"; };
-		98F7A6981E76ECB200FF635A /* CLLocationManager+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+PPHOOK.m"; sourceTree = "<group>"; };
 		98F7A6991E76ECB200FF635A /* CMAltimeter+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMAltimeter+PPHOOK.m"; sourceTree = "<group>"; };
 		98F7A69B1E76ECB200FF635A /* CMMotionManager+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+PPHOOK.m"; sourceTree = "<group>"; };
 		98F7A69C1E76ECB200FF635A /* CMPedometer+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMPedometer+PPHOOK.m"; sourceTree = "<group>"; };
@@ -143,15 +136,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9823FC801EE9315A002A4C37 /* AuthenticationKeyGenerator */ = {
-			isa = PBXGroup;
-			children = (
-				984261431EE935F900F9A884 /* AuthenticationKeyGenerator.m */,
-				984261441EE935F900F9A884 /* AuthenticationKeyGenerator.h */,
-			);
-			name = AuthenticationKeyGenerator;
-			sourceTree = "<group>";
-		};
 		982FB4181E83FE1B00D1AAEC /* ExternalLibraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,7 +203,7 @@
 		984C38601E7937D300F5AEF5 /* PPEvent+Private */ = {
 			isa = PBXGroup;
 			children = (
-				984C38611E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h */,
+				98034A081EEA980C00F99FF9 /* PPEvent+FrameworkPrivate.h */,
 				984C38621E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.m */,
 			);
 			name = "PPEvent+Private";
@@ -282,15 +266,6 @@
 				98A927861EBC5DAD00E17219 /* AVCaptureDevice+PPHOOK.h */,
 			);
 			name = "AVCaptureDevice+PPHOOK";
-			sourceTree = "<group>";
-		};
-		98A927871EBC692800E17219 /* CLLocationManager+PPHOOK */ = {
-			isa = PBXGroup;
-			children = (
-				98F7A6981E76ECB200FF635A /* CLLocationManager+PPHOOK.m */,
-				98A927881EBC693B00E17219 /* CLLocationManager+PPHOOK.h */,
-			);
-			name = "CLLocationManager+PPHOOK";
 			sourceTree = "<group>";
 		};
 		98A927891EBC6F7600E17219 /* CMAltimeter+PPHOOK */ = {
@@ -369,7 +344,6 @@
 				98A9278D1EBC820A00E17219 /* CMPedometer+PPHOOK */,
 				98A9278B1EBC7DDF00E17219 /* CMMotionManager+PPHOOK */,
 				98A927891EBC6F7600E17219 /* CMAltimeter+PPHOOK */,
-				98A927871EBC692800E17219 /* CLLocationManager+PPHOOK */,
 				98A927851EBC5D8B00E17219 /* AVCaptureDevice+PPHOOK */,
 				98F7A6A11E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m */,
 			);
@@ -388,7 +362,6 @@
 		98F7A6B31E76F16200FF635A /* EventsPipeline */ = {
 			isa = PBXGroup;
 			children = (
-				9823FC801EE9315A002A4C37 /* AuthenticationKeyGenerator */,
 				98F7A6B41E76F16200FF635A /* PPEvent */,
 				98F7A6B71E76F16200FF635A /* PPEventDispatcher */,
 			);
@@ -423,16 +396,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9845D95A1EC06C190057CC9B /* PPApiHooksStart.h in Headers */,
+				98408E901EAFA0260002635D /* NSObject+AutoSwizzle.h in Headers */,
 				9845D9531EC05F2E0057CC9B /* PPEventIdentifier.h in Headers */,
 				9850234C1ED333F90074221C /* IdentifiedHandler.h in Headers */,
 				98584F411D3F9E18009FB89F /* PPApiHooksCore.h in Headers */,
+				9845D95A1EC06C190057CC9B /* PPApiHooksStart.h in Headers */,
 				98F7A6C11E76F16200FF635A /* PPEventDispatcher.h in Headers */,
+				98034A091EEA980C00F99FF9 /* PPEvent+FrameworkPrivate.h in Headers */,
 				98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */,
-				984C38631E7937FA00F5AEF5 /* PPEvent+FrameworkPrivate.h in Headers */,
 				98F7A6B11E76ECF000FF635A /* JRSwizzle.h in Headers */,
-				984261461EE935F900F9A884 /* AuthenticationKeyGenerator.h in Headers */,
-				98408E901EAFA0260002635D /* NSObject+AutoSwizzle.h in Headers */,
 				982FB41C1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.h in Headers */,
 				9869FA581E7A7C19001A8218 /* Common.h in Headers */,
 			);
@@ -566,8 +538,6 @@
 				9850234D1ED333F90074221C /* IdentifiedHandler.m in Sources */,
 				98F7A6A81E76ECB200FF635A /* CMPedometer+PPHOOK.m in Sources */,
 				98F7A6AC1E76ECB200FF635A /* UIDevice+PPHOOK.m in Sources */,
-				984261451EE935F900F9A884 /* AuthenticationKeyGenerator.m in Sources */,
-				98F7A6A41E76ECB200FF635A /* CLLocationManager+PPHOOK.m in Sources */,
 				98F7A6AA1E76ECB200FF635A /* LAContext+PPHOOK.m in Sources */,
 				98408E911EAFA0260002635D /* NSObject+AutoSwizzle.m in Sources */,
 				98F7A6BE1E76F16200FF635A /* PPEvent.m in Sources */,
