@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Operando/NMAPI/nm.c"
-            timestampString = "518967203.201197"
+            timestampString = "519033477.592173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1412"
-            endingLineNumber = "1412"
+            startingLineNumber = "1162"
+            endingLineNumber = "1162"
             landmarkName = "print_mach_symbols()"
             landmarkType = "9">
          </BreakpointContent>

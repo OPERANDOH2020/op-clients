@@ -30,11 +30,11 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){
     _urlDispatcher = dispatcher;
 }
 
-+(char)canInitWithTask:(NSURLSessionTask *)task {
++(BOOL)canInitWithTask:(NSURLSessionTask *)task {
     return NO;
 }
 
-+(char)canInitWithRequest:(NSURLRequest *)request {
++(BOOL)canInitWithRequest:(NSURLRequest *)request {
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPWebViewRequest, request)

@@ -200,8 +200,8 @@ uint32_t narch_flags,
  char process_non_objects,
  char dylib_flat,
  char use_member_syntax,
-void (*processor)(struct ofile *ofile, char *arch_name, void *cookie),
-void *cookie)
+void (*processor)(struct ofile *ofile, char *arch_name, void *cookie, void *context),
+void *cookie, void *context)
 {
     char *member_name, *p, *arch_name;
     uint32_t len, i;
@@ -272,7 +272,7 @@ void *cookie)
 				if(member_name != NULL){
 				    if(ofile_specific_member(member_name,
 							     &ofile) == TRUE){
-					processor(&ofile, arch_name, cookie);
+					processor(&ofile, arch_name, cookie, context);
 					if(ofile.headers_swapped == TRUE)
 					    swap_back_Mach_O(&ofile);
 				    }
@@ -293,7 +293,7 @@ void *cookie)
 					       ofile.member_type ==
 								OFILE_Mach_O){
 						processor(&ofile, arch_name,
-							  cookie);
+							  cookie, context);
 						if(ofile.headers_swapped ==TRUE)
 						    swap_back_Mach_O(&ofile);
 						flag = TRUE;
@@ -322,7 +322,7 @@ void *cookie)
 				   (ofile.mh_filetype == MH_DYLIB ||
 				    ofile.mh_filetype == MH_DYLIB_STUB)){
 				    if(dylib_flat == TRUE){
-					processor(&ofile, arch_name, cookie);
+					processor(&ofile, arch_name, cookie, context);
 					if(ofile.headers_swapped == TRUE)
 					    swap_back_Mach_O(&ofile);
 				    }
@@ -331,7 +331,7 @@ void *cookie)
 					    if(ofile_specific_module(
 						member_name, &ofile) == TRUE){
 						processor(&ofile, arch_name,
-							  cookie);
+							  cookie, context);
 						if(ofile.headers_swapped ==TRUE)
 						    swap_back_Mach_O(&ofile);
 					    }
@@ -341,13 +341,13 @@ void *cookie)
 					    if(ofile_first_module(&ofile)){
 						do{
 						    processor(&ofile, arch_name,
-							cookie);
+							cookie, context);
 						}while(ofile_next_module(
 							&ofile));
 					    }
 					    else{
 						processor(&ofile, arch_name,
-							  cookie);
+							  cookie, context);
 					    }
 					}
 				    }
@@ -363,7 +363,7 @@ void *cookie)
 					      ofile.file_name,
 					      member_name);
 				    else{
-					processor(&ofile, arch_name, cookie);
+					processor(&ofile, arch_name, cookie, context);
 					if(ofile.headers_swapped == TRUE)
 					    swap_back_Mach_O(&ofile);
 				     }
@@ -436,7 +436,7 @@ void *cookie)
 			    if(member_name != NULL){
 				if(ofile_specific_member(member_name,
 							 &ofile) == TRUE){
-				    processor(&ofile, NULL, cookie);
+				    processor(&ofile, NULL, cookie, context);
 				    if(ofile.headers_swapped == TRUE)
 					swap_back_Mach_O(&ofile);
 				}
@@ -451,7 +451,7 @@ void *cookie)
 				    do{
 					if(process_non_objects == TRUE ||
 				           ofile.member_type == OFILE_Mach_O){
-					    processor(&ofile, NULL, cookie);
+					    processor(&ofile, NULL, cookie, context);
 					    if(ofile.headers_swapped == TRUE)
 						swap_back_Mach_O(&ofile);
 					    flag = TRUE;
@@ -476,23 +476,23 @@ void *cookie)
 			       (ofile.mh_filetype == MH_DYLIB ||
 				ofile.mh_filetype == MH_DYLIB_STUB)){
 				if(dylib_flat == TRUE){
-				    processor(&ofile, NULL, cookie);
+				    processor(&ofile, NULL, cookie, context);
 				}
 				else{
 				    if(member_name != NULL){
 					if(ofile_specific_module(member_name,
 						&ofile) == TRUE)
-					    processor(&ofile, NULL, cookie);
+					    processor(&ofile, NULL, cookie, context);
 				    }
 				    else{
 					/* loop through the dynamic library */
 					if(ofile_first_module(&ofile) == TRUE){
 					    do{
-						processor(&ofile, NULL, cookie);
+						processor(&ofile, NULL, cookie, context);
 					    }while(ofile_next_module(&ofile));
 					}
 					else{
-					    processor(&ofile, NULL, cookie);
+					    processor(&ofile, NULL, cookie, context);
 					}
 				    }
 				}
@@ -507,7 +507,7 @@ void *cookie)
 					  ofile.arch_flag.name, ofile.file_name,
 					  member_name);
 				else{
-				    processor(&ofile, NULL, cookie);
+				    processor(&ofile, NULL, cookie, context);
 				    if(ofile.headers_swapped == TRUE)
 					swap_back_Mach_O(&ofile);
 				}
@@ -545,7 +545,7 @@ void *cookie)
 		if(ofile.arch_type == OFILE_ARCHIVE){
 		    if(member_name != NULL){
 			if(ofile_specific_member(member_name, &ofile) == TRUE)
-			    processor(&ofile, ofile.arch_flag.name, cookie);
+			    processor(&ofile, ofile.arch_flag.name, cookie, context);
 		    }
 		    else{
 			/* loop through archive */
@@ -559,7 +559,7 @@ void *cookie)
 				if(process_non_objects == TRUE ||
 				   ofile.member_type == OFILE_Mach_O){
 				    processor(&ofile, ofile.arch_flag.name,
-					      cookie);
+					      cookie, context);
 				    flag = TRUE;
 				}
 			    }while(ofile_next_member(&ofile) == TRUE);
@@ -583,26 +583,26 @@ void *cookie)
 		       (ofile.mh_filetype == MH_DYLIB ||
 			ofile.mh_filetype == MH_DYLIB_STUB)){
 			if(dylib_flat == TRUE){
-			    processor(&ofile, ofile.arch_flag.name, cookie);
+			    processor(&ofile, ofile.arch_flag.name, cookie, context);
 			}
 			else{
 			    if(member_name != NULL){
 				if(ofile_specific_module(member_name, &ofile)
 				   == TRUE)
 				    processor(&ofile, ofile.arch_flag.name,
-					      cookie);
+					      cookie, context);
 			    }
 			    else{
 				/* loop through the dynamic library */
 				if(ofile_first_module(&ofile) == TRUE){
 				    do{
 					processor(&ofile, ofile.arch_flag.name,
-						  cookie);
+						  cookie, context);
 				    }while(ofile_next_module(&ofile) == TRUE);
 				}
 				else{
 				    processor(&ofile, ofile.arch_flag.name,
-					      cookie);
+					      cookie, context);
 				}
 			    }
 			}
@@ -614,7 +614,7 @@ void *cookie)
 				  "%s", ofile.arch_flag.name, ofile.file_name,
 				  member_name);
 			else
-			    processor(&ofile, ofile.arch_flag.name, cookie);
+			    processor(&ofile, ofile.arch_flag.name, cookie, context);
 		    }
 		}
 		else if(ofile.arch_type == OFILE_UNKNOWN){
@@ -657,7 +657,7 @@ void *cookie)
 	    }
 	    if(member_name != NULL){
 		if(ofile_specific_member(member_name, &ofile) == TRUE)
-		    processor(&ofile, NULL, cookie);
+		    processor(&ofile, NULL, cookie, context);
 	    }
 	    else{
 		/* loop through archive */
@@ -669,7 +669,7 @@ void *cookie)
 		    do{
 			if(process_non_objects == TRUE ||
 			    ofile.member_type == OFILE_Mach_O){
-			    processor(&ofile, NULL, cookie);
+			    processor(&ofile, NULL, cookie, context);
 			    flag = TRUE;
 			}
 		    }while(ofile_next_member(&ofile) == TRUE);
@@ -758,22 +758,22 @@ void *cookie)
 	    if(ofile.mh_filetype == MH_DYLIB ||
 	       ofile.mh_filetype == MH_DYLIB_STUB){
 		if(dylib_flat == TRUE){
-		    processor(&ofile, NULL, cookie);
+		    processor(&ofile, NULL, cookie, context);
 		}
 		else{
 		    if(member_name != NULL){
 			if(ofile_specific_module(member_name, &ofile) == TRUE)
-			    processor(&ofile, NULL, cookie);
+			    processor(&ofile, NULL, cookie, context);
 		    }
 		    else{
 			/* loop through the dynamic library */
 			if(ofile_first_module(&ofile) == TRUE){
 			    do{
-				processor(&ofile, NULL, cookie);
+				processor(&ofile, NULL, cookie, context);
 			    }while(ofile_next_module(&ofile) == TRUE);
 			}
 			else{
-			    processor(&ofile, NULL, cookie);
+			    processor(&ofile, NULL, cookie, context);
 			}
 		    }
 		}
@@ -783,12 +783,12 @@ void *cookie)
 		    error("file: %s is not an archive and thus does not contain"
 			   "member: %s", ofile.file_name, member_name);
 		else
-		    processor(&ofile, NULL, cookie);
+		    processor(&ofile, NULL, cookie, context);
 	    }
 	}
 	else{
 	    if(process_non_objects == TRUE)
-		processor(&ofile, NULL, cookie);
+		processor(&ofile, NULL, cookie, context);
 	    else if(member_name != NULL)
 		error("file: %s(%s) is not an object file", name,
 		      member_name);
@@ -3313,6 +3313,7 @@ enum check_type
 check_Mach_O(
 struct ofile *ofile)
 {
+    return (CHECK_GOOD);
 #ifdef OTOOL
 	return(CHECK_GOOD);
 #else /* !defined OTOOL */

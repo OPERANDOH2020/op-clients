@@ -142,8 +142,8 @@ __private_extern__ void ofile_process(
      char process_non_objects,
      char dylib_flat,
      char use_member_syntax,
-    void (*processor)(struct ofile *ofile, char *arch_name, void *cookie),
-    void *cookie);
+    void (*processor)(struct ofile *ofile, char *arch_name, void *cookie, void *context),
+    void *cookie, void *context);
 #ifdef OFI
 __private_extern__ NSObjectFileImageReturnCode ofile_map(
 #else

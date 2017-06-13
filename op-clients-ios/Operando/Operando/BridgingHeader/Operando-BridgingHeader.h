@@ -15,5 +15,4 @@
 #include "ProgressHUD.h"
 #include "KiteJSONValidator.h"
 #import "UIKit+AFNetworking.h"
-#import "nm.h"
 #endif /* Operando_BridgingHeader_h */

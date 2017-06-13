@@ -9,6 +9,7 @@
 import UIKit
 import PPCloak
 import PPApiHooksCore
+import iOSNM
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,7 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let address: String = "\(Bundle.main.privateFrameworksPath!)/PPApiHooksCore.framework/PPApiHooksCore"
         
-        nmFile(address)
+        if let context = retrieveSymbolsFromFile(address){
+            for i in 0 ..< context.pointee.numberOfSymbols {
+                if let symbolInfoPtr = context.pointee.currentSymbols.advanced(by: Int(i)).pointee {
+                    printSymbolInfo(symbolInfoPtr)
+                }
+                
+            }
+            
+            releaseSymbolsContext(context)
+        }
         
         return true
         

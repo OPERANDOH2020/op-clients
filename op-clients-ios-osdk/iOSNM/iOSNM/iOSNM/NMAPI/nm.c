@@ -177,7 +177,7 @@ static void usage(
 static void nm(
     struct ofile *ofile,
     char *arch_name,
-    void *cookie);
+    void *cookie, void *context);
 #ifdef LTO_SUPPORT
 static void nm_lto(
     struct ofile *ofile,
@@ -213,7 +213,7 @@ static void print_mach_symbols(
     uint32_t strsize,
     struct cmd_flags *cmd_flags,
     struct process_flags *process_flags,
-    char *arch_name);
+    char *arch_name, SymbolsContext *context);
 static void print_symbols(
     struct ofile *ofile,
     struct symbol *symbols,
@@ -237,9 +237,11 @@ static int value_diff_compare(
 //extern char apple_version[];
 //char *version = apple_version;
 
+
+
 void nmFile(const char *path) {
     cmd_flags.format = "%llx";
-    ofile_process(path, NULL, 0, TRUE, FALSE, FALSE, TRUE, &nm, &cmd_flags);
+    ofile_process(path, NULL, 0, TRUE, FALSE, FALSE, TRUE, &nm, &cmd_flags, NULL);
 }
 
 
@@ -251,6 +253,30 @@ SymbolsContext* createEmptyContext(){
     p->numberOfSymbols = 0;
     return p;
 }
+
+NMSymbolInfo *createEmptySymbolInfo() {
+    NMSymbolInfo *p = malloc(sizeof(NMSymbolInfo));
+    p->libraryNameIfAny = NULL;
+    p->sectionName = NULL;
+    p->segmentName = NULL;
+    p->symbolName = NULL;
+    
+    p->referenceType = RefType_Unknown;
+    
+    return p;
+}
+
+void allocAndCopy(char **dest, char *src) {
+    if (src) {
+        size_t length = strlen(src);
+        *dest = malloc(length * sizeof(char) + 1);
+        strncpy(*dest, src, length + 1);
+    }
+}
+
+
+
+
 
 void addSymbolInfoPointer(NMSymbolInfo *info, SymbolsContext *addContext) {
     if (addContext->bufferSize > addContext->numberOfSymbols + 1) {
@@ -275,254 +301,55 @@ void releaseSymbolInfo(NMSymbolInfo *info){
     }
     
     if (info->libraryNameIfAny) {
-        free(<#void *#>)
+        free(info->libraryNameIfAny);
+    }
+    
+    if (info->sectionName) {
+        free(info->sectionName);
+    }
+    
+    if (info->segmentName) {
+        free(info->segmentName);
+    }
+    
+    if (info->symbolName) {
+        free(info->symbolName);
+    }
+    
+    free(info);
+}
+
+void releaseSymbolsContext(SymbolsContext *context){
+    if (!context) {
+        return;
+    }
+    if (context->currentSymbols) {
+        for (int i=0; i<context->numberOfSymbols; i++) {
+            releaseSymbolInfo(context->currentSymbols[i]);
+        }
+        
+        free(context->currentSymbols);
+    }
+    
+    free(context);
+}
+
+
+SymbolsContext* retrieveSymbolsFromFile(const char* filePath){
+    SymbolsContext *context = createEmptyContext();
+    ofile_process(filePath, NULL, 0, TRUE, FALSE, FALSE, FALSE, &nm, &cmd_flags, context);
+    
+    return context;
+}
+void printSymbolInfo(NMSymbolInfo *info) {
+    printf("\n (%s, %s) %s", info->segmentName, info->sectionName, info->symbolName);
+    if (info->libraryNameIfAny) {
+        printf(" from %s", info->libraryNameIfAny);
     }
 }
 
-void releaseAddContext(SymbolsContext *context){
-    // DO NOT release the
-    
-}
 
 
-
-int
-mainNM(
-int argc,
-char **argv,
-char **envp)
-{
-    int i;
-    uint32_t j;
-    struct arch_flag *arch_flags;
-    uint32_t narch_flags;
-    char all_archs;
-    char **files;
-
-	progname = argv[0];
-
-	arch_flags = NULL;
-	narch_flags = 0;
-	all_archs = FALSE;
-
-	cmd_flags.nfiles = 0;
-	cmd_flags.a = FALSE;
-	cmd_flags.g = FALSE;
-	cmd_flags.n = FALSE;
-	cmd_flags.o = FALSE;
-	cmd_flags.p = FALSE;
-	cmd_flags.r = FALSE;
-	cmd_flags.u = FALSE;
-	cmd_flags.U = FALSE;
-	cmd_flags.m = FALSE;
-	cmd_flags.x = FALSE;
-	cmd_flags.j = FALSE;
-	cmd_flags.s = FALSE;
-	cmd_flags.segname = NULL;
-	cmd_flags.sectname = NULL;
-	cmd_flags.l = FALSE;
-	cmd_flags.f = FALSE;
-	cmd_flags.bincl_name = NULL;
-	cmd_flags.A = FALSE;
-	cmd_flags.P = FALSE;
-	cmd_flags.format = "%llx";
-
-        files = allocate(sizeof(char *) * argc);
-	for(i = 1; i < argc; i++){
-	    if(argv[i][0] == '-'){
-		if(argv[i][1] == '\0' ||
-		   (argv[i][1] == '-' && argv[i][2] == '\0')){
-		    i++;
-		    for( ; i < argc; i++)
-			files[cmd_flags.nfiles++] = argv[i];
-		    break;
-		}
-		if(strcmp(argv[i], "-arch") == 0){
-		    if(i + 1 == argc){
-			error("missing argument(s) to %s option", argv[i]);
-			usage();
-		    }
-		    if(strcmp("all", argv[i+1]) == 0){
-			all_archs = TRUE;
-		    }
-		    else{
-			arch_flags = reallocate(arch_flags,
-				(narch_flags + 1) * sizeof(struct arch_flag));
-			if(get_arch_from_flag(argv[i+1],
-					      arch_flags + narch_flags) == 0){
-			    error("unknown architecture specification flag: "
-				  "%s %s", argv[i], argv[i+1]);
-			    arch_usage();
-			    usage();
-			}
-			narch_flags++;
-		    }
-		    i++;
-		}
-		else if(strcmp(argv[i], "-t") == 0){
-		    if(i + 1 == argc){
-			error("missing argument to %s option", argv[i]);
-			usage();
-		    }
-		    if(argv[i+1][1] != '\0'){
-			error("invalid argument to option: %s %s",
-			      argv[i], argv[i+1]);
-			usage();
-		    }
-		    switch(argv[i+1][0]){
-		    case 'd':
-			cmd_flags.format = "%lld";
-			break;
-		    case 'o':
-			cmd_flags.format = "%llo";
-			break;
-		    case 'x':
-			cmd_flags.format = "%llx";
-			break;
-		    default:
-			error("invalid argument to option: %s %s",
-			      argv[i], argv[i+1]);
-			usage();
-		    }
-		    i++;
-		}
-		else{
-		    for(j = 1; argv[i][j] != '\0'; j++){
-			switch(argv[i][j]){
-			case 'a':
-			    cmd_flags.a = TRUE;
-			    break;
-			case 'g':
-			    cmd_flags.g = TRUE;
-			    break;
-			case 'n':
-			    cmd_flags.n = TRUE;
-			    break;
-			case 'o':
-			    cmd_flags.o = TRUE;
-			    break;
-			case 'p':
-			    cmd_flags.p = TRUE;
-			    break;
-			case 'r':
-			    cmd_flags.r = TRUE;
-			    break;
-			case 'u':
-			    if(cmd_flags.U == TRUE){
-				error("can't specifiy both -u and -U");
-				usage();
-			    }
-			    cmd_flags.u = TRUE;
-			    break;
-			case 'U':
-			    if(cmd_flags.u == TRUE){
-				error("can't specifiy both -U and -u");
-				usage();
-			    }
-			    cmd_flags.U = TRUE;
-			    break;
-			case 'm':
-			    cmd_flags.m = TRUE;
-			    break;
-			case 'x':
-			    cmd_flags.x = TRUE;
-			    break;
-			case 'j':
-			    cmd_flags.j = TRUE;
-			    break;
-			case 's':
-			    if(cmd_flags.s == TRUE){
-				error("more than one -s option specified");
-				usage();
-			    }
-			    cmd_flags.s = TRUE;
-			    break;
-			case 'b':
-			    if(cmd_flags.b == TRUE){
-				error("more than one -b option specified");
-				usage();
-			    }
-			    cmd_flags.b = TRUE;
-			    break;
-			case 'i':
-			    if(cmd_flags.i == TRUE){
-				error("more than one -i option specified");
-				usage();
-			    }
-			    cmd_flags.i = TRUE;
-			    while(isdigit(argv[i][j+1])){
-				cmd_flags.index =  cmd_flags.index * 10 +
-						   (argv[i][j+1] - '0');
-				j++;
-			    }
-			case 'l':
-			    cmd_flags.l = TRUE;
-			    break;
-			case 'f':
-			    cmd_flags.f = TRUE;
-			    break;
-			case 'v':
-			    cmd_flags.v = TRUE;
-			    break;
-			case 'A':
-			    cmd_flags.A = TRUE;
-			    break;
-			case 'P':
-			    cmd_flags.P = TRUE;
-			    break;
-			default:
-			    error("invalid argument -%c", argv[i][j]);
-			    usage();
-			}
-		    }
-		    if(cmd_flags.s == TRUE && cmd_flags.segname == NULL){
-			if(i + 2 == argc){
-			    error("missing arguments to -s");
-			    usage();
-			}
-			cmd_flags.segname  = argv[i+1];
-			cmd_flags.sectname = argv[i+2];
-			i += 2;
-		    }
-		    if(cmd_flags.b == TRUE && cmd_flags.bincl_name == NULL){
-			if(i + 1 == argc){
-			    error("missing arguments to -b");
-			    usage();
-			}
-			cmd_flags.bincl_name = argv[i+1];
-			i += 1;
-		    }
-		}
-		continue;
-	    }
-	    files[cmd_flags.nfiles++] = argv[i];
-	}
-
-	for(j = 0; j < cmd_flags.nfiles; j++)
-	    ofile_process(files[j], arch_flags, narch_flags, all_archs, TRUE,
-			  cmd_flags.f, TRUE, nm, &cmd_flags);
-	if(cmd_flags.nfiles == 0)
-	    ofile_process("a.out",  arch_flags, narch_flags, all_archs, TRUE,
-			  cmd_flags.f, TRUE, nm, &cmd_flags);
-
-	if(errors == 0)
-	    return(EXIT_SUCCESS);
-	else
-	    return(EXIT_FAILURE);
-}
-
-/*
- * usage() prints the current usage message and exits indicating failure.
- */
-static
-void
-usage(
-void)
-{
-	fprintf(stderr, "Usage: %s [-agnopruUmxjlfAP[s segname sectname] [-] "
-		"[-t format] [[-arch <arch_flag>] ...] [file ...]\n", progname);
-	exit(EXIT_FAILURE);
-}
 
 /*
  * nm() is the routine that gets called by ofile_process() to process single
@@ -533,7 +360,7 @@ void
 nm(
 struct ofile *ofile,
 char *arch_name,
-void *cookie)
+void *cookie, void *context)
 {
     uint32_t ncmds, mh_flags;
     struct cmd_flags *cmd_flags;
@@ -758,8 +585,8 @@ void *cookie)
 	    }
 	}
 
-	/* print header if needed */
-	print_header(ofile, arch_name, cmd_flags);
+//	/* print header if needed */
+//	print_header(ofile, arch_name, cmd_flags);
 
 	/* sort the symbols if needed */
 	if(cmd_flags->p == FALSE && cmd_flags->b == FALSE)
@@ -786,13 +613,16 @@ void *cookie)
 		symbols[i] = value_diffs[i].symbol;
 	}
 
+    print_mach_symbols(ofile, symbols, nsymbols, strings, st->strsize,
+                       cmd_flags, &process_flags, arch_name, (SymbolsContext*)context);
+    
 	/* now print the symbols as specified by the flags */
-	if(cmd_flags->m == TRUE)
-	    print_mach_symbols(ofile, symbols, nsymbols, strings, st->strsize,
-			       cmd_flags, &process_flags, arch_name);
-	else
-	    print_symbols(ofile, symbols, nsymbols, strings, st->strsize,
-			  cmd_flags, &process_flags, arch_name, value_diffs);
+//	if(cmd_flags->m == TRUE)
+//	    print_mach_symbols(ofile, symbols, nsymbols, strings, st->strsize,
+//			       cmd_flags, &process_flags, arch_name, (SymbolsContext*)context);
+//	else
+//	    print_symbols(ofile, symbols, nsymbols, strings, st->strsize,
+//			  cmd_flags, &process_flags, arch_name, value_diffs);
 
 	free(symbols);
 	if(process_flags.sections != NULL){
@@ -1199,7 +1029,7 @@ char *strings,
 uint32_t strsize,
 struct cmd_flags *cmd_flags,
 struct process_flags *process_flags,
-char *arch_name)
+char *arch_name, SymbolsContext *context)
 {
     uint32_t i, library_ordinal;
     char *ta_xfmt, *i_xfmt, *dashes, *spaces;
@@ -1225,101 +1055,9 @@ char *arch_name)
 	    dashes = "----------------";
 	}
 	for(i = 0; i < nsymbols; i++){
-	    if(cmd_flags->x == TRUE){
-		printf(ta_xfmt, symbols[i].nl.n_value);
-		printf( "%02x %02x %04x ",
-		       (unsigned int)(symbols[i].nl.n_type & 0xff),
-		       (unsigned int)(symbols[i].nl.n_sect & 0xff),
-		       (unsigned int)(symbols[i].nl.n_desc & 0xffff));
-		if(symbols[i].nl.n_un.n_strx == 0){
-		    printf(i_xfmt, symbols[i].nl.n_un.n_strx);
-		    if(ofile->lto != NULL)
-			printf( "%s", symbols[i].name);
-		    else
-			printf( "(null)");
-		}
-		else if((uint32_t)symbols[i].nl.n_un.n_strx > strsize){
-		    printf(i_xfmt, symbols[i].nl.n_un.n_strx);
-		    printf( "(bad string index)");
-		}
-		else{
-		    printf(i_xfmt, symbols[i].nl.n_un.n_strx);
-		    printf( "%s", symbols[i].nl.n_un.n_strx + strings);
-		}
-		if((symbols[i].nl.n_type & N_STAB) == 0 &&
-		   (symbols[i].nl.n_type & N_TYPE) == N_INDR){
-		    if(symbols[i].nl.n_value == 0){
-			printf( "(indirect for ");
-			printf(ta_xfmt, symbols[i].nl.n_value);
-			printf( "(null))\n");
-		    }
-		    else if(symbols[i].nl.n_value > strsize){
-			printf( "(indirect for ");
-			printf(ta_xfmt, symbols[i].nl.n_value);
-			printf( "(bad string index))\n");
-		    }
-		    else{
-			printf( "(indirect for ");
-			printf(ta_xfmt, symbols[i].nl.n_value);
-			printf( "%s)\n", symbols[i].indr_name);
-		    }
-		}
-		else
-		    printf("\n");
-		continue;
-	    }
-
-	    if(symbols[i].nl.n_type & N_STAB){
-		if(cmd_flags->o == TRUE || cmd_flags->A == TRUE){
-		    if(arch_name != NULL)
-			printf("(for architecture %s):", arch_name);
-		    if(ofile->dylib_module_name != NULL){
-			printf("%s:%s: ", ofile->file_name,
-			       ofile->dylib_module_name);
-		    }
-		    else if(ofile->member_ar_hdr != NULL){
-			printf("%s:%.*s: ", ofile->file_name,
-			       (int)ofile->member_name_size,
-			       ofile->member_name);
-		    }
-		    else
-			printf("%s: ", ofile->file_name);
-		}
-		printf(ta_xfmt, symbols[i].nl.n_value);
-		printf( "- %02x %04x %5.5s %s\n",
-		       (unsigned int)symbols[i].nl.n_sect & 0xff,
-		       (unsigned int)symbols[i].nl.n_desc & 0xffff,
-		       stab(symbols[i].nl.n_type), symbols[i].name);
-		continue;
-	    }
-
-	    if(cmd_flags->o == TRUE || cmd_flags->A == TRUE){
-		if(arch_name != NULL)
-		    printf("(for architecture %s):", arch_name);
-		if(ofile->dylib_module_name != NULL){
-		    printf("%s:%s: ", ofile->file_name,
-			   ofile->dylib_module_name);
-		}
-		else if(ofile->member_ar_hdr != NULL){
-		    printf("%s:%.*s: ", ofile->file_name,
-			   (int)ofile->member_name_size,
-			   ofile->member_name);
-		}
-		else
-		    printf("%s: ", ofile->file_name);
-	    }
-
-	    if(((symbols[i].nl.n_type & N_TYPE) == N_UNDF &&
-		 symbols[i].nl.n_value == 0) ||
-		 (symbols[i].nl.n_type & N_TYPE) == N_INDR)
-		printf("%s", spaces);
-	    else{
-		if(ofile->lto)
-		    printf("%s", dashes);
-		else
-		    printf(ta_xfmt, symbols[i].nl.n_value);
-	    }
-
+        
+        NMSymbolInfo *currentSymbolInfo = createEmptySymbolInfo();
+        
 	    switch(symbols[i].nl.n_type & N_TYPE){
 	    case N_UNDF:
 	    case N_PBUD:
@@ -1330,30 +1068,12 @@ char *arch_name)
 			printf("(alignment 2^%d) ",
 			       GET_COMM_ALIGN(symbols[i].nl.n_desc));
 		}
-		else{
-		    if((symbols[i].nl.n_type & N_TYPE) == N_PBUD)
-			printf( "(prebound ");
-		    else
-			printf( "(");
-		    if((symbols[i].nl.n_desc & REFERENCE_TYPE) ==
-		       REFERENCE_FLAG_UNDEFINED_LAZY)
-			printf("undefined [lazy bound]) ");
-		    else if((symbols[i].nl.n_desc & REFERENCE_TYPE) ==
-			    REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY)
-			printf("undefined [private lazy bound]) ");
-		    else if((symbols[i].nl.n_desc & REFERENCE_TYPE) ==
-			    REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY)
-			printf("undefined [private]) ");
-		    else
-			printf("undefined) ");
-		}
+
 		break;
 	    case N_ABS:
-		printf( "(absolute) ");
 		
 		break;
 	    case N_INDR:
-		printf( "(indirect) ");
 		break;
 	    case N_SECT:
 		if(symbols[i].nl.n_sect >= 1 &&
@@ -1362,73 +1082,48 @@ char *arch_name)
 	   	       (ofile->lto != NULL &&
 	    		(ofile->lto_cputype & CPU_ARCH_ABI64) !=
 			 CPU_ARCH_ABI64)){
-			printf( "(%.16s,%.16s) ",
-			       process_flags->sections[
-				    symbols[i].nl.n_sect-1]->segname,
-			       process_flags->sections[
-				    symbols[i].nl.n_sect-1]->sectname);
+                   allocAndCopy(&currentSymbolInfo->segmentName, process_flags->sections[symbols[i].nl.n_sect-1]->segname);
+                   
+                   allocAndCopy(&currentSymbolInfo->sectionName, 			       process_flags->sections[symbols[i].nl.n_sect-1]->sectname);
 		    }
 		    else{
-			printf( "(%.16s,%.16s) ",
-			       process_flags->sections64[
-				    symbols[i].nl.n_sect-1]->segname,
-			       process_flags->sections64[
-				    symbols[i].nl.n_sect-1]->sectname);
+                allocAndCopy(&currentSymbolInfo->segmentName, process_flags->sections64[symbols[i].nl.n_sect-1]->segname);
+                
+                allocAndCopy(&currentSymbolInfo->sectionName,process_flags->sections64[symbols[i].nl.n_sect-1]->sectname);
 		    }
 		}
-		else
-		    printf( "(?,?) ");
 		break;
 	    default:
-		    printf( "(?) ");
 		    break;
 	    }
 
 	    if(symbols[i].nl.n_type & N_EXT){
 		if(symbols[i].nl.n_desc & REFERENCED_DYNAMICALLY)
-		    printf("[referenced dynamically] ");
+		    currentSymbolInfo->referenceType = RefType_Dynamic;
 		if(symbols[i].nl.n_type & N_PEXT){
 		    if((symbols[i].nl.n_desc & N_WEAK_DEF) == N_WEAK_DEF)
-			printf("weak private external ");
+			currentSymbolInfo->referenceType = RefType_Weak_Private_External;
 		    else
-			printf("private external ");
+			currentSymbolInfo->referenceType = RefType_Private_External;
 		}
 		else{
 		    if((symbols[i].nl.n_desc & N_WEAK_REF) == N_WEAK_REF ||
 		       (symbols[i].nl.n_desc & N_WEAK_DEF) == N_WEAK_DEF){
 			if((symbols[i].nl.n_desc & (N_WEAK_REF | N_WEAK_DEF)) ==
 			   (N_WEAK_REF | N_WEAK_DEF))
-			    printf("weak external automatically hidden ");
+			    currentSymbolInfo->referenceType = RefType_Weak_External_Auto_Hidden;
 			else
-			    printf("weak external ");
+			    currentSymbolInfo->referenceType = RefType_Weak_External;
 		    }
 		    else
-			printf("external ");
+			currentSymbolInfo->referenceType = RefType_External;
 		}
 	    }
 	    else{
-		if(symbols[i].nl.n_type & N_PEXT)
-		    printf("non-external (was a private external) ");
-		else
-		    printf("non-external ");
+            currentSymbolInfo->referenceType = RefType_Non_External;
 	    }
 	    
-	    if(ofile->mh_filetype == MH_OBJECT &&
-	       (symbols[i].nl.n_desc & N_NO_DEAD_STRIP) == N_NO_DEAD_STRIP)
-		    printf("[no dead strip] ");
-
-	    if(ofile->mh_filetype == MH_OBJECT &&
-	       ((symbols[i].nl.n_type & N_TYPE) != N_UNDF) &&
-	       (symbols[i].nl.n_desc & N_SYMBOL_RESOLVER) == N_SYMBOL_RESOLVER)
-		    printf("[symbol resolver] ");
-
-	    if((symbols[i].nl.n_desc & N_ARM_THUMB_DEF) == N_ARM_THUMB_DEF)
-		    printf("[Thumb] ");
-
-	    if((symbols[i].nl.n_type & N_TYPE) == N_INDR)
-		printf("%s (for %s)", symbols[i].name, symbols[i].indr_name);
-	    else
-		printf("%s", symbols[i].name);
+        allocAndCopy(&currentSymbolInfo->symbolName, symbols[i].name);
 
 	    if((mh_flags & MH_TWOLEVEL) == MH_TWOLEVEL &&
 	       (((symbols[i].nl.n_type & N_TYPE) == N_UNDF &&
@@ -1436,20 +1131,21 @@ char *arch_name)
 	        (symbols[i].nl.n_type & N_TYPE) == N_PBUD)){
 		library_ordinal = GET_LIBRARY_ORDINAL(symbols[i].nl.n_desc);
 		if(library_ordinal != 0){
-		    if(library_ordinal == EXECUTABLE_ORDINAL)
-			printf( "(from executable)");
+            if(library_ordinal == EXECUTABLE_ORDINAL) {
+                
+            }
 		    else if(process_flags->nlibs != DYNAMIC_LOOKUP_ORDINAL &&
-			    library_ordinal == DYNAMIC_LOOKUP_ORDINAL)
-			printf( "(dynamically looked up)");
-		    else if(library_ordinal-1 >= process_flags->nlibs)
-			printf( "(from bad library ordinal %u)",
-			       library_ordinal);
+                    library_ordinal == DYNAMIC_LOOKUP_ORDINAL){
+                
+            }
+            else if(library_ordinal-1 >= process_flags->nlibs) {
+                
+            }
 		    else
-			printf( "(from %s)", process_flags->lib_names[
-						library_ordinal-1]);
+                allocAndCopy(&currentSymbolInfo->libraryNameIfAny, process_flags->lib_names[library_ordinal-1]);
 		}
 	    }
-	    printf("\n");
+        addSymbolInfoPointer(currentSymbolInfo, context);
 	}
 }
 
