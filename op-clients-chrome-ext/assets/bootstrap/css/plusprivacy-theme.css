@@ -988,6 +988,59 @@ border-left:2px solid #fe9901;
     font-weight: bold;
 }
 
+a.add_identitiy_popover{
+    background: url("/operando/assets/images/question_identities.png") no-repeat left center;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+}
+
+.add_new_identity_btn{
+    float:left;
+    margin-right: 15px;
+}
+
+div.popover{
+    width:410px!important;
+    max-width:410px!important;
+    border: 1px solid #e6c678;
+    outline: none;
+}
+
+.popover-title {
+    padding: 8px 14px;
+    margin: 0;
+    font-size: 14px;
+    background-color: #f9e3ad;
+    border-bottom: 1px solid #e6c678;
+    color: #9c8243;
+    border-radius: 5px 5px 0 0;
+    font-weight: 400;
+}
+.popover-content{
+    background: #fdf3dc;
+    font-family: dosis;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.popover.top>.arrow {
+    bottom: -11px;
+    left: 50%;
+    margin-left: -11px;
+    border-top-color: #e6c678;
+    border-bottom-width: 0;
+}
+
+
+.popover.top>.arrow:after {
+    bottom: 2px;
+    margin-left: -10px;
+    content: " ";
+    border-top-color: #fdf3dc;
+    border-bottom-width: 0;
+}
+
 .table tr>td.td_text{
     padding-top: 15px;
 }
@@ -2396,3 +2449,4 @@ h4.modal-title.plusprivacy{
 #offerDetails div.row .col-md-7{
     margin-top: 10px;
 }
+
