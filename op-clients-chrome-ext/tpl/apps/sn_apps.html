@@ -1,4 +1,9 @@
-<table class="table table-bordered">
+<div>
+    <div ng-if="isLoggedInSocialNetwork == false">
+        You are not logged in <span class="social_network_name">{{sn}}</span>! <a href="{{sn_url}}" target="_blank">Log in</a>
+    </div>
+
+<table class="table table-bordered" ng-if="isLoggedInSocialNetwork == true">
     <thead>
     <tr>
         <th>Logo</th>
@@ -35,3 +40,4 @@
     </td>
 </tr>
 </table>
+</div>

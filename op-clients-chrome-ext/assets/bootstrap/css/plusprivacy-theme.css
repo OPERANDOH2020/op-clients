@@ -2450,3 +2450,6 @@ h4.modal-title.plusprivacy{
     margin-top: 10px;
 }
 
+.social_network_name{
+    text-transform: capitalize;
+}

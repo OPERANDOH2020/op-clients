@@ -8,7 +8,7 @@
     display: inline-block;
     clear: both;
     overflow: hidden;
-    width:320px;
+
 }
 .pp_twitter_popup{
     width:480px;
@@ -45,6 +45,11 @@ select.pp_select option{
     font-size: 12px!important;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
 }
+
+div.pp_container{
+    width: auto;
+}
+
 div.pp-popup-header{
 all:initial;
 color:#FFF;

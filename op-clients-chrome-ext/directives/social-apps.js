@@ -3,10 +3,30 @@ angular.module('socialApps',['cfp.loadingBar'])
         return {
             restrict: "E",
             replace: true,
-            scope: {sn: "="},
+            scope: {
+                sn: "="
+            },
             controller: function ($scope) {
                 $scope.requestIsMade = false;
                 $scope.apps = [];
+
+
+                var readCookieConf = {
+                    facebook:{
+                        url:"https://facebook.com",
+                        cookie_name:"c_user"
+                    },
+                    linkedin:{
+                        url:"https://www.linkedin.com",
+                        cookie_name:"li_at"
+                    },
+                    twitter:{
+                        url:"https://www.twitter.com",
+                        cookie_name:"auth_token"
+                    }
+                };
+
+
 
                 $scope.$on("appRemoved", function(event,appId){
                     $scope.apps = $scope.apps.filter(function(app){
@@ -55,19 +75,49 @@ angular.module('socialApps',['cfp.loadingBar'])
                 };
 
 
-                var action = undefined;
-                switch($scope.sn){
-                    case "facebook": action = "getFacebookApps"; break;
-                    case "twitter": action = "getTwitterApps"; break;
+                var conf = readCookieConf[$scope.sn];
+
+
+                function checkIfLoggedIn() {
+
+                    chrome.cookies.get({url: conf.url, name: conf.cookie_name}, function (cookie) {
+                        if (cookie) {
+                            clearInterval(checkInterval);
+                            $scope.isLoggedInSocialNetwork = true;
+                            var action = undefined;
+                            switch ($scope.sn) {
+                                case "facebook":
+                                    action = "getFacebookApps";
+                                    break;
+                                case "twitter":
+                                    action = "getTwitterApps";
+                                    break;
+                            }
+
+                            messengerService.send(action, function (response) {
+                                if (response.status == "success") {
+                                    $scope.apps = response.data;
+                                    $scope.requestIsMade = true;
+                                    $scope.$apply();
+                                }
+                            });
+
+                        }
+                        else {
+                            $scope.isLoggedInSocialNetwork = false;
+                            $scope.sn_url = conf.url;
+
+                        }
+                    });
                 }
 
-                messengerService.send(action, function(response){
-                    if(response.status == "success"){
-                        $scope.apps = response.data;
-                        $scope.requestIsMade = true;
-                        $scope.$apply();
-                    }
-                });
+
+                var checkInterval = setInterval(checkIfLoggedIn, 3000);
+
+                checkIfLoggedIn();
+
+
+
 
             },
             templateUrl:"/operando/tpl/apps/sn_apps.html"

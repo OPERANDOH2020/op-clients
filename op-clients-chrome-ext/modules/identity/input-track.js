@@ -33,11 +33,11 @@ function sendMessage(message) {
 var tooltipTemplate = "<div class='pp_identity_popup'>"
     + "<div class='pp-popup-close'></div>"
     + "<div class='pp-popup-header'>Would you like to use a substitute identity?</div><br/>"
-    + "<select class='pp_select' id='pp_identities'>"
+    + "<div class='pp_container'><select class='pp_select' id='pp_identities'>"
     + "</select>"
     + "<button id='accept_identity_substitution' class='pp_button'>Yes</button>"
     + "<button id='deny_identity_substitution' class='pp_button'>No</button>"
-    + "</div>";
+    + "</div></div>";
 
 
 function validateEmail(email) {
