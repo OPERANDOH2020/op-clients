@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		987ABF3D1EF17250005EB437 /* SwizzleDetector.c in Sources */ = {isa = PBXBuildFile; fileRef = 987ABF3B1EF17250005EB437 /* SwizzleDetector.c */; };
+		987ABF3E1EF17250005EB437 /* SwizzleDetector.h in Headers */ = {isa = PBXBuildFile; fileRef = 987ABF3C1EF17250005EB437 /* SwizzleDetector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9885DE981EEEC1FB00888B1D /* iOSNM.h in Headers */ = {isa = PBXBuildFile; fileRef = 9885DE961EEEC1FB00888B1D /* iOSNM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9885DECC1EEEC3D300888B1D /* allocate.c in Sources */ = {isa = PBXBuildFile; fileRef = 9885DEA01EEEC3D300888B1D /* allocate.c */; };
 		9885DECD1EEEC3D300888B1D /* arch.c in Sources */ = {isa = PBXBuildFile; fileRef = 9885DEA11EEEC3D300888B1D /* arch.c */; };
@@ -54,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		987ABF3B1EF17250005EB437 /* SwizzleDetector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SwizzleDetector.c; path = SwizzleDetector/SwizzleDetector.c; sourceTree = "<group>"; };
+		987ABF3C1EF17250005EB437 /* SwizzleDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwizzleDetector.h; path = SwizzleDetector/SwizzleDetector.h; sourceTree = "<group>"; };
 		9885DE931EEEC1FB00888B1D /* iOSNM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOSNM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9885DE961EEEC1FB00888B1D /* iOSNM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSNM.h; sourceTree = "<group>"; };
 		9885DE971EEEC1FB00888B1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -113,6 +117,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		987ABF3A1EF1721B005EB437 /* SwizzleDetector */ = {
+			isa = PBXGroup;
+			children = (
+				987ABF3B1EF17250005EB437 /* SwizzleDetector.c */,
+				987ABF3C1EF17250005EB437 /* SwizzleDetector.h */,
+			);
+			name = SwizzleDetector;
+			sourceTree = "<group>";
+		};
 		9885DE891EEEC1FB00888B1D = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +145,7 @@
 		9885DE951EEEC1FB00888B1D /* iOSNM */ = {
 			isa = PBXGroup;
 			children = (
+				987ABF3A1EF1721B005EB437 /* SwizzleDetector */,
 				9885DE9E1EEEC3D300888B1D /* NMAPI */,
 				9885DE961EEEC1FB00888B1D /* iOSNM.h */,
 				9885DE971EEEC1FB00888B1D /* Info.plist */,
@@ -214,6 +228,7 @@
 			files = (
 				9885DEEB1EEEC3D300888B1D /* crc32.h in Headers */,
 				9885DEE41EEEC3D300888B1D /* nm.h in Headers */,
+				987ABF3E1EF17250005EB437 /* SwizzleDetector.h in Headers */,
 				9885DEEF1EEEC3D300888B1D /* lto.h in Headers */,
 				9885DEF31EEEC3D300888B1D /* reloc.h in Headers */,
 				9885DEE71EEEC3D300888B1D /* arch.h in Headers */,
@@ -315,6 +330,7 @@
 				9885DEE31EEEC3D300888B1D /* nm.c in Sources */,
 				9885DEDB1EEEC3D300888B1D /* ofile_error.c in Sources */,
 				9885DED41EEEC3D300888B1D /* fatal_arch.c in Sources */,
+				987ABF3D1EF17250005EB437 /* SwizzleDetector.c in Sources */,
 				9885DECD1EEEC3D300888B1D /* arch.c in Sources */,
 				9885DEDD1EEEC3D300888B1D /* reloc.c in Sources */,
 				9885DED21EEEC3D300888B1D /* crc32.c in Sources */,
