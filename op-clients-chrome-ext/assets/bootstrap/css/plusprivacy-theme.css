@@ -1032,6 +1032,14 @@ div.popover{
     border-bottom-width: 0;
 }
 
+.popover.right>.arrow {
+    top: 50%;
+    left: -11px;
+    margin-top: -11px;
+    border-right-color: #e6c678;
+    border-left-width: 0;
+}
+
 
 .popover.top>.arrow:after {
     bottom: 2px;
@@ -1039,6 +1047,14 @@ div.popover{
     content: " ";
     border-top-color: #fdf3dc;
     border-bottom-width: 0;
+}
+
+.popover.right>.arrow:after {
+    bottom: -10px;
+    left: 2px;
+    content: " ";
+    border-right-color: #fdf3dc;
+    border-left-width: 0;
 }
 
 .table tr>td.td_text{

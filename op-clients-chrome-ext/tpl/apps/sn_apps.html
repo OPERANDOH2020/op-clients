@@ -6,21 +6,21 @@
 <table class="table table-bordered" ng-if="isLoggedInSocialNetwork == true">
     <thead>
     <tr>
-        <th>Logo</th>
+        <th ng-if="sn!='linkedin'">Logo</th>
         <th>App name</th>
         <th ng-if="sn=='facebook'">Visibility</th>
-        <th>Permissions</th>
+        <th ng-if="sn!='linkedin'">Permissions</th>
         <th>Actions</th>
     </tr>
     </thead>
 <tr ng-repeat="app in apps">
-        <td class="app_icon">
+        <td class="app_icon" ng-if="sn!='linkedin'">
             <img ng-if="sn!='facebook'" class="sn_app_icon" ng-src="{{app.iconUrl}}"/>
             <i ng-if="sn=='facebook'" class="sn_app_icon" style="background-image: url('{{app.iconUrl}}');background-repeat:no-repeat;background-size:100% 100%;-webkit-background-size:100% 100%;width:32px;height:32px; display: inline-block;"></i>
         </td>
         <td class="app_name"><h4>{{app.name}}</h4></td>
         <td ng-if="sn=='facebook'" class="app_visibility">{{app.visibility}}</td>
-        <td class="app_permissions">
+        <td class="app_permissions" ng-if="sn!='linkedin'">
             <table class="table table-bordered">
             <tr ng-repeat="permission in app.permissions">
                 <td class="{{permission|removeWhiteSpace}}" >{{permission}}</td>

@@ -137,14 +137,6 @@ var websiteService = exports.websiteService = {
     getTwitterApps:function(callback){
         var twitterApps = [];
 
-        function getAppData(url){
-            return new Promise(function (resolve, reject){
-                doGetRequest(url, function(data){
-                    resolve(data);
-                })
-            })
-        }
-
         function getApps(res){
 
             var rawAppsRegex = '<div\\s?id=\"oauth(?:.+)\"(?:.|\n)*?</div>(?:.|\n)*?</div>(?:.|\n)*?</div>(?:.|\n)*?</div>';
@@ -179,6 +171,32 @@ var websiteService = exports.websiteService = {
         doGetRequest("https://twitter.com/settings/applications?lang=en", getApps)
     },
 
+    getLinkedInApps:function(callback){
+
+        var linkedInApps = [];
+
+        function getApps (res){
+            var rawAppsRegex = '<li(?:.|\n)*?\\s?class=\"third-party-app-container\"(?:.|\n)*?</div>(?:.|\n)*?</li>';
+            var rawAppsList = RegexUtis.findAllOccurrencesByRegex(self.key, 'List of Raw Apps', rawAppsRegex, 0, res);
+            var appIdRegex = 'data-app-id="(.*?)"\\s?data-app-type';
+            var appNameRegex = 'p\\s+class="third-party-apps-name">(.*?)</p';
+
+            linkedInApps = rawAppsList.map(function(rawAppData){
+
+                return {
+                    appId: RegexUtis.findValueByRegex(self.key, 'Revokde-Id', appIdRegex, 1, rawAppData, true),
+                    name: RegexUtis.findValueByRegex_Pretty(self.key, 'App Name+Id', appNameRegex, 1, rawAppData, true)
+                }
+            });
+
+            console.log(linkedInApps);
+            callback(linkedInApps);
+
+        }
+
+        doGetRequest("https://www.linkedin.com/psettings/third-party-applications", getApps)
+    },
+
     removeSocialApp:function(data, callback){
 
         function extractFBToken(content, callback) {
@@ -204,11 +222,16 @@ var websiteService = exports.websiteService = {
         }
 
         function extractTwitterToken(content, callback){
-            var tokenOption1 = 'value="(.*?)" name="authenticity_token"';
-            var token = RegexUtis.findValueByRegex(self.key, 'authenticity_token', tokenOption1, 1, content, true);
+            var tokenRegex = 'value="(.*?)" name="authenticity_token"';
+            var token = RegexUtis.findValueByRegex(self.key, 'authenticity_token', tokenRegex, 1, content, true);
             callback({token:token});
         }
 
+        function extractLinkedinToken(content, callback){
+            var tokenRegex = 'name="csrfToken" value="(.*?)"';
+            var token = RegexUtis.findValueByRegex(self.key, 'authenticity_token', tokenRegex, 1, content, true);
+            callback({csrfToken:token});
+        }
 
         function removeFbApp(appId){
 
@@ -224,7 +247,6 @@ var websiteService = exports.websiteService = {
 
                        });
                     });
-
         }
 
         function removeTwitterApp(appId){
@@ -239,10 +261,20 @@ var websiteService = exports.websiteService = {
             })
         }
 
+        function removeLinkedinApp(appId){
+            doGetRequest("https://www.linkedin.com/psettings/third-party-applications", function(content){
+             extractLinkedinToken(content, function(data){
+                 var _body = "id="+appId + "&" + "type=OPEN_API" + "&" + "csrfToken="+data.csrfToken;
+                 doPOSTRequest("https://www.linkedin.com/psettings/third-party-applications/remove",_body, callback);
+             });
+            });
+        }
+
 
         switch(data.sn){
             case "facebook" : removeFbApp(data.appId); break;
-            case "twitter" : removeTwitterApp(data.appId);
+            case "twitter" : removeTwitterApp(data.appId); break;
+            case "linkedin": removeLinkedinApp(data.appId); break;
         }
 
     }

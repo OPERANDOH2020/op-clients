@@ -92,6 +92,8 @@ angular.module('socialApps',['cfp.loadingBar'])
                                 case "twitter":
                                     action = "getTwitterApps";
                                     break;
+                                case "linkedin":
+                                    action = "getLinkedInApps"
                             }
 
                             messengerService.send(action, function (response) {

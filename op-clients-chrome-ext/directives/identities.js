@@ -137,7 +137,8 @@ angular.module('identities', [])
                         });
                     };
 
-                    $scope.removeIdentity = function () {
+                    $scope.removeIdentity = function ($event) {
+                        $scope.stopEventPropagation($event);
                         var identity = $scope.identity;
                         var emitToParent = function (event) {
                             $scope.$emit(event);
