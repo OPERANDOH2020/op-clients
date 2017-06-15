@@ -213,7 +213,7 @@ static void print_mach_symbols(
     uint32_t strsize,
     struct cmd_flags *cmd_flags,
     struct process_flags *process_flags,
-    char *arch_name, SymbolsContext *context);
+    char *arch_name, SymbolInfoArray *context);
 static void print_symbols(
     struct ofile *ofile,
     struct symbol *symbols,
@@ -245,109 +245,13 @@ void nmFile(const char *path) {
 }
 
 
-SymbolsContext* createEmptyContext(){
-    SymbolsContext *p = malloc(sizeof(SymbolsContext));
-    
-    p->bufferSize = 256;
-    p->currentSymbols = malloc(p->bufferSize * sizeof(NMSymbolInfo*));
-    p->numberOfSymbols = 0;
-    return p;
-}
 
-NMSymbolInfo *createEmptySymbolInfo() {
-    NMSymbolInfo *p = malloc(sizeof(NMSymbolInfo));
-    p->libraryNameIfAny = NULL;
-    p->sectionName = NULL;
-    p->segmentName = NULL;
-    p->symbolName = NULL;
-    
-    p->referenceType = RefType_Unknown;
-    
-    return p;
-}
-
-void allocAndCopy(char **dest, char *src) {
-    if (src) {
-        size_t length = strlen(src);
-        *dest = malloc(length * sizeof(char) + 1);
-        strncpy(*dest, src, length + 1);
-    }
-}
-
-
-
-
-
-void addSymbolInfoPointer(NMSymbolInfo *info, SymbolsContext *addContext) {
-    if (addContext->bufferSize > addContext->numberOfSymbols + 1) {
-        addContext->currentSymbols[addContext->numberOfSymbols] = info;
-        addContext->numberOfSymbols += 1;
-        addContext->currentSymbols[addContext->numberOfSymbols] = NULL;
-        
-        return;
-    }
-    
-    addContext->bufferSize *= 2;
-    addContext->currentSymbols = realloc(addContext->currentSymbols, addContext->bufferSize * sizeof(NMSymbolInfo*));
-    
-    addContext->currentSymbols[addContext->numberOfSymbols] = info;
-    addContext->numberOfSymbols += 1;
-    addContext->currentSymbols[addContext->numberOfSymbols] = NULL;
-}
-
-void releaseSymbolInfo(NMSymbolInfo *info){
-    if (!info) {
-        return;
-    }
-    
-    if (info->libraryNameIfAny) {
-        free(info->libraryNameIfAny);
-    }
-    
-    if (info->sectionName) {
-        free(info->sectionName);
-    }
-    
-    if (info->segmentName) {
-        free(info->segmentName);
-    }
-    
-    if (info->symbolName) {
-        free(info->symbolName);
-    }
-    
-    free(info);
-}
-
-void releaseSymbolsContext(SymbolsContext *context){
-    if (!context) {
-        return;
-    }
-    if (context->currentSymbols) {
-        for (int i=0; i<context->numberOfSymbols; i++) {
-            releaseSymbolInfo(context->currentSymbols[i]);
-        }
-        
-        free(context->currentSymbols);
-    }
-    
-    free(context);
-}
-
-
-SymbolsContext* retrieveSymbolsFromFile(const char* filePath){
-    SymbolsContext *context = createEmptyContext();
+SymbolInfoArray* retrieveSymbolsFromFile(const char* filePath){
+    SymbolInfoArray *context = createEmptySymbolArray();
     ofile_process(filePath, NULL, 0, TRUE, FALSE, FALSE, FALSE, &nm, &cmd_flags, context);
     
     return context;
 }
-void printSymbolInfo(NMSymbolInfo *info) {
-    printf("\n (%s, %s) %s", info->segmentName, info->sectionName, info->symbolName);
-    if (info->libraryNameIfAny) {
-        printf(" from %s", info->libraryNameIfAny);
-    }
-}
-
 
 
 
@@ -614,7 +518,7 @@ void *cookie, void *context)
 	}
 
     print_mach_symbols(ofile, symbols, nsymbols, strings, st->strsize,
-                       cmd_flags, &process_flags, arch_name, (SymbolsContext*)context);
+                       cmd_flags, &process_flags, arch_name, (SymbolInfoArray*)context);
     
 	/* now print the symbols as specified by the flags */
 //	if(cmd_flags->m == TRUE)
@@ -1029,7 +933,7 @@ char *strings,
 uint32_t strsize,
 struct cmd_flags *cmd_flags,
 struct process_flags *process_flags,
-char *arch_name, SymbolsContext *context)
+char *arch_name, SymbolInfoArray *context)
 {
     uint32_t i, library_ordinal;
     char *ta_xfmt, *i_xfmt, *dashes, *spaces;

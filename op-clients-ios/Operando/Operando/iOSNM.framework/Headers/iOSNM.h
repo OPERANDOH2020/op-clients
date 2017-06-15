@@ -19,3 +19,4 @@ FOUNDATION_EXPORT const unsigned char iOSNMVersionString[];
 
 #import <iOSNM/nm.h>
 #import <iOSNM/SwizzleDetector.h>
+#import <iOSNM/SymbolInfo.h>

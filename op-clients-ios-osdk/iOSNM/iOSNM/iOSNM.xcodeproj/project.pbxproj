@@ -53,6 +53,8 @@
 		9885DEF41EEEC3D300888B1D /* rnd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9885DEC91EEEC3D300888B1D /* rnd.h */; };
 		9885DEF51EEEC3D300888B1D /* symbol_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9885DECA1EEEC3D300888B1D /* symbol_list.h */; };
 		9885DEF61EEEC3D300888B1D /* unix_standard_mode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9885DECB1EEEC3D300888B1D /* unix_standard_mode.h */; };
+		988AF1701EF2B7E6004FDFB3 /* SymbolInfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 988AF16E1EF2B7E5004FDFB3 /* SymbolInfo.c */; };
+		988AF1711EF2B7E6004FDFB3 /* SymbolInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 988AF16F1EF2B7E5004FDFB3 /* SymbolInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +106,8 @@
 		9885DEC91EEEC3D300888B1D /* rnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rnd.h; sourceTree = "<group>"; };
 		9885DECA1EEEC3D300888B1D /* symbol_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = symbol_list.h; sourceTree = "<group>"; };
 		9885DECB1EEEC3D300888B1D /* unix_standard_mode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unix_standard_mode.h; sourceTree = "<group>"; };
+		988AF16E1EF2B7E5004FDFB3 /* SymbolInfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SymbolInfo.c; path = SymbolInfo/SymbolInfo.c; sourceTree = "<group>"; };
+		988AF16F1EF2B7E5004FDFB3 /* SymbolInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SymbolInfo.h; path = SymbolInfo/SymbolInfo.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,7 @@
 		9885DE951EEEC1FB00888B1D /* iOSNM */ = {
 			isa = PBXGroup;
 			children = (
+				988AF16C1EF2B78D004FDFB3 /* Utils */,
 				987ABF3A1EF1721B005EB437 /* SwizzleDetector */,
 				9885DE9E1EEEC3D300888B1D /* NMAPI */,
 				9885DE961EEEC1FB00888B1D /* iOSNM.h */,
@@ -219,6 +224,23 @@
 			path = stuff;
 			sourceTree = "<group>";
 		};
+		988AF16C1EF2B78D004FDFB3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				988AF16D1EF2B794004FDFB3 /* SymbolInfo */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		988AF16D1EF2B794004FDFB3 /* SymbolInfo */ = {
+			isa = PBXGroup;
+			children = (
+				988AF16E1EF2B7E5004FDFB3 /* SymbolInfo.c */,
+				988AF16F1EF2B7E5004FDFB3 /* SymbolInfo.h */,
+			);
+			name = SymbolInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -226,6 +248,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				988AF1711EF2B7E6004FDFB3 /* SymbolInfo.h in Headers */,
 				9885DEEB1EEEC3D300888B1D /* crc32.h in Headers */,
 				9885DEE41EEEC3D300888B1D /* nm.h in Headers */,
 				987ABF3E1EF17250005EB437 /* SwizzleDetector.h in Headers */,
@@ -344,6 +367,7 @@
 				9885DED91EEEC3D300888B1D /* lto.c in Sources */,
 				9885DEE21EEEC3D300888B1D /* unix_standard_mode.c in Sources */,
 				9885DEDE1EEEC3D300888B1D /* rnd.c in Sources */,
+				988AF1701EF2B7E6004FDFB3 /* SymbolInfo.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
