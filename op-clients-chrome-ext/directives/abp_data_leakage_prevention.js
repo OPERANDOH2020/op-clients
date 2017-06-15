@@ -76,7 +76,6 @@ angular.module("abp", [])
             {
                 var featureSubscription = $scope.featureSubscriptions[i];
                 $scope.featureSubscriptions[i].checked = featureSubscription.url in known;
-
                 $scope.$apply();
             }
         });
@@ -94,9 +93,9 @@ angular.module("abp", [])
         filter: ["added", "removed", "updated", "disabled"]
     });
 
+    updateToggleButtons();
 
-
-}])
+}]);
 angular.module("abp").directive("abpLeakagePrevention", function () {
     return {
         restrict: "E",
