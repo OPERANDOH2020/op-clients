@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import PPCloak
 import PPApiHooksCore
-import iOSNM
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         
         
-        OPMonitor.initializeMonitoring()
+//        OPMonitor.initializeMonitoring()
 //        
 //        print(Bundle(for: PPEvent.self))
 //        

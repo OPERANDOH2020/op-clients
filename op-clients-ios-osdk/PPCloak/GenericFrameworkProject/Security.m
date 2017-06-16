@@ -12,18 +12,18 @@
 
 
 
-void printErrorSwizzling(char *frameworkName, char *innocentFramework){
-    printf("The following framework: [%s] defines classes found in [%s]. This usually indicates that there is an attempt to bypass security features implemented in [%s]. If this is not the case, then please redo the linking order of the frameworks such that [%s] is linked before [%s]", frameworkName, innocentFramework, innocentFramework, innocentFramework, frameworkName);
+void printErrorSwizzling(char *symbol, char *frameworkName, char *innocentFramework){
+    printf("The framework [%s] defines the symbol (%s) which is also defined in [%s]. This usually indicates that there is an attempt to bypass security features implemented in [%s], via method swizzling. If this is not the case, then please redo the linking order of the frameworks such that [%s] is linked before [%s]", frameworkName, symbol, innocentFramework, innocentFramework, innocentFramework, frameworkName);
     
     abort();
 }
 
-void frameworkDidSwizzleClassesInApiHooks(char *frameworkName){
-    printErrorSwizzling(frameworkName, "PPApiHooksCore");
+void frameworkDidSwizzleClassesInApiHooks(char *symbol, char *frameworkName){
+    printErrorSwizzling(symbol, frameworkName, "PPApiHooksCore");
 }
 
-void frameworkDidSwizzleOPMonitor(char *frameworkName){
-    printErrorSwizzling(frameworkName, "PPCloak");
+void frameworkDidSwizzleOPMonitor(char *symbol, char *frameworkName){
+    printErrorSwizzling(symbol, frameworkName, "PPCloak");
 }
 
 void checkNoSwizzlingForApiHooks(){
@@ -31,7 +31,11 @@ void checkNoSwizzlingForApiHooks(){
     char **classList = createListOfCurrentlyRegisteredClassNames(&numOfClasses);
     ObjcSymbolsDetectModel *model = malloc(sizeof(ObjcSymbolsDetectModel));
     
+    if (numOfClasses == 0) {
+        assert(1 == 0 && "Did not expect that list of current registered classes is zero");
+    }
     
+
     model->frameworkName = "PPApiHooksCore";
     model->objcSymbolsToCheck = classList;
     model->numOfObjcSymbols = numOfClasses;

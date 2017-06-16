@@ -45,7 +45,9 @@ NMSymbolInfo* createEmptySymbolInfo();
 SymbolInfoArray* createEmptySymbolArray();
 NMSymbolInfo* deepCopySymbolInfo(NMSymbolInfo *unownedInfo);
 void addSymbolInfoPointer(NMSymbolInfo *unownedInfo, SymbolInfoArray *unownedArray);
-void allocAndCopy(char **dest, char *src);
+
+
+char* copyOfString(char *string);
 
 
 #endif /* SymbolInfo_h */

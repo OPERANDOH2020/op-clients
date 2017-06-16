@@ -10,6 +10,7 @@
 #import "JRSwizzle.h"
 #import "UIDevice+PPHOOK.h"
 #import "NSObject+AutoSwizzle.h"
+#import "PPApiHooksStart.h"
 
 PPEventDispatcher *_devDispatcher;
 
@@ -20,6 +21,7 @@ PPEventDispatcher *_devDispatcher;
 
 +(void)load{
     [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
+    registerHookedClass(self);
 }
 
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){

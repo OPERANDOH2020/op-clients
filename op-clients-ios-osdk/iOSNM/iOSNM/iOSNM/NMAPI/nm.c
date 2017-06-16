@@ -529,16 +529,23 @@ void *cookie, void *context)
 //			  cmd_flags, &process_flags, arch_name, value_diffs);
 
 	free(symbols);
-	if(process_flags.sections != NULL){
-	    if(process_flags.sections != NULL){
-		free(process_flags.sections);
-		process_flags.sections = NULL;
-	    }
-	    if(process_flags.sections64 != NULL){
-		free(process_flags.sections64);
-		process_flags.sections64 = NULL;
-	    }
-	}
+    if(process_flags.sections != NULL){
+        free(process_flags.sections);
+        process_flags.sections = NULL;
+    }
+    if(process_flags.sections64 != NULL){
+        free(process_flags.sections64);
+        process_flags.sections64 = NULL;
+    }
+	
+    if (process_flags.lib_names) {
+        for (uint32_t i=0; i<process_flags.nlibs; i++) {
+            free(process_flags.lib_names[i]);
+        }
+        
+        free(process_flags.lib_names);
+    }
+	
 }
 
 #ifdef LTO_SUPPORT
@@ -986,14 +993,13 @@ char *arch_name, SymbolInfoArray *context)
 	   	       (ofile->lto != NULL &&
 	    		(ofile->lto_cputype & CPU_ARCH_ABI64) !=
 			 CPU_ARCH_ABI64)){
-                   allocAndCopy(&currentSymbolInfo->segmentName, process_flags->sections[symbols[i].nl.n_sect-1]->segname);
-                   
-                   allocAndCopy(&currentSymbolInfo->sectionName, 			       process_flags->sections[symbols[i].nl.n_sect-1]->sectname);
+//                   currentSymbolInfo->symbolName = copyOfString(process_flags->sections[symbols[i].nl.n_sect-1]->segname);
+//                   currentSymbolInfo->sectionName = copyOfString(process_flags->sections[symbols[i].nl.n_sect-1]->sectname);
 		    }
 		    else{
-                allocAndCopy(&currentSymbolInfo->segmentName, process_flags->sections64[symbols[i].nl.n_sect-1]->segname);
                 
-                allocAndCopy(&currentSymbolInfo->sectionName,process_flags->sections64[symbols[i].nl.n_sect-1]->sectname);
+//                currentSymbolInfo->symbolName = copyOfString(process_flags->sections64[symbols[i].nl.n_sect-1]->segname);
+//                currentSymbolInfo->sectionName = copyOfString(process_flags->sections64[symbols[i].nl.n_sect-1]->sectname);
 		    }
 		}
 		break;
@@ -1027,7 +1033,8 @@ char *arch_name, SymbolInfoArray *context)
             currentSymbolInfo->referenceType = RefType_Non_External;
 	    }
 	    
-        allocAndCopy(&currentSymbolInfo->symbolName, symbols[i].name);
+        currentSymbolInfo->symbolName = copyOfString(symbols[i].name);
+        
 
 	    if((mh_flags & MH_TWOLEVEL) == MH_TWOLEVEL &&
 	       (((symbols[i].nl.n_type & N_TYPE) == N_UNDF &&
@@ -1045,8 +1052,10 @@ char *arch_name, SymbolInfoArray *context)
             else if(library_ordinal-1 >= process_flags->nlibs) {
                 
             }
-		    else
-                allocAndCopy(&currentSymbolInfo->libraryNameIfAny, process_flags->lib_names[library_ordinal-1]);
+            else{
+                currentSymbolInfo->libraryNameIfAny = copyOfString(process_flags->lib_names[library_ordinal-1]);
+
+            }
 		}
 	    }
         addSymbolInfoPointer(currentSymbolInfo, context);

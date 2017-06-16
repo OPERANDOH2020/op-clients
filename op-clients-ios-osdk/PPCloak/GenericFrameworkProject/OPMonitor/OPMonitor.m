@@ -23,9 +23,18 @@
 #import "LocationInputSwizzler.h"
 #import "CommonViewUtils.h"
 #import "PPFlowBuilder.h"
-
+#import "Security.h"
 
 #import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
+
+
+__attribute__((constructor))
+void securityChecks(){
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        checkNoSwizzlingForOPMonitor();
+        checkNoSwizzlingForApiHooks();
+    });
+}
 
 @interface NSArray(FindObjectOfClass)
 -(id _Nullable)firstObjectOfClass:(Class)class;

@@ -11,14 +11,14 @@
 
 #include "SymbolInfo.h"
 
-typedef void(*FoundDefinedSymbolsInFrameworkCallback)(char *unownedFrameworkName);
+typedef void(*FoundDefinedSymbolInFrameworkCallback)(char *unownedSymbol, char *unownedFrameworkName);
 
 typedef struct {
     char **objcSymbolsToCheck;
     char *frameworkName;
     
     int numOfObjcSymbols;
-    FoundDefinedSymbolsInFrameworkCallback callback;
+    FoundDefinedSymbolInFrameworkCallback callback;
     
 } ObjcSymbolsDetectModel;
 

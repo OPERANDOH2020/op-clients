@@ -11,12 +11,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-void allocAndCopy(char **dest, char *src) {
-    if (src) {
-        size_t length = strlen(src);
-        *dest = malloc(length * sizeof(char) + 1);
-        strncpy(*dest, src, length + 1);
+const char* safeString = "SAFESTRING";
+
+char* copyOfString(char *string){
+    if (string == NULL) {
+        return NULL;
     }
+    
+    size_t length = strlen(string) + 3;
+    char *newString = malloc(length);
+    strcpy(newString, string);
+    return newString;
 }
 
 SymbolInfoArray* createEmptySymbolArray(){
@@ -52,6 +57,7 @@ void addSymbolInfoPointer(NMSymbolInfo *info, SymbolInfoArray *array) {
 }
 
 void releaseSymbolInfo(NMSymbolInfo *info){
+    
     if (!info) {
         return;
     }
@@ -95,10 +101,12 @@ void releaseSymbolInfoArray(SymbolInfoArray *context){
 
 NMSymbolInfo* deepCopySymbolInfo(NMSymbolInfo *unownedInfo){
     NMSymbolInfo *info = createEmptySymbolInfo();
-    allocAndCopy(&info->sectionName, unownedInfo->sectionName);
-    allocAndCopy(&info->segmentName, unownedInfo->segmentName);
-    allocAndCopy(&info->symbolName, unownedInfo->symbolName);
-    allocAndCopy(&info->libraryNameIfAny, unownedInfo->libraryNameIfAny);
+    
+    info->sectionName = copyOfString(unownedInfo->sectionName);
+    info->segmentName = copyOfString(unownedInfo->segmentName);
+    info->symbolName = copyOfString(unownedInfo->symbolName);
+    info->libraryNameIfAny = copyOfString(info->libraryNameIfAny);
+    
     info->referenceType = unownedInfo->referenceType;
 
     return info;

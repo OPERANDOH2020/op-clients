@@ -49,7 +49,6 @@
 		98F7A6AA1E76ECB200FF635A /* LAContext+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69E1E76ECB200FF635A /* LAContext+PPHOOK.m */; };
 		98F7A6AB1E76ECB200FF635A /* NSURLSession+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A69F1E76ECB200FF635A /* NSURLSession+PPHOOK.m */; };
 		98F7A6AC1E76ECB200FF635A /* UIDevice+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6A01E76ECB200FF635A /* UIDevice+PPHOOK.m */; };
-		98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6A11E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m */; };
 		98F7A6B11E76ECF000FF635A /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6AF1E76ECF000FF635A /* JRSwizzle.h */; };
 		98F7A6B21E76ECF000FF635A /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F7A6B01E76ECF000FF635A /* JRSwizzle.m */; };
 		98F7A6BD1E76F16200FF635A /* PPEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F7A6B51E76F16200FF635A /* PPEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -108,7 +107,6 @@
 		98F7A69E1E76ECB200FF635A /* LAContext+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LAContext+PPHOOK.m"; sourceTree = "<group>"; };
 		98F7A69F1E76ECB200FF635A /* NSURLSession+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+PPHOOK.m"; sourceTree = "<group>"; };
 		98F7A6A01E76ECB200FF635A /* UIDevice+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+PPHOOK.m"; sourceTree = "<group>"; };
-		98F7A6A11E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVIewController+rsHookUIImagePickerController.m"; sourceTree = "<group>"; };
 		98F7A6AF1E76ECF000FF635A /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		98F7A6B01E76ECF000FF635A /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		98F7A6B51E76F16200FF635A /* PPEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPEvent.h; sourceTree = "<group>"; };
@@ -345,7 +343,6 @@
 				98A9278B1EBC7DDF00E17219 /* CMMotionManager+PPHOOK */,
 				98A927891EBC6F7600E17219 /* CMAltimeter+PPHOOK */,
 				98A927851EBC5D8B00E17219 /* AVCaptureDevice+PPHOOK */,
-				98F7A6A11E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m */,
 			);
 			path = HookingCategories;
 			sourceTree = "<group>";
@@ -530,7 +527,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				980B7FC41ED3461D00570DF0 /* PPEventDispatcher.m in Sources */,
-				98F7A6AD1E76ECB200FF635A /* UIVIewController+rsHookUIImagePickerController.m in Sources */,
 				9899DF0A1EADE1D200CB9ED8 /* PPEventIdentifier.m in Sources */,
 				98F7A6AB1E76ECB200FF635A /* NSURLSession+PPHOOK.m in Sources */,
 				982FB41D1E83FE5900D1AAEC /* NSURLProtocol+WKWebViewSupport.m in Sources */,

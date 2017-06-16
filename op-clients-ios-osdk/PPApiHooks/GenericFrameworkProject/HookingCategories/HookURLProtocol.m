@@ -10,6 +10,7 @@
 #import <WebKit/WebKit.h>
 #import "NSURLProtocol+WKWebViewSupport.h"
 #import "HookURLProtocol.h"
+#import "PPApiHooksStart.h"
 
 PPEventDispatcher *_urlDispatcher;
 
@@ -24,6 +25,7 @@ PPEventDispatcher *_urlDispatcher;
     [NSURLProtocol wk_registerScheme:@"http"];
     [NSURLProtocol wk_registerScheme:@"https"];
     
+    registerHookedClass(self);
 }
 
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){

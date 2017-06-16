@@ -9,6 +9,7 @@
 #import "JRSwizzle.h"
 #import "NSObject+AutoSwizzle.h"
 #import "CMPedometer+PPHOOK.h"
+#import "PPApiHooksStart.h"
 
 PPEventDispatcher *_pedDispatcher;
 
@@ -18,6 +19,7 @@ PPEventDispatcher *_pedDispatcher;
     
     if (NSClassFromString(@"CMPedometer")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
+        registerHookedClass(self);
     }
     
 }

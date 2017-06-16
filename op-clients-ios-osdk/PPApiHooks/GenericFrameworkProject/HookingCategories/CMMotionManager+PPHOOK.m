@@ -10,6 +10,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "NSObject+AutoSwizzle.h"
 #import "CMMotionManager+PPHOOK.h"
+#import "PPApiHooksStart.h"
 
 PPEventDispatcher *_mmDispatcher;
 
@@ -17,6 +18,7 @@ PPEventDispatcher *_mmDispatcher;
 +(void)load {
     if (NSClassFromString(@"CMMotionManager")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
+        registerHookedClass(self);
     }
 }
 

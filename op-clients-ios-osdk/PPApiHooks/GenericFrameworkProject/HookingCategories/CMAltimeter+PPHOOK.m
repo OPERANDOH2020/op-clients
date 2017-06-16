@@ -7,6 +7,7 @@
 //
 
 #import "CMAltimeter+PPHOOK.h"
+#import "PPApiHooksStart.h"
 
 PPEventDispatcher *_altDispatcher;
 
@@ -15,6 +16,7 @@ PPEventDispatcher *_altDispatcher;
 +(void)load{
     if (NSClassFromString(@"CMAltimeter")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
+        registerHookedClass(self);
     }
 }
 

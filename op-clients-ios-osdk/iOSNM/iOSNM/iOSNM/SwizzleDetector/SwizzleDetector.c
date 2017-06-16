@@ -6,7 +6,7 @@
 //  Copyright © 2017 Personal. All rights reserved.
 //  Note: The functions defined here do not check for errors (malloc and realloc). The number of embedded frameworks in an iOS app is usually quite small (< 10-20) and it is unlikely that the system will run out of memory to keep the symbol list for each of these.
 
-// TO DO: The addXinYArray contain very similar validation and reallocation code. Maybe we can try a trick with void pointers later
+// TO DO: The addXinYArray functions contain very similar validation and reallocation code. Maybe I can try a trick with void pointers later
 
 #include "SwizzleDetector.h"
 #import "nm.h"
@@ -109,6 +109,7 @@ DetectModelsArray *createEmptyDetectModelsArray(){
 }
 
 void addDetectModelInArray(ObjcSymbolsDetectModel *context, DetectModelsArray *array){
+    
     if (array->bufferSize == array->numOfModels) {
         array->bufferSize *= 2;
         array->modelsList = realloc(array->modelsList, array->bufferSize);
@@ -121,7 +122,7 @@ void addDetectModelInArray(ObjcSymbolsDetectModel *context, DetectModelsArray *a
 DetectContext *getGlobalDetectContext() {
     static DetectContext *context = NULL;
     if (!context) {
-        context = malloc(sizeof(sizeof(DetectContext)));
+        context = malloc(sizeof(DetectContext));
         context->detectModelsArray = createEmptyDetectModelsArray();
         context->orderedFrameworkNamesArray = createEmptyCStringArray();
         context->symbolInfoMatrix = createEmptyMatrix();
@@ -141,7 +142,7 @@ char *extractLastPathItem(const char *path){
     }
     
     size_t length = strlen(p) + 1;
-    char *result = (char*)malloc(length * sizeof(char));
+    char *result = (char*)malloc(length * sizeof(char) + 1);
     strcpy(result, p);
     return result;
     
@@ -164,24 +165,26 @@ SymbolInfoArray* createFilteredVariantOfOnlyObjcSymbolsFrom(SymbolInfoArray *uno
 }
 
 
-bool checkAnyObjcSymbolContainedInSymbol(ObjcSymbolsDetectModel *detectModel, NMSymbolInfo *info){
+char* checkAnyObjcSymbolContainedInSymbol(ObjcSymbolsDetectModel *detectModel, NMSymbolInfo *info){
     
     for (int i=0; i<detectModel->numOfObjcSymbols; i++) {
         char *currentObjcSymbol = detectModel->objcSymbolsToCheck[i];
         if (strstr(info->symbolName, currentObjcSymbol)) {
-            return true;
+            return currentObjcSymbol;
         }
     }
     
-    return false;
+    return NULL;
 }
 
 void checkAgainstFrameworkSymbols(ObjcSymbolsDetectModel *detectModel, SymbolInfoArray* symbolInfoArray, char *frameworkName){
     
     for (int i=0; i<symbolInfoArray->numberOfSymbols; i++) {
         NMSymbolInfo *currentSymbolInfo = symbolInfoArray->currentSymbols[i];
-        if (checkAnyObjcSymbolContainedInSymbol(detectModel, currentSymbolInfo)) {
-            detectModel->callback(frameworkName);
+        char *possiblyDefinedSymbol = checkAnyObjcSymbolContainedInSymbol(detectModel, currentSymbolInfo);
+        
+        if (possiblyDefinedSymbol) {
+            detectModel->callback(possiblyDefinedSymbol, frameworkName);
         }
     }
 }
@@ -244,11 +247,12 @@ void dylibListener(const struct mach_header* mh, intptr_t vmaddr_slide){
         }
         char *frameworkName = extractLastPathItem(info.dli_fname);
         SymbolInfoArray *symbolsArray = retrieveSymbolsFromFile(info.dli_fname);
-        SymbolInfoArray *objcOnlySymbolsArray = createFilteredVariantOfOnlyObjcSymbolsFrom(symbolsArray);
+        DetectContext *detectContext = getGlobalDetectContext();
+        
+        SymbolInfoArray *objcOnlySymbols = createFilteredVariantOfOnlyObjcSymbolsFrom(symbolsArray);
         
         releaseSymbolInfoArray(symbolsArray);
-        
-        processNewlyLoadedSymbols(objcOnlySymbolsArray, frameworkName, getGlobalDetectContext());
+        processNewlyLoadedSymbols(objcOnlySymbols, frameworkName, detectContext);
     }
 
 }

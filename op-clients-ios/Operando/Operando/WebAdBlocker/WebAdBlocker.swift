@@ -8,7 +8,6 @@
 
 import UIKit
 import PPWebContentBlocker
-import PPCloak
 import PPApiHooksCore
 
 class WebAdBlocker: NSObject {

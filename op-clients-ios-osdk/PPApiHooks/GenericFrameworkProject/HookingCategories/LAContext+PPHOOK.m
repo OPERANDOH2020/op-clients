@@ -9,6 +9,7 @@
 #import "JRSwizzle.h"
 #import "NSObject+AutoSwizzle.h"
 #import "LAContext+PPHOOK.h"
+#import "PPApiHooksStart.h"
 
 
 PPEventDispatcher *_laDispatcher;
@@ -18,6 +19,7 @@ PPEventDispatcher *_laDispatcher;
 +(void)load {
     if (NSClassFromString(@"LAContext")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
+        registerHookedClass(self);
     }
 }
 

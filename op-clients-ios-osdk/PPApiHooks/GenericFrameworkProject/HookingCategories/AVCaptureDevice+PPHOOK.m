@@ -11,6 +11,7 @@
 #import "NSObject+AutoSwizzle.h"
 #import "AVCaptureDevice+PPHOOK.h"
 #import "PPEventDispatcher.h"
+#import "PPApiHooksStart.h"
 
 PPEventDispatcher *_avDispatcher;
 
@@ -20,6 +21,7 @@ PPEventDispatcher *_avDispatcher;
 +(void)load {
     if (NSClassFromString(@"AVCaptureDevice")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
+        registerHookedClass(self);
     }
 }
 
