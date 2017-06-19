@@ -19,6 +19,8 @@ angular.module('identities', [])
                 scope: {},
 
                 controller: function ($scope, ModalService) {
+
+                    $scope.max_identities_nr = 20;
                     $scope.identities = [];
 
 

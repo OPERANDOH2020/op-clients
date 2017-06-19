@@ -189,6 +189,6 @@ function extractHeaders(content, callback) {
     data['__a']=1;
     data['__dyn'] = fbdata.__dyn;
     data['__req'] = (++ fbdata.__req).toString(36);
-
+    console.log(fbdata);
     callback(data);
 }

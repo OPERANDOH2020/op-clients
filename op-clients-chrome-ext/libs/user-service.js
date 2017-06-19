@@ -45,7 +45,39 @@ var userService = exports.userService = {
         userUpdatedObservable.observe(function(){
             callback();
         }, true);
+    },
+    getUserSocialPreferences:function(socialNetwork,success_callback, error_callback){
+        var getUserSocialPreferencesHandler =  swarmHub.startSwarm("SocialPreferences.js","getPreferences",socialNetwork);
+        getUserSocialPreferencesHandler.onResponse("success", function(response){
+            success_callback(response.preferences);
+        });
+
+        getUserSocialPreferencesHandler.onResponse("failed", function(response){
+            error_callback(response.error);
+        })
+    },
+
+    saveUserSocialPreferences:function(data, success_callback, error_callback){
+        var saveUserSocialPreferencesHandler =  swarmHub.startSwarm("SocialPreferences.js","saveOrUpdatePreferences",data.socialNetwork, data.preferences);
+        saveUserSocialPreferencesHandler.onResponse("success", function(response){
+            success_callback(response.preferences);
+        });
+
+        saveUserSocialPreferencesHandler.onResponse("failed", function(response){
+            error_callback(response.error);
+        })
+    },
+    removePreferences:function(preferenceKey, success_callback, error_callback){
+        var removePreferencesHandler = swarmHub.startSwarm("SocialPreferences.js","removePreferences",preferenceKey);
+        removePreferencesHandler.onResponse("success", function(response){
+            success_callback(response);
+        });
+        removePreferencesHandler.onResponse("failed", function(response){
+            error_callback(response.error);
+        })
     }
-}
+
+
+};
 
 bus.registerService(userService);

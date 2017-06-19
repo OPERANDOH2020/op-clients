@@ -498,6 +498,7 @@ padding-left: 0px;
 #can-do-more .feature-description-textblock > span
 {
     margin-top: 15px;
+    font-size: 120%;
 }
 
 #can-do-more .feature-image
@@ -964,8 +965,9 @@ border-left:2px solid #fe9901;
     background:#fdfaef;
 }
 
-#identities_container p small{
-    font-size: 95%;
+#identities_container p small,
+#identity_management_tab .identities_number{
+    font-size: 120%;
 }
 
 #identities_container tr:not(.thead){
@@ -2357,7 +2359,7 @@ padding-left: 5px;
     background: url("/operando/assets/images/twitter32.png") no-repeat left center;
 }
 
-.anti-tracking-settings{
+.filter-settings{
  margin-top: 10px;
  float:right;
 }
@@ -2469,3 +2471,14 @@ h4.modal-title.plusprivacy{
 .social_network_name{
     text-transform: capitalize;
 }
+
+.recommended+span{
+    color:green;
+}
+
+.recommended+span:after{
+    content: "(Recommended)";
+    font-size: 13px;
+    margin-left: 10px;
+}
+
