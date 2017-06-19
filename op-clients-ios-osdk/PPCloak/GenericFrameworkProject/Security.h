@@ -12,7 +12,7 @@
 #include <stdio.h>
 
 
-void checkNoSwizzlingForApiHooks();
-void checkNoSwizzlingForOPMonitor();
+extern inline void checkNoSwizzlingForApiHooks();
+extern inline void checkNoSwizzlingForOPMonitor();
 
 #endif /* Security_h */

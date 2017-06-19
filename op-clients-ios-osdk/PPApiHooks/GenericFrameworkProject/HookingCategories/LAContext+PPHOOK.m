@@ -19,7 +19,7 @@ PPEventDispatcher *_laDispatcher;
 +(void)load {
     if (NSClassFromString(@"LAContext")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
-        registerHookedClass(self);
+        PPApiHooks_registerHookedClass(self);
     }
 }
 
@@ -28,10 +28,10 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
     _laDispatcher = dispatcher;
 }
 
-HOOKPrefixInstance(char, canEvaluatePolicy:(LAPolicy)policy error:(NSError * _Nullable __autoreleasing *)error){
+HOOKPrefixInstance(BOOL, canEvaluatePolicy:(LAPolicy)policy error:(NSError * _Nullable __autoreleasing *)error){
     
     NSError *actualError = nil;
-    char actualValue = CALL_PREFIXED(self, canEvaluatePolicy:policy error:&actualError);
+    BOOL actualValue = CALL_PREFIXED(self, canEvaluatePolicy:policy error:&actualError);
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     SAFEADD(dict, kPPContextErrorValue, actualError)
@@ -45,7 +45,7 @@ HOOKPrefixInstance(char, canEvaluatePolicy:(LAPolicy)policy error:(NSError * _Nu
     return [dict[kPPContextCanEvaluateContextPolicyValue] boolValue];
 }
 
-HOOKPrefixInstance(void, evaluatePolicy:(LAPolicy)policy localizedReason:(NSString *)localizedReason reply:(void (^)(char, NSError * _Nullable))reply) {
+HOOKPrefixInstance(void, evaluatePolicy:(LAPolicy)policy localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply) {
     __weak typeof(self) weakSelf = self;
     
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
@@ -62,7 +62,7 @@ HOOKPrefixInstance(void, evaluatePolicy:(LAPolicy)policy localizedReason:(NSStri
     [_laDispatcher fireEvent:event];
 }
 
-HOOKPrefixInstance(void, evaluateAccessControl:(SecAccessControlRef)accessControl operation:(LAAccessControlOperation)operation localizedReason:(NSString *)localizedReason reply:(void (^)(char, NSError * _Nullable))reply) {
+HOOKPrefixInstance(void, evaluateAccessControl:(SecAccessControlRef)accessControl operation:(LAAccessControlOperation)operation localizedReason:(NSString *)localizedReason reply:(void (^)(BOOL, NSError * _Nullable))reply) {
     
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];

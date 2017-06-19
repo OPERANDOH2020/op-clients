@@ -76,6 +76,9 @@ int findIndexOfStringIfAny(char *string, CStringArray *array){
 }
 
 
+
+
+
 SymbolInfoMatrix* createEmptyMatrix() {
     
     SymbolInfoMatrix *matrix = malloc(sizeof(SymbolInfoMatrix));
@@ -146,6 +149,11 @@ char *extractLastPathItem(const char *path){
     strcpy(result, p);
     return result;
     
+};
+
+int loadIndexOfFrameworkNamed(const char *unownedFrameworkName){
+    DetectContext *globalContext = getGlobalDetectContext();
+    return findIndexOfStringIfAny(unownedFrameworkName, globalContext->orderedFrameworkNamesArray);
 };
 
 SymbolInfoArray* createFilteredVariantOfOnlyObjcSymbolsFrom(SymbolInfoArray *unownedSymbolsArray){

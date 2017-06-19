@@ -25,16 +25,10 @@
 #import "PPFlowBuilder.h"
 #import "Security.h"
 
-#import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
+#import <PPCommonUI/PPCommonUI-Swift.h>
 
 
-__attribute__((constructor))
-void securityChecks(){
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        checkNoSwizzlingForOPMonitor();
-        checkNoSwizzlingForApiHooks();
-    });
-}
+
 
 @interface NSArray(FindObjectOfClass)
 -(id _Nullable)firstObjectOfClass:(Class)class;
@@ -80,7 +74,7 @@ void securityChecks(){
     if (json) {
         [[OPMonitor sharedInstance] beginMonitoringWithAppDocument:json];
     } else {
-        NSString *message = [NSString stringWithFormat:@"Could not find json document at path %@ or fileText is wrong: %@", fileText, path];
+        NSString *message = [NSString stringWithFormat:@"Could not find json document at path %@ or the text is not a valid JSON object: %@", fileText, path];
         [CommonViewUtils showOkAlertWithMessage:message completion:nil];
     }
     
@@ -96,6 +90,15 @@ void securityChecks(){
     return  shared;
 }
 
++(void)load{
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        checkNoSwizzlingForOPMonitor();
+        checkNoSwizzlingForApiHooks();
+    });
+    
+    [self initializeMonitoring];
+}
 
 
 -(void)beginMonitoringWithAppDocument:(NSDictionary *)document {

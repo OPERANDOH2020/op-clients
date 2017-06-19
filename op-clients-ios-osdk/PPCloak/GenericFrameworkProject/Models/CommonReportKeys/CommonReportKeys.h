@@ -10,7 +10,7 @@
 #define CommonReportKeys_h
 
 #import <Foundation/Foundation.h>
-#import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
+#import <PPCommonTypes/PPCommonTypes.h>
 
 static NSString *kURLReportKey = @"kURLReportKey";
 static NSString *kActualFrequencyRawValueKey = @"kActualFrequencyRawValueKey";

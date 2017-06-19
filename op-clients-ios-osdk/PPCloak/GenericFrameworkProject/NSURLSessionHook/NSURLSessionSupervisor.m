@@ -26,7 +26,7 @@
     }
     
     __weak typeof(self) weakSelf = self;
-    [dispatcher insertAtTopNewHandler:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+    [dispatcher appendNewEventHandler:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
         SAFECALL(nextHandlerIfAny)
         return;
         

@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-import PlusPrivacyCommonTypes
-import PlusPrivacyCommonUI
+import PPCommonTypes
+import PPCommonUI
 
 let kURLSchema = "operando"
 

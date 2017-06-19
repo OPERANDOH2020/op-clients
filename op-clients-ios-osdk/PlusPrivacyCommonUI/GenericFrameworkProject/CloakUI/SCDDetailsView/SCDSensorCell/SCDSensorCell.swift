@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PlusPrivacyCommonTypes
+import PPCommonTypes
 
 extension UIColor {
     public static func colorWith(_ red: Float, _ green: Float, _ blue: Float, _ alpha: Float) -> UIColor {

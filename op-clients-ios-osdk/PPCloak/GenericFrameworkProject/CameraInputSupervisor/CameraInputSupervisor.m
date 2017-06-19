@@ -48,6 +48,7 @@
     
     return [[PPUnlistedInputAccessViolation alloc] initWithInputType:InputType.Camera dateReported:[NSDate date]];
 }
+
 -(void)newURLRequestMade:(NSURLRequest *)request{
     
 }

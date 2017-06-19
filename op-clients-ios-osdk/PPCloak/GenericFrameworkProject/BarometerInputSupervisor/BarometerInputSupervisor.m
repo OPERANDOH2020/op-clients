@@ -24,6 +24,7 @@
 -(void)setupWithModel:(InputSupervisorModel *)model {
     self.model = model;
     self.sensor = [CommonUtils extractInputOfType:InputType.Barometer from:model.scdDocument.accessedInputs];
+    
 }
 
 
@@ -45,4 +46,6 @@
 -(void)newURLRequestMade:(NSURLRequest *)request{
     
 }
+
+
 @end

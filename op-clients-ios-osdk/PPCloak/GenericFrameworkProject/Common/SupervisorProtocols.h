@@ -9,7 +9,7 @@
 #ifndef InputSupervisorDelegate_h
 #define InputSupervisorDelegate_h
 
-#import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
+#import <PPCommonTypes/PPCommonTypes.h>
 #import "PPAccessFrequencyViolationReport.h"
 #import "PPAccessUnlistedHostReport.h"
 #import "PPPrivacyLevelViolationReport.h"

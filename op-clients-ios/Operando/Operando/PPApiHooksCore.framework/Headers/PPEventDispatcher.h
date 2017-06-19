@@ -24,6 +24,6 @@
 
 -(id _Nullable)resultForEventValue:(id _Nonnull)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
 
--(char)resultForBoolEventValue:(char)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
+-(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
 
 @end

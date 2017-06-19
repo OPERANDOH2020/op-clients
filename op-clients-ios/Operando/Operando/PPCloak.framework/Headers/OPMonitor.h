@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
+
 #import <UIKit/UIKit.h>
 
 @interface OPMonitor : NSObject
-+(instancetype __nonnull)sharedInstance;
--(UIButton* _Nullable)getHandle;
-+(void)initializeMonitoring;
--(void)displayFlowIfNecessary;
+//+(instancetype __nonnull)sharedInstance;
+//-(UIButton* _Nullable)getHandle;
+//+(void)initializeMonitoring;
+//-(void)displayFlowIfNecessary;
 @end

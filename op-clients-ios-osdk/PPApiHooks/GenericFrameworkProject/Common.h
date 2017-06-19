@@ -24,7 +24,7 @@
 
 #define __Weak(x) __weak typeof(x) weak##x = x
 
-typedef void(^PPBoolErrorBlock)(char, NSError* _Nullable);
+typedef void(^PPBoolErrorBlock)(BOOL, NSError* _Nullable);
 
 typedef void(^PPVoidBlock)();
 

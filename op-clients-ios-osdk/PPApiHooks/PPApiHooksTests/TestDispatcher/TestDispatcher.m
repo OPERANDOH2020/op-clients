@@ -17,7 +17,7 @@
 @end
 
 
-char doublesApproximatelyEqual(double a, double b){
+BOOL doublesApproximatelyEqual(double a, double b){
     const double epsilon = 1e-2;
     double difference = fabs(fabs(a) - fabs(b));
     return difference <= epsilon;

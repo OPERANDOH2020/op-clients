@@ -18,7 +18,7 @@ PPEventDispatcher *_mmDispatcher;
 +(void)load {
     if (NSClassFromString(@"CMMotionManager")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
-        registerHookedClass(self);
+        PPApiHooks_registerHookedClass(self);
     }
 }
 
@@ -262,35 +262,30 @@ HOOKPrefixInstance(void, startDeviceMotionUpdatesUsingReferenceFrame:(CMAttitude
 }
 
 
-HOOKPrefixInstance(char, isGyroAvailable){
-    char actualValue = CALL_PREFIXED(self, isGyroAvailable);
+HOOKPrefixInstance(BOOL, isGyroAvailable){
+    BOOL actualValue = CALL_PREFIXED(self, isGyroAvailable);
     
-    __block char value = NO;
-    
-      
-        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroAvailable) atKey:kPPMotionManagerIsGyroAvailableValue  ];
-       
+    BOOL value = NO;
+    value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroAvailable) atKey:kPPMotionManagerIsGyroAvailableValue  ];
     
     return value;
 }
 
 
 
-HOOKPrefixInstance(char, isAccelerometerAvailable) {
-    char actualValue = CALL_PREFIXED(self, isAccelerometerAvailable);
+HOOKPrefixInstance(BOOL, isAccelerometerAvailable) {
+    BOOL actualValue = CALL_PREFIXED(self, isAccelerometerAvailable);
     
-    __block char value = NO;
-      
-        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsAccelerometerAvailable) atKey:kPPMotionManagerIsAccelerometerAvailableValue  ];
-       
-    
+    BOOL value = NO;
+    value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsAccelerometerAvailable) atKey:kPPMotionManagerIsAccelerometerAvailableValue  ];
+
     return value;
 }
 
-HOOKPrefixInstance(char, isMagnetometerAvailable) {
-    char actualValue = CALL_PREFIXED(self, isMagnetometerAvailable);
+HOOKPrefixInstance(BOOL, isMagnetometerAvailable) {
+    BOOL actualValue = CALL_PREFIXED(self, isMagnetometerAvailable);
     
-    __block char value = NO;
+    BOOL value = NO;
       
         value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerAvailable) atKey:kPPMotionManagerIsMagnetometerAvailableValue  ];
        
@@ -298,10 +293,10 @@ HOOKPrefixInstance(char, isMagnetometerAvailable) {
     return value;
 }
 
-HOOKPrefixInstance(char, isDeviceMotionAvailable) {
-    char actualValue = CALL_PREFIXED(self, isDeviceMotionAvailable);
+HOOKPrefixInstance(BOOL, isDeviceMotionAvailable) {
+    BOOL actualValue = CALL_PREFIXED(self, isDeviceMotionAvailable);
     
-    __block char value = NO;
+    __block BOOL value = NO;
       
         value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionAvailable) atKey:kPPMotionManagerIsDeviceMotionAvailableValue  ];
        
@@ -310,22 +305,21 @@ HOOKPrefixInstance(char, isDeviceMotionAvailable) {
 }
 
 
-HOOKPrefixInstance(char, isGyroActive){
-    char actualValue = CALL_PREFIXED(self, isGyroActive);
+HOOKPrefixInstance(BOOL, isGyroActive){
+    BOOL actualValue = CALL_PREFIXED(self, isGyroActive);
     
-    __block char value = NO;
+    __block BOOL value = NO;
     
+    value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsGyroActiveValue  ];
       
-        value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsGyroActiveValue  ];
-       
-    
+
     return value;
 }
 
-HOOKPrefixInstance(char, isAccelerometerActive) {
-    char actualValue = CALL_PREFIXED(self, isAccelerometerActive);
+HOOKPrefixInstance(BOOL, isAccelerometerActive) {
+    BOOL actualValue = CALL_PREFIXED(self, isAccelerometerActive);
     
-    __block char value = NO;
+    __block BOOL value = NO;
     
       
         value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsGyroActive) atKey:kPPMotionManagerIsAccelerometerActiveValue  ];
@@ -334,10 +328,10 @@ HOOKPrefixInstance(char, isAccelerometerActive) {
     return value;
 }
 
-HOOKPrefixInstance(char, isMagnetometerActive) {
-    char actualValue = CALL_PREFIXED(self, isMagnetometerActive);
+HOOKPrefixInstance(BOOL, isMagnetometerActive) {
+    BOOL actualValue = CALL_PREFIXED(self, isMagnetometerActive);
     
-    __block char value = NO;
+    __block BOOL value = NO;
       
             value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsMagnetometerActive) atKey:kPPMotionManagerIsMagnetometerActiveValue  ];
        
@@ -345,9 +339,9 @@ HOOKPrefixInstance(char, isMagnetometerActive) {
     return value;
 }
 
-HOOKPrefixInstance(char, isDeviceMotionActive) {
-    char actualValue = CALL_PREFIXED(self, isDeviceMotionActive);
-    __block char value = NO;
+HOOKPrefixInstance(BOOL, isDeviceMotionActive) {
+    BOOL actualValue = CALL_PREFIXED(self, isDeviceMotionActive);
+    __block BOOL value = NO;
     
       
             value = [_mmDispatcher resultForBoolEventValue:actualValue ofIdentifier:PPEventIdentifierMake(PPMotionManagerEvent, EventMotionManagerIsDeviceMotionActive) atKey:kPPMotionManagerIsDeviceMotionActiveValue  ];

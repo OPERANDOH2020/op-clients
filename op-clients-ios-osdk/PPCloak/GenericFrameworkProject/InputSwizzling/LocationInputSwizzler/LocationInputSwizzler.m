@@ -55,7 +55,7 @@
     self.whenLocationsAreRequested = whenLocationsAreRequested;
     __weak typeof(self) weakSelf = self;
     
-    [eventsDispatcher insertAtTopNewHandler:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+    [eventsDispatcher appendNewEventHandler:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
         if (event.eventIdentifier.eventType != PPLocationManagerEvent) {
             SAFECALL(nextHandlerIfAny)
             return;

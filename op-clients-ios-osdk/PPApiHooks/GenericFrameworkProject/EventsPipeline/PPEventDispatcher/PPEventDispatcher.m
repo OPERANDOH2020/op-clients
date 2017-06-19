@@ -35,9 +35,9 @@
     return sharedInstance;
 }
 
--(NSString*)insertAtTopNewHandler:(EventHandler _Nonnull)eventHandler{
+-(NSString*)appendNewEventHandler:(EventHandler _Nonnull)eventHandler{
     
-    NSString *identifier = [NSString stringWithFormat:@"%ld", (unsigned long)self.handlersArray.count];
+    NSString *identifier = [NSString stringWithFormat:@"%u", arc4random()];
     IdentifiedHandler *ih = [[IdentifiedHandler alloc] initWithIdentifier:identifier handler:eventHandler];
     [self.handlersArray addObject:ih];
     return identifier;
@@ -93,7 +93,7 @@
 -(void)fireEventWithMaxOneTimeExecution:(PPEventIdentifier)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey      {
     
     
-    __block char didExecute = NO;
+    __block BOOL didExecute = NO;
     PPVoidBlock confirmation =  ^{
         if (didExecute) {
             return;
@@ -123,7 +123,7 @@
     return [event.eventData objectForKey:key] ;
 }
 
--(char)resultForBoolEventValue:(char)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key     {
+-(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key     {
     
     return [[self resultForEventValue:@(value) ofIdentifier:identifier atKey:key] boolValue];
 }

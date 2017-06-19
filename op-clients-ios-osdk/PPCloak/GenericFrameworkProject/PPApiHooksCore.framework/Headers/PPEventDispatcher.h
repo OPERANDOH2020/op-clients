@@ -14,7 +14,7 @@
 
 +(PPEventDispatcher* _Nonnull) sharedInstance;
 
--(NSString* _Nonnull)insertAtTopNewHandler:(EventHandler _Nonnull)eventHandler;
+-(NSString* _Nonnull)appendNewEventHandler:(EventHandler _Nonnull)eventHandler;
 
 -(void)removeHandlerWithIdentifier:(NSString* _Nonnull)identifier;
 
@@ -24,6 +24,6 @@
 
 -(id _Nullable)resultForEventValue:(id _Nonnull)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
 
--(char)resultForBoolEventValue:(char)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
+-(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString* _Nonnull)key;
 
 @end

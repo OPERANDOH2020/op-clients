@@ -19,7 +19,7 @@ PPEventDispatcher *_cnDispatcher;
 +(void)load {
     if (NSClassFromString(@"CNContactStore")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
-        [PPApiHooksStart registerHookedClass:self];
+        PPApiHooks_registerHookedClass(self);
     }
 }
 

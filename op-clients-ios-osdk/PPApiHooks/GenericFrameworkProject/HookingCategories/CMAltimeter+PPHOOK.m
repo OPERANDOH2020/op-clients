@@ -16,7 +16,7 @@ PPEventDispatcher *_altDispatcher;
 +(void)load{
     if (NSClassFromString(@"CMAltimeter")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
-        registerHookedClass(self);
+        PPApiHooks_registerHookedClass(self);
     }
 }
 
@@ -24,14 +24,13 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
     _altDispatcher = dispatcher;
 }
 
-HOOKPrefixClass(char, isRelativeAltitudeAvailable){
-    char result = CALL_PREFIXED(self, isRelativeAltitudeAvailable);
+HOOKPrefixClass(BOOL, isRelativeAltitudeAvailable){
+    BOOL result = CALL_PREFIXED(self, isRelativeAltitudeAvailable);
     
-    __block char value = NO;
     
+    BOOL value =  [_altDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterGetRelativeAltitudeAvailableValue) atKey:kPPAltimeterIsRelativeAltitudeVailableValue  ];
       
-        value =  [_altDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPCMAltimeterEvent, EventAltimeterGetRelativeAltitudeAvailableValue) atKey:kPPAltimeterIsRelativeAltitudeVailableValue  ];
-       
+    
     
     return value;
 }

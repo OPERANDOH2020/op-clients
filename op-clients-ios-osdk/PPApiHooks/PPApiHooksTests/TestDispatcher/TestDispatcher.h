@@ -12,7 +12,7 @@
 #define weak_XCTAssert(expression, ...) \
 _XCTPrimitiveAssertTrue(weakself, expression, @#expression, __VA_ARGS__)
 
-char doublesApproximatelyEqual(double a, double b);
+BOOL doublesApproximatelyEqual(double a, double b);
  
 
 @interface TestDispatcher : PPEventDispatcher

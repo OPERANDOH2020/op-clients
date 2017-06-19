@@ -35,7 +35,7 @@ LocationCallbackWithInfo _rsHookGlobalLocationCallback;
     
     __weak typeof(self) weakSelf = self;
     
-    [model.eventsDispatcher insertAtTopNewHandler:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+    [model.eventsDispatcher appendNewEventHandler:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
 
         PPEventType type = event.eventIdentifier.eventType;
         PPUnlistedInputAccessViolation *violationReport = nil;

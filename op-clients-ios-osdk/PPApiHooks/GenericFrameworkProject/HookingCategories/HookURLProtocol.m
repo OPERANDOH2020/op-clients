@@ -25,7 +25,7 @@ PPEventDispatcher *_urlDispatcher;
     [NSURLProtocol wk_registerScheme:@"http"];
     [NSURLProtocol wk_registerScheme:@"https"];
     
-    registerHookedClass(self);
+    PPApiHooks_registerHookedClass(self);
 }
 
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){

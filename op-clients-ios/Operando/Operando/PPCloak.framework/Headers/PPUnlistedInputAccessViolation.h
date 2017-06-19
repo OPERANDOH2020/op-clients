@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
+#import <PPCommonUI/PPCommonUI.h>
+#import <PPCommonTypes/PPCommonTypes.h>
 #import "BaseReportWithDate.h"
 
 

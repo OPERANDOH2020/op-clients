@@ -27,7 +27,7 @@
     self.proximitySensor = [CommonUtils extractInputOfType: InputType.Proximity from:model.scdDocument.accessedInputs];
     
     __weak typeof(self) weakSelf = self;    
-    [model.eventsDispatcher insertAtTopNewHandler:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
+    [model.eventsDispatcher appendNewEventHandler:^(PPEvent * _Nonnull event, NextHandlerConfirmation  _Nullable nextHandlerIfAny) {
         
         if (event.eventIdentifier.eventType == PPUIDeviceEvent) {
             [weakSelf processEvent:event withNextHandler:nextHandlerIfAny];

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
+#import <PPCommonTypes/PPCommonTypes.h>
 #import "PrivacyLevelAbuseDetector.h"
 #import "LocationHTTPAnalyzer.h"
 #import <PPApiHooksCore/PPApiHooksCore.h>

@@ -21,19 +21,19 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		98034A171EEAAF1400F99FF9 /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98034A161EEAAF1400F99FF9 /* PPApiHooksCore.framework */; };
 		98272F9C1EE6EE7300138D7A /* CNContactStore+PPHOOK.h in Headers */ = {isa = PBXBuildFile; fileRef = 98272F9A1EE6EE7300138D7A /* CNContactStore+PPHOOK.h */; };
 		98272F9D1EE6EE7300138D7A /* CNContactStore+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98272F9B1EE6EE7300138D7A /* CNContactStore+PPHOOK.m */; };
 		98584F411D3F9E18009FB89F /* PPContactApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPContactApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98620DF71EF7ECF200BF4673 /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DF61EF7ECF200BF4673 /* PPApiHooksCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		98034A161EEAAF1400F99FF9 /* PPApiHooksCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooksCore.framework; sourceTree = "<group>"; };
 		98272F9A1EE6EE7300138D7A /* CNContactStore+PPHOOK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CNContactStore+PPHOOK.h"; sourceTree = "<group>"; };
 		98272F9B1EE6EE7300138D7A /* CNContactStore+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CNContactStore+PPHOOK.m"; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PPContactApiHooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPContactApiHooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PPContactApiHooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPContactApiHooks.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98620DF61EF7ECF200BF4673 /* PPApiHooksCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooksCore.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98034A171EEAAF1400F99FF9 /* PPApiHooksCore.framework in Frameworks */,
+				98620DF71EF7ECF200BF4673 /* PPApiHooksCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +67,7 @@
 		98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */ = {
 			isa = PBXGroup;
 			children = (
-				98034A161EEAAF1400F99FF9 /* PPApiHooksCore.framework */,
+				98620DF61EF7ECF200BF4673 /* PPApiHooksCore.framework */,
 				98272F9A1EE6EE7300138D7A /* CNContactStore+PPHOOK.h */,
 				98272F9B1EE6EE7300138D7A /* CNContactStore+PPHOOK.m */,
 				98584F401D3F9E18009FB89F /* PPContactApiHooks.h */,

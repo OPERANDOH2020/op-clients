@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <PlusPrivacyCommonUI/PlusPrivacyCommonUI.h>
+#import <PPCommonUI/PPCommonUI.h>
 
 @interface UIViolationReportsSection : NSObject
 

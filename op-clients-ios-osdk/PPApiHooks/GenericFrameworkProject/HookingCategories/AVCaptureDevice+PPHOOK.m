@@ -21,7 +21,7 @@ PPEventDispatcher *_avDispatcher;
 +(void)load {
     if (NSClassFromString(@"AVCaptureDevice")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
-        registerHookedClass(self);
+        PPApiHooks_registerHookedClass(self);
     }
 }
 
@@ -88,8 +88,8 @@ HOOKPrefixInstance(NSString*, modelID){
     return value;
 }
 
-HOOKPrefixInstance(char, hasMediaType:(NSString *)mediaType){
-    char result = CALL_PREFIXED(self, hasMediaType: mediaType);
+HOOKPrefixInstance(BOOL, hasMediaType:(NSString *)mediaType){
+    BOOL result = CALL_PREFIXED(self, hasMediaType: mediaType);
     NSMutableDictionary *evData = [[NSMutableDictionary alloc] init];
     SAFEADD(evData, kPPCaptureDeviceMediaTypeValue, mediaType)
     evData[kPPCaptureDeviceHasMediaTypeResult] = @(result);
@@ -104,7 +104,7 @@ HOOKPrefixInstance(char, hasMediaType:(NSString *)mediaType){
 }
 
 
-HOOKPrefixInstance(char, lockForConfiguration:(NSError *__autoreleasing *)outError){
+HOOKPrefixInstance(BOOL, lockForConfiguration:(NSError *__autoreleasing *)outError){
     
     NSMutableDictionary *eventData = [[NSMutableDictionary alloc] init];
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceLockForConfiguration) eventData:eventData whenNoHandlerAvailable:nil];
@@ -121,7 +121,7 @@ HOOKPrefixInstance(char, lockForConfiguration:(NSError *__autoreleasing *)outErr
     return NO;
 }
 
-HOOKPrefixClass(char, supportsAVCaptureSessionPreset:(NSString *)preset){
+HOOKPrefixClass(BOOL, supportsAVCaptureSessionPreset:(NSString *)preset){
     NSMutableDictionary *eventData = [[NSMutableDictionary alloc] init];
     SAFEADD(eventData, kPPAVPresetValue, preset)
     
@@ -139,10 +139,10 @@ HOOKPrefixClass(char, supportsAVCaptureSessionPreset:(NSString *)preset){
 }
 
 
-HOOKPrefixInstance(char, isConnected){
-    char connected = CALL_PREFIXED(self, isConnected);
+HOOKPrefixInstance(BOOL, isConnected){
+    BOOL connected = CALL_PREFIXED(self, isConnected);
     
-    __block char value = NO;
+    __block BOOL value = NO;
       
         value = [_avDispatcher resultForBoolEventValue:connected ofIdentifier:PPEventIdentifierMake(PPAVCaptureDeviceEvent, EventCaptureDeviceGetIsConnected) atKey:kPPCaptureDeviceConfirmationBool  ];
        

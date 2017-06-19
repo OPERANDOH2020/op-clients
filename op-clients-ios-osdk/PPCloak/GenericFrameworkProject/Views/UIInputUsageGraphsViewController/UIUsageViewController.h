@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ReportsStorageProtocol.h"
-#import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
+#import <PPCommonTypes/PPCommonTypes.h>
 
 @interface UIUsageViewControllerCallbacks : NSObject
 @property (strong, nonatomic) void (^__nullable exitCallback)();

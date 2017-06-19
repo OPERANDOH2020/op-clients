@@ -33,7 +33,7 @@ NSMutableArray* getGlobalClassListArray(){
     return array;
 }
 
-void registerHookedClass(Class class){
+void PPApiHooks_registerHookedClass(Class class){
     
     NSMutableArray *array = getGlobalClassListArray();
     [array addObject:class];
@@ -41,7 +41,7 @@ void registerHookedClass(Class class){
     CALL_PREFIXED(class, setEventsDispatcher: sharedDispatcher);
 };
 
-char** createListOfCurrentlyRegisteredClassNames(int *nCount){
+char** PPApiHooks_createListOfCurrentlyRegisteredClassNames(int *nCount){
     
     NSMutableArray *array = getGlobalClassListArray();
     

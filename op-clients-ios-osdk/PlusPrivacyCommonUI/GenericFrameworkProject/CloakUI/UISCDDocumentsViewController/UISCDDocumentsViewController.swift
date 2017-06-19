@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PlusPrivacyCommonTypes
+import PPCommonTypes
 
 @objc
 public protocol SCDRepository {

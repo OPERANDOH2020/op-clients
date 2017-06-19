@@ -21,14 +21,14 @@ PPEventDispatcher *_devDispatcher;
 
 +(void)load{
     [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
-    registerHookedClass(self);
+    PPApiHooks_registerHookedClass(self);
 }
 
 HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher){
     _devDispatcher = dispatcher;
 }
 
-HOOKPrefixInstance(void, setProximityMonitoringEnabled:(char)enabled) {
+HOOKPrefixInstance(void, setProximityMonitoringEnabled:(BOOL)enabled) {
     
     __weak typeof(self) weakSelf = self;
     
@@ -53,7 +53,7 @@ HOOKPrefixInstance(void, setProximityMonitoringEnabled:(char)enabled) {
        
 }
 
-HOOKPrefixInstance(void, setProximitySensingEnabled:(char)enabled) {
+HOOKPrefixInstance(void, setProximitySensingEnabled:(BOOL)enabled) {
     
     __weak typeof(self) weakSelf = self;
     PPEventIdentifier eventType = PPEventIdentifierMake(PPUIDeviceEvent, EventDeviceSetProximitySensingEnabled);
@@ -76,9 +76,9 @@ HOOKPrefixInstance(void, setProximitySensingEnabled:(char)enabled) {
     
 }
 
-HOOKPrefixInstance(char, proximityState) {
+HOOKPrefixInstance(BOOL, proximityState) {
     
-    char actualProximityState = CALL_PREFIXED(self, proximityState);
+    BOOL actualProximityState = CALL_PREFIXED(self, proximityState);
     NSMutableDictionary *dict = [@{kPPDeviceProxmityStateValue: @(actualProximityState)} mutableCopy];
     
 

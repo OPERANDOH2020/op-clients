@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PlusPrivacyCommonTypes
+import PPCommonTypes
 
 public typealias VoidBlock = () -> Void
 

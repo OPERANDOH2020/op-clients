@@ -19,7 +19,7 @@ PPEventDispatcher *_pedDispatcher;
     
     if (NSClassFromString(@"CMPedometer")) {
         [self autoSwizzleMethodsWithThoseBeginningWith:PPHOOKPREFIX];
-        registerHookedClass(self);
+        PPApiHooks_registerHookedClass(self);
     }
     
 }
@@ -28,40 +28,40 @@ HOOKPrefixClass(void, setEventsDispatcher:(PPEventDispatcher*)dispatcher) {
     _pedDispatcher = dispatcher;
 }
 
-HOOKPrefixClass(char, isStepCountingAvailable){
-    char result = CALL_PREFIXED(self, isStepCountingAvailable);
+HOOKPrefixClass(BOOL, isStepCountingAvailable){
+    BOOL result = CALL_PREFIXED(self, isStepCountingAvailable);
     
     
-    char value = NO;
+    BOOL value = NO;
     
     value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetStepCountingAvailable) atKey:kPPPedometerIsStepCountingAvailableValue];
     
     return value;
 }
 
-HOOKPrefixClass(char, isDistanceAvailable){
-    char result = CALL_PREFIXED(self, isDistanceAvailable);
-    __block char value = NO;
+HOOKPrefixClass(BOOL, isDistanceAvailable){
+    BOOL result = CALL_PREFIXED(self, isDistanceAvailable);
+    __block BOOL value = NO;
     
     value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetDistanceAvailable) atKey:kPPPedometerIsDistanceAvailableValue ];
     
     return value;
 }
 
-HOOKPrefixClass(char, isFloorCountingAvailable) {
-    char result = CALL_PREFIXED(self, isFloorCountingAvailable);
+HOOKPrefixClass(BOOL, isFloorCountingAvailable) {
+    BOOL result = CALL_PREFIXED(self, isFloorCountingAvailable);
     
-    __block char value = NO;
+    __block BOOL value = NO;
     
         value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetFloorCountingAvailable) atKey:kPPPedometerIsFloorCountingAvailableValue  ];
     
     return value;
 }
 
-HOOKPrefixClass(char, isPaceAvailable){
-    char paceAv = CALL_PREFIXED(self, isPaceAvailable);
+HOOKPrefixClass(BOOL, isPaceAvailable){
+    BOOL paceAv = CALL_PREFIXED(self, isPaceAvailable);
     
-    __block char value = NO;
+    __block BOOL value = NO;
     
       
                 value =  [_pedDispatcher resultForBoolEventValue:paceAv ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetPaceAvailable) atKey:kPPPedometerIsPaceAvailableValue  ];
@@ -71,10 +71,10 @@ HOOKPrefixClass(char, isPaceAvailable){
 }
 
 
-HOOKPrefixClass(char, isCadenceAvailable){
-    char result = CALL_PREFIXED(self, isCadenceAvailable);
+HOOKPrefixClass(BOOL, isCadenceAvailable){
+    BOOL result = CALL_PREFIXED(self, isCadenceAvailable);
     
-    __block char value = NO;
+    __block BOOL value = NO;
       
         value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetCadenceAvailable) atKey:kPPPedometerIsCadenceAvailableValue  ];
        
@@ -82,10 +82,10 @@ HOOKPrefixClass(char, isCadenceAvailable){
     return value;
 }
 
-HOOKPrefixClass(char, isPedometerEventTrackingAvailable){
-    char result = CALL_PREFIXED(self, isPedometerEventTrackingAvailable);
+HOOKPrefixClass(BOOL, isPedometerEventTrackingAvailable){
+    BOOL result = CALL_PREFIXED(self, isPedometerEventTrackingAvailable);
     
-    __block char value = NO;
+    __block BOOL value = NO;
     
       
         value =  [_pedDispatcher resultForBoolEventValue:result ofIdentifier:PPEventIdentifierMake(PPPedometerEvent, EventPedometerGetEventTrackingAvailable) atKey:kPPPedometerIsEventTrackingAvailableValue  ];

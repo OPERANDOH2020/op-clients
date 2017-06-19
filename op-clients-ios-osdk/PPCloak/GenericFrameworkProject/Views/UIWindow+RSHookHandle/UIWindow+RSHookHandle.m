@@ -10,6 +10,11 @@
 #import "OPMonitor.h"
 #import "JRSwizzle.h"
 
+@interface OPMonitor(FrameworkPrivate)
++(OPMonitor*)sharedInstance;
+-(UIButton*)getHandle;
+@end
+
 @implementation UIWindow(rsHookHandle)
 
 static UIButton *handle = nil;

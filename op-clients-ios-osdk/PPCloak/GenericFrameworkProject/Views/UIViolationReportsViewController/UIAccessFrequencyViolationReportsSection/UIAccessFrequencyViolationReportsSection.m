@@ -8,7 +8,7 @@
 
 #import "UIAccessFrequencyViolationReportsSection.h"
 #import "ViolationReportCell.h"
-#import <PlusPrivacyCommonUI/PlusPrivacyCommonUI.h>
+#import <PPCommonTypes/PPCommonTypes.h>
 #import "Common.h"
 
 @interface UIAccessFrequencyViolationReportsSection()

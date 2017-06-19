@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <PlusPrivacyCommonUI/PlusPrivacyCommonUI-Swift.h>
-#import <PlusPrivacyCommonTypes/PlusPrivacyCommonTypes.h>
+#import <PPCommonUI/PPCommonUI.h>
+#import <PPCommonTypes/PPCommonTypes.h>
 #import "ReportsStorageProtocol.h"
 #import "OPMonitorSettings.h"
 #import "UILocationSettingsViewController.h"

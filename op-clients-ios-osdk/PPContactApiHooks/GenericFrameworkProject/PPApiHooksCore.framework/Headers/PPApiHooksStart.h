@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PPApiHooksStart : NSObject
 
-+(void)registerHookedClass:(Class)class; 
 
-@end
+void PPApiHooks_registerHookedClass(Class class);
+char** PPApiHooks_createListOfCurrentlyRegisteredClassNames(int *nCount);
+

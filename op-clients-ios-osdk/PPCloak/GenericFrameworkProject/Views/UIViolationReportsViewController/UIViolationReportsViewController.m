@@ -10,7 +10,7 @@
 #import "ViolationReportCell.h"
 #import "Common.h"
 #import "NSBundle+RSFrameworkHooks.h"
-#import <PlusPrivacyCommonUI/PlusPrivacyCommonUI.h>
+#import <PPCommonUI/PPCommonUI.h>
 #import "UIPrivacyLevelViolationReportsSection.h"
 #import "UIInputAccessViolationReportsSection.h"
 #import "UIHostAccessViolationReportsSection.h"

@@ -8,8 +8,8 @@
 
 import UIKit
 import WebKit
-import PlusPrivacyCommonUI
-import PlusPrivacyCommonTypes
+import PPCommonUI
+import PPCommonTypes
 
 let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
 let kPleaseCheckEmailResetLocalizableKey = "kPleaseCheckEmailResetLocalizableKey"

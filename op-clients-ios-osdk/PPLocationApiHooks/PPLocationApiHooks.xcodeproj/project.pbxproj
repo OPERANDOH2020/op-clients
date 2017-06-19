@@ -23,17 +23,17 @@
 /* Begin PBXBuildFile section */
 		98034A1C1EEABF1500F99FF9 /* CLLocationManager+PPHOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 98034A1A1EEABF1500F99FF9 /* CLLocationManager+PPHOOK.m */; };
 		98034A1D1EEABF1500F99FF9 /* CLLocationManager+PPHOOK.h in Headers */ = {isa = PBXBuildFile; fileRef = 98034A1B1EEABF1500F99FF9 /* CLLocationManager+PPHOOK.h */; };
-		98034A1F1EEABF1C00F99FF9 /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98034A1E1EEABF1C00F99FF9 /* PPApiHooksCore.framework */; };
 		98584F411D3F9E18009FB89F /* PPLocationApiHooks.h in Headers */ = {isa = PBXBuildFile; fileRef = 98584F401D3F9E18009FB89F /* PPLocationApiHooks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98620DF91EF7F0E100BF4673 /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DF81EF7F0E100BF4673 /* PPApiHooksCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		98034A1A1EEABF1500F99FF9 /* CLLocationManager+PPHOOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+PPHOOK.m"; sourceTree = "<group>"; };
 		98034A1B1EEABF1500F99FF9 /* CLLocationManager+PPHOOK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocationManager+PPHOOK.h"; sourceTree = "<group>"; };
-		98034A1E1EEABF1C00F99FF9 /* PPApiHooksCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooksCore.framework; sourceTree = "<group>"; };
 		98584F3D1D3F9E18009FB89F /* PPLocationApiHooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPLocationApiHooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98584F401D3F9E18009FB89F /* PPLocationApiHooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPLocationApiHooks.h; sourceTree = "<group>"; };
 		98584F421D3F9E18009FB89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98620DF81EF7F0E100BF4673 /* PPApiHooksCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooksCore.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98034A1F1EEABF1C00F99FF9 /* PPApiHooksCore.framework in Frameworks */,
+				98620DF91EF7F0E100BF4673 /* PPApiHooksCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +67,7 @@
 		98584F3F1D3F9E18009FB89F /* GenericFrameworkProject */ = {
 			isa = PBXGroup;
 			children = (
-				98034A1E1EEABF1C00F99FF9 /* PPApiHooksCore.framework */,
+				98620DF81EF7F0E100BF4673 /* PPApiHooksCore.framework */,
 				98034A1A1EEABF1500F99FF9 /* CLLocationManager+PPHOOK.m */,
 				98034A1B1EEABF1500F99FF9 /* CLLocationManager+PPHOOK.h */,
 				98584F401D3F9E18009FB89F /* PPLocationApiHooks.h */,
