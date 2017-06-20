@@ -10,6 +10,7 @@
 #import <iOSNM/iOSNM.h>
 #import <PPApiHooksCore/PPApiHooksCore.h>
 #import <Foundation/Foundation.h>
+#import "Strings.h"
 
 static inline void printErrorSwizzling(char *symbol, char *frameworkName, char *innocentFramework){
     
@@ -77,30 +78,50 @@ inline void checkForOtherFrameworks(){
     
     CFMutableArrayRef keysArray = CFArrayCreateMutable(kCFAllocatorDefault, 0, &kCFTypeArrayCallBacks);
     
-    CFArrayAppendValue(keysArray, CFSTR("NSContactsUsageDescription"));
-    CFArrayAppendValue(frameworksArray, CFSTR("PPContactsApiHook"));
+    CFArrayAppendValue(keysArray, NSContactsUsageDescription());
+    CFArrayAppendValue(frameworksArray, PPContactsApiHook());
     
-    CFArrayAppendValue(keysArray, CFSTR("NSLocationUsageDescription"));
-    CFArrayAppendValue(frameworksArray, CFSTR("PPLocationApiHooks"));
+    CFArrayAppendValue(keysArray, NSLocationAlwaysUsageDescription());
+    CFArrayAppendValue(frameworksArray, PPLocationApiHooks());
     
-    CFArrayAppendValue(keysArray, CFSTR("NSLocationWhenInUseUsageDescription"));
-    CFArrayAppendValue(frameworksArray, CFSTR("PPLocationApiHooks"));
+    CFArrayAppendValue(keysArray, NSLocationWhenInUseUsageDescription());
+    CFArrayAppendValue(frameworksArray, PPLocationApiHooks());
 
     //... more to insert here
     
     CFBundleRef bundle = CFBundleGetMainBundle();
-    CFDictionaryRef dict =  CFBundleGetInfoDictionary(bundle);
+    CFDictionaryRef plistDict =  CFBundleGetInfoDictionary(bundle);
+    
     
     const size_t bufferSize = 128;
     char frameworkNameBuffer[bufferSize];
     char keyNameBuffer[bufferSize];
     
     for (int i=0; i<CFArrayGetCount(keysArray); i++) {
-        //1. check if key in plist
-        //2. check if framework associated with key is loaded
-        //3. print error if any 
+        //1. check if key[i] is in the plist dictionary
+        //2. check if the framework associated with the key is loaded
+        //3. print error if any
+        
+        CFStringRef keyRef = CFArrayGetValueAtIndex(keysArray, i);
+        if (CFDictionaryGetValue(plistDict, keyRef)) {
+            
+            NSLog(@"Found for item at index: %d", i);
+            CFStringGetCString(keyRef, keyNameBuffer, bufferSize - 1, kCFStringEncodingUTF8);
+            
+            CFStringRef frameworkNameRef = CFArrayGetValueAtIndex(frameworksArray, i);
+            
+            CFStringGetCString(frameworkNameRef, frameworkNameBuffer, bufferSize - 1, kCFStringEncodingUTF8);
+            
+            int loadIndex = loadIndexOfFrameworkNamed(frameworkNameBuffer);
+            if (loadIndex < 0) {
+                printErrorForMissingFramework(frameworkNameBuffer, keyNameBuffer);
+            }
+        }
+        
     }
     
+    CFRelease(keysArray);
+    CFRelease(frameworksArray);
 }
 
 

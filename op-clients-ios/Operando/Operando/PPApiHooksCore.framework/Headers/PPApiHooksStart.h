@@ -10,6 +10,6 @@
 
 
 
-void registerHookedClass(Class class);
-char** createListOfCurrentlyRegisteredClassNames(int *nCount);
+void PPApiHooks_registerHookedClass(Class class);
+char** PPApiHooks_createListOfCurrentlyRegisteredClassNames(int *nCount);
 

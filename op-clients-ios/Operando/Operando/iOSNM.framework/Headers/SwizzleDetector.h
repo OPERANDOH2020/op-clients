@@ -25,4 +25,6 @@ typedef struct {
 void checkObjcSymbolsDefinedBeforeFramework(ObjcSymbolsDetectModel *ownedModel);
 SymbolInfoArray* createFilteredVariantOfOnlyObjcSymbolsFrom(SymbolInfoArray *unownedSymbolsArray);
 
+int loadIndexOfFrameworkNamed(const char *unownedFrameworkName);
+
 #endif /* SwizzleDetector_h */

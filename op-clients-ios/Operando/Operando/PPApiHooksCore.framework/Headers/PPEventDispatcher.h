@@ -14,7 +14,7 @@
 
 +(PPEventDispatcher* _Nonnull) sharedInstance;
 
--(NSString* _Nonnull)insertAtTopNewHandler:(EventHandler _Nonnull)eventHandler;
+-(NSString* _Nonnull)appendNewEventHandler:(EventHandler _Nonnull)eventHandler;
 
 -(void)removeHandlerWithIdentifier:(NSString* _Nonnull)identifier;
 

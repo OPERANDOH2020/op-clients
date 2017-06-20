@@ -66,6 +66,7 @@ void addStringInCStringArray(char *string, CStringArray *array){
 
 
 int findIndexOfStringIfAny(char *string, CStringArray *array){
+    
     for (int i=0; i<array->numOfStrings; i++) {
         if (strcmp(array->cStrings[i], string) == 0) {
             return i;

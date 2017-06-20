@@ -21,24 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
         window.makeKeyAndVisible()
         
-        
-//        OPMonitor.initializeMonitoring()
-//        
-//        print(Bundle(for: PPEvent.self))
-//        
-//        let address: String = "\(Bundle.main.privateFrameworksPath!)/PPApiHooksCore.framework/PPApiHooksCore"
-//        
-//        if let context = retrieveSymbolsFromFile(address){
-//            for i in 0 ..< context.pointee.numberOfSymbols {
-//                if let symbolInfoPtr = context.pointee.currentSymbols.advanced(by: Int(i)).pointee {
-//                    printSymbolInfo(symbolInfoPtr)
-//                }
-//                
-//            }
-//            
-//            releaseSymbolsContext(context)
-//        }
-//        
         return true
         
     }

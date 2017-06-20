@@ -35,7 +35,8 @@ class WebAdBlocker: NSObject {
                 PPEventDispatcher.sharedInstance().removeHandler(withIdentifier: identifier)
             }
             
-            PPEventDispatcher.sharedInstance().insert(atTopNewHandler: { (event, next) in
+            
+            PPEventDispatcher.sharedInstance().appendNewEventHandler({ (event, next) in
                 defer {
                     next?()
                 }

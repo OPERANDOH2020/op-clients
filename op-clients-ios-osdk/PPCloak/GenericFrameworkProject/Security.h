@@ -14,5 +14,6 @@
 
 extern inline void checkNoSwizzlingForApiHooks();
 extern inline void checkNoSwizzlingForOPMonitor();
-
+extern inline void checkForOtherFrameworks();
+extern inline void printErrorForMissingFramework(char *missingFramework, char *key);
 #endif /* Security_h */
