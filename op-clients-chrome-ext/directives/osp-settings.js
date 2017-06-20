@@ -5,14 +5,11 @@ angular.module('osp', ['cfp.loadingBar'])
 
         function generateAngularForm(ospname, callback) {
 
-            messengerService.send("getUserSocialPreferences", ospname, function(response){
+            messengerService.send("getUserPreferences", ospname, function(response){
 
                 if(response.status === "success"){
                         var schemaCompleted = completeForm(response.data);
                         callback (schemaCompleted);
-                }
-                else{
-
                 }
             });
 

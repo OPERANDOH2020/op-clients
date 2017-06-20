@@ -370,17 +370,15 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
     })
     .run(["firstRunService","subscriptionsService", "$ocLazyLoad", function(firstRunService, subscriptionsService, $ocLazyLoad){
 
-        firstRunService.onFirstRun(function(){
-
-            subscriptionsService.getFeatureSubscriptions(function (subscriptions) {
-                $ocLazyLoad.load(
-                    ['../ext/common.js',
-                        '../ext/content.js',
-                        'util/hooks.js'
-                    ]).then(function () {
-
+        $ocLazyLoad.load(
+            ['../ext/common.js',
+                '../ext/content.js',
+                'util/hooks.js'
+            ]).then(function () {
+            subscriptionsService.init();
+            firstRunService.onFirstRun(function(){
+                subscriptionsService.getFeatureSubscriptions(function (subscriptions) {
                     subscriptions.forEach(function (subscription) {
-
                         ext.backgroundPage.sendMessage({
                             type: "subscriptions.toggle",
                             url: subscription.url,
@@ -396,8 +394,11 @@ angular.module('operando', ['extensions', 'identities', 'pfbdeals', 'singleClick
                     });
                 });
             });
+
         });
-    }])
+
+    }]);
+
 
 
 

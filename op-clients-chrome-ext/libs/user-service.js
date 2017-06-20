@@ -46,29 +46,29 @@ var userService = exports.userService = {
             callback();
         }, true);
     },
-    getUserSocialPreferences:function(socialNetwork,success_callback, error_callback){
-        var getUserSocialPreferencesHandler =  swarmHub.startSwarm("SocialPreferences.js","getPreferences",socialNetwork);
-        getUserSocialPreferencesHandler.onResponse("success", function(response){
+    getUserPreferences:function(preference_key,success_callback, error_callback){
+        var getUserPreferencesHandler =  swarmHub.startSwarm("UserPreferences.js","getPreferences",preference_key);
+        getUserPreferencesHandler.onResponse("success", function(response){
             success_callback(response.preferences);
         });
 
-        getUserSocialPreferencesHandler.onResponse("failed", function(response){
+        getUserPreferencesHandler.onResponse("failed", function(response){
             error_callback(response.error);
         })
     },
 
-    saveUserSocialPreferences:function(data, success_callback, error_callback){
-        var saveUserSocialPreferencesHandler =  swarmHub.startSwarm("SocialPreferences.js","saveOrUpdatePreferences",data.socialNetwork, data.preferences);
-        saveUserSocialPreferencesHandler.onResponse("success", function(response){
+    saveUserPreferences:function(data, success_callback, error_callback){
+        var saveUserPreferencesHandler =  swarmHub.startSwarm("UserPreferences.js","saveOrUpdatePreferences",data.preferenceKey, data.preferences);
+        saveUserPreferencesHandler.onResponse("success", function(response){
             success_callback(response.preferences);
         });
 
-        saveUserSocialPreferencesHandler.onResponse("failed", function(response){
+        saveUserPreferencesHandler.onResponse("failed", function(response){
             error_callback(response.error);
         })
     },
     removePreferences:function(preferenceKey, success_callback, error_callback){
-        var removePreferencesHandler = swarmHub.startSwarm("SocialPreferences.js","removePreferences",preferenceKey);
+        var removePreferencesHandler = swarmHub.startSwarm("UserPreferences.js","removePreferences",preferenceKey);
         removePreferencesHandler.onResponse("success", function(response){
             success_callback(response);
         });

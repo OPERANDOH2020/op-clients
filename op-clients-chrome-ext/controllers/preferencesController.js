@@ -174,8 +174,8 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
                         })
                     }
 
-                    messengerService.send("saveUserSocialPreferences", {
-                        socialNetwork: $scope.socialNetwork,
+                    messengerService.send("saveUserPreferences", {
+                        preferenceKey: $scope.socialNetwork,
                         preferences: preferences
                     }, function () {
                     });
