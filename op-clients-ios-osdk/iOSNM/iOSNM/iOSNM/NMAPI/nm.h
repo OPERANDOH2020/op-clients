@@ -11,5 +11,9 @@
 
 #include "SymbolInfo.h"
 
-SymbolInfoArray* retrieveSymbolsFromFile(const char* filePath);
+
+typedef SymbolInfoArray* (*SymbolsProviderFromFile)(const char* filePath);
+
+extern SymbolsProviderFromFile retrieveSymbolsFromFile;
+//SymbolInfoArray* retrieveSymbolsFromFile(const char* filePath);
 #endif /* nm_h */

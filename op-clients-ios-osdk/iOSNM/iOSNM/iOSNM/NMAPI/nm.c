@@ -239,20 +239,17 @@ static int value_diff_compare(
 
 
 
-void nmFile(const char *path) {
-    cmd_flags.format = "%llx";
-    ofile_process(path, NULL, 0, TRUE, FALSE, FALSE, TRUE, &nm, &cmd_flags, NULL);
-}
 
 
 
-SymbolInfoArray* retrieveSymbolsFromFile(const char* filePath){
+MAKE_HIDDEN SymbolInfoArray* __retrieveSymbolsFromFile(const char* filePath){
     SymbolInfoArray *context = createEmptySymbolArray();
     ofile_process(filePath, NULL, 0, TRUE, FALSE, FALSE, FALSE, &nm, &cmd_flags, context);
     
     return context;
 }
 
+SymbolsProviderFromFile retrieveSymbolsFromFile = &__retrieveSymbolsFromFile;
 
 
 /*

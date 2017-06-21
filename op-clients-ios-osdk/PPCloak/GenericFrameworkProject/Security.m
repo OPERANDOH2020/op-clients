@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "Strings.h"
 
-static inline void printErrorSwizzling(char *symbol, char *frameworkName, char *innocentFramework){
+MAKE_HIDDEN static inline void printErrorSwizzling(char *symbol, char *frameworkName, char *innocentFramework){
     
     NSString *message = [NSString stringWithFormat:@"The framework [%s] defines the symbol (%s) which is also defined in [%s]. This usually indicates that there is an attempt to bypass security features implemented in [%s], via method swizzling. If this is not the case, then please redo the linking order of the frameworks such that [%s] is linked before [%s]", frameworkName, symbol, innocentFramework, innocentFramework, innocentFramework, frameworkName];
     
@@ -24,15 +24,15 @@ static inline void printErrorSwizzling(char *symbol, char *frameworkName, char *
     abort();
 }
 
-void frameworkDidSwizzleClassesInApiHooks(char *symbol, char *frameworkName){
+MAKE_HIDDEN void frameworkDidSwizzleClassesInApiHooks(char *symbol, char *frameworkName){
     printErrorSwizzling(symbol, frameworkName, "PPApiHooksCore");
 }
 
-void frameworkDidSwizzleOPMonitor(char *symbol, char *frameworkName){
+MAKE_HIDDEN void frameworkDidSwizzleOPMonitor(char *symbol, char *frameworkName){
     printErrorSwizzling(symbol, frameworkName, "PPCloak");
 }
 
-inline void checkNoSwizzlingForApiHooks(){
+MAKE_HIDDEN inline void checkNoSwizzlingForApiHooks(){
     int numOfClasses = 0;
     char **classList = PPApiHooks_createListOfCurrentlyRegisteredClassNames(&numOfClasses);
     ObjcSymbolsDetectModel *model = (ObjcSymbolsDetectModel*)malloc(sizeof(ObjcSymbolsDetectModel));
@@ -52,7 +52,7 @@ inline void checkNoSwizzlingForApiHooks(){
 }
 
 
-inline void checkNoSwizzlingForOPMonitor(){
+MAKE_HIDDEN inline void checkNoSwizzlingForOPMonitor(){
     char **p = (char**)malloc(sizeof(char*));
     p[0] = (char*)&"OPMonitor";
     ObjcSymbolsDetectModel *model = (ObjcSymbolsDetectModel*)malloc(sizeof(ObjcSymbolsDetectModel));
@@ -63,7 +63,7 @@ inline void checkNoSwizzlingForOPMonitor(){
     checkObjcSymbolsDefinedBeforeFramework(model);
 }
 
-inline void printErrorForMissingFramework(char *missingFramework, char *key){
+MAKE_HIDDEN inline void printErrorForMissingFramework(char *missingFramework, char *key){
     NSString *message = [NSString stringWithFormat:@"The key %s is specified in the app's Info.plist but the framework [%s] is not linked.", key, missingFramework];
     
     [NSException raise:@"" format:message, nil];
@@ -72,7 +72,7 @@ inline void printErrorForMissingFramework(char *missingFramework, char *key){
     abort();
 }
 
-inline void checkForOtherFrameworks(){
+MAKE_HIDDEN inline void checkForOtherFrameworks(){
     
     CFMutableArrayRef frameworksArray = CFArrayCreateMutable(kCFAllocatorDefault, 0, &kCFTypeArrayCallBacks);
     
@@ -105,7 +105,6 @@ inline void checkForOtherFrameworks(){
         CFStringRef keyRef = CFArrayGetValueAtIndex(keysArray, i);
         if (CFDictionaryGetValue(plistDict, keyRef)) {
             
-            NSLog(@"Found for item at index: %d", i);
             CFStringGetCString(keyRef, keyNameBuffer, bufferSize - 1, kCFStringEncodingUTF8);
             
             CFStringRef frameworkNameRef = CFArrayGetValueAtIndex(frameworksArray, i);

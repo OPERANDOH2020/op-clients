@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		980635631EFA642B0004527B /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980635611EFA640F0004527B /* PPCloak.framework */; };
+		980635641EFA642B0004527B /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 980635611EFA640F0004527B /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		980635651EFA642B0004527B /* PPCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980635591EFA64070004527B /* PPCommonUI.framework */; };
+		980635661EFA642B0004527B /* PPCommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 980635591EFA64070004527B /* PPCommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		980635671EFA642B0004527B /* PPCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355A1EFA64070004527B /* PPCommonTypes.framework */; };
+		980635681EFA642B0004527B /* PPCommonTypes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355A1EFA64070004527B /* PPCommonTypes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		980635691EFA642B0004527B /* iOSNM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355B1EFA64070004527B /* iOSNM.framework */; };
+		9806356A1EFA642B0004527B /* iOSNM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355B1EFA64070004527B /* iOSNM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9806356B1EFA642B0004527B /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355C1EFA64070004527B /* PPApiHooksCore.framework */; };
+		9806356C1EFA642B0004527B /* PPApiHooksCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355C1EFA64070004527B /* PPApiHooksCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */; };
 		9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */; };
 		982227551DC8EBD40053B993 /* UILocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982227541DC8EBD40053B993 /* UILocalizable.swift */; };
@@ -62,10 +72,6 @@
 		9852C7031CD1191B00AF2BE5 /* UIRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */; };
 		9852C7061CD1197D00AF2BE5 /* UIDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */; };
 		9852C7091CD119FD00AF2BE5 /* UINavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */; };
-		985810BA1EF9388A000EBF6B /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985810B91EF9388A000EBF6B /* PPApiHooksCore.framework */; };
-		985810BC1EF93895000EBF6B /* PPApiHooksCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 985810B91EF9388A000EBF6B /* PPApiHooksCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		985810BE1EF93916000EBF6B /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 985810B51EF9380A000EBF6B /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		985810BF1EF93A6A000EBF6B /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985810B51EF9380A000EBF6B /* PPCloak.framework */; };
 		985A0D461DCCB0E40010C799 /* Dictionary_Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D3F1DCCB0E40010C799 /* Dictionary_Initializers.swift */; };
 		985A0D471DCCB0E40010C799 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D401DCCB0E40010C799 /* Locksmith.swift */; };
 		985A0D481DCCB0E40010C799 /* LocksmithAccessibleOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D411DCCB0E40010C799 /* LocksmithAccessibleOption.swift */; };
@@ -77,12 +83,6 @@
 		9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9860B4541DB136C600AFE113 /* UIIdentitiesListView.xib */; };
 		98620DE81EF7E6CE00BF4673 /* PPWebContentBlocker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DE61EF7E5D900BF4673 /* PPWebContentBlocker.framework */; };
 		98620DE91EF7E6CE00BF4673 /* PPWebContentBlocker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DE61EF7E5D900BF4673 /* PPWebContentBlocker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		98620DEA1EF7E6CE00BF4673 /* PPCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DE41EF7E5C500BF4673 /* PPCommonTypes.framework */; };
-		98620DEB1EF7E6CE00BF4673 /* PPCommonTypes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DE41EF7E5C500BF4673 /* PPCommonTypes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		98620DF01EF7E6CE00BF4673 /* iOSNM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DDE1EF7E59100BF4673 /* iOSNM.framework */; };
-		98620DF11EF7E6CE00BF4673 /* iOSNM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DDE1EF7E59100BF4673 /* iOSNM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		98620DF21EF7E6CE00BF4673 /* PPCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DDC1EF7E58400BF4673 /* PPCommonUI.framework */; };
-		98620DF31EF7E6CE00BF4673 /* PPCommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DDC1EF7E58400BF4673 /* PPCommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9863E8B01DEC28F50095CA30 /* IdentitiesManagementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8AF1DEC28F50095CA30 /* IdentitiesManagementRepository.swift */; };
 		98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B4D1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m */; };
 		98668B5A1DB0D0D900FDE63A /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B4F1DB0D0D800FDE63A /* ECSlidingAnimationController.m */; };
@@ -191,14 +191,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				980635661EFA642B0004527B /* PPCommonUI.framework in Embed Frameworks */,
+				980635681EFA642B0004527B /* PPCommonTypes.framework in Embed Frameworks */,
 				98D9A5A01EF4245500973A02 /* SwizzleTestFramework.framework in Embed Frameworks */,
-				98620DEB1EF7E6CE00BF4673 /* PPCommonTypes.framework in Embed Frameworks */,
+				9806356C1EFA642B0004527B /* PPApiHooksCore.framework in Embed Frameworks */,
 				98620DE91EF7E6CE00BF4673 /* PPWebContentBlocker.framework in Embed Frameworks */,
-				985810BC1EF93895000EBF6B /* PPApiHooksCore.framework in Embed Frameworks */,
 				983D601B1EF1409600A34EB1 /* SwarmClient.framework in Embed Frameworks */,
-				98620DF11EF7E6CE00BF4673 /* iOSNM.framework in Embed Frameworks */,
-				98620DF31EF7E6CE00BF4673 /* PPCommonUI.framework in Embed Frameworks */,
-				985810BE1EF93916000EBF6B /* PPCloak.framework in Embed Frameworks */,
+				980635641EFA642B0004527B /* PPCloak.framework in Embed Frameworks */,
+				9806356A1EFA642B0004527B /* iOSNM.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +206,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		980635591EFA64070004527B /* PPCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCommonUI.framework; sourceTree = "<group>"; };
+		9806355A1EFA64070004527B /* PPCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCommonTypes.framework; sourceTree = "<group>"; };
+		9806355B1EFA64070004527B /* iOSNM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSNM.framework; sourceTree = "<group>"; };
+		9806355C1EFA64070004527B /* PPApiHooksCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooksCore.framework; sourceTree = "<group>"; };
+		980635611EFA640F0004527B /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
 		9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAddIdentityAlertViewController.swift; path = UserInterface/UIAddIdentityAlertViewController/UIAddIdentityAlertViewController.swift; sourceTree = "<group>"; };
 		9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UtilityControllers.storyboard; sourceTree = "<group>"; };
 		982227541DC8EBD40053B993 /* UILocalizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILocalizable.swift; path = UserInterface/UILocalizableLabel/UILocalizable.swift; sourceTree = "<group>"; };
@@ -270,8 +275,6 @@
 		9852C7021CD1191B00AF2BE5 /* UIRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRootViewController.swift; path = UserInterface/UIRootViewController/UIRootViewController.swift; sourceTree = "<group>"; };
 		9852C7051CD1197D00AF2BE5 /* UIDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDashboardViewController.swift; path = UserInterface/UIDashboardViewController/UIDashboardViewController.swift; sourceTree = "<group>"; };
 		9852C7081CD119FD00AF2BE5 /* UINavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINavigationManager.swift; path = UserInterface/UINavigationManager/UINavigationManager.swift; sourceTree = "<group>"; };
-		985810B51EF9380A000EBF6B /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
-		985810B91EF9388A000EBF6B /* PPApiHooksCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooksCore.framework; sourceTree = "<group>"; };
 		985A0D3F1DCCB0E40010C799 /* Dictionary_Initializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary_Initializers.swift; sourceTree = "<group>"; };
 		985A0D401DCCB0E40010C799 /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
 		985A0D411DCCB0E40010C799 /* LocksmithAccessibleOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithAccessibleOption.swift; sourceTree = "<group>"; };
@@ -282,9 +285,6 @@
 		985A0D4E1DCCB0F70010C799 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsRepository.swift; path = NotificationsRepository/NotificationsRepository.swift; sourceTree = "<group>"; };
 		9860B4541DB136C600AFE113 /* UIIdentitiesListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIIdentitiesListView.xib; path = UserInterface/UIIdentityManagementViewController/UIIdentitiesListView/UIIdentitiesListView.xib; sourceTree = "<group>"; };
-		98620DDC1EF7E58400BF4673 /* PPCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCommonUI.framework; sourceTree = "<group>"; };
-		98620DDE1EF7E59100BF4673 /* iOSNM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSNM.framework; sourceTree = "<group>"; };
-		98620DE41EF7E5C500BF4673 /* PPCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCommonTypes.framework; sourceTree = "<group>"; };
 		98620DE61EF7E5D900BF4673 /* PPWebContentBlocker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPWebContentBlocker.framework; sourceTree = "<group>"; };
 		9863E8AF1DEC28F50095CA30 /* IdentitiesManagementRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentitiesManagementRepository.swift; sourceTree = "<group>"; };
 		98668B4C1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
@@ -411,13 +411,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98620DF21EF7E6CE00BF4673 /* PPCommonUI.framework in Frameworks */,
 				98620DE81EF7E6CE00BF4673 /* PPWebContentBlocker.framework in Frameworks */,
-				98620DEA1EF7E6CE00BF4673 /* PPCommonTypes.framework in Frameworks */,
-				985810BA1EF9388A000EBF6B /* PPApiHooksCore.framework in Frameworks */,
-				98620DF01EF7E6CE00BF4673 /* iOSNM.framework in Frameworks */,
+				980635671EFA642B0004527B /* PPCommonTypes.framework in Frameworks */,
+				980635631EFA642B0004527B /* PPCloak.framework in Frameworks */,
 				98D9A59F1EF4245500973A02 /* SwizzleTestFramework.framework in Frameworks */,
-				985810BF1EF93A6A000EBF6B /* PPCloak.framework in Frameworks */,
+				980635651EFA642B0004527B /* PPCommonUI.framework in Frameworks */,
+				9806356B1EFA642B0004527B /* PPApiHooksCore.framework in Frameworks */,
+				980635691EFA642B0004527B /* iOSNM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,12 +514,12 @@
 		982D31601E84252F00FE2FB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				985810B91EF9388A000EBF6B /* PPApiHooksCore.framework */,
-				985810B51EF9380A000EBF6B /* PPCloak.framework */,
+				980635611EFA640F0004527B /* PPCloak.framework */,
+				980635591EFA64070004527B /* PPCommonUI.framework */,
+				9806355A1EFA64070004527B /* PPCommonTypes.framework */,
+				9806355B1EFA64070004527B /* iOSNM.framework */,
+				9806355C1EFA64070004527B /* PPApiHooksCore.framework */,
 				98620DE61EF7E5D900BF4673 /* PPWebContentBlocker.framework */,
-				98620DE41EF7E5C500BF4673 /* PPCommonTypes.framework */,
-				98620DDE1EF7E59100BF4673 /* iOSNM.framework */,
-				98620DDC1EF7E58400BF4673 /* PPCommonUI.framework */,
 				98D9A59D1EF4244800973A02 /* SwizzleTestFramework.framework */,
 			);
 			name = Frameworks;

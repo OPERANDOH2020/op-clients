@@ -10,6 +10,7 @@
 #define SymbolInfo_h
 
 #include <stdio.h>
+#define MAKE_HIDDEN __attribute__((visibility("hidden")))
 
 
 typedef enum {
@@ -41,13 +42,13 @@ typedef struct {
 void printSymbolInfo(NMSymbolInfo *unownedInfo);
 void releaseSymbolInfoArray(SymbolInfoArray *unownedArray);
 
-NMSymbolInfo* createEmptySymbolInfo();
-SymbolInfoArray* createEmptySymbolArray();
-NMSymbolInfo* deepCopySymbolInfo(NMSymbolInfo *unownedInfo);
-void addSymbolInfoPointer(NMSymbolInfo *unownedInfo, SymbolInfoArray *unownedArray);
+MAKE_HIDDEN NMSymbolInfo* createEmptySymbolInfo();
+MAKE_HIDDEN SymbolInfoArray* createEmptySymbolArray();
+MAKE_HIDDEN NMSymbolInfo* deepCopySymbolInfo(NMSymbolInfo *unownedInfo);
+MAKE_HIDDEN void addSymbolInfoPointer(NMSymbolInfo *unownedInfo, SymbolInfoArray *unownedArray);
 
 
-char* copyOfString(char *string);
+MAKE_HIDDEN char* copyOfString(char *string);
 
 
 #endif /* SymbolInfo_h */

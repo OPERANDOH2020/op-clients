@@ -46,7 +46,7 @@ typedef struct {
 
 
 
-CStringArray* createEmptyCStringArray(){
+MAKE_HIDDEN CStringArray* createEmptyCStringArray(){
     CStringArray *p = malloc(sizeof(CStringArray));
     p->bufferSize = 16;
     p->cStrings = malloc(p->bufferSize * sizeof(char*));
@@ -54,7 +54,7 @@ CStringArray* createEmptyCStringArray(){
     return p;
 }
 
-void addStringInCStringArray(char *string, CStringArray *array){
+MAKE_HIDDEN void addStringInCStringArray(char *string, CStringArray *array){
     if (array->bufferSize == array->numOfStrings) {
         array->bufferSize *= 2;
         array->cStrings = realloc(array->cStrings, array->bufferSize);
@@ -65,7 +65,7 @@ void addStringInCStringArray(char *string, CStringArray *array){
 }
 
 
-int findIndexOfStringIfAny(char *string, CStringArray *array){
+MAKE_HIDDEN int findIndexOfStringIfAny(char *string, CStringArray *array){
     
     for (int i=0; i<array->numOfStrings; i++) {
         if (strcmp(array->cStrings[i], string) == 0) {
@@ -80,7 +80,7 @@ int findIndexOfStringIfAny(char *string, CStringArray *array){
 
 
 
-SymbolInfoMatrix* createEmptyMatrix() {
+MAKE_HIDDEN SymbolInfoMatrix* createEmptyMatrix() {
     
     SymbolInfoMatrix *matrix = malloc(sizeof(SymbolInfoMatrix));
     matrix->bufferSize = 16;
@@ -90,7 +90,7 @@ SymbolInfoMatrix* createEmptyMatrix() {
     return matrix;
 }
 
-void addArrayInMatrix(SymbolInfoArray *array, SymbolInfoMatrix *matrix){
+MAKE_HIDDEN void addArrayInMatrix(SymbolInfoArray *array, SymbolInfoMatrix *matrix){
     if (matrix->numOfArrays == matrix->bufferSize) {
         matrix->bufferSize *= 2;
         matrix->arrayList = realloc(matrix->arrayList, matrix->bufferSize);
@@ -103,7 +103,7 @@ void addArrayInMatrix(SymbolInfoArray *array, SymbolInfoMatrix *matrix){
 
 
 
-DetectModelsArray *createEmptyDetectModelsArray(){
+MAKE_HIDDEN DetectModelsArray *createEmptyDetectModelsArray(){
     DetectModelsArray *p = malloc(sizeof(DetectModelsArray));
     p->bufferSize = 16;
     p->modelsList = malloc(p->bufferSize * sizeof(ObjcSymbolsDetectModel*));
@@ -112,7 +112,7 @@ DetectModelsArray *createEmptyDetectModelsArray(){
     return p;
 }
 
-void addDetectModelInArray(ObjcSymbolsDetectModel *context, DetectModelsArray *array){
+MAKE_HIDDEN void addDetectModelInArray(ObjcSymbolsDetectModel *context, DetectModelsArray *array){
     
     if (array->bufferSize == array->numOfModels) {
         array->bufferSize *= 2;
@@ -123,7 +123,7 @@ void addDetectModelInArray(ObjcSymbolsDetectModel *context, DetectModelsArray *a
     array->numOfModels += 1;
 }
 
-DetectContext *getGlobalDetectContext() {
+MAKE_HIDDEN DetectContext *getGlobalDetectContext() {
     static DetectContext *context = NULL;
     if (!context) {
         context = malloc(sizeof(DetectContext));
@@ -135,7 +135,7 @@ DetectContext *getGlobalDetectContext() {
 }
 
 
-char *extractLastPathItem(const char *path){
+MAKE_HIDDEN char *extractLastPathItem(const char *path){
     if (!path) {
         return NULL;
     }
@@ -174,7 +174,7 @@ SymbolInfoArray* createFilteredVariantOfOnlyObjcSymbolsFrom(SymbolInfoArray *uno
 }
 
 
-char* checkAnyObjcSymbolContainedInSymbol(ObjcSymbolsDetectModel *detectModel, NMSymbolInfo *info){
+MAKE_HIDDEN char* checkAnyObjcSymbolContainedInSymbol(ObjcSymbolsDetectModel *detectModel, NMSymbolInfo *info){
     
     for (int i=0; i<detectModel->numOfObjcSymbols; i++) {
         char *currentObjcSymbol = detectModel->objcSymbolsToCheck[i];
@@ -186,7 +186,7 @@ char* checkAnyObjcSymbolContainedInSymbol(ObjcSymbolsDetectModel *detectModel, N
     return NULL;
 }
 
-void checkAgainstFrameworkSymbols(ObjcSymbolsDetectModel *detectModel, SymbolInfoArray* symbolInfoArray, char *frameworkName){
+MAKE_HIDDEN void checkAgainstFrameworkSymbols(ObjcSymbolsDetectModel *detectModel, SymbolInfoArray* symbolInfoArray, char *frameworkName){
     
     for (int i=0; i<symbolInfoArray->numberOfSymbols; i++) {
         NMSymbolInfo *currentSymbolInfo = symbolInfoArray->currentSymbols[i];
@@ -200,7 +200,7 @@ void checkAgainstFrameworkSymbols(ObjcSymbolsDetectModel *detectModel, SymbolInf
 
 
 
-void processNewlyLoadedSymbols(SymbolInfoArray *symbolsArray, char *frameworkName, DetectContext *detectContext){
+MAKE_HIDDEN void processNewlyLoadedSymbols(SymbolInfoArray *symbolsArray, char *frameworkName, DetectContext *detectContext){
     
     //Whenever a library has just been loaded, we need to loop through the existing models
     //and check if their libraries are already loaded. If not, then it's possible the current
@@ -244,7 +244,7 @@ void checkObjcSymbolsDefinedBeforeFramework(ObjcSymbolsDetectModel *ownedModel) 
     
 }
 
-void dylibListener(const struct mach_header* mh, intptr_t vmaddr_slide){
+MAKE_HIDDEN void dylibListener(const struct mach_header* mh, intptr_t vmaddr_slide){
     
     const intptr_t spot = sizeof(struct mach_header_64) + mh->sizeofcmds;
     intptr_t address = spot + vmaddr_slide;
@@ -267,6 +267,6 @@ void dylibListener(const struct mach_header* mh, intptr_t vmaddr_slide){
 }
 
 __attribute__((constructor))
-void registerListener() {
+MAKE_HIDDEN void registerListener() {
     _dyld_register_func_for_add_image(&dylibListener);
 }
