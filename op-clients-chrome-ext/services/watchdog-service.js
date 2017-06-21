@@ -31,8 +31,14 @@ operandoCore
                         "__a": null,
                         "fb_dtsg": null,
                         "__user": null,
-                        "ttstamp": null,
-                        "__rev": null
+                        "__af": null,
+                        "__rev": null,
+                        "jazoest":null,
+                        "__spin_r":null,
+                        "__spin_b":null,
+                        "__spin_t":null,
+                        "__be":null,
+                        "__pc":null
                     }
                 }, function (response) {
                     messengerService.send("insertFacebookIncreasePrivacyScript", {
