@@ -13,34 +13,17 @@ angular.module('osp', ['cfp.loadingBar'])
                 }
             });
 
-
-            function getNameFromIndexProperty(index){
-                for (var v in ospSettingsConfig[ospname]) {
-                    var conf = ospSettingsConfig[ospname][v];
-                    for(var prop in conf['read']['availableSettings']){
-                        if(conf['read']['availableSettings'][prop]['index'] == index){
-                            return prop;
-                        }
-                    }
-                }
-
-            }
-
-
             function completeForm(preferences){
-
                 console.log(preferences);
 
                 var hasPreferences  = preferences.length > 0;
                 if(hasPreferences){
                     var preferencesObject = {};
                     preferences.forEach(function (preference) {
-                        preferencesObject[preference.id] = {
-                            index:preference.index,
-                            name: getNameFromIndexProperty(preference.index)
-                        };
+                        preferencesObject[preference.setting_key] = preference.setting_value;
                     });
                 }
+                console.log(preferencesObject);
 
                 var schema = {
                     type: "object"
@@ -65,8 +48,10 @@ angular.module('osp', ['cfp.loadingBar'])
 
                         var checkedValue = conf["write"].recommended;
                         if(hasPreferences){
-                            if(preferencesObject[conf.id]){
-                                checkedValue = preferencesObject[conf.id]['name'];
+                            if(preferencesObject[v]){
+                                if(conf["write"].availableSettings[preferencesObject[v]]){
+                                    checkedValue = preferencesObject[v];
+                                }
                             }
                         }
 

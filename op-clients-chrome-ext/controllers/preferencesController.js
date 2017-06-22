@@ -169,8 +169,8 @@ angular.module('operando').controller('PreferencesController', ["$scope", "$attr
                     var preferences = [];
                     for (var setting in $scope.model) {
                         preferences.push({
-                            id: ospWriteSettings[setting].id,
-                            index: ospWriteSettings[setting].read.availableSettings[$scope.model[setting]].index
+                            setting_key: setting,
+                            setting_value: $scope.model[setting]
                         })
                     }
 
