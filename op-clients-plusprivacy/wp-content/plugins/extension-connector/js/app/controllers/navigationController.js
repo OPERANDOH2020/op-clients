@@ -2,89 +2,29 @@ menuApp.controller("navigationController", function ($scope, SharedService, user
 
 
     $scope.menuItems = [
-       /* {
-            name: "OSP",
-            zone:"ospZone",
-            subItems: [{
-                key: "ospLogin",
-                title: "OSP Login",
-                zone: "guestZone",
-                path: "/osp-login"
-            },
-                {
-                    key: "ospRegister",
-                    title: "OSP Register",
-                    zone: "guestZone",
-                    path: "/osp-register"
-                },
-                {
-                    key: "ospOffers",
-                    title: "OSP Offers",
-                    zone: "ospZone",
-                    path: "/osp-offers"
-                },
-                {
-                    key: "ospDeals",
-                    title: "OSP Deals",
-                    zone: "ospZone",
-                    path: "/osp-deals"
-                },
-                {
-                    key: "ospCertifications",
-                    title: "Certifications",
-                    zone: "ospZone",
-                    path: "/osp-certifications"
-                },
-                {
-                    key: "ospAccount",
-                    title: "Account",
-                    zone: "ospZone",
-                    path: "/osp-account"
-                }
-            ]
+
+        {
+            key: "userLogin",
+            title: "Login",
+            glyphicon:"user",
+            zone: "guestZone",
+            path: "/login"
+        },
+
+        {
+            key: "userRegister",
+            title: "Register",
+            zone: "guestZone",
+            glyphicon:"edit",
+            path: "/register"
         },
         {
-            name: "PSP",
-            zone:"pspZone",
-            subItems: [{
-                key: "pspLogin",
-                title: "PSP Login",
-                zone: "guestZone",
-                path: "/psp-login"
-            },
+            key: "userDashboard",
+            title: "Dashboard",
+            zone: "userZone",
+            glyphicon:"dashboard",
+            path: "/user-dashboard"
 
-                {
-                    key: "pspDashboard",
-                    title: "PSP Dashboard",
-                    zone: "pspZone",
-                    path: "/psp-dashboard"
-                }
-            ]
-        },*/
-        {
-            name: "User",
-            zone:"userZone",
-            subItems: [
-                {
-                    key: "userLogin",
-                    title: "User Login",
-                    zone: "guestZone",
-                    path: "/login"
-                },
-
-                {
-                    key: "userRegister",
-                    title: "User Register",
-                    zone: "guestZone",
-                    path: "/register"
-                },
-                {
-                    key: "userDashboard",
-                    title: "Dashboard",
-                    zone: "userZone",
-                    path: "/user-dashboard"
-                }
-            ]
         }
     ];
 
@@ -96,7 +36,6 @@ menuApp.controller("navigationController", function ($scope, SharedService, user
 
         if (guestAccessZones.indexOf(location) === -1) {
             accessService.hasAccess(location, function (accessGranted) {
-                console.log(accessGranted);
                 if (accessGranted === false) {
                     $window.location.href = "/";
 
