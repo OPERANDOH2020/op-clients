@@ -332,9 +332,20 @@ a.donwload-app:hover img{
     text-align: center;
 }
 
+.col-centered{
+   text-align: center;
+}
+
+.home #content{
+    display: none;
+}
+
 html {
     height: 100%;
     box-sizing: border-box;
+}
+body{
+    padding-bottom: 130px;
 }
 
 *,
@@ -460,3 +471,43 @@ a.social_network_link img{
     font-weight: 300;
 }
 
+.mobile_login a{
+    width:100%;
+    padding:15px 20px;
+}
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        width:100%;
+    }
+}
+
+@media (max-width: 600px) {
+    body{padding-bottom: 245px;}
+}
+
+@media (max-width: 600px) {
+    #sidebar-footer-secondary {
+        bottom: 110px;
+    }
+}
+
+@media (min-width:601px) and (max-width: 991px) {
+    body{padding-bottom: 195px;}
+}
+
+@media (min-width:601px) and (max-width: 991px) {
+    #sidebar-footer-secondary {
+        bottom: 90px;
+    }
+}
+@media (min-width: 769px) {
+    #site-navigation{
+        width: 560px;
+        float:right;
+    }
+}

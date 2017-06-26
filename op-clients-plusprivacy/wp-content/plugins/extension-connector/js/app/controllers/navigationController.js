@@ -29,7 +29,7 @@ menuApp.controller("navigationController", function ($scope, SharedService, user
     ];
 
 
-    var guestAccessZones = ["ospLogin", "ospRegister", "userLogin", "userRegister", "pspLogin", "pspRegister"];
+    var guestAccessZones = ["userLogin", "userRegister"];
 
     SharedService.getLocation(function (location) {
         $scope.location = location;
