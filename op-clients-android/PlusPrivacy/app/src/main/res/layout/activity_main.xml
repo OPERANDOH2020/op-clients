@@ -45,7 +45,6 @@
                 android:layout_below="@id/tv_identity"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="8dp"
-                android:text="gigel@yahoo.com"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="italic"/>
