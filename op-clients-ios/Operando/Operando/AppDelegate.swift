@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PPApiHooksCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OPConfigObject.sharedInstance.applicationDidStartInWindow(window: window)
         self.window = window
         window.makeKeyAndVisible()
+        
         return true
         
     }

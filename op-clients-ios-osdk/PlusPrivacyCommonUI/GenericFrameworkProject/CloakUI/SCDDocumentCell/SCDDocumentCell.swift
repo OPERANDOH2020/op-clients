@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PlusPrivacyCommonTypes
+import PPCommonTypes
 
 struct SCDDocumentCellCallbacks {
     let whenUserSelectsAdvanced: VoidBlock?

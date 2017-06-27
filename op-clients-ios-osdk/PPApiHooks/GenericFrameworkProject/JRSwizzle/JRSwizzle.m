@@ -14,8 +14,8 @@
 
 #define SetNSErrorFor(FUNC, ERROR_VAR, FORMAT,...)	\
 	if (ERROR_VAR) {	\
-		NSString *errStr = [NSString stringWithFormat:@"%s: " FORMAT,FUNC,##__VA_ARGS__]; \
-		*ERROR_VAR = [NSError errorWithDomain:@"NSCocoaErrorDomain" \
+		NSString *errStr = [NSString stringWithFormat:@"%s:  "FORMAT,FUNC,##__VA_ARGS__]; \
+		*ERROR_VAR = [NSError errorWithDomain:@"NSCocoaErrorDomain "\
 										 code:-1	\
 									 userInfo:[NSDictionary dictionaryWithObject:errStr forKey:NSLocalizedDescriptionKey]]; \
 	}
@@ -26,6 +26,10 @@
 #else
 #define GetClass(obj)	(obj ? obj->isa : Nil)
 #endif
+
+
+
+
 
 @implementation NSObject (JRSwizzle)
 

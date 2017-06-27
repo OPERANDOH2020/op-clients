@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import PlusPrivacyCommonTypes
+import PPCommonTypes
 
 @objc
 public class OneDocumentRepository: NSObject, SCDRepository {

@@ -14,7 +14,7 @@
 Method findMethodInList(const char *methodName, Method *methodListHead){
     Method *methodIterator = methodListHead;
     
-    while (methodIterator) {
+    while (*methodIterator) {
         const char *name = sel_getName(method_getName(*methodIterator));
         if (strcmp(methodName, name) == 0) {
             return *methodIterator;
@@ -25,6 +25,8 @@ Method findMethodInList(const char *methodName, Method *methodListHead){
     
     return NULL;
 }
+
+typedef void(^BlockApplySelectors)(SEL originalSelector, SEL selectorWithPrefix);
 
 
 
@@ -53,9 +55,10 @@ Method findMethodInList(const char *methodName, Method *methodListHead){
     
     const char *cPrefix = [prefix cStringUsingEncoding:NSASCIIStringEncoding];
     size_t cPrefixLength = strlen(cPrefix);
-    
-    while (methodIterator) {
+        
+    while (*methodIterator != NULL) {
         const char *name = sel_getName(method_getName(*methodIterator));
+        
         if (strstr(name, cPrefix)) {
             
             char methodNameWithoutPrefix[512];

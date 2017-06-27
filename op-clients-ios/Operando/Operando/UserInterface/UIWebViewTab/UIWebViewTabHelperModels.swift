@@ -42,14 +42,16 @@ struct UIWebViewTabNavigationModel {
     }
 }
 
-struct UIWebViewTabNewWebViewModel {
-    let navigationModel: UIWebViewTabNavigationModel?
-    let processPool: WKProcessPool
+enum WebViewSetupParameter {
+    case fullConfiguration(WKWebViewConfiguration)
+    case processPool(WKProcessPool)
 }
 
-struct UIWebViewTabExistingWebViewModel {
-    let webView: WKWebView
+struct UIWebViewTabNewWebViewModel {
+    let navigationModel: UIWebViewTabNavigationModel?
+    let setupParameter: WebViewSetupParameter
 }
+
 
 struct UIWebViewTabCallbacks {
     let whenUserChoosesToViewTabs: VoidBlock?
@@ -59,6 +61,7 @@ struct UIWebViewTabCallbacks {
     let whenCreatingExternalWebView: ((_ configuration: WKWebViewConfiguration,
     _ navigationAction: WKNavigationAction) -> WKWebView?)?
     
+    let whenUserOpensInNewTab: ((_ link: URL) -> Void)?
 }
 
 struct WebTabDescription {

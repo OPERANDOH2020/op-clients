@@ -3,6 +3,9 @@
 //   Some rights reserved: http://opensource.org/licenses/MIT
 //   https://github.com/rentzsch/jrswizzle
 
+/* Due to the possibility JRSwizzle is a widely used for swizzling, its presence here could cause duplicate symbol errors for the developers embedding PPApiHooksCore. 
+ */
+
 #import <Foundation/Foundation.h>
 
 @interface NSObject (JRSwizzle)

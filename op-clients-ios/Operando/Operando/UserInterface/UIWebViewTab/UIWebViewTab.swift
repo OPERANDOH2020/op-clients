@@ -11,20 +11,23 @@ import WebKit
 
 fileprivate let kIconsMessageHandler = "iconsMessageHandler"
 
-class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UITextFieldDelegate {
+class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UITextFieldDelegate,
+LongPressGestureDelegate {
     
     @IBOutlet weak var addressBarView: UIView!
+    @IBOutlet weak var goButton: UIButton!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var webToolbarView: UIWebToolbarView!
     @IBOutlet weak var addressTF: UITextField!
     
-    private var webView: WKWebView?
+    private(set) var webView: WKWebView?
     
     private var callbacks: UIWebViewTabCallbacks?
     private var urlHistory: [URL] = []
     private var currentURLIndex: Int = 0;
     private var whenWebviewFinishesLoading: VoidBlock?
+    private var longPressRecognizer: LongPressGestureRecognizer?
     
     var currentNavigationModel: UIWebViewTabNavigationModel? {
         return UIWebViewTabNavigationModel(urlList: self.urlHistory, currentURLIndex: self.currentURLIndex)
@@ -36,21 +39,52 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UIT
         super.commonInit()
         self.activityIndicator.isHidden = true
         self.addressTF.delegate = self
+        self.styleGoButton()
+        
+        
     }
     
+
     func setupWith(model: UIWebViewTabNewWebViewModel, callbacks: UIWebViewTabCallbacks?) {
         self.callbacks = callbacks
         
-        let configuration = self.createConfigurationWith(processPool: model.processPool)
-        let webView = WKWebView(frame: .zero, configuration: configuration)
+        let webView = self.buildWebView(with: model.setupParameter)
         self.commonSetupWith(webView: webView, navigationModel: model.navigationModel)
+        self.longPressRecognizer = LongPressGestureRecognizer(webView: webView)
+        self.longPressRecognizer?.longPressGestureDelegate = self
+        
+    }
+    
+    private func buildWebView(with param: WebViewSetupParameter) -> WKWebView {
+        switch param {
+        case .fullConfiguration(let configuration):
+            return WKWebView(frame: .zero, configuration: configuration)
+            
+        case .processPool(let processPool):
+            let conf = self.createConfigurationWith(processPool: processPool)
+            return WKWebView(frame: .zero, configuration: conf)
+        }
     }
     
     
-    func setupWith(model: UIWebViewTabExistingWebViewModel, callbacks: UIWebViewTabCallbacks?){
-        self.callbacks = callbacks
-        self.commonSetupWith(webView: model.webView, navigationModel: nil)
+    
+    func changeNumberOfItems(to numOfItems: Int){
+        self.webToolbarView.changeNumberOfItems(to: numOfItems)
     }
+    
+    private func styleGoButton(){
+        let title: NSMutableAttributedString = NSMutableAttributedString(string: "Go")
+        let range: NSRange = NSMakeRange(0, 2);
+        let color: UIColor = UIColor(colorLiteralRed: 0, green: 169.0/255.0, blue: 160.0/255.0, alpha: 1.0)
+        
+        title.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 18), range: range)
+        title.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
+        title.addAttribute(NSUnderlineColorAttributeName, value: color, range: range)
+        title.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+        
+        self.goButton.setAttributedTitle(title, for: UIControlState.normal)
+    }
+    
     
     private func commonSetupWith(webView: WKWebView, navigationModel: UIWebViewTabNavigationModel?){
         
@@ -333,5 +367,31 @@ class UIWebViewTab: RSNibDesignableView, WKNavigationDelegate, WKUIDelegate, UIT
     
     func pageTitleScript() -> String {
         return "(function(){return document.title;})()"
+    }
+    
+    //MARK: LongPressRecognizer delegate
+    
+    func longPressRecognizer(longPressRecognizer: LongPressGestureRecognizer, didLongPressElements elements: [LongPressElementType : NSURL]) {
+        guard let linkURL = elements[.Link] else {
+            return
+        }
+        
+        let alertController = UIAlertController(title: linkURL.absoluteString ?? "", message: nil, preferredStyle: .actionSheet)
+        
+        let openInNewTabAction: UIAlertAction = UIAlertAction(title: "Open in new tab", style: .default) { [unowned self] action in
+            self.callbacks?.whenUserOpensInNewTab?(linkURL as URL)
+        }
+        
+        let copyAction: UIAlertAction = UIAlertAction(title: "Copy URL", style: .default) { _ in
+            UIPasteboard.general.string = linkURL.absoluteString
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        alertController.addAction(openInNewTabAction)
+        alertController.addAction(copyAction)
+        alertController.addAction(cancelAction)
+        
+        self.callbacks?.whenPresentingAlertController?(alertController)
     }
 }

@@ -27,7 +27,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         UserInfoRepository,
                         NotificationsRepository
 {
-    static let ServerURL = "http://192.168.100.86:8080";
+    static let ServerURL = "https://plusprivacy.com:8080";
     let swarmClient = SwarmClient(connectionURL: SwarmClientHelper.ServerURL);
     
     var whenThereWasAnError: ((_ error: NSError?) -> Void)?
@@ -50,6 +50,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     
     func loginWith(email: String, password: String, withCompletion completion: UserOperationCallback?)
     {
+
         workingQueue.async {
             self.whenThereWasAnError = { error in
                 completion?(error, .empty)
@@ -62,7 +63,7 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     return
                 }
                 
-                print(dict)
+//                print(dict)
                 guard let identityModel = UserIdentityModel(swarmClientLoginReply: dict) else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) ?? OPErrorContainer.errorInvalidServerResponse
                     completion?(error, .empty)
@@ -171,7 +172,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     }
     
     func registerNewUserWith(email: String, password: String, withCompletion completion: CallbackWithError?){
-        print("did call register new user ")
         workingQueue.async {
             let registrationInfo = RegistrationInfo(email: email, password: password)
             
@@ -216,7 +216,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     }
     
     private func registerUserWith(registrationInfo: RegistrationInfo, callbackInCaseOfError: CallbackWithError?, whenAllIsOk: VoidBlock?){
-        print("did call register user whenAllIsOk");
         workingQueue.async {
           
                 self.whenThereWasAnError = { error in
@@ -229,7 +228,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                         return
                     }
                     
-                    print(dict)
                     
                     if let error = SwarmClientResponseParsers.parseErrorIfAny(from: dict) {
                         callbackInCaseOfError?(error)
@@ -273,7 +271,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     return
                 }
                 
-                print(dataDict)
                 
                 guard let userInfo = SwarmClientResponseParsers.parseUserInfo(from: dataDict) else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.unknownError
@@ -333,8 +330,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     completion?(.defaultEmptyResponse, OPErrorContainer.errorInvalidServerResponse)
                     return
                 }
-                
-                print(dataDict)
                 
                 guard let identitiesList = SwarmClientResponseParsers.parseIdentitiesList(from: dataDict) else
                 {
@@ -446,8 +441,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     return
                 }
                 
-                print(dataDict)
-                
                 guard let nextDefaultIdentity = SwarmClientResponseParsers.parseNextDefaultIdentity(from: dataDict) else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
                     completion?("", error)
@@ -527,7 +520,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             
             
             self.handlersPerSwarmingName[.pfb] = { dataArray in
-                print(dataArray)
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(PfbDealUpdate.emptyUnsubscribed, OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -558,7 +550,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             
             
             self.handlersPerSwarmingName[.pfb] = { dataArray in
-                print(dataArray)
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(PfbDealUpdate.emptyUnsubscribed, OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -569,8 +560,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
                     completion?(PfbDealUpdate.emptyUnsubscribed, error)
                     return
                 }
-                
-                print(dataDict)
                 
                 guard successStatus == true else {
                     let error = SwarmClientResponseParsers.parseErrorIfAny(from: dataDict) ?? OPErrorContainer.errorInvalidServerResponse
@@ -600,8 +589,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             
             self.handlersPerSwarmingName[.notification] = { dataArray in
                 
-                print(dataArray)
-                
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?([], OPErrorContainer.errorInvalidServerResponse)
                     return
@@ -626,7 +613,6 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
             self.whenThereWasAnError = completion
             
             self.handlersPerSwarmingName[.notification] = { dataArray in
-                print(dataArray)
                 
                 guard let dataDict = dataArray.first as? [String: Any] else {
                     completion?(OPErrorContainer.errorInvalidServerResponse)
@@ -656,12 +642,10 @@ class SwarmClientHelper: NSObject, SwarmClientProtocol,
     }
     
     func socketDidDisconnect() {
-        print("Socket did disconnect")
         self.whenSockedDidDisconnect?()
     }
     
     func didReceiveData(_ data: [Any]){
-        print(data.first)
         guard let swarmName = SwarmClientHelper.swarmingNameIfAny(from: data) else {
             return
         }

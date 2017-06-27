@@ -7,26 +7,8 @@
 //
 
 #import "PPEventDispatcher.h"
-#import "PPEventDispatcher+Internal.h"
 #import "Common.h"
 #import "PPEvent+FrameworkPrivate.h"
-
-@interface IdentifiedHandler : NSObject
-@property (strong, nonatomic) NSString *identifier;
-@property (strong, nonatomic) EventHandler handler;
-@end
-
-@implementation IdentifiedHandler
--(instancetype)initWithIdentifier:(NSString*)identifier handler:(EventHandler)handler {
-    if (self = [super init]) {
-        self.identifier = identifier;
-        self.handler = handler;
-    }
-    
-    return self;
-}
-@end
-
 
 
 @interface PPEventDispatcher()
@@ -43,25 +25,27 @@
 }
 
 +(PPEventDispatcher *)sharedInstance {
+    
+    
     static PPEventDispatcher *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[PPEventDispatcher alloc] init];
     });
-    
     return sharedInstance;
 }
 
--(NSString *)insertNewHandlerAtTop:(EventHandler)eventHandler {
-    NSString *identifier = [NSString stringWithFormat:@"%ld", (unsigned long)self.handlersArray.count];
-    IdentifiedHandler *ih = [[IdentifiedHandler alloc] initWithIdentifier:identifier handler:eventHandler];
+-(NSString*)appendNewEventHandler:(EventHandler _Nonnull)eventHandler{
     
+    NSString *identifier = [NSString stringWithFormat:@"%u", arc4random()];
+    IdentifiedHandler *ih = [[IdentifiedHandler alloc] initWithIdentifier:identifier handler:eventHandler];
     [self.handlersArray addObject:ih];
     return identifier;
-    
 }
 
--(void)removeHandlerWithIdentifier:(NSString *)identifier {
+-(void)removeHandlerWithIdentifier:(NSString *)identifier      {
+    
+    
     NSInteger index = [self.handlersArray indexOfObjectPassingTest:^BOOL(IdentifiedHandler * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         IdentifiedHandler *ih = obj;
         return [ih.identifier isEqualToString:identifier];
@@ -100,15 +84,13 @@
     SAFECALL(ih.handler, event, confirmation)
 }
 
-@end
 
-
-@implementation PPEventDispatcher(Internal)
--(void)fireEvent:(PPEvent *)event {
+-(void)fireEvent:(PPEvent *)event      {
+    
     [self internalFireEvent:event];
 }
 
--(void)fireEventWithMaxOneTimeExecution:(PPEventIdentifier)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey {
+-(void)fireEventWithMaxOneTimeExecution:(PPEventIdentifier)type executionBlock:(PPVoidBlock _Nonnull)executionBlock executionBlockKey:(NSString* _Nonnull)executionBlockKey      {
     
     
     __block BOOL didExecute = NO;
@@ -126,21 +108,22 @@
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:type eventData:dict whenNoHandlerAvailable:executionBlock];
     
-    [self fireEvent:event];
+    [self fireEvent:event  ];
 }
 
--(id)resultForEventValue:(id)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key{
+-(id)resultForEventValue:(id)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key     {
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     SAFEADD(dict, key, value)
     
     PPEvent *event = [[PPEvent alloc] initWithEventIdentifier:identifier eventData:dict whenNoHandlerAvailable:nil];
-    [self fireEvent:event];
+    
+    [self fireEvent:event  ];
     
     return [event.eventData objectForKey:key] ;
 }
 
--(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key{
+-(BOOL)resultForBoolEventValue:(BOOL)value ofIdentifier:(PPEventIdentifier)identifier atKey:(NSString *)key     {
     
     return [[self resultForEventValue:@(value) ofIdentifier:identifier atKey:key] boolValue];
 }

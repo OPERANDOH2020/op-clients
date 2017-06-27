@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		980635631EFA642B0004527B /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980635611EFA640F0004527B /* PPCloak.framework */; };
+		980635641EFA642B0004527B /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 980635611EFA640F0004527B /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		980635651EFA642B0004527B /* PPCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980635591EFA64070004527B /* PPCommonUI.framework */; };
+		980635661EFA642B0004527B /* PPCommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 980635591EFA64070004527B /* PPCommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		980635671EFA642B0004527B /* PPCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355A1EFA64070004527B /* PPCommonTypes.framework */; };
+		980635681EFA642B0004527B /* PPCommonTypes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355A1EFA64070004527B /* PPCommonTypes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		980635691EFA642B0004527B /* iOSNM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355B1EFA64070004527B /* iOSNM.framework */; };
+		9806356A1EFA642B0004527B /* iOSNM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355B1EFA64070004527B /* iOSNM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9806356B1EFA642B0004527B /* PPApiHooksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355C1EFA64070004527B /* PPApiHooksCore.framework */; };
+		9806356C1EFA642B0004527B /* PPApiHooksCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9806355C1EFA64070004527B /* PPApiHooksCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9812DB5B1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */; };
 		9812DB5D1DB52BCC009DD50A /* UtilityControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */; };
 		982227551DC8EBD40053B993 /* UILocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982227541DC8EBD40053B993 /* UILocalizable.swift */; };
@@ -38,11 +48,7 @@
 		98387BBE1DB75A8400A76F01 /* UIDashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98387BBD1DB75A8400A76F01 /* UIDashboardButton.swift */; };
 		98387BC01DB75ACD00A76F01 /* UIDashboardButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98387BBF1DB75ACD00A76F01 /* UIDashboardButton.xib */; };
 		98387BC31DB7633500A76F01 /* UIColor+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98387BC21DB7633500A76F01 /* UIColor+Utilities.swift */; };
-		983C3F8D1E8D1D8E00014F25 /* PPCommonTypesBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 983C3F8C1E8D1D8E00014F25 /* PPCommonTypesBundle.bundle */; };
-		983C3F8E1E8D1D9F00014F25 /* PlusPrivacyCommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983C3F8A1E8D1D7F00014F25 /* PlusPrivacyCommonUI.framework */; };
-		983C3F8F1E8D1D9F00014F25 /* PlusPrivacyCommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 983C3F8A1E8D1D7F00014F25 /* PlusPrivacyCommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		983C3F901E8D1D9F00014F25 /* PlusPrivacyCommonTypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983C3F881E8D1D7600014F25 /* PlusPrivacyCommonTypes.framework */; };
-		983C3F911E8D1D9F00014F25 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 983C3F881E8D1D7600014F25 /* PlusPrivacyCommonTypes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		983D601B1EF1409600A34EB1 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987E717B1E8BB90C0006B240 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9840B24D1E2664F300C4FC86 /* JSONSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9840B24B1E2664F300C4FC86 /* JSONSchema.swift */; };
 		9840B24E1E2664F300C4FC86 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9840B24C1E2664F300C4FC86 /* Validators.swift */; };
 		9848B2D61D6740A500E0FD72 /* NSError+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848B2D51D6740A500E0FD72 /* NSError+Utilities.swift */; };
@@ -73,9 +79,10 @@
 		985A0D4A1DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D431DCCB0E40010C799 /* LocksmithInternetAuthenticationType.swift */; };
 		985A0D4B1DCCB0E40010C799 /* LocksmithInternetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D441DCCB0E40010C799 /* LocksmithInternetProtocol.swift */; };
 		985A0D4C1DCCB0E40010C799 /* LocksmithSecurityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A0D451DCCB0E40010C799 /* LocksmithSecurityClass.swift */; };
-		985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 985A0D4E1DCCB0F70010C799 /* Security.framework */; };
 		985BA6B31DC23F0C00BC645B /* NotificationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */; };
 		9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9860B4541DB136C600AFE113 /* UIIdentitiesListView.xib */; };
+		98620DE81EF7E6CE00BF4673 /* PPWebContentBlocker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DE61EF7E5D900BF4673 /* PPWebContentBlocker.framework */; };
+		98620DE91EF7E6CE00BF4673 /* PPWebContentBlocker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98620DE61EF7E5D900BF4673 /* PPWebContentBlocker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9863E8B01DEC28F50095CA30 /* IdentitiesManagementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9863E8AF1DEC28F50095CA30 /* IdentitiesManagementRepository.swift */; };
 		98668B591DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B4D1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m */; };
 		98668B5A1DB0D0D900FDE63A /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98668B4F1DB0D0D800FDE63A /* ECSlidingAnimationController.m */; };
@@ -105,9 +112,6 @@
 		986F1A5E1E81331900107F23 /* WebTabsControllerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986F1A5D1E81331900107F23 /* WebTabsControllerLogic.swift */; };
 		987072041E82BD2B00151201 /* WebViewTabManagementPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987072031E82BD2B00151201 /* WebViewTabManagementPool.swift */; };
 		987072071E82BF0A00151201 /* WebViewTabManagementPoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987072061E82BF0A00151201 /* WebViewTabManagementPoolTests.swift */; };
-		987083D21E8E519300D9F8E9 /* PPCloakBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 987083D11E8E519300D9F8E9 /* PPCloakBundle.bundle */; };
-		987083F41E8E8CCF00D9F8E9 /* PPCloak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987083F21E8E8CC800D9F8E9 /* PPCloak.framework */; };
-		987083F51E8E8CCF00D9F8E9 /* PPCloak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987083F21E8E8CC800D9F8E9 /* PPCloak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9870840B1E8E938E00D9F8E9 /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 987083F81E8E938E00D9F8E9 /* AFAutoPurgingImageCache.m */; };
 		9870840C1E8E938E00D9F8E9 /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 987083FA1E8E938E00D9F8E9 /* AFImageDownloader.m */; };
 		9870840D1E8E938E00D9F8E9 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 987083FC1E8E938E00D9F8E9 /* AFNetworkActivityIndicatorManager.m */; };
@@ -117,11 +121,7 @@
 		987084111E8E938E00D9F8E9 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 987084061E8E938E00D9F8E9 /* UIProgressView+AFNetworking.m */; };
 		987084121E8E938E00D9F8E9 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 987084081E8E938E00D9F8E9 /* UIRefreshControl+AFNetworking.m */; };
 		987084131E8E938E00D9F8E9 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9870840A1E8E938E00D9F8E9 /* UIWebView+AFNetworking.m */; };
-		987E71811E8BB94F0006B240 /* SwarmClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987E717B1E8BB90C0006B240 /* SwarmClient.framework */; };
-		987E71821E8BB94F0006B240 /* SwarmClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987E717B1E8BB90C0006B240 /* SwarmClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		987E71881E8BC8D40006B240 /* UIWebViewTabHelperModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E71871E8BC8D40006B240 /* UIWebViewTabHelperModels.swift */; };
-		987E718B1E8BDD480006B240 /* PPApiHooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71891E8BDD260006B240 /* PPApiHooks.framework */; };
-		987E718C1E8BDD480006B240 /* PPApiHooks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 987E71891E8BDD260006B240 /* PPApiHooks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9882DCF71D140F3F00C7A70F /* NSDate+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */; };
 		9882DCFA1D1448BA00C7A70F /* UIScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9882DCF91D1448BA00C7A70F /* UIScanningView.swift */; };
 		9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9882DCFB1D14498400C7A70F /* UIScanningView.xib */; };
@@ -132,13 +132,14 @@
 		989C41881DBE18E800951AE5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */; };
 		989C8A7C1DD3467E003BF341 /* UIRealIdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */; };
 		989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */; };
-		98D045DB1E8AA80300D97E56 /* PPWebContentBlocker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */; };
-		98D045DD1E8AA81100D97E56 /* PPWebContentBlocker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		98B89E601EC1DF22009570EC /* LongPress.js in Resources */ = {isa = PBXBuildFile; fileRef = 98B89E5F1EC1DF22009570EC /* LongPress.js */; };
+		98B89E631EC1E0D5009570EC /* LongPressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B89E621EC1E0D5009570EC /* LongPressHelper.swift */; };
 		98D220B81E7FFCEA00B3BD06 /* UIWebTabsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */; };
 		98D220BA1E7FFD1F00B3BD06 /* UIWebTabsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D220B91E7FFD1F00B3BD06 /* UIWebTabsListView.xib */; };
 		98D220BE1E80009D00B3BD06 /* UIWebTabCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D220BC1E80009D00B3BD06 /* UIWebTabCollectionCell.swift */; };
 		98D220BF1E80009D00B3BD06 /* UIWebTabCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D220BD1E80009D00B3BD06 /* UIWebTabCollectionCell.xib */; };
-		98EA847B1E8D064E0076B4FE /* PPCommonUIBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 98EA847A1E8D064E0076B4FE /* PPCommonUIBundle.bundle */; };
+		98D9A59F1EF4245500973A02 /* SwizzleTestFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D9A59D1EF4244800973A02 /* SwizzleTestFramework.framework */; };
+		98D9A5A01EF4245500973A02 /* SwizzleTestFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98D9A59D1EF4244800973A02 /* SwizzleTestFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98EAF66F1CCF86DC00C77649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */; };
 		98EAF6711CCF86DC00C77649 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6701CCF86DC00C77649 /* ViewController.swift */; };
 		98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6721CCF86DC00C77649 /* Main.storyboard */; };
@@ -156,6 +157,9 @@
 		98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98EAF6AA1CCF976200C77649 /* UIRegistrationView.xib */; };
 		98EAF6AF1CCF995B00C77649 /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6AE1CCF995B00C77649 /* IHKeyboardAvoiding.m */; };
 		98EAF6B41CCFA83600C77649 /* UIRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */; };
+		98F647581ED30662008EB91E /* PPCommonUIBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 98F647551ED30662008EB91E /* PPCommonUIBundle.bundle */; };
+		98F647591ED30662008EB91E /* PPCommonTypesBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 98F647561ED30662008EB91E /* PPCommonTypesBundle.bundle */; };
+		98F6475A1ED30662008EB91E /* PPCloakBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 98F647571ED30662008EB91E /* PPCloakBundle.bundle */; };
 		98F6B1241E7BE5A200D193FF /* UIWebToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6B1231E7BE5A200D193FF /* UIWebToolbarView.swift */; };
 		98F6B1261E7BE62400D193FF /* UIWebToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98F6B1251E7BE62400D193FF /* UIWebToolbarView.xib */; };
 		98F6B1291E7BFC7100D193FF /* UIWebViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6B1281E7BFC7100D193FF /* UIWebViewTab.swift */; };
@@ -183,16 +187,18 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		988466161DD0C7D100FBF22E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				983C3F911E8D1D9F00014F25 /* PlusPrivacyCommonTypes.framework in Embed Frameworks */,
-				987083F51E8E8CCF00D9F8E9 /* PPCloak.framework in Embed Frameworks */,
-				987E718C1E8BDD480006B240 /* PPApiHooks.framework in Embed Frameworks */,
-				983C3F8F1E8D1D9F00014F25 /* PlusPrivacyCommonUI.framework in Embed Frameworks */,
-				987E71821E8BB94F0006B240 /* SwarmClient.framework in Embed Frameworks */,
-				98D045DD1E8AA81100D97E56 /* PPWebContentBlocker.framework in Embed Frameworks */,
+				980635661EFA642B0004527B /* PPCommonUI.framework in Embed Frameworks */,
+				980635681EFA642B0004527B /* PPCommonTypes.framework in Embed Frameworks */,
+				98D9A5A01EF4245500973A02 /* SwizzleTestFramework.framework in Embed Frameworks */,
+				9806356C1EFA642B0004527B /* PPApiHooksCore.framework in Embed Frameworks */,
+				98620DE91EF7E6CE00BF4673 /* PPWebContentBlocker.framework in Embed Frameworks */,
+				983D601B1EF1409600A34EB1 /* SwarmClient.framework in Embed Frameworks */,
+				980635641EFA642B0004527B /* PPCloak.framework in Embed Frameworks */,
+				9806356A1EFA642B0004527B /* iOSNM.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +206,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		980635591EFA64070004527B /* PPCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCommonUI.framework; sourceTree = "<group>"; };
+		9806355A1EFA64070004527B /* PPCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCommonTypes.framework; sourceTree = "<group>"; };
+		9806355B1EFA64070004527B /* iOSNM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSNM.framework; sourceTree = "<group>"; };
+		9806355C1EFA64070004527B /* PPApiHooksCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooksCore.framework; sourceTree = "<group>"; };
+		980635611EFA640F0004527B /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
 		9812DB5A1DB52BBB009DD50A /* UIAddIdentityAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAddIdentityAlertViewController.swift; path = UserInterface/UIAddIdentityAlertViewController/UIAddIdentityAlertViewController.swift; sourceTree = "<group>"; };
 		9812DB5C1DB52BCC009DD50A /* UtilityControllers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UtilityControllers.storyboard; sourceTree = "<group>"; };
 		982227541DC8EBD40053B993 /* UILocalizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILocalizable.swift; path = UserInterface/UILocalizableLabel/UILocalizable.swift; sourceTree = "<group>"; };
@@ -238,9 +249,6 @@
 		98387BBD1DB75A8400A76F01 /* UIDashboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDashboardButton.swift; path = UserInterface/UIDashboardButton/UIDashboardButton.swift; sourceTree = "<group>"; };
 		98387BBF1DB75ACD00A76F01 /* UIDashboardButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIDashboardButton.xib; path = UserInterface/UIDashboardButton/UIDashboardButton.xib; sourceTree = "<group>"; };
 		98387BC21DB7633500A76F01 /* UIColor+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Utilities.swift"; path = "UserInterface/Extensions/UIColor+Utilities.swift"; sourceTree = "<group>"; };
-		983C3F881E8D1D7600014F25 /* PlusPrivacyCommonTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonTypes.framework; sourceTree = "<group>"; };
-		983C3F8A1E8D1D7F00014F25 /* PlusPrivacyCommonUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlusPrivacyCommonUI.framework; sourceTree = "<group>"; };
-		983C3F8C1E8D1D8E00014F25 /* PPCommonTypesBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCommonTypesBundle.bundle; sourceTree = "<group>"; };
 		9840B24B1E2664F300C4FC86 /* JSONSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSchema.swift; sourceTree = "<group>"; };
 		9840B24C1E2664F300C4FC86 /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		9848B2D51D6740A500E0FD72 /* NSError+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSError+Utilities.swift"; path = "Extensions/NSError+Utilities.swift"; sourceTree = "<group>"; };
@@ -277,6 +285,7 @@
 		985A0D4E1DCCB0F70010C799 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		985BA6B21DC23F0C00BC645B /* NotificationsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsRepository.swift; path = NotificationsRepository/NotificationsRepository.swift; sourceTree = "<group>"; };
 		9860B4541DB136C600AFE113 /* UIIdentitiesListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIIdentitiesListView.xib; path = UserInterface/UIIdentityManagementViewController/UIIdentitiesListView/UIIdentitiesListView.xib; sourceTree = "<group>"; };
+		98620DE61EF7E5D900BF4673 /* PPWebContentBlocker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPWebContentBlocker.framework; sourceTree = "<group>"; };
 		9863E8AF1DEC28F50095CA30 /* IdentitiesManagementRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentitiesManagementRepository.swift; sourceTree = "<group>"; };
 		98668B4C1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
 		98668B4D1DB0D0D800FDE63A /* ECPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
@@ -316,8 +325,6 @@
 		987072031E82BD2B00151201 /* WebViewTabManagementPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewTabManagementPool.swift; sourceTree = "<group>"; };
 		987072051E82BF0A00151201 /* OperandoTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OperandoTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		987072061E82BF0A00151201 /* WebViewTabManagementPoolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewTabManagementPoolTests.swift; sourceTree = "<group>"; };
-		987083D11E8E519300D9F8E9 /* PPCloakBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCloakBundle.bundle; sourceTree = "<group>"; };
-		987083F21E8E8CC800D9F8E9 /* PPCloak.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPCloak.framework; sourceTree = "<group>"; };
 		987083F71E8E938E00D9F8E9 /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAutoPurgingImageCache.h; sourceTree = "<group>"; };
 		987083F81E8E938E00D9F8E9 /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAutoPurgingImageCache.m; sourceTree = "<group>"; };
 		987083F91E8E938E00D9F8E9 /* AFImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageDownloader.h; sourceTree = "<group>"; };
@@ -340,7 +347,6 @@
 		9870840A1E8E938E00D9F8E9 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		987E717B1E8BB90C0006B240 /* SwarmClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwarmClient.framework; sourceTree = "<group>"; };
 		987E71871E8BC8D40006B240 /* UIWebViewTabHelperModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewTabHelperModels.swift; path = UserInterface/UIWebViewTab/UIWebViewTabHelperModels.swift; sourceTree = "<group>"; };
-		987E71891E8BDD260006B240 /* PPApiHooks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPApiHooks.framework; sourceTree = "<group>"; };
 		9882DCF61D140F3F00C7A70F /* NSDate+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Utilities.swift"; path = "Utilities/NSDate+Utilities.swift"; sourceTree = "<group>"; };
 		9882DCF91D1448BA00C7A70F /* UIScanningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScanningView.swift; path = UserInterface/UIScanningView/UIScanningView.swift; sourceTree = "<group>"; };
 		9882DCFB1D14498400C7A70F /* UIScanningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIScanningView.xib; path = UserInterface/UIScanningView/UIScanningView.xib; sourceTree = "<group>"; };
@@ -353,12 +359,13 @@
 		989C41851DBE18E800951AE5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		989C8A7B1DD3467E003BF341 /* UIRealIdentityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRealIdentityView.swift; path = UserInterface/UIRealIdentityView/UIRealIdentityView.swift; sourceTree = "<group>"; };
 		989C8A7D1DD346A0003BF341 /* UIRealIdentityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIRealIdentityView.xib; path = UserInterface/UIRealIdentityView/UIRealIdentityView.xib; sourceTree = "<group>"; };
-		98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PPWebContentBlocker.framework; sourceTree = "<group>"; };
+		98B89E5F1EC1DF22009570EC /* LongPress.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = LongPress.js; path = UserInterface/UIWebViewTab/LongPress.js; sourceTree = "<group>"; };
+		98B89E621EC1E0D5009570EC /* LongPressHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LongPressHelper.swift; path = UserInterface/UIWebViewTab/LongPressHelper/LongPressHelper.swift; sourceTree = "<group>"; };
 		98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabsListView.swift; path = UserInterface/UIWebTabsView/UIWebTabsListView.swift; sourceTree = "<group>"; };
 		98D220B91E7FFD1F00B3BD06 /* UIWebTabsListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebTabsListView.xib; path = UserInterface/UIWebTabsView/UIWebTabsListView.xib; sourceTree = "<group>"; };
 		98D220BC1E80009D00B3BD06 /* UIWebTabCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebTabCollectionCell.swift; path = UserInterface/UIWebTabsView/UIWebTabCollectionCell/UIWebTabCollectionCell.swift; sourceTree = "<group>"; };
 		98D220BD1E80009D00B3BD06 /* UIWebTabCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebTabCollectionCell.xib; path = UserInterface/UIWebTabsView/UIWebTabCollectionCell/UIWebTabCollectionCell.xib; sourceTree = "<group>"; };
-		98EA847A1E8D064E0076B4FE /* PPCommonUIBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCommonUIBundle.bundle; sourceTree = "<group>"; };
+		98D9A59D1EF4244800973A02 /* SwizzleTestFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwizzleTestFramework.framework; sourceTree = "<group>"; };
 		98EAF66B1CCF86DC00C77649 /* Operando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Operando.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98EAF66E1CCF86DC00C77649 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98EAF6701CCF86DC00C77649 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -382,6 +389,9 @@
 		98EAF6AE1CCF995B00C77649 /* IHKeyboardAvoiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHKeyboardAvoiding.m; sourceTree = "<group>"; };
 		98EAF6B11CCF99C300C77649 /* Operando-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Operando-BridgingHeader.h"; path = "BridgingHeader/Operando-BridgingHeader.h"; sourceTree = "<group>"; };
 		98EAF6B31CCFA83600C77649 /* UIRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIRegistrationViewController.swift; path = UserInterface/UIRegistrationViewController/UIRegistrationViewController.swift; sourceTree = "<group>"; };
+		98F647551ED30662008EB91E /* PPCommonUIBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCommonUIBundle.bundle; sourceTree = "<group>"; };
+		98F647561ED30662008EB91E /* PPCommonTypesBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCommonTypesBundle.bundle; sourceTree = "<group>"; };
+		98F647571ED30662008EB91E /* PPCloakBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPCloakBundle.bundle; sourceTree = "<group>"; };
 		98F6B1231E7BE5A200D193FF /* UIWebToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebToolbarView.swift; path = UserInterface/UIWebToolbarView/UIWebToolbarView.swift; sourceTree = "<group>"; };
 		98F6B1251E7BE62400D193FF /* UIWebToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIWebToolbarView.xib; path = UserInterface/UIWebToolbarView/UIWebToolbarView.xib; sourceTree = "<group>"; };
 		98F6B1281E7BFC7100D193FF /* UIWebViewTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewTab.swift; path = UserInterface/UIWebViewTab/UIWebViewTab.swift; sourceTree = "<group>"; };
@@ -401,13 +411,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98D045DB1E8AA80300D97E56 /* PPWebContentBlocker.framework in Frameworks */,
-				987E718B1E8BDD480006B240 /* PPApiHooks.framework in Frameworks */,
-				987E71811E8BB94F0006B240 /* SwarmClient.framework in Frameworks */,
-				983C3F8E1E8D1D9F00014F25 /* PlusPrivacyCommonUI.framework in Frameworks */,
-				983C3F901E8D1D9F00014F25 /* PlusPrivacyCommonTypes.framework in Frameworks */,
-				987083F41E8E8CCF00D9F8E9 /* PPCloak.framework in Frameworks */,
-				985A0D4F1DCCB0F70010C799 /* Security.framework in Frameworks */,
+				98620DE81EF7E6CE00BF4673 /* PPWebContentBlocker.framework in Frameworks */,
+				980635671EFA642B0004527B /* PPCommonTypes.framework in Frameworks */,
+				980635631EFA642B0004527B /* PPCloak.framework in Frameworks */,
+				98D9A59F1EF4245500973A02 /* SwizzleTestFramework.framework in Frameworks */,
+				980635651EFA642B0004527B /* PPCommonUI.framework in Frameworks */,
+				9806356B1EFA642B0004527B /* PPApiHooksCore.framework in Frameworks */,
+				980635691EFA642B0004527B /* iOSNM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,11 +514,13 @@
 		982D31601E84252F00FE2FB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				987083F21E8E8CC800D9F8E9 /* PPCloak.framework */,
-				983C3F8A1E8D1D7F00014F25 /* PlusPrivacyCommonUI.framework */,
-				983C3F881E8D1D7600014F25 /* PlusPrivacyCommonTypes.framework */,
-				987E71891E8BDD260006B240 /* PPApiHooks.framework */,
-				98D045DA1E8AA80300D97E56 /* PPWebContentBlocker.framework */,
+				980635611EFA640F0004527B /* PPCloak.framework */,
+				980635591EFA64070004527B /* PPCommonUI.framework */,
+				9806355A1EFA64070004527B /* PPCommonTypes.framework */,
+				9806355B1EFA64070004527B /* iOSNM.framework */,
+				9806355C1EFA64070004527B /* PPApiHooksCore.framework */,
+				98620DE61EF7E5D900BF4673 /* PPWebContentBlocker.framework */,
+				98D9A59D1EF4244800973A02 /* SwizzleTestFramework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -516,9 +528,9 @@
 		982D31691E84254000FE2FB7 /* Bundles */ = {
 			isa = PBXGroup;
 			children = (
-				987083D11E8E519300D9F8E9 /* PPCloakBundle.bundle */,
-				983C3F8C1E8D1D8E00014F25 /* PPCommonTypesBundle.bundle */,
-				98EA847A1E8D064E0076B4FE /* PPCommonUIBundle.bundle */,
+				98F647551ED30662008EB91E /* PPCommonUIBundle.bundle */,
+				98F647561ED30662008EB91E /* PPCommonTypesBundle.bundle */,
+				98F647571ED30662008EB91E /* PPCloakBundle.bundle */,
 			);
 			name = Bundles;
 			sourceTree = "<group>";
@@ -979,6 +991,15 @@
 			name = UIRealIdentityView;
 			sourceTree = "<group>";
 		};
+		98B89E611EC1E06D009570EC /* LongPressCustomActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				98B89E5F1EC1DF22009570EC /* LongPress.js */,
+				98B89E621EC1E0D5009570EC /* LongPressHelper.swift */,
+			);
+			name = LongPressCustomActionSheet;
+			sourceTree = "<group>";
+		};
 		98D045D91E8AA7A600D97E56 /* UIWebOptionsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,14 +1007,14 @@
 			name = UIWebOptionsView;
 			sourceTree = "<group>";
 		};
-		98D220B61E7FFC8D00B3BD06 /* UIWebTabsView */ = {
+		98D220B61E7FFC8D00B3BD06 /* UIWebTabsListView */ = {
 			isa = PBXGroup;
 			children = (
 				98D220BB1E80007000B3BD06 /* UIWebTabCollectionCell */,
 				98D220B71E7FFCEA00B3BD06 /* UIWebTabsListView.swift */,
 				98D220B91E7FFD1F00B3BD06 /* UIWebTabsListView.xib */,
 			);
-			name = UIWebTabsView;
+			name = UIWebTabsListView;
 			sourceTree = "<group>";
 		};
 		98D220BB1E80007000B3BD06 /* UIWebTabCollectionCell */ = {
@@ -1063,7 +1084,7 @@
 			isa = PBXGroup;
 			children = (
 				98D045D91E8AA7A600D97E56 /* UIWebOptionsView */,
-				98D220B61E7FFC8D00B3BD06 /* UIWebTabsView */,
+				98D220B61E7FFC8D00B3BD06 /* UIWebTabsListView */,
 				98F6B1271E7BFC2D00D193FF /* UIWebViewTab */,
 				98F6B1221E7BE58500D193FF /* UIWebToolbarView */,
 				989C8A7A1DD34634003BF341 /* UIRealIdentityView */,
@@ -1226,6 +1247,7 @@
 		98F6B1271E7BFC2D00D193FF /* UIWebViewTab */ = {
 			isa = PBXGroup;
 			children = (
+				98B89E611EC1E06D009570EC /* LongPressCustomActionSheet */,
 				987E71871E8BC8D40006B240 /* UIWebViewTabHelperModels.swift */,
 				98F6B1281E7BFC7100D193FF /* UIWebViewTab.swift */,
 				98F6B12A1E7BFD9300D193FF /* UIWebViewTab.xib */,
@@ -1341,7 +1363,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Operando;
 				TargetAttributes = {
 					98EAF66A1CCF86DC00C77649 = {
@@ -1381,8 +1403,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				987083D21E8E519300D9F8E9 /* PPCloakBundle.bundle in Resources */,
-				98EA847B1E8D064E0076B4FE /* PPCommonUIBundle.bundle in Resources */,
 				ADF3CA651DB892F900BD2B7A /* SideMenu.xcassets in Resources */,
 				98EAF6791CCF86DC00C77649 /* LaunchScreen.storyboard in Resources */,
 				98EAF6AB1CCF976200C77649 /* UIRegistrationView.xib in Resources */,
@@ -1396,15 +1416,17 @@
 				9852C6F81CD0F68D00AF2BE5 /* UIIdentityCell.xib in Resources */,
 				98D220BF1E80009D00B3BD06 /* UIWebTabCollectionCell.xib in Resources */,
 				9866A7C61DBF854000907D05 /* UINotificationsListView.xib in Resources */,
-				983C3F8D1E8D1D8E00014F25 /* PPCommonTypesBundle.bundle in Resources */,
 				9882DCFC1D14498400C7A70F /* UIScanningView.xib in Resources */,
+				98F647591ED30662008EB91E /* PPCommonTypesBundle.bundle in Resources */,
 				98387BC01DB75ACD00A76F01 /* UIDashboardButton.xib in Resources */,
 				98500BCF1E09A25800DF87E8 /* SCDSchema.json in Resources */,
 				9866A7B41DBF4B1000907D05 /* Localizable.strings in Resources */,
 				98D220BA1E7FFD1F00B3BD06 /* UIWebTabsListView.xib in Resources */,
 				9860B4551DB136C600AFE113 /* UIIdentitiesListView.xib in Resources */,
 				986E3E651DB3CA6B00453DC6 /* UIAddIdentityView.xib in Resources */,
+				98F6475A1ED30662008EB91E /* PPCloakBundle.bundle in Resources */,
 				986DB8A61E1CE99900F9BE39 /* schema.json in Resources */,
+				98B89E601EC1DF22009570EC /* LongPress.js in Resources */,
 				9866A7C01DBF779100907D05 /* UIChangePasswordView.xib in Resources */,
 				989C41861DBE18E800951AE5 /* Info.plist in Resources */,
 				9866A7CB1DBF861300907D05 /* UINotificationCell.xib in Resources */,
@@ -1412,6 +1434,7 @@
 				98EAF6A31CCF8A3400C77649 /* UILoginView.xib in Resources */,
 				98EAF6741CCF86DC00C77649 /* Main.storyboard in Resources */,
 				9852C6E51CD0D82700AF2BE5 /* UIOperandoTitleView.xib in Resources */,
+				98F647581ED30662008EB91E /* PPCommonUIBundle.bundle in Resources */,
 				989C8A7E1DD346A0003BF341 /* UIRealIdentityView.xib in Resources */,
 				9827500F1D08496C00C73411 /* UIBrowsingNavigationBar.xib in Resources */,
 				982DF0641DB6618700231BBD /* UIPfbDealTableViewCell.xib in Resources */,
@@ -1529,6 +1552,7 @@
 				9870840C1E8E938E00D9F8E9 /* AFImageDownloader.m in Sources */,
 				982DF0631DB6618700231BBD /* UIPfbDealTableViewCell.swift in Sources */,
 				9852C6E31CD0D81200AF2BE5 /* UIOperandoTitleView.swift in Sources */,
+				98B89E631EC1E0D5009570EC /* LongPressHelper.swift in Sources */,
 				982227551DC8EBD40053B993 /* UILocalizable.swift in Sources */,
 				9852C6F31CD0F29900AF2BE5 /* UIIdentityManagementViewController.swift in Sources */,
 				9896F46D1E892D7B00BA0D6E /* WebAdBlocker.swift in Sources */,
@@ -1628,8 +1652,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -1655,6 +1681,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "567dddcc-d409-4aa9-9020-56e1505e6e7a";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Operando/BridgingHeader/Operando-BridgingHeader.h";
@@ -1679,8 +1706,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -1699,9 +1728,11 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Operando/SystemMonitor/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "567dddcc-d409-4aa9-9020-56e1505e6e7a";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Operando/BridgingHeader/Operando-BridgingHeader.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1714,16 +1745,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ROMSOFT SRL (N3W2GJCUF8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = MTQBH47X23;
-				ENABLE_BITCODE = NO;
+				DEVELOPMENT_TEAM = N3W2GJCUF8;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Operando",
 				);
 				INFOPLIST_FILE = Operando/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = costinAndronache.eu.romsoft.Operando;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.romsoft.Operando;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1737,16 +1768,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ROMSOFT SRL (N3W2GJCUF8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = MTQBH47X23;
-				ENABLE_BITCODE = NO;
+				DEVELOPMENT_TEAM = N3W2GJCUF8;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Operando",
 				);
 				INFOPLIST_FILE = Operando/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = costinAndronache.eu.romsoft.Operando;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.romsoft.Operando;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1764,6 +1795,7 @@
 					"$(PROJECT_DIR)/Operando",
 				);
 				INFOPLIST_FILE = OperandoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.operando.OperandoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1784,6 +1816,7 @@
 					"$(PROJECT_DIR)/Operando",
 				);
 				INFOPLIST_FILE = OperandoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.operando.OperandoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

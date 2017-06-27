@@ -7,19 +7,16 @@
 //
 
 import UIKit
-import PlusPrivacyCommonUI
 import WebKit
+import PPCommonUI
+import PPCommonTypes
 
 let kPleaseConfirmEmailLocalizableKey = "kPleaseConfirmEmailLocalizableKey"
 let kPleaseCheckEmailResetLocalizableKey = "kPleaseCheckEmailResetLocalizableKey"
 let kPasswordChangedSuccesfullyLocalizableKey = "kPasswordChangedSuccesfullyLocalizableKey"
 let kConnecting = "Connecting"
 
-enum NotificationAction: String {
-    case identitiesMangament = "identity"
-    case privacyForBenefits = "privacy-for-benefits"
-    case privateBrowsing = "privateBrowsing"
-}
+
 
 class OPConfigObject: NSObject
 {
@@ -30,30 +27,25 @@ class OPConfigObject: NSObject
     private var notificationsRepository: NotificationsRepository?
     private var flowController: UIFlowController?
     private var dependencies: Dependencies?
-    private var actionsPerNotificationType: [String: VoidBlock] = [:]
-    private var opCloak: OPCloak?
+    private var actionsPerNotificationType: [NotificationAction: VoidBlock] = [:]
     private let adBlocker = WebAdBlocker();
     
     private func initPropertiesOnAppStart() {
         
         self.userRepository = self.swarmClientHelper
-        self.notificationsRepository = DummyNotificationsRepo()//self.swarmClientHelper
+        self.notificationsRepository = self.swarmClientHelper
         self.adBlocker.beginBlocking()
         
         weak var weakSelf = self
         
         let plistRepositoryPath = OPConfigObject.pathForFile(named: "SCDRepository")
-        let localSchemaPath = Bundle.main.path(forResource: "SCDSchema", ofType: "json") ?? ""
-        let scdRepository = PlistSCDRepository(plistFilePath: plistRepositoryPath)
-        self.opCloak = OPCloak(schemaProvider: LocalFileSchemaProvider(pathToFile: localSchemaPath),
-                               schemaValidator: SwiftSchemaValidator(),
-                               scdRepository: scdRepository)
+//        let scdRepository = PlistSCDRepository(plistFilePath: plistRepositoryPath)
+
         
         let dependencies = Dependencies(identityManagementRepo:  self.swarmClientHelper,
-                                         privacyForBenefitsRepo:  DummyPfbRepository(),
+                                         privacyForBenefitsRepo:  self.swarmClientHelper,
                                          userInfoRepo:            self.swarmClientHelper,
                                          notificationsRepository: self.notificationsRepository,
-                                         scdDocumentsRepository: scdRepository,
                                          accountCallbacks: self.createAccountCallbacks(),
             whenTakingActionForNotification: { weakSelf?.dismiss(notification: $1, andTakeAction: $0) },
             whenRequestingNumOfNotifications: { callback in
@@ -71,17 +63,18 @@ class OPConfigObject: NSObject
         self.flowController = UIFlowController(dependencies: dependencies)
         self.dependencies = dependencies
         weak var flowCntroler = self.flowController
-        self.actionsPerNotificationType = [NotificationAction.identitiesMangament.rawValue:
+        self.actionsPerNotificationType = [NotificationAction.identitiesMangament:
             {flowCntroler?.displayIdentitiesManagement()},
-                                           NotificationAction.privateBrowsing.rawValue:
+                                           NotificationAction.privateBrowsing:
                                             {flowCntroler?.displayPrivateBrowsing()},
-                                           NotificationAction.privacyForBenefits.rawValue:
+                                           NotificationAction.privacyForBenefits:
                                             {flowCntroler?.displayPfbDeals()}]
     }
     
     
     func applicationDidStartInWindow(window: UIWindow)
     {
+        
         self.initPropertiesOnAppStart()
         self.eraseCredentialsIfFreshAppReinstall()
         self.flowController?.setupBaseHierarchyInWindow(window)
@@ -115,9 +108,6 @@ class OPConfigObject: NSObject
     }
     
     func open(url: URL) -> Bool {
-        if self.opCloak?.canProcess(url: url) ?? false {
-            self.opCloak?.processIncoming(url: url)
-        }
         return false
     }
     
@@ -204,7 +194,7 @@ class OPConfigObject: NSObject
         }
     }
     
-    private func dismiss(notification: OPNotification, andTakeAction action: String){
+    private func dismiss(notification: OPNotification, andTakeAction action: NotificationAction){
         
         self.dependencies?.notificationsRepository?.dismiss(notification: notification) { error in
             if let error = error {

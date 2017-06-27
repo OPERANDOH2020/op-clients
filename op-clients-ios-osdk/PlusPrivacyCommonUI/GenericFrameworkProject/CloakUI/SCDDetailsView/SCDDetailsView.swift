@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PlusPrivacyCommonTypes
+import PPCommonTypes
 
 fileprivate protocol SectionSource: class, UITableViewDataSource {
     var sectionTitle: String {get}
