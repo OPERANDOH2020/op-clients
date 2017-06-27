@@ -66,6 +66,12 @@ public class CreateIdentityActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        generateIdentity();
+    }
+
     private void getDomains() {
         swarmClient.startSwarm(new GetDomainsSwarm(), new SwarmCallback<GetDomainsSwarm>() {
             @Override

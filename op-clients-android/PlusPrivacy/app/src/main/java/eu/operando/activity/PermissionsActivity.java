@@ -14,7 +14,7 @@ import eu.operando.adapter.PermissionsListAdapter;
 /**
  * Created by Edy on 6/17/2016.
  */
-public class PermissionsActivity extends AppCompatActivity {
+public class PermissionsActivity extends BaseActivity {
     public static void start(Context context) {
         Intent starter = new Intent(context, PermissionsActivity.class);
         context.startActivity(starter);

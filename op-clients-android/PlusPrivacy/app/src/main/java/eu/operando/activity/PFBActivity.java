@@ -32,7 +32,7 @@ import eu.operando.swarmclient.models.Swarm;
 import eu.operando.swarmclient.models.SwarmCallback;
 
 
-public class PFBActivity extends AppCompatActivity {
+public class PFBActivity extends BaseActivity {
 
     private SwarmClient swarmClient;
     private ArrayList<PFBObject> pfbs;
@@ -69,43 +69,45 @@ public class PFBActivity extends AppCompatActivity {
 
 
     public void getPFB() {
-        swarmClient.startSwarm(new GetPFBSwarm(), new SwarmCallback<GetPFBSwarm>() {
+//        swarmClient.startSwarm(new GetPFBSwarm(), new SwarmCallback<GetPFBSwarm>() {
+//
+//            @Override
+//            public void call(final GetPFBSwarm result) {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        pfbs = result.getDeals();
+//                        adapter = new QuickAdapter<PFBObject>(PFBActivity.this, R.layout.pfb_item, pfbs) {
+//                            @Override
+//                            protected void convert(BaseAdapterHelper helper, final PFBObject item) {
+//                                helper.setText(R.id.tv, item.getWebsite());
+//                                helper.setImageUrl(R.id.iv, item.getLogo());
+//                                ((CheckBox) helper.getView(R.id.cb)).setOnCheckedChangeListener(null);
+//                                helper.setChecked(R.id.cb, item.isSubscribed());
+//                                final CheckBox cb = helper.getView(R.id.cb);
+//                                cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                                    @Override
+//                                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                                        switchPFB(isChecked, item.getServiceId());
+//                                    }
+//                                });
+//
+//                                helper.getView().setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        showDetails(item);
+//                                    }
+//                                });
+//                            }
+//                        };
+//
+//                        lv.setAdapter(adapter);
+//                    }
+//                });
+//            }
+//        });
 
-            @Override
-            public void call(final GetPFBSwarm result) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        pfbs = result.getDeals();
-                        adapter = new QuickAdapter<PFBObject>(PFBActivity.this, R.layout.pfb_item, pfbs) {
-                            @Override
-                            protected void convert(BaseAdapterHelper helper, final PFBObject item) {
-                                helper.setText(R.id.tv, item.getWebsite());
-                                helper.setImageUrl(R.id.iv, item.getLogo());
-                                ((CheckBox) helper.getView(R.id.cb)).setOnCheckedChangeListener(null);
-                                helper.setChecked(R.id.cb, item.isSubscribed());
-                                final CheckBox cb = helper.getView(R.id.cb);
-                                cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                                    @Override
-                                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                        switchPFB(isChecked, item.getServiceId());
-                                    }
-                                });
 
-                                helper.getView().setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        showDetails(item);
-                                    }
-                                });
-                            }
-                        };
-
-                        lv.setAdapter(adapter);
-                    }
-                });
-            }
-        });
     }
 
     private void switchPFB(boolean accept, int serviceId) {

@@ -1,9 +1,12 @@
 package eu.operando.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -15,10 +18,12 @@ import com.special.ResideMenu.ResideMenuItem;
 import java.util.List;
 
 import eu.operando.R;
+import eu.operando.lightning.activity.MainBrowserActivity;
 import eu.operando.models.InstalledApp;
 import eu.operando.storage.Storage;
 import eu.operando.swarmService.SwarmService;
 import eu.operando.swarmService.models.GetNotificationsSwarm;
+import eu.operando.swarmService.models.LoginSwarm;
 import eu.operando.swarmclient.SwarmClient;
 import eu.operando.swarmclient.models.Swarm;
 import eu.operando.swarmclient.models.SwarmCallback;
@@ -27,8 +32,9 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static void start(Context context) {
+    public static void start(Context context, boolean autologin) {
         Intent starter = new Intent(context, MainActivity.class);
+        starter.putExtra("autologin", autologin);
         context.startActivity(starter);
     }
 
@@ -38,7 +44,46 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initUI();
+        autoLogin();
+    }
+
+    private void autoLogin() {
+        if (getIntent().getBooleanExtra("autologin", false)) {
+            Pair<String, String> credentials = Storage.readCredentials();
+            if (credentials.first != null && credentials.second != null) {
+                swarmLogin(credentials.first, credentials.second);
+                return;
+            }
+        } else {
+            initUI();
+        }
+    }
+
+    private void swarmLogin(final String username, final String password) {
+
+        SwarmService.getInstance().login(username, password, new SwarmCallback<LoginSwarm>() {
+            @Override
+            public void call(final LoginSwarm result) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (!result.isAuthenticated()) {
+                                    Storage.clearData();
+                                    finish();
+                                } else {
+                                    Storage.saveUserID(result.getUserId());
+                                    initUI();
+                                }
+                            }
+                        }, 1);
+                    }
+                });
+
+            }
+        });
     }
 
     private void initUI() {
@@ -57,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         findViewById(R.id.apps_rl).setOnClickListener(scanListener);
-        findViewById(R.id.btn_scanner).setOnClickListener(scanListener);
         findViewById(R.id.btn_identities).setOnClickListener(identitiesListener);
         findViewById(R.id.real_identity_rl).setOnClickListener(identitiesListener);
         findViewById(R.id.notifications_rl).setOnClickListener(new View.OnClickListener() {
@@ -75,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_browser).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KotlinBrowserActivityKt.start(MainActivity.this);
-//                BrowserActivity.start(MainActivity.this);
+//                KotlinBrowserActivityKt.start(MainBrowserActivity.this);
+                startActivity(new Intent(MainActivity.this, MainBrowserActivity.class));
             }
         });
     }
@@ -139,18 +183,10 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-        String[] titles = new String[]{"Dashboard",
-                "Identities Management",
-                "Privacy for Benefits",
-                "Private Browsing",
-                "Application Scanner",
-                "Notifications"};
-        int[] icons = new int[]{R.drawable.ic_home,
-                R.drawable.ic_identities,
-                R.drawable.ic_deals,
-                R.drawable.ic_private_browsing,
-                R.drawable.ic_scan,
-                R.drawable.ic_notifications};
+        String[] titles = new String[]{"Settings", "About", "Trusted apps"};
+        int[] icons = new int[]{R.drawable.ic_settings,
+                R.drawable.ic_action_about,
+                R.drawable.ic_trusted};
 
         for (int i = 0; i < titles.length; i++) {
             ResideMenuItem item = new ResideMenuItem(this, icons[i], titles[i]);
@@ -183,26 +219,17 @@ public class MainActivity extends AppCompatActivity {
     private void onDrawerItemClicked(int index) {
 //        Toast.makeText(this, index + "", Toast.LENGTH_SHORT).show();
         switch (index) {
-            case 0: //Dashboard
-                resideMenu.closeMenu();
+            case 0: //Settings
+                SettingsActivity.start(this);
                 break;
-            case 1: //Identities
-                IdentitiesActivity.start(this);
+            case 1: //About
+                AboutActivity.start(this);
                 break;
-            case 2: //PfB
-                PFBActivity.start(this);
+            case 2: //Trusted Apps
+                Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show();
+//                TrustedAppsActivity.start(this);
                 break;
-            case 3: //Browser
-                KotlinBrowserActivityKt.start(this);
-//                BrowserActivity.start(MainActivity.this);
-                break;
-            case 4: //Scanner
-                ScannerActivity.start(this);
-                break;
-            case 5: //Notifications
-                NotificationsActivity.start(this);
-                break;
-            case 6: //LogOut
+            case 3: //LogOut
                 logOut();
                 break;
         }

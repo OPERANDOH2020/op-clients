@@ -16,6 +16,7 @@ import java.util.List;
 
 import eu.operando.R;
 import eu.operando.activity.PermissionsActivity;
+import eu.operando.activity.ScannerActivity;
 import eu.operando.models.InstalledApp;
 import eu.operando.utils.PermissionUtils;
 
@@ -52,6 +53,7 @@ public class ScannerListAdapter extends ArrayAdapter<InstalledApp> {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), PermissionsActivity.class);
                 i.putExtra("perms", item.getPermissions());
+                ((ScannerActivity)getContext()).infoClicked();
                 getContext().startActivity(i);
             }
         });

@@ -43,7 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     private void autoLoginOrComplete() {
         Pair<String, String> credentials = Storage.readCredentials();
         if (credentials.first != null && credentials.second != null) {
-            login(credentials.first,credentials.second);
+//            login(credentials.first,credentials.second);
+            MainActivity.start(this, true);
+            finish();
             return;
         }
         credentials = Storage.readRegisterCredentials();
@@ -104,10 +106,9 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 dialog.dismiss();
-                                Toast.makeText(LoginActivity.this, result.isAuthenticated() ? "Login success" : "Login failed", Toast.LENGTH_SHORT).show();
                                 if (result.isAuthenticated()) {
                                     Storage.saveUserID(result.getUserId());
-                                    MainActivity.start(LoginActivity.this);
+                                    MainActivity.start(LoginActivity.this, false);
                                     storeCredentials(username, password);
                                     finish();
                                 } else {

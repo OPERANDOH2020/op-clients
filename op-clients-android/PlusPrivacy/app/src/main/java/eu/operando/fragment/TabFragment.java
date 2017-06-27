@@ -52,10 +52,15 @@ public class TabFragment extends Fragment {
     private ImageView backBtn;
     private AdBlockWebView webView;
     private EditText urlEt;
+    private OnNewTabRequestListener onNewTabRequestListener;
     private UrlLoadListener urlLoadListener;
 
     public void setUrlLoadListener(UrlLoadListener urlLoadListener) {
         this.urlLoadListener = urlLoadListener;
+    }
+
+    public void setOnNewTabRequestListener(OnNewTabRequestListener onNewTabRequestListener) {
+        this.onNewTabRequestListener = onNewTabRequestListener;
     }
 
     @Nullable
@@ -127,6 +132,14 @@ public class TabFragment extends Fragment {
             }
         });
         loadUrl(getArguments().getString("url", "www.google.ro"));
+        webView.setOnLongPressListener(new AdBlockWebView.OnLongPressListener() {
+            @Override
+            public void onLongPress(String url) {
+                if(onNewTabRequestListener!=null){
+                    onNewTabRequestListener.onNewTabRequested(url);
+                }
+            }
+        });
 
     }
 
@@ -170,5 +183,9 @@ public class TabFragment extends Fragment {
 
     public interface UrlLoadListener {
         void onUrlLoaded(String title, String url);
+    }
+
+    public interface OnNewTabRequestListener{
+        void onNewTabRequested(String url);
     }
 }

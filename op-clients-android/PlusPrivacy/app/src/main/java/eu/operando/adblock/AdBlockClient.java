@@ -19,6 +19,10 @@ import java.util.regex.Pattern;
  */
 
 public class AdBlockClient extends WebViewClient {
+    public AdBlockClient(Context context) {
+        this.context = context;
+        engine = getAdblockEngine();
+    }
     private static final Pattern RE_JS = Pattern.compile("\\.js$", Pattern.CASE_INSENSITIVE);
     private static final Pattern RE_CSS = Pattern.compile("\\.css$", Pattern.CASE_INSENSITIVE);
     private static final Pattern RE_IMAGE = Pattern.compile("\\.(?:gif|png|jpe?g|bmp|ico)$", Pattern.CASE_INSENSITIVE);
@@ -30,10 +34,6 @@ public class AdBlockClient extends WebViewClient {
     private String[] EMPTY_ARRAY = {};
     private Context context;
 
-    public AdBlockClient(Context context) {
-        this.context = context;
-        engine = getAdblockEngine();
-    }
 
 
     private AdblockEngine getAdblockEngine() {

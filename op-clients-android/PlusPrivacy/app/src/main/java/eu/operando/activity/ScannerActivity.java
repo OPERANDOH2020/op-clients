@@ -13,13 +13,14 @@ import eu.operando.adapter.ScannerListAdapter;
 import eu.operando.storage.Storage;
 import eu.operando.utils.PermissionUtils;
 
-public class ScannerActivity extends AppCompatActivity {
+public class ScannerActivity extends BaseActivity {
     private ListView listView;
+    private boolean shouldRefresh = true;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, ScannerActivity.class);
         context.startActivity(starter);
-        ((Activity)context).overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        ((Activity) context).overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
     }
 
@@ -45,11 +46,15 @@ public class ScannerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        reloadApps();
+        if (shouldRefresh) {
+            reloadApps();
+        } else {
+            shouldRefresh = true;
+        }
     }
 
     private void reloadApps() {
-        Storage.saveAppList(PermissionUtils.getApps(this,false));
+        Storage.saveAppList(PermissionUtils.getApps(this, false));
         initUI();
     }
 
@@ -57,5 +62,9 @@ public class ScannerActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    public void infoClicked() {
+        shouldRefresh = false;
     }
 }

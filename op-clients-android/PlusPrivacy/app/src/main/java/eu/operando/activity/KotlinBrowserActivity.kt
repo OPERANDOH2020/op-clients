@@ -37,7 +37,7 @@ class KotlinBrowserActivity : AppCompatActivity() {
         }
         tabHost = findViewById(R.id.tabhost) as TabLayout
         viewPager = findViewById(R.id.tab_view_pager) as ViewPager
-        viewPager.adapter = TabPagerAdapter(supportFragmentManager, this, tabHost)
+        viewPager.adapter = TabPagerAdapter(supportFragmentManager,this,tabHost)
         viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabHost))
         
         tabHost.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

@@ -11,10 +11,15 @@ import io.paperdb.Paper;
  */
 
 public class App extends Application {
+    private static App app;
     @Override
     public void onCreate() {
         super.onCreate();
-        Paper.init(this);
+        app = this;
 
+    }
+
+    public static App getApp(){
+        return app;
     }
 }

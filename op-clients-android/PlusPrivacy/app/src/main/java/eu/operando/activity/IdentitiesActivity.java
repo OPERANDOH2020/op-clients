@@ -28,7 +28,7 @@ import eu.operando.swarmclient.SwarmClient;
 import eu.operando.swarmclient.models.Swarm;
 import eu.operando.swarmclient.models.SwarmCallback;
 
-public class IdentitiesActivity extends AppCompatActivity {
+public class IdentitiesActivity extends BaseActivity {
     private ListView identitiesLV;
     private View addIdentityBtn;
     ArrayList<Identity> identities;
